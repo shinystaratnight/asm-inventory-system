@@ -14,6 +14,7 @@
 	<link href="./assets/css/components.min.css" rel="stylesheet" type="text/css">
 	<link href="./assets/css/colors.min.css" rel="stylesheet" type="text/css">
 	<link href="./global_assets/css/extras/animate.min.css" rel="stylesheet" type="text/css">
+	<link href="./assets/css/style.css" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
@@ -305,9 +306,9 @@
 								<li>
 									<a href="#"><i class="icon-stack2"></i> <span>Master data registration</span></a>
 									<ul>
-										<li class="active"><a href="master_data_customer.html">Customer master</a></li>
-										<li><a href="master_data_hall_details.html">Hall details</a></li>
-										<li><a href="layout_sidebar_fixed_native.html">Pick-up destination</a></li>
+										<li><a href="master_data_customer.html">Customer master</a></li>
+										<li class="active"><a href="master_data_hall_details.html">Hall details</a></li>
+										<li><a href="master_data_pickup_destination.html">Pick-up destination</a></li>
 										<li><a href="layout_navbar_hideable.html">Product name</a></li>
 										<li><a href="layout_navbar_hideable_sidebar.html">Others</a></li>
 									</ul>
@@ -466,7 +467,7 @@
 				<div class="page-header">
 					<div class="page-header-content">
 						<div class="page-title">
-							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Master Data Registration</span> - Customer Master</h4>
+							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Master Data Registration</span> - Hall Details</h4>
 						</div>
 
 						<div class="heading-elements">
@@ -482,7 +483,7 @@
 						<ul class="breadcrumb">
 							<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
 							<li><a href="datatable_styling.html">Master card registration</a></li>
-							<li class="active">Customer master</li>
+							<li class="active">Hall details</li>
 						</ul>
 
 						<ul class="breadcrumb-elements">
@@ -512,7 +513,7 @@
 
 					<div class="panel panel-flat">
 						<div class="panel-heading">
-							<h5 class="panel-title">Customer master list</h5>
+							<h5 class="panel-title">Hall Details List</h5>
 							<div class="heading-elements">
 								<ul class="icons-list">
 			                		<li><a data-action="collapse"></a></li>
@@ -529,13 +530,13 @@
 							<thead>
 								<tr>
 									<th>No</th>
-									<th>Customer name</th>
+									<th>Hall name</th>
 									<th>Frigana</th>
 									<th>Postal code</th>
 									<th>Street address</th>
 									<th>TEL</th>
 									<th>FAX</th>
-									<th>For CSV</th>
+									<th>Payee</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -686,8 +687,8 @@
 
 						<div class="row">
 							<div class="col-md-12">
-								<div class="panel-body text-center">
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add_new_data"><i class="icon-plus2 position-left"></i>Add New Data</button>
+								<div class="mb-4 text-center">
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add_new_data"><i class="icon-plus2 position-left"></i>Add Hall Details</button>
 								</div>
 							</div>
 						</div>
@@ -699,26 +700,26 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h5 class="modal-title">Add New Customer Master</h5>
+									<h5 class="modal-title">Add Hall Details</h5>
 								</div>
 
 								<div class="modal-body">
 									<hr/>
-									
+
 									<form class="form-horizontal" action="#">
 										<fieldset class="content-group">
 
 											<div class="form-group">
-												<label class="control-label col-lg-3">Customer name:</label>
+												<label class="control-label col-lg-3">Hall name:</label>
 												<div class="col-lg-9">
-													<input type="text" class="form-control" placeholder="Enter customer name...">
+													<input type="text" class="form-control" placeholder="Enter hall name...">
 												</div>
 											</div>
 
 											<div class="form-group">
 												<label class="control-label col-lg-3">Frigana:</label>
 												<div class="col-lg-9">
-													<input type="text" class="form-control" placeholder="Enter Frigana...">
+													<input type="text" class="form-control" placeholder="Enter frigana...">
 												</div>
 											</div>
 
@@ -751,9 +752,9 @@
 											</div>
 
 											<div class="form-group">
-												<label class="control-label col-lg-3">For CSV:</label>
+												<label class="control-label col-lg-3">Payee:</label>
 												<div class="col-lg-9">
-													<input type="text" class="form-control" placeholder="Enter proper data...">
+													<input type="text" class="form-control" placeholder="Enter apyee...">
 												</div>
 											</div>
 
