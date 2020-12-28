@@ -9,6 +9,7 @@
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 	<link href="./global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="./global_assets/css/icons/fontawesome/styles.min.css">
 	<link href="./assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="./assets/css/core.min.css" rel="stylesheet" type="text/css">
 	<link href="./assets/css/components.min.css" rel="stylesheet" type="text/css">
@@ -318,7 +319,7 @@
 								<li>
 									<a href="#"><i class="icon-wrench3"></i> <span>Sales contract creation</span></a>
 									<ul>
-										<li><a href="./sales-contract.html">Sales Contract</a></li>
+										<li><a href="./sales_contract.html">Sales Contract</a></li>
 										<li>
 											<a href="#">Invoicing</a>
 											<ul>
@@ -519,7 +520,7 @@
 							<!-- Traffic sources -->
 							<div class="panel panel-flat">
 								<div class="panel-heading">
-									<h3 class="panel-title text-center">Sales contact</h6>
+									<h2 class="panel-title text-center">Sales contact</h2>
 									<div class="heading-elements">
 										<input class="form-control" type="date" name="date">
 									</div>
@@ -765,7 +766,7 @@
 											</table>
 										</div>
 									</div>
-									<div class="row d-flex flex-wrap mt-30">
+									<div class="row d-flex flex-wrap mt-5-s">
 										<div class="col-lg-6 col-xs-12">
 											<fieldset class="content-group">
 												<legend class="text-bold text-center">Basic selects</legend>
@@ -838,7 +839,7 @@
 											</fieldset>
 										</div>
 									</div>
-									<div class="row d-flex flex-wrap mt-30">
+									<div class="row d-flex flex-wrap mt-5-s">
 										<div class="col-lg-6 col-xs-12">
 											<fieldset class="content-group">
 												<legend class="text-bold text-center">Fieldset Title</legend>
@@ -857,7 +858,7 @@
 										</div>
 									</div>
 									<div class="row d-flex flex-wrap">
-										<div class="col-6">
+										<div class="col-lg-6 col-xs-12">
 											<div class="form-group">
 												<select class="form-control">
 													<option value="">Shipping</option>
@@ -867,10 +868,42 @@
 												</select>
 											</div>
 										</div>
-										<div class="col-6">
+										<div class="col-lg-6 col-xs-12">
 											<div class="form-group">
-												<span><h6></h6> Amount </span>
-												<span>93600</span>
+												<div class="input-group">
+													<span class="input-group-btn">
+														<button class="btn btn-default">Amount</button>
+													</span>
+													<input type="text" class="form-control" readonly value="93,600">
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-xs-12">
+											<div class="form-group">
+												<select class="form-control">
+													<option value="">Payment method</option>
+													<option value="">Transfer</option>
+													<option value="">Check</option>
+													<option value="">Bill</option>
+													<option value="">Cash</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-6 col-xs-12">
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-btn">
+														<button class="btn btn-default">Payment Deadline</button>
+													</span>
+													<input type="text" class="form-control" readonly value="11/11">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="mb-4 text-center">
+												<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> Print</button>
 											</div>
 										</div>
 									</div>
