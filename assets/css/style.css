@@ -19,6 +19,10 @@
 .d-flex {
     display: flex;
 }
+.d-flex-column {
+    display: flex;
+    flex-direction: column;
+}
 .d-none {
     display: none;
 }
@@ -102,6 +106,9 @@
 }
 .border-right-0 {
     border-right: 0!important;
+}
+.float-right {
+    float: right;
 }
 @media screen and (max-width: 768px) {
     .panel .visible-elements {
