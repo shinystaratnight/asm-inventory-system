@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
+	<title>Front Pages</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -13,6 +13,7 @@
 	<link href="./assets/css/core.min.css" rel="stylesheet" type="text/css">
 	<link href="./assets/css/components.min.css" rel="stylesheet" type="text/css">
 	<link href="./assets/css/colors.min.css" rel="stylesheet" type="text/css">
+	<link href="./global_assets/css/extras/animate.min.css" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
@@ -23,15 +24,11 @@
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
-	<script src="./global_assets/js/plugins/visualization/d3/d3.min.js"></script>
-	<script src="./global_assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
-	<script src="./global_assets/js/plugins/forms/styling/switchery.min.js"></script>
-	<script src="./global_assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
-	<script src="./global_assets/js/plugins/ui/moment/moment.min.js"></script>
-	<script src="./global_assets/js/plugins/pickers/daterangepicker.js"></script>
+	<script src="./global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+	<script src="./global_assets/js/plugins/forms/selects/select2.min.js"></script>
 
 	<script src="./assets/js/app.js"></script>
-	<script src="./global_assets/js/demo_pages/dashboard.js"></script>
+	<script src="./global_assets/js/demo_pages/datatables_basic.js"></script>
 	<!-- /theme JS files -->
 
 </head>
@@ -280,9 +277,9 @@
 							<div class="media">
 								<a href="#" class="media-left"><img src="./global_assets/images/placeholders/placeholder.jpg" class="img-circle img-sm" alt=""></a>
 								<div class="media-body">
-									<span class="media-heading text-semibold">Victoria Baker</span>
+									<span class="media-heading text-semibold">Chris Kim</span>
 									<div class="text-size-mini text-muted">
-										<i class="icon-pin text-size-small"></i> &nbsp;Santa Ana, CA
+										<i class="icon-pin text-size-small"></i> &nbsp;Beijing, China
 									</div>
 								</div>
 
@@ -304,12 +301,12 @@
 						<div class="category-content no-padding">
 							<ul class="navigation navigation-main navigation-accordion">
 
-								<li class="active"><a href="index.html"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+								<li><a href="index.html"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
 								<li>
 									<a href="#"><i class="icon-stack2"></i> <span>Master data registration</span></a>
 									<ul>
-										<li><a href="layout_navbar_fixed.html">Customer master</a></li>
-										<li><a href="layout_navbar_sidebar_fixed.html">Hall details</a></li>
+										<li class="active"><a href="master_data_customer.html">Customer master</a></li>
+										<li><a href="master_data_hall_details.html">Hall details</a></li>
 										<li><a href="layout_sidebar_fixed_native.html">Pick-up destination</a></li>
 										<li><a href="layout_navbar_hideable.html">Product name</a></li>
 										<li><a href="layout_navbar_hideable_sidebar.html">Others</a></li>
@@ -469,7 +466,7 @@
 				<div class="page-header">
 					<div class="page-header-content">
 						<div class="page-title">
-							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Datatables</span> - Basic Styling</h4>
+							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Master Data Registration</span> - Customer Master</h4>
 						</div>
 
 						<div class="heading-elements">
@@ -484,8 +481,8 @@
 					<div class="breadcrumb-line breadcrumb-line-component">
 						<ul class="breadcrumb">
 							<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-							<li><a href="datatable_styling.html">Datatables</a></li>
-							<li class="active">Basic styling</li>
+							<li><a href="datatable_styling.html">Master card registration</a></li>
+							<li class="active">Customer master</li>
 						</ul>
 
 						<ul class="breadcrumb-elements">
@@ -513,38 +510,269 @@
 				<!-- Content area -->
 				<div class="content">
 
-					<!-- Main charts -->
-					<div class="row">
-						<div class="col-lg-12">
-
-							<!-- Traffic sources -->
-							<div class="panel panel-flat">
-								<div class="panel-heading">
-									<h6 class="panel-title">Traffic sources</h6>
-									<div class="heading-elements">
-										
-									</div>
-								</div>
-
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-12">
-											content
-										</div>
-									</div>
-								</div>
-
-							</div>
-							<!-- /traffic sources -->
-
+					<div class="panel panel-flat">
+						<div class="panel-heading">
+							<h5 class="panel-title">Customer master list</h5>
+							<div class="heading-elements">
+								<ul class="icons-list">
+			                		<li><a data-action="collapse"></a></li>
+			                		<li><a data-action="reload"></a></li>
+			                		<li><a data-action="close"></a></li>
+			                	</ul>
+		                	</div>
 						</div>
 
-					
+						<div class="panel-body">
+						</div>
+
+						<table class="table datatable-basic table-hover">
+							<thead>
+								<tr>
+									<th>No</th>
+									<th>Customer name</th>
+									<th>Frigana</th>
+									<th>Postal code</th>
+									<th>Street address</th>
+									<th>TEL</th>
+									<th>FAX</th>
+									<th>For CSV</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Chris Kim</td>
+									<td>Frigana</td>
+									<td>15033</td>
+									<td>B-123, Linden Street, Rooswell, Boston</td>
+									<td>1234567890</td>
+									<td>1234567890</td>
+									<td>CSV 1</td>
+								</tr>
+								
+								<tr>
+									<td>2</td>
+									<td>Chris Kim</td>
+									<td>Frigana</td>
+									<td>15033</td>
+									<td>B-123, Linden Street, Rooswell, Boston</td>
+									<td>1234567890</td>
+									<td>1234567890</td>
+									<td>CSV 1</td>
+								</tr>
+
+								<tr>
+									<td>3</td>
+									<td>Chris Kim</td>
+									<td>Frigana</td>
+									<td>15033</td>
+									<td>B-123, Linden Street, Rooswell, Boston</td>
+									<td>1234567890</td>
+									<td>1234567890</td>
+									<td>CSV 1</td>
+								</tr>
+
+								<tr>
+									<td>1</td>
+									<td>Chris Kim</td>
+									<td>Frigana</td>
+									<td>15033</td>
+									<td>B-123, Linden Street, Rooswell, Boston</td>
+									<td>1234567890</td>
+									<td>1234567890</td>
+									<td>CSV 1</td>
+								</tr>
+								
+								<tr>
+									<td>2</td>
+									<td>Chris Kim</td>
+									<td>Frigana</td>
+									<td>15033</td>
+									<td>B-123, Linden Street, Rooswell, Boston</td>
+									<td>1234567890</td>
+									<td>1234567890</td>
+									<td>CSV 1</td>
+								</tr>
+
+								<tr>
+									<td>3</td>
+									<td>Chris Kim</td>
+									<td>Frigana</td>
+									<td>15033</td>
+									<td>B-123, Linden Street, Rooswell, Boston</td>
+									<td>1234567890</td>
+									<td>1234567890</td>
+									<td>CSV 1</td>
+								</tr>
+
+								<tr>
+									<td>1</td>
+									<td>Chris Kim</td>
+									<td>Frigana</td>
+									<td>15033</td>
+									<td>B-123, Linden Street, Rooswell, Boston</td>
+									<td>1234567890</td>
+									<td>1234567890</td>
+									<td>CSV 1</td>
+								</tr>
+								
+								<tr>
+									<td>2</td>
+									<td>Chris Kim</td>
+									<td>Frigana</td>
+									<td>15033</td>
+									<td>B-123, Linden Street, Rooswell, Boston</td>
+									<td>1234567890</td>
+									<td>1234567890</td>
+									<td>CSV 1</td>
+								</tr>
+
+								<tr>
+									<td>3</td>
+									<td>Chris Kim</td>
+									<td>Frigana</td>
+									<td>15033</td>
+									<td>B-123, Linden Street, Rooswell, Boston</td>
+									<td>1234567890</td>
+									<td>1234567890</td>
+									<td>CSV 1</td>
+								</tr>
+
+								<tr>
+									<td>2</td>
+									<td>Chris Kim</td>
+									<td>Frigana</td>
+									<td>15033</td>
+									<td>B-123, Linden Street, Rooswell, Boston</td>
+									<td>1234567890</td>
+									<td>1234567890</td>
+									<td>CSV 1</td>
+								</tr>
+
+								<tr>
+									<td>3</td>
+									<td>Chris Kim</td>
+									<td>Frigana</td>
+									<td>15033</td>
+									<td>B-123, Linden Street, Rooswell, Boston</td>
+									<td>1234567890</td>
+									<td>1234567890</td>
+									<td>CSV 1</td>
+								</tr>
+
+								<tr>
+									<td>2</td>
+									<td>Chris Kim</td>
+									<td>Frigana</td>
+									<td>15033</td>
+									<td>B-123, Linden Street, Rooswell, Boston</td>
+									<td>1234567890</td>
+									<td>1234567890</td>
+									<td>CSV 1</td>
+								</tr>
+
+								<tr>
+									<td>3</td>
+									<td>Chris Kim</td>
+									<td>Frigana</td>
+									<td>15033</td>
+									<td>B-123, Linden Street, Rooswell, Boston</td>
+									<td>1234567890</td>
+									<td>1234567890</td>
+									<td>CSV 1</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="panel-body text-center">
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add_new_data"><i class="icon-plus2 position-left"></i>Add New Data</button>
+								</div>
+							</div>
+						</div>
 					</div>
+
+					<!-- Disabled backdrop Add New Master Data Modal -->
+					<div id="modal_add_new_data" class="modal fade" data-backdrop="false" tabindex="-1">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h5 class="modal-title">Add New Customer Master</h5>
+								</div>
+
+								<div class="modal-body">
+									<hr/>
+
+									<form class="form-horizontal" action="#">
+										<fieldset class="content-group">
+
+											<div class="form-group">
+												<label class="control-label col-lg-3">Customer name:</label>
+												<div class="col-lg-9">
+													<input type="text" class="form-control" placeholder="Enter customer name...">
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-lg-3">Frigana:</label>
+												<div class="col-lg-9">
+													<input type="text" class="form-control" placeholder="Enter Frigana...">
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-lg-3">Postal Code:</label>
+												<div class="col-lg-9">
+													<input type="text" class="form-control" placeholder="Enter postal code...">
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-lg-3">Street address:</label>
+												<div class="col-lg-9">
+													<input type="text" class="form-control" placeholder="Enter street address...">
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-lg-3">TEL:</label>
+												<div class="col-lg-9">
+													<input type="text" class="form-control" placeholder="Enter TEL...">
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-lg-3">FAX:</label>
+												<div class="col-lg-9">
+													<input type="text" class="form-control" placeholder="Enter FAX...">
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-lg-3">For CSV:</label>
+												<div class="col-lg-9">
+													<input type="text" class="form-control" placeholder="Enter proper data...">
+												</div>
+											</div>
+
+										</fieldset>
+									</form>
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary">Add customer</button>
+									<button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /disabled backdrop -->
 
 					<!-- Footer -->
 					<div class="footer text-muted">
-						&copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+						&copy; 2020. Copyright
 					</div>
 					<!-- /footer -->
 
