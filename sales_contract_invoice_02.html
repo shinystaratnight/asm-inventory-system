@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sales Contract</title>
+
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="./global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+	<link href="./assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="./assets/css/core.min.css" rel="stylesheet" type="text/css">
+	<link href="./assets/css/components.min.css" rel="stylesheet" type="text/css">
+	<link href="./assets/css/colors.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="./assets/css/style.css">
+	<!-- /global stylesheets -->
+
+	<!-- Core JS files -->
+	<script src="./global_assets/js/plugins/loaders/pace.min.js"></script>
+	<script src="./global_assets/js/core/libraries/jquery.min.js"></script>
+	<script src="./global_assets/js/core/libraries/bootstrap.min.js"></script>
+	<script src="./global_assets/js/plugins/loaders/blockui.min.js"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script src="./global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+	<script src="./global_assets/js/plugins/tables/datatables/extensions/select.min.js"></script>
+	<script src="./global_assets/js/plugins/tables/datatables/extensions/buttons.min.js"></script>
+	<script src="./global_assets/js/plugins/forms/selects/select2.min.js"></script>
+
+	<script src="./assets/js/app.js"></script>
+	<script src="./global_assets/js/demo_pages/datatables_extension_select.js"></script>
+	<!-- /theme JS files -->
+
+</head>
+
+<body>
+
+	<!-- Main navbar -->
+	<div class="navbar navbar-default header-highlight">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="index.html"><img src="./global_assets/images/logo_light.png" alt=""></a>
+
+			<ul class="nav navbar-nav visible-xs-block">
+				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+				<li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+			</ul>
+		</div>
+
+		<div class="navbar-collapse collapse" id="navbar-mobile">
+			<ul class="nav navbar-nav">
+				<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="icon-git-compare"></i>
+						<span class="visible-xs-inline-block position-right">Git updates</span>
+						<span class="badge bg-warning-400">9</span>
+					</a>
+					
+					<div class="dropdown-menu dropdown-content">
+						<div class="dropdown-content-heading">
+							Git updates
+							<ul class="icons-list">
+								<li><a href="#"><i class="icon-sync"></i></a></li>
+							</ul>
+						</div>
+
+						<ul class="media-list dropdown-content-body width-350">
+							<li class="media">
+								<div class="media-left">
+									<a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
+								</div>
+
+								<div class="media-body">
+									Drop the IE <a href="#">specific hacks</a> for temporal inputs
+									<div class="media-annotation">4 minutes ago</div>
+								</div>
+							</li>
+
+							<li class="media">
+								<div class="media-left">
+									<a href="#" class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-commit"></i></a>
+								</div>
+								
+								<div class="media-body">
+									Add full font overrides for popovers and tooltips
+									<div class="media-annotation">36 minutes ago</div>
+								</div>
+							</li>
+
+							<li class="media">
+								<div class="media-left">
+									<a href="#" class="btn border-info text-info btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-branch"></i></a>
+								</div>
+								
+								<div class="media-body">
+									<a href="#">Chris Arney</a> created a new <span class="text-semibold">Design</span> branch
+									<div class="media-annotation">2 hours ago</div>
+								</div>
+							</li>
+
+							<li class="media">
+								<div class="media-left">
+									<a href="#" class="btn border-success text-success btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-merge"></i></a>
+								</div>
+								
+								<div class="media-body">
+									<a href="#">Eugene Kopyov</a> merged <span class="text-semibold">Master</span> and <span class="text-semibold">Dev</span> branches
+									<div class="media-annotation">Dec 18, 18:36</div>
+								</div>
+							</li>
+
+							<li class="media">
+								<div class="media-left">
+									<a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
+								</div>
+								
+								<div class="media-body">
+									Have Carousel ignore keyboard events
+									<div class="media-annotation">Dec 12, 05:46</div>
+								</div>
+							</li>
+						</ul>
+
+						<div class="dropdown-content-footer">
+							<a href="#" data-popup="tooltip" title="All activity"><i class="icon-menu display-block"></i></a>
+						</div>
+					</div>
+				</li>
+			</ul>
+
+			<p class="navbar-text"><span class="label bg-success">Online</span></p>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown language-switch">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						<img src="./global_assets/images/flags/gb.png" class="position-left" alt="">
+						English
+						<span class="caret"></span>
+					</a>
+
+					<ul class="dropdown-menu">
+						<li><a class="deutsch"><img src="./global_assets/images/flags/de.png" alt=""> Deutsch</a></li>
+						<li><a class="ukrainian"><img src="./global_assets/images/flags/ua.png" alt=""> Українська</a></li>
+						<li><a class="english"><img src="./global_assets/images/flags/gb.png" alt=""> English</a></li>
+						<li><a class="espana"><img src="./global_assets/images/flags/es.png" alt=""> España</a></li>
+						<li><a class="russian"><img src="./global_assets/images/flags/ru.png" alt=""> Русский</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="icon-bubbles4"></i>
+						<span class="visible-xs-inline-block position-right">Messages</span>
+						<span class="badge bg-warning-400">2</span>
+					</a>
+					
+					<div class="dropdown-menu dropdown-content width-350">
+						<div class="dropdown-content-heading">
+							Messages
+							<ul class="icons-list">
+								<li><a href="#"><i class="icon-compose"></i></a></li>
+							</ul>
+						</div>
+
+						<ul class="media-list dropdown-content-body">
+							<li class="media">
+								<div class="media-left">
+									<img src="./global_assets/images/placeholders/placeholder.jpg" class="img-circle img-sm" alt="">
+									<span class="badge bg-danger-400 media-badge">5</span>
+								</div>
+
+								<div class="media-body">
+									<a href="#" class="media-heading">
+										<span class="text-semibold">James Alexander</span>
+										<span class="media-annotation pull-right">04:58</span>
+									</a>
+
+									<span class="text-muted">who knows, maybe that would be the best thing for me...</span>
+								</div>
+							</li>
+
+							<li class="media">
+								<div class="media-left">
+									<img src="./global_assets/images/placeholders/placeholder.jpg" class="img-circle img-sm" alt="">
+									<span class="badge bg-danger-400 media-badge">4</span>
+								</div>
+
+								<div class="media-body">
+									<a href="#" class="media-heading">
+										<span class="text-semibold">Margo Baker</span>
+										<span class="media-annotation pull-right">12:16</span>
+									</a>
+
+									<span class="text-muted">That was something he was unable to do because...</span>
+								</div>
+							</li>
+
+							<li class="media">
+								<div class="media-left"><img src="./global_assets/images/placeholders/placeholder.jpg" class="img-circle img-sm" alt=""></div>
+								<div class="media-body">
+									<a href="#" class="media-heading">
+										<span class="text-semibold">Jeremy Victorino</span>
+										<span class="media-annotation pull-right">22:48</span>
+									</a>
+
+									<span class="text-muted">But that would be extremely strained and suspicious...</span>
+								</div>
+							</li>
+
+							<li class="media">
+								<div class="media-left"><img src="./global_assets/images/placeholders/placeholder.jpg" class="img-circle img-sm" alt=""></div>
+								<div class="media-body">
+									<a href="#" class="media-heading">
+										<span class="text-semibold">Beatrix Diaz</span>
+										<span class="media-annotation pull-right">Tue</span>
+									</a>
+
+									<span class="text-muted">What a strenuous career it is that I've chosen...</span>
+								</div>
+							</li>
+
+							<li class="media">
+								<div class="media-left"><img src="./global_assets/images/placeholders/placeholder.jpg" class="img-circle img-sm" alt=""></div>
+								<div class="media-body">
+									<a href="#" class="media-heading">
+										<span class="text-semibold">Richard Vango</span>
+										<span class="media-annotation pull-right">Mon</span>
+									</a>
+									
+									<span class="text-muted">Other travelling salesmen live a life of luxury...</span>
+								</div>
+							</li>
+						</ul>
+
+						<div class="dropdown-content-footer">
+							<a href="#" data-popup="tooltip" title="All messages"><i class="icon-menu display-block"></i></a>
+						</div>
+					</div>
+				</li>
+
+				<li class="dropdown dropdown-user">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						<img src="./global_assets/images/placeholders/placeholder.jpg" alt="">
+						<span>Victoria</span>
+						<i class="caret"></i>
+					</a>
+
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+						<li><a href="#"><i class="icon-coins"></i> My balance</a></li>
+						<li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
+						<li class="divider"></li>
+						<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
+						<li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /main navbar -->
+
+
+	<!-- Page container -->
+	<div class="page-container">
+
+		<!-- Page content -->
+		<div class="page-content">
+
+			<!-- Main sidebar -->
+			<div class="sidebar sidebar-main">
+				<div class="sidebar-content">
+
+					<!-- User menu -->
+					<div class="sidebar-user">
+						<div class="category-content">
+							<div class="media">
+								<a href="#" class="media-left"><img src="./global_assets/images/placeholders/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+								<div class="media-body">
+									<span class="media-heading text-semibold">Victoria Baker</span>
+									<div class="text-size-mini text-muted">
+										<i class="icon-pin text-size-small"></i> &nbsp;Santa Ana, CA
+									</div>
+								</div>
+
+								<div class="media-right media-middle">
+									<ul class="icons-list">
+										<li>
+											<a href="#"><i class="icon-cog3"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /user menu -->
+
+
+					<!-- Main navigation -->
+					<div class="sidebar-category sidebar-category-visible">
+						<div class="category-content no-padding">
+							<ul class="navigation navigation-main navigation-accordion">
+
+								<li class="active"><a href="index.html"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+								<li>
+									<a href="#"><i class="icon-stack2"></i> <span>Master data registration</span></a>
+									<ul>
+										<li><a href="layout_navbar_fixed.html">Customer master</a></li>
+										<li><a href="layout_navbar_sidebar_fixed.html">Hall details</a></li>
+										<li><a href="layout_sidebar_fixed_native.html">Pick-up destination</a></li>
+										<li><a href="layout_navbar_hideable.html">Product name</a></li>
+										<li><a href="layout_navbar_hideable_sidebar.html">Others</a></li>
+									</ul>
+								</li>
+			
+								<li>
+									<a href="#"><i class="icon-wrench3"></i> <span>Sales contract creation</span></a>
+									<ul>
+										<li><a href="./sales-contract.html">Sales Contract</a></li>
+										<li>
+											<a href="#">Invoicing</a>
+											<ul>
+												<li><a href="invoice_template.html">Invoice template</a></li>
+												<li><a href="invoice_grid.html">Invoice grid</a></li>
+												<li><a href="invoice_archive.html">Invoice archive</a></li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">Authentication</a>
+											<ul>
+												<li><a href="login_simple.html">Simple login</a></li>
+												<li><a href="login_advanced.html">More login info</a></li>
+												<li><a href="login_registration.html">Simple registration</a></li>
+												<li><a href="login_registration_advanced.html">More registration info</a></li>
+												<li><a href="login_unlock.html">Unlock user</a></li>
+												<li><a href="login_password_recover.html">Reset password</a></li>
+												<li><a href="login_hide_navbar.html">Hide navbar</a></li>
+												<li><a href="login_transparent.html">Transparent box</a></li>
+												<li><a href="login_background.html">Background option</a></li>
+												<li><a href="login_validation.html">With validation</a></li>
+												<li><a href="login_tabbed.html">Tabbed form</a></li>
+												<li><a href="login_modals.html">Inside modals</a></li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">Error pages</a>
+											<ul>
+												<li><a href="error_403.html">Error 403</a></li>
+												<li><a href="error_404.html">Error 404</a></li>
+												<li><a href="error_405.html">Error 405</a></li>
+												<li><a href="error_500.html">Error 500</a></li>
+												<li><a href="error_503.html">Error 503</a></li>
+												<li><a href="error_offline.html">Offline page</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="#"><i class="icon-people"></i> <span>Recovered Sheet</span></a>
+									<ul>
+										<li><a href="user_pages_list.html">User list</a></li>
+										<li><a href="user_pages_cards.html">User cards</a></li>
+										<li><a href="user_pages_profile.html">Simple profile</a></li>
+										<li><a href="user_pages_profile_tabbed.html">Tabbed profile</a></li>
+										<li><a href="user_pages_profile_cover.html">Profile with cover</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#"><i class="icon-cube3"></i> <span>List</span></a>
+									<ul>
+										<li>
+											<a href="#">Task manager</a>
+											<ul>
+												<li><a href="task_manager_grid.html">Task grid</a></li>
+												<li><a href="task_manager_list.html">Task list</a></li>
+												<li><a href="task_manager_detailed.html">Task detailed</a></li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">Inbox</a>
+											<ul>
+												<li><a href="mail_list.html">Mail list</a></li>
+												<li><a href="mail_list_detached.html">Mail list (detached)</a></li>
+												<li><a href="mail_read.html">Read mail</a></li>
+												<li><a href="mail_write.html">Write mail</a></li>
+												<li class="navigation-divider"></li>
+												<li><a href="chat_layouts.html">Chat layouts</a></li>
+												<li><a href="chat_options.html">Chat options</a></li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">Search</a>
+											<ul>
+												<li><a href="search_basic.html">Basic search results</a></li>
+												<li><a href="search_users.html">User search results</a></li>
+												<li><a href="search_images.html">Image search results</a></li>
+												<li><a href="search_videos.html">Video search results</a></li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">Job search</a>
+											<ul>
+												<li><a href="job_list_cards.html">Cards view</a></li>
+												<li><a href="job_list_panel.html">Panel view</a></li>
+												<li><a href="job_detailed.html">Job detailed</a></li>
+												<li><a href="job_apply.html">Apply</a></li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">Learning</a>
+											<ul>
+												<li><a href="learning_list.html">List view</a></li>
+												<li><a href="learning_grid.html">Grid view</a></li>
+												<li><a href="learning_detailed.html">Detailed course</a></li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">Ecommerce set</a>
+											<ul>
+												<li><a href="ecommerce_product_list.html">Product list</a></li>
+												<li><a href="ecommerce_product_grid.html">Product grid</a></li>
+												<li><a href="ecommerce_orders_history.html">Orders history</a></li>
+												<li><a href="ecommerce_customers.html">Customers</a></li>
+												<li><a href="ecommerce_pricing.html">Pricing tables</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+
+								<li>
+									<a href="#"><i class="icon-people"></i> <span>Accounting software CSV</span></a>
+									<ul>
+										<li><a href="user_pages_list.html">User list</a></li>
+										<li><a href="user_pages_cards.html">User cards</a></li>
+										<li><a href="user_pages_profile.html">Simple profile</a></li>
+										<li><a href="user_pages_profile_tabbed.html">Tabbed profile</a></li>
+										<li><a href="user_pages_profile_cover.html">Profile with cover</a></li>
+									</ul>
+								</li>
+
+								<li>
+									<a href="#"><i class="icon-people"></i> <span>Inventory list</span></a>
+									<ul>
+										<li><a href="user_pages_list.html">User list</a></li>
+										<li><a href="user_pages_cards.html">User cards</a></li>
+										<li><a href="user_pages_profile.html">Simple profile</a></li>
+										<li><a href="user_pages_profile_tabbed.html">Tabbed profile</a></li>
+										<li><a href="user_pages_profile_cover.html">Profile with cover</a></li>
+									</ul>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+					<!-- /main navigation -->
+
+				</div>
+			</div>
+			<!-- /main sidebar -->
+
+
+			<!-- Main content -->
+			<div class="content-wrapper">
+
+				<!-- Page header -->
+				<div class="page-header">
+					<div class="page-header-content">
+						<div class="page-title">
+							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Datatables</span> - Basic Styling</h4>
+						</div>
+
+						<div class="heading-elements">
+							<div class="heading-btn-group">
+								<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
+								<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>Invoices</span></a>
+								<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>
+							</div>
+						</div>
+					</div>
+
+					<div class="breadcrumb-line breadcrumb-line-component">
+						<ul class="breadcrumb">
+							<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
+							<li><a href="datatable_styling.html">Datatables</a></li>
+							<li class="active">Basic styling</li>
+						</ul>
+
+						<ul class="breadcrumb-elements">
+							<li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="icon-gear position-left"></i>
+									Settings
+									<span class="caret"></span>
+								</a>
+
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
+									<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
+									<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
+									<li class="divider"></li>
+									<li><a href="#"><i class="icon-gear"></i> All settings</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /page header -->
+
+				<!-- Content area -->
+				<div class="content">
+
+					<!-- Main charts -->
+					<div class="row">
+						<div class="col-lg-12">
+
+							<!-- Traffic sources -->
+							<div class="panel panel-flat">
+								<div class="panel-heading">
+									<h3 class="panel-title text-center">Sales contact</h6>
+									<div class="heading-elements">
+										<input class="form-control" type="date" name="date">
+									</div>
+								</div>
+
+								<div class="container-fluid">
+									<div class="row flex-wrap align-items-end d-flex">
+										<div class="col-lg-7 col-xs-12 text-left">
+											<h3>Suppliers</h3>
+											<div class="col-lg-offset-1">
+												<div class="form-group d-flex w-100">
+													<label class="control-label col-3 mt-auto">Company Name</label>
+													<div class="col-9">
+														<input type="text" class="form-control">
+													</div>
+												</div>
+												<div class="form-group d-flex">
+													<label class="control-label col-3 mt-auto">Frigana</label>
+													<div class="col-9">
+														<input type="text" class="form-control" value="1108-3">
+													</div>
+												</div>
+												<div class="col-lg-offset-3">
+													<div class="row flex-wrap d-flex">
+															<div class="col-6">
+																<div class="form-group d-flex">
+																	<label class="control-label col-3 mt-auto">TEL</label>
+																	<div class="col-9">
+																		<input type="text" class="form-control" value="087-865-7171">
+																	</div>
+																</div>
+															</div>
+															<div class="col-6">
+																<div class="form-group d-flex">
+																	<label class="control-label col-3 mt-auto">TEL</label>
+																	<div class="col-9">
+																		<input type="text" class="form-control" value="087-865-7171">
+																	</div>
+																</div>
+															</div>
+														</div>
+												</div>
+												
+											</div>
+										</div>
+										<div class="col-lg-5 col-xs-12">
+											<div>
+												<h6>P-SENSOR 8240-2413-3628</h6>
+												<div class="form-group d-flex">
+													<div class="row w-100 d-flex align-items-center">
+														<label class="control-label col-3 mt-auto">In Charge</label>
+														<div class="col-9">
+															<input type="text" class="form-control" value="">
+														</div>
+													</div>
+													
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12">
+											<table class="table datatable-select-multiple">
+												<thead>
+													<tr>
+														<th>Model name</th>
+														<th>Middle classification</th>
+														<th>Quantity</th>
+														<th>Unit price</th>
+														<th>Amount of money</th>
+														<th class="text-center d-none">Actions</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Modal Name 1</td>
+														<td>main body</td>
+														<td>
+															<div class="form-group mb-0">
+																<div class="col-9">
+																	<input type="text" class="form-control" value="1">
+																</div>
+															</div>
+														</td>
+														<td>
+															<div class="form-group mb-0">
+																<div class="col-9">
+																	<input type="text" class="form-control" value="70000">
+																</div>
+															</div>
+														</td>
+														<td>
+															70000
+														</td>
+														<td class="text-center d-none">
+															<ul class="icons-list">
+																<li class="dropdown">
+																	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+																		<i class="icon-menu9"></i>
+																	</a>
+					
+																	<ul class="dropdown-menu dropdown-menu-right">
+																		<li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
+																		<li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+																		<li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
+																	</ul>
+																</li>
+															</ul>
+														</td>
+													</tr>
+													<tr>
+														<td>Modal Name 2</td>
+														<td>cell</td>
+														<td>
+															<div class="form-group mb-0">
+																<div class="col-9">
+																	<input type="text" class="form-control" value="1">
+																</div>
+															</div>
+														</td>
+														<td>
+															<div class="form-group mb-0">
+																<div class="col-9">
+																	<input type="text" class="form-control" value="4000">
+																</div>
+															</div>
+														</td>
+														<td>
+															4000
+														</td>
+														<td class="text-center d-none">
+															<ul class="icons-list">
+																<li class="dropdown">
+																	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+																		<i class="icon-menu9"></i>
+																	</a>
+					
+																	<ul class="dropdown-menu dropdown-menu-right">
+																		<li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
+																		<li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+																		<li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
+																	</ul>
+																</li>
+															</ul>
+														</td>
+													</tr>
+													<tr>
+														<td>Modal Name 3</td>
+														<td>cell</td>
+														<td>
+															<div class="form-group mb-0">
+																<div class="col-9">
+																	<input type="text" class="form-control" value="1">
+																</div>
+															</div>
+														</td>
+														<td>
+															<div class="form-group mb-0">
+																<div class="col-9">
+																	<input type="text" class="form-control" value="11000">
+																</div>
+															</div>
+														</td>
+														<td>
+															11000
+														</td>
+														<td class="text-center d-none">
+															<ul class="icons-list">
+																<li class="dropdown">
+																	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+																		<i class="icon-menu9"></i>
+																	</a>
+					
+																	<ul class="dropdown-menu dropdown-menu-right">
+																		<li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
+																		<li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+																		<li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
+																	</ul>
+																</li>
+															</ul>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="row flex-wrap d-flex">
+										<div class="col-lg-8 col-xs-12">
+											<div class="row d-flex">
+												<div class="form-group col-6">
+													<select name="select" class="form-control">
+														<option value="opt1">Shipping method</option>
+														<option value="opt2">Option 2</option>
+														<option value="opt3">Option 3</option>
+														<option value="opt4">Option 4</option>
+														<option value="opt5">Option 5</option>
+														<option value="opt6">Option 6</option>
+														<option value="opt7">Option 7</option>
+														<option value="opt8">Option 8</option>
+													</select>
+												</div>
+												<div class="form-group col-6">
+													<select name="select" class="form-control">
+														<option value="opt1">Shipping method date</option>
+														<option value="opt2">Option 2</option>
+														<option value="opt3">Option 3</option>
+														<option value="opt4">Option 4</option>
+														<option value="opt5">Option 5</option>
+														<option value="opt6">Option 6</option>
+														<option value="opt7">Option 7</option>
+														<option value="opt8">Option 8</option>
+													</select>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group">
+													<div class="col-lg-12">
+														<textarea rows="5" cols="5" class="form-control" placeholder="Default textarea"></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-4 col-xs-12">
+											<table class="table table-bordered">
+												<tbody>
+													<tr>
+														<td>Subtotal</td>
+														<td>85,000</td>
+													</tr>
+													<tr>
+														<td>Consumption tax (10%)</td>
+														<td>8,500</td>
+													</tr>
+													<tr>
+														<td>Insurance fee</td>
+														<td>100</td>
+													</tr>
+													<tr>
+														<td>Total Amount</td>
+														<td>93,600</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="row d-flex flex-wrap mt-30">
+										<div class="col-lg-6 col-xs-12">
+											<fieldset class="content-group">
+												<legend class="text-bold text-center">Basic selects</legend>
+												<div class="form-group">
+													<label class="control-label">Company Name</label>
+													<div class="">
+														<input type="text" class="form-control">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label">Address</label>
+													<div class="">
+														<textarea type="text" class="form-control"></textarea>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label">TEL/FAX:</label>
+													<div class="">
+														<input type="text" class="form-control"></input>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label">TEL/FAX:</label>
+													<div class="">
+														<input type="text" class="form-control"></input>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label">Date</label>
+													<div class="">
+														<input class="form-control" type="date" name="date">
+													</div>
+												</div>
+											</fieldset>
+											
+										</div>
+										<div class="col-lg-6 col-xs-12">
+											<fieldset class="content-group">
+												<legend class="text-bold text-center">Document shipping address</legend>
+												<div class="form-group">
+													<label class="control-label">Company Name</label>
+													<div class="">
+														<input type="text" class="form-control">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label">Address</label>
+													<div class="">
+														<textarea type="text" class="form-control"></textarea>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label">TEL/FAX:</label>
+													<div class="">
+														<input type="text" class="form-control"></input>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label">TEL/FAX:</label>
+													<div class="">
+														<input type="text" class="form-control"></input>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label">Date</label>
+													<div class="">
+														<input class="form-control" type="date" name="date">
+													</div>
+												</div>
+											</fieldset>
+										</div>
+									</div>
+									<div class="row d-flex flex-wrap mt-30">
+										<div class="col-lg-6 col-xs-12">
+											<fieldset class="content-group">
+												<legend class="text-bold text-center">Fieldset Title</legend>
+											</fieldset>
+											
+										</div>
+										<div class="col-lg-6 col-xs-12">
+											<fieldset class="content-group">
+												<legend class="text-bold text-center">Fieldset Title</legend>
+												<h6>T537-0021 company4-15</h6>
+												<h4>XXX Company</h4>
+												<h6>XXXXXXXXXXXX</h6>
+												<h6>TEL 06-6753-8078</h6>
+												<h6>FAX 06-6753-8079</h6>
+											</fieldset>
+										</div>
+									</div>
+									<div class="row d-flex flex-wrap">
+										<div class="col-6">
+											<div class="form-group">
+												<select class="form-control">
+													<option value="">Shipping</option>
+													<option value="">Picking up</option>
+													<option value="">ID change</option>
+													<option value="">* blank</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="form-group">
+												<span><h6></h6> Amount </span>
+												<span>93600</span>
+											</div>
+										</div>
+									</div>
+									<div class="mt-30">
+										<p>No.10005008</p>
+									</div>
+								</div>
+
+							</div>
+							<!-- /traffic sources -->
+
+						</div>
+
+					
+					</div>
+
+					<!-- Footer -->
+					<div class="footer text-muted">
+						&copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+					</div>
+					<!-- /footer -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->
+
+		</div>
+		<!-- /page content -->
+
+	</div>
+	<!-- /page container -->
+
+</body>
+</html>
