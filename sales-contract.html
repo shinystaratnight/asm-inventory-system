@@ -4,34 +4,35 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
+	<title>Sales Contract</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/core.min.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/components.min.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/colors.min.css" rel="stylesheet" type="text/css">
+	<link href="./global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+	<link href="./assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="./assets/css/core.min.css" rel="stylesheet" type="text/css">
+	<link href="./assets/css/components.min.css" rel="stylesheet" type="text/css">
+	<link href="./assets/css/colors.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="./assets/css/sales-contact.css">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
-	<script src="global_assets/js/plugins/loaders/pace.min.js"></script>
-	<script src="global_assets/js/core/libraries/jquery.min.js"></script>
-	<script src="global_assets/js/core/libraries/bootstrap.min.js"></script>
-	<script src="global_assets/js/plugins/loaders/blockui.min.js"></script>
+	<script src="./global_assets/js/plugins/loaders/pace.min.js"></script>
+	<script src="./global_assets/js/core/libraries/jquery.min.js"></script>
+	<script src="./global_assets/js/core/libraries/bootstrap.min.js"></script>
+	<script src="./global_assets/js/plugins/loaders/blockui.min.js"></script>
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
-	<script src="global_assets/js/plugins/visualization/d3/d3.min.js"></script>
-	<script src="global_assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
-	<script src="global_assets/js/plugins/forms/styling/switchery.min.js"></script>
-	<script src="global_assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
-	<script src="global_assets/js/plugins/ui/moment/moment.min.js"></script>
-	<script src="global_assets/js/plugins/pickers/daterangepicker.js"></script>
+	<script src="./global_assets/js/plugins/visualization/d3/d3.min.js"></script>
+	<script src="./global_assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
+	<script src="./global_assets/js/plugins/forms/styling/switchery.min.js"></script>
+	<script src="./global_assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+	<script src="./global_assets/js/plugins/ui/moment/moment.min.js"></script>
+	<script src="./global_assets/js/plugins/pickers/daterangepicker.js"></script>
 
-	<script src="assets/js/app.js"></script>
-	<script src="global_assets/js/demo_pages/dashboard.js"></script>
+	<script src="./assets/js/app.js"></script>
+	<!-- <script src="global_assets/js/demo_pages/dashboard.js"></script> -->
 	<!-- /theme JS files -->
 
 </head>
@@ -467,16 +468,65 @@
 							<!-- Traffic sources -->
 							<div class="panel panel-flat">
 								<div class="panel-heading">
-									<h6 class="panel-title">Traffic sources</h6>
+									<h3 class="panel-title text-center">Sales contact</h6>
 									<div class="heading-elements">
-										
+										<input class="form-control" type="date" name="date">
 									</div>
 								</div>
 
 								<div class="container-fluid">
-									<div class="row">
-										<div class="col-12">
-											content
+									<div class="row flex-wrap align-items-end">
+										<div class="col-lg-7 col-xs-12 text-left">
+											<h3>Suppliers</h3>
+											<div class="col-lg-offset-1">
+												<div class="form-group d-flex w-100">
+													<label class="control-label col-3 mt-auto">Company Name</label>
+													<div class="col-9">
+														<input type="text" class="form-control">
+													</div>
+												</div>
+												<div class="form-group d-flex">
+													<label class="control-label col-3 mt-auto">Frigana</label>
+													<div class="col-9">
+														<input type="text" class="form-control" value="1108-3">
+													</div>
+												</div>
+												<div class="col-lg-offset-3">
+													<div class="row flex-wrap">
+															<div class="col-6">
+																<div class="form-group d-flex">
+																	<label class="control-label col-3 mt-auto">TEL</label>
+																	<div class="col-9">
+																		<input type="text" class="form-control" value="087-865-7171">
+																	</div>
+																</div>
+															</div>
+															<div class="col-6">
+																<div class="form-group d-flex">
+																	<label class="control-label col-3 mt-auto">TEL</label>
+																	<div class="col-9">
+																		<input type="text" class="form-control" value="087-865-7171">
+																	</div>
+																</div>
+															</div>
+														</div>
+												</div>
+												
+											</div>
+										</div>
+										<div class="col-lg-5 col-xs-12">
+											<div>
+												<h6>P-SENSOR 8240-2413-3628</h6>
+												<div class="form-group d-flex">
+													<div class="row w-100 d-flex align-items-center">
+														<label class="control-label col-3 mt-auto">In Charge</label>
+														<div class="col-9">
+															<input type="text" class="form-control" value="">
+														</div>
+													</div>
+													
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
