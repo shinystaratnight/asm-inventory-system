@@ -611,7 +611,7 @@
 									<div class="row flex-wrap d-flex">
 										<div class="col-lg-8 col-xs-12">
 											<div class="row d-flex flex-wrap">
-												<div class="form-group col-lg-6 col-xs-12">
+												<!-- <div class="form-group col-lg-6 col-xs-12">
 													<select name="select" class="form-control">
 														<option value="opt1">Shipping method</option>
 														<option value="opt2">Option 2</option>
@@ -622,6 +622,14 @@
 														<option value="opt7">Option 7</option>
 														<option value="opt8">Option 8</option>
 													</select>
+												</div> -->
+												<div class="form-group col-lg-6 col-xs-12">
+													<div class="row">
+														<label class="control-label col-lg-3 pt-2">Widthrawal Day</label>
+														<div class="col-lg-9 col-xs-12">
+															<input type="text" class="form-control">
+														</div>
+													</div>
 												</div>
 												<div class="form-group col-lg-6 col-xs-12">
 													<div class="row">
@@ -631,7 +639,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="form-group col-lg-6 col-xs-12">
+												<!-- <div class="form-group col-lg-6 col-xs-12">
 													<select name="select" class="form-control">
 														<option value="opt1">Shipping method date</option>
 														<option value="opt2">Option 2</option>
@@ -642,6 +650,14 @@
 														<option value="opt7">Option 7</option>
 														<option value="opt8">Option 8</option>
 													</select>
+												</div> -->
+												<div class="form-group col-lg-6 col-xs-12">
+													<div class="row">
+														<label class="control-label col-lg-3 pt-2">Transfer Day</label>
+														<div class="col-lg-9 col-xs-12">
+															<input type="text" class="form-control">
+														</div>
+													</div>
 												</div>
 												<div class="form-group col-lg-6 col-xs-12">
 													<div class="row">
@@ -679,6 +695,10 @@
 											</table>
 										</div>
 									</div>
+									<div class="row mt-5-s">
+										<h4 class="text-center">Note sentence</h4>
+										<h4 class="text-center font-weight-bold">Transfer: 06-6753-8079</h4>
+									</div>
 									<div class="row d-flex flex-wrap mt-5-s">
 										<div class="col-lg-6 col-xs-12">
 											<fieldset class="content-group">
@@ -702,19 +722,19 @@
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label">fieldname</label>
+													<label class="control-label">Arrive Date</label>
 													<div class="">
 														<input type="text" class="form-control"></input>
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label">field name</label>
+													<label class="control-label">Transfer Company</label>
 													<div class="">
 														<input class="form-control" type="text" name="date">
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label">field name</label>
+													<label class="control-label">Note</label>
 													<div class="">
 														<input class="form-control" type="text" name="date">
 													</div>
@@ -744,19 +764,19 @@
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label">fieldname</label>
+													<label class="control-label">Arrive Date</label>
 													<div class="">
 														<input type="text" class="form-control"></input>
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label">field name</label>
+													<label class="control-label">Transfer Company</label>
 													<div class="">
 														<input class="form-control" type="text" name="date">
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label">field name</label>
+													<label class="control-label">Note</label>
 													<div class="">
 														<input class="form-control" type="text" name="date">
 													</div>
@@ -767,17 +787,17 @@
 									<div class="row d-flex flex-wrap mt-5-s">
 										<div class="col-lg-6 col-xs-12">
 											<fieldset class="content-group">
-												<legend class="text-bold text-center">Fieldset Title</legend>
+												<legend class="text-bold text-center">Seller</legend>
 												<h6>T537-0021 company4-15</h6>
-												<h4>XXX Company</h4>
-												<h6>XXXXXXXXXXXX</h6>
+												<h4>Company Name</h4>
+												<h6>Agency Info</h6>
 												<h6>TEL 06-6753-8078</h6>
 												<h6>FAX 06-6753-8079</h6>
 											</fieldset>
 										</div>
 										<div class="col-lg-6 col-xs-12">
 											<fieldset class="content-group">
-												<legend class="text-bold text-center">Fieldset Title</legend>
+												<legend class="text-bold text-center">Buyer</legend>
 											</fieldset>
 											
 										</div>
@@ -786,7 +806,7 @@
 										<div class="col-lg-6 col-xs-12 p-0">
 											<div class="table-row">
 												<div class="col-lg-3 col-xs-3 table-cell">
-													field name
+													Date
 												</div>
 												<div class="col-lg-9 col-xs-9 table-cell border-sm-right-0">
 													2020-11-02
@@ -794,16 +814,16 @@
 											</div>
 											<div class="table-row">
 												<div class="col-lg-3 col-xs-3 table-cell border-top h-70">
-													field name
+													Account
 												</div>
 												<div class="col-lg-9 col-xs-9 table-cell border-top border-sm-right-0">
 													<div class="w-100">
 														<div class="">
-															<div class="col-lg-6 col-xs-6 table-cell">field name</div>
+															<div class="col-lg-6 col-xs-6 table-cell">Name</div>
 															<div class="col-lg-6 col-xs-6 table-cell border-right-0"></div>
 														</div>
 														<div class="">
-															<div class="col-lg-6 col-xs-6 table-cell border-top">field name</div>
+															<div class="col-lg-6 col-xs-6 table-cell border-top">Account info</div>
 															<div class="col-lg-6 col-xs-6 table-cell border-top border-right-0"></div>
 														</div>
 													</div>
@@ -814,22 +834,22 @@
 										<div class="col-lg-6 col-xs-12 p-0 boder-sm-top">
 											<div class="table-row">
 												<div class="col-lg-3 col-xs-3 table-cell">
-													field name
+													Invoice
 												</div>
 												<div class="col-lg-9 col-xs-9 table-cell border-right-0">
-													
+													Note
 												</div>
 											</div>
 											<div class="table-row">
 												<div class="col-lg-3 col-xs-3 table-cell border-top">
-													field name
+													Name
 												</div>
 												<div class="col-lg-9 col-xs-9 table-cell border-top border-right-0">
 												</div>
 											</div>
 											<div class="table-row">
 												<div class="col-lg-3 col-xs-3 table-cell border-top">
-													field name
+													Agency name
 												</div>
 												<div class="col-lg-9 col-xs-9 table-cell border-top border-right-0">
 													
