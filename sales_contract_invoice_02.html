@@ -9,6 +9,7 @@
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 	<link href="./global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="./global_assets/css/icons/fontawesome/styles.min.css">
 	<link href="./assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="./assets/css/core.min.css" rel="stylesheet" type="text/css">
 	<link href="./assets/css/components.min.css" rel="stylesheet" type="text/css">
@@ -318,43 +319,9 @@
 								<li>
 									<a href="#"><i class="icon-wrench3"></i> <span>Sales contract creation</span></a>
 									<ul>
-										<li><a href="./sales-contract.html">Sales Contract</a></li>
-										<li>
-											<a href="#">Invoicing</a>
-											<ul>
-												<li><a href="invoice_template.html">Invoice template</a></li>
-												<li><a href="invoice_grid.html">Invoice grid</a></li>
-												<li><a href="invoice_archive.html">Invoice archive</a></li>
-											</ul>
-										</li>
-										<li>
-											<a href="#">Authentication</a>
-											<ul>
-												<li><a href="login_simple.html">Simple login</a></li>
-												<li><a href="login_advanced.html">More login info</a></li>
-												<li><a href="login_registration.html">Simple registration</a></li>
-												<li><a href="login_registration_advanced.html">More registration info</a></li>
-												<li><a href="login_unlock.html">Unlock user</a></li>
-												<li><a href="login_password_recover.html">Reset password</a></li>
-												<li><a href="login_hide_navbar.html">Hide navbar</a></li>
-												<li><a href="login_transparent.html">Transparent box</a></li>
-												<li><a href="login_background.html">Background option</a></li>
-												<li><a href="login_validation.html">With validation</a></li>
-												<li><a href="login_tabbed.html">Tabbed form</a></li>
-												<li><a href="login_modals.html">Inside modals</a></li>
-											</ul>
-										</li>
-										<li>
-											<a href="#">Error pages</a>
-											<ul>
-												<li><a href="error_403.html">Error 403</a></li>
-												<li><a href="error_404.html">Error 404</a></li>
-												<li><a href="error_405.html">Error 405</a></li>
-												<li><a href="error_500.html">Error 500</a></li>
-												<li><a href="error_503.html">Error 503</a></li>
-												<li><a href="error_offline.html">Offline page</a></li>
-											</ul>
-										</li>
+										<li><a href="./sales_contract_invoice_01.html">Sold by a trader</a></li>
+										<li><a href="./sales_contract_invoice_02.html">Bying by a trader</a></li>
+										<li><a href="./sales_contract_invoice_03.html">Hall sale</a></li>
 									</ul>
 								</li>
 								<li>
@@ -519,17 +486,13 @@
 							<!-- Traffic sources -->
 							<div class="panel panel-flat">
 								<div class="panel-heading">
-									<h3 class="panel-title text-center">Sales contact</h6>
-									<div class="heading-elements">
-										<input class="form-control" type="date" name="date">
-									</div>
+									<h2 class="panel-title text-center">Sales contact</h2>
 								</div>
 
 								<div class="container-fluid">
-									<div class="row flex-wrap align-items-end d-flex">
+									<div class="row flex-wrap d-flex">
 										<div class="col-lg-7 col-xs-12 text-left">
-											<h3>Suppliers</h3>
-											<div class="col-lg-offset-1">
+											<div class="">
 												<div class="form-group d-flex w-100">
 													<label class="control-label col-3 mt-auto">Company Name</label>
 													<div class="col-9">
@@ -537,26 +500,26 @@
 													</div>
 												</div>
 												<div class="form-group d-flex">
-													<label class="control-label col-3 mt-auto">Frigana</label>
+													<label class="control-label col-3 mt-auto">Address</label>
 													<div class="col-9">
 														<input type="text" class="form-control" value="1108-3">
 													</div>
 												</div>
-												<div class="col-lg-offset-3">
+												<div class="">
 													<div class="row flex-wrap d-flex">
 															<div class="col-6">
 																<div class="form-group d-flex">
 																	<label class="control-label col-3 mt-auto">TEL</label>
 																	<div class="col-9">
-																		<input type="text" class="form-control" value="087-865-7171">
+																		<input type="text" class="form-control" value="048-986-5570">
 																	</div>
 																</div>
 															</div>
 															<div class="col-6">
 																<div class="form-group d-flex">
-																	<label class="control-label col-3 mt-auto">TEL</label>
+																	<label class="control-label col-3 mt-auto">FAX</label>
 																	<div class="col-9">
-																		<input type="text" class="form-control" value="087-865-7171">
+																		<input type="text" class="form-control" value="048-985-3158">
 																	</div>
 																</div>
 															</div>
@@ -567,15 +530,16 @@
 										</div>
 										<div class="col-lg-5 col-xs-12">
 											<div>
-												<h6>P-SENSOR 8240-2413-3628</h6>
 												<div class="form-group d-flex">
 													<div class="row w-100 d-flex align-items-center">
-														<label class="control-label col-3 mt-auto">In Charge</label>
+														<label class="control-label col-3 mt-auto">Date</label>
 														<div class="col-9">
-															<input type="text" class="form-control" value="">
+															<input class="form-control" type="date" name="date">
 														</div>
 													</div>
-													
+												</div>
+												<div class="form-group">
+													<input type="text" class="form-control" placeholder="Name">
 												</div>
 											</div>
 										</div>
@@ -708,8 +672,8 @@
 									</div>
 									<div class="row flex-wrap d-flex">
 										<div class="col-lg-8 col-xs-12">
-											<div class="row d-flex">
-												<div class="form-group col-6">
+											<div class="row d-flex flex-wrap">
+												<div class="form-group col-lg-6 col-xs-12">
 													<select name="select" class="form-control">
 														<option value="opt1">Shipping method</option>
 														<option value="opt2">Option 2</option>
@@ -721,7 +685,15 @@
 														<option value="opt8">Option 8</option>
 													</select>
 												</div>
-												<div class="form-group col-6">
+												<div class="form-group col-lg-6 col-xs-12">
+													<div class="row">
+														<label class="control-label col-lg-3 pt-2">Field Name</label>
+														<div class="col-lg-9 col-xs-12">
+															<input type="text" class="form-control">
+														</div>
+													</div>
+												</div>
+												<div class="form-group col-lg-6 col-xs-12">
 													<select name="select" class="form-control">
 														<option value="opt1">Shipping method date</option>
 														<option value="opt2">Option 2</option>
@@ -733,12 +705,16 @@
 														<option value="opt8">Option 8</option>
 													</select>
 												</div>
-											</div>
-											<div class="row">
-												<div class="form-group">
-													<div class="col-lg-12">
-														<textarea rows="5" cols="5" class="form-control" placeholder="Default textarea"></textarea>
+												<div class="form-group col-lg-6 col-xs-12">
+													<div class="row">
+														<label class="control-label col-lg-3 pt-2">Field Name</label>
+														<div class="col-lg-9 col-xs-12">
+															<input type="text" class="form-control">
+														</div>
 													</div>
+												</div>
+												<div class="col-lg-12 col-xl-12">
+													<h6 class="text-right">P-SENSOR : <span>8240-2413-3628</span></h6>
 												</div>
 											</div>
 										</div>
@@ -765,7 +741,7 @@
 											</table>
 										</div>
 									</div>
-									<div class="row d-flex flex-wrap mt-30">
+									<div class="row d-flex flex-wrap mt-5-s">
 										<div class="col-lg-6 col-xs-12">
 											<fieldset class="content-group">
 												<legend class="text-bold text-center">Basic selects</legend>
@@ -778,25 +754,31 @@
 												<div class="form-group">
 													<label class="control-label">Address</label>
 													<div class="">
-														<textarea type="text" class="form-control"></textarea>
+														<input type="text" class="form-control"></input>
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label">TEL/FAX:</label>
+													<label class="control-label">TEL:</label>
 													<div class="">
 														<input type="text" class="form-control"></input>
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label">TEL/FAX:</label>
+													<label class="control-label">fieldname</label>
 													<div class="">
 														<input type="text" class="form-control"></input>
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label">Date</label>
+													<label class="control-label">field name</label>
 													<div class="">
-														<input class="form-control" type="date" name="date">
+														<input class="form-control" type="text" name="date">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label">field name</label>
+													<div class="">
+														<input class="form-control" type="text" name="date">
 													</div>
 												</div>
 											</fieldset>
@@ -814,37 +796,37 @@
 												<div class="form-group">
 													<label class="control-label">Address</label>
 													<div class="">
-														<textarea type="text" class="form-control"></textarea>
+														<input type="text" class="form-control"></input>
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label">TEL/FAX:</label>
+													<label class="control-label">TEL:</label>
 													<div class="">
 														<input type="text" class="form-control"></input>
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label">TEL/FAX:</label>
+													<label class="control-label">fieldname</label>
 													<div class="">
 														<input type="text" class="form-control"></input>
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label">Date</label>
+													<label class="control-label">field name</label>
 													<div class="">
-														<input class="form-control" type="date" name="date">
+														<input class="form-control" type="text" name="date">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label">field name</label>
+													<div class="">
+														<input class="form-control" type="text" name="date">
 													</div>
 												</div>
 											</fieldset>
 										</div>
 									</div>
-									<div class="row d-flex flex-wrap mt-30">
-										<div class="col-lg-6 col-xs-12">
-											<fieldset class="content-group">
-												<legend class="text-bold text-center">Fieldset Title</legend>
-											</fieldset>
-											
-										</div>
+									<div class="row d-flex flex-wrap mt-5-s">
 										<div class="col-lg-6 col-xs-12">
 											<fieldset class="content-group">
 												<legend class="text-bold text-center">Fieldset Title</legend>
@@ -855,22 +837,73 @@
 												<h6>FAX 06-6753-8079</h6>
 											</fieldset>
 										</div>
+										<div class="col-lg-6 col-xs-12">
+											<fieldset class="content-group">
+												<legend class="text-bold text-center">Fieldset Title</legend>
+											</fieldset>
+											
+										</div>
 									</div>
-									<div class="row d-flex flex-wrap">
-										<div class="col-6">
-											<div class="form-group">
-												<select class="form-control">
-													<option value="">Shipping</option>
-													<option value="">Picking up</option>
-													<option value="">ID change</option>
-													<option value="">* blank</option>
-												</select>
+									<div class="d-flex flex-wrap border">
+										<div class="col-lg-6 col-xs-12 p-0">
+											<div class="table-row">
+												<div class="col-lg-3 col-xs-3 table-cell">
+													field name
+												</div>
+												<div class="col-lg-9 col-xs-9 table-cell border-sm-right-0">
+													2020-11-02
+												</div>
+											</div>
+											<div class="table-row">
+												<div class="col-lg-3 col-xs-3 table-cell border-top h-70">
+													field name
+												</div>
+												<div class="col-lg-9 col-xs-9 table-cell border-top border-sm-right-0">
+													<div class="w-100">
+														<div class="">
+															<div class="col-lg-6 col-xs-6 table-cell">field name</div>
+															<div class="col-lg-6 col-xs-6 table-cell border-right-0"></div>
+														</div>
+														<div class="">
+															<div class="col-lg-6 col-xs-6 table-cell border-top">field name</div>
+															<div class="col-lg-6 col-xs-6 table-cell border-top border-right-0"></div>
+														</div>
+													</div>
+													
+												</div>
 											</div>
 										</div>
-										<div class="col-6">
-											<div class="form-group">
-												<span><h6></h6> Amount </span>
-												<span>93600</span>
+										<div class="col-lg-6 col-xs-12 p-0 boder-sm-top">
+											<div class="table-row">
+												<div class="col-lg-3 col-xs-3 table-cell">
+													field name
+												</div>
+												<div class="col-lg-9 col-xs-9 table-cell border-right-0">
+													
+												</div>
+											</div>
+											<div class="table-row">
+												<div class="col-lg-3 col-xs-3 table-cell border-top">
+													field name
+												</div>
+												<div class="col-lg-9 col-xs-9 table-cell border-top border-right-0">
+												</div>
+											</div>
+											<div class="table-row">
+												<div class="col-lg-3 col-xs-3 table-cell border-top">
+													field name
+												</div>
+												<div class="col-lg-9 col-xs-9 table-cell border-top border-right-0">
+													
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="row mt-5-s">
+										<div class="col-md-12">
+											<div class="mb-4 text-center">
+												<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> Print</button>
 											</div>
 										</div>
 									</div>
