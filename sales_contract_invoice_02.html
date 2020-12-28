@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Sales Contract</title>
+	<title>Bying by a trader</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -30,8 +30,23 @@
 	<script src="./global_assets/js/plugins/tables/datatables/extensions/buttons.min.js"></script>
 	<script src="./global_assets/js/plugins/forms/selects/select2.min.js"></script>
 
+	<script src="./global_assets/js/plugins/notifications/jgrowl.min.js"></script>
+	<script src="./global_assets/js/plugins/ui/moment/moment.min.js"></script>
+	<script src="./global_assets/js/plugins/pickers/daterangepicker.js"></script>
+	<script src="./global_assets/js/plugins/pickers/anytime.min.js"></script>
+	<script src="./global_assets/js/plugins/pickers/pickadate/picker.js"></script>
+	<script src="./global_assets/js/plugins/pickers/pickadate/picker.date.js"></script>
+	<script src="./global_assets/js/plugins/pickers/pickadate/picker.time.js"></script>
+	<script src="./global_assets/js/plugins/pickers/pickadate/legacy.js"></script>
+
+	<script src="./global_assets/js/plugins/forms/styling/uniform.min.js"></script>
+	<script src="./global_assets/js/plugins/notifications/pnotify.min.js"></script>
+	<script src="./global_assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+
 	<script src="./assets/js/app.js"></script>
 	<script src="./global_assets/js/demo_pages/datatables_extension_select.js"></script>
+	<script src="./global_assets/js/demo_pages/datatables_basic.js"></script>
+	<script src="./global_assets/js/demo_pages/picker_date.js"></script>
 	<!-- /theme JS files -->
 
 </head>
@@ -357,7 +372,7 @@
 				<div class="page-header">
 					<div class="page-header-content">
 						<div class="page-title">
-							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Datatables</span> - Basic Styling</h4>
+							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Sales contract creation</span> - Bying by a trader</h4>
 						</div>
 
 						<div class="heading-elements">
@@ -372,8 +387,8 @@
 					<div class="breadcrumb-line breadcrumb-line-component">
 						<ul class="breadcrumb">
 							<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-							<li><a href="datatable_styling.html">Datatables</a></li>
-							<li class="active">Basic styling</li>
+							<li><a href="datatable_styling.html">Sales contract creation</a></li>
+							<li class="active">Bying by a trader</li>
 						</ul>
 
 						<ul class="breadcrumb-elements">
@@ -406,7 +421,7 @@
 						<div class="col-lg-12">
 
 							<!-- Traffic sources -->
-							<div class="panel panel-flat">
+							<div class="panel panel-flat px-3">
 								<div class="panel-heading">
 									<h2 class="panel-title text-center">Sales contact</h2>
 								</div>
@@ -415,13 +430,13 @@
 									<div class="row flex-wrap d-flex">
 										<div class="col-lg-7 col-xs-12 text-left">
 											<div class="">
-												<div class="form-group d-flex w-100">
+												<div class="form-group d-flex row">
 													<label class="control-label col-3 mt-auto">Company Name</label>
 													<div class="col-9">
 														<input type="text" class="form-control">
 													</div>
 												</div>
-												<div class="form-group d-flex">
+												<div class="form-group d-flex row">
 													<label class="control-label col-3 mt-auto">Address</label>
 													<div class="col-9">
 														<input type="text" class="form-control" value="1108-3">
@@ -429,23 +444,23 @@
 												</div>
 												<div class="">
 													<div class="row flex-wrap d-flex">
-															<div class="col-6">
-																<div class="form-group d-flex">
-																	<label class="control-label col-3 mt-auto">TEL</label>
-																	<div class="col-9">
-																		<input type="text" class="form-control" value="048-986-5570">
-																	</div>
-																</div>
-															</div>
-															<div class="col-6">
-																<div class="form-group d-flex">
-																	<label class="control-label col-3 mt-auto">FAX</label>
-																	<div class="col-9">
-																		<input type="text" class="form-control" value="048-985-3158">
-																	</div>
+														<div class="col-6">
+															<div class="form-group row d-flex">
+																<label class="control-label col-3 mt-auto">TEL</label>
+																<div class="col-9">
+																	<input type="text" class="form-control" value="048-986-5570">
 																</div>
 															</div>
 														</div>
+														<div class="col-6">
+															<div class="form-group d-flex row">
+																<label class="control-label col-3 mt-auto">FAX</label>
+																<div class="col-9">
+																	<input type="text" class="form-control" value="048-985-3158">
+																</div>
+															</div>
+														</div>
+													</div>
 												</div>
 												
 											</div>
@@ -455,8 +470,9 @@
 												<div class="form-group d-flex">
 													<div class="row w-100 d-flex align-items-center">
 														<label class="control-label col-3 mt-auto">Date</label>
-														<div class="col-9">
-															<input class="form-control" type="date" name="date">
+														<div class="input-group col-9">
+															<span class="input-group-addon"><i class="icon-calendar22"></i></span>
+															<input type="text" class="form-control daterange-single">
 														</div>
 													</div>
 												</div>
