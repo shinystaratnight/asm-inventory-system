@@ -121,6 +121,10 @@
     padding-left: 45px;
     color: white;
 }
+.login-form {
+    width: 400px;
+    margin: 100px auto 0;
+}
 @media screen and (max-width: 768px) {
     .panel .visible-elements {
         padding-top: 20px;
