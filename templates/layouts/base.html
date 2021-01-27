@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+        Inventory System - {% block title %} {% endblock %}
+    </title>
+
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="{% static 'global_assets/css/icons/icomoon/styles.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/core.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/components.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/colors.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'global_assets/css/extras/animate.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+
+	<!-- Core JS files -->
+	<script src="{% static 'global_assets/js/plugins/loaders/pace.min.js' %}"></script>
+	<script src="{% static 'global_assets/js/core/libraries/jquery.min.js' %}"></script>
+	<script src="{% static 'global_assets/js/core/libraries/bootstrap.min.js' %}"></script>
+	<script src="{% static 'global_assets/js/plugins/loaders/blockui.min.js' %}"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script src="{% static 'global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
+	<script src="{% static 'global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+
+	<script src="{% static 'global_assets/js/plugins/notifications/jgrowl.min.js' %}"></script>
+	<script src="{% static 'global_assets/js/plugins/ui/moment/moment.min.js' %}"></script>
+	<script src="{% static 'global_assets/js/plugins/pickers/daterangepicker.js' %}"></script>
+	<script src="{% static 'global_assets/js/plugins/pickers/anytime.min.js' %}"></script>
+	<script src="{% static 'global_assets/js/plugins/pickers/pickadate/picker.js' %}"></script>
+	<script src="{% static 'global_assets/js/plugins/pickers/pickadate/picker.date.js' %}"></script>
+	<script src="{% static 'global_assets/js/plugins/pickers/pickadate/picker.time.js' %}"></script>
+	<script src="{% static 'global_assets/js/plugins/pickers/pickadate/legacy.js' %}"></script>
+
+	<script src="{% static 'global_assets/js/plugins/forms/styling/uniform.min.js' %}"></script>
+	<script src="{% static 'global_assets/js/plugins/notifications/pnotify.min.js' %}"></script>
+	<script src="{% static 'global_assets/js/plugins/forms/selects/bootstrap_multiselect.js' %}"></script>
+
+    <script src="{% static 'assets/js/app.js' %}"></script>
+    <script src="{% static 'global_assets/js/demo_pages/datatables_extension_select.js' %}"></script>
+	<script src="{% static 'global_assets/js/demo_pages/datatables_basic.js' %}"></script>
+	<script src="{% static 'global_assets/js/demo_pages/picker_date.js' %}"></script>
+	<script src="{% static 'global_assets/js/demo_pages/form_multiselect.js' %}"></script>
+	<!-- /theme JS files -->
+
+</head>
+
+<body>
+
+    {% include "layouts/navbar.html" %}
+    
+	<div class="page-container">
+
+		<div class="page-content">
+            {% include "layouts/sidebar.html" %}
+
+            {% block content %}
+            {% endblock %}
+
+            {% include "layouts/footer.html" %}
+        </div>
+
+	</div>
+
+</body>
+</html>
+
