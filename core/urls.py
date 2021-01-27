@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url, i18n
 
 urlpatterns = [
+    # url(r'^jsi18n/$', javascript_catalog),
+    url(r'^i18n/', include(i18n)),
+]
+
+urlpatterns += i18n.i18n_patterns(
     path('admin/', admin.site.urls),
     path("", include("pages.urls")),
-]
+)

@@ -1,5 +1,5 @@
 {% extends 'layouts/base.html' %}
-
+{% load i18n %}
 {% block title %} Dashboard {% endblock title %}
 
 {% block stylesheets %}{% endblock stylesheets %}
@@ -14,7 +14,7 @@
 
             <div class="panel panel-flat">
                 <div class="panel-heading">
-                    <h5 class="panel-title">Dashboard Page</h5>
+                    <h5 class="panel-title">{% trans "Dashboard Page" %}</h5>
                     <div class="heading-elements">
                         <ul class="icons-list">
                             <li><a data-action="collapse"></a></li>
