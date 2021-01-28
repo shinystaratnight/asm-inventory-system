@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 05:10+0000\n"
+"POT-Creation-Date: 2021-01-28 05:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,88 @@ msgstr ""
 #: templates/index.html:19
 msgid "Dashboard Page"
 msgstr "ダッシュボードページ"
+
+#: templates/index.html:34
+msgid "No"
+msgstr "番号"
+
+#: templates/index.html:35 templates/index.html:215
+msgid "Customer name"
+msgstr "顧客名"
+
+#: templates/index.html:36 templates/index.html:222
+msgid "Frigana"
+msgstr "ふりがな"
+
+#: templates/index.html:37
+msgid "Postal code"
+msgstr "郵便番号"
+
+#: templates/index.html:38 templates/index.html:236
+msgid "Street address"
+msgstr "住所"
+
+#: templates/index.html:39 templates/index.html:243
+msgid "TEL"
+msgstr "TEL"
+
+#: templates/index.html:40 templates/index.html:250
+msgid "FAX"
+msgstr "FAX"
+
+#: templates/index.html:41 templates/index.html:257
+msgid "For CSV"
+msgstr "CSV用"
+
+#: templates/index.html:193 templates/index.html:205
+msgid "Add Customer Master"
+msgstr "カスタマーマスターを追加"
+
+#: templates/index.html:217
+msgid "Enter customer name"
+msgstr "顧客名を入力してください"
+
+#: templates/index.html:224
+msgid "Enter frigana"
+msgstr "ふりがなを入力"
+
+#: templates/index.html:229
+#, fuzzy
+#| msgid "Postal code"
+msgid "Postal Code"
+msgstr "郵便番号"
+
+#: templates/index.html:231
+msgid "Enter postal code"
+msgstr "郵便番号を入力"
+
+#: templates/index.html:238
+msgid "Enter street address"
+msgstr "住所を入力"
+
+#: templates/index.html:245
+msgid "Enter TEL"
+msgstr "TELを入力してください"
+
+#: templates/index.html:252
+msgid "Enter FAX"
+msgstr "FAXを入力してください"
+
+#: templates/index.html:259
+msgid "Enter proper data"
+msgstr "適切なデータを入力してください"
+
+#: templates/index.html:268
+msgid "Add"
+msgstr "追加"
+
+#: templates/index.html:269
+msgid "Close"
+msgstr "閉じる"
+
+#: templates/index.html:278
+msgid "Copyright"
+msgstr "著作権"
 
 #: templates/login.html:123
 msgid "Login to your account"
