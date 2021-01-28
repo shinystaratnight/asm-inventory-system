@@ -241,7 +241,7 @@
 							<div class="row d-flex flex-wrap mt-5-s justify-content-center">
 								<div class="col-lg-8 col-xs-12">
 									<fieldset class="content-group">
-										<legend class="text-bold text-center">Hall name</legend>
+										<legend class="text-bold text-center">{% trans "Hall name" %}</legend>
 										<div class="row d-flex flex-wrap">
 											<div class="form-group col-lg-4 col-xs-12">
 												<label class="control-label">{% trans "Company name" %}</label>
@@ -258,7 +258,7 @@
 										</div>
 										<div class="row d-flex">
 											<div class="form-group col-lg-4 col-xs-12">
-												<label class="control-label">TEL/FAX:</label>
+												<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
 												<div class="">
 													<input type="text" class="form-control"></input>
 												</div>
@@ -272,11 +272,11 @@
 									<table class="table datatable-select-multiple">
 										<thead>
 											<tr>
-												<th>Model name</th>
-												<th>Middle classification</th>
-												<th>Quantity</th>
-												<th>Unit price</th>
-												<th>Amount of money</th>
+												<th>{% trans "Model name" %}</th>
+												<th>{% trans "Middle classification" %}</th>
+												<th>{% trans "Quantity" %}Quantity</th>
+												<th>{% trans "Unit price" %}</th>
+												<th>{% trans "Amount of money" %}</th>
 												<th class="text-center d-none">Actions</th>
 											</tr>
 										</thead>
@@ -292,10 +292,10 @@
 												<td>
 													<div class="form-group mb-0">
 														<select name="select" class="form-control">
-															<option value="">Main body</option>
-															<option value="">Frame</option>
-															<option value="">Cell</option>
-															<option value="">Nail sheet</option>
+															<option value="">{% trans "Main body" %}</option>
+															<option value="">{% trans "Frame" %}</option>
+															<option value="">{% trans "Cell" %}</option>
+															<option value="">{% trans "Nail sheet" %}</option>
 														</select>
 													</div>
 												</td>
@@ -343,10 +343,10 @@
 												<td>
 													<div class="form-group mb-0">
 														<select name="select" class="form-control">
-															<option value="">Main body</option>
-															<option value="">Frame</option>
-															<option value="">Cell</option>
-															<option value="">Nail sheet</option>
+															<option value="">{% trans "Main body" %}</option>
+															<option value="">{% trans "Frame" %}</option>
+															<option value="">{% trans "Cell" %}</option>
+															<option value="">{% trans "Nail sheet" %}</option>
 														</select>
 													</div>
 												</td>
@@ -394,10 +394,10 @@
 												<td>
 													<div class="form-group mb-0">
 														<select name="select" class="form-control">
-															<option value="">Main body</option>
-															<option value="">Frame</option>
-															<option value="">Cell</option>
-															<option value="">Nail sheet</option>
+															<option value="">{% trans "Main body" %}</option>
+															<option value="">{% trans "Frame" %}</option>
+															<option value="">{% trans "Cell" %}</option>
+															<option value="">{% trans "Nail sheet" %}</option>
 														</select>
 													</div>
 												</td>
@@ -445,10 +445,10 @@
 												<td>
 													<div class="form-group mb-0">
 														<select name="select" class="form-control">
-															<option value="">Main body</option>
-															<option value="">Frame</option>
-															<option value="">Cell</option>
-															<option value="">Nail sheet</option>
+															<option value="">{% trans "Main body" %}</option>
+															<option value="">{% trans "Frame" %}</option>
+															<option value="">{% trans "Cell" %}</option>
+															<option value="">{% trans "Nail sheet" %}</option>
 														</select>
 													</div>
 												</td>
@@ -496,10 +496,10 @@
 												<td>
 													<div class="form-group mb-0">
 														<select name="select" class="form-control">
-															<option value="">Main body</option>
-															<option value="">Frame</option>
-															<option value="">Cell</option>
-															<option value="">Nail sheet</option>
+															<option value="">{% trans "Main body" %}</option>
+															<option value="">{% trans "Frame" %}</option>
+															<option value="">{% trans "Cell" %}</option>
+															<option value="">{% trans "Nail sheet" %}</option>
 														</select>
 													</div>
 												</td>
@@ -545,7 +545,7 @@
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-btn">
-												<button class="btn btn-default">Pachinko document fee</button>
+												<button class="btn btn-default">{% trans "Pachinko document fee" %}</button>
 											</span>
 											<input type="text" class="form-control">
 										</div>
@@ -555,7 +555,7 @@
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-btn">
-												<button class="btn btn-default">Slot document fee</button>
+												<button class="btn btn-default">{% trans "Slot document fee" %}</button>
 											</span>
 											<input type="text" class="form-control">
 										</div>
@@ -567,19 +567,19 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr>
-												<td>Subtotal</td>
+												<td>{% trans "Subtotal" %}</td>
 												<td>85,000</td>
 											</tr>
 											<tr>
-												<td>Consumption tax (10%)</td>
+												<td>{% trans "Consumption tax" %} (10%)</td>
 												<td>8,500</td>
 											</tr>
 											<tr>
-												<td>Insurance fee</td>
+												<td>{% trans "Insurance fee" %}</td>
 												<td>100</td>
 											</tr>
 											<tr>
-												<td>Total amount</td>
+												<td>{% trans "Total amount" %}</td>
 												<td>93,600</td>
 											</tr>
 										</tbody>
@@ -590,8 +590,8 @@
 							<div class="row mt-5-s">
 								<div class="col-md-12">
 									<div class="mb-4 text-center">
-										<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> Create Contract</button>
-										<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> Create Invoice</button>
+										<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> {% trans "Create Contract" %}</button>
+										<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> {% trans "Create Invoice" %}</button>
 									</div>
 								</div>
 							</div>
