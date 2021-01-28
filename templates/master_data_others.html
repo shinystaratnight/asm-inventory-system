@@ -13,40 +13,40 @@
 		<div class="page-header">
 			<div class="page-header-content">
 				<div class="page-title">
-					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Master Data Registration</span> - Product Name and Others</h4>
+					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "Master data registration" %}</span> - {% trans "Product Name and Others" %}</h4>
 				</div>
 
 				<div class="heading-elements">
 					<div class="heading-btn-group">
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>Invoices</span></a>
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>
+						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>{% trans "Statistics" %}</span></a>
+						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>{% trans "Invoices" %}</span></a>
+						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>{% trans "Schedule" %}</span></a>
 					</div>
 				</div>
 			</div>
 
 			<div class="breadcrumb-line breadcrumb-line-component">
 				<ul class="breadcrumb">
-					<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-					<li><a href="datatable_styling.html">Master card registration</a></li>
-					<li class="active">Product name and others</li>
+					<li><a href="index.html"><i class="icon-home2 position-left"></i> {% trans "Home" %}</a></li>
+					<li><a href="datatable_styling.html">{% trans "Master card registration" %}</a></li>
+					<li class="active">{% trans "Product name and others" %}</li>
 				</ul>
 
 				<ul class="breadcrumb-elements">
-					<li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
+					<li><a href="#"><i class="icon-comment-discussion position-left"></i> {% trans "Support" %}</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-gear position-left"></i>
-							Settings
+							{% trans "Settings" %}
 							<span class="caret"></span>
 						</a>
 
 						<ul class="dropdown-menu dropdown-menu-right">
-							<li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
-							<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
-							<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
+							<li><a href="#"><i class="icon-user-lock"></i> {% trans "Account security" %}</a></li>
+							<li><a href="#"><i class="icon-statistics"></i> {% trans "Analytics" %}</a></li>
+							<li><a href="#"><i class="icon-accessibility"></i> {% trans "Accessibility" %}</a></li>
 							<li class="divider"></li>
-							<li><a href="#"><i class="icon-gear"></i> All settings</a></li>
+							<li><a href="#"><i class="icon-gear"></i> {% trans "All settings" %}</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -59,7 +59,7 @@
 
 			<div class="panel panel-flat">
 				<div class="panel-heading">
-					<h5 class="panel-title">Product Name and Others</h5>
+					<h5 class="panel-title">{% trans "Product name and others" %}</h5>
 					<div class="heading-elements">
 						<ul class="icons-list">
 							<li><a data-action="collapse"></a></li>
@@ -74,9 +74,9 @@
 				<table class="table datatable-basic table-hover">
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Account</th>
-							<th>Tax Classification</th>
+							<th>{% trans "Name" %}</th>
+							<th>{% trans "Account" %}</th>
+							<th>{% trans "Tax classification" %}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -175,7 +175,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="mb-5-s text-center">
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add_new_data"><i class="icon-plus2 position-left"></i>Add Product</button>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add_new_data"><i class="icon-plus2 position-left"></i>{% trans "Add Product" %}</button>
 						</div>
 					</div>
 				</div>
@@ -187,7 +187,7 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h5 class="modal-title">Add Product</h5>
+							<h5 class="modal-title">{% trans "Add Product" %}</h5>
 						</div>
 
 						<div class="modal-body">
@@ -197,23 +197,23 @@
 								<fieldset class="content-group">
 
 									<div class="form-group">
-										<label class="control-label col-lg-3">Name:</label>
+										<label class="control-label col-lg-3">{% trans "Name" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" class="form-control" placeholder="Enter name...">
+											<input type="text" class="form-control" placeholder="{% trans 'Enter name' %}...">
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="control-label col-lg-3">Account:</label>
+										<label class="control-label col-lg-3">{% trans "Account" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" class="form-control" placeholder="Enter account...">
+											<input type="text" class="form-control" placeholder="{% trans 'Enter account' %}...">
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="control-label col-lg-3">Tax Classification:</label>
+										<label class="control-label col-lg-3">{% trans "Tax classification" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" class="form-control" placeholder="Enter tax classification...">
+											<input type="text" class="form-control" placeholder="{% trans 'Enter tax classification' %}...">
 										</div>
 									</div>
 
@@ -222,8 +222,8 @@
 						</div>
 
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary">Add</button>
-							<button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">{% trans "Add" %}</button>
+							<button type="button" class="btn btn-link" data-dismiss="modal">{% trans "Close" %}</button>
 						</div>
 					</div>
 				</div>
@@ -232,7 +232,7 @@
 
 			<!-- Footer -->
 			<div class="footer text-muted">
-				&copy; 2020. Copyright
+				&copy; 2020. {% trans "Copyright" %}
 			</div>
 			<!-- /footer -->
 
