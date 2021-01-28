@@ -82,10 +82,6 @@ msgstr "顧客名を入力してください"
 msgid "Enter frigana"
 msgstr "ふりがなを入力"
 
-#: templates/index.html:229
-msgid "Postal Code"
-msgstr "郵便番号"
-
 #: templates/index.html:231
 msgid "Enter postal code"
 msgstr "郵便番号を入力"
