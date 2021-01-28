@@ -105,10 +105,8 @@ msgstr ""
 #: templates/master_data_product_name.html:45
 #: templates/sales_contract_hall_sale.html:45
 #: templates/sales_contract_sold_by_trader.html:47
-#, fuzzy
-#| msgid "Account settings"
 msgid "Account security"
-msgstr "アカウント設定"
+msgstr "アカウントのセキュリティ"
 
 #: templates/accounting_csv_purchase.html:46
 #: templates/accounting_csv_sale.html:46 templates/master_data_customer.html:46
@@ -140,17 +138,13 @@ msgstr ""
 #: templates/master_data_product_name.html:49
 #: templates/sales_contract_hall_sale.html:49
 #: templates/sales_contract_sold_by_trader.html:51
-#, fuzzy
-#| msgid "Account settings"
 msgid "All settings"
-msgstr "アカウント設定"
+msgstr "すべての設定"
 
 #: templates/accounting_csv_purchase.html:100
 #: templates/accounting_csv_sale.html:99
-#, fuzzy
-#| msgid "For CSV"
 msgid "Export To CSV"
-msgstr "CSV用"
+msgstr "CSVにエクスポート"
 
 #: templates/accounting_csv_purchase.html:109
 #: templates/accounting_csv_sale.html:108 templates/index.html:278
@@ -496,30 +490,22 @@ msgstr "パスワードを再設定する"
 #: templates/master_data_hall_details.html:31
 #: templates/master_data_others.html:31
 #: templates/master_data_pickup_destination.html:31
-#, fuzzy
-#| msgid "Master data registration"
 msgid "Master card registration"
-msgstr "マスタデータ登録"
+msgstr "マスターカード登録"
 
 #: templates/master_data_customer.html:62
-#, fuzzy
-#| msgid "Customer master"
 msgid "Customer master list"
-msgstr "カスタマーマスター"
+msgstr "カスタマーマスターリスト"
 
 #: templates/master_data_hall_details.html:62
-#, fuzzy
-#| msgid "Hall details"
 msgid "Hall details list"
-msgstr "ホール詳細"
+msgstr "ホール詳細リスト"
 
 #: templates/master_data_hall_details.html:78
 #: templates/master_data_hall_details.html:258
 #: templates/sales_contract_hall_sale.html:244
-#, fuzzy
-#| msgid "Hall sale"
 msgid "Hall name"
-msgstr "ホールセール"
+msgstr "ホール名"
 
 #: templates/master_data_hall_details.html:84
 #: templates/master_data_hall_details.html:300
@@ -528,16 +514,12 @@ msgstr ""
 
 #: templates/master_data_hall_details.html:236
 #: templates/master_data_hall_details.html:248
-#, fuzzy
-#| msgid "Hall details"
 msgid "Add Hall Details"
-msgstr "ホール詳細"
+msgstr "ホールの詳細を追加"
 
 #: templates/master_data_hall_details.html:260
-#, fuzzy
-#| msgid "Enter customer name"
 msgid "Enter hall name"
-msgstr "顧客名を入力してください"
+msgstr "ホール名を入力してください"
 
 #: templates/master_data_hall_details.html:302
 msgid "payee"
@@ -545,10 +527,8 @@ msgstr ""
 
 #: templates/master_data_others.html:16 templates/master_data_others.html:32
 #: templates/master_data_others.html:62
-#, fuzzy
-#| msgid "Product name"
 msgid "Product name and others"
-msgstr "商品名"
+msgstr "商品名等"
 
 #: templates/master_data_others.html:77 templates/master_data_others.html:200
 msgid "Name"
@@ -567,16 +547,12 @@ msgstr ""
 #: templates/master_data_others.html:178 templates/master_data_others.html:190
 #: templates/master_data_product_name.html:173
 #: templates/master_data_product_name.html:185
-#, fuzzy
-#| msgid "Product name"
 msgid "Add Product"
-msgstr "商品名"
+msgstr "製品を追加する"
 
 #: templates/master_data_others.html:202
-#, fuzzy
-#| msgid "Customer name"
 msgid "Enter name"
-msgstr "顧客名"
+msgstr "名前を入力"
 
 #: templates/master_data_others.html:209
 #, fuzzy
