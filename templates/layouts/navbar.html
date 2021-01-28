@@ -15,7 +15,7 @@
         <ul class="nav navbar-nav">
             <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
 
-            <li class="dropdown">
+            <!-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="icon-git-compare"></i>
                     <span class="visible-xs-inline-block position-right">Git updates</span>
@@ -91,7 +91,7 @@
                         <a href="#" data-popup="tooltip" title="All activity"><i class="icon-menu display-block"></i></a>
                     </div>
                 </div>
-            </li>
+            </li> -->
         </ul>
 
         <p class="navbar-text"><span class="label bg-success">{% trans "Online" %}</span></p>
@@ -105,9 +105,9 @@
                         English
                         <span class="caret"></span>
                     {% else %}
-                    <img src="{% static 'global_assets/images/flags/ja.png' %}" class="position-left" alt="">
-                        日本語
-                    <span class="caret"></span>
+                        <img src="{% static 'global_assets/images/flags/ja.png' %}" class="position-left" alt="">
+                            日本語
+                        <span class="caret"></span>
                     {% endif %}
                 </a>
                 <ul class="dropdown-menu">
@@ -173,30 +173,6 @@
                                 </a>
 
                                 <span class="text-muted">But that would be extremely strained and suspicious...</span>
-                            </div>
-                        </li>
-
-                        <li class="media">
-                            <div class="media-left"><img src="{% static 'global_assets/images/placeholders/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading">
-                                    <span class="text-semibold">Beatrix Diaz</span>
-                                    <span class="media-annotation pull-right">Tue</span>
-                                </a>
-
-                                <span class="text-muted">What a strenuous career it is that I've chosen...</span>
-                            </div>
-                        </li>
-
-                        <li class="media">
-                            <div class="media-left"><img src="{% static 'global_assets/images/placeholders/placeholder.jpg' %}" class="img-circle img-sm" alt=""></div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading">
-                                    <span class="text-semibold">Richard Vango</span>
-                                    <span class="media-annotation pull-right">Mon</span>
-                                </a>
-                                
-                                <span class="text-muted">Other travelling salesmen live a life of luxury...</span>
                             </div>
                         </li>
                     </ul>

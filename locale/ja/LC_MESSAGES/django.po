@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 06:03+0000\n"
+"POT-Creation-Date: 2021-01-28 07:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: templates/error-404.html:111 templates/error-500.html:111
+msgid "Oups! Error"
+msgstr "おっと! エラー"
+
+#: templates/error-404.html:115
+msgid "Page not found"
+msgstr "ページが見つかりません"
+
+#: templates/error-404.html:115 templates/error-500.html:115
+msgid "Home"
+msgstr "ホーム"
+
+#: templates/error-500.html:115
+msgid "Server error, please contact support"
+msgstr "サーバーエラー、サポートに連絡してください"
 
 #: templates/index.html:19
 msgid "Dashboard Page"
@@ -66,10 +82,6 @@ msgstr "顧客名を入力してください"
 msgid "Enter frigana"
 msgstr "ふりがなを入力"
 
-#: templates/index.html:229
-msgid "Postal Code"
-msgstr "郵便番号"
-
 #: templates/index.html:231
 msgid "Enter postal code"
 msgstr "郵便番号を入力"
@@ -107,25 +119,93 @@ msgid "Online"
 msgstr "オンライン"
 
 #: templates/layouts/navbar.html:122 templates/layouts/navbar.html:128
-#: templates/layouts/navbar.html:220
+#: templates/layouts/navbar.html:196
 msgid "Messages"
 msgstr "メッセージ"
 
-#: templates/layouts/navbar.html:218
+#: templates/layouts/navbar.html:194
 msgid "My profile"
 msgstr "私のプロフィール"
 
-#: templates/layouts/navbar.html:219
+#: templates/layouts/navbar.html:195
 msgid "My balance"
 msgstr "私のバランス"
 
-#: templates/layouts/navbar.html:222
+#: templates/layouts/navbar.html:198
 msgid "Account settings"
 msgstr "アカウント設定"
 
-#: templates/layouts/navbar.html:223
+#: templates/layouts/navbar.html:199
 msgid "Logout"
 msgstr "ログアウト"
+
+#: templates/layouts/sidebar.html:39
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+#: templates/layouts/sidebar.html:41
+msgid "Master data registration"
+msgstr "マスタデータ登録"
+
+#: templates/layouts/sidebar.html:43
+msgid "Customer master"
+msgstr "カスタマーマスター"
+
+#: templates/layouts/sidebar.html:44
+msgid "Hall details"
+msgstr "ホール詳細"
+
+#: templates/layouts/sidebar.html:45
+msgid "Pick-up destination"
+msgstr "ピックアップ先"
+
+#: templates/layouts/sidebar.html:46
+msgid "Product name"
+msgstr "商品名"
+
+#: templates/layouts/sidebar.html:47
+msgid "Others"
+msgstr "その他"
+
+#: templates/layouts/sidebar.html:52
+msgid "Sales contract creation"
+msgstr "売買契約の作成"
+
+#: templates/layouts/sidebar.html:54
+msgid "Sold by a trader"
+msgstr "トレーダーが販売"
+
+#: templates/layouts/sidebar.html:55
+msgid "Buying by a trader"
+msgstr "トレーダーによる購入"
+
+#: templates/layouts/sidebar.html:56
+msgid "Hall sale"
+msgstr "ホールセール"
+
+#: templates/layouts/sidebar.html:61
+msgid "List"
+msgstr "リスト"
+
+#: templates/layouts/sidebar.html:63
+msgid "Sales & Purchase"
+msgstr "売買と購入"
+
+#: templates/layouts/sidebar.html:64
+msgid "Inventory"
+msgstr "在庫"
+
+#: templates/layouts/sidebar.html:69
+msgid "Accounting software CSV"
+msgstr "会計ソフトウェアCSV"
+
+#: templates/layouts/sidebar.html:71
+msgid "Sales"
+msgstr "売買"
+
+#: templates/layouts/sidebar.html:72
+msgid "Purchases"
+msgstr "購入"
 
 #: templates/login.html:123
 msgid "Login to your account"

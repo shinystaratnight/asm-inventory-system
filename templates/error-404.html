@@ -1,28 +1,138 @@
-<!-- Page content -->
-<div class="container mt--8 pb-5">
-    <div class="row justify-content-center">
-      <div class="col-lg-5 col-md-7">
-        <div class="card bg-secondary shadow border-0">
-          <div class="card-header bg-transparent pb-5">
+{% load static %}
+{% load i18n %}
 
-            <div class="text-muted text-center mt-2 mb-3">
-              Oups! Error 404      
-            </div>
+<!DOCTYPE html>
+<html lang="en">
 
-            <div class="text-center mb-4">
-              Page not found - <a href="/">Home</a>
-            </div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
 
-          </div>
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+        type="text/css">
+    <link href="{% static 'global_assets/css/icons/icomoon/styles.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/core.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/components.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/colors.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'global_assets/css/extras/animate.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+
+    <!-- Core JS files -->
+    <script src="{% static 'global_assets/js/plugins/loaders/pace.min.js' %}"></script>
+    <script src="{% static 'global_assets/js/core/libraries/jquery.min.js' %}"></script>
+    <script src="{% static 'global_assets/js/core/libraries/bootstrap.min.js' %}"></script>
+    <script src="{% static 'global_assets/js/plugins/loaders/blockui.min.js' %}"></script>
+    <!-- /core JS files -->
+
+    <!-- Theme JS files -->
+    <script src="{% static 'global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
+    <script src="{% static 'global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+
+    <script src="{% static 'assets/js/app.js' %}"></script>
+    <script src="{% static 'global_assets/js/demo_pages/datatables_basic.js' %}"></script>
+    <!-- /theme JS files -->
+
+    {% csrf_token %}
+    <script>
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    </script>
+
+</head>
+
+<body class="login-container">
+
+    <input type="hidden" name="alt-path" value="{{ base_url }}/error-404.html">
+
+    <!-- Main navbar -->
+    <div class="navbar navbar-inverse">
+
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html"><img src="../../../../global_assets/images/logo_light.png"
+                    alt=""></a>
+
+            <ul class="nav navbar-nav pull-right visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+            </ul>
         </div>
-        <div class="row mt-3">
-          <div class="col-6">
-            <a href="/" class="text-light"><small>Home</small></a>
-          </div>
-          <div class="col-6 text-right">
-            <a href="https://appseed.us/support" class="text-light"><small>Get Support</small></a>
-          </div>
+
+        <div class="navbar-collapse collapse" id="navbar-mobile">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown language-switch">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == 'en' %}
+                        <img src="{% static 'global_assets/images/flags/gb.png' %}" class="position-left" alt="">
+                        English
+                        <span class="caret"></span>
+                        {% else %}
+                        <img src="{% static 'global_assets/images/flags/ja.png' %}" class="position-left" alt="">
+                        日本語
+                        <span class="caret"></span>
+                        {% endif %}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a data-lang="ja" class="languge"><img
+                                    src="{% static 'global_assets/images/flags/ja.png' %}" alt="">日本語</a></li>
+                        <li><a data-lang="en" class="languge"><img
+                                    src="{% static 'global_assets/images/flags/gb.png' %}" alt="">English</a></li>
+                    </ul>
+                </li>
+
+            </ul>
         </div>
-      </div>
     </div>
-  </div>
+    <!-- /main navbar -->
+
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Content area -->
+                <div class="content">
+
+                    <!-- Simple login form -->
+                    <div class="panel panel-body login-form">
+                        <div class="card bg-secondary shadow border-0">
+                            <div class="card-header bg-transparent pb-5">
+
+                                <div class="text-muted text-center mt-2 mb-3">
+                                    <h1>{% trans "Oups! Error" %} 404</h1>
+                                </div>
+
+                                <div class="text-center mb-4">
+                                    <h5>{% trans "Page not found" %} - <a href="/">{% trans "Home" %}</a></h5>
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- /simple login form -->
+
+                </div>
+                <!-- /content area -->
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+
+</body>
+
+</html>
