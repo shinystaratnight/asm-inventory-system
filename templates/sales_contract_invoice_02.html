@@ -70,19 +70,19 @@
 									<div class="transaction-id-text">No.10005008</div>
 								</div>
 								<div class="col-6 d-flex align-items-center justify-content-center">
-									<h2 class="panel-title text-center">Sales contact</h2>
+									<h2 class="panel-title text-center">{% trans "Sales contract and invoice" %}</h2>
 								</div>
 								
 								<div class="col-3 col-sm-12">
 									<div class="d-flex align-items-center justify-content-end">
-										<span class="contract-date-label">Contract date</span>
+										<span class="contract-date-label">{% trans "Contract date" %}</span>
 										<div class="input-group">
 											<span class="input-group-addon"><i class="icon-calendar22"></i></span>
 											<input type="text" class="form-control daterange-single">
 										</div>
 									</div>
 									<div class="d-flex align-items-center justify-content-end mt-3">
-										<span class="contract-date-label">更新日</span>
+										<span class="contract-date-label">{% trans "Update date" %}</span>
 										<div class="input-group">
 											<span class="input-group-addon"><i class="icon-calendar22"></i></span>
 											<input type="text" class="form-control daterange-single">
@@ -99,7 +99,7 @@
 									<div class="row d-flex flex-wrap">
 										<div class="col-6 col-sm-12">
 											<div class="form-group d-flex row">
-												<label class="control-label col-3 mt-auto">Company Name</label>
+												<label class="control-label col-3 mt-auto">{% trans "Company name" %}</label>
 												<div class="col-9">
 													<input type="text" class="form-control">
 												</div>
@@ -107,7 +107,7 @@
 										</div>
 										<div class="col-6 col-sm-12">
 											<div class="form-group d-flex row">
-												<label class="control-label col-3 mt-auto">Frigana</label>
+												<label class="control-label col-3 mt-auto">{% trans "Frigana" %}</label>
 												<div class="col-9">
 													<input type="text" class="form-control" value="1108-3">
 												</div>
@@ -117,7 +117,7 @@
 									<div class="row d-flex flex-wrap">
 										<div class="col-5 col-sm-12">
 											<div class="form-group d-flex row">
-												<label class="control-label col-4 col-sm-3 mt-auto">Postal code</label>
+												<label class="control-label col-4 col-sm-3 mt-auto">{% trans "Postal code" %}</label>
 												<div class="col-8 pl-md-0 col-sm-9">
 													<input type="text" class="form-control">
 												</div>
@@ -125,7 +125,7 @@
 										</div>
 										<div class="col-7 col-sm-12">
 											<div class="form-group d-flex row">
-												<label class="control-label col-3 mt-auto">Address</label>
+												<label class="control-label col-3 mt-auto">{% trans "Street address" %}</label>
 												<div class="col-9">
 													<input type="text" class="form-control" value="1108-3">
 												</div>
@@ -136,7 +136,7 @@
 									<div class="row flex-wrap d-flex">
 										<div class="col-4 col-sm-12">
 											<div class="form-group d-flex row">
-												<label class="control-label col-3 mt-auto">TEL</label>
+												<label class="control-label col-3 mt-auto">{% trans "TEL" %}</label>
 												<div class="col-9">
 													<input type="text" class="form-control" value="087-865-7171">
 												</div>
@@ -145,7 +145,7 @@
 										<div class="col-1"></div>
 										<div class="col-4 col-sm-12">
 											<div class="form-group d-flex row">
-												<label class="control-label col-3 mt-auto">FAX</label>
+												<label class="control-label col-3 mt-auto">{% trans "FAX" %}</label>
 												<div class="col-9">
 													<input type="text" class="form-control" value="087-865-7171">
 												</div>
@@ -159,7 +159,7 @@
 										<h6>P-SENSOR 8240-2413-3628</h6>
 										<div class="form-group d-flex row">
 											<div class="w-100 d-flex align-items-center">
-												<label class="control-label col-3 mt-auto">In Charge</label>
+												<label class="control-label col-3 mt-auto">{% trans "In charge" %}</label>
 												<div class="col-9">
 													<input type="text" class="form-control" value="">
 												</div>
@@ -173,7 +173,7 @@
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-btn">
-												<button class="btn btn-default">Remark</button>
+												<button class="btn btn-default">{% trans "Remark" %}</button>
 											</span>
 											<input type="text" class="form-control border-left-0">
 										</div>
@@ -185,18 +185,18 @@
 											<div class="col-6">
 												<div class="form-group">
 													<select name="select" class="form-control">
-														<option value="">Shiping method</option>
-														<option value="">Shipping</option>
-														<option value="">Picking up</option>
-														<option value="">ID change</option>
-														<option value="">* blank</option>
+														<option value="">{% trans "Shiping method" %}</option>
+														<option value="">{% trans "Shipping" %}</option>
+														<option value="">{% trans "Picking up" %}</option>
+														<option value="">ID {% trans "change" %}</option>
+														<option value="">* {% trans "blank" %}</option>
 													</select>
 												</div>
 												<div class="form-group">
 													<div class="form-group">
 														<div class="input-group">
 															<span class="input-group-btn">
-																<button class="btn btn-default">Shipping date</button>
+																<button class="btn btn-default">{% trans "Shipping date" %}</button>
 															</span>
 															<input type="text" class="form-control daterange-single">
 														</div>
@@ -206,20 +206,20 @@
 											<div class="col-6">
 												<div class="form-group">
 													<select name="select" class="form-control">
-														<option value="">Payment method</option>
-														<option value="">Transfer</option>
-														<option value="">Check</option>
-														<option value="">Bill</option>
-														<option value="">Cash</option>
+														<option value="">{% trans "Payment method" %}</option>
+														<option value="">{& trans "Transfer" &}</option>
+														<option value="">{% trans "Check" %}</option>
+														<option value="">{% trans "Bill" %}</option>
+														<option value="">{% trans "Cash" %}</option>
 													</select>
 												</div>
 												<div class="form-group">
 													<div class="form-group">
 														<div class="input-group">
 															<span class="input-group-btn">
-																<button class="btn btn-default">Payment deadline</button>
+																<button class="btn btn-default">{% trans "Payment deadline" %}</button>
 															</span>
-															<input type="text" class="form-control daterange-single border-left-0">
+															<input type="text" class="form-control daterange-single">
 														</div>
 													</div>
 												</div>
@@ -230,7 +230,7 @@
 											<div class="form-group">
 												<div class="input-group">
 													<span class="input-group-btn">
-														<button class="btn btn-default">Amount</button>
+														<button class="btn btn-default">{% trans "Billed amount" %}</button>
 													</span>
 													<input type="text" class="form-control">
 												</div>
@@ -244,11 +244,11 @@
 									<table class="table datatable-select-multiple">
 										<thead>
 											<tr>
-												<th>Model name</th>
-												<th>Middle classification</th>
-												<th>Quantity</th>
-												<th>Unit price</th>
-												<th>Amount of money</th>
+												<th>{% trans "Model name" %}</th>
+												<th>{% trans "Middle classification" %}</th>
+												<th>{% trans "Quantity" %}Quantity</th>
+												<th>{% trans "Unit price" %}</th>
+												<th>{% trans "Amount of money" %}</th>
 												<th class="text-center d-none">Actions</th>
 											</tr>
 										</thead>
@@ -264,10 +264,10 @@
 												<td>
 													<div class="form-group mb-0">
 														<select name="select" class="form-control">
-															<option value="">Main body</option>
-															<option value="">Frame</option>
-															<option value="">Cell</option>
-															<option value="">Nail sheet</option>
+															<option value="">{% trans "Main body" %}</option>
+															<option value="">{% trans "Frame" %}</option>
+															<option value="">{% trans "Cell" %}</option>
+															<option value="">{% trans "Nail sheet" %}</option>
 														</select>
 													</div>
 												</td>
@@ -315,10 +315,10 @@
 												<td>
 													<div class="form-group mb-0">
 														<select name="select" class="form-control">
-															<option value="">Main body</option>
-															<option value="">Frame</option>
-															<option value="">Cell</option>
-															<option value="">Nail sheet</option>
+															<option value="">{% trans "Main body" %}</option>
+															<option value="">{% trans "Frame" %}</option>
+															<option value="">{% trans "Cell" %}</option>
+															<option value="">{% trans "Nail sheet" %}</option>
 														</select>
 													</div>
 												</td>
@@ -366,10 +366,10 @@
 												<td>
 													<div class="form-group mb-0">
 														<select name="select" class="form-control">
-															<option value="">Main body</option>
-															<option value="">Frame</option>
-															<option value="">Cell</option>
-															<option value="">Nail sheet</option>
+															<option value="">{% trans "Main body" %}</option>
+															<option value="">{% trans "Frame" %}</option>
+															<option value="">{% trans "Cell" %}</option>
+															<option value="">{% trans "Nail sheet" %}</option>
 														</select>
 													</div>
 												</td>
@@ -417,10 +417,10 @@
 												<td>
 													<div class="form-group mb-0">
 														<select name="select" class="form-control">
-															<option value="">Main body</option>
-															<option value="">Frame</option>
-															<option value="">Cell</option>
-															<option value="">Nail sheet</option>
+															<option value="">{% trans "Main body" %}</option>
+															<option value="">{% trans "Frame" %}</option>
+															<option value="">{% trans "Cell" %}</option>
+															<option value="">{% trans "Nail sheet" %}</option>
 														</select>
 													</div>
 												</td>
@@ -468,10 +468,10 @@
 												<td>
 													<div class="form-group mb-0">
 														<select name="select" class="form-control">
-															<option value="">Main body</option>
-															<option value="">Frame</option>
-															<option value="">Cell</option>
-															<option value="">Nail sheet</option>
+															<option value="">{% trans "Main body" %}</option>
+															<option value="">{% trans "Frame" %}</option>
+															<option value="">{% trans "Cell" %}</option>
+															<option value="">{% trans "Nail sheet" %}</option>
 														</select>
 													</div>
 												</td>
@@ -517,19 +517,19 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr>
-												<td>Subtotal</td>
+												<td>{% trans "Subtotal" %}</td>
 												<td>85,000</td>
 											</tr>
 											<tr>
-												<td>Consumption tax (10%)</td>
+												<td>{% trans "Consumption tax" %} (10%)</td>
 												<td>8,500</td>
 											</tr>
 											<tr>
-												<td>Insurance fee</td>
+												<td>{% trans "Insurance fee" %}</td>
 												<td>100</td>
 											</tr>
 											<tr>
-												<td>Total Amount</td>
+												<td>{% trans "Total Amount" %}</td>
 												<td>93,600</td>
 											</tr>
 										</tbody>
@@ -539,33 +539,33 @@
 							<div class="row d-flex flex-wrap mt-5-s">
 								<div class="col-lg-6 col-xs-12">
 									<fieldset class="content-group">
-										<legend class="text-bold text-center">Basic selects</legend>
+										<legend class="text-bold text-center">{% trans "Product shipping address" %}</legend>
 										<div class="form-group">
-											<label class="control-label">Company Name</label>
+											<label class="control-label">{% trans "Company name" %}</label>
 											<div class="">
 												<input type="text" class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Address</label>
+											<label class="control-label">{% trans "Street address" %}</label>
 											<div class="">
 												<textarea type="text" class="form-control"></textarea>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">TEL/FAX:</label>
+											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
 											<div class="">
 												<input type="text" class="form-control"></input>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">TEL/FAX:</label>
+											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
 											<div class="">
 												<input type="text" class="form-control"></input>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Date</label>
+											<label class="control-label">{% trans "Date" %}</label>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
 												<input type="text" class="form-control datepicker">
@@ -576,33 +576,33 @@
 								</div>
 								<div class="col-lg-6 col-xs-12">
 									<fieldset class="content-group">
-										<legend class="text-bold text-center">Document shipping address</legend>
+										<legend class="text-bold text-center">{% trans "Document shipping address" %}</legend>
 										<div class="form-group">
-											<label class="control-label">Company Name</label>
+											<label class="control-label">{% trans "Company name" %}</label>
 											<div class="">
 												<input type="text" class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Address</label>
+											<label class="control-label">{% trans "Street address" %}</label>
 											<div class="">
 												<textarea type="text" class="form-control"></textarea>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">TEL/FAX:</label>
+											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
 											<div class="">
 												<input type="text" class="form-control"></input>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">TEL/FAX:</label>
+											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
 											<div class="">
 												<input type="text" class="form-control"></input>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Date</label>
+											<label class="control-label">{% trans "Date" %}</label>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
 												<input type="text" class="form-control datepicker">
@@ -614,8 +614,8 @@
 							<div class="row mt-5-s">
 								<div class="col-md-12">
 									<div class="mb-4 text-center">
-										<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> Create Contract</button>
-										<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> Create Invoice</button>
+										<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> {% trans "Create Contract" %}</button>
+										<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> {% trans "Create Invoice" %}</button>
 									</div>
 								</div>
 							</div>
@@ -627,8 +627,8 @@
 				</div>
 
 			
-			</div>
-
+			</div>		
+			
 			<!-- Footer -->
 			<div class="footer text-muted">
 				&copy; 2020. Copyright
