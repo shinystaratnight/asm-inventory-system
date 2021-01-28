@@ -52,6 +52,11 @@
 	<script src="{% static 'global_assets/js/demo_pages/form_multiselect.js' %}"></script>
 	<!-- /theme JS files -->
 
+	{% csrf_token %}
+	<script>
+		const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+	</script>
+
 </head>
 
 <body>

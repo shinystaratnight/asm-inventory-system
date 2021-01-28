@@ -19,7 +19,7 @@ from django.conf.urls import url, i18n
 
 urlpatterns = [
     # url(r'^jsi18n/$', javascript_catalog),
-    url(r'^i18n/', include(i18n)),
+    path('i18n/', include(i18n)),
 ]
 
 urlpatterns += i18n.i18n_patterns(

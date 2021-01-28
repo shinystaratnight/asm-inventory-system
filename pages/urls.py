@@ -9,4 +9,5 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='home'),
+    # RedirectView.as_view(pattern_name='home')
 ]

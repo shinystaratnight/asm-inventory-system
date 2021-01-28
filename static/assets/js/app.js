@@ -646,6 +646,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // Tooltip
     $('[data-popup="tooltip"]').tooltip();
 
+    // SetLang
+    $('a[data-lang]').click(function(e) {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        var new_path = $('input[name=alt-path]').val();
+        
+        $.ajax({
+            type: 'POST',
+            url: '/i18n/setlang/',
+            data: {
+                language: $(e.currentTarget).data('lang'),
+                next: '/'
+            },
+            beforeSend: function(request) {
+                request.setRequestHeader('X-CSRFToken', csrftoken);
+            }
+        })
+        .done(function(response) {
+
+            window.location.href = new_path;
+        });
+    });
+
 });
 
 // Allow CSS transitions when page is loaded
