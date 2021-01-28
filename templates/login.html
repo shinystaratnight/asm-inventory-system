@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,21 +35,20 @@
 	<script src="{% static 'global_assets/js/demo_pages/datatables_basic.js' %}"></script>
 	<!-- /theme JS files -->
 
+	{% csrf_token %}
+	<script>
+		const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+	</script>
+
 </head>
 
 <body class="login-container">
 
+	<input type="hidden" name="alt-path" value="{{ base_url }}/login.html">
+
 	<!-- Main navbar -->
 	<div class="navbar navbar-inverse">
-		<form method="POST" action="{% url 'set_language' %}">
-			{% csrf_token %}
-			<input type="hidden" name="text" value="{{ redirect_to }}">
-			<select name="language" id="">
-				<option value="en">English</option>
-				<option value="ja">Japanese</option>
-			</select>
-			<input type="submit" value="Change">
-		</form>
+		
 		<div class="navbar-header">
 			<a class="navbar-brand" href="index.html"><img src="../../../../global_assets/images/logo_light.png" alt=""></a>
 
@@ -61,9 +62,16 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown language-switch">
 					<a class="dropdown-toggle" data-toggle="dropdown">
+						{% get_current_language as LANGUAGE_CODE %}
+						{% if LANGUAGE_CODE == 'en' %}
+							<img src="{% static 'global_assets/images/flags/gb.png' %}" class="position-left" alt="">
+							English
+							<span class="caret"></span>
+						{% else %}
 						<img src="{% static 'global_assets/images/flags/ja.png' %}" class="position-left" alt="">
 							日本語
 						<span class="caret"></span>
+						{% endif %}
 					</a>
 					<ul class="dropdown-menu">
 						<li><a data-lang="en" class="languge"><img src="{% static 'global_assets/images/flags/gb.png' %}" alt="">English</a></li>
