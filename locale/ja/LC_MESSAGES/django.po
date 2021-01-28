@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 06:24+0000\n"
+"POT-Creation-Date: 2021-01-28 07:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: templates/error-404.html:111 templates/error-500.html:111
+msgid "Oups! Error"
+msgstr "おっと! エラー"
+
+#: templates/error-404.html:115
+msgid "Page not found"
+msgstr "ページが見つかりません"
+
+#: templates/error-404.html:115 templates/error-500.html:115
+msgid "Home"
+msgstr "ホーム"
+
+#: templates/error-500.html:115
+msgid "Server error, please contact support"
+msgstr "サーバーエラー、サポートに連絡してください"
 
 #: templates/index.html:19
 msgid "Dashboard Page"
@@ -127,71 +143,71 @@ msgstr "アカウント設定"
 msgid "Logout"
 msgstr "ログアウト"
 
-#: templates/layouts/sidebar.html:36
+#: templates/layouts/sidebar.html:39
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: templates/layouts/sidebar.html:38
+#: templates/layouts/sidebar.html:41
 msgid "Master data registration"
 msgstr "マスタデータ登録"
 
-#: templates/layouts/sidebar.html:40
+#: templates/layouts/sidebar.html:43
 msgid "Customer master"
 msgstr "カスタマーマスター"
 
-#: templates/layouts/sidebar.html:41
+#: templates/layouts/sidebar.html:44
 msgid "Hall details"
 msgstr "ホール詳細"
 
-#: templates/layouts/sidebar.html:42
+#: templates/layouts/sidebar.html:45
 msgid "Pick-up destination"
 msgstr "ピックアップ先"
 
-#: templates/layouts/sidebar.html:43
+#: templates/layouts/sidebar.html:46
 msgid "Product name"
 msgstr "商品名"
 
-#: templates/layouts/sidebar.html:44
+#: templates/layouts/sidebar.html:47
 msgid "Others"
 msgstr "その他"
 
-#: templates/layouts/sidebar.html:49
+#: templates/layouts/sidebar.html:52
 msgid "Sales contract creation"
 msgstr "売買契約の作成"
 
-#: templates/layouts/sidebar.html:51
+#: templates/layouts/sidebar.html:54
 msgid "Sold by a trader"
 msgstr "トレーダーが販売"
 
-#: templates/layouts/sidebar.html:52
+#: templates/layouts/sidebar.html:55
 msgid "Buying by a trader"
 msgstr "トレーダーによる購入"
 
-#: templates/layouts/sidebar.html:53
+#: templates/layouts/sidebar.html:56
 msgid "Hall sale"
 msgstr "ホールセール"
 
-#: templates/layouts/sidebar.html:58
+#: templates/layouts/sidebar.html:61
 msgid "List"
 msgstr "リスト"
 
-#: templates/layouts/sidebar.html:60
+#: templates/layouts/sidebar.html:63
 msgid "Sales & Purchase"
 msgstr "売買と購入"
 
-#: templates/layouts/sidebar.html:61
+#: templates/layouts/sidebar.html:64
 msgid "Inventory"
 msgstr "在庫"
 
-#: templates/layouts/sidebar.html:66
+#: templates/layouts/sidebar.html:69
 msgid "Accounting software CSV"
 msgstr "会計ソフトウェアCSV"
 
-#: templates/layouts/sidebar.html:68
+#: templates/layouts/sidebar.html:71
 msgid "Sales"
 msgstr "売買"
 
-#: templates/layouts/sidebar.html:69
+#: templates/layouts/sidebar.html:72
 msgid "Purchases"
 msgstr "購入"
 

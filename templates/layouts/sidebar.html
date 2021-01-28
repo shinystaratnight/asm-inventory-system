@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+{% load sidebar_tags %}
 
 <!-- Main sidebar -->
 <div class="sidebar sidebar-main">
@@ -35,40 +36,40 @@
             <div class="category-content no-padding">
                 <ul class="navigation navigation-main navigation-accordion">
 
-                    <li class="active"><a href="index.html"><i class="icon-home4"></i> <span>{% trans "Dashboard" %}</span></a></li>
+                    <li class="{% active 'index.html' %}"><a href="index.html"><i class="icon-home4"></i> <span>{% trans "Dashboard" %}</span></a></li>
                     <li>
                         <a href="#"><i class="icon-stack2"></i> <span>{% trans "Master data registration" %}</span></a>
                         <ul>
-                            <li><a href="master_data_customer.html">{% trans "Customer master" %}</a></li>
-                            <li><a href="master_data_hall_details.html">{% trans "Hall details" %}</a></li>
-                            <li><a href="master_data_pickup_destination.html">{% trans "Pick-up destination" %}</a></li>
-                            <li><a href="master_data_product_name.html">{% trans "Product name" %}</a></li>
-                            <li><a href="master_data_others.html">{% trans "Others" %}</a></li>
+                            <li class="{% active 'master_data_customer.html' %}"><a href="master_data_customer.html">{% trans "Customer master" %}</a></li>
+                            <li class="{% active 'master_data_hall_details.html' %}"><a href="master_data_hall_details.html">{% trans "Hall details" %}</a></li>
+                            <li class="{% active 'master_data_pickup_destination.html' %}"><a href="master_data_pickup_destination.html">{% trans "Pick-up destination" %}</a></li>
+                            <li class="{% active 'master_data_product_name.html' %}"><a href="master_data_product_name.html">{% trans "Product name" %}</a></li>
+                            <li class="{% active 'master_data_others.html' %}"><a href="master_data_others.html">{% trans "Others" %}</a></li>
                         </ul>
                     </li>
 
                     <li>
                         <a href="#"><i class="icon-cart2"></i> <span>{% trans "Sales contract creation" %}</span></a>
                         <ul>
-                            <li><a href="sales_contract_invoice_01.html">{% trans "Sold by a trader" %}</a></li>
-                            <li><a href="sales_contract_invoice_02.html">{% trans "Buying by a trader" %}</a></li>
-                            <li><a href="sales_contract_invoice_03.html">{% trans "Hall sale" %}</a></li>
+                            <li class="{% active 'sales_contract_sold_by_trader.html' %}"><a href="sales_contract_sold_by_trader.html">{% trans "Sold by a trader" %}</a></li>
+                            <li class="{% active 'sales_contract_bought_by_trader.html' %}"><a href="sales_contract_bought_by_trader.html">{% trans "Buying by a trader" %}</a></li>
+                            <li class="{% active 'sales_contract_hall_sale.html' %}"><a href="sales_contract_hall_sale.html">{% trans "Hall sale" %}</a></li>
                         </ul>
                     </li>
                     
                     <li>
                         <a href="#"><i class="icon-list"></i> <span>{% trans "List" %}</span></a>
                         <ul>
-                            <li><a href="list_sale_purchase.html">{% trans "Sales & Purchase" %}</a></li>
-                            <li><a href="list_inventory.html">{% trans "Inventory" %}</a></li>
+                            <li class="{% active 'list_sale_purchase.html' %}"><a href="list_sale_purchase.html">{% trans "Sales & Purchase" %}</a></li>
+                            <li class="{% active 'list_inventory.html' %}"><a href="list_inventory.html">{% trans "Inventory" %}</a></li>
                         </ul>
                     </li>
 
                     <li>
                         <a href="#"><i class="icon-exit3"></i> <span>{% trans "Accounting software CSV" %}</span></a>
                         <ul>
-                            <li><a href="accounting_csv_sale.html">{% trans "Sales" %}</a></li>
-                            <li><a href="accounting_csv_purchase.html">{% trans "Purchases" %}</a></li>
+                            <li class="{% active 'accounting_csv_sale.html' %}"><a href="accounting_csv_sale.html">{% trans "Sales" %}</a></li>
+                            <li class="{% active 'accounting_csv_purchase.html' %}"><a href="accounting_csv_purchase.html">{% trans "Purchases" %}</a></li>
                         </ul>
                     </li>
 
