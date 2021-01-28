@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 09:54+0000\n"
+"POT-Creation-Date: 2021-01-28 09:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,6 +37,8 @@ msgstr "購入"
 #: templates/master_data_others.html:21
 #: templates/master_data_pickup_destination.html:21
 #: templates/master_data_product_name.html:21
+#: templates/sales_contract_hall_sale.html:21
+#: templates/sales_contract_sold_by_trader.html:23
 msgid "Statistics"
 msgstr ""
 
@@ -46,6 +48,8 @@ msgstr ""
 #: templates/master_data_others.html:22
 #: templates/master_data_pickup_destination.html:22
 #: templates/master_data_product_name.html:22
+#: templates/sales_contract_hall_sale.html:22
+#: templates/sales_contract_sold_by_trader.html:24
 msgid "Invoices"
 msgstr ""
 
@@ -55,6 +59,8 @@ msgstr ""
 #: templates/master_data_others.html:23
 #: templates/master_data_pickup_destination.html:23
 #: templates/master_data_product_name.html:23
+#: templates/sales_contract_hall_sale.html:23
+#: templates/sales_contract_sold_by_trader.html:25
 msgid "Schedule"
 msgstr ""
 
@@ -77,6 +83,8 @@ msgstr "ホーム"
 #: templates/master_data_others.html:36
 #: templates/master_data_pickup_destination.html:36
 #: templates/master_data_product_name.html:36
+#: templates/sales_contract_hall_sale.html:36
+#: templates/sales_contract_sold_by_trader.html:38
 msgid "Support"
 msgstr ""
 
@@ -95,6 +103,8 @@ msgstr ""
 #: templates/master_data_others.html:45
 #: templates/master_data_pickup_destination.html:45
 #: templates/master_data_product_name.html:45
+#: templates/sales_contract_hall_sale.html:45
+#: templates/sales_contract_sold_by_trader.html:47
 #, fuzzy
 #| msgid "Account settings"
 msgid "Account security"
@@ -106,6 +116,8 @@ msgstr "アカウント設定"
 #: templates/master_data_others.html:46
 #: templates/master_data_pickup_destination.html:46
 #: templates/master_data_product_name.html:46
+#: templates/sales_contract_hall_sale.html:46
+#: templates/sales_contract_sold_by_trader.html:48
 msgid "Analytics"
 msgstr ""
 
@@ -115,6 +127,8 @@ msgstr ""
 #: templates/master_data_others.html:47
 #: templates/master_data_pickup_destination.html:47
 #: templates/master_data_product_name.html:47
+#: templates/sales_contract_hall_sale.html:47
+#: templates/sales_contract_sold_by_trader.html:49
 msgid "Accessibility"
 msgstr ""
 
@@ -124,6 +138,8 @@ msgstr ""
 #: templates/master_data_others.html:49
 #: templates/master_data_pickup_destination.html:49
 #: templates/master_data_product_name.html:49
+#: templates/sales_contract_hall_sale.html:49
+#: templates/sales_contract_sold_by_trader.html:51
 #, fuzzy
 #| msgid "Account settings"
 msgid "All settings"
@@ -143,6 +159,8 @@ msgstr "CSV用"
 #: templates/master_data_others.html:235
 #: templates/master_data_pickup_destination.html:330
 #: templates/master_data_product_name.html:230
+#: templates/sales_contract_hall_sale.html:610
+#: templates/sales_contract_sold_by_trader.html:635
 msgid "Copyright"
 msgstr "著作権"
 
