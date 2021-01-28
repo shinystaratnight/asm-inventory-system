@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 05:49+0000\n"
+"POT-Creation-Date: 2021-01-28 06:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,8 +67,6 @@ msgid "Enter frigana"
 msgstr "ふりがなを入力"
 
 #: templates/index.html:229
-#, fuzzy
-#| msgid "Postal code"
 msgid "Postal Code"
 msgstr "郵便番号"
 
@@ -103,6 +101,31 @@ msgstr "閉じる"
 #: templates/index.html:278
 msgid "Copyright"
 msgstr "著作権"
+
+#: templates/layouts/navbar.html:97
+msgid "Online"
+msgstr "オンライン"
+
+#: templates/layouts/navbar.html:122 templates/layouts/navbar.html:128
+#: templates/layouts/navbar.html:220
+msgid "Messages"
+msgstr "メッセージ"
+
+#: templates/layouts/navbar.html:218
+msgid "My profile"
+msgstr "私のプロフィール"
+
+#: templates/layouts/navbar.html:219
+msgid "My balance"
+msgstr "私のバランス"
+
+#: templates/layouts/navbar.html:222
+msgid "Account settings"
+msgstr "アカウント設定"
+
+#: templates/layouts/navbar.html:223
+msgid "Logout"
+msgstr "ログアウト"
 
 #: templates/login.html:123
 msgid "Login to your account"
