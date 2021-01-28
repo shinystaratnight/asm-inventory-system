@@ -535,10 +535,8 @@ msgid "Name"
 msgstr ""
 
 #: templates/master_data_others.html:78 templates/master_data_others.html:207
-#, fuzzy
-#| msgid "Account settings"
 msgid "Account"
-msgstr "アカウント設定"
+msgstr "アカウント"
 
 #: templates/master_data_others.html:79 templates/master_data_others.html:214
 msgid "Tax classification"
@@ -555,61 +553,47 @@ msgid "Enter name"
 msgstr "名前を入力"
 
 #: templates/master_data_others.html:209
-#, fuzzy
-#| msgid "Login to your account"
 msgid "Enter account"
-msgstr "あなたのアカウントにログイン"
+msgstr "アカウントを入力してください"
 
 #: templates/master_data_others.html:216
 msgid "Enter tax classification"
 msgstr ""
 
 #: templates/master_data_pickup_destination.html:62
-#, fuzzy
-#| msgid "Pick-up destination"
 msgid "Pick-up destination list"
-msgstr "ピックアップ先"
+msgstr "ピックアップ先リスト"
 
 #: templates/master_data_pickup_destination.html:78
 #: templates/master_data_pickup_destination.html:274
-#, fuzzy
-#| msgid "Pick-up destination"
 msgid "Pick-up name"
-msgstr "ピックアップ先"
+msgstr "ピックアップ名"
 
 #: templates/master_data_pickup_destination.html:252
 #: templates/master_data_pickup_destination.html:264
-#, fuzzy
-#| msgid "Pick-up destination"
 msgid "Add Pick-up Destination"
-msgstr "ピックアップ先"
+msgstr "ピックアップ先を追加"
 
 #: templates/master_data_pickup_destination.html:276
-#, fuzzy
-#| msgid "Enter customer name"
 msgid "Enter pick-up name"
-msgstr "顧客名を入力してください"
+msgstr "ピックアップ名を入力"
 
 #: templates/master_data_product_name.html:62
-#, fuzzy
-#| msgid "Product name"
 msgid "Product name list"
-msgstr "商品名"
+msgstr "商品名リスト"
 
 #: templates/master_data_product_name.html:78
 #: templates/master_data_product_name.html:195
 #: templates/sales_contract_bought_by_trader.html:249
 #: templates/sales_contract_hall_sale.html:275
 #: templates/sales_contract_sold_by_trader.html:248
-#, fuzzy
-#| msgid "Product name"
 msgid "Model name"
-msgstr "商品名"
+msgstr "モデル名"
 
 #: templates/master_data_product_name.html:79
 #: templates/master_data_product_name.html:202
 msgid "Classification"
-msgstr ""
+msgstr "分類"
 
 #: templates/master_data_product_name.html:80
 #: templates/master_data_product_name.html:209
@@ -617,22 +601,16 @@ msgid "Maker"
 msgstr ""
 
 #: templates/master_data_product_name.html:197
-#, fuzzy
-#| msgid "Enter customer name"
 msgid "Enter model name"
-msgstr "顧客名を入力してください"
+msgstr "モデル名を入力"
 
 #: templates/master_data_product_name.html:204
-#, fuzzy
-#| msgid "Enter frigana"
 msgid "Enter classification"
-msgstr "ふりがなを入力"
+msgstr "分類を入力"
 
 #: templates/master_data_product_name.html:211
-#, fuzzy
-#| msgid "Customer master"
 msgid "Enter maker"
-msgstr "カスタマーマスター"
+msgstr "メーカーを入力"
 
 #: templates/sales_contract_bought_by_trader.html:73
 #: templates/sales_contract_hall_sale.html:72
