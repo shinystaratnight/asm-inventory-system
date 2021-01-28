@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-27 16:37+0000\n"
+"POT-Creation-Date: 2021-01-28 05:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,3 +21,43 @@ msgstr ""
 #: templates/index.html:19
 msgid "Dashboard Page"
 msgstr "ダッシュボードページ"
+
+#: templates/login.html:123
+msgid "Login to your account"
+msgstr "あなたのアカウントにログイン"
+
+#: templates/login.html:123
+msgid "Enter your credentials below"
+msgstr "以下に資格情報を入力してください"
+
+#: templates/login.html:127
+msgid "Username"
+msgstr "ユーザー名"
+
+#: templates/login.html:134
+msgid "Password"
+msgstr "パスワード"
+
+#: templates/login.html:141
+msgid "Sign in"
+msgstr "ログイン"
+
+#: templates/login.html:145
+msgid "Forgot password"
+msgstr "パスワードをお忘れですか"
+
+#: templates/login_password_recover.html:121
+msgid "Password recovery"
+msgstr "パスワードの復元"
+
+#: templates/login_password_recover.html:121
+msgid "We'll send you instructions in email"
+msgstr "指示をメールでお送りします"
+
+#: templates/login_password_recover.html:125
+msgid "Your email"
+msgstr "あなたのメール"
+
+#: templates/login_password_recover.html:131
+msgid "Reset password"
+msgstr "パスワードを再設定する"
