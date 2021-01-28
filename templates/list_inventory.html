@@ -13,40 +13,40 @@
 		<div class="page-header">
 			<div class="page-header-content">
 				<div class="page-title">
-					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">List</span> - Inventory</h4>
+					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "List" %}</span> - {% trans "Inventory" %}</h4>
 				</div>
 
 				<div class="heading-elements">
 					<div class="heading-btn-group">
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>Invoices</span></a>
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>
+						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>{% trans "Statistics" %}</span></a>
+						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>{% trans "Invoices" %}</span></a>
+						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>{% trans "Schedule" %}</span></a>
 					</div>
 				</div>
 			</div>
 
 			<div class="breadcrumb-line breadcrumb-line-component">
 				<ul class="breadcrumb">
-					<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-					<li><a href="datatable_styling.html">List</a></li>
-					<li class="active">Inventory</li>
+					<li><a href="index.html"><i class="icon-home2 position-left"></i> {% trans "Home" %}</a></li>
+					<li><a href="datatable_styling.html">{% trans "List" %}</a></li>
+					<li class="active">{% trans "Inventory" %}</li>
 				</ul>
 
 				<ul class="breadcrumb-elements">
-					<li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
+					<li><a href="#"><i class="icon-comment-discussion position-left"></i> {% trans "Support" %}</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-gear position-left"></i>
-							Settings
+								{% trans "Settings" %}
 							<span class="caret"></span>
 						</a>
 
 						<ul class="dropdown-menu dropdown-menu-right">
-							<li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
-							<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
-							<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
+							<li><a href="#"><i class="icon-user-lock"></i> {% trans "Account security" %}</a></li>
+							<li><a href="#"><i class="icon-statistics"></i> {% trans "Analytics" %}</a></li>
+							<li><a href="#"><i class="icon-accessibility"></i> {% trans "Accessibility" %}</a></li>
 							<li class="divider"></li>
-							<li><a href="#"><i class="icon-gear"></i> All settings</a></li>
+							<li><a href="#"><i class="icon-gear"></i> {% trans "All settings" %}</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -59,7 +59,7 @@
 
 			<div class="panel panel-flat">
 				<div class="panel-heading">
-					<h5 class="panel-title">Inventory List</h5>
+					<h5 class="panel-title">{% trans "Inventory list" %}</h5>
 					<div class="heading-elements">
 						<ul class="icons-list">
 							<li><a data-action="collapse"></a></li>
@@ -74,7 +74,7 @@
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
-									<label>Contract Date:</label>
+									<label>{% trans "Contract date" %}:</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="icon-calendar22"></i></span>
 										<input type="text" class="form-control daterange-single">
@@ -84,14 +84,14 @@
 
 							<div class="col-md-4">
 								<div class="form-group">
-									<label>Product Name:</label>
+									<label>{% trans "Product name" %}:</label>
 									<input type="text" class="form-control" placeholder="Product name">
 								</div>
 							</div>
 
 							<div class="col-md-4">
 								<div class="form-group">
-									<label>Suppliers:</label>
+									<label>{% trans "Supplier" %}:</label>
 									<select class="multiselect-no-active-class" multiple="multiple">
 										<option value="supplier01">Supplier01</option>
 										<option value="supplier02" selected="selected">Supplier01</option>
@@ -105,15 +105,15 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Person In Charge:</label>
-									<input type="text" class="form-control" placeholder="Person in charge">
+									<label>{% trans "In charge" %}:</label>
+									<input type="text" class="form-control" placeholder="{% trans 'In charge' %}">
 								</div>
 							</div>
 
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Stock:</label>
-									<input type="text" class="form-control" placeholder="Stock">
+									<label>{% trans "Stock" %}:</label>
+									<input type="text" class="form-control" placeholder="{% trans 'Stock' %}">
 								</div>
 							</div>
 						</div>
@@ -121,7 +121,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="mb-3 text-right">
-									<button type="button" class="btn btn-primary"><i class="icon-search4 position-left"></i>Search</button>
+									<button type="button" class="btn btn-primary"><i class="icon-search4 position-left"></i>{% trans "Search" %}</button>
 								</div>
 							</div>
 						</div>
@@ -129,19 +129,19 @@
 				</div>
 
 				<div class="table-responsive">
-					<p style="padding: 10px 20px; font-size: 16px;">Search Results:</p>
+					<p style="padding: 10px 20px; font-size: 16px;">{% trans "Search results" %}:</p>
 					<table class="table table-bordered table-hover table-framed">
 						<thead>
 							<tr class="bg-blue">
-								<th>No</th>
-								<th>Product Name</th>
-								<th>Control number</th>
-								<th>Purchase date</th>
-								<th>Supplier</th>
-								<th>In charge</th>
-								<th>Number of units</th>
-								<th>Unit price</th>
-								<th>Total Price</th>
+								<th>{% trans "No" %}</th>
+								<th>{% trans "Product name" %}</th>
+								<th>{% trans "Control number" %}</th>
+								<th>{% trans "Purchase date" %}</th>
+								<th>{% trans "Supplier" %}</th>
+								<th>{% trans "In charge" %}</th>
+								<th>{% trans "Number of units" %}</th>
+								<th>{% trans "Unit price" %}</th>
+								<th>{% trans "Total Price" %}</th>
 							</tr>
 						</thead>
 
@@ -224,7 +224,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="my-5-s text-center">
-							<button type="button" class="btn btn-primary"><i class="icon-exit3 position-left"></i>Export To CSV</button>
+							<button type="button" class="btn btn-primary"><i class="icon-exit3 position-left"></i>{% trans "Export To CSV" %}</button>
 						</div>
 					</div>
 				</div>
@@ -233,7 +233,7 @@
 
 			<!-- Footer -->
 			<div class="footer text-muted">
-				&copy; 2020. Copyright
+				&copy; 2020. {% trans "Copyright" %}
 			</div>
 			<!-- /footer -->
 
