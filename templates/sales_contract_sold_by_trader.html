@@ -6,7 +6,7 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-	<input type="hidden" name="alt-path" value="{{ base_url }}/sales_contract_invoice_01.html">
+	<input type="hidden" name="alt-path" value="{{ base_url }}/sales_contract_sold_by_trader.html">
 	
 	<!-- Main content -->
 	<div class="content-wrapper">
@@ -15,7 +15,7 @@
 		<div class="page-header">
 			<div class="page-header-content">
 				<div class="page-title">
-					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "Sales contract creation" %}</span> - {% "Sold by a trader" %}</h4>
+					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "Sales contract creation" %}</span> - {% trans "Sold by a trader" %}</h4>
 				</div>
 
 				<div class="heading-elements">
@@ -31,7 +31,7 @@
 				<ul class="breadcrumb">
 					<li><a href="index.html"><i class="icon-home2 position-left"></i> {% trans "Home" %}</a></li>
 					<li><a href="datatable_styling.html">{% trans "Sales contract creation" %}</a></li>
-					<li class="active">{% "Sold by a trader" %}</li>
+					<li class="active">{% trans "Sold by a trader" %}</li>
 				</ul>
 
 				<ul class="breadcrumb-elements">
