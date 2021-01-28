@@ -925,10 +925,6 @@ msgstr ""
 msgid "Create Invoice"
 msgstr ""
 
-#: templates/sales_contract_hall_sale.html:161
-msgid "In Charge"
-msgstr ""
-
 #: templates/sales_contract_hall_sale.html:548
 msgid "Pachinko document fee"
 msgstr ""
