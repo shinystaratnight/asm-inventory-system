@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 06:03+0000\n"
+"POT-Creation-Date: 2021-01-28 06:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,25 +107,93 @@ msgid "Online"
 msgstr "オンライン"
 
 #: templates/layouts/navbar.html:122 templates/layouts/navbar.html:128
-#: templates/layouts/navbar.html:220
+#: templates/layouts/navbar.html:196
 msgid "Messages"
 msgstr "メッセージ"
 
-#: templates/layouts/navbar.html:218
+#: templates/layouts/navbar.html:194
 msgid "My profile"
 msgstr "私のプロフィール"
 
-#: templates/layouts/navbar.html:219
+#: templates/layouts/navbar.html:195
 msgid "My balance"
 msgstr "私のバランス"
 
-#: templates/layouts/navbar.html:222
+#: templates/layouts/navbar.html:198
 msgid "Account settings"
 msgstr "アカウント設定"
 
-#: templates/layouts/navbar.html:223
+#: templates/layouts/navbar.html:199
 msgid "Logout"
 msgstr "ログアウト"
+
+#: templates/layouts/sidebar.html:36
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+#: templates/layouts/sidebar.html:38
+msgid "Master data registration"
+msgstr "マスタデータ登録"
+
+#: templates/layouts/sidebar.html:40
+msgid "Customer master"
+msgstr "カスタマーマスター"
+
+#: templates/layouts/sidebar.html:41
+msgid "Hall details"
+msgstr "ホール詳細"
+
+#: templates/layouts/sidebar.html:42
+msgid "Pick-up destination"
+msgstr "ピックアップ先"
+
+#: templates/layouts/sidebar.html:43
+msgid "Product name"
+msgstr "商品名"
+
+#: templates/layouts/sidebar.html:44
+msgid "Others"
+msgstr "その他"
+
+#: templates/layouts/sidebar.html:49
+msgid "Sales contract creation"
+msgstr "売買契約の作成"
+
+#: templates/layouts/sidebar.html:51
+msgid "Sold by a trader"
+msgstr "トレーダーが販売"
+
+#: templates/layouts/sidebar.html:52
+msgid "Buying by a trader"
+msgstr "トレーダーによる購入"
+
+#: templates/layouts/sidebar.html:53
+msgid "Hall sale"
+msgstr "ホールセール"
+
+#: templates/layouts/sidebar.html:58
+msgid "List"
+msgstr "リスト"
+
+#: templates/layouts/sidebar.html:60
+msgid "Sales & Purchase"
+msgstr "売買と購入"
+
+#: templates/layouts/sidebar.html:61
+msgid "Inventory"
+msgstr "在庫"
+
+#: templates/layouts/sidebar.html:66
+msgid "Accounting software CSV"
+msgstr "会計ソフトウェアCSV"
+
+#: templates/layouts/sidebar.html:68
+msgid "Sales"
+msgstr "売買"
+
+#: templates/layouts/sidebar.html:69
+msgid "Purchases"
+msgstr "購入"
 
 #: templates/login.html:123
 msgid "Login to your account"
