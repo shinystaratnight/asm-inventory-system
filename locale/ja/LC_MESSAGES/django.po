@@ -661,22 +661,20 @@ msgstr "カスタマーマスター"
 #: templates/sales_contract_bought_by_trader.html:73
 #: templates/sales_contract_hall_sale.html:72
 #: templates/sales_contract_sold_by_trader.html:74
-#, fuzzy
-#| msgid "Sales contract creation"
 msgid "Sales contract and invoice"
-msgstr "売買契約の作成"
+msgstr "売買契約兼請求書"
 
 #: templates/sales_contract_bought_by_trader.html:78
 #: templates/sales_contract_hall_sale.html:77
 #: templates/sales_contract_sold_by_trader.html:79
 msgid "Contract date"
-msgstr ""
+msgstr "契約日"
 
 #: templates/sales_contract_bought_by_trader.html:85
 #: templates/sales_contract_hall_sale.html:84
 #: templates/sales_contract_sold_by_trader.html:86
 msgid "Update date"
-msgstr ""
+msgstr "更新日"
 
 #: templates/sales_contract_bought_by_trader.html:103
 #: templates/sales_contract_bought_by_trader.html:546
@@ -686,117 +684,115 @@ msgstr ""
 #: templates/sales_contract_sold_by_trader.html:103
 #: templates/sales_contract_sold_by_trader.html:545
 #: templates/sales_contract_sold_by_trader.html:582
-#, fuzzy
-#| msgid "Customer name"
 msgid "Company name"
-msgstr "顧客名"
+msgstr "会社名"
 
 #: templates/sales_contract_bought_by_trader.html:164
 #: templates/sales_contract_sold_by_trader.html:163
 msgid "In charge"
-msgstr ""
+msgstr "担当名"
 
 #: templates/sales_contract_bought_by_trader.html:178
 #: templates/sales_contract_hall_sale.html:175
 #: templates/sales_contract_sold_by_trader.html:177
 msgid "Remark"
-msgstr ""
+msgstr "備考"
 
 #: templates/sales_contract_bought_by_trader.html:190
 #: templates/sales_contract_hall_sale.html:187
 #: templates/sales_contract_sold_by_trader.html:189
 msgid "Shiping method"
-msgstr ""
+msgstr "運送方法"
 
 #: templates/sales_contract_bought_by_trader.html:191
 #: templates/sales_contract_hall_sale.html:188
 #: templates/sales_contract_sold_by_trader.html:190
 msgid "Shipping"
-msgstr ""
+msgstr "発送"
 
 #: templates/sales_contract_bought_by_trader.html:192
 #: templates/sales_contract_hall_sale.html:189
 #: templates/sales_contract_sold_by_trader.html:191
 msgid "Picking up"
-msgstr ""
+msgstr "引取"
 
 #: templates/sales_contract_bought_by_trader.html:193
 #: templates/sales_contract_hall_sale.html:190
 #: templates/sales_contract_sold_by_trader.html:192
 msgid "Change"
-msgstr ""
+msgstr "変更"
 
 #: templates/sales_contract_bought_by_trader.html:194
 #: templates/sales_contract_hall_sale.html:191
 #: templates/sales_contract_sold_by_trader.html:193
 msgid "Blank"
-msgstr ""
+msgstr "空白"
 
 #: templates/sales_contract_bought_by_trader.html:201
 #: templates/sales_contract_hall_sale.html:198
 #: templates/sales_contract_sold_by_trader.html:200
 msgid "Shipping date"
-msgstr ""
+msgstr "運送方法日付"
 
 #: templates/sales_contract_bought_by_trader.html:211
 #: templates/sales_contract_hall_sale.html:208
 #: templates/sales_contract_sold_by_trader.html:210
 msgid "Payment method"
-msgstr ""
+msgstr "お支払方法"
 
 #: templates/sales_contract_bought_by_trader.html:213
 #: templates/sales_contract_hall_sale.html:210
 #: templates/sales_contract_sold_by_trader.html:212
 msgid "Check"
-msgstr ""
+msgstr "小切手"
 
 #: templates/sales_contract_bought_by_trader.html:214
 #: templates/sales_contract_hall_sale.html:211
 #: templates/sales_contract_sold_by_trader.html:213
 msgid "Bill"
-msgstr ""
+msgstr "手形"
 
 #: templates/sales_contract_bought_by_trader.html:215
 #: templates/sales_contract_hall_sale.html:212
 #: templates/sales_contract_sold_by_trader.html:214
 msgid "Cash"
-msgstr ""
+msgstr "現金"
 
 #: templates/sales_contract_bought_by_trader.html:222
 #: templates/sales_contract_hall_sale.html:219
 #: templates/sales_contract_sold_by_trader.html:221
 msgid "Payment deadline"
-msgstr ""
+msgstr "お支払期限"
 
 #: templates/sales_contract_bought_by_trader.html:235
 #: templates/sales_contract_hall_sale.html:232
 #: templates/sales_contract_sold_by_trader.html:234
 msgid "Billed amount"
-msgstr ""
+msgstr "御請求金額"
 
 #: templates/sales_contract_bought_by_trader.html:250
 #: templates/sales_contract_hall_sale.html:276
 #: templates/sales_contract_sold_by_trader.html:249
 msgid "Middle classification"
-msgstr ""
+msgstr "中分類"
 
 #: templates/sales_contract_bought_by_trader.html:251
 #: templates/sales_contract_hall_sale.html:277
 #: templates/sales_contract_sold_by_trader.html:250
 msgid "Quantity"
-msgstr ""
+msgstr "数量"
 
 #: templates/sales_contract_bought_by_trader.html:252
 #: templates/sales_contract_hall_sale.html:278
 #: templates/sales_contract_sold_by_trader.html:251
 msgid "Unit price"
-msgstr ""
+msgstr "単価"
 
 #: templates/sales_contract_bought_by_trader.html:253
 #: templates/sales_contract_hall_sale.html:279
 #: templates/sales_contract_sold_by_trader.html:252
 msgid "Amount of money"
-msgstr ""
+msgstr "金額"
 
 #: templates/sales_contract_bought_by_trader.html:269
 #: templates/sales_contract_bought_by_trader.html:320
@@ -814,7 +810,7 @@ msgstr ""
 #: templates/sales_contract_sold_by_trader.html:421
 #: templates/sales_contract_sold_by_trader.html:472
 msgid "Main body"
-msgstr ""
+msgstr "本体"
 
 #: templates/sales_contract_bought_by_trader.html:270
 #: templates/sales_contract_bought_by_trader.html:321
