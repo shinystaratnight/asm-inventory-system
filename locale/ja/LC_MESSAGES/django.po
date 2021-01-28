@@ -804,7 +804,7 @@ msgstr "本体"
 #: templates/sales_contract_sold_by_trader.html:422
 #: templates/sales_contract_sold_by_trader.html:473
 msgid "Frame"
-msgstr ""
+msgstr "枠"
 
 #: templates/sales_contract_bought_by_trader.html:271
 #: templates/sales_contract_bought_by_trader.html:322
@@ -822,7 +822,7 @@ msgstr ""
 #: templates/sales_contract_sold_by_trader.html:423
 #: templates/sales_contract_sold_by_trader.html:474
 msgid "Cell"
-msgstr ""
+msgstr "セル"
 
 #: templates/sales_contract_bought_by_trader.html:272
 #: templates/sales_contract_bought_by_trader.html:323
@@ -840,67 +840,65 @@ msgstr ""
 #: templates/sales_contract_sold_by_trader.html:424
 #: templates/sales_contract_sold_by_trader.html:475
 msgid "Nail sheet"
-msgstr ""
+msgstr "釘シート"
 
 #: templates/sales_contract_bought_by_trader.html:522
 #: templates/sales_contract_hall_sale.html:570
 #: templates/sales_contract_sold_by_trader.html:521
 msgid "Subtotal"
-msgstr ""
+msgstr "小計"
 
 #: templates/sales_contract_bought_by_trader.html:526
 #: templates/sales_contract_hall_sale.html:574
 #: templates/sales_contract_sold_by_trader.html:525
 msgid "Consumption tax"
-msgstr ""
+msgstr "消費税"
 
 #: templates/sales_contract_bought_by_trader.html:530
 #: templates/sales_contract_hall_sale.html:578
 #: templates/sales_contract_sold_by_trader.html:529
 msgid "Insurance fee"
-msgstr ""
+msgstr "保険代"
 
 #: templates/sales_contract_bought_by_trader.html:534
 #: templates/sales_contract_hall_sale.html:582
 #: templates/sales_contract_sold_by_trader.html:533
 msgid "Total amount"
-msgstr ""
+msgstr "総合計"
 
 #: templates/sales_contract_bought_by_trader.html:544
 #: templates/sales_contract_sold_by_trader.html:543
-#, fuzzy
-#| msgid "Product name"
 msgid "Product shipping address"
-msgstr "商品名"
+msgstr "商品発送先"
 
 #: templates/sales_contract_bought_by_trader.html:570
 #: templates/sales_contract_bought_by_trader.html:607
 #: templates/sales_contract_sold_by_trader.html:569
 #: templates/sales_contract_sold_by_trader.html:606
 msgid "Date"
-msgstr ""
+msgstr "日付"
 
 #: templates/sales_contract_bought_by_trader.html:581
 #: templates/sales_contract_sold_by_trader.html:580
 msgid "Document shipping address"
-msgstr ""
+msgstr "書類発送先"
 
 #: templates/sales_contract_bought_by_trader.html:619
 #: templates/sales_contract_hall_sale.html:593
 #: templates/sales_contract_sold_by_trader.html:618
 msgid "Create Contract"
-msgstr ""
+msgstr "契約を作成する"
 
 #: templates/sales_contract_bought_by_trader.html:620
 #: templates/sales_contract_hall_sale.html:594
 #: templates/sales_contract_sold_by_trader.html:619
 msgid "Create Invoice"
-msgstr ""
+msgstr "請求書を作成する"
 
 #: templates/sales_contract_hall_sale.html:548
 msgid "Pachinko document fee"
-msgstr ""
+msgstr "パチンコドキュメント料金"
 
 #: templates/sales_contract_hall_sale.html:558
 msgid "Slot document fee"
-msgstr ""
+msgstr "スロットドキュメント料金"
