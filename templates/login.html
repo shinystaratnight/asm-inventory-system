@@ -39,6 +39,15 @@
 
 	<!-- Main navbar -->
 	<div class="navbar navbar-inverse">
+		<form method="POST" action="{% url 'set_language' %}">
+			{% csrf_token %}
+			<input type="hidden" name="text" value="{{ redirect_to }}">
+			<select name="language" id="">
+				<option value="en">English</option>
+				<option value="ja">Japanese</option>
+			</select>
+			<input type="submit" value="Change">
+		</form>
 		<div class="navbar-header">
 			<a class="navbar-brand" href="index.html"><img src="../../../../global_assets/images/logo_light.png" alt=""></a>
 
@@ -48,7 +57,20 @@
 		</div>
 
 		<div class="navbar-collapse collapse" id="navbar-mobile">
+			
 			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown language-switch">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						<img src="{% static 'global_assets/images/flags/ja.png' %}" class="position-left" alt="">
+							日本語
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a data-lang="en" class="languge"><img src="{% static 'global_assets/images/flags/gb.png' %}" alt="">English</a></li>
+						<li><a data-lang="ja" class="languge"><img src="{% static 'global_assets/images/flags/ja.png' %}" alt="">日本語</a></li>
+					</ul>
+				</li>
+
 				<li>
 					<a href="#">
 						<i class="icon-display4"></i> <span class="visible-xs-inline-block position-right"> Go to website</span>
