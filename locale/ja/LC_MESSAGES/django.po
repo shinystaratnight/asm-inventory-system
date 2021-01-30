@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-30 09:16+0800\n"
+"POT-Creation-Date: 2021-01-30 22:51+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -457,10 +457,14 @@ msgid "Sales contract creation"
 msgstr "売買契約の作成"
 
 #: .\templates\layouts\sidebar.html:54
+#: .\templates\sales_contract_sold_by_trader.html:18
+#: .\templates\sales_contract_sold_by_trader.html:34
 msgid "Sale"
 msgstr "売買"
 
 #: .\templates\layouts\sidebar.html:55
+#: .\templates\sales_contract_bought_by_trader.html:17
+#: .\templates\sales_contract_bought_by_trader.html:33
 msgid "Purchase"
 msgstr "購入"
 
@@ -785,11 +789,6 @@ msgstr "分類を入力"
 msgid "Enter maker"
 msgstr "メーカーを入力"
 
-#: .\templates\sales_contract_bought_by_trader.html:17
-#: .\templates\sales_contract_bought_by_trader.html:33
-msgid "Buying by a trader"
-msgstr "トレーダーによる購入"
-
 #: .\templates\sales_contract_bought_by_trader.html:73
 #: .\templates\sales_contract_hall_sale.html:72
 #: .\templates\sales_contract_sold_by_trader.html:74
@@ -850,7 +849,6 @@ msgid "Blank"
 msgstr "空白"
 
 #: .\templates\sales_contract_bought_by_trader.html:201
-#: .\templates\sales_contract_hall_sale.html:198
 #: .\templates\sales_contract_sold_by_trader.html:200
 msgid "Shipping date"
 msgstr "運送方法日付"
@@ -1034,6 +1032,10 @@ msgstr "契約を作成する"
 msgid "Create Invoice"
 msgstr "請求書を作成する"
 
+#: .\templates\sales_contract_hall_sale.html:198
+msgid "Delivery date"
+msgstr "納品日"
+
 #: .\templates\sales_contract_hall_sale.html:548
 msgid "Pachinko document fee"
 msgstr "パチンコドキュメント料金"
@@ -1042,10 +1044,11 @@ msgstr "パチンコドキュメント料金"
 msgid "Slot document fee"
 msgstr "スロットドキュメント料金"
 
-#: .\templates\sales_contract_sold_by_trader.html:18
-#: .\templates\sales_contract_sold_by_trader.html:34
-msgid "Sold by a trader"
-msgstr "トレーダーが販売"
+#~ msgid "Buying by a trader"
+#~ msgstr "トレーダーによる購入"
+
+#~ msgid "Sold by a trader"
+#~ msgstr "トレーダーが販売"
 
 #~ msgid "Pick-up destination list"
 #~ msgstr "ピックアップ先リスト"
