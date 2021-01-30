@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 12:04+0000\n"
+"POT-Creation-Date: 2021-01-30 09:16+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,965 +18,1034 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: templates/accounting_csv_purchase.html:16
-#: templates/accounting_csv_purchase.html:31
-#: templates/accounting_csv_sale.html:16 templates/accounting_csv_sale.html:31
-#: templates/layouts/sidebar.html:69
+#: .\templates\accounting_csv_purchase.html:16
+#: .\templates\accounting_csv_purchase.html:31
+#: .\templates\accounting_csv_sale.html:16
+#: .\templates\accounting_csv_sale.html:31 .\templates\layouts\sidebar.html:69
 msgid "Accounting software CSV"
 msgstr "会計ソフトウェアCSV"
 
-#: templates/accounting_csv_purchase.html:16
-#: templates/accounting_csv_purchase.html:32
-#: templates/accounting_csv_purchase.html:62 templates/layouts/sidebar.html:72
+#: .\templates\accounting_csv_purchase.html:16
+#: .\templates\accounting_csv_purchase.html:32
+#: .\templates\accounting_csv_purchase.html:62
 msgid "Purchases"
 msgstr "購入"
 
-#: templates/accounting_csv_purchase.html:21
-#: templates/accounting_csv_sale.html:21 templates/list_inventory.html:21
-#: templates/list_sale_purchase.html:21 templates/master_data_customer.html:21
-#: templates/master_data_hall_details.html:21
-#: templates/master_data_others.html:21
-#: templates/master_data_pickup_destination.html:21
-#: templates/master_data_product_name.html:21
-#: templates/sales_contract_bought_by_trader.html:22
-#: templates/sales_contract_hall_sale.html:21
-#: templates/sales_contract_sold_by_trader.html:23
+#: .\templates\accounting_csv_purchase.html:21
+#: .\templates\accounting_csv_sale.html:21 .\templates\list_inventory.html:21
+#: .\templates\list_sale_purchase.html:21
+#: .\templates\master_data_customer.html:21
+#: .\templates\master_data_hall_details.html:21
+#: .\templates\master_data_others.html:21
+#: .\templates\master_data_pickup_destination.html:21
+#: .\templates\master_data_product_name.html:21
+#: .\templates\sales_contract_bought_by_trader.html:22
+#: .\templates\sales_contract_hall_sale.html:21
+#: .\templates\sales_contract_sold_by_trader.html:23
 msgid "Statistics"
 msgstr "統計"
 
-#: templates/accounting_csv_purchase.html:22
-#: templates/accounting_csv_sale.html:22 templates/list_inventory.html:22
-#: templates/list_sale_purchase.html:22 templates/master_data_customer.html:22
-#: templates/master_data_hall_details.html:22
-#: templates/master_data_others.html:22
-#: templates/master_data_pickup_destination.html:22
-#: templates/master_data_product_name.html:22
-#: templates/sales_contract_bought_by_trader.html:23
-#: templates/sales_contract_hall_sale.html:22
-#: templates/sales_contract_sold_by_trader.html:24
+#: .\templates\accounting_csv_purchase.html:22
+#: .\templates\accounting_csv_sale.html:22 .\templates\list_inventory.html:22
+#: .\templates\list_sale_purchase.html:22
+#: .\templates\master_data_customer.html:22
+#: .\templates\master_data_hall_details.html:22
+#: .\templates\master_data_others.html:22
+#: .\templates\master_data_pickup_destination.html:22
+#: .\templates\master_data_product_name.html:22
+#: .\templates\sales_contract_bought_by_trader.html:23
+#: .\templates\sales_contract_hall_sale.html:22
+#: .\templates\sales_contract_sold_by_trader.html:24
 msgid "Invoices"
 msgstr "請求書"
 
-#: templates/accounting_csv_purchase.html:23
-#: templates/accounting_csv_sale.html:23 templates/list_inventory.html:23
-#: templates/list_sale_purchase.html:23 templates/master_data_customer.html:23
-#: templates/master_data_hall_details.html:23
-#: templates/master_data_others.html:23
-#: templates/master_data_pickup_destination.html:23
-#: templates/master_data_product_name.html:23
-#: templates/sales_contract_bought_by_trader.html:24
-#: templates/sales_contract_hall_sale.html:23
-#: templates/sales_contract_sold_by_trader.html:25
+#: .\templates\accounting_csv_purchase.html:23
+#: .\templates\accounting_csv_sale.html:23 .\templates\list_inventory.html:23
+#: .\templates\list_sale_purchase.html:23
+#: .\templates\master_data_customer.html:23
+#: .\templates\master_data_hall_details.html:23
+#: .\templates\master_data_others.html:23
+#: .\templates\master_data_pickup_destination.html:23
+#: .\templates\master_data_product_name.html:23
+#: .\templates\sales_contract_bought_by_trader.html:24
+#: .\templates\sales_contract_hall_sale.html:23
+#: .\templates\sales_contract_sold_by_trader.html:25
 msgid "Schedule"
 msgstr "スケジュール"
 
-#: templates/accounting_csv_purchase.html:30
-#: templates/accounting_csv_sale.html:30 templates/error-404.html:115
-#: templates/error-500.html:115 templates/list_inventory.html:30
-#: templates/list_sale_purchase.html:30 templates/master_data_customer.html:30
-#: templates/master_data_hall_details.html:30
-#: templates/master_data_others.html:30
-#: templates/master_data_pickup_destination.html:30
-#: templates/master_data_product_name.html:30
-#: templates/sales_contract_bought_by_trader.html:31
-#: templates/sales_contract_hall_sale.html:30
-#: templates/sales_contract_sold_by_trader.html:32
+#: .\templates\accounting_csv_purchase.html:30
+#: .\templates\accounting_csv_sale.html:30 .\templates\error-404.html:115
+#: .\templates\error-500.html:115 .\templates\list_inventory.html:30
+#: .\templates\list_sale_purchase.html:30
+#: .\templates\master_data_customer.html:30
+#: .\templates\master_data_hall_details.html:30
+#: .\templates\master_data_others.html:30
+#: .\templates\master_data_pickup_destination.html:30
+#: .\templates\master_data_product_name.html:30
+#: .\templates\sales_contract_bought_by_trader.html:31
+#: .\templates\sales_contract_hall_sale.html:30
+#: .\templates\sales_contract_sold_by_trader.html:32
 msgid "Home"
 msgstr "ホーム"
 
-#: templates/accounting_csv_purchase.html:36
-#: templates/accounting_csv_sale.html:36 templates/list_inventory.html:36
-#: templates/list_sale_purchase.html:36 templates/master_data_customer.html:36
-#: templates/master_data_hall_details.html:36
-#: templates/master_data_others.html:36
-#: templates/master_data_pickup_destination.html:36
-#: templates/master_data_product_name.html:36
-#: templates/sales_contract_bought_by_trader.html:37
-#: templates/sales_contract_hall_sale.html:36
-#: templates/sales_contract_sold_by_trader.html:38
+#: .\templates\accounting_csv_purchase.html:36
+#: .\templates\accounting_csv_sale.html:36 .\templates\list_inventory.html:36
+#: .\templates\list_sale_purchase.html:36
+#: .\templates\master_data_customer.html:36
+#: .\templates\master_data_hall_details.html:36
+#: .\templates\master_data_others.html:36
+#: .\templates\master_data_pickup_destination.html:36
+#: .\templates\master_data_product_name.html:36
+#: .\templates\sales_contract_bought_by_trader.html:37
+#: .\templates\sales_contract_hall_sale.html:36
+#: .\templates\sales_contract_sold_by_trader.html:38
 msgid "Support"
 msgstr "サポート"
 
-#: templates/accounting_csv_purchase.html:40
-#: templates/accounting_csv_sale.html:40 templates/list_inventory.html:40
-#: templates/list_sale_purchase.html:40 templates/master_data_customer.html:40
-#: templates/master_data_hall_details.html:40
-#: templates/master_data_others.html:40
-#: templates/master_data_pickup_destination.html:40
-#: templates/master_data_product_name.html:40
-#: templates/sales_contract_bought_by_trader.html:41
-#: templates/sales_contract_hall_sale.html:40
-#: templates/sales_contract_sold_by_trader.html:42
+#: .\templates\accounting_csv_purchase.html:40
+#: .\templates\accounting_csv_sale.html:40 .\templates\list_inventory.html:40
+#: .\templates\list_sale_purchase.html:40
+#: .\templates\master_data_customer.html:40
+#: .\templates\master_data_hall_details.html:40
+#: .\templates\master_data_others.html:40
+#: .\templates\master_data_pickup_destination.html:40
+#: .\templates\master_data_product_name.html:40
+#: .\templates\sales_contract_bought_by_trader.html:41
+#: .\templates\sales_contract_hall_sale.html:40
+#: .\templates\sales_contract_sold_by_trader.html:42
 msgid "Settings"
 msgstr "設定"
 
-#: templates/accounting_csv_purchase.html:45
-#: templates/accounting_csv_sale.html:45 templates/list_inventory.html:45
-#: templates/list_sale_purchase.html:45 templates/master_data_customer.html:45
-#: templates/master_data_hall_details.html:45
-#: templates/master_data_others.html:45
-#: templates/master_data_pickup_destination.html:45
-#: templates/master_data_product_name.html:45
-#: templates/sales_contract_bought_by_trader.html:46
-#: templates/sales_contract_hall_sale.html:45
-#: templates/sales_contract_sold_by_trader.html:47
+#: .\templates\accounting_csv_purchase.html:45
+#: .\templates\accounting_csv_sale.html:45 .\templates\list_inventory.html:45
+#: .\templates\list_sale_purchase.html:45
+#: .\templates\master_data_customer.html:45
+#: .\templates\master_data_hall_details.html:45
+#: .\templates\master_data_others.html:45
+#: .\templates\master_data_pickup_destination.html:45
+#: .\templates\master_data_product_name.html:45
+#: .\templates\sales_contract_bought_by_trader.html:46
+#: .\templates\sales_contract_hall_sale.html:45
+#: .\templates\sales_contract_sold_by_trader.html:47
 msgid "Account security"
 msgstr "アカウントのセキュリティ"
 
-#: templates/accounting_csv_purchase.html:46
-#: templates/accounting_csv_sale.html:46 templates/list_inventory.html:46
-#: templates/list_sale_purchase.html:46 templates/master_data_customer.html:46
-#: templates/master_data_hall_details.html:46
-#: templates/master_data_others.html:46
-#: templates/master_data_pickup_destination.html:46
-#: templates/master_data_product_name.html:46
-#: templates/sales_contract_bought_by_trader.html:47
-#: templates/sales_contract_hall_sale.html:46
-#: templates/sales_contract_sold_by_trader.html:48
+#: .\templates\accounting_csv_purchase.html:46
+#: .\templates\accounting_csv_sale.html:46 .\templates\list_inventory.html:46
+#: .\templates\list_sale_purchase.html:46
+#: .\templates\master_data_customer.html:46
+#: .\templates\master_data_hall_details.html:46
+#: .\templates\master_data_others.html:46
+#: .\templates\master_data_pickup_destination.html:46
+#: .\templates\master_data_product_name.html:46
+#: .\templates\sales_contract_bought_by_trader.html:47
+#: .\templates\sales_contract_hall_sale.html:46
+#: .\templates\sales_contract_sold_by_trader.html:48
 msgid "Analytics"
 msgstr "分析"
 
-#: templates/accounting_csv_purchase.html:47
-#: templates/accounting_csv_sale.html:47 templates/list_inventory.html:47
-#: templates/list_sale_purchase.html:47 templates/master_data_customer.html:47
-#: templates/master_data_hall_details.html:47
-#: templates/master_data_others.html:47
-#: templates/master_data_pickup_destination.html:47
-#: templates/master_data_product_name.html:47
-#: templates/sales_contract_bought_by_trader.html:48
-#: templates/sales_contract_hall_sale.html:47
-#: templates/sales_contract_sold_by_trader.html:49
+#: .\templates\accounting_csv_purchase.html:47
+#: .\templates\accounting_csv_sale.html:47 .\templates\list_inventory.html:47
+#: .\templates\list_sale_purchase.html:47
+#: .\templates\master_data_customer.html:47
+#: .\templates\master_data_hall_details.html:47
+#: .\templates\master_data_others.html:47
+#: .\templates\master_data_pickup_destination.html:47
+#: .\templates\master_data_product_name.html:47
+#: .\templates\sales_contract_bought_by_trader.html:48
+#: .\templates\sales_contract_hall_sale.html:47
+#: .\templates\sales_contract_sold_by_trader.html:49
 msgid "Accessibility"
 msgstr "アクセシビリティ"
 
-#: templates/accounting_csv_purchase.html:49
-#: templates/accounting_csv_sale.html:49 templates/list_inventory.html:49
-#: templates/list_sale_purchase.html:49 templates/master_data_customer.html:49
-#: templates/master_data_hall_details.html:49
-#: templates/master_data_others.html:49
-#: templates/master_data_pickup_destination.html:49
-#: templates/master_data_product_name.html:49
-#: templates/sales_contract_bought_by_trader.html:50
-#: templates/sales_contract_hall_sale.html:49
-#: templates/sales_contract_sold_by_trader.html:51
+#: .\templates\accounting_csv_purchase.html:49
+#: .\templates\accounting_csv_sale.html:49 .\templates\list_inventory.html:49
+#: .\templates\list_sale_purchase.html:49
+#: .\templates\master_data_customer.html:49
+#: .\templates\master_data_hall_details.html:49
+#: .\templates\master_data_others.html:49
+#: .\templates\master_data_pickup_destination.html:49
+#: .\templates\master_data_product_name.html:49
+#: .\templates\sales_contract_bought_by_trader.html:50
+#: .\templates\sales_contract_hall_sale.html:49
+#: .\templates\sales_contract_sold_by_trader.html:51
 msgid "All settings"
 msgstr "すべての設定"
 
-#: templates/accounting_csv_purchase.html:100
-#: templates/accounting_csv_sale.html:99 templates/list_inventory.html:227
-#: templates/list_sale_purchase.html:249
+#: .\templates\accounting_csv_purchase.html:100
+#: .\templates\accounting_csv_sale.html:99 .\templates\list_inventory.html:227
+#: .\templates\list_sale_purchase.html:249
 msgid "Export To CSV"
 msgstr "CSVにエクスポート"
 
-#: templates/accounting_csv_purchase.html:109
-#: templates/accounting_csv_sale.html:108 templates/index.html:278
-#: templates/list_inventory.html:236 templates/list_sale_purchase.html:258
-#: templates/master_data_customer.html:321
-#: templates/master_data_hall_details.html:321
-#: templates/master_data_others.html:235
-#: templates/master_data_pickup_destination.html:330
-#: templates/master_data_product_name.html:230
-#: templates/sales_contract_bought_by_trader.html:636
-#: templates/sales_contract_hall_sale.html:610
-#: templates/sales_contract_sold_by_trader.html:635
+#: .\templates\accounting_csv_purchase.html:109
+#: .\templates\accounting_csv_sale.html:108 .\templates\index.html:278
+#: .\templates\list_inventory.html:236 .\templates\list_sale_purchase.html:258
+#: .\templates\master_data_customer.html:321
+#: .\templates\master_data_hall_details.html:321
+#: .\templates\master_data_others.html:235
+#: .\templates\master_data_pickup_destination.html:330
+#: .\templates\master_data_product_name.html:230
+#: .\templates\sales_contract_bought_by_trader.html:636
+#: .\templates\sales_contract_hall_sale.html:610
+#: .\templates\sales_contract_sold_by_trader.html:635
 msgid "Copyright"
 msgstr "著作権"
 
-#: templates/accounting_csv_sale.html:16 templates/accounting_csv_sale.html:32
-#: templates/accounting_csv_sale.html:62 templates/layouts/sidebar.html:71
+#: .\templates\accounting_csv_sale.html:16
+#: .\templates\accounting_csv_sale.html:32
+#: .\templates\accounting_csv_sale.html:62
 msgid "Sales"
 msgstr "売買"
 
-#: templates/error-404.html:111 templates/error-500.html:111
-msgid "Oups! Error"
-msgstr "おっと! エラー"
+#: .\templates\error-404.html:111
+msgid "Error"
+msgstr "エラー"
 
-#: templates/error-404.html:115
+#: .\templates\error-404.html:115
 msgid "Page not found"
 msgstr "ページが見つかりません"
 
-#: templates/error-500.html:115
+#: .\templates\error-500.html:111
+msgid "Oups! Error"
+msgstr "おっと! エラー"
+
+#: .\templates\error-500.html:115
 msgid "Server error, please contact support"
 msgstr "サーバーエラー、サポートに連絡してください"
 
-#: templates/index.html:19
+#: .\templates\index.html:19
 msgid "Dashboard Page"
 msgstr "ダッシュボードページ"
 
-#: templates/index.html:34 templates/list_inventory.html:136
-#: templates/master_data_customer.html:77
-#: templates/master_data_hall_details.html:77
-#: templates/master_data_pickup_destination.html:77
-#: templates/master_data_product_name.html:77
+#: .\templates\index.html:34 .\templates\list_inventory.html:136
+#: .\templates\master_data_customer.html:77
+#: .\templates\master_data_hall_details.html:77
+#: .\templates\master_data_pickup_destination.html:77
+#: .\templates\master_data_product_name.html:77
 msgid "No"
 msgstr "番号"
 
-#: templates/index.html:35 templates/index.html:215
-#: templates/master_data_customer.html:78
-#: templates/master_data_customer.html:258
+#: .\templates\index.html:35 .\templates\index.html:215
+#: .\templates\master_data_customer.html:78
+#: .\templates\master_data_customer.html:258
 msgid "Customer name"
 msgstr "顧客名"
 
-#: templates/index.html:36 templates/index.html:222
-#: templates/master_data_customer.html:79
-#: templates/master_data_customer.html:265
-#: templates/master_data_hall_details.html:79
-#: templates/master_data_hall_details.html:265
-#: templates/master_data_pickup_destination.html:79
-#: templates/master_data_pickup_destination.html:281
-#: templates/sales_contract_bought_by_trader.html:111
-#: templates/sales_contract_hall_sale.html:109
-#: templates/sales_contract_sold_by_trader.html:111
+#: .\templates\index.html:36 .\templates\index.html:222
+#: .\templates\master_data_customer.html:79
+#: .\templates\master_data_customer.html:265
+#: .\templates\master_data_hall_details.html:79
+#: .\templates\master_data_hall_details.html:265
+#: .\templates\master_data_pickup_destination.html:79
+#: .\templates\master_data_pickup_destination.html:281
+#: .\templates\sales_contract_bought_by_trader.html:111
+#: .\templates\sales_contract_hall_sale.html:109
+#: .\templates\sales_contract_sold_by_trader.html:111
 msgid "Frigana"
 msgstr "ふりがな"
 
-#: templates/index.html:37 templates/index.html:229
-#: templates/master_data_customer.html:80
-#: templates/master_data_customer.html:272
-#: templates/master_data_hall_details.html:80
-#: templates/master_data_hall_details.html:272
-#: templates/master_data_pickup_destination.html:80
-#: templates/master_data_pickup_destination.html:288
-#: templates/sales_contract_bought_by_trader.html:121
-#: templates/sales_contract_hall_sale.html:119
-#: templates/sales_contract_sold_by_trader.html:121
+#: .\templates\index.html:37 .\templates\index.html:229
+#: .\templates\master_data_customer.html:80
+#: .\templates\master_data_customer.html:272
+#: .\templates\master_data_hall_details.html:80
+#: .\templates\master_data_hall_details.html:272
+#: .\templates\master_data_pickup_destination.html:80
+#: .\templates\master_data_pickup_destination.html:288
+#: .\templates\sales_contract_bought_by_trader.html:121
+#: .\templates\sales_contract_hall_sale.html:119
+#: .\templates\sales_contract_sold_by_trader.html:121
 msgid "Postal code"
 msgstr "郵便番号"
 
-#: templates/index.html:38 templates/index.html:236
-#: templates/master_data_customer.html:81
-#: templates/master_data_customer.html:279
-#: templates/master_data_hall_details.html:81
-#: templates/master_data_hall_details.html:279
-#: templates/master_data_pickup_destination.html:81
-#: templates/master_data_pickup_destination.html:295
-#: templates/sales_contract_bought_by_trader.html:129
-#: templates/sales_contract_bought_by_trader.html:552
-#: templates/sales_contract_bought_by_trader.html:589
-#: templates/sales_contract_hall_sale.html:127
-#: templates/sales_contract_hall_sale.html:253
-#: templates/sales_contract_sold_by_trader.html:129
-#: templates/sales_contract_sold_by_trader.html:551
-#: templates/sales_contract_sold_by_trader.html:588
+#: .\templates\index.html:38 .\templates\index.html:236
+#: .\templates\master_data_customer.html:81
+#: .\templates\master_data_customer.html:279
+#: .\templates\master_data_hall_details.html:81
+#: .\templates\master_data_hall_details.html:279
+#: .\templates\master_data_pickup_destination.html:81
+#: .\templates\master_data_pickup_destination.html:295
+#: .\templates\sales_contract_bought_by_trader.html:129
+#: .\templates\sales_contract_bought_by_trader.html:552
+#: .\templates\sales_contract_bought_by_trader.html:589
+#: .\templates\sales_contract_hall_sale.html:127
+#: .\templates\sales_contract_hall_sale.html:253
+#: .\templates\sales_contract_sold_by_trader.html:129
+#: .\templates\sales_contract_sold_by_trader.html:551
+#: .\templates\sales_contract_sold_by_trader.html:588
 msgid "Street address"
 msgstr "住所"
 
-#: templates/index.html:39 templates/index.html:243
-#: templates/master_data_customer.html:82
-#: templates/master_data_customer.html:286
-#: templates/master_data_hall_details.html:82
-#: templates/master_data_hall_details.html:286
-#: templates/master_data_pickup_destination.html:82
-#: templates/master_data_pickup_destination.html:302
-#: templates/sales_contract_bought_by_trader.html:140
-#: templates/sales_contract_bought_by_trader.html:558
-#: templates/sales_contract_bought_by_trader.html:564
-#: templates/sales_contract_bought_by_trader.html:595
-#: templates/sales_contract_bought_by_trader.html:601
-#: templates/sales_contract_hall_sale.html:138
-#: templates/sales_contract_hall_sale.html:261
-#: templates/sales_contract_sold_by_trader.html:140
-#: templates/sales_contract_sold_by_trader.html:557
-#: templates/sales_contract_sold_by_trader.html:563
-#: templates/sales_contract_sold_by_trader.html:594
-#: templates/sales_contract_sold_by_trader.html:600
+#: .\templates\index.html:39 .\templates\index.html:243
+#: .\templates\master_data_customer.html:82
+#: .\templates\master_data_customer.html:286
+#: .\templates\master_data_hall_details.html:82
+#: .\templates\master_data_hall_details.html:286
+#: .\templates\master_data_pickup_destination.html:82
+#: .\templates\master_data_pickup_destination.html:302
+#: .\templates\sales_contract_bought_by_trader.html:140
+#: .\templates\sales_contract_bought_by_trader.html:558
+#: .\templates\sales_contract_bought_by_trader.html:564
+#: .\templates\sales_contract_bought_by_trader.html:595
+#: .\templates\sales_contract_bought_by_trader.html:601
+#: .\templates\sales_contract_hall_sale.html:138
+#: .\templates\sales_contract_hall_sale.html:261
+#: .\templates\sales_contract_sold_by_trader.html:140
+#: .\templates\sales_contract_sold_by_trader.html:557
+#: .\templates\sales_contract_sold_by_trader.html:563
+#: .\templates\sales_contract_sold_by_trader.html:594
+#: .\templates\sales_contract_sold_by_trader.html:600
 msgid "TEL"
 msgstr "TEL"
 
-#: templates/index.html:40 templates/index.html:250
-#: templates/master_data_customer.html:83
-#: templates/master_data_customer.html:293
-#: templates/master_data_hall_details.html:83
-#: templates/master_data_hall_details.html:293
-#: templates/master_data_pickup_destination.html:83
-#: templates/master_data_pickup_destination.html:309
-#: templates/sales_contract_bought_by_trader.html:149
-#: templates/sales_contract_bought_by_trader.html:558
-#: templates/sales_contract_bought_by_trader.html:564
-#: templates/sales_contract_bought_by_trader.html:595
-#: templates/sales_contract_bought_by_trader.html:601
-#: templates/sales_contract_hall_sale.html:147
-#: templates/sales_contract_hall_sale.html:261
-#: templates/sales_contract_sold_by_trader.html:149
-#: templates/sales_contract_sold_by_trader.html:557
-#: templates/sales_contract_sold_by_trader.html:563
-#: templates/sales_contract_sold_by_trader.html:594
-#: templates/sales_contract_sold_by_trader.html:600
+#: .\templates\index.html:40 .\templates\index.html:250
+#: .\templates\master_data_customer.html:83
+#: .\templates\master_data_customer.html:293
+#: .\templates\master_data_hall_details.html:83
+#: .\templates\master_data_hall_details.html:293
+#: .\templates\master_data_pickup_destination.html:83
+#: .\templates\master_data_pickup_destination.html:309
+#: .\templates\sales_contract_bought_by_trader.html:149
+#: .\templates\sales_contract_bought_by_trader.html:558
+#: .\templates\sales_contract_bought_by_trader.html:564
+#: .\templates\sales_contract_bought_by_trader.html:595
+#: .\templates\sales_contract_bought_by_trader.html:601
+#: .\templates\sales_contract_hall_sale.html:147
+#: .\templates\sales_contract_hall_sale.html:261
+#: .\templates\sales_contract_sold_by_trader.html:149
+#: .\templates\sales_contract_sold_by_trader.html:557
+#: .\templates\sales_contract_sold_by_trader.html:563
+#: .\templates\sales_contract_sold_by_trader.html:594
+#: .\templates\sales_contract_sold_by_trader.html:600
 msgid "FAX"
 msgstr "FAX"
 
-#: templates/index.html:41 templates/index.html:257
-#: templates/master_data_customer.html:84
-#: templates/master_data_customer.html:300
+#: .\templates\index.html:41 .\templates\index.html:257
+#: .\templates\master_data_customer.html:84
+#: .\templates\master_data_customer.html:300
 msgid "For CSV"
 msgstr "CSV用"
 
-#: templates/index.html:193 templates/index.html:205
-#: templates/master_data_customer.html:236
-#: templates/master_data_customer.html:248
+#: .\templates\index.html:193 .\templates\index.html:205
+#: .\templates\master_data_customer.html:236
+#: .\templates\master_data_customer.html:248
 msgid "Add Customer Master"
-msgstr "カスタマーマスターを追加"
+msgstr "顧客マスターを追加"
 
-#: templates/index.html:217 templates/master_data_customer.html:260
+#: .\templates\index.html:217 .\templates\master_data_customer.html:260
 msgid "Enter customer name"
 msgstr "顧客名を入力してください"
 
-#: templates/index.html:224 templates/master_data_customer.html:267
-#: templates/master_data_hall_details.html:267
-#: templates/master_data_pickup_destination.html:283
+#: .\templates\index.html:224 .\templates\master_data_customer.html:267
+#: .\templates\master_data_hall_details.html:267
+#: .\templates\master_data_pickup_destination.html:283
 msgid "Enter frigana"
 msgstr "ふりがなを入力"
 
-#: templates/index.html:231 templates/master_data_customer.html:274
-#: templates/master_data_hall_details.html:274
-#: templates/master_data_pickup_destination.html:290
+#: .\templates\index.html:231 .\templates\master_data_customer.html:274
+#: .\templates\master_data_hall_details.html:274
+#: .\templates\master_data_pickup_destination.html:290
 msgid "Enter postal code"
 msgstr "郵便番号を入力"
 
-#: templates/index.html:238 templates/master_data_customer.html:281
-#: templates/master_data_hall_details.html:281
-#: templates/master_data_pickup_destination.html:297
+#: .\templates\index.html:238 .\templates\master_data_customer.html:281
+#: .\templates\master_data_hall_details.html:281
+#: .\templates\master_data_pickup_destination.html:297
 msgid "Enter street address"
 msgstr "住所を入力"
 
-#: templates/index.html:245 templates/master_data_customer.html:288
-#: templates/master_data_hall_details.html:288
-#: templates/master_data_pickup_destination.html:304
+#: .\templates\index.html:245 .\templates\master_data_customer.html:288
+#: .\templates\master_data_hall_details.html:288
+#: .\templates\master_data_pickup_destination.html:304
 msgid "Enter TEL"
 msgstr "TELを入力してください"
 
-#: templates/index.html:252 templates/master_data_customer.html:295
-#: templates/master_data_hall_details.html:295
-#: templates/master_data_pickup_destination.html:311
+#: .\templates\index.html:252 .\templates\master_data_customer.html:295
+#: .\templates\master_data_hall_details.html:295
+#: .\templates\master_data_pickup_destination.html:311
 msgid "Enter FAX"
 msgstr "FAXを入力してください"
 
-#: templates/index.html:259 templates/master_data_customer.html:302
+#: .\templates\index.html:259 .\templates\master_data_customer.html:302
 msgid "Enter proper data"
 msgstr "適切なデータを入力してください"
 
-#: templates/index.html:268 templates/master_data_customer.html:311
-#: templates/master_data_hall_details.html:311
-#: templates/master_data_others.html:225
-#: templates/master_data_pickup_destination.html:320
-#: templates/master_data_product_name.html:220
+#: .\templates\index.html:268 .\templates\master_data_customer.html:311
+#: .\templates\master_data_hall_details.html:311
+#: .\templates\master_data_others.html:225
+#: .\templates\master_data_pickup_destination.html:320
+#: .\templates\master_data_product_name.html:220
 msgid "Add"
 msgstr "追加"
 
-#: templates/index.html:269 templates/master_data_customer.html:312
-#: templates/master_data_hall_details.html:312
-#: templates/master_data_others.html:226
-#: templates/master_data_pickup_destination.html:321
-#: templates/master_data_product_name.html:221
+#: .\templates\index.html:269 .\templates\master_data_customer.html:312
+#: .\templates\master_data_hall_details.html:312
+#: .\templates\master_data_others.html:226
+#: .\templates\master_data_pickup_destination.html:321
+#: .\templates\master_data_product_name.html:221
 msgid "Close"
 msgstr "閉じる"
 
-#: templates/layouts/navbar.html:97
+#: .\templates\layouts\navbar.html:97
 msgid "Online"
 msgstr "オンライン"
 
-#: templates/layouts/navbar.html:122 templates/layouts/navbar.html:128
-#: templates/layouts/navbar.html:196
+#: .\templates\layouts\navbar.html:122 .\templates\layouts\navbar.html:128
+#: .\templates\layouts\navbar.html:196
 msgid "Messages"
 msgstr "メッセージ"
 
-#: templates/layouts/navbar.html:194
+#: .\templates\layouts\navbar.html:194
 msgid "My profile"
 msgstr "私のプロフィール"
 
-#: templates/layouts/navbar.html:195
+#: .\templates\layouts\navbar.html:195
 msgid "My balance"
 msgstr "私のバランス"
 
-#: templates/layouts/navbar.html:198
+#: .\templates\layouts\navbar.html:198
 msgid "Account settings"
 msgstr "アカウント設定"
 
-#: templates/layouts/navbar.html:199
+#: .\templates\layouts\navbar.html:199
 msgid "Logout"
 msgstr "ログアウト"
 
-#: templates/layouts/sidebar.html:39
+#: .\templates\layouts\sidebar.html:39
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: templates/layouts/sidebar.html:41 templates/master_data_customer.html:16
-#: templates/master_data_hall_details.html:16
-#: templates/master_data_others.html:16
-#: templates/master_data_pickup_destination.html:16
-#: templates/master_data_product_name.html:16
-#: templates/master_data_product_name.html:31
-msgid "Master data registration"
-msgstr "マスタデータ登録"
+#: .\templates\layouts\sidebar.html:41
+msgid "Master data"
+msgstr "マスターデータ"
 
-#: templates/layouts/sidebar.html:43 templates/master_data_customer.html:16
-#: templates/master_data_customer.html:32
-#: templates/master_data_hall_details.html:32
+#: .\templates\layouts\sidebar.html:43 .\templates\master_data_customer.html:16
+#: .\templates\master_data_customer.html:32
+#: .\templates\master_data_hall_details.html:32
 msgid "Customer master"
-msgstr "カスタマーマスター"
+msgstr "顧客マスター"
 
-#: templates/layouts/sidebar.html:44 templates/master_data_hall_details.html:16
-msgid "Hall details"
-msgstr "ホール詳細"
+#: .\templates\layouts\sidebar.html:44
+msgid "Hall"
+msgstr "ホール"
 
-#: templates/layouts/sidebar.html:45
-#: templates/master_data_pickup_destination.html:16
-#: templates/master_data_pickup_destination.html:32
-msgid "Pick-up destination"
-msgstr "ピックアップ先"
+#: .\templates\layouts\sidebar.html:45
+msgid "Shipping address"
+msgstr "配送先"
 
-#: templates/layouts/sidebar.html:46 templates/list_inventory.html:87
-#: templates/list_inventory.html:137 templates/list_sale_purchase.html:108
-#: templates/list_sale_purchase.html:109 templates/list_sale_purchase.html:142
-#: templates/master_data_product_name.html:16
-#: templates/master_data_product_name.html:32
+#: .\templates\layouts\sidebar.html:46 .\templates\list_inventory.html:87
+#: .\templates\list_inventory.html:137 .\templates\list_sale_purchase.html:108
+#: .\templates\list_sale_purchase.html:109
+#: .\templates\list_sale_purchase.html:142
+#: .\templates\master_data_product_name.html:16
+#: .\templates\master_data_product_name.html:32
 msgid "Product name"
 msgstr "商品名"
 
-#: templates/layouts/sidebar.html:47
+#: .\templates\layouts\sidebar.html:47
 msgid "Others"
 msgstr "その他"
 
-#: templates/layouts/sidebar.html:52
-#: templates/sales_contract_bought_by_trader.html:17
-#: templates/sales_contract_bought_by_trader.html:32
-#: templates/sales_contract_hall_sale.html:16
-#: templates/sales_contract_hall_sale.html:31
-#: templates/sales_contract_sold_by_trader.html:18
-#: templates/sales_contract_sold_by_trader.html:33
+#: .\templates\layouts\sidebar.html:52
+#: .\templates\sales_contract_bought_by_trader.html:17
+#: .\templates\sales_contract_bought_by_trader.html:32
+#: .\templates\sales_contract_hall_sale.html:16
+#: .\templates\sales_contract_hall_sale.html:31
+#: .\templates\sales_contract_sold_by_trader.html:18
+#: .\templates\sales_contract_sold_by_trader.html:33
 msgid "Sales contract creation"
 msgstr "売買契約の作成"
 
-#: templates/layouts/sidebar.html:54
-#: templates/sales_contract_sold_by_trader.html:18
-#: templates/sales_contract_sold_by_trader.html:34
-msgid "Sold by a trader"
-msgstr "トレーダーが販売"
+#: .\templates\layouts\sidebar.html:54
+msgid "Sale"
+msgstr "売買"
 
-#: templates/layouts/sidebar.html:55
-#: templates/sales_contract_bought_by_trader.html:17
-#: templates/sales_contract_bought_by_trader.html:33
-msgid "Buying by a trader"
-msgstr "トレーダーによる購入"
+#: .\templates\layouts\sidebar.html:55
+msgid "Purchase"
+msgstr "購入"
 
-#: templates/layouts/sidebar.html:56 templates/sales_contract_hall_sale.html:16
-#: templates/sales_contract_hall_sale.html:32
+#: .\templates\layouts\sidebar.html:56
+#: .\templates\sales_contract_hall_sale.html:16
+#: .\templates\sales_contract_hall_sale.html:32
 msgid "Hall sale"
-msgstr "ホールセール"
+msgstr "ホール売り"
 
-#: templates/layouts/sidebar.html:61 templates/list_inventory.html:16
-#: templates/list_inventory.html:31 templates/list_sale_purchase.html:16
-#: templates/list_sale_purchase.html:31
+#: .\templates\layouts\sidebar.html:61 .\templates\list_inventory.html:16
+#: .\templates\list_inventory.html:31 .\templates\list_sale_purchase.html:16
+#: .\templates\list_sale_purchase.html:31
 msgid "List"
 msgstr "リスト"
 
-#: templates/layouts/sidebar.html:63 templates/list_sale_purchase.html:32
-msgid "Sales & Purchase"
-msgstr "売買と購入"
+#: .\templates\layouts\sidebar.html:63
+msgid "Trading history"
+msgstr "売買履歴"
 
-#: templates/layouts/sidebar.html:64 templates/list_inventory.html:16
-#: templates/list_inventory.html:32
+#: .\templates\layouts\sidebar.html:64 .\templates\list_inventory.html:16
+#: .\templates\list_inventory.html:32
 msgid "Inventory"
 msgstr "在庫"
 
-#: templates/list_inventory.html:62
+#: .\templates\layouts\sidebar.html:71
+msgid "Trading data"
+msgstr "売買データ"
+
+#: .\templates\layouts\sidebar.html:72
+msgid "Purchase data"
+msgstr "購入データ"
+
+#: .\templates\list_inventory.html:62
 msgid "Inventory list"
 msgstr "在庫リスト"
 
-#: templates/list_inventory.html:77 templates/list_sale_purchase.html:84
-#: templates/list_sale_purchase.html:137
-#: templates/sales_contract_bought_by_trader.html:78
-#: templates/sales_contract_hall_sale.html:77
-#: templates/sales_contract_sold_by_trader.html:79
+#: .\templates\list_inventory.html:77 .\templates\list_sale_purchase.html:84
+#: .\templates\list_sale_purchase.html:137
+#: .\templates\sales_contract_bought_by_trader.html:78
+#: .\templates\sales_contract_hall_sale.html:77
+#: .\templates\sales_contract_sold_by_trader.html:79
 msgid "Contract date"
 msgstr "契約日"
 
-#: templates/list_inventory.html:94 templates/list_inventory.html:140
-#: templates/list_sale_purchase.html:94 templates/list_sale_purchase.html:96
-#: templates/list_sale_purchase.html:97 templates/list_sale_purchase.html:98
-#: templates/list_sale_purchase.html:99 templates/list_sale_purchase.html:138
+#: .\templates\list_inventory.html:94 .\templates\list_inventory.html:140
+#: .\templates\list_sale_purchase.html:94
+#: .\templates\list_sale_purchase.html:96
+#: .\templates\list_sale_purchase.html:97
+#: .\templates\list_sale_purchase.html:98
+#: .\templates\list_sale_purchase.html:99
+#: .\templates\list_sale_purchase.html:138
 msgid "Supplier"
 msgstr "サプライヤー"
 
-#: templates/list_inventory.html:108 templates/list_inventory.html:109
-#: templates/list_inventory.html:141 templates/list_sale_purchase.html:140
-#: templates/sales_contract_bought_by_trader.html:164
-#: templates/sales_contract_hall_sale.html:161
-#: templates/sales_contract_sold_by_trader.html:163
+#: .\templates\list_inventory.html:108 .\templates\list_inventory.html:109
+#: .\templates\list_inventory.html:141 .\templates\list_sale_purchase.html:140
+#: .\templates\sales_contract_bought_by_trader.html:164
+#: .\templates\sales_contract_hall_sale.html:161
+#: .\templates\sales_contract_sold_by_trader.html:163
 msgid "In charge"
 msgstr "担当名"
 
-#: templates/list_inventory.html:115 templates/list_inventory.html:116
+#: .\templates\list_inventory.html:115 .\templates\list_inventory.html:116
 msgid "Stock"
 msgstr "在庫"
 
-#: templates/list_inventory.html:124 templates/list_sale_purchase.html:124
+#: .\templates\list_inventory.html:124 .\templates\list_sale_purchase.html:124
 msgid "Search"
 msgstr "探す"
 
-#: templates/list_inventory.html:132 templates/list_sale_purchase.html:132
+#: .\templates\list_inventory.html:132 .\templates\list_sale_purchase.html:132
 msgid "Search results"
 msgstr "の検索結果"
 
-#: templates/list_inventory.html:138
+#: .\templates\list_inventory.html:138
 msgid "Control number"
 msgstr "管理番号"
 
-#: templates/list_inventory.html:139
+#: .\templates\list_inventory.html:139
 msgid "Purchase date"
 msgstr "購入日"
 
-#: templates/list_inventory.html:142 templates/list_sale_purchase.html:143
+#: .\templates\list_inventory.html:142 .\templates\list_sale_purchase.html:143
 msgid "Number of units"
 msgstr "ユニット数"
 
-#: templates/list_inventory.html:143
-#: templates/sales_contract_bought_by_trader.html:252
-#: templates/sales_contract_hall_sale.html:278
-#: templates/sales_contract_sold_by_trader.html:251
+#: .\templates\list_inventory.html:143
+#: .\templates\sales_contract_bought_by_trader.html:252
+#: .\templates\sales_contract_hall_sale.html:278
+#: .\templates\sales_contract_sold_by_trader.html:251
 msgid "Unit price"
 msgstr "単価"
 
-#: templates/list_inventory.html:144
+#: .\templates\list_inventory.html:144
 msgid "Total Price"
 msgstr "合計金額"
 
-#: templates/list_sale_purchase.html:16 templates/list_sale_purchase.html:62
+#: .\templates\list_sale_purchase.html:16
+#: .\templates\list_sale_purchase.html:62
 msgid "Sales & Purchase List"
 msgstr "売買と購入リスト"
 
-#: templates/list_sale_purchase.html:77 templates/list_sale_purchase.html:78
-#: templates/list_sale_purchase.html:136
+#: .\templates\list_sale_purchase.html:32
+msgid "Sales & Purchase"
+msgstr "売買と購入"
+
+#: .\templates\list_sale_purchase.html:77
+#: .\templates\list_sale_purchase.html:78
+#: .\templates\list_sale_purchase.html:136
 msgid "Transaction ID"
 msgstr "トランザクションID"
 
-#: templates/list_sale_purchase.html:115 templates/list_sale_purchase.html:145
+#: .\templates\list_sale_purchase.html:115
+#: .\templates\list_sale_purchase.html:145
 msgid "Inventory clearing"
 msgstr "在庫清算"
 
-#: templates/list_sale_purchase.html:139
+#: .\templates\list_sale_purchase.html:139
 msgid "Delivery destination"
 msgstr "配達目的地"
 
-#: templates/list_sale_purchase.html:141
+#: .\templates\list_sale_purchase.html:141
 msgid "Payment day"
 msgstr "支払い日"
 
-#: templates/list_sale_purchase.html:144
-#: templates/sales_contract_bought_by_trader.html:253
-#: templates/sales_contract_hall_sale.html:279
-#: templates/sales_contract_sold_by_trader.html:252
+#: .\templates\list_sale_purchase.html:144
+#: .\templates\sales_contract_bought_by_trader.html:253
+#: .\templates\sales_contract_hall_sale.html:279
+#: .\templates\sales_contract_sold_by_trader.html:252
 msgid "Amount of money"
 msgstr "金額"
 
-#: templates/login.html:123
+#: .\templates\login.html:123
 msgid "Login to your account"
-msgstr "あなたのアカウントにログイン"
+msgstr "アカウントにログイン"
 
-#: templates/login.html:123
-msgid "Enter your credentials below"
-msgstr "以下に資格情報を入力してください"
+#: .\templates\login.html:123
+msgid "Enter your username and password below"
+msgstr "以下にユーザー名とパスワードを入力してください。"
 
-#: templates/login.html:127
+#: .\templates\login.html:127
 msgid "Username"
 msgstr "ユーザー名"
 
-#: templates/login.html:134
+#: .\templates\login.html:134
 msgid "Password"
 msgstr "パスワード"
 
-#: templates/login.html:141
+#: .\templates\login.html:141
 msgid "Sign in"
 msgstr "ログイン"
 
-#: templates/login.html:145
+#: .\templates\login.html:145
 msgid "Forgot password"
 msgstr "パスワードをお忘れですか"
 
-#: templates/login_password_recover.html:121
+#: .\templates\login_password_recover.html:121
 msgid "Password recovery"
 msgstr "パスワードの復元"
 
-#: templates/login_password_recover.html:121
+#: .\templates\login_password_recover.html:121
 msgid "We'll send you instructions in email"
 msgstr "指示をメールでお送りします"
 
-#: templates/login_password_recover.html:125
+#: .\templates\login_password_recover.html:125
 msgid "Your email"
 msgstr "あなたのメール"
 
-#: templates/login_password_recover.html:131
+#: .\templates\login_password_recover.html:131
 msgid "Reset password"
 msgstr "パスワードを再設定する"
 
-#: templates/master_data_customer.html:31
-#: templates/master_data_hall_details.html:31
-#: templates/master_data_others.html:31
-#: templates/master_data_pickup_destination.html:31
+#: .\templates\master_data_customer.html:16
+#: .\templates\master_data_hall_details.html:16
+#: .\templates\master_data_others.html:16
+#: .\templates\master_data_pickup_destination.html:16
+#: .\templates\master_data_product_name.html:16
+#: .\templates\master_data_product_name.html:31
+msgid "Master data registration"
+msgstr "マスタデータ登録"
+
+#: .\templates\master_data_customer.html:31
+#: .\templates\master_data_hall_details.html:31
+#: .\templates\master_data_others.html:31
+#: .\templates\master_data_pickup_destination.html:31
 msgid "Master card registration"
 msgstr "マスターカード登録"
 
-#: templates/master_data_customer.html:62
+#: .\templates\master_data_customer.html:62
 msgid "Customer master list"
 msgstr "カスタマーマスターリスト"
 
-#: templates/master_data_hall_details.html:62
+#: .\templates\master_data_hall_details.html:16
+msgid "Hall details"
+msgstr "ホール詳細"
+
+#: .\templates\master_data_hall_details.html:62
 msgid "Hall details list"
 msgstr "ホール詳細リスト"
 
-#: templates/master_data_hall_details.html:78
-#: templates/master_data_hall_details.html:258
-#: templates/sales_contract_hall_sale.html:244
+#: .\templates\master_data_hall_details.html:78
+#: .\templates\master_data_hall_details.html:258
+#: .\templates\sales_contract_hall_sale.html:244
 msgid "Hall name"
 msgstr "ホール名"
 
-#: templates/master_data_hall_details.html:84
-#: templates/master_data_hall_details.html:300
+#: .\templates\master_data_hall_details.html:84
+#: .\templates\master_data_hall_details.html:300
 msgid "Payee"
 msgstr "受取人"
 
-#: templates/master_data_hall_details.html:236
-#: templates/master_data_hall_details.html:248
+#: .\templates\master_data_hall_details.html:236
+#: .\templates\master_data_hall_details.html:248
 msgid "Add Hall Details"
 msgstr "ホールの詳細を追加"
 
-#: templates/master_data_hall_details.html:260
+#: .\templates\master_data_hall_details.html:260
 msgid "Enter hall name"
 msgstr "ホール名を入力"
 
-#: templates/master_data_hall_details.html:302
+#: .\templates\master_data_hall_details.html:302
 msgid "Enter payee"
 msgstr "受取人を入力"
 
-#: templates/master_data_others.html:16 templates/master_data_others.html:32
-#: templates/master_data_others.html:62
+#: .\templates\master_data_others.html:16
+#: .\templates\master_data_others.html:32
+#: .\templates\master_data_others.html:62
 msgid "Product name and others"
 msgstr "商品名等"
 
-#: templates/master_data_others.html:77 templates/master_data_others.html:200
+#: .\templates\master_data_others.html:77
+#: .\templates\master_data_others.html:200
 msgid "Name"
 msgstr "名前"
 
-#: templates/master_data_others.html:78 templates/master_data_others.html:207
+#: .\templates\master_data_others.html:78
+#: .\templates\master_data_others.html:207
 msgid "Account"
 msgstr "アカウント"
 
-#: templates/master_data_others.html:79 templates/master_data_others.html:214
+#: .\templates\master_data_others.html:79
+#: .\templates\master_data_others.html:214
 msgid "Tax classification"
-msgstr "税分類"
+msgstr "税区分"
 
-#: templates/master_data_others.html:178 templates/master_data_others.html:190
-#: templates/master_data_product_name.html:173
-#: templates/master_data_product_name.html:185
+#: .\templates\master_data_others.html:178
+#: .\templates\master_data_others.html:190
+#: .\templates\master_data_product_name.html:173
+#: .\templates\master_data_product_name.html:185
 msgid "Add Product"
 msgstr "製品を追加する"
 
-#: templates/master_data_others.html:202
+#: .\templates\master_data_others.html:202
 msgid "Enter name"
 msgstr "名前を入力"
 
-#: templates/master_data_others.html:209
+#: .\templates\master_data_others.html:209
 msgid "Enter account"
 msgstr "アカウントを入力してください"
 
-#: templates/master_data_others.html:216
+#: .\templates\master_data_others.html:216
 msgid "Enter tax classification"
 msgstr "税分類を入力してください"
 
-#: templates/master_data_pickup_destination.html:62
-msgid "Pick-up destination list"
-msgstr "ピックアップ先リスト"
+#: .\templates\master_data_pickup_destination.html:16
+#: .\templates\master_data_pickup_destination.html:32
+msgid "Pick-up destination"
+msgstr "ピックアップ先"
 
-#: templates/master_data_pickup_destination.html:78
-#: templates/master_data_pickup_destination.html:274
-msgid "Pick-up name"
-msgstr "ピックアップ名"
+#: .\templates\master_data_pickup_destination.html:62
+msgid "Shipping list"
+msgstr "配送先リスト"
 
-#: templates/master_data_pickup_destination.html:252
-#: templates/master_data_pickup_destination.html:264
+#: .\templates\master_data_pickup_destination.html:78
+msgid "Delivery name"
+msgstr "配送先名"
+
+#: .\templates\master_data_pickup_destination.html:252
+#: .\templates\master_data_pickup_destination.html:264
 msgid "Add Pick-up Destination"
 msgstr "ピックアップ先を追加"
 
-#: templates/master_data_pickup_destination.html:276
+#: .\templates\master_data_pickup_destination.html:274
+msgid "Pick-up name"
+msgstr "ピックアップ名"
+
+#: .\templates\master_data_pickup_destination.html:276
 msgid "Enter pick-up name"
 msgstr "ピックアップ名を入力"
 
-#: templates/master_data_product_name.html:62
+#: .\templates\master_data_product_name.html:62
 msgid "Product name list"
 msgstr "商品名リスト"
 
-#: templates/master_data_product_name.html:78
-#: templates/master_data_product_name.html:195
-#: templates/sales_contract_bought_by_trader.html:249
-#: templates/sales_contract_hall_sale.html:275
-#: templates/sales_contract_sold_by_trader.html:248
+#: .\templates\master_data_product_name.html:78
+#: .\templates\master_data_product_name.html:195
+#: .\templates\sales_contract_bought_by_trader.html:249
+#: .\templates\sales_contract_hall_sale.html:275
+#: .\templates\sales_contract_sold_by_trader.html:248
 msgid "Model name"
 msgstr "モデル名"
 
-#: templates/master_data_product_name.html:79
-#: templates/master_data_product_name.html:202
+#: .\templates\master_data_product_name.html:79
+#: .\templates\master_data_product_name.html:202
 msgid "Classification"
 msgstr "分類"
 
-#: templates/master_data_product_name.html:80
-#: templates/master_data_product_name.html:209
+#: .\templates\master_data_product_name.html:80
+#: .\templates\master_data_product_name.html:209
 msgid "Maker"
 msgstr "メーカー"
 
-#: templates/master_data_product_name.html:197
+#: .\templates\master_data_product_name.html:197
 msgid "Enter model name"
 msgstr "モデル名を入力"
 
-#: templates/master_data_product_name.html:204
+#: .\templates\master_data_product_name.html:204
 msgid "Enter classification"
 msgstr "分類を入力"
 
-#: templates/master_data_product_name.html:211
+#: .\templates\master_data_product_name.html:211
 msgid "Enter maker"
 msgstr "メーカーを入力"
 
-#: templates/sales_contract_bought_by_trader.html:73
-#: templates/sales_contract_hall_sale.html:72
-#: templates/sales_contract_sold_by_trader.html:74
+#: .\templates\sales_contract_bought_by_trader.html:17
+#: .\templates\sales_contract_bought_by_trader.html:33
+msgid "Buying by a trader"
+msgstr "トレーダーによる購入"
+
+#: .\templates\sales_contract_bought_by_trader.html:73
+#: .\templates\sales_contract_hall_sale.html:72
+#: .\templates\sales_contract_sold_by_trader.html:74
 msgid "Sales contract and invoice"
 msgstr "売買契約兼請求書"
 
-#: templates/sales_contract_bought_by_trader.html:85
-#: templates/sales_contract_hall_sale.html:84
-#: templates/sales_contract_sold_by_trader.html:86
+#: .\templates\sales_contract_bought_by_trader.html:85
+#: .\templates\sales_contract_hall_sale.html:84
+#: .\templates\sales_contract_sold_by_trader.html:86
 msgid "Update date"
 msgstr "更新日"
 
-#: templates/sales_contract_bought_by_trader.html:103
-#: templates/sales_contract_bought_by_trader.html:546
-#: templates/sales_contract_bought_by_trader.html:583
-#: templates/sales_contract_hall_sale.html:101
-#: templates/sales_contract_hall_sale.html:247
-#: templates/sales_contract_sold_by_trader.html:103
-#: templates/sales_contract_sold_by_trader.html:545
-#: templates/sales_contract_sold_by_trader.html:582
+#: .\templates\sales_contract_bought_by_trader.html:103
+#: .\templates\sales_contract_bought_by_trader.html:546
+#: .\templates\sales_contract_bought_by_trader.html:583
+#: .\templates\sales_contract_hall_sale.html:101
+#: .\templates\sales_contract_hall_sale.html:247
+#: .\templates\sales_contract_sold_by_trader.html:103
+#: .\templates\sales_contract_sold_by_trader.html:545
+#: .\templates\sales_contract_sold_by_trader.html:582
 msgid "Company name"
 msgstr "会社名"
 
-#: templates/sales_contract_bought_by_trader.html:178
-#: templates/sales_contract_hall_sale.html:175
-#: templates/sales_contract_sold_by_trader.html:177
+#: .\templates\sales_contract_bought_by_trader.html:178
+#: .\templates\sales_contract_hall_sale.html:175
+#: .\templates\sales_contract_sold_by_trader.html:177
 msgid "Remark"
 msgstr "備考"
 
-#: templates/sales_contract_bought_by_trader.html:190
-#: templates/sales_contract_hall_sale.html:187
-#: templates/sales_contract_sold_by_trader.html:189
+#: .\templates\sales_contract_bought_by_trader.html:190
+#: .\templates\sales_contract_hall_sale.html:187
+#: .\templates\sales_contract_sold_by_trader.html:189
 msgid "Shiping method"
 msgstr "運送方法"
 
-#: templates/sales_contract_bought_by_trader.html:191
-#: templates/sales_contract_hall_sale.html:188
-#: templates/sales_contract_sold_by_trader.html:190
+#: .\templates\sales_contract_bought_by_trader.html:191
+#: .\templates\sales_contract_hall_sale.html:188
+#: .\templates\sales_contract_sold_by_trader.html:190
 msgid "Shipping"
 msgstr "発送"
 
-#: templates/sales_contract_bought_by_trader.html:192
-#: templates/sales_contract_hall_sale.html:189
-#: templates/sales_contract_sold_by_trader.html:191
+#: .\templates\sales_contract_bought_by_trader.html:192
+#: .\templates\sales_contract_hall_sale.html:189
+#: .\templates\sales_contract_sold_by_trader.html:191
 msgid "Picking up"
 msgstr "引取"
 
-#: templates/sales_contract_bought_by_trader.html:193
-#: templates/sales_contract_hall_sale.html:190
-#: templates/sales_contract_sold_by_trader.html:192
+#: .\templates\sales_contract_bought_by_trader.html:193
+#: .\templates\sales_contract_hall_sale.html:190
+#: .\templates\sales_contract_sold_by_trader.html:192
 msgid "Change"
 msgstr "変更"
 
-#: templates/sales_contract_bought_by_trader.html:194
-#: templates/sales_contract_hall_sale.html:191
-#: templates/sales_contract_sold_by_trader.html:193
+#: .\templates\sales_contract_bought_by_trader.html:194
+#: .\templates\sales_contract_hall_sale.html:191
+#: .\templates\sales_contract_sold_by_trader.html:193
 msgid "Blank"
 msgstr "空白"
 
-#: templates/sales_contract_bought_by_trader.html:201
-#: templates/sales_contract_hall_sale.html:198
-#: templates/sales_contract_sold_by_trader.html:200
+#: .\templates\sales_contract_bought_by_trader.html:201
+#: .\templates\sales_contract_hall_sale.html:198
+#: .\templates\sales_contract_sold_by_trader.html:200
 msgid "Shipping date"
 msgstr "運送方法日付"
 
-#: templates/sales_contract_bought_by_trader.html:211
-#: templates/sales_contract_hall_sale.html:208
-#: templates/sales_contract_sold_by_trader.html:210
+#: .\templates\sales_contract_bought_by_trader.html:211
+#: .\templates\sales_contract_hall_sale.html:208
+#: .\templates\sales_contract_sold_by_trader.html:210
 msgid "Payment method"
 msgstr "お支払方法"
 
-#: templates/sales_contract_bought_by_trader.html:213
-#: templates/sales_contract_hall_sale.html:210
-#: templates/sales_contract_sold_by_trader.html:212
+#: .\templates\sales_contract_bought_by_trader.html:212
+#: .\templates\sales_contract_hall_sale.html:209
+#: .\templates\sales_contract_sold_by_trader.html:211
+msgid "Transfer"
+msgstr "振込"
+
+#: .\templates\sales_contract_bought_by_trader.html:213
+#: .\templates\sales_contract_hall_sale.html:210
+#: .\templates\sales_contract_sold_by_trader.html:212
 msgid "Check"
 msgstr "小切手"
 
-#: templates/sales_contract_bought_by_trader.html:214
-#: templates/sales_contract_hall_sale.html:211
-#: templates/sales_contract_sold_by_trader.html:213
+#: .\templates\sales_contract_bought_by_trader.html:214
+#: .\templates\sales_contract_hall_sale.html:211
+#: .\templates\sales_contract_sold_by_trader.html:213
 msgid "Bill"
 msgstr "手形"
 
-#: templates/sales_contract_bought_by_trader.html:215
-#: templates/sales_contract_hall_sale.html:212
-#: templates/sales_contract_sold_by_trader.html:214
+#: .\templates\sales_contract_bought_by_trader.html:215
+#: .\templates\sales_contract_hall_sale.html:212
+#: .\templates\sales_contract_sold_by_trader.html:214
 msgid "Cash"
 msgstr "現金"
 
-#: templates/sales_contract_bought_by_trader.html:222
-#: templates/sales_contract_hall_sale.html:219
-#: templates/sales_contract_sold_by_trader.html:221
+#: .\templates\sales_contract_bought_by_trader.html:222
+#: .\templates\sales_contract_hall_sale.html:219
+#: .\templates\sales_contract_sold_by_trader.html:221
 msgid "Payment deadline"
 msgstr "お支払期限"
 
-#: templates/sales_contract_bought_by_trader.html:235
-#: templates/sales_contract_hall_sale.html:232
-#: templates/sales_contract_sold_by_trader.html:234
+#: .\templates\sales_contract_bought_by_trader.html:235
+#: .\templates\sales_contract_hall_sale.html:232
+#: .\templates\sales_contract_sold_by_trader.html:234
 msgid "Billed amount"
 msgstr "御請求金額"
 
-#: templates/sales_contract_bought_by_trader.html:250
-#: templates/sales_contract_hall_sale.html:276
-#: templates/sales_contract_sold_by_trader.html:249
+#: .\templates\sales_contract_bought_by_trader.html:250
+#: .\templates\sales_contract_hall_sale.html:276
+#: .\templates\sales_contract_sold_by_trader.html:249
 msgid "Middle classification"
 msgstr "中分類"
 
-#: templates/sales_contract_bought_by_trader.html:251
-#: templates/sales_contract_hall_sale.html:277
-#: templates/sales_contract_sold_by_trader.html:250
+#: .\templates\sales_contract_bought_by_trader.html:251
+#: .\templates\sales_contract_hall_sale.html:277
+#: .\templates\sales_contract_sold_by_trader.html:250
 msgid "Quantity"
 msgstr "数量"
 
-#: templates/sales_contract_bought_by_trader.html:269
-#: templates/sales_contract_bought_by_trader.html:320
-#: templates/sales_contract_bought_by_trader.html:371
-#: templates/sales_contract_bought_by_trader.html:422
-#: templates/sales_contract_bought_by_trader.html:473
-#: templates/sales_contract_hall_sale.html:295
-#: templates/sales_contract_hall_sale.html:346
-#: templates/sales_contract_hall_sale.html:397
-#: templates/sales_contract_hall_sale.html:448
-#: templates/sales_contract_hall_sale.html:499
-#: templates/sales_contract_sold_by_trader.html:268
-#: templates/sales_contract_sold_by_trader.html:319
-#: templates/sales_contract_sold_by_trader.html:370
-#: templates/sales_contract_sold_by_trader.html:421
-#: templates/sales_contract_sold_by_trader.html:472
+#: .\templates\sales_contract_bought_by_trader.html:269
+#: .\templates\sales_contract_bought_by_trader.html:320
+#: .\templates\sales_contract_bought_by_trader.html:371
+#: .\templates\sales_contract_bought_by_trader.html:422
+#: .\templates\sales_contract_bought_by_trader.html:473
+#: .\templates\sales_contract_hall_sale.html:295
+#: .\templates\sales_contract_hall_sale.html:346
+#: .\templates\sales_contract_hall_sale.html:397
+#: .\templates\sales_contract_hall_sale.html:448
+#: .\templates\sales_contract_hall_sale.html:499
+#: .\templates\sales_contract_sold_by_trader.html:268
+#: .\templates\sales_contract_sold_by_trader.html:319
+#: .\templates\sales_contract_sold_by_trader.html:370
+#: .\templates\sales_contract_sold_by_trader.html:421
+#: .\templates\sales_contract_sold_by_trader.html:472
 msgid "Main body"
 msgstr "本体"
 
-#: templates/sales_contract_bought_by_trader.html:270
-#: templates/sales_contract_bought_by_trader.html:321
-#: templates/sales_contract_bought_by_trader.html:372
-#: templates/sales_contract_bought_by_trader.html:423
-#: templates/sales_contract_bought_by_trader.html:474
-#: templates/sales_contract_hall_sale.html:296
-#: templates/sales_contract_hall_sale.html:347
-#: templates/sales_contract_hall_sale.html:398
-#: templates/sales_contract_hall_sale.html:449
-#: templates/sales_contract_hall_sale.html:500
-#: templates/sales_contract_sold_by_trader.html:269
-#: templates/sales_contract_sold_by_trader.html:320
-#: templates/sales_contract_sold_by_trader.html:371
-#: templates/sales_contract_sold_by_trader.html:422
-#: templates/sales_contract_sold_by_trader.html:473
+#: .\templates\sales_contract_bought_by_trader.html:270
+#: .\templates\sales_contract_bought_by_trader.html:321
+#: .\templates\sales_contract_bought_by_trader.html:372
+#: .\templates\sales_contract_bought_by_trader.html:423
+#: .\templates\sales_contract_bought_by_trader.html:474
+#: .\templates\sales_contract_hall_sale.html:296
+#: .\templates\sales_contract_hall_sale.html:347
+#: .\templates\sales_contract_hall_sale.html:398
+#: .\templates\sales_contract_hall_sale.html:449
+#: .\templates\sales_contract_hall_sale.html:500
+#: .\templates\sales_contract_sold_by_trader.html:269
+#: .\templates\sales_contract_sold_by_trader.html:320
+#: .\templates\sales_contract_sold_by_trader.html:371
+#: .\templates\sales_contract_sold_by_trader.html:422
+#: .\templates\sales_contract_sold_by_trader.html:473
 msgid "Frame"
 msgstr "枠"
 
-#: templates/sales_contract_bought_by_trader.html:271
-#: templates/sales_contract_bought_by_trader.html:322
-#: templates/sales_contract_bought_by_trader.html:373
-#: templates/sales_contract_bought_by_trader.html:424
-#: templates/sales_contract_bought_by_trader.html:475
-#: templates/sales_contract_hall_sale.html:297
-#: templates/sales_contract_hall_sale.html:348
-#: templates/sales_contract_hall_sale.html:399
-#: templates/sales_contract_hall_sale.html:450
-#: templates/sales_contract_hall_sale.html:501
-#: templates/sales_contract_sold_by_trader.html:270
-#: templates/sales_contract_sold_by_trader.html:321
-#: templates/sales_contract_sold_by_trader.html:372
-#: templates/sales_contract_sold_by_trader.html:423
-#: templates/sales_contract_sold_by_trader.html:474
+#: .\templates\sales_contract_bought_by_trader.html:271
+#: .\templates\sales_contract_bought_by_trader.html:322
+#: .\templates\sales_contract_bought_by_trader.html:373
+#: .\templates\sales_contract_bought_by_trader.html:424
+#: .\templates\sales_contract_bought_by_trader.html:475
+#: .\templates\sales_contract_hall_sale.html:297
+#: .\templates\sales_contract_hall_sale.html:348
+#: .\templates\sales_contract_hall_sale.html:399
+#: .\templates\sales_contract_hall_sale.html:450
+#: .\templates\sales_contract_hall_sale.html:501
+#: .\templates\sales_contract_sold_by_trader.html:270
+#: .\templates\sales_contract_sold_by_trader.html:321
+#: .\templates\sales_contract_sold_by_trader.html:372
+#: .\templates\sales_contract_sold_by_trader.html:423
+#: .\templates\sales_contract_sold_by_trader.html:474
 msgid "Cell"
 msgstr "セル"
 
-#: templates/sales_contract_bought_by_trader.html:272
-#: templates/sales_contract_bought_by_trader.html:323
-#: templates/sales_contract_bought_by_trader.html:374
-#: templates/sales_contract_bought_by_trader.html:425
-#: templates/sales_contract_bought_by_trader.html:476
-#: templates/sales_contract_hall_sale.html:298
-#: templates/sales_contract_hall_sale.html:349
-#: templates/sales_contract_hall_sale.html:400
-#: templates/sales_contract_hall_sale.html:451
-#: templates/sales_contract_hall_sale.html:502
-#: templates/sales_contract_sold_by_trader.html:271
-#: templates/sales_contract_sold_by_trader.html:322
-#: templates/sales_contract_sold_by_trader.html:373
-#: templates/sales_contract_sold_by_trader.html:424
-#: templates/sales_contract_sold_by_trader.html:475
+#: .\templates\sales_contract_bought_by_trader.html:272
+#: .\templates\sales_contract_bought_by_trader.html:323
+#: .\templates\sales_contract_bought_by_trader.html:374
+#: .\templates\sales_contract_bought_by_trader.html:425
+#: .\templates\sales_contract_bought_by_trader.html:476
+#: .\templates\sales_contract_hall_sale.html:298
+#: .\templates\sales_contract_hall_sale.html:349
+#: .\templates\sales_contract_hall_sale.html:400
+#: .\templates\sales_contract_hall_sale.html:451
+#: .\templates\sales_contract_hall_sale.html:502
+#: .\templates\sales_contract_sold_by_trader.html:271
+#: .\templates\sales_contract_sold_by_trader.html:322
+#: .\templates\sales_contract_sold_by_trader.html:373
+#: .\templates\sales_contract_sold_by_trader.html:424
+#: .\templates\sales_contract_sold_by_trader.html:475
 msgid "Nail sheet"
 msgstr "釘シート"
 
-#: templates/sales_contract_bought_by_trader.html:522
-#: templates/sales_contract_hall_sale.html:570
-#: templates/sales_contract_sold_by_trader.html:521
+#: .\templates\sales_contract_bought_by_trader.html:522
+#: .\templates\sales_contract_hall_sale.html:570
+#: .\templates\sales_contract_sold_by_trader.html:521
 msgid "Subtotal"
 msgstr "小計"
 
-#: templates/sales_contract_bought_by_trader.html:526
-#: templates/sales_contract_hall_sale.html:574
-#: templates/sales_contract_sold_by_trader.html:525
+#: .\templates\sales_contract_bought_by_trader.html:526
+#: .\templates\sales_contract_hall_sale.html:574
+#: .\templates\sales_contract_sold_by_trader.html:525
 msgid "Consumption tax"
 msgstr "消費税"
 
-#: templates/sales_contract_bought_by_trader.html:530
-#: templates/sales_contract_hall_sale.html:578
-#: templates/sales_contract_sold_by_trader.html:529
+#: .\templates\sales_contract_bought_by_trader.html:530
+#: .\templates\sales_contract_hall_sale.html:578
+#: .\templates\sales_contract_sold_by_trader.html:529
 msgid "Insurance fee"
 msgstr "保険代"
 
-#: templates/sales_contract_bought_by_trader.html:534
-#: templates/sales_contract_hall_sale.html:582
-#: templates/sales_contract_sold_by_trader.html:533
+#: .\templates\sales_contract_bought_by_trader.html:534
+#: .\templates\sales_contract_hall_sale.html:582
+#: .\templates\sales_contract_sold_by_trader.html:533
 msgid "Total amount"
 msgstr "総合計"
 
-#: templates/sales_contract_bought_by_trader.html:544
-#: templates/sales_contract_sold_by_trader.html:543
+#: .\templates\sales_contract_bought_by_trader.html:544
+#: .\templates\sales_contract_sold_by_trader.html:543
 msgid "Product shipping address"
 msgstr "商品発送先"
 
-#: templates/sales_contract_bought_by_trader.html:570
-#: templates/sales_contract_bought_by_trader.html:607
-#: templates/sales_contract_sold_by_trader.html:569
-#: templates/sales_contract_sold_by_trader.html:606
+#: .\templates\sales_contract_bought_by_trader.html:570
+#: .\templates\sales_contract_bought_by_trader.html:607
+#: .\templates\sales_contract_sold_by_trader.html:569
+#: .\templates\sales_contract_sold_by_trader.html:606
 msgid "Date"
 msgstr "日付"
 
-#: templates/sales_contract_bought_by_trader.html:581
-#: templates/sales_contract_sold_by_trader.html:580
+#: .\templates\sales_contract_bought_by_trader.html:581
+#: .\templates\sales_contract_sold_by_trader.html:580
 msgid "Document shipping address"
 msgstr "書類発送先"
 
-#: templates/sales_contract_bought_by_trader.html:619
-#: templates/sales_contract_hall_sale.html:593
-#: templates/sales_contract_sold_by_trader.html:618
+#: .\templates\sales_contract_bought_by_trader.html:619
+#: .\templates\sales_contract_hall_sale.html:593
+#: .\templates\sales_contract_sold_by_trader.html:618
 msgid "Create Contract"
 msgstr "契約を作成する"
 
-#: templates/sales_contract_bought_by_trader.html:620
-#: templates/sales_contract_hall_sale.html:594
-#: templates/sales_contract_sold_by_trader.html:619
+#: .\templates\sales_contract_bought_by_trader.html:620
+#: .\templates\sales_contract_hall_sale.html:594
+#: .\templates\sales_contract_sold_by_trader.html:619
 msgid "Create Invoice"
 msgstr "請求書を作成する"
 
-#: templates/sales_contract_hall_sale.html:548
+#: .\templates\sales_contract_hall_sale.html:548
 msgid "Pachinko document fee"
 msgstr "パチンコドキュメント料金"
 
-#: templates/sales_contract_hall_sale.html:558
+#: .\templates\sales_contract_hall_sale.html:558
 msgid "Slot document fee"
 msgstr "スロットドキュメント料金"
+
+#: .\templates\sales_contract_sold_by_trader.html:18
+#: .\templates\sales_contract_sold_by_trader.html:34
+msgid "Sold by a trader"
+msgstr "トレーダーが販売"
+
+#~ msgid "Pick-up destination list"
+#~ msgstr "ピックアップ先リスト"
