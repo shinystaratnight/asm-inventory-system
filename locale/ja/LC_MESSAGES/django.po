@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-30 22:51+0800\n"
+"POT-Creation-Date: 2021-01-31 17:31+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: .\templates\accounting_csv_purchase.html:16
 #: .\templates\accounting_csv_purchase.html:31
 #: .\templates\accounting_csv_sale.html:16
-#: .\templates\accounting_csv_sale.html:31 .\templates\layouts\sidebar.html:69
+#: .\templates\accounting_csv_sale.html:31 .\templates\layouts\sidebar.html:70
 msgid "Accounting software CSV"
 msgstr "会計ソフトウェアCSV"
 
@@ -33,7 +33,8 @@ msgstr "購入"
 
 #: .\templates\accounting_csv_purchase.html:21
 #: .\templates\accounting_csv_sale.html:21 .\templates\list_inventory.html:21
-#: .\templates\list_sale_purchase.html:21
+#: .\templates\list_purchase_history.html:21
+#: .\templates\list_sale_history.html:21
 #: .\templates\master_data_customer.html:21
 #: .\templates\master_data_hall_details.html:21
 #: .\templates\master_data_others.html:21
@@ -47,7 +48,8 @@ msgstr "統計"
 
 #: .\templates\accounting_csv_purchase.html:22
 #: .\templates\accounting_csv_sale.html:22 .\templates\list_inventory.html:22
-#: .\templates\list_sale_purchase.html:22
+#: .\templates\list_purchase_history.html:22
+#: .\templates\list_sale_history.html:22
 #: .\templates\master_data_customer.html:22
 #: .\templates\master_data_hall_details.html:22
 #: .\templates\master_data_others.html:22
@@ -61,7 +63,8 @@ msgstr "請求書"
 
 #: .\templates\accounting_csv_purchase.html:23
 #: .\templates\accounting_csv_sale.html:23 .\templates\list_inventory.html:23
-#: .\templates\list_sale_purchase.html:23
+#: .\templates\list_purchase_history.html:23
+#: .\templates\list_sale_history.html:23
 #: .\templates\master_data_customer.html:23
 #: .\templates\master_data_hall_details.html:23
 #: .\templates\master_data_others.html:23
@@ -76,7 +79,8 @@ msgstr "スケジュール"
 #: .\templates\accounting_csv_purchase.html:30
 #: .\templates\accounting_csv_sale.html:30 .\templates\error-404.html:115
 #: .\templates\error-500.html:115 .\templates\list_inventory.html:30
-#: .\templates\list_sale_purchase.html:30
+#: .\templates\list_purchase_history.html:30
+#: .\templates\list_sale_history.html:30
 #: .\templates\master_data_customer.html:30
 #: .\templates\master_data_hall_details.html:30
 #: .\templates\master_data_others.html:30
@@ -90,7 +94,8 @@ msgstr "ホーム"
 
 #: .\templates\accounting_csv_purchase.html:36
 #: .\templates\accounting_csv_sale.html:36 .\templates\list_inventory.html:36
-#: .\templates\list_sale_purchase.html:36
+#: .\templates\list_purchase_history.html:36
+#: .\templates\list_sale_history.html:36
 #: .\templates\master_data_customer.html:36
 #: .\templates\master_data_hall_details.html:36
 #: .\templates\master_data_others.html:36
@@ -104,7 +109,8 @@ msgstr "サポート"
 
 #: .\templates\accounting_csv_purchase.html:40
 #: .\templates\accounting_csv_sale.html:40 .\templates\list_inventory.html:40
-#: .\templates\list_sale_purchase.html:40
+#: .\templates\list_purchase_history.html:40
+#: .\templates\list_sale_history.html:40
 #: .\templates\master_data_customer.html:40
 #: .\templates\master_data_hall_details.html:40
 #: .\templates\master_data_others.html:40
@@ -118,7 +124,8 @@ msgstr "設定"
 
 #: .\templates\accounting_csv_purchase.html:45
 #: .\templates\accounting_csv_sale.html:45 .\templates\list_inventory.html:45
-#: .\templates\list_sale_purchase.html:45
+#: .\templates\list_purchase_history.html:45
+#: .\templates\list_sale_history.html:45
 #: .\templates\master_data_customer.html:45
 #: .\templates\master_data_hall_details.html:45
 #: .\templates\master_data_others.html:45
@@ -132,7 +139,8 @@ msgstr "アカウントのセキュリティ"
 
 #: .\templates\accounting_csv_purchase.html:46
 #: .\templates\accounting_csv_sale.html:46 .\templates\list_inventory.html:46
-#: .\templates\list_sale_purchase.html:46
+#: .\templates\list_purchase_history.html:46
+#: .\templates\list_sale_history.html:46
 #: .\templates\master_data_customer.html:46
 #: .\templates\master_data_hall_details.html:46
 #: .\templates\master_data_others.html:46
@@ -146,7 +154,8 @@ msgstr "分析"
 
 #: .\templates\accounting_csv_purchase.html:47
 #: .\templates\accounting_csv_sale.html:47 .\templates\list_inventory.html:47
-#: .\templates\list_sale_purchase.html:47
+#: .\templates\list_purchase_history.html:47
+#: .\templates\list_sale_history.html:47
 #: .\templates\master_data_customer.html:47
 #: .\templates\master_data_hall_details.html:47
 #: .\templates\master_data_others.html:47
@@ -160,7 +169,8 @@ msgstr "アクセシビリティ"
 
 #: .\templates\accounting_csv_purchase.html:49
 #: .\templates\accounting_csv_sale.html:49 .\templates\list_inventory.html:49
-#: .\templates\list_sale_purchase.html:49
+#: .\templates\list_purchase_history.html:49
+#: .\templates\list_sale_history.html:49
 #: .\templates\master_data_customer.html:49
 #: .\templates\master_data_hall_details.html:49
 #: .\templates\master_data_others.html:49
@@ -174,13 +184,16 @@ msgstr "すべての設定"
 
 #: .\templates\accounting_csv_purchase.html:100
 #: .\templates\accounting_csv_sale.html:99 .\templates\list_inventory.html:227
-#: .\templates\list_sale_purchase.html:249
+#: .\templates\list_purchase_history.html:249
+#: .\templates\list_sale_history.html:249
 msgid "Export To CSV"
 msgstr "CSVにエクスポート"
 
 #: .\templates\accounting_csv_purchase.html:109
 #: .\templates\accounting_csv_sale.html:108 .\templates\index.html:278
-#: .\templates\list_inventory.html:236 .\templates\list_sale_purchase.html:258
+#: .\templates\list_inventory.html:236
+#: .\templates\list_purchase_history.html:258
+#: .\templates\list_sale_history.html:258
 #: .\templates\master_data_customer.html:321
 #: .\templates\master_data_hall_details.html:321
 #: .\templates\master_data_others.html:235
@@ -195,6 +208,7 @@ msgstr "著作権"
 #: .\templates\accounting_csv_sale.html:16
 #: .\templates\accounting_csv_sale.html:32
 #: .\templates\accounting_csv_sale.html:62
+#: .\templates\list_sale_history.html:32
 msgid "Sales"
 msgstr "売買"
 
@@ -434,9 +448,13 @@ msgid "Shipping address"
 msgstr "配送先"
 
 #: .\templates\layouts\sidebar.html:46 .\templates\list_inventory.html:87
-#: .\templates\list_inventory.html:137 .\templates\list_sale_purchase.html:108
-#: .\templates\list_sale_purchase.html:109
-#: .\templates\list_sale_purchase.html:142
+#: .\templates\list_inventory.html:137
+#: .\templates\list_purchase_history.html:108
+#: .\templates\list_purchase_history.html:109
+#: .\templates\list_purchase_history.html:142
+#: .\templates\list_sale_history.html:108
+#: .\templates\list_sale_history.html:109
+#: .\templates\list_sale_history.html:142
 #: .\templates\master_data_product_name.html:16
 #: .\templates\master_data_product_name.html:32
 msgid "Product name"
@@ -463,6 +481,7 @@ msgid "Sale"
 msgstr "売買"
 
 #: .\templates\layouts\sidebar.html:55
+#: .\templates\list_purchase_history.html:32
 #: .\templates\sales_contract_bought_by_trader.html:17
 #: .\templates\sales_contract_bought_by_trader.html:33
 msgid "Purchase"
@@ -475,25 +494,31 @@ msgid "Hall sale"
 msgstr "ホール売り"
 
 #: .\templates\layouts\sidebar.html:61 .\templates\list_inventory.html:16
-#: .\templates\list_inventory.html:31 .\templates\list_sale_purchase.html:16
-#: .\templates\list_sale_purchase.html:31
+#: .\templates\list_inventory.html:31 .\templates\list_purchase_history.html:16
+#: .\templates\list_purchase_history.html:31
+#: .\templates\list_sale_history.html:16 .\templates\list_sale_history.html:31
 msgid "List"
 msgstr "リスト"
 
-#: .\templates\layouts\sidebar.html:63
-msgid "Trading history"
-msgstr "売買履歴"
+#: .\templates\layouts\sidebar.html:63 .\templates\list_sale_history.html:16
+msgid "Sales history"
+msgstr "販売履歴"
 
-#: .\templates\layouts\sidebar.html:64 .\templates\list_inventory.html:16
+#: .\templates\layouts\sidebar.html:64
+#: .\templates\list_purchase_history.html:16
+msgid "Purchase history"
+msgstr "購入履歴"
+
+#: .\templates\layouts\sidebar.html:65 .\templates\list_inventory.html:16
 #: .\templates\list_inventory.html:32
 msgid "Inventory"
 msgstr "在庫"
 
-#: .\templates\layouts\sidebar.html:71
+#: .\templates\layouts\sidebar.html:72
 msgid "Trading data"
 msgstr "売買データ"
 
-#: .\templates\layouts\sidebar.html:72
+#: .\templates\layouts\sidebar.html:73
 msgid "Purchase data"
 msgstr "購入データ"
 
@@ -501,8 +526,9 @@ msgstr "購入データ"
 msgid "Inventory list"
 msgstr "在庫リスト"
 
-#: .\templates\list_inventory.html:77 .\templates\list_sale_purchase.html:84
-#: .\templates\list_sale_purchase.html:137
+#: .\templates\list_inventory.html:77 .\templates\list_purchase_history.html:84
+#: .\templates\list_purchase_history.html:137
+#: .\templates\list_sale_history.html:84 .\templates\list_sale_history.html:137
 #: .\templates\sales_contract_bought_by_trader.html:78
 #: .\templates\sales_contract_hall_sale.html:77
 #: .\templates\sales_contract_sold_by_trader.html:79
@@ -510,17 +536,22 @@ msgid "Contract date"
 msgstr "契約日"
 
 #: .\templates\list_inventory.html:94 .\templates\list_inventory.html:140
-#: .\templates\list_sale_purchase.html:94
-#: .\templates\list_sale_purchase.html:96
-#: .\templates\list_sale_purchase.html:97
-#: .\templates\list_sale_purchase.html:98
-#: .\templates\list_sale_purchase.html:99
-#: .\templates\list_sale_purchase.html:138
+#: .\templates\list_purchase_history.html:94
+#: .\templates\list_purchase_history.html:96
+#: .\templates\list_purchase_history.html:97
+#: .\templates\list_purchase_history.html:98
+#: .\templates\list_purchase_history.html:99
+#: .\templates\list_purchase_history.html:138
+#: .\templates\list_sale_history.html:94 .\templates\list_sale_history.html:96
+#: .\templates\list_sale_history.html:97 .\templates\list_sale_history.html:98
+#: .\templates\list_sale_history.html:99 .\templates\list_sale_history.html:138
 msgid "Supplier"
 msgstr "サプライヤー"
 
 #: .\templates\list_inventory.html:108 .\templates\list_inventory.html:109
-#: .\templates\list_inventory.html:141 .\templates\list_sale_purchase.html:140
+#: .\templates\list_inventory.html:141
+#: .\templates\list_purchase_history.html:140
+#: .\templates\list_sale_history.html:140
 #: .\templates\sales_contract_bought_by_trader.html:164
 #: .\templates\sales_contract_hall_sale.html:161
 #: .\templates\sales_contract_sold_by_trader.html:163
@@ -531,11 +562,15 @@ msgstr "担当名"
 msgid "Stock"
 msgstr "在庫"
 
-#: .\templates\list_inventory.html:124 .\templates\list_sale_purchase.html:124
+#: .\templates\list_inventory.html:124
+#: .\templates\list_purchase_history.html:124
+#: .\templates\list_sale_history.html:124
 msgid "Search"
 msgstr "探す"
 
-#: .\templates\list_inventory.html:132 .\templates\list_sale_purchase.html:132
+#: .\templates\list_inventory.html:132
+#: .\templates\list_purchase_history.html:132
+#: .\templates\list_sale_history.html:132
 msgid "Search results"
 msgstr "の検索結果"
 
@@ -547,7 +582,9 @@ msgstr "管理番号"
 msgid "Purchase date"
 msgstr "購入日"
 
-#: .\templates\list_inventory.html:142 .\templates\list_sale_purchase.html:143
+#: .\templates\list_inventory.html:142
+#: .\templates\list_purchase_history.html:143
+#: .\templates\list_sale_history.html:143
 msgid "Number of units"
 msgstr "ユニット数"
 
@@ -562,35 +599,38 @@ msgstr "単価"
 msgid "Total Price"
 msgstr "合計金額"
 
-#: .\templates\list_sale_purchase.html:16
-#: .\templates\list_sale_purchase.html:62
+#: .\templates\list_purchase_history.html:62
+#: .\templates\list_sale_history.html:62
 msgid "Sales & Purchase List"
 msgstr "売買と購入リスト"
 
-#: .\templates\list_sale_purchase.html:32
-msgid "Sales & Purchase"
-msgstr "売買と購入"
-
-#: .\templates\list_sale_purchase.html:77
-#: .\templates\list_sale_purchase.html:78
-#: .\templates\list_sale_purchase.html:136
+#: .\templates\list_purchase_history.html:77
+#: .\templates\list_purchase_history.html:78
+#: .\templates\list_purchase_history.html:136
+#: .\templates\list_sale_history.html:77 .\templates\list_sale_history.html:78
+#: .\templates\list_sale_history.html:136
 msgid "Transaction ID"
 msgstr "トランザクションID"
 
-#: .\templates\list_sale_purchase.html:115
-#: .\templates\list_sale_purchase.html:145
+#: .\templates\list_purchase_history.html:115
+#: .\templates\list_purchase_history.html:145
+#: .\templates\list_sale_history.html:115
+#: .\templates\list_sale_history.html:145
 msgid "Inventory clearing"
 msgstr "在庫清算"
 
-#: .\templates\list_sale_purchase.html:139
+#: .\templates\list_purchase_history.html:139
+#: .\templates\list_sale_history.html:139
 msgid "Delivery destination"
 msgstr "配達目的地"
 
-#: .\templates\list_sale_purchase.html:141
+#: .\templates\list_purchase_history.html:141
+#: .\templates\list_sale_history.html:141
 msgid "Payment day"
 msgstr "支払い日"
 
-#: .\templates\list_sale_purchase.html:144
+#: .\templates\list_purchase_history.html:144
+#: .\templates\list_sale_history.html:144
 #: .\templates\sales_contract_bought_by_trader.html:253
 #: .\templates\sales_contract_hall_sale.html:279
 #: .\templates\sales_contract_sold_by_trader.html:252
@@ -1043,6 +1083,9 @@ msgstr "パチンコドキュメント料金"
 #: .\templates\sales_contract_hall_sale.html:558
 msgid "Slot document fee"
 msgstr "スロットドキュメント料金"
+
+#~ msgid "Sales & Purchase"
+#~ msgstr "売買と購入"
 
 #~ msgid "Buying by a trader"
 #~ msgstr "トレーダーによる購入"

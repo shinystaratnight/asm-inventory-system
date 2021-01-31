@@ -1,0 +1,266 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+
+{% block title %} Sold by Trader {% endblock title %}
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}	
+	<input type="hidden" name="alt-path" value="{{ base_url }}/list_purchase_history.html">
+	<div class="content-wrapper">
+
+		<!-- Page header -->
+		<div class="page-header">
+			<div class="page-header-content">
+				<div class="page-title">
+					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "List" %}</span> - {% trans "Purchase history" %}</h4>
+				</div>
+
+				<div class="heading-elements">
+					<div class="heading-btn-group">
+						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>{% trans "Statistics" %}</span></a>
+						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>{% trans "Invoices" %}</span></a>
+						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>{% trans "Schedule" %}</span></a>
+					</div>
+				</div>
+			</div>
+
+			<div class="breadcrumb-line breadcrumb-line-component">
+				<ul class="breadcrumb">
+					<li><a href="index.html"><i class="icon-home2 position-left"></i> {% trans "Home" %}</a></li>
+					<li><a href="datatable_styling.html">{% trans "List" %}</a></li>
+					<li class="active">{% trans "Purchase" %}</li>
+				</ul>
+
+				<ul class="breadcrumb-elements">
+					<li><a href="#"><i class="icon-comment-discussion position-left"></i> {% trans "Support" %}</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-gear position-left"></i>
+								{% trans "Settings" %}
+							<span class="caret"></span>
+						</a>
+
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li><a href="#"><i class="icon-user-lock"></i> {% trans "Account security" %}</a></li>
+							<li><a href="#"><i class="icon-statistics"></i> {% trans "Analytics" %}</a></li>
+							<li><a href="#"><i class="icon-accessibility"></i> {% trans "Accessibility" %}</a></li>
+							<li class="divider"></li>
+							<li><a href="#"><i class="icon-gear"></i> {% trans "All settings" %}</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- /page header -->
+
+		<!-- Content area -->
+		<div class="content">
+
+			<div class="panel panel-flat">
+				<div class="panel-heading">
+					<h5 class="panel-title">{% trans "Purchase history" %}</h5>
+					<div class="heading-elements">
+						<ul class="icons-list">
+							<li><a data-action="collapse"></a></li>
+							<li><a data-action="reload"></a></li>
+							<li><a data-action="close"></a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="panel-body" style="padding-top: 20px">
+					<form action="#">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>{% trans "Transaction ID" %}:</label>
+									<input type="text" class="form-control" placeholder="{% trans 'Transaction ID' %}">
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>{% trans "Contract date" %}:</label>
+									<div class="input-group">
+										<span class="input-group-addon"><i class="icon-calendar22"></i></span>
+										<input type="text" class="form-control daterange-single">
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>{% trans "Supplier" %}:</label>
+									<select class="multiselect-no-active-class" multiple="multiple">
+										<option value="supplier01">{% trans "Supplier" %}01</option>
+										<option value="supplier02" selected="selected">{% trans "Supplier" %}r01</option>
+										<option value="supplier03">{% trans "Supplier" %}01</option>
+										<option value="supplier04">{% trans "Supplier" %}01</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>{% trans "Product name" %}:</label>
+									<input type="text" class="form-control" placeholder="{% trans 'Product name' %}">
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>{% trans "Inventory clearing" %}:</label>
+									<input type="text" class="form-control">
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="mb-3 text-right">
+									<button type="button" class="btn btn-primary"><i class="icon-search4 position-left"></i>{% trans "Search" %}</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<div class="table-responsive">
+					<p style="padding: 10px 20px; font-size: 16px;">{% trans "Search results" %}:</p>
+					<table class="table table-bordered table-hover table-framed">
+						<thead>
+							<tr class="bg-blue">
+								<th>{% trans "Transaction ID" %}</th>
+								<th>{% trans "Contract date" %}</th>
+								<th>{% trans "Supplier" %}</th>
+								<th>{% trans "Delivery destination" %}</th>
+								<th>{% trans "In charge" %}</th>
+								<th>{% trans "Payment day" %}</th>
+								<th>{% trans "Product name" %}</th>
+								<th>{% trans "Number of units" %}</th>
+								<th>{% trans "Amount of money" %}</th>
+								<th>{% trans "Inventory clearing" %}</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>0000000001</td>
+								<td>2020/10/5</td>
+								<td>Stephen, Richard</td>
+								<td>Huston, USA</td>
+								<td>Robert</td>
+								<td>2020/10/25</td>
+								<td>Product 01</td>
+								<td>120</td>
+								<td>2,000</td>
+								<td>Not finished</td>
+							</tr>
+
+							<tr>
+								<td>0000000012</td>
+								<td>2020/10/5</td>
+								<td>Stephen, Richard</td>
+								<td>Huston, USA</td>
+								<td>Robert</td>
+								<td>2020/10/25</td>
+								<td>Product 01</td>
+								<td>120</td>
+								<td>2,000</td>
+								<td>Not finished</td>
+							</tr>
+
+							<tr>
+								<td>0000000013</td>
+								<td>2020/10/5</td>
+								<td>Stephen, Richard</td>
+								<td>Huston, USA</td>
+								<td>Robert</td>
+								<td>2020/10/25</td>
+								<td>Product 01</td>
+								<td>120</td>
+								<td>2,000</td>
+								<td>Not finished</td>
+							</tr>
+
+							<tr>
+								<td>0000000018</td>
+								<td>2020/10/5</td>
+								<td>Stephen, Richard</td>
+								<td>Huston, USA</td>
+								<td>Robert</td>
+								<td>2020/10/25</td>
+								<td>Product 01</td>
+								<td>120</td>
+								<td>2,000</td>
+								<td>Not finished</td>
+							</tr>
+
+							<tr>
+								<td>0000000021</td>
+								<td>2020/10/5</td>
+								<td>Stephen, Richard</td>
+								<td>Huston, USA</td>
+								<td>Robert</td>
+								<td>2020/10/25</td>
+								<td>Product 01</td>
+								<td>120</td>
+								<td>2,000</td>
+								<td>Not finished</td>
+							</tr>
+
+							<tr>
+								<td>0000000022</td>
+								<td>2020/10/5</td>
+								<td>Stephen, Richard</td>
+								<td>Huston, USA</td>
+								<td>Robert</td>
+								<td>2020/10/25</td>
+								<td>Product 01</td>
+								<td>120</td>
+								<td>2,000</td>
+								<td>Not finished</td>
+							</tr>
+							
+						</tbody>
+
+					</table>
+				</div>
+
+				<div class="panel panel-body border-top-teal text-center">
+					<ul class="pagination pagination-separated pagination-rounded">
+						<li><a href="#">&lsaquo;</a></li>
+						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li class="disabled"><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#">&rsaquo;</a></li>
+					</ul>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="my-5-s text-center">
+							<button type="button" class="btn btn-primary"><i class="icon-exit3 position-left"></i>{% trans "Export To CSV" %}</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Footer -->
+			<div class="footer text-muted">
+				&copy; 2020. {% trans "Copyright" %}
+			</div>
+			<!-- /footer -->
+
+		</div>
+		<!-- /content area -->
+
+	</div>
+{% endblock %}
