@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-31 17:31+0800\n"
+"POT-Creation-Date: 2021-02-01 17:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: .\templates\accounting_csv_purchase.html:16
 #: .\templates\accounting_csv_purchase.html:31
 #: .\templates\accounting_csv_sale.html:16
-#: .\templates\accounting_csv_sale.html:31 .\templates\layouts\sidebar.html:70
+#: .\templates\accounting_csv_sale.html:31 .\templates\layouts\sidebar.html:71
 msgid "Accounting software CSV"
 msgstr "会計ソフトウェアCSV"
 
@@ -41,6 +41,7 @@ msgstr "購入"
 #: .\templates\master_data_pickup_destination.html:21
 #: .\templates\master_data_product_name.html:21
 #: .\templates\sales_contract_bought_by_trader.html:22
+#: .\templates\sales_contract_hall_purchase.html:21
 #: .\templates\sales_contract_hall_sale.html:21
 #: .\templates\sales_contract_sold_by_trader.html:23
 msgid "Statistics"
@@ -56,6 +57,7 @@ msgstr "統計"
 #: .\templates\master_data_pickup_destination.html:22
 #: .\templates\master_data_product_name.html:22
 #: .\templates\sales_contract_bought_by_trader.html:23
+#: .\templates\sales_contract_hall_purchase.html:22
 #: .\templates\sales_contract_hall_sale.html:22
 #: .\templates\sales_contract_sold_by_trader.html:24
 msgid "Invoices"
@@ -71,6 +73,7 @@ msgstr "請求書"
 #: .\templates\master_data_pickup_destination.html:23
 #: .\templates\master_data_product_name.html:23
 #: .\templates\sales_contract_bought_by_trader.html:24
+#: .\templates\sales_contract_hall_purchase.html:23
 #: .\templates\sales_contract_hall_sale.html:23
 #: .\templates\sales_contract_sold_by_trader.html:25
 msgid "Schedule"
@@ -87,6 +90,7 @@ msgstr "スケジュール"
 #: .\templates\master_data_pickup_destination.html:30
 #: .\templates\master_data_product_name.html:30
 #: .\templates\sales_contract_bought_by_trader.html:31
+#: .\templates\sales_contract_hall_purchase.html:30
 #: .\templates\sales_contract_hall_sale.html:30
 #: .\templates\sales_contract_sold_by_trader.html:32
 msgid "Home"
@@ -102,6 +106,7 @@ msgstr "ホーム"
 #: .\templates\master_data_pickup_destination.html:36
 #: .\templates\master_data_product_name.html:36
 #: .\templates\sales_contract_bought_by_trader.html:37
+#: .\templates\sales_contract_hall_purchase.html:36
 #: .\templates\sales_contract_hall_sale.html:36
 #: .\templates\sales_contract_sold_by_trader.html:38
 msgid "Support"
@@ -117,6 +122,7 @@ msgstr "サポート"
 #: .\templates\master_data_pickup_destination.html:40
 #: .\templates\master_data_product_name.html:40
 #: .\templates\sales_contract_bought_by_trader.html:41
+#: .\templates\sales_contract_hall_purchase.html:40
 #: .\templates\sales_contract_hall_sale.html:40
 #: .\templates\sales_contract_sold_by_trader.html:42
 msgid "Settings"
@@ -132,6 +138,7 @@ msgstr "設定"
 #: .\templates\master_data_pickup_destination.html:45
 #: .\templates\master_data_product_name.html:45
 #: .\templates\sales_contract_bought_by_trader.html:46
+#: .\templates\sales_contract_hall_purchase.html:45
 #: .\templates\sales_contract_hall_sale.html:45
 #: .\templates\sales_contract_sold_by_trader.html:47
 msgid "Account security"
@@ -147,6 +154,7 @@ msgstr "アカウントのセキュリティ"
 #: .\templates\master_data_pickup_destination.html:46
 #: .\templates\master_data_product_name.html:46
 #: .\templates\sales_contract_bought_by_trader.html:47
+#: .\templates\sales_contract_hall_purchase.html:46
 #: .\templates\sales_contract_hall_sale.html:46
 #: .\templates\sales_contract_sold_by_trader.html:48
 msgid "Analytics"
@@ -162,6 +170,7 @@ msgstr "分析"
 #: .\templates\master_data_pickup_destination.html:47
 #: .\templates\master_data_product_name.html:47
 #: .\templates\sales_contract_bought_by_trader.html:48
+#: .\templates\sales_contract_hall_purchase.html:47
 #: .\templates\sales_contract_hall_sale.html:47
 #: .\templates\sales_contract_sold_by_trader.html:49
 msgid "Accessibility"
@@ -177,6 +186,7 @@ msgstr "アクセシビリティ"
 #: .\templates\master_data_pickup_destination.html:49
 #: .\templates\master_data_product_name.html:49
 #: .\templates\sales_contract_bought_by_trader.html:50
+#: .\templates\sales_contract_hall_purchase.html:49
 #: .\templates\sales_contract_hall_sale.html:49
 #: .\templates\sales_contract_sold_by_trader.html:51
 msgid "All settings"
@@ -200,6 +210,7 @@ msgstr "CSVにエクスポート"
 #: .\templates\master_data_pickup_destination.html:330
 #: .\templates\master_data_product_name.html:230
 #: .\templates\sales_contract_bought_by_trader.html:636
+#: .\templates\sales_contract_hall_purchase.html:610
 #: .\templates\sales_contract_hall_sale.html:610
 #: .\templates\sales_contract_sold_by_trader.html:635
 msgid "Copyright"
@@ -254,6 +265,7 @@ msgstr "顧客名"
 #: .\templates\master_data_pickup_destination.html:79
 #: .\templates\master_data_pickup_destination.html:281
 #: .\templates\sales_contract_bought_by_trader.html:111
+#: .\templates\sales_contract_hall_purchase.html:109
 #: .\templates\sales_contract_hall_sale.html:109
 #: .\templates\sales_contract_sold_by_trader.html:111
 msgid "Frigana"
@@ -267,6 +279,7 @@ msgstr "ふりがな"
 #: .\templates\master_data_pickup_destination.html:80
 #: .\templates\master_data_pickup_destination.html:288
 #: .\templates\sales_contract_bought_by_trader.html:121
+#: .\templates\sales_contract_hall_purchase.html:119
 #: .\templates\sales_contract_hall_sale.html:119
 #: .\templates\sales_contract_sold_by_trader.html:121
 msgid "Postal code"
@@ -282,6 +295,8 @@ msgstr "郵便番号"
 #: .\templates\sales_contract_bought_by_trader.html:129
 #: .\templates\sales_contract_bought_by_trader.html:552
 #: .\templates\sales_contract_bought_by_trader.html:589
+#: .\templates\sales_contract_hall_purchase.html:127
+#: .\templates\sales_contract_hall_purchase.html:253
 #: .\templates\sales_contract_hall_sale.html:127
 #: .\templates\sales_contract_hall_sale.html:253
 #: .\templates\sales_contract_sold_by_trader.html:129
@@ -302,6 +317,8 @@ msgstr "住所"
 #: .\templates\sales_contract_bought_by_trader.html:564
 #: .\templates\sales_contract_bought_by_trader.html:595
 #: .\templates\sales_contract_bought_by_trader.html:601
+#: .\templates\sales_contract_hall_purchase.html:138
+#: .\templates\sales_contract_hall_purchase.html:261
 #: .\templates\sales_contract_hall_sale.html:138
 #: .\templates\sales_contract_hall_sale.html:261
 #: .\templates\sales_contract_sold_by_trader.html:140
@@ -324,6 +341,8 @@ msgstr "TEL"
 #: .\templates\sales_contract_bought_by_trader.html:564
 #: .\templates\sales_contract_bought_by_trader.html:595
 #: .\templates\sales_contract_bought_by_trader.html:601
+#: .\templates\sales_contract_hall_purchase.html:147
+#: .\templates\sales_contract_hall_purchase.html:261
 #: .\templates\sales_contract_hall_sale.html:147
 #: .\templates\sales_contract_hall_sale.html:261
 #: .\templates\sales_contract_sold_by_trader.html:149
@@ -467,6 +486,8 @@ msgstr "その他"
 #: .\templates\layouts\sidebar.html:52
 #: .\templates\sales_contract_bought_by_trader.html:17
 #: .\templates\sales_contract_bought_by_trader.html:32
+#: .\templates\sales_contract_hall_purchase.html:16
+#: .\templates\sales_contract_hall_purchase.html:31
 #: .\templates\sales_contract_hall_sale.html:16
 #: .\templates\sales_contract_hall_sale.html:31
 #: .\templates\sales_contract_sold_by_trader.html:18
@@ -493,32 +514,40 @@ msgstr "購入"
 msgid "Hall sale"
 msgstr "ホール売り"
 
-#: .\templates\layouts\sidebar.html:61 .\templates\list_inventory.html:16
+#: .\templates\layouts\sidebar.html:57
+#: .\templates\sales_contract_hall_purchase.html:16
+#: .\templates\sales_contract_hall_purchase.html:32
+msgid "Hall purchase"
+msgstr "ホール購入"
+
+#: .\templates\layouts\sidebar.html:62 .\templates\list_inventory.html:16
 #: .\templates\list_inventory.html:31 .\templates\list_purchase_history.html:16
 #: .\templates\list_purchase_history.html:31
 #: .\templates\list_sale_history.html:16 .\templates\list_sale_history.html:31
 msgid "List"
 msgstr "リスト"
 
-#: .\templates\layouts\sidebar.html:63 .\templates\list_sale_history.html:16
+#: .\templates\layouts\sidebar.html:64 .\templates\list_sale_history.html:16
+#: .\templates\list_sale_history.html:62
 msgid "Sales history"
 msgstr "販売履歴"
 
-#: .\templates\layouts\sidebar.html:64
+#: .\templates\layouts\sidebar.html:65
 #: .\templates\list_purchase_history.html:16
+#: .\templates\list_purchase_history.html:62
 msgid "Purchase history"
 msgstr "購入履歴"
 
-#: .\templates\layouts\sidebar.html:65 .\templates\list_inventory.html:16
+#: .\templates\layouts\sidebar.html:66 .\templates\list_inventory.html:16
 #: .\templates\list_inventory.html:32
 msgid "Inventory"
 msgstr "在庫"
 
-#: .\templates\layouts\sidebar.html:72
+#: .\templates\layouts\sidebar.html:73
 msgid "Trading data"
 msgstr "売買データ"
 
-#: .\templates\layouts\sidebar.html:73
+#: .\templates\layouts\sidebar.html:74
 msgid "Purchase data"
 msgstr "購入データ"
 
@@ -530,6 +559,7 @@ msgstr "在庫リスト"
 #: .\templates\list_purchase_history.html:137
 #: .\templates\list_sale_history.html:84 .\templates\list_sale_history.html:137
 #: .\templates\sales_contract_bought_by_trader.html:78
+#: .\templates\sales_contract_hall_purchase.html:77
 #: .\templates\sales_contract_hall_sale.html:77
 #: .\templates\sales_contract_sold_by_trader.html:79
 msgid "Contract date"
@@ -553,6 +583,7 @@ msgstr "サプライヤー"
 #: .\templates\list_purchase_history.html:140
 #: .\templates\list_sale_history.html:140
 #: .\templates\sales_contract_bought_by_trader.html:164
+#: .\templates\sales_contract_hall_purchase.html:161
 #: .\templates\sales_contract_hall_sale.html:161
 #: .\templates\sales_contract_sold_by_trader.html:163
 msgid "In charge"
@@ -590,6 +621,7 @@ msgstr "ユニット数"
 
 #: .\templates\list_inventory.html:143
 #: .\templates\sales_contract_bought_by_trader.html:252
+#: .\templates\sales_contract_hall_purchase.html:278
 #: .\templates\sales_contract_hall_sale.html:278
 #: .\templates\sales_contract_sold_by_trader.html:251
 msgid "Unit price"
@@ -598,11 +630,6 @@ msgstr "単価"
 #: .\templates\list_inventory.html:144
 msgid "Total Price"
 msgstr "合計金額"
-
-#: .\templates\list_purchase_history.html:62
-#: .\templates\list_sale_history.html:62
-msgid "Sales & Purchase List"
-msgstr "売買と購入リスト"
 
 #: .\templates\list_purchase_history.html:77
 #: .\templates\list_purchase_history.html:78
@@ -632,6 +659,7 @@ msgstr "支払い日"
 #: .\templates\list_purchase_history.html:144
 #: .\templates\list_sale_history.html:144
 #: .\templates\sales_contract_bought_by_trader.html:253
+#: .\templates\sales_contract_hall_purchase.html:279
 #: .\templates\sales_contract_hall_sale.html:279
 #: .\templates\sales_contract_sold_by_trader.html:252
 msgid "Amount of money"
@@ -707,6 +735,7 @@ msgstr "ホール詳細リスト"
 
 #: .\templates\master_data_hall_details.html:78
 #: .\templates\master_data_hall_details.html:258
+#: .\templates\sales_contract_hall_purchase.html:244
 #: .\templates\sales_contract_hall_sale.html:244
 msgid "Hall name"
 msgstr "ホール名"
@@ -802,6 +831,7 @@ msgstr "商品名リスト"
 #: .\templates\master_data_product_name.html:78
 #: .\templates\master_data_product_name.html:195
 #: .\templates\sales_contract_bought_by_trader.html:249
+#: .\templates\sales_contract_hall_purchase.html:275
 #: .\templates\sales_contract_hall_sale.html:275
 #: .\templates\sales_contract_sold_by_trader.html:248
 msgid "Model name"
@@ -830,12 +860,14 @@ msgid "Enter maker"
 msgstr "メーカーを入力"
 
 #: .\templates\sales_contract_bought_by_trader.html:73
+#: .\templates\sales_contract_hall_purchase.html:72
 #: .\templates\sales_contract_hall_sale.html:72
 #: .\templates\sales_contract_sold_by_trader.html:74
 msgid "Sales contract and invoice"
 msgstr "売買契約兼請求書"
 
 #: .\templates\sales_contract_bought_by_trader.html:85
+#: .\templates\sales_contract_hall_purchase.html:84
 #: .\templates\sales_contract_hall_sale.html:84
 #: .\templates\sales_contract_sold_by_trader.html:86
 msgid "Update date"
@@ -844,6 +876,8 @@ msgstr "更新日"
 #: .\templates\sales_contract_bought_by_trader.html:103
 #: .\templates\sales_contract_bought_by_trader.html:546
 #: .\templates\sales_contract_bought_by_trader.html:583
+#: .\templates\sales_contract_hall_purchase.html:101
+#: .\templates\sales_contract_hall_purchase.html:247
 #: .\templates\sales_contract_hall_sale.html:101
 #: .\templates\sales_contract_hall_sale.html:247
 #: .\templates\sales_contract_sold_by_trader.html:103
@@ -853,36 +887,42 @@ msgid "Company name"
 msgstr "会社名"
 
 #: .\templates\sales_contract_bought_by_trader.html:178
+#: .\templates\sales_contract_hall_purchase.html:175
 #: .\templates\sales_contract_hall_sale.html:175
 #: .\templates\sales_contract_sold_by_trader.html:177
 msgid "Remark"
 msgstr "備考"
 
 #: .\templates\sales_contract_bought_by_trader.html:190
+#: .\templates\sales_contract_hall_purchase.html:187
 #: .\templates\sales_contract_hall_sale.html:187
 #: .\templates\sales_contract_sold_by_trader.html:189
 msgid "Shiping method"
 msgstr "運送方法"
 
 #: .\templates\sales_contract_bought_by_trader.html:191
+#: .\templates\sales_contract_hall_purchase.html:188
 #: .\templates\sales_contract_hall_sale.html:188
 #: .\templates\sales_contract_sold_by_trader.html:190
 msgid "Shipping"
 msgstr "発送"
 
 #: .\templates\sales_contract_bought_by_trader.html:192
+#: .\templates\sales_contract_hall_purchase.html:189
 #: .\templates\sales_contract_hall_sale.html:189
 #: .\templates\sales_contract_sold_by_trader.html:191
 msgid "Picking up"
 msgstr "引取"
 
 #: .\templates\sales_contract_bought_by_trader.html:193
+#: .\templates\sales_contract_hall_purchase.html:190
 #: .\templates\sales_contract_hall_sale.html:190
 #: .\templates\sales_contract_sold_by_trader.html:192
 msgid "Change"
 msgstr "変更"
 
 #: .\templates\sales_contract_bought_by_trader.html:194
+#: .\templates\sales_contract_hall_purchase.html:191
 #: .\templates\sales_contract_hall_sale.html:191
 #: .\templates\sales_contract_sold_by_trader.html:193
 msgid "Blank"
@@ -894,54 +934,63 @@ msgid "Shipping date"
 msgstr "運送方法日付"
 
 #: .\templates\sales_contract_bought_by_trader.html:211
+#: .\templates\sales_contract_hall_purchase.html:208
 #: .\templates\sales_contract_hall_sale.html:208
 #: .\templates\sales_contract_sold_by_trader.html:210
 msgid "Payment method"
 msgstr "お支払方法"
 
 #: .\templates\sales_contract_bought_by_trader.html:212
+#: .\templates\sales_contract_hall_purchase.html:209
 #: .\templates\sales_contract_hall_sale.html:209
 #: .\templates\sales_contract_sold_by_trader.html:211
 msgid "Transfer"
 msgstr "振込"
 
 #: .\templates\sales_contract_bought_by_trader.html:213
+#: .\templates\sales_contract_hall_purchase.html:210
 #: .\templates\sales_contract_hall_sale.html:210
 #: .\templates\sales_contract_sold_by_trader.html:212
 msgid "Check"
 msgstr "小切手"
 
 #: .\templates\sales_contract_bought_by_trader.html:214
+#: .\templates\sales_contract_hall_purchase.html:211
 #: .\templates\sales_contract_hall_sale.html:211
 #: .\templates\sales_contract_sold_by_trader.html:213
 msgid "Bill"
 msgstr "手形"
 
 #: .\templates\sales_contract_bought_by_trader.html:215
+#: .\templates\sales_contract_hall_purchase.html:212
 #: .\templates\sales_contract_hall_sale.html:212
 #: .\templates\sales_contract_sold_by_trader.html:214
 msgid "Cash"
 msgstr "現金"
 
 #: .\templates\sales_contract_bought_by_trader.html:222
+#: .\templates\sales_contract_hall_purchase.html:219
 #: .\templates\sales_contract_hall_sale.html:219
 #: .\templates\sales_contract_sold_by_trader.html:221
 msgid "Payment deadline"
 msgstr "お支払期限"
 
 #: .\templates\sales_contract_bought_by_trader.html:235
+#: .\templates\sales_contract_hall_purchase.html:232
 #: .\templates\sales_contract_hall_sale.html:232
 #: .\templates\sales_contract_sold_by_trader.html:234
 msgid "Billed amount"
 msgstr "御請求金額"
 
 #: .\templates\sales_contract_bought_by_trader.html:250
+#: .\templates\sales_contract_hall_purchase.html:276
 #: .\templates\sales_contract_hall_sale.html:276
 #: .\templates\sales_contract_sold_by_trader.html:249
 msgid "Middle classification"
 msgstr "中分類"
 
 #: .\templates\sales_contract_bought_by_trader.html:251
+#: .\templates\sales_contract_hall_purchase.html:277
 #: .\templates\sales_contract_hall_sale.html:277
 #: .\templates\sales_contract_sold_by_trader.html:250
 msgid "Quantity"
@@ -952,6 +1001,11 @@ msgstr "数量"
 #: .\templates\sales_contract_bought_by_trader.html:371
 #: .\templates\sales_contract_bought_by_trader.html:422
 #: .\templates\sales_contract_bought_by_trader.html:473
+#: .\templates\sales_contract_hall_purchase.html:295
+#: .\templates\sales_contract_hall_purchase.html:346
+#: .\templates\sales_contract_hall_purchase.html:397
+#: .\templates\sales_contract_hall_purchase.html:448
+#: .\templates\sales_contract_hall_purchase.html:499
 #: .\templates\sales_contract_hall_sale.html:295
 #: .\templates\sales_contract_hall_sale.html:346
 #: .\templates\sales_contract_hall_sale.html:397
@@ -970,6 +1024,11 @@ msgstr "本体"
 #: .\templates\sales_contract_bought_by_trader.html:372
 #: .\templates\sales_contract_bought_by_trader.html:423
 #: .\templates\sales_contract_bought_by_trader.html:474
+#: .\templates\sales_contract_hall_purchase.html:296
+#: .\templates\sales_contract_hall_purchase.html:347
+#: .\templates\sales_contract_hall_purchase.html:398
+#: .\templates\sales_contract_hall_purchase.html:449
+#: .\templates\sales_contract_hall_purchase.html:500
 #: .\templates\sales_contract_hall_sale.html:296
 #: .\templates\sales_contract_hall_sale.html:347
 #: .\templates\sales_contract_hall_sale.html:398
@@ -988,6 +1047,11 @@ msgstr "枠"
 #: .\templates\sales_contract_bought_by_trader.html:373
 #: .\templates\sales_contract_bought_by_trader.html:424
 #: .\templates\sales_contract_bought_by_trader.html:475
+#: .\templates\sales_contract_hall_purchase.html:297
+#: .\templates\sales_contract_hall_purchase.html:348
+#: .\templates\sales_contract_hall_purchase.html:399
+#: .\templates\sales_contract_hall_purchase.html:450
+#: .\templates\sales_contract_hall_purchase.html:501
 #: .\templates\sales_contract_hall_sale.html:297
 #: .\templates\sales_contract_hall_sale.html:348
 #: .\templates\sales_contract_hall_sale.html:399
@@ -1006,6 +1070,11 @@ msgstr "セル"
 #: .\templates\sales_contract_bought_by_trader.html:374
 #: .\templates\sales_contract_bought_by_trader.html:425
 #: .\templates\sales_contract_bought_by_trader.html:476
+#: .\templates\sales_contract_hall_purchase.html:298
+#: .\templates\sales_contract_hall_purchase.html:349
+#: .\templates\sales_contract_hall_purchase.html:400
+#: .\templates\sales_contract_hall_purchase.html:451
+#: .\templates\sales_contract_hall_purchase.html:502
 #: .\templates\sales_contract_hall_sale.html:298
 #: .\templates\sales_contract_hall_sale.html:349
 #: .\templates\sales_contract_hall_sale.html:400
@@ -1020,24 +1089,28 @@ msgid "Nail sheet"
 msgstr "釘シート"
 
 #: .\templates\sales_contract_bought_by_trader.html:522
+#: .\templates\sales_contract_hall_purchase.html:570
 #: .\templates\sales_contract_hall_sale.html:570
 #: .\templates\sales_contract_sold_by_trader.html:521
 msgid "Subtotal"
 msgstr "小計"
 
 #: .\templates\sales_contract_bought_by_trader.html:526
+#: .\templates\sales_contract_hall_purchase.html:574
 #: .\templates\sales_contract_hall_sale.html:574
 #: .\templates\sales_contract_sold_by_trader.html:525
 msgid "Consumption tax"
 msgstr "消費税"
 
 #: .\templates\sales_contract_bought_by_trader.html:530
+#: .\templates\sales_contract_hall_purchase.html:578
 #: .\templates\sales_contract_hall_sale.html:578
 #: .\templates\sales_contract_sold_by_trader.html:529
 msgid "Insurance fee"
 msgstr "保険代"
 
 #: .\templates\sales_contract_bought_by_trader.html:534
+#: .\templates\sales_contract_hall_purchase.html:582
 #: .\templates\sales_contract_hall_sale.html:582
 #: .\templates\sales_contract_sold_by_trader.html:533
 msgid "Total amount"
@@ -1061,31 +1134,36 @@ msgid "Document shipping address"
 msgstr "書類発送先"
 
 #: .\templates\sales_contract_bought_by_trader.html:619
+#: .\templates\sales_contract_hall_purchase.html:593
 #: .\templates\sales_contract_hall_sale.html:593
 #: .\templates\sales_contract_sold_by_trader.html:618
 msgid "Create Contract"
 msgstr "契約を作成する"
 
 #: .\templates\sales_contract_bought_by_trader.html:620
+#: .\templates\sales_contract_hall_purchase.html:594
 #: .\templates\sales_contract_hall_sale.html:594
 #: .\templates\sales_contract_sold_by_trader.html:619
 msgid "Create Invoice"
 msgstr "請求書を作成する"
 
+#: .\templates\sales_contract_hall_purchase.html:198
 #: .\templates\sales_contract_hall_sale.html:198
 msgid "Delivery date"
 msgstr "納品日"
 
+#: .\templates\sales_contract_hall_purchase.html:548
 #: .\templates\sales_contract_hall_sale.html:548
 msgid "Pachinko document fee"
 msgstr "パチンコドキュメント料金"
 
+#: .\templates\sales_contract_hall_purchase.html:558
 #: .\templates\sales_contract_hall_sale.html:558
 msgid "Slot document fee"
 msgstr "スロットドキュメント料金"
 
-#~ msgid "Sales & Purchase"
-#~ msgstr "売買と購入"
+#~ msgid "Sales & Purchase List"
+#~ msgstr "売買と購入リスト"
 
 #~ msgid "Buying by a trader"
 #~ msgstr "トレーダーによる購入"
