@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-01 13:23+0000\n"
+"POT-Creation-Date: 2021-02-01 13:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -442,17 +442,21 @@ msgstr "ログアウト"
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: templates/layouts/sidebar.html:41
+#: templates/layouts/sidebar.html:41 templates/master_data_customer.html:16
+#: templates/master_data_hall_details.html:16
+#: templates/master_data_others.html:16
+#: templates/master_data_product_name.html:16
+#: templates/master_data_shipping_addresses.html:16
 msgid "Master data"
 msgstr "マスターデータ"
 
 #: templates/layouts/sidebar.html:43 templates/master_data_customer.html:16
 #: templates/master_data_customer.html:32
-#: templates/master_data_hall_details.html:32
 msgid "Customer master"
 msgstr "顧客マスター"
 
-#: templates/layouts/sidebar.html:44
+#: templates/layouts/sidebar.html:44 templates/master_data_hall_details.html:16
+#: templates/master_data_hall_details.html:32
 msgid "Hall"
 msgstr "ホール"
 
@@ -686,29 +690,17 @@ msgstr "あなたのメール"
 msgid "Reset password"
 msgstr "パスワードを再設定する"
 
-#: templates/master_data_customer.html:16
-#: templates/master_data_hall_details.html:16
-#: templates/master_data_others.html:16
-#: templates/master_data_product_name.html:16
-#: templates/master_data_product_name.html:31
-#: templates/master_data_shipping_addresses.html:16
-msgid "Master data registration"
-msgstr "マスタデータ登録"
-
 #: templates/master_data_customer.html:31
 #: templates/master_data_hall_details.html:31
 #: templates/master_data_others.html:31
+#: templates/master_data_product_name.html:31
 #: templates/master_data_shipping_addresses.html:31
-msgid "Master card registration"
-msgstr "マスターカード登録"
+msgid "Master data registration"
+msgstr "マスタデータ登録"
 
 #: templates/master_data_customer.html:62
 msgid "Customer master list"
-msgstr "カスタマーマスターリスト"
-
-#: templates/master_data_hall_details.html:16
-msgid "Hall details"
-msgstr "ホール詳細"
+msgstr "顧客マスターリスト"
 
 #: templates/master_data_hall_details.html:62
 msgid "Hall details list"
@@ -1127,6 +1119,12 @@ msgstr "日付"
 #: templates/sales_contract_trader_sales.html:580
 msgid "Document shipping address"
 msgstr "書類発送先"
+
+#~ msgid "Master card registration"
+#~ msgstr "マスターカード登録"
+
+#~ msgid "Hall details"
+#~ msgstr "ホール詳細"
 
 #~ msgid "Pick-up destination"
 #~ msgstr "ピックアップ先"
