@@ -499,14 +499,14 @@ msgstr "売買契約の作成"
 #: .\templates\sales_contract_sold_by_trader.html:18
 #: .\templates\sales_contract_sold_by_trader.html:34
 msgid "Sale"
-msgstr "売買"
+msgstr "業者売"
 
 #: .\templates\layouts\sidebar.html:55
 #: .\templates\list_purchase_history.html:32
 #: .\templates\sales_contract_bought_by_trader.html:17
 #: .\templates\sales_contract_bought_by_trader.html:33
 msgid "Purchase"
-msgstr "購入"
+msgstr "業者買"
 
 #: .\templates\layouts\sidebar.html:56
 #: .\templates\sales_contract_hall_sale.html:16
