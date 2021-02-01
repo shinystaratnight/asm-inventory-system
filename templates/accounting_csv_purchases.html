@@ -6,14 +6,14 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}	
-	<input type="hidden" name="alt-path" value="{{ base_url }}/accounting_csv_sale.html">
+	<input type="hidden" name="alt-path" value="{{ base_url }}/accounting_csv_purchases.html">
 	<div class="content-wrapper">
 
 		<!-- Page header -->
 		<div class="page-header">
 			<div class="page-header-content">
 				<div class="page-title">
-					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "Accounting software CSV" %}</span> - {% trans "Sales" %}</h4>
+					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "Accounting software CSV" %}</span> - {% trans "Purchases data" %}</h4>
 				</div>
 
 				<div class="heading-elements">
@@ -29,7 +29,7 @@
 				<ul class="breadcrumb">
 					<li><a href="index.html"><i class="icon-home2 position-left"></i> {% trans "Home" %}</a></li>
 					<li><a href="datatable_styling.html">{% trans "Accounting software CSV" %}</a></li>
-					<li class="active">{% trans "Sales" %}</li>
+					<li class="active">{% trans "Purchases data" %}</li>
 				</ul>
 
 				<ul class="breadcrumb-elements">
@@ -59,7 +59,7 @@
 
 			<div class="panel panel-flat">
 				<div class="panel-heading">
-					<h5 class="panel-title">{% trans "Sales" %}</h5>
+					<h5 class="panel-title">{% trans "Purchases" %}</h5>
 					<div class="heading-elements">
 						<ul class="icons-list">
 							<li><a data-action="collapse"></a></li>
@@ -76,20 +76,21 @@
 						
 						<tbody>
 							<tr>
-								<td>2020/10/28</td>
-								<td>Income</td>
-								<td>Taxable sales 10%</td>
-								<td>93,500</td>
-								<td>Lime Co.,Ltd.</td>
+								<td>2020/10/5</td>
+								<td>Spending</td>
+								<td>Section vs. Purchasing 10%</td>
+								<td>147,950</td>
+								<td>Sanyu Shoji Co.,Ltd.</td>
 							</tr>
 							<tr>
-								<td>2020/10/28</td>
+								<td>2020/10/5</td>
 								<td></td>
-								<td>Non-payment sales</td>
-								<td>100</td>
-								<td>Lime Co.,Ltd.</td>
+								<td>Non-payment</td>
+								<td>260</td>
+								<td>Sanyu Shoji Co.,Ltd.</td>
 							</tr>
 						</tbody>
+
 					</table>
 				</div>
 

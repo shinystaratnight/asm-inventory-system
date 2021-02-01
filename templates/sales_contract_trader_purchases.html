@@ -5,15 +5,16 @@
 
 {% block stylesheets %}{% endblock stylesheets %}
 
-{% block content %}	
-	<input type="hidden" name="alt-path" value="{{ base_url }}/sales_contract_hall_purchase.html">
+{% block content %}
+	<input type="hidden" name="alt-path" value="{{ base_url }}/sales_contract_trader_purchases.html">
+	<!-- Main content -->
 	<div class="content-wrapper">
 
 		<!-- Page header -->
 		<div class="page-header">
 			<div class="page-header-content">
 				<div class="page-title">
-					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "Sales contract creation" %}</span> - {% trans "Hall purchases" %}</h4>
+					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "Sales contract creation" %}</span> - {% trans "Trader purchases" %}</h4>
 				</div>
 
 				<div class="heading-elements">
@@ -29,7 +30,7 @@
 				<ul class="breadcrumb">
 					<li><a href="index.html"><i class="icon-home2 position-left"></i> {% trans "Home" %}</a></li>
 					<li><a href="datatable_styling.html">{% trans "Sales contract creation" %}</a></li>
-					<li class="active">{% trans "Hall purchases" %}</li>
+					<li class="active">{% trans "Trader purchases" %}</li>
 				</ul>
 
 				<ul class="breadcrumb-elements">
@@ -98,6 +99,7 @@
 									<div class="row d-flex flex-wrap">
 										<div class="col-6 col-sm-12">
 											<div class="form-group d-flex row">
+
 												<label class="control-label col-3 mt-auto">{% trans "Company name" %}</label>
 												<div class="col-9">
 													<input type="text" class="form-control">
@@ -158,6 +160,7 @@
 										<h6>P-SENSOR 8240-2413-3628</h6>
 										<div class="form-group d-flex row">
 											<div class="w-100 d-flex align-items-center">
+
 												<label class="control-label col-3 mt-auto">{% trans "In charge" %}</label>
 												<div class="col-9">
 													<input type="text" class="form-control" value="">
@@ -183,10 +186,19 @@
 										<div class="d-flex">
 											<div class="col-6">
 												<div class="form-group">
+													<select name="select" class="form-control">
+														<option value="">{% trans "Shiping method" %}</option>
+														<option value="">{% trans "Shipping" %}</option>
+														<option value="">{% trans "Picking up" %}</option>
+														<option value="">ID {% trans "Change" %}</option>
+														<option value="">* {% trans "Blank" %}</option>
+													</select>
+												</div>
+												<div class="form-group">
 													<div class="form-group">
 														<div class="input-group">
 															<span class="input-group-btn">
-																<button class="btn btn-default">{% trans "Delivery date" %}</button>
+																<button class="btn btn-default">{% trans "Shipping date" %}</button>
 															</span>
 															<input type="text" class="form-control daterange-single">
 														</div>
@@ -227,35 +239,6 @@
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-							<div class="row d-flex flex-wrap mt-5-s justify-content-center">
-								<div class="col-lg-8 col-xs-12">
-									<fieldset class="content-group">
-										<legend class="text-bold text-center">{% trans "Hall name" %}</legend>
-										<div class="row d-flex flex-wrap">
-											<div class="form-group col-lg-4 col-xs-12">
-												<label class="control-label">{% trans "Company name" %}</label>
-												<div class="">
-													<input type="text" class="form-control">
-												</div>
-											</div>
-											<div class="form-group col-lg-8 col-xs-12">
-												<label class="control-label">{% trans "Street address" %}</label>
-												<div class="">
-													<input type="text" class="form-control">
-												</div>
-											</div>
-										</div>
-										<div class="row d-flex">
-											<div class="form-group col-lg-4 col-xs-12">
-												<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
-												<div class="">
-													<input type="text" class="form-control"></input>
-												</div>
-											</div>
-										</div>
-									</fieldset>
 								</div>
 							</div>
 							<div class="row">
@@ -531,39 +514,7 @@
 									</table>
 								</div>
 							</div>
-							<div class="row d-flex flex-wrap">
-								<div class="col-lg-6 col-xs-12">
-									<div class="form-group">
-										<div class="input-group">
-											<span class="input-group-btn">
-												<button class="btn btn-default">{% trans "Pachinko document fee" %}</button>
-											</span>
-											<input type="text" class="form-control">
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6 col-xs-12">
-									<div class="form-group">
-										<div class="input-group">
-											<span class="input-group-btn">
-												<button class="btn btn-default">{% trans "Slot document fee" %}</button>
-											</span>
-											<input type="text" class="form-control">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row flex-wrap d-flex justify-content-between align-items-center">
-								<div class="col-lg-8 col-xs-12">
-									<div class="form-group">
-										<div class="input-group">
-											<span class="input-group-btn">
-												<button class="btn btn-default">{% trans "Delivery destination" %}</button>
-											</span>
-											<input type="text" class="form-control">
-										</div>
-									</div>
-								</div>
+							<div class="row flex-wrap d-flex justify-content-end">
 								<div class="col-lg-4 col-xs-12">
 									<table class="table table-bordered">
 										<tbody>
@@ -587,7 +538,81 @@
 									</table>
 								</div>
 							</div>
-							
+							<div class="row d-flex flex-wrap mt-5-s">
+								<div class="col-lg-6 col-xs-12">
+									<fieldset class="content-group">
+										<legend class="text-bold text-center">{% trans "Product shipping address" %}</legend>
+										<div class="form-group">
+											<label class="control-label">{% trans "Company name" %}</label>
+											<div class="">
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">{% trans "Street address" %}</label>
+											<div class="">
+												<textarea type="text" class="form-control"></textarea>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
+											<div class="">
+												<input type="text" class="form-control"></input>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
+											<div class="">
+												<input type="text" class="form-control"></input>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">{% trans "Date" %}</label>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
+												<input type="text" class="form-control datepicker">
+											</div>
+										</div>
+									</fieldset>
+									
+								</div>
+								<div class="col-lg-6 col-xs-12">
+									<fieldset class="content-group">
+										<legend class="text-bold text-center">{% trans "Document shipping address" %}</legend>
+										<div class="form-group">
+											<label class="control-label">{% trans "Company name" %}</label>
+											<div class="">
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">{% trans "Street address" %}</label>
+											<div class="">
+												<textarea type="text" class="form-control"></textarea>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
+											<div class="">
+												<input type="text" class="form-control"></input>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
+											<div class="">
+												<input type="text" class="form-control"></input>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">{% trans "Date" %}</label>
+											<div class="input-group">
+												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
+												<input type="text" class="form-control datepicker">
+											</div>
+										</div>
+									</fieldset>
+								</div>
+							</div>
 							<div class="row mt-5-s">
 								<div class="col-md-12">
 									<div class="mb-4 text-center">
@@ -604,8 +629,8 @@
 				</div>
 
 			
-			</div>
-
+			</div>		
+			
 			<!-- Footer -->
 			<div class="footer text-muted">
 				&copy; 2020. {% trans "Copyright" %}
