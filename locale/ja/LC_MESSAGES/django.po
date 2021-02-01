@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-01 17:34+0800\n"
+"POT-Creation-Date: 2021-02-01 17:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -511,14 +511,14 @@ msgstr "購入"
 #: .\templates\layouts\sidebar.html:56
 #: .\templates\sales_contract_hall_sale.html:16
 #: .\templates\sales_contract_hall_sale.html:32
-msgid "Hall sale"
-msgstr "ホール売り"
+msgid "Hall sales"
+msgstr "ホール売"
 
 #: .\templates\layouts\sidebar.html:57
 #: .\templates\sales_contract_hall_purchase.html:16
 #: .\templates\sales_contract_hall_purchase.html:32
-msgid "Hall purchase"
-msgstr "ホール購入"
+msgid "Hall purchases"
+msgstr "ホール買"
 
 #: .\templates\layouts\sidebar.html:62 .\templates\list_inventory.html:16
 #: .\templates\list_inventory.html:31 .\templates\list_purchase_history.html:16
