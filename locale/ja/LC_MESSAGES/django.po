@@ -632,7 +632,7 @@ msgstr "購入日"
 #: .\templates\sales_contract_hall_purchases.html:541
 #: .\templates\sales_contract_hall_sales.html:540
 msgid "Number of units"
-msgstr "ユニット数"
+msgstr "台数"
 
 #: .\templates\list_inventory.html:143
 #: .\templates\sales_contract_hall_purchases.html:209
@@ -811,14 +811,14 @@ msgstr "商品名リスト"
 #: .\templates\sales_contract_trader_purchases.html:208
 #: .\templates\sales_contract_trader_sales.html:210
 msgid "Model name"
-msgstr "モデル名"
+msgstr "機種名"
 
 #: .\templates\master_data_product_name.html:79
 #: .\templates\master_data_product_name.html:202
 #: .\templates\sales_contract_hall_purchases.html:539
 #: .\templates\sales_contract_hall_sales.html:538
 msgid "Classification"
-msgstr "分類"
+msgstr "区分"
 
 #: .\templates\master_data_product_name.html:80
 #: .\templates\master_data_product_name.html:209
