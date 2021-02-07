@@ -236,6 +236,10 @@
 .border-color-1 {
     border-color: #ddd;
 }
+.print-btn-group {
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
 @media screen and (max-width: 768px) {
 	.panel .visible-elements {
 			padding-top: 20px;
