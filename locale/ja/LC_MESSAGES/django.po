@@ -275,7 +275,7 @@ msgstr "顧客名"
 #: .\templates\sales_contract_trader_purchases.html:116
 #: .\templates\sales_contract_trader_sales.html:118
 msgid "Frigana"
-msgstr "ふりがな"
+msgstr "フリガナ"
 
 #: .\templates\index.html:37 .\templates\index.html:229
 #: .\templates\master_data_customer.html:80
