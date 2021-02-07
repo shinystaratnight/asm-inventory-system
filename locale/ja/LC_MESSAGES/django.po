@@ -584,7 +584,7 @@ msgstr "在庫"
 #: templates/list_inventory.html:124 templates/list_purchases_history.html:124
 #: templates/list_sales_history.html:124
 msgid "Search"
-msgstr "探す"
+msgstr "検索"
 
 #: templates/list_inventory.html:132 templates/list_purchases_history.html:132
 #: templates/list_sales_history.html:132

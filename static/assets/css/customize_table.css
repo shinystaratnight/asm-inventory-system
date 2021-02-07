@@ -1,0 +1,3 @@
+.datatable-header .dataTables_filter, .datatable-header .dataTables_length {
+    display: none;
+}

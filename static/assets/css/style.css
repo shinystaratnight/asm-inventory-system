@@ -34,12 +34,18 @@
 .col-12 {
     width: 100%;
 }
+.offset-1 {
+    margin-left: calc(100% * 1 / 12);
+}
 .d-flex {
     display: flex;
 }
 .d-flex-column {
     display: flex;
     flex-direction: column;
+}
+.d-grid {
+    display: grid;
 }
 .justify-content-end {
 	justify-content: flex-end;
@@ -52,6 +58,12 @@
 }
 .flex-wrap {
     flex-wrap: wrap;
+}
+.mt-0, .my-0 {
+    margin-top: 0 !important;
+}
+.mb-0, .my-0 {
+    margin-bottom: 0 !important;
 }
 .mt-3, .my-3 {
     margin-top: 1rem;
@@ -96,11 +108,23 @@
     padding-left: 1rem;
     padding-right: 1rem;
 }
+.pt-10-px, .py-10-px {
+    padding-top: 10px;
+}
+.pb-10-px, .py-10-px {
+    padding-bottom: 10px;
+}
 .w-100 {
     width: 100%;
 }
 .w-50 {
     width: 50%;
+}
+.w-12-5 {
+    width: 12.5%;
+}
+.w-50-px {
+    width: 50px;
 }
 .border-top-0 {
     border-top: 0 !important;
@@ -121,7 +145,7 @@
     border-top: 1px solid;
 }
 .table-cell {
-    min-height: 35px;
+    min-height: 56px;
     padding: 0 !important;
     text-align: center;
     display: flex;
@@ -136,7 +160,19 @@
 	border-left: 0;
 }
 .h-70 {
-    height: 70px;
+    height: 70px !important;
+}
+.h-92-px {
+    height: 92px !important;
+}
+.h-112-px {
+    height: 112px !important;
+}
+.h-180-px {
+    height: 180px !important;
+}
+.h-200-px {
+    height: 200px !important;
 }
 .border-right-0 {
     border-right: 0!important;
@@ -163,7 +199,39 @@
 	margin-bottom: 40px;
 	padding-top: 20px;
 }
-
+.remark {
+    height: 125px !important;
+}
+.seal-wrapper {
+    padding: 32px;
+    border: 1px solid rgba(0,0,0, 0.37);
+    height: 185px;
+    position: relative;
+}
+.seal {
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid #000;
+    bottom: 32px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.seal-company {
+    height: 29px;
+}
+.seal-ceo {
+    height: 20px;
+}
+.border-left {
+    border-left: 1px solid #ddd;
+}
+.border-bottom {
+    border-bottom: 1px solid #ddd;
+}
 @media screen and (max-width: 768px) {
 	.panel .visible-elements {
 			padding-top: 20px;
