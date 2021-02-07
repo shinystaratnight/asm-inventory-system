@@ -152,6 +152,7 @@
     align-items: center;
     justify-content: center;
     border-right: 1px solid;
+    border-color: #ddd;
 }
 .border {
     border: 1px solid;
@@ -231,6 +232,9 @@
 }
 .border-bottom {
     border-bottom: 1px solid #ddd;
+}
+.border-color-1 {
+    border-color: #ddd;
 }
 @media screen and (max-width: 768px) {
 	.panel .visible-elements {

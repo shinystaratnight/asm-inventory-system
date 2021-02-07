@@ -1098,7 +1098,7 @@ msgstr "非課税"
 #: .\templates\sales_contract_trader_purchases.html:419
 #: .\templates\sales_contract_trader_sales.html:454
 msgid "Total amount"
-msgstr "総合計"
+msgstr "合計"
 
 #: .\templates\sales_contract_hall_purchases.html:733
 #: .\templates\sales_contract_hall_sales.html:732
