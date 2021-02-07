@@ -878,7 +878,7 @@ msgstr "甲"
 #: .\templates\sales_contract_hall_purchases.html:105
 #: .\templates\sales_contract_hall_sales.html:105
 msgid "Keyword search"
-msgstr ""
+msgstr "キーワード検索"
 
 #: .\templates\sales_contract_hall_purchases.html:115
 #: .\templates\sales_contract_hall_sales.html:115
@@ -1241,8 +1241,7 @@ msgstr "購入証明書送付後、キャンセルした場合には売買成立
 msgid ""
 "We will notify you of any missing items or damage within 3 days after the "
 "item arrives. No further returns or exchanges will be accepted."
-msgstr "欠品、破損などのご連絡は商品到着後3日以内とします。以降の返品、交換は一切出来"
-"かねます。"
+msgstr "欠品、破損などのご連絡は商品到着後3日以内とします。以降の返品、交換は一切出来かねます。"
 
 #: .\templates\sales_contract_trader_purchases.html:437
 #: .\templates\sales_contract_trader_sales.html:518
@@ -1368,47 +1367,47 @@ msgstr "買主が代金全額支払いを完了するまでは、売買物件の
 msgid ""
 "Ownership of the property for sale shall be transferred to the 'buyer' when "
 "the delivery is completed and the payment is completed."
-msgstr ""
+msgstr "売買物件の所有権は、引渡しが終了し、支払いが完了した時点で買主」に移行するものとする。"
 
 #: .\templates\sales_contract_trader_sales.html:509
 msgid ""
 "In the following cases, the seller may, without any procedure, lose the "
 "profit of the period and request immediate payment of the balance, or cancel "
 "this contract and withdraw the property for sale."
-msgstr ""
+msgstr "下記の場合の売主は、何らかの手続きを経ずして、その選択により期の利益を喪失せしめて残代金の即時支払いを求めるか、又は本契約を解除して売買物件を引き上げる事が出来る。"
 
 #: .\templates\sales_contract_trader_sales.html:510
 msgid "If you fail to pay the price even once."
-msgstr ""
+msgstr "代金の支払いを1回でも怠った場合。"
 
 #: .\templates\sales_contract_trader_sales.html:511
 msgid ""
 "When a petition for arrangement, consensus, damage, etc. is received after "
 "the execution of provisional seizure, provisional disposition, etc."
-msgstr ""
+msgstr "仮差押え、仮処分等の執行を受け、整理・和議・破損等の申立てを受けた場合。"
 
 #: .\templates\sales_contract_trader_sales.html:544
 #: .\templates\sales_contract_trader_sales.html:581
 msgid "Expected arrival date"
-msgstr ""
+msgstr "到着予定日"
 
 #: .\templates\sales_contract_trader_sales.html:592
 msgid "Buyer's seal field"
-msgstr ""
+msgstr "買主捺印欄"
 
 #: .\templates\sales_contract_trader_sales.html:600
 msgid "Seller's seal field"
-msgstr ""
+msgstr "売主捺印欄"
 
 #: .\templates\sales_contract_trader_sales.html:623
 msgid "Please check the contents, seal it, and reply to us."
-msgstr ""
+msgstr "内容をご確認の上、捺印後弊社まで返信お願いします。"
 
 #: .\templates\sales_contract_trader_sales.html:626
 msgid ""
 "If you need the original invoice, be sure to check it. [Necessary / "
 "Unnecessary]"
-msgstr ""
+msgstr "請求書原本が必要な場合は必ずチェックしてください。【必要・不要不要】"
 
 #~ msgid "Master data registration"
 #~ msgstr "マスタデータ登録"
