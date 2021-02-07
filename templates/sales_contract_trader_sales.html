@@ -96,15 +96,21 @@
 
 						<div class="container-fluid">
 							<div class="row flex-wrap align-items-end d-flex">
-								<div class="col-lg-7 col-xs-12 text-left">
+								<div class="col-lg-8 col-xs-12 text-left">
 									<div class="row d-flex flex-wrap">
 										<div class="col-6 col-sm-12">
 											<div class="form-group d-flex row">
 												<label class="control-label col-3 mt-auto">{% trans "Company name" %}</label>
 												<div class="col-9">
-													<input type="text" class="form-control">
+													<div class="has-feedback">
+														<input type="text" class="form-control" placeholder="">
+														<div class="form-control-feedback w-50-px">
+															<span>{% trans "Mr." %}</span>
+														</div>
+													</div>
 												</div>
 											</div>
+											
 										</div>
 										<div class="col-6 col-sm-12">
 											<div class="form-group d-flex row">
@@ -116,52 +122,61 @@
 										</div>
 									</div>
 									<div class="row d-flex flex-wrap">
-										<div class="col-5 col-sm-12">
+										<div class="col-6 col-sm-12">
 											<div class="form-group d-flex row">
-												<label class="control-label col-4 col-sm-3 mt-auto">{% trans "Postal code" %}</label>
-												<div class="col-8 pl-md-0 col-sm-9">
+												<label class="control-label col-3 mt-auto">{% trans "Postal code" %}</label>
+												<div class="col-7">
 													<input type="text" class="form-control">
 												</div>
 											</div>
 										</div>
-										<div class="col-7 col-sm-12">
+									</div>
+
+									<div class="row">
+										<div class="col-12 col-sm-12">
 											<div class="form-group d-flex row">
-												<label class="control-label col-3 mt-auto">{% trans "Street address" %}</label>
+												<label class="control-label w-12-5 col-sm-3 mt-auto">{% trans "Street address" %}</label>
 												<div class="col-9">
 													<input type="text" class="form-control" value="1108-3">
 												</div>
 											</div>
 										</div>
 									</div>
-						
+
 									<div class="row flex-wrap d-flex">
-										<div class="col-4 col-sm-12">
+										<div class="col-6 col-sm-12">
 											<div class="form-group d-flex row">
 												<label class="control-label col-3 mt-auto">{% trans "TEL" %}</label>
-												<div class="col-9">
+												<div class="col-7">
 													<input type="text" class="form-control" value="087-865-7171">
 												</div>
 											</div>
-										</div>
-										<div class="col-1"></div>
-										<div class="col-4 col-sm-12">
+										</div>										
+										<div class="col-5 col-sm-12">
 											<div class="form-group d-flex row">
 												<label class="control-label col-3 mt-auto">{% trans "FAX" %}</label>
-												<div class="col-9">
+												<div class="col-8">
 													<input type="text" class="form-control" value="087-865-7171">
 												</div>
 											</div>
 										</div>
 									</div>										
 								</div>
-								<div class="col-lg-2"></div>
+								<div class="col-lg-1"></div>
 								<div class="col-lg-3 col-xs-12">
 									<div>
-										<h6>P-SENSOR 8240-2413-3628</h6>
 										<div class="form-group d-flex row">
 											<div class="w-100 d-flex align-items-center">
-												<label class="control-label col-3 mt-auto">{% trans "In charge" %}</label>
-												<div class="col-9">
+												<label class="control-label col-5 mt-auto">P-SENSOR {% trans "Membership number" %}</label>
+												<div class="col-7">
+													<input type="text" class="form-control" value="">
+												</div>
+											</div>
+										</div>
+										<div class="form-group d-flex row">
+											<div class="w-100 d-flex align-items-center">
+												<label class="control-label col-5 mt-auto">{% trans "In charge" %}</label>
+												<div class="col-7">
 													<input type="text" class="form-control" value="">
 												</div>
 											</div>
@@ -169,78 +184,24 @@
 									</div>
 								</div>
 							</div>
-							<div class="row mt-5-s">
-								<div class="col-5 col-sm-12">
-									<div class="form-group">
-										<div class="input-group">
-											<span class="input-group-btn">
-												<button class="btn btn-default">{% trans "Remark" %}</button>
-											</span>
-											<input type="text" class="form-control">
-										</div>
-									</div>
-								</div>
-								<div class="col-7 col-sm-12">
-									<div class="row">
-										<div class="d-flex">
-											<div class="col-6">
-												<div class="form-group">
-													<select name="select" class="form-control">
-														<option value="">{% trans "Shiping method" %}</option>
-														<option value="">{% trans "Shipping" %}</option>
-														<option value="">{% trans "Picking up" %}</option>
-														<option value="">ID {% trans "Change" %}</option>
-														<option value="">* {% trans "Blank" %}</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<div class="form-group">
-														<div class="input-group">
-															<span class="input-group-btn">
-																<button class="btn btn-default">{% trans "Shipping date" %}</button>
-															</span>
-															<input type="text" class="form-control daterange-single">
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-6">
-												<div class="form-group">
-													<select name="select" class="form-control">
-														<option value="">{% trans "Payment method" %}</option>
-														<option value="">{% trans "Transfer" %}</option>
-														<option value="">{% trans "Check" %}</option>
-														<option value="">{% trans "Bill" %}</option>
-														<option value="">{% trans "Cash" %}</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<div class="form-group">
-														<div class="input-group">
-															<span class="input-group-btn">
-																<button class="btn btn-default">{% trans "Payment deadline" %}</button>
-															</span>
-															<input type="text" class="form-control daterange-single">
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<div class="col-12">
-											<div class="form-group">
-												<div class="input-group">
-													<span class="input-group-btn">
-														<button class="btn btn-default">{% trans "Billed amount" %}</button>
-													</span>
-													<input type="text" class="form-control">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+
 							<div class="row">
+								<div class="d-flex flex-wrap mt-5-s">
+									<div class="col-6 col-sm-12">
+										<div class="form-group has-feedback d-flex">
+											<label class="control-label col-2 mt-auto">{% trans "Search" %}</label>
+											<div class="col-5">
+												<div class="form-group">
+													<input type="text" class="form-control" placeholder="">
+													<div class="form-control-feedback">
+														<i class="icon-search4 text-size-base"></i>
+													</div>
+												</div>
+											</div>
+											<button type="button" class="btn btn-primary">{% trans "Search" %}</button>
+										</div>
+									</div>
+								</div>
 								<div class="col-12">
 									<table class="table datatable-select-multiple">
 										<thead>
@@ -513,7 +474,32 @@
 									</table>
 								</div>
 							</div>
-							<div class="row flex-wrap d-flex justify-content-end">
+							<div class="row flex-wrap d-flex justify-content-between">
+								<div class="col-lg-8 col-xs-12">
+									<div class="row">
+										<div class="col-lg-6 form-group">
+											<div class="position-relative">
+												<div class="input-group">
+													<span class="input-group-addon">{% trans "Machine shipping date" %}</span>
+													<input type="text" class="form-control daterange-single">
+												</div>
+												<div class="form-control-feedback">
+													<i class="icon-calendar22"></i>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-12 col-xs-12">
+											<div class="">
+												<div class="input-group">
+													<span class="input-group-btn">
+														<button class="btn btn-default remark">{% trans "Remark" %}</button>
+													</span>
+													<textarea type="text" class="form-control remark"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 								<div class="col-lg-4 col-xs-12">
 									<table class="table table-bordered">
 										<tbody>
@@ -526,7 +512,7 @@
 												<td>8,500</td>
 											</tr>
 											<tr>
-												<td>{% trans "Insurance fee" %}</td>
+												<td>{% trans "Insurance fee" %} ({% trans "Tax exempt" %})</td>
 												<td>100</td>
 											</tr>
 											<tr>
@@ -535,6 +521,60 @@
 											</tr>
 										</tbody>
 									</table>
+								</div>
+							</div>
+							<div class="row mt-5-s d-flex flex-wrap">
+								<div class="col-6">
+									<div class="form-group">
+										<select name="select" class="form-control">
+											<option value="">{% trans "Shiping method" %}</option>
+											<option value="">{% trans "Shipping" %}</option>
+											<option value="">{% trans "Picking up" %}</option>
+											<option value="">ID {% trans "Change" %}</option>
+											<option value="">* {% trans "Blank" %}</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<select name="select" class="form-control">
+											<option value="">{% trans "Payment method" %}</option>
+											<option value="">{% trans "Transfer" %}</option>
+											<option value="">{% trans "Check" %}</option>
+											<option value="">{% trans "Bill" %}</option>
+											<option value="">{% trans "Cash" %}</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-btn">
+												<button class="btn btn-default">{% trans "Billed amount" %}</button>
+											</span>
+											<input type="text" class="form-control">
+										</div>
+									</div>
+									<div class="position-relative form-group">
+										<div class="input-group">
+											<span class="input-group-addon">{% trans "Payment deadline" %}</span>
+											<input type="text" class="form-control daterange-single">
+										</div>
+										<div class="form-control-feedback">
+											<i class="icon-calendar22"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 form-group">
+									<textarea type="text" class="form-control h-200-px">※ {% trans "It is assumed that the contract is concluded when the signatures and seals of both the seller and the buyer are complete." %}
+※ {% trans "As a general rule, the sales contract cannot be canceled after the contract is concluded." %}
+※ {% trans "If the product is defective or defective, the warranty is within 3 days after delivery." %}
+※ {% trans "Ownership of the property for sale is reserved by the seller until the buyer completes the full payment." %}
+※ {% trans "Ownership of the property for sale shall be transferred to the 'buyer' when the delivery is completed and the payment is completed." %}
+※ {% trans "In the following cases, the seller may, without any procedure, lose the profit of the period and request immediate payment of the balance, or cancel this contract and withdraw the property for sale." %}
+1) {% trans "If you fail to pay the price even once." %}
+2) {% trans "When a petition for arrangement, consensus, damage, etc. is received after the execution of provisional seizure, provisional disposition, etc." %}
+									</textarea>
 								</div>
 							</div>
 							<div class="row d-flex flex-wrap mt-5-s">
@@ -554,22 +594,22 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
+											<label class="control-label">{% trans "TEL" %}</label>
 											<div class="">
 												<input type="text" class="form-control"></input>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
+											<label class="control-label">{% trans "FAX" %}</label>
 											<div class="">
 												<input type="text" class="form-control"></input>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">{% trans "Date" %}</label>
+											<label class="control-label">{% trans "Expected arrival date" %}</label>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-												<input type="text" class="form-control datepicker">
+												<input type="text" class="form-control daterange-single">
 											</div>
 										</div>
 									</fieldset>
@@ -591,25 +631,72 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
+											<label class="control-label">{% trans "TEL" %}</label>
 											<div class="">
 												<input type="text" class="form-control"></input>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
+											<label class="control-label">{% trans "FAX" %}</label>
 											<div class="">
 												<input type="text" class="form-control"></input>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">{% trans "Date" %}</label>
+											<label class="control-label">{% trans "Expected arrival date" %}</label>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-												<input type="text" class="form-control datepicker">
+												<input type="text" class="form-control daterange-single">
 											</div>
 										</div>
 									</fieldset>
+								</div>
+							</div>
+							<div class="row mt-5-s">
+								<div class="col-lg-6 col-xs-12">
+									<h6 class="text-center">{% trans "Buyer's seal field" %}</h6>
+									<div class="seal-wrapper">
+										<div class="seal">
+											印
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-xs-12">
+									<h6 class="text-center">{% trans "Seller's seal field" %}</h6>
+									<div class="seal-wrapper">
+										<p>〒537―0021　大阪府大阪市東成区東中本2丁目4―15</p>
+										<h4>バッジオ株式会社</h4>
+										<p>代表取締役　金 昇志</p>
+										<p class="mb-0">
+											<span>TEL 06-6753-8078</span>
+											<span class="ml-4">FAX 06-6753-8078</span>
+										</p>
+										<div class="seal">
+											印
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row mt-5-s">
+								<div class="col-lg-6 col-xs-12">
+									<p>※ {% trans "Please bear the transfer fee at your expense." %}</p>
+									<p>
+										<span>{% trans "Transfer account" %}:</span>
+										<span>りそな銀行　船場支店（101）　普通　0530713　バッジオカブシキガイシャ</span>
+									</p>
+									<p>
+										<span>{% trans "Please check the contents, seal it, and reply to us." %}</span>
+										<span class="ml-4">{% trans "FAX" %} 06-6753-8079</span>
+									</p>
+									<p>※ {% trans "If you need the original invoice, be sure to check it. [Necessary / Unnecessary]" %}</p>
+								</div>
+								<div class="col-lg-6 col-xs-12">
+									<div class="input-group">
+										<span class="input-group-btn">
+											<button class="btn btn-default remark">{% trans "Remark" %}</button>
+										</span>
+										<textarea type="text" class="form-control remark"></textarea>
+									</div>
 								</div>
 							</div>
 							<div class="row mt-5-s">
@@ -628,7 +715,7 @@
 				</div>
 
 			
-			</div>		
+			</div>
 			
 			<!-- Footer -->
 			<div class="footer text-muted">
