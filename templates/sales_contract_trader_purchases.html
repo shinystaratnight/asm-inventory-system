@@ -1,11 +1,12 @@
 {% extends 'layouts/base.html' %}
 {% load i18n %}
-
+{% load static %}
 {% block title %} Sold by Trader {% endblock title %}
 
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
+	<link rel="stylesheet" href="{% static 'assets/css/customize_table.css' %}" />
 	<input type="hidden" name="alt-path" value="{{ base_url }}/sales_contract_trader_purchases.html">
 	<!-- Main content -->
 	<div class="content-wrapper">
@@ -70,7 +71,7 @@
 									<div class="transaction-id-text">No.10005008</div>
 								</div>
 								<div class="col-6 d-flex align-items-center justify-content-center">
-									<h2 class="panel-title text-center">{% trans "Sales contract and invoice" %}</h2>
+									<h2 class="panel-title text-center">{% trans "Sales contract" %}</h2>
 								</div>
 								
 								<div class="col-3 col-sm-12">
@@ -95,14 +96,18 @@
 
 						<div class="container-fluid">
 							<div class="row flex-wrap align-items-end d-flex">
-								<div class="col-lg-7 col-xs-12 text-left">
+								<div class="col-lg-8 col-xs-12 text-left">
 									<div class="row d-flex flex-wrap">
 										<div class="col-6 col-sm-12">
 											<div class="form-group d-flex row">
-
 												<label class="control-label col-3 mt-auto">{% trans "Company name" %}</label>
 												<div class="col-9">
-													<input type="text" class="form-control">
+													<div class="has-feedback">
+														<input type="text" class="form-control" placeholder="">
+														<div class="form-control-feedback w-50-px">
+															<span>{% trans "Mr." %}</span>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -116,53 +121,61 @@
 										</div>
 									</div>
 									<div class="row d-flex flex-wrap">
-										<div class="col-5 col-sm-12">
+										<div class="col-6 col-sm-12">
 											<div class="form-group d-flex row">
-												<label class="control-label col-4 col-sm-3 mt-auto">{% trans "Postal code" %}</label>
-												<div class="col-8 pl-md-0 col-sm-9">
+												<label class="control-label col-3 mt-auto">{% trans "Postal code" %}</label>
+												<div class="col-7">
 													<input type="text" class="form-control">
 												</div>
 											</div>
 										</div>
-										<div class="col-7 col-sm-12">
+									</div>
+
+									<div class="row">
+										<div class="col-12 col-sm-12">
 											<div class="form-group d-flex row">
-												<label class="control-label col-3 mt-auto">{% trans "Street address" %}</label>
+												<label class="control-label w-12-5 col-sm-3 mt-auto">{% trans "Street address" %}</label>
 												<div class="col-9">
 													<input type="text" class="form-control" value="1108-3">
 												</div>
 											</div>
 										</div>
 									</div>
-						
+
 									<div class="row flex-wrap d-flex">
-										<div class="col-4 col-sm-12">
+										<div class="col-6 col-sm-12">
 											<div class="form-group d-flex row">
 												<label class="control-label col-3 mt-auto">{% trans "TEL" %}</label>
-												<div class="col-9">
+												<div class="col-7">
 													<input type="text" class="form-control" value="087-865-7171">
 												</div>
 											</div>
-										</div>
-										<div class="col-1"></div>
-										<div class="col-4 col-sm-12">
+										</div>										
+										<div class="col-5 col-sm-12">
 											<div class="form-group d-flex row">
 												<label class="control-label col-3 mt-auto">{% trans "FAX" %}</label>
-												<div class="col-9">
+												<div class="col-8">
 													<input type="text" class="form-control" value="087-865-7171">
 												</div>
 											</div>
 										</div>
 									</div>										
 								</div>
-								<div class="col-lg-2"></div>
+								<div class="col-lg-1"></div>
 								<div class="col-lg-3 col-xs-12">
 									<div>
-										<h6>P-SENSOR 8240-2413-3628</h6>
 										<div class="form-group d-flex row">
 											<div class="w-100 d-flex align-items-center">
-
-												<label class="control-label col-3 mt-auto">{% trans "In charge" %}</label>
-												<div class="col-9">
+												<label class="control-label col-5 mt-auto">P-SENSOR {% trans "Membership number" %}</label>
+												<div class="col-7">
+													<input type="text" class="form-control" value="">
+												</div>
+											</div>
+										</div>
+										<div class="form-group d-flex row">
+											<div class="w-100 d-flex align-items-center">
+												<label class="control-label col-5 mt-auto">{% trans "In charge" %}</label>
+												<div class="col-7">
 													<input type="text" class="form-control" value="">
 												</div>
 											</div>
@@ -170,80 +183,26 @@
 									</div>
 								</div>
 							</div>
-							<div class="row mt-5-s">
-								<div class="col-5 col-sm-12">
-									<div class="form-group">
-										<div class="input-group">
-											<span class="input-group-btn">
-												<button class="btn btn-default">{% trans "Remark" %}</button>
-											</span>
-											<input type="text" class="form-control">
-										</div>
-									</div>
-								</div>
-								<div class="col-7 col-sm-12">
-									<div class="row">
-										<div class="d-flex">
-											<div class="col-6">
-												<div class="form-group">
-													<select name="select" class="form-control">
-														<option value="">{% trans "Shiping method" %}</option>
-														<option value="">{% trans "Shipping" %}</option>
-														<option value="">{% trans "Picking up" %}</option>
-														<option value="">ID {% trans "Change" %}</option>
-														<option value="">* {% trans "Blank" %}</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<div class="form-group">
-														<div class="input-group">
-															<span class="input-group-btn">
-																<button class="btn btn-default">{% trans "Shipping date" %}</button>
-															</span>
-															<input type="text" class="form-control daterange-single">
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-6">
-												<div class="form-group">
-													<select name="select" class="form-control">
-														<option value="">{% trans "Payment method" %}</option>
-														<option value="">{% trans "Transfer" %}</option>
-														<option value="">{% trans "Check" %}</option>
-														<option value="">{% trans "Bill" %}</option>
-														<option value="">{% trans "Cash" %}</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<div class="form-group">
-														<div class="input-group">
-															<span class="input-group-btn">
-																<button class="btn btn-default">{% trans "Payment deadline" %}</button>
-															</span>
-															<input type="text" class="form-control daterange-single">
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<div class="col-12">
-											<div class="form-group">
-												<div class="input-group">
-													<span class="input-group-btn">
-														<button class="btn btn-default">{% trans "Billed amount" %}</button>
-													</span>
-													<input type="text" class="form-control">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							
 							<div class="row">
+								<div class="d-flex flex-wrap mt-5-s">
+									<div class="col-6 col-sm-12">
+										<div class="form-group has-feedback d-flex">
+											<label class="control-label col-2 mt-auto">{% trans "Search" %}</label>
+											<div class="col-5">
+												<div class="form-group">
+													<input type="text" class="form-control" placeholder="">
+													<div class="form-control-feedback">
+														<i class="icon-search4 text-size-base"></i>
+													</div>
+												</div>
+											</div>
+											<button type="button" class="btn btn-primary">{% trans "Search" %}</button>
+										</div>
+									</div>
+								</div>
 								<div class="col-12">
-									<table class="table datatable-select-multiple">
+									<!-- <table class="table datatable-select-multiple">
 										<thead>
 											<tr>
 												<th>{% trans "Model name" %}</th>
@@ -306,187 +265,116 @@
 													</ul>
 												</td>
 											</tr>
+										</tbody>
+									</table> -->
+
+
+									<table class="table datatable-basic table-hover">
+										<thead>
+											<tr>
+												<th>{% trans "Model name" %}</th>
+												<th>{% trans "Quantity" %}</th>
+												<th>{% trans "Unit price" %}</th>
+												<th>{% trans "Amount of money" %}</th>
+											</tr>
+										</thead>
+										<tbody>
 											<tr>
 												<td>
 													<div class="form-group mb-0">
-														<div class="col-9 px-0">
+														<div class="col-lg-7 px-0">
 															<input type="text" class="form-control" value="Model name 1">
 														</div>
 													</div>
 												</td>
 												<td>
 													<div class="form-group mb-0">
-														<select name="select" class="form-control">
-															<option value="">{% trans "Main body" %}</option>
-															<option value="">{% trans "Frame" %}</option>
-															<option value="">{% trans "Cell" %}</option>
-															<option value="">{% trans "Nail sheet" %}</option>
-														</select>
-													</div>
-												</td>
-												<td>
-													<div class="form-group mb-0">
-														<div class="col-9 px-0">
+														<div class="col-lg-7 px-0">
 															<input type="text" class="form-control" value="1">
 														</div>
 													</div>
 												</td>
 												<td>
 													<div class="form-group mb-0">
-														<div class="col-9 px-0">
+														<div class="col-lg-7 px-0">
 															<input type="text" class="form-control" value="70000">
 														</div>
 													</div>
 												</td>
 												<td>
 													70000
-												</td>
-												<td class="text-center d-none">
-													<ul class="icons-list">
-														<li class="dropdown">
-															<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-																<i class="icon-menu9"></i>
-															</a>
-			
-															<ul class="dropdown-menu dropdown-menu-right">
-																<li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
-																<li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
-																<li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
-															</ul>
-														</li>
-													</ul>
 												</td>
 											</tr>
 											<tr>
 												<td>
 													<div class="form-group mb-0">
-														<div class="col-9 px-0">
+														<div class="col-lg-7 px-0">
 															<input type="text" class="form-control" value="Model name 1">
 														</div>
 													</div>
 												</td>
 												<td>
 													<div class="form-group mb-0">
-														<select name="select" class="form-control">
-															<option value="">{% trans "Main body" %}</option>
-															<option value="">{% trans "Frame" %}</option>
-															<option value="">{% trans "Cell" %}</option>
-															<option value="">{% trans "Nail sheet" %}</option>
-														</select>
-													</div>
-												</td>
-												<td>
-													<div class="form-group mb-0">
-														<div class="col-9 px-0">
+														<div class="col-lg-7 px-0">
 															<input type="text" class="form-control" value="1">
 														</div>
 													</div>
 												</td>
 												<td>
 													<div class="form-group mb-0">
-														<div class="col-9 px-0">
+														<div class="col-lg-7 px-0">
 															<input type="text" class="form-control" value="70000">
 														</div>
 													</div>
 												</td>
 												<td>
 													70000
-												</td>
-												<td class="text-center d-none">
-													<ul class="icons-list">
-														<li class="dropdown">
-															<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-																<i class="icon-menu9"></i>
-															</a>
-			
-															<ul class="dropdown-menu dropdown-menu-right">
-																<li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
-																<li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
-																<li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
-															</ul>
-														</li>
-													</ul>
 												</td>
 											</tr>
 											<tr>
 												<td>
 													<div class="form-group mb-0">
-														<div class="col-9 px-0">
+														<div class="col-lg-7 px-0">
 															<input type="text" class="form-control" value="Model name 1">
 														</div>
 													</div>
 												</td>
 												<td>
 													<div class="form-group mb-0">
-														<select name="select" class="form-control">
-															<option value="">{% trans "Main body" %}</option>
-															<option value="">{% trans "Frame" %}</option>
-															<option value="">{% trans "Cell" %}</option>
-															<option value="">{% trans "Nail sheet" %}</option>
-														</select>
-													</div>
-												</td>
-												<td>
-													<div class="form-group mb-0">
-														<div class="col-9 px-0">
+														<div class="col-lg-7 px-0">
 															<input type="text" class="form-control" value="1">
 														</div>
 													</div>
 												</td>
 												<td>
 													<div class="form-group mb-0">
-														<div class="col-9 px-0">
+														<div class="col-lg-7 px-0">
 															<input type="text" class="form-control" value="70000">
 														</div>
 													</div>
 												</td>
 												<td>
 													70000
-												</td>
-												<td class="text-center d-none">
-													<ul class="icons-list">
-														<li class="dropdown">
-															<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-																<i class="icon-menu9"></i>
-															</a>
-			
-															<ul class="dropdown-menu dropdown-menu-right">
-																<li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
-																<li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
-																<li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
-															</ul>
-														</li>
-													</ul>
 												</td>
 											</tr>
 											<tr>
 												<td>
 													<div class="form-group mb-0">
-														<div class="col-9 px-0">
+														<div class="col-lg-7 px-0">
 															<input type="text" class="form-control" value="Model name 1">
 														</div>
 													</div>
 												</td>
 												<td>
 													<div class="form-group mb-0">
-														<select name="select" class="form-control">
-															<option value="">{% trans "Main body" %}</option>
-															<option value="">{% trans "Frame" %}</option>
-															<option value="">{% trans "Cell" %}</option>
-															<option value="">{% trans "Nail sheet" %}</option>
-														</select>
-													</div>
-												</td>
-												<td>
-													<div class="form-group mb-0">
-														<div class="col-9 px-0">
+														<div class="col-lg-7 px-0">
 															<input type="text" class="form-control" value="1">
 														</div>
 													</div>
 												</td>
 												<td>
 													<div class="form-group mb-0">
-														<div class="col-9 px-0">
+														<div class="col-lg-7 px-0">
 															<input type="text" class="form-control" value="70000">
 														</div>
 													</div>
@@ -494,27 +382,91 @@
 												<td>
 													70000
 												</td>
-												<td class="text-center d-none">
-													<ul class="icons-list">
-														<li class="dropdown">
-															<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-																<i class="icon-menu9"></i>
-															</a>
-			
-															<ul class="dropdown-menu dropdown-menu-right">
-																<li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
-																<li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
-																<li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
-															</ul>
-														</li>
-													</ul>
+											</tr>
+											<tr>
+												<td>
+													<div class="form-group mb-0">
+														<div class="col-lg-7 px-0">
+															<input type="text" class="form-control" value="Model name 1">
+														</div>
+													</div>
+												</td>
+												<td>
+													<div class="form-group mb-0">
+														<div class="col-lg-7 px-0">
+															<input type="text" class="form-control" value="1">
+														</div>
+													</div>
+												</td>
+												<td>
+													<div class="form-group mb-0">
+														<div class="col-lg-7 px-0">
+															<input type="text" class="form-control" value="70000">
+														</div>
+													</div>
+												</td>
+												<td>
+													70000
 												</td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
 							</div>
-							<div class="row flex-wrap d-flex justify-content-end">
+							<div class="row flex-wrap d-flex justify-content-between form-group">
+								<div class="col-lg-8 col-xs-12 d-flex flex-wrap">
+									<div class="row d-flex flex-wrap">
+										<div class="col-lg-6 col-xs-12 form-group">
+											<div class="position-relative">
+												<div class="input-group">
+													<span class="input-group-addon">{% trans "Removal date" %}</span>
+													<input type="text" class="form-control daterange-single">
+												</div>
+												<div class="form-control-feedback">
+													<i class="icon-calendar22"></i>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 form-group">
+											<div class="input-group">
+												<span class="input-group-btn">
+													<button class="btn btn-default">{% trans "Frame color" %}</button>
+												</span>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-lg-6 col-xs-12 form-group">
+											<div class="position-relative">
+												<div class="input-group">
+													<span class="input-group-addon">{% trans "Date of shipment" %}</span>
+													<input type="text" class="form-control daterange-single">
+												</div>
+												<div class="form-control-feedback">
+													<i class="icon-calendar22"></i>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 form-group">
+											<div class="input-group">
+												<span class="input-group-btn">
+													<button class="btn btn-default">{% trans "Picking up" %}</button>
+												</span>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-lg-12 col-xs-12">
+											<div class="">
+												<div class="input-group">
+													<span class="input-group-btn">
+														<button class="btn btn-default h-70">{% trans "Remark" %}</button>
+													</span>
+													<textarea type="text" class="form-control h-70"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+								</div>
 								<div class="col-lg-4 col-xs-12">
 									<table class="table table-bordered">
 										<tbody>
@@ -527,7 +479,7 @@
 												<td>8,500</td>
 											</tr>
 											<tr>
-												<td>{% trans "Insurance fee" %}</td>
+												<td>{% trans "Insurance fee" %} ({% trans "Tax exempt" %})</td>
 												<td>100</td>
 											</tr>
 											<tr>
@@ -536,6 +488,14 @@
 											</tr>
 										</tbody>
 									</table>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 form-group">
+									<textarea type="text" class="form-control remark" rows="5">※ {% trans "It is assumed that the contract has been concluded with the arrival of our certificate of sale." %} 
+※ {% trans "If you cancel after sending the proof of purchase, you will be compensated for 100 of the closing price." %}
+※ {% trans "We will notify you of any missing items or damage within 3 days after the item arrives. No further returns or exchanges will be accepted." %}
+									</textarea>
 								</div>
 							</div>
 							<div class="row d-flex flex-wrap mt-5-s">
@@ -555,22 +515,28 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
+											<label class="control-label">{% trans "TEL" %}</label>
 											<div class="">
 												<input type="text" class="form-control"></input>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
-											<div class="">
-												<input type="text" class="form-control"></input>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">{% trans "Date" %}</label>
+											<label class="control-label">{% trans "Desired arrival date" %}</label>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-												<input type="text" class="form-control datepicker">
+												<input type="text" class="form-control daterange-single">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">{% trans "Shipping company" %}</label>
+											<div class="">
+												<input type="text" class="form-control"></input>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">{% trans "Remark" %}</label>
+											<div class="">
+												<input type="text" class="form-control"></input>
 											</div>
 										</div>
 									</fieldset>
@@ -592,26 +558,156 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
+											<label class="control-label">{% trans "TEL" %}</label>
 											<div class="">
 												<input type="text" class="form-control"></input>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">{% trans "TEL" %}/{% trans "FAX" %}:</label>
-											<div class="">
-												<input type="text" class="form-control"></input>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">{% trans "Date" %}</label>
+											<label class="control-label">{% trans "Desired arrival date" %}</label>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-												<input type="text" class="form-control datepicker">
+												<input type="text" class="form-control daterange-single">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">{% trans "Shipping company" %}</label>
+											<div class="">
+												<input type="text" class="form-control"></input>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">{% trans "Remark" %}</label>
+											<div class="">
+												<input type="text" class="form-control"></input>
 											</div>
 										</div>
 									</fieldset>
 								</div>
+							</div>
+							<div class="row mt-5-s text-center">
+								<p>{% trans "Please check the contents, seal it, and fax it to us." %}</p>
+								<h3>{% trans "Return address" %}：バッジオ(株)　06-6753-8079</h3>
+							</div>
+							<div class="row mt-5-s">
+								<div class="col-lg-6 col-xs-12">
+									<h6 class="text-center">{% trans "Buyer" %}</h6>
+									<div class="seal-wrapper">
+										<div class="seal">
+											印
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-xs-12">
+									<h6 class="text-center">{% trans "Seller" %}</h6>
+									<div class="seal-wrapper">
+										<p>〒</p>
+										<h4 class="seal-company"></h4>
+										<p class="seal-ceo"></p>
+										<p class="mb-0">
+											<span>TEL </span>
+											<span class="ml-4">FAX </span>
+										</p>
+										<div class="seal">
+											印
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-6 d-flex justify-content-center">
+									<div class="col-3">
+										<span>TEL</span>
+										<span class="ml-4">06-6753-0878</span>
+									</div>
+									<div class="col-3">
+										<span>FAX</span>
+										<span class="ml-4">06-6753-0878</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="d-flex flex-wrap border mt-5-s">
+								<div class="col-lg-6 col-xs-12 p-0">
+									<div class="table-row">
+										<div class="col-lg-3 col-xs-3 table-cell py-10-px">
+											{% trans "Transfer deadline" %}
+										</div>
+										<div class="col-lg-9 col-xs-9 table-cell border-sm-right-0 py-10-px">
+											<div class="col-lg-12">
+												<div class="has-feedback has-feedback-left">
+													<input type="text" class="form-control daterange-single" placeholder="">
+													<div class="form-control-feedback">
+														<i class="icon-calendar22"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="table-row">
+										<div class="col-lg-3 col-xs-3 table-cell border-top h-112-px">
+											{% trans "Transfer account" %}
+										</div>
+										<div class="col-lg-9 col-xs-9 table-cell border-top border-sm-right-0">
+											<div class="w-100">
+												<div class="">
+													<div class="col-lg-6 col-xs-6 table-cell">{% trans "Bank name" %}</div>
+													<div class="col-lg-6 col-xs-6 table-cell border-right-0 py-10-px">
+														<div class="col-lg-12">
+															<input type="text" class="form-control">
+														</div>
+													</div>
+												</div>
+												<div class="">
+													<div class="col-lg-6 col-xs-6 table-cell border-top">{% trans "Account number" %}</div>
+													<div class="col-lg-6 col-xs-6 table-cell border-top border-right-0 py-10-px">
+														<div class="col-lg-12">
+															<input type="text" class="form-control">
+														</div>
+													</div>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-xs-12 p-0 boder-sm-top">
+									<div class="table-row">
+										<div class="col-lg-3 col-xs-3 table-cell">
+											{% trans "Original invoice" %}
+										</div>
+										<div class="col-lg-9 col-xs-9 table-cell border-right-0">
+											{% trans "Necessary" %}
+											∙
+											{% trans "Unncessary" %}
+										</div>
+									</div>
+									<div class="table-row">
+										<div class="col-lg-3 col-xs-3 table-cell border-top">
+											{% trans "Branch name" %}
+										</div>
+										<div class="col-lg-9 col-xs-9 table-cell border-top border-right-0 py-10-px">
+											<div class="col-lg-12">
+												<input type="text" class="form-control">
+											</div>
+										</div>
+									</div>
+									<div class="table-row">
+										<div class="col-lg-3 col-xs-3 table-cell border-top">
+											{% trans "Account holder" %}
+										</div>
+										<div class="col-lg-9 col-xs-9 table-cell border-top border-right-0 py-10-px">
+											<div class="col-lg-12">
+												<input type="text" class="form-control">
+											</div>											
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<p class="text-center">
+									{% trans "Please describe the transfer destination." %}
+								</p>
 							</div>
 							<div class="row mt-5-s">
 								<div class="col-md-12">
@@ -629,7 +725,7 @@
 				</div>
 
 			
-			</div>		
+			</div>			
 			
 			<!-- Footer -->
 			<div class="footer text-muted">
