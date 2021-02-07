@@ -1240,7 +1240,7 @@ msgstr "購入証明書送付後、キャンセルした場合には売買成立
 msgid ""
 "We will notify you of any missing items or damage within 3 days after the "
 "item arrives. No further returns or exchanges will be accepted."
-msgstr ""
+msgstr "欠品、破損などのご連絡は商品到着後3日以内とします。以降の返品、交換は一切出来かねます。"
 
 #: .\templates\sales_contract_trader_purchases.html:437
 #: .\templates\sales_contract_trader_sales.html:518
@@ -1264,7 +1264,7 @@ msgstr "書類発送先"
 
 #: .\templates\sales_contract_trader_purchases.html:522
 msgid "Please check the contents, seal it, and fax it to us."
-msgstr ""
+msgstr "内容をご確認の上、ご捺印後弊社までリファックス願います。"
 
 #: .\templates\sales_contract_trader_purchases.html:523
 msgid "Return address"
@@ -1288,11 +1288,11 @@ msgstr "請求書原本"
 
 #: .\templates\sales_contract_trader_purchases.html:613
 msgid "Necessary"
-msgstr ""
+msgstr "必要"
 
 #: .\templates\sales_contract_trader_purchases.html:615
 msgid "Unncessary"
-msgstr ""
+msgstr "不要"
 
 #: .\templates\sales_contract_trader_purchases.html:620
 msgid "Branch name"
@@ -1304,7 +1304,7 @@ msgstr "口座名義"
 
 #: .\templates\sales_contract_trader_purchases.html:642
 msgid "Please describe the transfer destination."
-msgstr ""
+msgstr "お振込み先の記載をお願いします。"
 
 #: .\templates\sales_contract_trader_sales.html:75
 msgid "Sales contract and invoice"
@@ -1342,31 +1342,31 @@ msgstr "お支払期限"
 msgid ""
 "It is assumed that the contract is concluded when the signatures and seals "
 "of both the seller and the buyer are complete."
-msgstr ""
+msgstr "売主、買主、双方の署名・捺印が揃った時点で契約が成立したものとします。"
 
 #: .\templates\sales_contract_trader_sales.html:505
 msgid ""
 "As a general rule, the sales contract cannot be canceled after the contract "
 "is concluded."
-msgstr ""
+msgstr "契約が成立後、原則として売買契約を解除できないものとします。"
 
 #: .\templates\sales_contract_trader_sales.html:506
 msgid ""
 "If the product is defective or defective, the warranty is within 3 days "
 "after delivery."
-msgstr ""
+msgstr "当該商品に不備及び故障がある場合の保障は、納品後3日以内とします。"
 
 #: .\templates\sales_contract_trader_sales.html:507
 msgid ""
 "Ownership of the property for sale is reserved by the seller until the buyer "
 "completes the full payment."
-msgstr ""
+msgstr "買主が代金全額支払いを完了するまでは、売買物件の所有権は売主において留保する。"
 
 #: .\templates\sales_contract_trader_sales.html:508
 msgid ""
 "Ownership of the property for sale shall be transferred to the 'buyer' when "
 "the delivery is completed and the payment is completed."
-msgstr ""
+msgstr "売買物件の所有権は、引渡しが終了し、支払いが完了した時点で買主」に移行するものとする。"
 
 #: .\templates\sales_contract_trader_sales.html:509
 msgid ""
@@ -1377,36 +1377,36 @@ msgstr ""
 
 #: .\templates\sales_contract_trader_sales.html:510
 msgid "If you fail to pay the price even once."
-msgstr ""
+msgstr "下記の場合の売主は、何らかの手続きを経ずして、その選択により期の利益を喪失せしめて残代金の即時支払いを求めるか、又は本契約を解除して売買物件を引き上げる事が出来る。"
 
 #: .\templates\sales_contract_trader_sales.html:511
 msgid ""
 "When a petition for arrangement, consensus, damage, etc. is received after "
 "the execution of provisional seizure, provisional disposition, etc."
-msgstr ""
+msgstr "仮差押え、仮処分等の執行を受け、整理・和議・破損等の申立てを受けた場合。"
 
 #: .\templates\sales_contract_trader_sales.html:544
 #: .\templates\sales_contract_trader_sales.html:581
 msgid "Expected arrival date"
-msgstr ""
+msgstr "到着予定日"
 
 #: .\templates\sales_contract_trader_sales.html:592
 msgid "Buyer's seal field"
-msgstr ""
+msgstr "買主捺印欄"
 
 #: .\templates\sales_contract_trader_sales.html:600
 msgid "Seller's seal field"
-msgstr ""
+msgstr "売主捺印欄"
 
 #: .\templates\sales_contract_trader_sales.html:623
 msgid "Please check the contents, seal it, and reply to us."
-msgstr ""
+msgstr "内容をご確認の上、捺印後弊社まで返信お願いします。"
 
 #: .\templates\sales_contract_trader_sales.html:626
 msgid ""
 "If you need the original invoice, be sure to check it. [Necessary / "
 "Unnecessary]"
-msgstr ""
+msgstr "請求書原本が必要な場合は必ずチェックしてください。【必要・不要不要】"
 
 #~ msgid "Master data registration"
 #~ msgstr "マスタデータ登録"
