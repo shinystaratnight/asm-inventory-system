@@ -868,28 +868,28 @@ msgstr "売買契求書"
 #: .\templates\sales_contract_hall_sales.html:91
 #: .\templates\sales_contract_trader_purchases.html:527
 msgid "Buyer"
-msgstr ""
+msgstr "買主"
 
 #: .\templates\sales_contract_hall_purchases.html:91
 #: .\templates\sales_contract_hall_sales.html:91
 msgid "A"
-msgstr ""
+msgstr "甲"
 
 #: .\templates\sales_contract_hall_purchases.html:105
 #: .\templates\sales_contract_hall_sales.html:105
 msgid "Keyword search"
-msgstr ""
+msgstr "キーワード検索"
 
 #: .\templates\sales_contract_hall_purchases.html:115
 #: .\templates\sales_contract_hall_sales.html:115
 #: .\templates\sales_contract_trader_purchases.html:535
 msgid "Seller"
-msgstr ""
+msgstr "売主"
 
 #: .\templates\sales_contract_hall_purchases.html:115
 #: .\templates\sales_contract_hall_sales.html:115
 msgid "B"
-msgstr ""
+msgstr "乙"
 
 #: .\templates\sales_contract_hall_purchases.html:119
 #: .\templates\sales_contract_hall_sales.html:119
@@ -905,7 +905,7 @@ msgstr "会社名"
 #: .\templates\sales_contract_hall_purchases.html:149
 #: .\templates\sales_contract_hall_sales.html:149
 msgid "Installation location"
-msgstr ""
+msgstr "設置場所"
 
 #: .\templates\sales_contract_hall_purchases.html:177
 #: .\templates\sales_contract_hall_sales.html:177
@@ -914,7 +914,8 @@ msgid ""
 "referred to as B) have entered into a sales contract including the "
 "transaction contract stated on the back of the following products "
 "(hereinafter referred to as properties)."
-msgstr ""
+msgstr "買主（以下甲という）と売主（以下乙という）は以下の商品（以下物件という）裏面"
+"記載取引約定を含み売買契約を締結いたしました。"
 
 #: .\templates\sales_contract_hall_purchases.html:207
 #: .\templates\sales_contract_hall_sales.html:206
@@ -1006,7 +1007,7 @@ msgstr "釘シート"
 #: .\templates\sales_contract_hall_purchases.html:413
 #: .\templates\sales_contract_hall_sales.html:412
 msgid "Document"
-msgstr ""
+msgstr "書類"
 
 #: .\templates\sales_contract_hall_purchases.html:540
 #: .\templates\sales_contract_hall_sales.html:539
@@ -1024,7 +1025,7 @@ msgstr "機種数"
 #: .\templates\sales_contract_hall_sales.html:636
 #: .\templates\sales_contract_hall_sales.html:664
 msgid "Pachinko"
-msgstr ""
+msgstr "パチンコ"
 
 #: .\templates\sales_contract_hall_purchases.html:554
 #: .\templates\sales_contract_hall_purchases.html:582
@@ -1037,7 +1038,7 @@ msgstr ""
 #: .\templates\sales_contract_hall_sales.html:637
 #: .\templates\sales_contract_hall_sales.html:665
 msgid "Slot"
-msgstr ""
+msgstr "スロット"
 
 #: .\templates\sales_contract_hall_purchases.html:694
 #: .\templates\sales_contract_hall_purchases.html:887
@@ -1076,7 +1077,7 @@ msgstr "保険代"
 #: .\templates\sales_contract_trader_purchases.html:415
 #: .\templates\sales_contract_trader_sales.html:450
 msgid "Tax exempt"
-msgstr ""
+msgstr "非課税"
 
 #: .\templates\sales_contract_hall_purchases.html:722
 #: .\templates\sales_contract_hall_sales.html:721
@@ -1088,7 +1089,7 @@ msgstr "総合計"
 #: .\templates\sales_contract_hall_purchases.html:733
 #: .\templates\sales_contract_hall_sales.html:732
 msgid "We will charge you as follows."
-msgstr ""
+msgstr "下記の通りご請求申し上げます。"
 
 #: .\templates\sales_contract_hall_purchases.html:742
 #: .\templates\sales_contract_hall_sales.html:741
@@ -1138,27 +1139,27 @@ msgstr "お支払内訳"
 #: .\templates\sales_contract_hall_purchases.html:777
 #: .\templates\sales_contract_hall_sales.html:776
 msgid "1st"
-msgstr ""
+msgstr "初回"
 
 #: .\templates\sales_contract_hall_purchases.html:791
 #: .\templates\sales_contract_hall_sales.html:790
 msgid "2nd"
-msgstr ""
+msgstr "2回"
 
 #: .\templates\sales_contract_hall_purchases.html:805
 #: .\templates\sales_contract_hall_sales.html:804
 msgid "3rd"
-msgstr ""
+msgstr "3回"
 
 #: .\templates\sales_contract_hall_purchases.html:819
 #: .\templates\sales_contract_hall_sales.html:818
 msgid "4th"
-msgstr ""
+msgstr "4回"
 
 #: .\templates\sales_contract_hall_purchases.html:833
 #: .\templates\sales_contract_hall_sales.html:832
 msgid "5th"
-msgstr ""
+msgstr "5回"
 
 #: .\templates\sales_contract_hall_purchases.html:861
 #: .\templates\sales_contract_hall_sales.html:864
@@ -1189,7 +1190,7 @@ msgstr "請求書を作成する"
 #: .\templates\sales_contract_hall_sales.html:857
 #: .\templates\sales_contract_trader_sales.html:617
 msgid "Please bear the transfer fee at your expense."
-msgstr ""
+msgstr "お振込み手数料は貴社ご負担でお願いします。"
 
 #: .\templates\sales_contract_trader_purchases.html:86
 #: .\templates\sales_contract_trader_sales.html:87
@@ -1199,7 +1200,7 @@ msgstr "更新日"
 #: .\templates\sales_contract_trader_purchases.html:108
 #: .\templates\sales_contract_trader_sales.html:109
 msgid "Mr."
-msgstr ""
+msgstr "御中様"
 
 #: .\templates\sales_contract_trader_purchases.html:169
 #: .\templates\sales_contract_trader_sales.html:171
@@ -1216,7 +1217,7 @@ msgstr "枠色"
 
 #: .\templates\sales_contract_trader_purchases.html:374
 msgid "Date of shipment"
-msgstr ""
+msgstr "発送日"
 
 #: .\templates\sales_contract_trader_purchases.html:385
 #: .\templates\sales_contract_trader_sales.html:467
@@ -1227,7 +1228,7 @@ msgstr "引取"
 msgid ""
 "It is assumed that the contract has been concluded with the arrival of our "
 "certificate of sale."
-msgstr ""
+msgstr "売却証明書の弊社到着をもちまして契約が成立したものとします。"
 
 #: .\templates\sales_contract_trader_purchases.html:429
 #, python-format
@@ -1373,11 +1374,11 @@ msgid ""
 "In the following cases, the seller may, without any procedure, lose the "
 "profit of the period and request immediate payment of the balance, or cancel "
 "this contract and withdraw the property for sale."
-msgstr ""
+msgstr "下記の場合の売主は、何らかの手続きを経ずして、その選択により期の利益を喪失せしめて残代金の即時支払いを求めるか、又は本契約を解除して売買物件を引き上げる事が出来る。"
 
 #: .\templates\sales_contract_trader_sales.html:510
 msgid "If you fail to pay the price even once."
-msgstr "下記の場合の売主は、何らかの手続きを経ずして、その選択により期の利益を喪失せしめて残代金の即時支払いを求めるか、又は本契約を解除して売買物件を引き上げる事が出来る。"
+msgstr "代金の支払いを1回でも怠った場合。"
 
 #: .\templates\sales_contract_trader_sales.html:511
 msgid ""
