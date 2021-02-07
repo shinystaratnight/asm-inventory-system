@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-07 23:50+0800\n"
+"POT-Creation-Date: 2021-02-08 00:25+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -914,7 +914,8 @@ msgid ""
 "referred to as B) have entered into a sales contract including the "
 "transaction contract stated on the back of the following products "
 "(hereinafter referred to as properties)."
-msgstr "買主（以下甲という）と売主（以下乙という）は以下の商品（以下物件という）裏面"
+msgstr ""
+"買主（以下甲という）と売主（以下乙という）は以下の商品（以下物件という）裏面"
 "記載取引約定を含み売買契約を締結いたしました。"
 
 #: .\templates\sales_contract_hall_purchases.html:207
@@ -1013,6 +1014,19 @@ msgstr "書類"
 #: .\templates\sales_contract_hall_sales.html:539
 msgid "Number of models"
 msgstr "機種数"
+
+#: .\templates\sales_contract_hall_purchases.html:548
+#: .\templates\sales_contract_hall_purchases.html:576
+#: .\templates\sales_contract_hall_purchases.html:604
+#: .\templates\sales_contract_hall_purchases.html:632
+#: .\templates\sales_contract_hall_purchases.html:660
+#: .\templates\sales_contract_hall_sales.html:547
+#: .\templates\sales_contract_hall_sales.html:575
+#: .\templates\sales_contract_hall_sales.html:603
+#: .\templates\sales_contract_hall_sales.html:631
+#: .\templates\sales_contract_hall_sales.html:659
+msgid "Document fee"
+msgstr "書類代"
 
 #: .\templates\sales_contract_hall_purchases.html:553
 #: .\templates\sales_contract_hall_purchases.html:581
@@ -1235,13 +1249,17 @@ msgstr "売却証明書の弊社到着をもちまして契約が成立したも
 msgid ""
 "If you cancel after sending the proof of purchase, you will be compensated "
 "for 100%% of the closing price."
-msgstr "購入証明書送付後、キャンセルした場合には売買成立代金の100%%を賠償するものとします。"
+msgstr ""
+"購入証明書送付後、キャンセルした場合には売買成立代金の100%%を賠償するものとし"
+"ます。"
 
 #: .\templates\sales_contract_trader_purchases.html:430
 msgid ""
 "We will notify you of any missing items or damage within 3 days after the "
 "item arrives. No further returns or exchanges will be accepted."
-msgstr "欠品、破損などのご連絡は商品到着後3日以内とします。以降の返品、交換は一切出来かねます。"
+msgstr ""
+"欠品、破損などのご連絡は商品到着後3日以内とします。以降の返品、交換は一切出来"
+"かねます。"
 
 #: .\templates\sales_contract_trader_purchases.html:437
 #: .\templates\sales_contract_trader_sales.html:518
@@ -1361,20 +1379,27 @@ msgstr "当該商品に不備及び故障がある場合の保障は、納品後
 msgid ""
 "Ownership of the property for sale is reserved by the seller until the buyer "
 "completes the full payment."
-msgstr "買主が代金全額支払いを完了するまでは、売買物件の所有権は売主において留保する。"
+msgstr ""
+"買主が代金全額支払いを完了するまでは、売買物件の所有権は売主において留保す"
+"る。"
 
 #: .\templates\sales_contract_trader_sales.html:508
 msgid ""
 "Ownership of the property for sale shall be transferred to the 'buyer' when "
 "the delivery is completed and the payment is completed."
-msgstr "売買物件の所有権は、引渡しが終了し、支払いが完了した時点で買主」に移行するものとする。"
+msgstr ""
+"売買物件の所有権は、引渡しが終了し、支払いが完了した時点で買主」に移行するも"
+"のとする。"
 
 #: .\templates\sales_contract_trader_sales.html:509
 msgid ""
 "In the following cases, the seller may, without any procedure, lose the "
 "profit of the period and request immediate payment of the balance, or cancel "
 "this contract and withdraw the property for sale."
-msgstr "下記の場合の売主は、何らかの手続きを経ずして、その選択により期の利益を喪失せしめて残代金の即時支払いを求めるか、又は本契約を解除して売買物件を引き上げる事が出来る。"
+msgstr ""
+"下記の場合の売主は、何らかの手続きを経ずして、その選択により期の利益を喪失せ"
+"しめて残代金の即時支払いを求めるか、又は本契約を解除して売買物件を引き上げる"
+"事が出来る。"
 
 #: .\templates\sales_contract_trader_sales.html:510
 msgid "If you fail to pay the price even once."
@@ -1384,7 +1409,8 @@ msgstr "代金の支払いを1回でも怠った場合。"
 msgid ""
 "When a petition for arrangement, consensus, damage, etc. is received after "
 "the execution of provisional seizure, provisional disposition, etc."
-msgstr "仮差押え、仮処分等の執行を受け、整理・和議・破損等の申立てを受けた場合。"
+msgstr ""
+"仮差押え、仮処分等の執行を受け、整理・和議・破損等の申立てを受けた場合。"
 
 #: .\templates\sales_contract_trader_sales.html:544
 #: .\templates\sales_contract_trader_sales.html:581
