@@ -100,6 +100,7 @@
             <li class="dropdown language-switch">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     {% get_current_language as LANGUAGE_CODE %}
+                    <input type="hidden" id="inventory_lang" value="{{ LANGUAGE_CODE }}">
                     {% if LANGUAGE_CODE == 'en' %}
                         <img src="{% static 'global_assets/images/flags/gb.png' %}" class="position-left" alt="">
                         English
