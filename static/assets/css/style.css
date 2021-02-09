@@ -243,6 +243,9 @@
     margin-top: 70px;
     margin-bottom: 50px;
 }
+.help-block {
+    color: #d84315;
+}
 @media screen and (max-width: 768px) {
 	.panel .visible-elements {
 			padding-top: 20px;

@@ -187,7 +187,7 @@
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <img src="{% static 'global_assets/images/placeholders/placeholder.jpg' %}" alt="">
-                    <span>山田　太郎</span>
+                    <span>{{ request.user }}</span>
                     <i class="caret"></i>
                 </a>
 
@@ -197,7 +197,7 @@
                     <li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> {% trans "Messages" %}</a></li>
                     <li class="divider"></li>
                     <li><a href="#"><i class="icon-cog5"></i> {% trans "Account settings" %}</a></li>
-                    <li><a href="login.html"><i class="icon-switch2"></i> {% trans "Logout" %}</a></li>
+                    <li><a href="{% url 'logout' %}"><i class="icon-switch2"></i> {% trans "Logout" %}</a></li>
                 </ul>
             </li>
         </ul>

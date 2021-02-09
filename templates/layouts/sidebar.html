@@ -12,7 +12,7 @@
                 <div class="media">
                     <a href="#" class="media-left"><img src="{% static 'global_assets/images/placeholders/placeholder.jpg' %}" class="img-circle img-sm" alt=""></a>
                     <div class="media-body">
-                        <span class="media-heading text-semibold">山田　太郎</span>
+                        <span class="media-heading text-semibold">{{ request.user }}</span>
                         <div class="text-size-mini text-muted">
                             <i class="icon-pin text-size-small"></i> &nbsp;日本, 東京
                         </div>
@@ -36,11 +36,11 @@
             <div class="category-content no-padding">
                 <ul class="navigation navigation-main navigation-accordion">
 
-                    <li class="{% active 'index.html' %}"><a href="index.html"><i class="icon-home4"></i> <span>{% trans "Dashboard" %}</span></a></li>
+                    <li class="{% active 'index.html' %}"><a href="{% url 'dashboard' %}"><i class="icon-home4"></i> <span>{% trans "Dashboard" %}</span></a></li>
                     <li>
                         <a href="#"><i class="icon-stack2"></i> <span>{% trans "Master data" %}</span></a>
                         <ul>
-                            <li class="{% active 'master_data_customer.html' %}"><a href="master_data_customer.html">{% trans "Customer master" %}</a></li>
+                            <li class="{% active 'master/customer' %}"><a href="{% url 'customer-master' %}">{% trans "Customer master" %}</a></li>
                             <li class="{% active 'master_data_hall_details.html' %}"><a href="master_data_hall_details.html">{% trans "Hall" %}</a></li>
                             <li class="{% active 'master_data_shipping_addresses.html' %}"><a href="master_data_shipping_addresses.html">{% trans "Shipping address" %}</a></li>
                             <li class="{% active 'master_data_product_name.html' %}"><a href="master_data_product_name.html">{% trans "Product name" %}</a></li>

@@ -13,25 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from django.conf.urls import url, i18n
-from users.views import loginPage, logoutUser
-from masters.views import dashboardPage
+from django.urls import path
+from .views import *
 
 urlpatterns = [
-    # url(r'^jsi18n/$', javascript_catalog),
-    path('i18n/', include(i18n)),
+    path('customer/', customerPage, name='customer-master')
 ]
-
-urlpatterns += i18n.i18n_patterns(
-    path('', dashboardPage, name='dashboard'),
-    
-    path('login/', loginPage, name='login'),
-    path('logout/', logoutUser, name='logout'),
-
-    path('master/', include('masters.urls')),
-
-    path('admin/', admin.site.urls),
-    path("", include("pages.urls")),
-)
