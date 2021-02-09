@@ -6,7 +6,7 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}	
-	<input type="hidden" name="alt-path" value="{{ base_url }}/master_data_others.html">
+	<input type="hidden" name="alt-path" value="{{ base_url }}/master/product-others">
 	<div class="content-wrapper">
 
 		<!-- Page header -->
@@ -80,95 +80,15 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
+
+						{% for index, product_other in product_others %}
+							<tr>
+								<td>{{ product_other.name }}</td>
+								<td>{{ product_other.account }}</td>
+								<td>{{ product_other.tax_classification }}</td>
+							</tr>
+						{% endfor %}
 						
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
-
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
-
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
-						
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
-
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
-
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
-						
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
-
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
-
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
-						
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
-
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
-
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
-						
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
-
-						<tr>
-							<td>Product Name 01</td>
-							<td>Chris Kim</td>
-							<td>Classification 01</td>
-						</tr>
 					</tbody>
 				</table>
 
@@ -193,37 +113,37 @@
 						<div class="modal-body">
 							<hr/>
 
-							<form class="form-horizontal" action="#">
+							<form class="form-horizontal" action="" method="POST">
+								{% csrf_token %}
 								<fieldset class="content-group">
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Name" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" class="form-control" placeholder="{% trans 'Enter name' %}...">
+											<input type="text" name="name" class="form-control" placeholder="{% trans 'Enter name' %}...">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Account" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" class="form-control" placeholder="{% trans 'Enter account' %}...">
+											<input type="text" name="account" class="form-control" placeholder="{% trans 'Enter account' %}...">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Tax classification" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" class="form-control" placeholder="{% trans 'Enter tax classification' %}...">
+											<input type="text" name="tax_classification" class="form-control" placeholder="{% trans 'Enter tax classification' %}...">
 										</div>
 									</div>
 
 								</fieldset>
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-primary">{% trans "Add" %}</button>
+									<button type="button" class="btn btn-link" data-dismiss="modal">{% trans "Close" %}</button>
+								</div>
 							</form>
-						</div>
-
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary">{% trans "Add" %}</button>
-							<button type="button" class="btn btn-link" data-dismiss="modal">{% trans "Close" %}</button>
 						</div>
 					</div>
 				</div>

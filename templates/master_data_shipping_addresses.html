@@ -6,7 +6,7 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}	
-	<input type="hidden" name="alt-path" value="{{ base_url }}/master_data_shipping_addresses.html">
+	<input type="hidden" name="alt-path" value="{{ base_url }}/master/shipping-addresses">
 	<div class="content-wrapper">
 
 		<!-- Page header -->
@@ -84,165 +84,18 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
 						
-						<tr>
-							<td>2</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
-
-						<tr>
-							<td>3</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
-
-						<tr>
-							<td>4</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
-						
-						<tr>
-							<td>1</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
-						
-						<tr>
-							<td>2</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
-
-						<tr>
-							<td>3</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
-
-						<tr>
-							<td>4</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
-
-						<tr>
-							<td>1</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
-						
-						<tr>
-							<td>2</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
-
-						<tr>
-							<td>3</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
-
-						<tr>
-							<td>4</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
-
-						<tr>
-							<td>1</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
-						
-						<tr>
-							<td>2</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
-
-						<tr>
-							<td>3</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
-
-						<tr>
-							<td>4</td>
-							<td>Chris Kim</td>
-							<td>Frigana</td>
-							<td>15033</td>
-							<td>B-123, Linden Street, Rooswell, Boston</td>
-							<td>1234567890</td>
-							<td>1234567890</td>
-						</tr>
+						{% for index, shipping_address in shipping_addresses %}
+							<tr>
+								<td>{{ index }}</td>
+								<td>{{ shipping_address.name }}</td>
+								<td>{{ shipping_address.frigana }}</td>
+								<td>{{ shipping_address.postal_code }}</td>
+								<td>{{ shipping_address.address }}</td>
+								<td>{{ shipping_address.tel }}</td>
+								<td>{{ shipping_address.fax }}</td>
+							</tr>
+						{% endfor %}
 					</tbody>
 				</table>
 
@@ -267,58 +120,58 @@
 						<div class="modal-body">
 							<hr/>
 
-							<form class="form-horizontal" action="#">
+							<form class="form-horizontal" action="" method="POST">
+								{% csrf_token %}
 								<fieldset class="content-group">
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Pick-up name" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" class="form-control" placeholder="{% trans 'Enter pick-up name' %}...">
+											<input type="text" name="name" class="form-control" placeholder="{% trans 'Enter pick-up name' %}...">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Frigana" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" class="form-control" placeholder="{% trans 'Enter frigana' %}...">
+											<input type="text" name="frigana" class="form-control" placeholder="{% trans 'Enter frigana' %}...">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Postal code" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" class="form-control" placeholder="{% trans 'Enter postal code' %}...">
+											<input type="text" name="postal_code" class="form-control" placeholder="{% trans 'Enter postal code' %}...">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Street address" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" class="form-control" placeholder="{% trans 'Enter street address' %}...">
+											<input type="text" name="address" class="form-control" placeholder="{% trans 'Enter street address' %}...">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "TEL" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" class="form-control" placeholder="{% trans 'Enter TEL' %}...">
+											<input type="text" name="tel" class="form-control" placeholder="{% trans 'Enter TEL' %}...">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "FAX" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" class="form-control" placeholder="{% trans 'Enter FAX' %}...">
+											<input type="text" name="fax" class="form-control" placeholder="{% trans 'Enter FAX' %}...">
 										</div>
 									</div>
 
 								</fieldset>
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-primary">{% trans "Add" %}</button>
+									<button type="button" class="btn btn-link" data-dismiss="modal">{% trans "Close" %}</button>
+								</div>
 							</form>
-						</div>
-
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary">{% trans "Add" %}</button>
-							<button type="button" class="btn btn-link" data-dismiss="modal">{% trans "Close" %}</button>
 						</div>
 					</div>
 				</div>

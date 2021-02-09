@@ -17,5 +17,9 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('customer/', customerPage, name='customer-master')
+    path('customers/', customerPage, name='customer-master'),
+    path('hall-details/', hallPage, name='hall-details'),
+    path('shipping-addresses/', shippingAddressPage, name='shipping-addresses'),
+    path('products/', productPage, name='products'),
+    path('product-others/', OtherPage, name='product-others'),
 ]
