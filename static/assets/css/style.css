@@ -65,6 +65,9 @@
 .mb-0, .my-0 {
     margin-bottom: 0 !important;
 }
+.mb-1, .my-1 {
+    margin-bottom: .25rem;
+}
 .mt-3, .my-3 {
     margin-top: 1rem;
 }
