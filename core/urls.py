@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url, i18n
 from users.views import loginPage, logoutUser
-from masters.views import dashboardPage
+from masters.views import dashboard
 
 urlpatterns = [
     # url(r'^jsi18n/$', javascript_catalog),
@@ -25,12 +25,15 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n.i18n_patterns(
-    path('', dashboardPage, name='dashboard'),
+    path('', dashboard, name='dashboard'),
     
     path('login/', loginPage, name='login'),
     path('logout/', logoutUser, name='logout'),
 
     path('master/', include('masters.urls')),
+    path('contract/', include('contracts.urls')),
+    path('list/', include('list.urls')),
+    path('accounting/', include('accounting.urls')),
 
     path('admin/', admin.site.urls),
     path("", include("pages.urls")),

@@ -82,9 +82,9 @@
 					</thead>
 					<tbody>
 
-						{% for index, product in products %}
+						{% for product in products %}
 							<tr>
-								<td>{{ index }}</td>
+								<td>{{ forloop.counter }}</td>
 								<td>{{ product.name }}</td>
 								<td>{{ product.classification }}</td>
 								<td>{{ product.maker }}</td>
@@ -121,21 +121,25 @@
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Model name" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="name" class="form-control" placeholder="{% trans 'Enter model name' %}...">
+											<input type="text" name="name" class="form-control" placeholder="{% trans 'Enter model name' %}..." required>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Classification" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="classification" class="form-control" placeholder="{% trans 'Enter classification' %}...">
+											<!-- <input type="text" name="classification" class="form-control" placeholder="{% trans 'Enter classification' %}..."> -->
+											<select name="classification" class="form-control">
+												<option value="Pachinko">{% trans 'Pachinko' %}</option>
+												<option value="Slot">{% trans 'Slot' %}</option>
+											</select>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Maker" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="maker" class="form-control" placeholder="{% trans 'Enter maker' %}...">
+											<input type="text" name="maker" class="form-control" placeholder="{% trans 'Enter maker' %}..." required>
 										</div>
 									</div>
 

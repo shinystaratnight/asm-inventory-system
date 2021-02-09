@@ -7,13 +7,13 @@ from .forms import CustomerForm, HallForm, ShippingAddressForm, ProductForm, Pro
 
 
 @login_required(login_url='login')
-def dashboardPage(request):
+def dashboard(request):
     context = {}
     return render(request, 'index.html', context)
 
 
 @login_required(login_url='login')
-def customerPage(request):
+def customers(request):
     customers = Customer.objects.all()
 
     form = CustomerForm()
@@ -23,12 +23,12 @@ def customerPage(request):
             form.save()
             return redirect('customer-master')
 
-    context = {'customers': enumerate(customers)}
+    context = {'customers': customers}
     return render(request, 'master_data_customer.html', context)
 
 
 @login_required(login_url='login')
-def hallPage(request):
+def halls(request):
     halls = Hall.objects.all()
 
     form = HallForm()
@@ -38,12 +38,12 @@ def hallPage(request):
             form.save()
             return redirect('hall-details')
 
-    context = { 'halls': enumerate(halls) }
+    context = { 'halls': halls }
     return render(request, 'master_data_hall_details.html', context)
 
 
 @login_required(login_url='login')
-def shippingAddressPage(request):
+def shipping_addresses(request):
     shipping_addresses = ShippingAddress.objects.all()
 
     form = ShippingAddressForm()
@@ -53,12 +53,12 @@ def shippingAddressPage(request):
             form.save()
             return redirect('shipping-addresses')
 
-    context = { 'shipping_addresses': enumerate(shipping_addresses) }
+    context = { 'shipping_addresses': shipping_addresses }
     return render(request, 'master_data_shipping_addresses.html', context)
 
 
 @login_required(login_url='login')
-def productPage(request):
+def products(request):
 
     products = Product.objects.all()
 
@@ -69,12 +69,12 @@ def productPage(request):
             form.save()
             return redirect('products')
 
-    context = { 'products': enumerate(products) }
+    context = { 'products': products }
     return render(request, 'master_data_product_name.html', context)
 
 
 @login_required(login_url='login')
-def OtherPage(request):
+def others(request):
 
     product_others = ProductOrder.objects.all()
 
@@ -85,5 +85,5 @@ def OtherPage(request):
             form.save()
             return redirect('product-others')
 
-    context = { 'product_others': enumerate(product_others) }
+    context = { 'product_others': product_others }
     return render(request, 'master_data_others.html', context)

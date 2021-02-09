@@ -85,9 +85,9 @@
 						</tr>
 					</thead>
 					<tbody>
-						{% for index, customer in customers %}
+						{% for customer in customers %}
 							<tr>
-								<td>{{ index }}</td>
+								<td>{{ forloop.counter }}</td>
 								<td>{{ customer.name }}</td>
 								<td>{{ customer.frigana }}</td>
 								<td>{{ customer.postal_code }}</td>
@@ -128,49 +128,49 @@
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Customer name" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="name" class="form-control" placeholder="{% trans 'Enter customer name' %}...">
+											<input type="text" name="name" class="form-control" placeholder="{% trans 'Enter customer name' %}..." required>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Frigana" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="frigana" class="form-control" placeholder="{% trans 'Enter frigana' %}...">
+											<input type="text" name="frigana" class="form-control" placeholder="{% trans 'Enter frigana' %}..." required>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Postal code" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="postal_code" class="form-control" placeholder="{% trans 'Enter postal code' %}...">
+											<input type="text" name="postal_code" class="form-control" placeholder="{% trans 'Enter postal code' %}..." required>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Street address" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="address" class="form-control" placeholder="{% trans 'Enter street address' %}...">
+											<input type="text" name="address" class="form-control" placeholder="{% trans 'Enter street address' %}..." required>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "TEL" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="tel" class="form-control" placeholder="{% trans 'Enter TEL' %}...">
+											<input type="text" name="tel" class="form-control" placeholder="{% trans 'Enter TEL' %}..." required>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "FAX" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="fax" class="form-control" placeholder="{% trans 'Enter FAX' %}...">
+											<input type="text" name="fax" class="form-control" placeholder="{% trans 'Enter FAX' %}..." required>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "For CSV" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="for_csv" class="form-control" placeholder="{% trans 'Enter proper data' %}...">
+											<input type="text" name="for_csv" class="form-control" placeholder="{% trans 'Enter proper data' %}..." required>
 										</div>
 									</div>
 
