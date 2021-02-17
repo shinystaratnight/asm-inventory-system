@@ -71,7 +71,8 @@
 							<div class="panel-title-wrapper container-fluid">
 								<div class="row d-flex flex-wrap">
 									<div class="col-3 text-left d-flex align-items-center">
-										<div class="transaction-id-text">No.10005008</div>
+										<div class="transaction-id-text">No.{{ transaction_id }}</div>
+										<input type="hidden" name="transaction_id" value="{{ transaction_id }}" >
 									</div>
 									<div class="col-6 d-flex align-items-center justify-content-center">
 										<h2 class="panel-title text-center">{% trans "Sales contract and invoice" %}</h2>
@@ -82,14 +83,14 @@
 											<span class="contract-date-label">{% trans "Contract date" %}</span>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-												<input type="text" class="form-control daterange-single">
+												<input type="text" name="contract_date" class="form-control daterange-single">
 											</div>
 										</div>
 										<div class="d-flex align-items-center justify-content-end mt-3">
 											<span class="contract-date-label">{% trans "Update date" %}</span>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-												<input type="text" class="form-control daterange-single">
+												<input type="text" name="update_at" class="form-control daterange-single">
 											</div>
 										</div>
 									</div>
@@ -106,7 +107,7 @@
 													<label class="control-label col-3 mt-auto">{% trans "Company name" %}</label>
 													<div class="col-9">
 														<div class="has-feedback">
-															<input type="text" class="form-control" placeholder="">
+															<input type="text" name="customer_name" class="form-control" placeholder="">
 															<div class="form-control-feedback w-50-px">
 																<span>{% trans "CO." %}</span>
 															</div>
@@ -117,7 +118,7 @@
 													<label class="control-label col-3 mt-auto"></label>
 													<div class="col-9">
 														<div class="has-feedback">
-															<input type="text" class="form-control" placeholder="">
+															<input type="text" name="customer_supplier" class="form-control" placeholder="">
 															<div class="form-control-feedback w-50-px">
 																<span>{% trans "Mr." %}</span>
 															</div>
@@ -129,7 +130,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label col-3 mt-auto text-right">{% trans "Frigana" %}</label>
 													<div class="col-9">
-														<input type="text" class="form-control" value="1108-3">
+														<input type="text" name="customer_frigana" class="form-control" value="1108-3">
 													</div>
 												</div>
 											</div>
@@ -139,7 +140,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label col-3 mt-auto">{% trans "Postal code" %}</label>
 													<div class="col-7">
-														<input type="text" class="form-control">
+														<input type="text" name="customer_postalcode" class="form-control">
 													</div>
 												</div>
 											</div>
@@ -150,7 +151,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label w-12-5 col-sm-3 mt-auto">{% trans "Street address" %}</label>
 													<div class="col-6">
-														<input type="text" class="form-control" value="1108-3">
+														<input type="text" name="customer_address" class="form-control" value="1108-3">
 													</div>
 												</div>
 											</div>
@@ -161,7 +162,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label col-3 mt-auto">{% trans "TEL" %}</label>
 													<div class="col-7">
-														<input type="text" class="form-control" value="087-865-7171">
+														<input type="text" name="customer_tel" class="form-control" value="087-865-7171">
 													</div>
 												</div>
 											</div>										
@@ -169,7 +170,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label col-2 mt-auto text-center">{% trans "FAX" %}</label>
 													<div class="col-8">
-														<input type="text" class="form-control" value="087-865-7171">
+														<input type="text" name="customer_fax" class="form-control" value="087-865-7171">
 													</div>
 												</div>
 											</div>
@@ -182,7 +183,7 @@
 												<div class="w-100 d-flex align-items-center">
 													<label class="control-label col-5 mt-auto">P-SENSOR {% trans "Membership number" %}</label>
 													<div class="col-7">
-														<input type="text" class="form-control" value="">
+														<input type="text" name="membership_number" class="form-control" value="">
 													</div>
 												</div>
 											</div>
@@ -190,7 +191,7 @@
 												<div class="w-100 d-flex align-items-center">
 													<label class="control-label col-5 mt-auto">{% trans "In charge" %}</label>
 													<div class="col-7">
-														<input type="text" class="form-control" value="">
+														<input type="text" name="in_charge" class="form-control" value="">
 													</div>
 												</div>
 											</div>
@@ -428,7 +429,7 @@
 												<div class="position-relative">
 													<div class="input-group">
 														<span class="input-group-addon">{% trans "Machine shipping date" %}</span>
-														<input type="text" class="form-control daterange-single">
+														<input type="text" name="shipping_method_date" class="form-control daterange-single">
 													</div>
 													<div class="form-control-feedback">
 														<i class="icon-calendar22"></i>
@@ -438,10 +439,8 @@
 											<div class="col-lg-12 col-xs-12">
 												<div class="">
 													<div class="input-group">
-														<span class="input-group-btn">
-															<button class="btn btn-default remark">{% trans "Remark" %}</button>
-														</span>
-														<textarea type="text" class="form-control remark"></textarea>
+														<span class="input-group-addon">{% trans "Remark" %}</span>
+														<textarea type="text" name="remarks" class="form-control remark"></textarea>
 													</div>
 												</div>
 											</div>
@@ -453,18 +452,22 @@
 												<tr>
 													<td>{% trans "Subtotal" %}</td>
 													<td>85,000</td>
+													<input type="hidden" name="subtotal" value="">
 												</tr>
 												<tr>
 													<td>{% trans "Consumption tax" %} (10%)</td>
 													<td>8,500</td>
+													<input type="hidden" name="consumption_tax" value="">
 												</tr>
 												<tr>
 													<td>{% trans "Insurance fee" %} ({% trans "Tax exempt" %})</td>
 													<td>100</td>
+													<input type="hidden" name="insurance_fee" value="">
 												</tr>
 												<tr>
 													<td>{% trans "Total amount" %}</td>
 													<td>93,600</td>
+													<input type="hidden" name="total_amount" value="">
 												</tr>
 											</tbody>
 										</table>
@@ -473,37 +476,35 @@
 								<div class="row mt-5-s d-flex flex-wrap">
 									<div class="col-6">
 										<div class="form-group">
-											<select name="select" class="form-control">
+											<select name="shipping_method" class="form-control">
 												<option value="">{% trans "Shiping method" %}</option>
-												<option value="">{% trans "Shipping" %}</option>
-												<option value="">{% trans "Picking up" %}</option>
-												<option value="">ID {% trans "Change" %}</option>
-												<option value="">* {% trans "Blank" %}</option>
+												<option value="{% trans 'Shipping' %}">{% trans "Shipping" %}</option>
+												<option value="{% trans 'Picking up' %}">{% trans "Picking up" %}</option>
+												<option value="ID {% trans 'Change' %}">ID {% trans "Change" %}</option>
+												<option value="* {% trans 'Blank' %}">* {% trans "Blank" %}</option>
 											</select>
 										</div>
 										<div class="form-group">
-											<select name="select" class="form-control">
+											<select name="payment_method" class="form-control">
 												<option value="">{% trans "Payment method" %}</option>
-												<option value="">{% trans "Transfer" %}</option>
-												<option value="">{% trans "Check" %}</option>
-												<option value="">{% trans "Bill" %}</option>
-												<option value="">{% trans "Cash" %}</option>
+												<option value="{% trans 'Transfer' %}">{% trans "Transfer" %}</option>
+												<option value="{% trans 'Check' %}">{% trans "Check" %}</option>
+												<option value="{% trans 'Bill' %}">{% trans "Bill" %}</option>
+												<option value="{% trans 'Cash' %}">{% trans "Cash" %}</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-6">
 										<div class="form-group">
 											<div class="input-group">
-												<span class="input-group-btn">
-													<button class="btn btn-default">{% trans "Billed amount" %}</button>
-												</span>
-												<input type="text" class="form-control">
+												<span class="input-group-addon">{% trans "Billed amount" %}</span>
+												<!-- <input type="text" class="form-control" name="total_amount"> -->
 											</div>
 										</div>
 										<div class="position-relative form-group">
 											<div class="input-group">
 												<span class="input-group-addon">{% trans "Payment deadline" %}</span>
-												<input type="text" class="form-control daterange-single">
+												<input type="text" name="payment_deadline" class="form-control daterange-single">
 											</div>
 											<div class="form-control-feedback">
 												<i class="icon-calendar22"></i>
@@ -531,32 +532,32 @@
 											<div class="form-group">
 												<label class="control-label">{% trans "Company name" %}</label>
 												<div class="">
-													<input type="text" class="form-control">
+													<input type="text" name="product_shipping_company" class="form-control">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "Street address" %}</label>
 												<div class="">
-													<textarea type="text" class="form-control"></textarea>
+													<textarea type="text" name="product_shipping_address" class="form-control"></textarea>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "TEL" %}</label>
 												<div class="">
-													<input type="text" class="form-control"></input>
+													<input type="text" name="product_shipping_tel" class="form-control"></input>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "FAX" %}</label>
 												<div class="">
-													<input type="text" class="form-control"></input>
+													<input type="text" name="product_shipping_fax" class="form-control"></input>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "Expected arrival date" %}</label>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-													<input type="text" class="form-control daterange-single">
+													<input type="text" name="product_shipping_arrival_date" class="form-control daterange-single">
 												</div>
 											</div>
 										</fieldset>
@@ -568,32 +569,32 @@
 											<div class="form-group">
 												<label class="control-label">{% trans "Company name" %}</label>
 												<div class="">
-													<input type="text" class="form-control">
+													<input type="text" name="document_shipping_company" class="form-control">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "Street address" %}</label>
 												<div class="">
-													<textarea type="text" class="form-control"></textarea>
+													<textarea type="text" name="document_shipping_address" class="form-control"></textarea>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "TEL" %}</label>
 												<div class="">
-													<input type="text" class="form-control"></input>
+													<input type="text" name="document_shipping_tel" class="form-control"></input>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "FAX" %}</label>
 												<div class="">
-													<input type="text" class="form-control"></input>
+													<input type="text" name="document_shipping_fax" class="form-control"></input>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "Expected arrival date" %}</label>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-													<input type="text" class="form-control daterange-single">
+													<input type="text" name="document_shipping_arrival_date" class="form-control daterange-single">
 												</div>
 											</div>
 										</fieldset>
@@ -639,9 +640,7 @@
 									</div>
 									<div class="col-lg-6 col-xs-12">
 										<div class="input-group">
-											<span class="input-group-btn">
-												<button class="btn btn-default remark">{% trans "Remark" %}</button>
-											</span>
+											<span class="input-group-addon">{% trans "Remark" %}</span>
 											<textarea type="text" class="form-control remark"></textarea>
 										</div>
 									</div>
@@ -649,7 +648,7 @@
 								<div class="row print-btn-group">
 									<div class="col-md-12">
 										<div class="mb-4 text-center">
-											<button type="button" class="btn btn-primary mr-4"><i class="fa fa-print position-left"></i> {% trans "Create Contract" %}</button>
+											<button type="submit" class="btn btn-primary mr-4"><i class="fa fa-print position-left"></i> {% trans "Create Contract" %}</button>
 											<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> {% trans "Create Invoice" %}</button>
 										</div>
 									</div>
@@ -658,7 +657,6 @@
 	
 						</div>
 					</form>
-					
 					<!-- /traffic sources -->
 
 				</div>
