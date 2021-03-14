@@ -650,7 +650,7 @@ document.addEventListener('DOMContentLoaded', function() {
     $('a[data-lang]').click(function(e) {
         e.stopImmediatePropagation();
         e.preventDefault();
-        var new_path = $('input[name=alt-path]').val();
+        var url = document.URL.replace(/^(?:\/\/|[^/]+)*\/(ja|en)/, '');
         
         $.ajax({
             type: 'POST',
@@ -665,7 +665,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .done(function(response) {
 
-            window.location.href = new_path;
+            window.location.href = url;
         });
     });
 

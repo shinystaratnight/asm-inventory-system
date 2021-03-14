@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url, i18n
-from users.views import loginPage, logoutUser
+# from users.views import loginPage, logoutUser
 from masters.views import dashboard
 
 urlpatterns = [
@@ -27,8 +27,7 @@ urlpatterns = [
 urlpatterns += i18n.i18n_patterns(
     path('', dashboard, name='dashboard'),
     
-    path('login/', loginPage, name='login'),
-    path('logout/', logoutUser, name='logout'),
+    path('', include('users.urls')),
 
     path('master/', include('masters.urls')),
     path('contract/', include('contracts.urls')),
@@ -36,5 +35,5 @@ urlpatterns += i18n.i18n_patterns(
     path('accounting/', include('accounting.urls')),
 
     path('admin/', admin.site.urls),
-    path("", include("pages.urls")),
+    # path("", include("pages.urls")),
 )

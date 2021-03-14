@@ -9,7 +9,7 @@ from .forms import CustomerForm, HallForm, ShippingAddressForm, ProductForm, Pro
 @login_required(login_url='login')
 def dashboard(request):
     context = {}
-    return render(request, 'index.html', context)
+    return render(request, 'dashboard/index.html', context)
 
 
 @login_required(login_url='login')

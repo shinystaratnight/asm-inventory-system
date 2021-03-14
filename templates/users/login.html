@@ -44,12 +44,11 @@
 
 <body class="login-container">
 
-	<input type="hidden" name="alt-path" value="{{ base_url }}/login_password_recover.html">
-
 	<!-- Main navbar -->
 	<div class="navbar navbar-inverse">
+		
 		<div class="navbar-header">
-			<a class="navbar-brand" href="index.html"><img src="{% static 'global_assets/images/logo_light.png' %}" alt=""></a>
+			<a class="navbar-brand" href="index.html"><img src="../../../../global_assets/images/logo_light.png" alt=""></a>
 
 			<ul class="nav navbar-nav pull-right visible-xs-block">
 				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -57,6 +56,7 @@
 		</div>
 
 		<div class="navbar-collapse collapse" id="navbar-mobile">
+			
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown language-switch">
 					<a class="dropdown-toggle" data-toggle="dropdown">
@@ -113,25 +113,45 @@
 				<!-- Content area -->
 				<div class="content">
 
-					<!-- Password recovery -->
-					<form action="login.html">
+					<!-- Simple login form -->
+					<form action="" method="POST">
+						{% csrf_token %}
 						<div class="panel panel-body login-form">
 							<div class="text-center">
-								<div class="icon-object border-warning text-warning"><i class="icon-spinner11"></i></div>
-								<h5 class="content-group">{% trans "Password recovery" %} <small class="display-block">{% trans "We'll send you instructions in email" %}</small></h5>
+								<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+								<h5 class="content-group">{% trans "Login to your account" %} <small class="display-block">{% trans "Enter your username and password below" %}</small></h5>
 							</div>
 
-							<div class="form-group has-feedback">
-								<input type="email" class="form-control" placeholder="{% trans 'Your email' %}">
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="text" class="form-control" placeholder="{% trans 'Username' %}" name="username" required>
 								<div class="form-control-feedback">
-									<i class="icon-mail5 text-muted"></i>
+									<i class="icon-user text-muted"></i>
 								</div>
 							</div>
 
-							<button type="submit" class="btn bg-blue btn-block">{% trans "Reset password" %} <i class="icon-arrow-right14 position-right"></i></button>
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="password" class="form-control" placeholder="{% trans 'Password' %}" name="password" required>
+								<div class="form-control-feedback">
+									<i class="icon-lock2 text-muted"></i>
+								</div>
+							</div>
+
+							{% for message in messages %}
+							<div class="alert alert-danger" role="alert">
+								<span class="help-block">{{ message }}</span>
+							</div>
+							{% endfor %}
+
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary btn-block">{% trans "Sign in" %} <i class="icon-circle-right2 position-right"></i></button>
+							</div>
+
+							<div class="text-center">
+								<a href="{% url 'password_reset' %}">{% trans "Forgot password" %}?</a>
+							</div>
 						</div>
 					</form>
-					<!-- /password recovery -->
+					<!-- /simple login form -->
 
 				</div>
 				<!-- /content area -->
