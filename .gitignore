@@ -4,3 +4,4 @@ __pycache__/
 .DS_Store
 core/settings.py
 db.sqlite3
+*.rdb

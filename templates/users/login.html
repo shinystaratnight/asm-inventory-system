@@ -1,169 +1,47 @@
-{% load static %}
+{% extends 'layouts/base_not_logged.html' %}
+
 {% load i18n %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Dashboard</title>
+{% block content %}
 
-	<!-- Global stylesheets -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="{% static 'global_assets/css/icons/icomoon/styles.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'assets/css/core.min.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'assets/css/components.min.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'assets/css/colors.min.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'global_assets/css/extras/animate.min.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css">
-	<!-- /global stylesheets -->
-
-	<!-- Core JS files -->
-	<script src="{% static 'global_assets/js/plugins/loaders/pace.min.js' %}"></script>
-	<script src="{% static 'global_assets/js/core/libraries/jquery.min.js' %}"></script>
-	<script src="{% static 'global_assets/js/core/libraries/bootstrap.min.js' %}"></script>
-	<script src="{% static 'global_assets/js/plugins/loaders/blockui.min.js' %}"></script>
-	<!-- /core JS files -->
-
-	<!-- Theme JS files -->
-	<script src="{% static 'global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
-	<script src="{% static 'global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
-
-	<script src="{% static 'assets/js/app.js' %}"></script>
-	<script src="{% static 'global_assets/js/demo_pages/datatables_basic.js' %}"></script>
-	<!-- /theme JS files -->
-
-	{% csrf_token %}
-	<script>
-		const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-	</script>
-
-</head>
-
-<body class="login-container">
-
-	<!-- Main navbar -->
-	<div class="navbar navbar-inverse">
-		
-		<div class="navbar-header">
-			<a class="navbar-brand" href="index.html"><img src="../../../../global_assets/images/logo_light.png" alt=""></a>
-
-			<ul class="nav navbar-nav pull-right visible-xs-block">
-				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
-			</ul>
-		</div>
-
-		<div class="navbar-collapse collapse" id="navbar-mobile">
-			
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown language-switch">
-					<a class="dropdown-toggle" data-toggle="dropdown">
-						{% get_current_language as LANGUAGE_CODE %}
-						{% if LANGUAGE_CODE == 'en' %}
-							<img src="{% static 'global_assets/images/flags/gb.png' %}" class="position-left" alt="">
-							English
-							<span class="caret"></span>
-						{% else %}
-						<img src="{% static 'global_assets/images/flags/ja.png' %}" class="position-left" alt="">
-							日本語
-						<span class="caret"></span>
-						{% endif %}
-					</a>
-					<ul class="dropdown-menu">
-						<li><a data-lang="ja" class="languge"><img src="{% static 'global_assets/images/flags/ja.png' %}" alt="">日本語</a></li>
-						<li><a data-lang="en" class="languge"><img src="{% static 'global_assets/images/flags/gb.png' %}" alt="">English</a></li>
-					</ul>
-				</li>
-
-				<li>
-					<a href="#">
-						<i class="icon-display4"></i> <span class="visible-xs-inline-block position-right"> Go to website</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#">
-						<i class="icon-user-tie"></i> <span class="visible-xs-inline-block position-right"> Contact admin</span>
-					</a>
-				</li>
-
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-cog3"></i>
-						<span class="visible-xs-inline-block position-right"> Options</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<!-- /main navbar -->
-
-
-	<!-- Page container -->
-	<div class="page-container">
-
-		<!-- Page content -->
-		<div class="page-content">
-
-			<!-- Main content -->
-			<div class="content-wrapper">
-
-				<!-- Content area -->
-				<div class="content">
-
-					<!-- Simple login form -->
-					<form action="" method="POST">
-						{% csrf_token %}
-						<div class="panel panel-body login-form">
-							<div class="text-center">
-								<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
-								<h5 class="content-group">{% trans "Login to your account" %} <small class="display-block">{% trans "Enter your username and password below" %}</small></h5>
-							</div>
-
-							<div class="form-group has-feedback has-feedback-left">
-								<input type="text" class="form-control" placeholder="{% trans 'Username' %}" name="username" required>
-								<div class="form-control-feedback">
-									<i class="icon-user text-muted"></i>
-								</div>
-							</div>
-
-							<div class="form-group has-feedback has-feedback-left">
-								<input type="password" class="form-control" placeholder="{% trans 'Password' %}" name="password" required>
-								<div class="form-control-feedback">
-									<i class="icon-lock2 text-muted"></i>
-								</div>
-							</div>
-
-							{% for message in messages %}
-							<div class="alert alert-danger" role="alert">
-								<span class="help-block">{{ message }}</span>
-							</div>
-							{% endfor %}
-
-							<div class="form-group">
-								<button type="submit" class="btn btn-primary btn-block">{% trans "Sign in" %} <i class="icon-circle-right2 position-right"></i></button>
-							</div>
-
-							<div class="text-center">
-								<a href="{% url 'password_reset' %}">{% trans "Forgot password" %}?</a>
-							</div>
-						</div>
-					</form>
-					<!-- /simple login form -->
-
-				</div>
-				<!-- /content area -->
-
+	<!-- Simple login form -->
+	<form action="" method="POST">
+		{% csrf_token %}
+		<div class="panel panel-body login-form">
+			<div class="text-center">
+				<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+				<h5 class="content-group">{% trans "Login to your account" %} <small class="display-block">{% trans "Enter your username and password below" %}</small></h5>
 			</div>
-			<!-- /main content -->
 
+			<div class="form-group has-feedback has-feedback-left">
+				<input type="text" class="form-control" placeholder="{% trans 'Username' %}" name="username" required>
+				<div class="form-control-feedback">
+					<i class="icon-user text-muted"></i>
+				</div>
+			</div>
+
+			<div class="form-group has-feedback has-feedback-left">
+				<input type="password" class="form-control" placeholder="{% trans 'Password' %}" name="password" required>
+				<div class="form-control-feedback">
+					<i class="icon-lock2 text-muted"></i>
+				</div>
+			</div>
+
+			{% for message in messages %}
+			<div class="alert alert-danger" role="alert">
+				<span class="help-block">{{ message }}</span>
+			</div>
+			{% endfor %}
+
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-block">{% trans "Sign in" %} <i class="icon-circle-right2 position-right"></i></button>
+			</div>
+
+			<div class="text-center">
+				<a href="{% url 'password_reset' %}">{% trans "Forgot password" %}?</a>
+			</div>
 		</div>
-		<!-- /page content -->
+	</form>
+	<!-- /simple login form -->
 
-	</div>
-	<!-- /page container -->
-
-</body>
-</html>
+{% endblock %}

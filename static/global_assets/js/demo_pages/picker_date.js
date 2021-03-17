@@ -54,10 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // Single picker
-    var lang = $('#inventory_lang').val();
-    moment.locale(lang);
     $('.daterange-single').daterangepicker({ 
-        singleDatePicker: true,
+        singleDatePicker: true
     });
 
 

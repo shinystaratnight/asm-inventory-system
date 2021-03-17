@@ -13,20 +13,20 @@
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
         type="text/css">
-    <link href="{% static 'global_assets/css/icons/icomoon/styles.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'assets/css/core.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'assets/css/components.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'assets/css/colors.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'global_assets/css/icons/icomoon/styles.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'global_assets/css/extras/animate.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
-    <script src="{% static 'global_assets/js/plugins/loaders/pace.min.js' %}"></script>
     <script src="{% static 'global_assets/js/core/libraries/jquery.min.js' %}"></script>
     <script src="{% static 'global_assets/js/core/libraries/bootstrap.min.js' %}"></script>
-    <script src="{% static 'global_assets/js/plugins/loaders/blockui.min.js' %}"></script>
+    <!-- <script src="{% static 'global_assets/js/plugins/loaders/pace.min.js' %}"></script> -->
+    <!-- <script src="{% static 'global_assets/js/plugins/loaders/blockui.min.js' %}"></script> -->
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
@@ -52,7 +52,7 @@
     <div class="navbar navbar-inverse">
 
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.html"><img src="../../../../global_assets/images/logo_light.png"
+            <a class="navbar-brand" href="index.html"><img src="{% static 'global_assets/images/logo_light.png' %}"
                     alt=""></a>
 
             <ul class="nav navbar-nav pull-right visible-xs-block">
