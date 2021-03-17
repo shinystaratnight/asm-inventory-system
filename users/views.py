@@ -18,18 +18,11 @@ def user_login(request):
                 login(request, user)
                 redirect_url = request.GET.get('next', 'dashboard')
                 return redirect(redirect_url)
-        
-        messages.error(request, 'Username or password is incorrect.')
+        else:
+            messages.error(request, 'Username or password is incorrect.')
     
-    return render(request, 'users/login.html')
+    return render(request, 'registration/login.html')
 
 def user_logout(request):
     logout(request)
     return redirect('login')
-
-
-def password_reset(request):
-    if request.method == 'POST':
-        pass
-
-    return render(request, 'users/password_recovery.html')
