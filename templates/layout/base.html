@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +8,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>
-        Inventory System - {% block title %} {% endblock %}
+        {% trans 'Inventory System' %} - {% block title %} {% endblock %}
     </title>
 
 	<!-- Global stylesheets -->
@@ -47,11 +48,11 @@
 	<!-- /theme JS files -->
 
 	<!-- Demo Pages files -->
-    <script src="{% static 'js/customs/datatables_extension_select.js' %}"></script>
+    <!-- <script src="{% static 'js/customs/datatables_extension_select.js' %}"></script> -->
 	<script src="{% static 'js/customs/datatables_basic.js' %}"></script>
-	<script src="{% static 'js/customs/picker_date.js' %}"></script>
-	<script src="{% static 'js/customs/form_multiselect.js' %}"></script>
-	<script src="{% static 'js/customs/jqueryui_forms.js' %}"></script>
+	<!-- <script src="{% static 'js/customs/picker_date.js' %}"></script> -->
+	<!-- <script src="{% static 'js/customs/form_multiselect.js' %}"></script> -->
+	<!-- <script src="{% static 'js/customs/jqueryui_forms.js' %}"></script> -->
     <script src="{% static 'js/customs/app.js' %}"></script>
 	<!-- /demo Pages files -->
 

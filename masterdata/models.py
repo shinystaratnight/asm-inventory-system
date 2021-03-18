@@ -4,10 +4,10 @@ from django.utils.translation import gettext as _
 class CommonMasterData(models.Model):
     name = models.CharField(max_length=200)
     frigana = models.CharField(max_length=200)
-    postal_code = models.CharField(max_length=20)
+    postal_code = models.CharField(max_length=20, null=True, blank=True)
     address = models.CharField(max_length=200)
-    tel = models.CharField(max_length=20)
-    fax = models.CharField(max_length=20)
+    tel = models.CharField(max_length=100, null=True, blank=True)
+    fax = models.CharField(max_length=100, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
