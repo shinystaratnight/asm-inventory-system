@@ -15,9 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls import url, i18n
-# from users.views import loginPage, logoutUser
-from masters.views import dashboard
+from django.conf.urls import url, i18n, handler404, handler500
 
 urlpatterns = [
     # url(r'^jsi18n/$', javascript_catalog),
@@ -25,15 +23,14 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n.i18n_patterns(
-    path('', dashboard, name='dashboard'),
+    path('admin/', admin.site.urls),
     
     path('', include('users.urls')),
-
     path('master/', include('masters.urls')),
     path('contract/', include('contracts.urls')),
     path('list/', include('list.urls')),
     path('accounting/', include('accounting.urls')),
-
-    path('admin/', admin.site.urls),
-    # path("", include("pages.urls")),
 )
+
+handler404 = 'users.views.page_not_found'
+handler500 = 'users.views.internal_error'

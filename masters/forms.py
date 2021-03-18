@@ -8,20 +8,24 @@ class CustomerForm(ModelForm):
         model = Customer
         fields = '__all__'
 
+
 class HallForm(ModelForm):
     class Meta:
         model = Hall
         fields = '__all__'
+
 
 class ShippingAddressForm(ModelForm):
     class Meta:
         model = ShippingAddress
         fields = '__all__'
 
+
 class ProductForm(ModelForm):
     class Meta:
         model = Product
         fields = '__all__'
+
 
 class ProductOtherForm(ModelForm):
     class Meta:

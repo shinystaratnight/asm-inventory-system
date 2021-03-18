@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .forms import CustomerForm, HallForm, ShippingAddressForm, ProductForm, ProductOtherForm
-# Create your views here.
 
 
 @login_required(login_url='login')
