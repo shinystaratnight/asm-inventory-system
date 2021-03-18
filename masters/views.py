@@ -6,12 +6,6 @@ from .forms import CustomerForm, HallForm, ShippingAddressForm, ProductForm, Pro
 
 
 @login_required(login_url='login')
-def dashboard(request):
-    context = {}
-    return render(request, 'dashboard/index.html', context)
-
-
-@login_required(login_url='login')
 def customers(request):
     customers = Customer.objects.all()
 
@@ -23,7 +17,7 @@ def customers(request):
             return redirect('customer-master')
 
     context = {'customers': customers}
-    return render(request, 'master_data_customer.html', context)
+    return render(request, 'master_data/master_data_customer.html', context)
 
 
 @login_required(login_url='login')
@@ -38,7 +32,7 @@ def halls(request):
             return redirect('hall-details')
 
     context = { 'halls': halls }
-    return render(request, 'master_data_hall_details.html', context)
+    return render(request, 'master_data/master_data_hall_details.html', context)
 
 
 @login_required(login_url='login')
@@ -53,7 +47,7 @@ def shipping_addresses(request):
             return redirect('shipping-addresses')
 
     context = { 'shipping_addresses': shipping_addresses }
-    return render(request, 'master_data_shipping_addresses.html', context)
+    return render(request, 'master_data/master_data_shipping_addresses.html', context)
 
 
 @login_required(login_url='login')
@@ -69,7 +63,7 @@ def products(request):
             return redirect('products')
 
     context = { 'products': products }
-    return render(request, 'master_data_product_name.html', context)
+    return render(request, 'master_data/master_data_product_name.html', context)
 
 
 @login_required(login_url='login')
@@ -85,4 +79,4 @@ def others(request):
             return redirect('product-others')
 
     context = { 'product_others': product_others }
-    return render(request, 'master_data_others.html', context)
+    return render(request, 'master_data/master_data_others.html', context)

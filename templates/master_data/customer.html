@@ -6,33 +6,33 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}	
-	<input type="hidden" name="alt-path" value="{{ base_url }}/master/hall-details">
+	<input type="hidden" name="alt-path" value="{{ base_url }}/master/customers">
 	<div class="content-wrapper">
 
 		<!-- Page header -->
 		<div class="page-header">
 			<div class="page-header-content">
 				<div class="page-title">
-					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "Master data" %}</span> - {% trans "Hall" %}</h4>
+					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "Master data" %}</span> - {% trans "Customer master" %}</h4>
 				</div>
 
-				<div class="heading-elements">
+				<!-- <div class="heading-elements">
 					<div class="heading-btn-group">
 						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>{% trans "Statistics" %}</span></a>
 						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>{% trans "Invoices" %}</span></a>
 						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>{% trans "Schedule" %}</span></a>
 					</div>
-				</div>
+				</div> -->
 			</div>
 
 			<div class="breadcrumb-line breadcrumb-line-component">
 				<ul class="breadcrumb">
 					<li><a href="index.html"><i class="icon-home2 position-left"></i> {% trans "Home" %}</a></li>
 					<li><a href="datatable_styling.html">{% trans "Master data" %}</a></li>
-					<li class="active">{% trans "Hall" %}</li>
+					<li class="active">{% trans "Customer master" %}</li>
 				</ul>
 
-				<ul class="breadcrumb-elements">
+				<!-- <ul class="breadcrumb-elements">
 					<li><a href="#"><i class="icon-comment-discussion position-left"></i> {% trans "Support" %}</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -49,7 +49,7 @@
 							<li><a href="#"><i class="icon-gear"></i> {% trans "All settings" %}</a></li>
 						</ul>
 					</li>
-				</ul>
+				</ul> -->
 			</div>
 		</div>
 		<!-- /page header -->
@@ -59,7 +59,7 @@
 
 			<div class="panel panel-flat">
 				<div class="panel-heading">
-					<h5 class="panel-title">{% trans "Hall details list" %}</h5>
+					<h5 class="panel-title">{% trans "Customer master list" %}</h5>
 					<div class="heading-elements">
 						<ul class="icons-list">
 							<li><a data-action="collapse"></a></li>
@@ -75,26 +75,26 @@
 					<thead>
 						<tr>
 							<th>{% trans "No" %}</th>
-							<th>{% trans "Hall name" %}</th>
+							<th>{% trans "Customer name" %}</th>
 							<th>{% trans "Frigana" %}</th>
 							<th>{% trans "Postal code" %}</th>
 							<th>{% trans "Street address" %}</th>
 							<th>{% trans "TEL" %}</th>
 							<th>{% trans "FAX" %}</th>
-							<th>{% trans "Payee" %}</th>
+							<th>{% trans "For CSV" %}</th>
 						</tr>
 					</thead>
 					<tbody>
-						{% for hall in halls %}
+						{% for customer in customers %}
 							<tr>
 								<td>{{ forloop.counter }}</td>
-								<td>{{ hall.name }}</td>
-								<td>{{ hall.frigana }}</td>
-								<td>{{ hall.postal_code }}</td>
-								<td>{{ hall.address }}</td>
-								<td>{{ hall.tel }}</td>
-								<td>{{ hall.fax }}</td>
-								<td>{{ hall.payee }}</td>
+								<td>{{ customer.name }}</td>
+								<td>{{ customer.frigana }}</td>
+								<td>{{ customer.postal_code }}</td>
+								<td>{{ customer.address }}</td>
+								<td>{{ customer.tel }}</td>
+								<td>{{ customer.fax }}</td>
+								<td>{{ customer.for_csv }}</td>
 							</tr>
 						{% endfor %}
 					</tbody>
@@ -103,7 +103,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="mb-5-s text-center">
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add_new_data"><i class="icon-plus2 position-left"></i>{% trans "Add Hall Details" %}</button>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add_new_data"><i class="icon-plus2 position-left"></i>{% trans "Add Customer Master" %}</button>
 						</div>
 					</div>
 				</div>
@@ -115,7 +115,7 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h5 class="modal-title">{% trans "Add Hall Details" %}</h5>
+							<h5 class="modal-title">{% trans "Add Customer Master" %}</h5>
 						</div>
 
 						<div class="modal-body">
@@ -126,9 +126,9 @@
 								<fieldset class="content-group">
 
 									<div class="form-group">
-										<label class="control-label col-lg-3">{% trans "Hall name" %}:</label>
+										<label class="control-label col-lg-3">{% trans "Customer name" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="name" class="form-control" placeholder="{% trans 'Enter hall name' %}..." required>
+											<input type="text" name="name" class="form-control" placeholder="{% trans 'Enter customer name' %}..." required>
 										</div>
 									</div>
 
@@ -168,20 +168,21 @@
 									</div>
 
 									<div class="form-group">
-										<label class="control-label col-lg-3">{% trans "Payee" %}:</label>
+										<label class="control-label col-lg-3">{% trans "For CSV" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="payee" class="form-control" placeholder="{% trans 'Enter payee' %} ..." required>
+											<input type="text" name="for_csv" class="form-control" placeholder="{% trans 'Enter proper data' %}..." required>
 										</div>
 									</div>
 
 								</fieldset>
-
 								<div class="modal-footer">
 									<button type="submit" class="btn btn-primary">{% trans "Add" %}</button>
 									<button type="button" class="btn btn-link" data-dismiss="modal">{% trans "Close" %}</button>
 								</div>
 							</form>
 						</div>
+
+						
 					</div>
 				</div>
 			</div>

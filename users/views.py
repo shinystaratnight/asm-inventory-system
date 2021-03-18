@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from users.forms import LoginForm
-from django.contrib.auth.models import User
 
 @login_required(login_url='login')
 def dashboard(request):

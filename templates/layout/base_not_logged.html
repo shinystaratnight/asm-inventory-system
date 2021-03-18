@@ -11,22 +11,21 @@
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'assets/css/core.min.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'assets/css/components.min.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'assets/css/colors.min.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'global_assets/css/icons/icomoon/styles.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'global_assets/css/extras/animate.min.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/core/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/core/core.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/core/components.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/core/colors.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/icons/icomoon/styles.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/extras/animate.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
-	<script src="{% static 'global_assets/js/core/libraries/jquery.min.js' %}"></script>
-	<script src="{% static 'global_assets/js/core/libraries/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/core/libraries/jquery.min.js' %}"></script>
+	<script src="{% static 'js/core/libraries/bootstrap.min.js' %}"></script>
 	<!-- /core JS files -->
 
-	<script src="{% static 'assets/js/app.js' %}"></script>
-	<!-- /theme JS files -->
+	<script src="{% static 'js/customs/app.js' %}"></script>
 
 	{% csrf_token %}
 	<script>
@@ -47,18 +46,18 @@
 					<a class="dropdown-toggle" data-toggle="dropdown">
 						{% get_current_language as LANGUAGE_CODE %}
 						{% if LANGUAGE_CODE == 'en' %}
-							<img src="{% static 'global_assets/images/flags/gb.png' %}" class="position-left" alt="">
+							<img src="{% static 'images/flags/gb.png' %}" class="position-left" alt="">
 							English
 							<span class="caret"></span>
 						{% else %}
-						<img src="{% static 'global_assets/images/flags/ja.png' %}" class="position-left" alt="">
+						<img src="{% static 'images/flags/ja.png' %}" class="position-left" alt="">
 							日本語
 						<span class="caret"></span>
 						{% endif %}
 					</a>
 					<ul class="dropdown-menu">
-						<li><a data-lang="ja" class="languge"><img src="{% static 'global_assets/images/flags/ja.png' %}" alt="">日本語</a></li>
-						<li><a data-lang="en" class="languge"><img src="{% static 'global_assets/images/flags/gb.png' %}" alt="">English</a></li>
+						<li><a data-lang="ja" class="languge"><img src="{% static 'images/flags/ja.png' %}" alt="">日本語</a></li>
+						<li><a data-lang="en" class="languge"><img src="{% static 'images/flags/gb.png' %}" alt="">English</a></li>
 					</ul>
 				</li>
 			</ul>
