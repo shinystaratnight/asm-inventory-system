@@ -6,7 +6,7 @@ class CommonMasterData(models.Model):
     frigana = models.CharField(max_length=200)
     postal_code = models.CharField(max_length=20, null=True, blank=True)
     address = models.CharField(max_length=200)
-    tel = models.CharField(max_length=100, null=True, blank=True)
+    telephone = models.CharField(max_length=100, null=True, blank=True)
     fax = models.CharField(max_length=100, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
@@ -30,8 +30,8 @@ class ShippingAddress(CommonMasterData):
 
 
 CLASSIFICATION_CHOICES = (
-    ('p', _('Pachinko')),
-    ('s', _('Slot'))
+    ('P', _('Pachinko')),
+    ('S', _('Slot'))
 )
 
 class Product(models.Model):
@@ -42,6 +42,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Other(models.Model):
     name = models.CharField(max_length=200)

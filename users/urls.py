@@ -5,13 +5,12 @@ from django.contrib.auth.views import (
     PasswordResetConfirmView,
     PasswordResetCompleteView
 )
-
-from .views import dashboard, user_login, user_logout
+from users.views import DashboardView, LoginView, LogoutView
 
 urlpatterns = [
-    path('', dashboard, name='dashboard'),
-    path('login/', user_login, name='login'),
-    path('logout/', user_logout, name='logout'),
+    path('', DashboardView.as_view(), name='dashboard'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 
     path('password_reset/', PasswordResetView.as_view(), name='password_reset'),
     path('password_reset/done/', PasswordResetDoneView.as_view(), name='password_reset_done'),

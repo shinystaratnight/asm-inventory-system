@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from .models import Customer
 from .forms import CustomerForm
 
-class CustomerView(TemplateView):
+class CustomerView(LoginRequiredMixin, TemplateView):
     template_name = 'master_data/customer.html'
 
     def get(self, request, *args, **kwargs):

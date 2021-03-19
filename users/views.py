@@ -1,31 +1,58 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
+from django.views.generic import View, TemplateView, RedirectView
 from users.forms import LoginForm
 
-@login_required(login_url='login')
-def dashboard(request):
-    return render(request, 'dashboard/index.html')
 
-def user_login(request):
-    if request.method == 'POST':
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = 'dashboard/index.html'
+
+
+class AdminCheckMixin:
+    def is_admin(self, user):
+        if user.is_authenticated and user.is_superuser and user.is_staff:
+            return True
+        return False
+
+class AdminLoginRequiredMixin(LoginRequiredMixin, UserPassesTestMixin, AdminCheckMixin):
+    def test_func(self):
+        return self.is_admin(self.request.user)
+    
+    # def handle_no_permission(self):
+    #     pass
+
+
+class LoginView(AdminCheckMixin, View):
+    template_name = 'registration/login.html'
+
+    def get(self, request, *args, **kwargs):
+        if self.is_admin(request.user):
+            return redirect('dashboard')
+        return render(request, self.template_name)
+    
+    def post(self, request, *args, **kwargs):
         form = LoginForm(request.POST)
         if form.is_valid():
             username = request.POST.get('username')
             password = request.POST.get('password')
             user = authenticate(request, username=username, password=password)
-            if user is not None:
+            if self.is_admin(user):
                 login(request, user)
                 redirect_url = request.GET.get('next', 'dashboard')
                 return redirect(redirect_url)
-        else:
-            messages.error(request, 'Username or password is incorrect.')
-    return render(request, 'registration/login.html')
+        messages.error(request, 'Username or password is incorrect.')
+        return render(request, self.template_name)
 
-def user_logout(request):
-    logout(request)
-    return redirect('login')
+
+class LogoutView(AdminLoginRequiredMixin, RedirectView):
+    pattern_name = 'login'
+
+    def get_redirect_url(self, *args, **kwargs):
+        logout(self.request)
+        return super().get_redirect_url(*args, **kwargs)
+
 
 def page_not_found(request, exception):
     return render(request, 'error/404.html')
