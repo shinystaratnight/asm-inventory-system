@@ -1,12 +1,13 @@
 from django.db import models
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
+
 
 class CommonMasterData(models.Model):
     name = models.CharField(max_length=200)
     frigana = models.CharField(max_length=200)
     postal_code = models.CharField(max_length=20, null=True, blank=True)
     address = models.CharField(max_length=200)
-    telephone = models.CharField(max_length=100, null=True, blank=True)
+    tel = models.CharField(max_length=100, null=True, blank=True)
     fax = models.CharField(max_length=100, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
@@ -44,7 +45,7 @@ class Product(models.Model):
         return self.name
 
 
-class Other(models.Model):
+class OtherProduct(models.Model):
     name = models.CharField(max_length=200)
     account = models.CharField(max_length=200)
     tax_classification = models.CharField(max_length=100)

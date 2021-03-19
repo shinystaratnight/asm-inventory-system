@@ -1,11 +1,11 @@
 from django.urls import path
-from .views import CustomerView
+from masterdata.views import CustomerView, HallView, ShippingAddressView, ProductView, OtherProductView
 
 app_name = 'master'
 urlpatterns = [
     path('customer/', CustomerView.as_view(), name='customer'),
-    # path('hall/', halls, name='hall'),
-    # path('shipping-addresses/', shipping_addresses, name='shipping-address'),
-    # path('product/', products, name='product'),
-    # path('other/', others, name='other'),
+    path('hall/', HallView.as_view(), name='hall'),
+    path('shipping-address/', ShippingAddressView.as_view(), name='shipping-address'),
+    path('product/', ProductView.as_view(), name='product'),
+    path('other/', OtherProductView.as_view(), name='other'),
 ]

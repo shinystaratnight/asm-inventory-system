@@ -24,7 +24,7 @@ class AdminLoginRequiredMixin(LoginRequiredMixin, UserPassesTestMixin, AdminChec
 
 
 class LoginView(AdminCheckMixin, View):
-    template_name = 'registration/login.html'
+    template_name = 'common/login.html'
 
     def get(self, request, *args, **kwargs):
         if self.is_admin(request.user):
@@ -54,7 +54,7 @@ class LogoutView(AdminLoginRequiredMixin, RedirectView):
 
 
 class DashboardView(AdminLoginRequiredMixin, TemplateView):
-    template_name = 'dashboard/index.html'
+    template_name = 'common/dashboard.html'
 
 
 def page_not_found(request, exception):

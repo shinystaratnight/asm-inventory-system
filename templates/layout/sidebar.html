@@ -32,10 +32,10 @@
                         <a href="#"><i class="icon-stack2"></i> <span>{% trans "Master data" %}</span></a>
                         <ul>
                             <li class="{% active 'master:customer' %}"><a href="{% url 'master:customer' %}">{% trans "Customer master" %}</a></li>
-                            <li class="{% active 'master/hall-details' %}"><a href="">{% trans "Hall" %}</a></li>
-                            <li class="{% active 'master/shipping-addresses' %}"><a href="">{% trans "Shipping address" %}</a></li>
-                            <li class="{% active 'master/products' %}"><a href="">{% trans "Product name" %}</a></li>
-                            <li class="{% active 'master/product-others' %}"><a href="">{% trans "Others" %}</a></li>
+                            <li class="{% active 'master:hall' %}"><a href="{% url 'master:hall' %}">{% trans "Hall" %}</a></li>
+                            <li class="{% active 'master:shipping-address' %}"><a href="{% url 'master:shipping-address' %}">{% trans "Shipping address" %}</a></li>
+                            <li class="{% active 'master:product' %}"><a href="{% url 'master:product' %}">{% trans "Product name" %}</a></li>
+                            <li class="{% active 'master:other' %}"><a href="{% url 'master:other' %}">{% trans "Others" %}</a></li>
                         </ul>
                     </li>
 

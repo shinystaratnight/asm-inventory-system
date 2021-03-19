@@ -1,22 +1,48 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic.base import TemplateView
+from django.views.generic.edit import FormMixin, FormView
 from masterdata.models import Customer
-from masterdata.forms import CustomerForm
+from masterdata.forms import *
 from users.views import AdminLoginRequiredMixin
 
-class CustomerView(AdminLoginRequiredMixin, TemplateView):
-    template_name = 'master_data/customer.html'
-
+class MasterView(AdminLoginRequiredMixin, TemplateView, FormMixin):
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+        return render(request, self.template_name, self.get_context_data(**kwargs))
 
     def post(self, request, *args, **kwargs):
-        form = CustomerForm(request.data)
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
         if form.is_valid():
             form.save()
-        return render(request, self.template_name)
-
+        return render(request, self.template_name, self.get_context_data(**kwargs))
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['customers'] = Customer.objects.all()
+        model = self.form_class.Meta.model
+        context['master_data'] = model.objects.all()
         return context
+    
+
+class CustomerView(MasterView):
+    template_name = 'master_data/customers.html'
+    form_class = CustomerForm
+
+
+class HallView(MasterView):
+    template_name = 'master_data/halls.html'
+    form_class = HallForm
+
+
+class ShippingAddressView(MasterView):
+    template_name = 'master_data/shipping_addresses.html'
+    form_class = ShippingAddressForm
+
+
+class ProductView(MasterView):
+    template_name = 'master_data/products.html'
+    form_class = ProductForm
+
+
+class OtherProductView(MasterView):
+    template_name = 'master_data/others.html'
+    form_class = OtherProductForm
