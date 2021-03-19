@@ -1,13 +1,10 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.views.generic import View, TemplateView, RedirectView
 from users.forms import LoginForm
-
-
-class DashboardView(LoginRequiredMixin, TemplateView):
-    template_name = 'dashboard/index.html'
 
 
 class AdminCheckMixin:
@@ -16,12 +13,14 @@ class AdminCheckMixin:
             return True
         return False
 
+
 class AdminLoginRequiredMixin(LoginRequiredMixin, UserPassesTestMixin, AdminCheckMixin):
     def test_func(self):
         return self.is_admin(self.request.user)
     
-    # def handle_no_permission(self):
-    #     pass
+    def handle_no_permission(self):
+        next = self.request.get_full_path()
+        return redirect(reverse('login') + '?next=' + next)
 
 
 class LoginView(AdminCheckMixin, View):
@@ -52,6 +51,10 @@ class LogoutView(AdminLoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         logout(self.request)
         return super().get_redirect_url(*args, **kwargs)
+
+
+class DashboardView(AdminLoginRequiredMixin, TemplateView):
+    template_name = 'dashboard/index.html'
 
 
 def page_not_found(request, exception):
