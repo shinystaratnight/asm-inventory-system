@@ -554,6 +554,7 @@ document.addEventListener('DOMContentLoaded', function() {
     $('a[data-lang]').click(function(e) {
         e.stopImmediatePropagation();
         e.preventDefault();
+        alert($(e.currentTarget).data('lang'));
         var url = document.URL.replace(/^(?:\/\/|[^/]+)*\/(ja|en)/, '');
         
         $.ajax({
