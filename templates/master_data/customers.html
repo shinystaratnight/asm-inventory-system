@@ -1,7 +1,7 @@
 {% extends 'layout/base.html' %}
 {% load i18n %}
 
-{% block title %} {% trans "Customer master" %} {% endblock title %}
+{% block title %} {% trans "Customer" %} {% endblock title %}
 
 {% block stylesheets %}{% endblock stylesheets %}
 
@@ -14,7 +14,7 @@
 				<div class="page-title">
 					<h4>
 						<i class="icon-arrow-left52 position-left"></i>
-						<span class="text-semibold">{% trans "Master data" %}</span> - {% trans "Customer master" %}
+						<span class="text-semibold">{% trans "Master data" %}</span> - {% trans "Customer" %}
 					</h4>
 				</div>
 			</div>
@@ -23,7 +23,7 @@
 				<ul class="breadcrumb">
 					<li><a href="{% url 'dashboard' %}"><i class="icon-home2 position-left"></i> {% trans "Home" %}</a></li>
 					<li><a>{% trans "Master data" %}</a></li>
-					<li class="active">{% trans "Customer master" %}</li>
+					<li class="active">{% trans "Customer" %}</li>
 				</ul>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 
 			<div class="panel panel-flat">
 				<div class="panel-heading">
-					<h5 class="panel-title">{% trans "Customer master list" %}</h5>
+					<h5 class="panel-title">{% trans "Customer" %}</h5>
 					<div class="heading-elements">
 						<ul class="icons-list">
 							<li><a data-action="collapse"></a></li>
@@ -146,7 +146,7 @@
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "For CSV" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="csv" class="form-control" placeholder="{% trans 'Enter proper data' %}..." required>
+											<input type="text" name="csv" class="form-control" placeholder="{% trans 'Enter CSV name' %}..." required>
 										</div>
 									</div>
 

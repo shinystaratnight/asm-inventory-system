@@ -1,9 +1,8 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormMixin, FormView
-from masterdata.models import Customer
-from masterdata.forms import *
 from users.views import AdminLoginRequiredMixin
+from .forms import *
 
 class MasterView(AdminLoginRequiredMixin, TemplateView, FormMixin):
     def get(self, request, *args, **kwargs):
@@ -33,9 +32,9 @@ class HallView(MasterView):
     form_class = HallForm
 
 
-class ShippingAddressView(MasterView):
-    template_name = 'master_data/shipping_addresses.html'
-    form_class = ShippingAddressForm
+class ReceiverView(MasterView):
+    template_name = 'master_data/receivers.html'
+    form_class = ReceiverForm
 
 
 class ProductView(MasterView):
@@ -43,6 +42,6 @@ class ProductView(MasterView):
     form_class = ProductForm
 
 
-class OtherProductView(MasterView):
+class OtherView(MasterView):
     template_name = 'master_data/others.html'
-    form_class = OtherProductForm
+    form_class = OtherForm

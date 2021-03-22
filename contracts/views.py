@@ -53,22 +53,22 @@ def trader_sales(request):
             sale_form.save()
             return redirect('trader-sales')
     context = {'transaction_id': transaction_id}
-    return render(request, 'sales_contract_trader_sales.html', context)
+    return render(request, 'sales_contract/sales_contract_trader_sales.html', context)
 
 @login_required(login_url='login')
 def trader_purchases(request):
     context = {}
-    return render(request, 'sales_contract_trader_purchases.html', context)
+    return render(request, 'sales_contract/sales_contract_trader_purchases.html', context)
 
 @login_required(login_url='login')
 def hall_sales(request):
     context = {}
-    return render(request, 'sales_contract_hall_sales.html', context)
+    return render(request, 'sales_contract/sales_contract_hall_sales.html', context)
 
 @login_required(login_url='login')
 def hall_purchases(request):
     context = {}
-    return render(request, 'sales_contract_trader_purchases.html', context)
+    return render(request, 'sales_contract/sales_contract_trader_purchases.html', context)
 
 def generate_transaction_id():
     ts = time.time()

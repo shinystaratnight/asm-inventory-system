@@ -29,9 +29,9 @@ urlpatterns += i18n.i18n_patterns(
     path('', include('users.urls')),
     path('admin/', admin.site.urls),
     path('master/', include('masterdata.urls')),
-    # path('contract/', include('contracts.urls')),
-    # path('list/', include('list.urls')),
-    # path('accounting/', include('accounting.urls')),
+    path('contract/', include('contracts.urls')),
+    path('list/', include('list.urls')),
+    path('accounting/', include('accounting.urls')),
 )
 
 handler404 = 'users.views.page_not_found'

@@ -103,10 +103,9 @@
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Classification" %}:</label>
 										<div class="col-lg-9">
-											<!-- <input type="text" name="classification" class="form-control" placeholder="{% trans 'Enter classification' %}..."> -->
-											<select name="classification" class="form-control">
-												<option value="Pachinko">{% trans 'Pachinko' %}</option>
-												<option value="Slot">{% trans 'Slot' %}</option>
+											<select name="classification" class="form-control" required>
+												<option value="P">{% trans 'Pachinko' %}</option>
+												<option value="S">{% trans 'Slot' %}</option>
 											</select>
 										</div>
 									</div>

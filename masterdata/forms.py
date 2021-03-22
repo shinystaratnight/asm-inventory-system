@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Customer, Hall, ShippingAddress, Product, OtherProduct
+from .models import *
 
 
 class CustomerForm(ModelForm):
@@ -15,9 +15,9 @@ class HallForm(ModelForm):
         fields = '__all__'
 
 
-class ShippingAddressForm(ModelForm):
+class ReceiverForm(ModelForm):
     class Meta:
-        model = ShippingAddress
+        model = Receiver
         fields = '__all__'
 
 
@@ -27,7 +27,7 @@ class ProductForm(ModelForm):
         fields = '__all__'
 
 
-class OtherProductForm(ModelForm):
+class OtherForm(ModelForm):
     class Meta:
-        model = OtherProduct
+        model = Other
         fields = '__all__'

@@ -1,7 +1,7 @@
 {% extends 'layout/base.html' %}
 {% load i18n %}
 
-{% block title %} {% trans "Product name and others" %} {% endblock title %}
+{% block title %} {% trans "Others" %} {% endblock title %}
 
 {% block stylesheets %}{% endblock stylesheets %}
 
@@ -14,7 +14,7 @@
 				<div class="page-title">
 					<h4>
 						<i class="icon-arrow-left52 position-left"></i>
-						<span class="text-semibold">{% trans "Master data" %}</span> - {% trans "Product name and others" %}
+						<span class="text-semibold">{% trans "Master data" %}</span> - {% trans "Others" %}
 					</h4>
 				</div>
 			</div>
@@ -23,7 +23,7 @@
 				<ul class="breadcrumb">
 					<li><a href="{% url 'dashboard' %}"><i class="icon-home2 position-left"></i> {% trans "Home" %}</a></li>
 					<li><a>{% trans "Master data" %}</a></li>
-					<li class="active">{% trans "Product name and others" %}</li>
+					<li class="active">{% trans "Others" %}</li>
 				</ul>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 
 			<div class="panel panel-flat">
 				<div class="panel-heading">
-					<h5 class="panel-title">{% trans "Product name and others" %}</h5>
+					<h5 class="panel-title">{% trans "Others list" %}</h5>
 					<div class="heading-elements">
 						<ul class="icons-list">
 							<li><a data-action="collapse"></a></li>

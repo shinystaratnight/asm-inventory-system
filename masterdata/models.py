@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class CommonMasterData(models.Model):
+class MasterData(models.Model):
     name = models.CharField(max_length=200)
     frigana = models.CharField(max_length=200)
     postal_code = models.CharField(max_length=20, null=True, blank=True)
@@ -18,15 +18,15 @@ class CommonMasterData(models.Model):
         return self.name
 
 
-class Customer(CommonMasterData):
+class Customer(MasterData):
     csv = models.CharField(max_length=200)
 
 
-class Hall(CommonMasterData):
+class Hall(MasterData):
     payee = models.CharField(max_length=200)
 
 
-class ShippingAddress(CommonMasterData):
+class Receiver(MasterData):
     pass
 
 
@@ -45,7 +45,7 @@ class Product(models.Model):
         return self.name
 
 
-class OtherProduct(models.Model):
+class Other(models.Model):
     name = models.CharField(max_length=200)
     account = models.CharField(max_length=200)
     tax_classification = models.CharField(max_length=100)
