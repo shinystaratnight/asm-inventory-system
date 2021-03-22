@@ -63,12 +63,12 @@
 						{% for receiver in master_data %}
 							<tr>
 								<td>{{ forloop.counter }}</td>
-								<td>{{ Receiver.name }}</td>
-								<td>{{ Receiver.frigana }}</td>
-								<td>{{ Receiver.postal_code }}</td>
-								<td>{{ Receiver.address }}</td>
-								<td>{{ Receiver.tel }}</td>
-								<td>{{ Receiver.fax }}</td>
+								<td>{{ receiver.name }}</td>
+								<td>{{ receiver.frigana }}</td>
+								<td>{{ receiver.postal_code|default_if_none:"" }}</td>
+								<td>{{ receiver.address }}</td>
+								<td>{{ receiver.tel|default_if_none:"" }}</td>
+								<td>{{ receiver.fax|default_if_none:"" }}</td>
 							</tr>
 						{% endfor %}
 					</tbody>
@@ -116,7 +116,7 @@
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Postal code" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="postal_code" class="form-control" placeholder="{% trans 'Enter postal code' %}..." required>
+											<input type="text" name="postal_code" class="form-control" placeholder="{% trans 'Enter postal code' %}...">
 										</div>
 									</div>
 
@@ -130,14 +130,14 @@
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "TEL" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="tel" class="form-control" placeholder="{% trans 'Enter TEL' %}..." required>
+											<input type="text" name="tel" class="form-control" placeholder="{% trans 'Enter TEL' %}...">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "FAX" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="fax" class="form-control" placeholder="{% trans 'Enter FAX' %}..." required>
+											<input type="text" name="fax" class="form-control" placeholder="{% trans 'Enter FAX' %}...">
 										</div>
 									</div>
 

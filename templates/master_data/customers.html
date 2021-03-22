@@ -65,10 +65,10 @@
 							<td>{{ forloop.counter }}</td>
 							<td>{{ customer.name }}</td>
 							<td>{{ customer.frigana }}</td>
-							<td>{{ customer.postal_code }}</td>
+							<td>{{ customer.postal_code|default_if_none:"" }}</td>
 							<td>{{ customer.address }}</td>
-							<td>{{ customer.tel }}</td>
-							<td>{{ customer.fax }}</td>
+							<td>{{ customer.tel|default_if_none:"" }}</td>
+							<td>{{ customer.fax|default_if_none:"" }}</td>
 							<td>{{ customer.csv }}</td>
 						</tr>
 						{% endfor %}
@@ -111,7 +111,7 @@
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Frigana" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="frigana" class="form-control" placeholder="{% trans 'Enter frigana' %}...">
+											<input type="text" name="frigana" class="form-control" placeholder="{% trans 'Enter frigana' %}..." required>
 										</div>
 									</div>
 

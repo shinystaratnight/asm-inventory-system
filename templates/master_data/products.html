@@ -61,7 +61,7 @@
 							<tr>
 								<td>{{ forloop.counter }}</td>
 								<td>{{ product.name }}</td>
-								<td>{{ product.type }}</td>
+								<td>{{ product.get_type_display }}</td>
 								<td>{{ product.maker }}</td>
 							</tr>
 						{% endfor %}
