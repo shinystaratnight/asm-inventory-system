@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
-from django.views.generic import View, TemplateView, RedirectView
+from django.views.generic import View, RedirectView
 from users.forms import LoginForm
 
 
@@ -24,7 +24,7 @@ class AdminLoginRequiredMixin(LoginRequiredMixin, UserPassesTestMixin, AdminChec
 
 
 class LoginView(AdminCheckMixin, View):
-    template_name = 'common/login.html'
+    template_name = 'registration/login.html'
 
     def get(self, request, *args, **kwargs):
         if self.is_admin(request.user):
@@ -53,8 +53,8 @@ class LogoutView(AdminLoginRequiredMixin, RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class DashboardView(AdminLoginRequiredMixin, TemplateView):
-    template_name = 'common/dashboard.html'
+class DashboardView(AdminLoginRequiredMixin, RedirectView):
+    pattern_name = 'masterdata:customer'
 
 
 def page_not_found(request, exception):
