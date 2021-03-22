@@ -9,7 +9,6 @@ class MasterData(models.Model):
     address = models.CharField(max_length=200)
     tel = models.CharField(max_length=100, null=True, blank=True)
     fax = models.CharField(max_length=100, null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
         abstract = True
@@ -39,7 +38,6 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     maker = models.CharField(max_length=200)
     type = models.CharField(max_length=1, choices=TYPE_CHOICES)
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
@@ -49,7 +47,6 @@ class Other(models.Model):
     name = models.CharField(max_length=200)
     term = models.CharField(max_length=200)
     taxation = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
