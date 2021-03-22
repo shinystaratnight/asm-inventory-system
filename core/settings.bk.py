@@ -26,7 +26,7 @@ SECRET_KEY = '-&qm_kud*6jgwrgt(u5mt$lm)+&+8cn5y3a@5@4j*ff8w)53^$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['13.58.220.233']
+ALLOWED_HOSTS = ['118.27.110.30']
 
 
 # Application definition
@@ -39,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'accounts',
-    'pages',
+    'users',
+    'masterdata',
+    'contracts',
+    'list',
+    'accounting',
 ]
 
 MIDDLEWARE = [
@@ -113,7 +116,7 @@ LANGUAGES = (
     ('ja', 'Japanese'),
 )
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'ja'
 
 TIME_ZONE = 'UTC'
 
@@ -127,6 +130,8 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
+# Login URL
+LOGIN_URL = '/login'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -136,3 +141,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #STATICFILES_DIRS = [
 #    os.path.join(BASE_DIR, 'static')
 #]
+
+
+# Django Core Send Email
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+
+DEFAULT_FROM_EMAIL = 'Inventory System Management <noreply@asm.com>'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# EMAIL_USE_SSL = True
