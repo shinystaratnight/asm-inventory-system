@@ -30,7 +30,7 @@ class Receiver(MasterData):
     pass
 
 
-CLASSIFICATION_CHOICES = (
+TYPE_CHOICES = (
     ('P', _('Pachinko')),
     ('S', _('Slot'))
 )
@@ -38,7 +38,7 @@ CLASSIFICATION_CHOICES = (
 class Product(models.Model):
     name = models.CharField(max_length=200)
     maker = models.CharField(max_length=200)
-    classification = models.CharField(max_length=1, choices=CLASSIFICATION_CHOICES)
+    type = models.CharField(max_length=1, choices=TYPE_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -47,8 +47,8 @@ class Product(models.Model):
 
 class Other(models.Model):
     name = models.CharField(max_length=200)
-    account = models.CharField(max_length=200)
-    tax_classification = models.CharField(max_length=100)
+    term = models.CharField(max_length=200)
+    taxation = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

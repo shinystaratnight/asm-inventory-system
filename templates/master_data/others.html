@@ -1,7 +1,7 @@
 {% extends 'layout/base.html' %}
 {% load i18n %}
 
-{% block title %} {% trans "Others" %} {% endblock title %}
+{% block title %} {% trans "Other" %} {% endblock title %}
 
 {% block stylesheets %}{% endblock stylesheets %}
 
@@ -14,7 +14,7 @@
 				<div class="page-title">
 					<h4>
 						<i class="icon-arrow-left52 position-left"></i>
-						<span class="text-semibold">{% trans "Master data" %}</span> - {% trans "Others" %}
+						<span class="text-semibold">{% trans "Master data" %}</span> - {% trans "Other" %}
 					</h4>
 				</div>
 			</div>
@@ -23,7 +23,7 @@
 				<ul class="breadcrumb">
 					<li><a href="{% url 'dashboard' %}"><i class="icon-home2 position-left"></i> {% trans "Home" %}</a></li>
 					<li><a>{% trans "Master data" %}</a></li>
-					<li class="active">{% trans "Others" %}</li>
+					<li class="active">{% trans "Other" %}</li>
 				</ul>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 
 			<div class="panel panel-flat">
 				<div class="panel-heading">
-					<h5 class="panel-title">{% trans "Others list" %}</h5>
+					<h5 class="panel-title">{% trans "Other" %}</h5>
 					<div class="heading-elements">
 						<ul class="icons-list">
 							<li><a data-action="collapse"></a></li>
@@ -49,18 +49,20 @@
 				<table class="table datatable-basic table-hover">
 					<thead>
 						<tr>
+							<th>{% trans "No" %}</th>
 							<th>{% trans "Name" %}</th>
-							<th>{% trans "Account" %}</th>
-							<th>{% trans "Tax classification" %}</th>
+							<th>{% trans "Term" %}</th>
+							<th>{% trans "Taxation" %}</th>
 						</tr>
 					</thead>
 					<tbody>
 
-						{% for product_other in master_data %}
+						{% for other in master_data %}
 							<tr>
-								<td>{{ product_other.name }}</td>
-								<td>{{ product_other.account }}</td>
-								<td>{{ product_other.tax_classification }}</td>
+								<td>{{ forloop.counter }}</td>
+								<td>{{ other.name }}</td>
+								<td>{{ other.term }}</td>
+								<td>{{ other.taxation }}</td>
 							</tr>
 						{% endfor %}
 						
@@ -70,7 +72,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="mb-5-s text-center">
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add_new_data"><i class="icon-plus2 position-left"></i>{% trans "Add Product" %}</button>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add_new_data"><i class="icon-plus2 position-left"></i>{% trans "Add Other" %}</button>
 						</div>
 					</div>
 				</div>
@@ -100,16 +102,16 @@
 									</div>
 
 									<div class="form-group">
-										<label class="control-label col-lg-3">{% trans "Account" %}:</label>
+										<label class="control-label col-lg-3">{% trans "Term" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="account" class="form-control" placeholder="{% trans 'Enter account' %}..." required>
+											<input type="text" name="term" class="form-control" placeholder="{% trans 'Enter term' %}..." required>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="control-label col-lg-3">{% trans "Tax classification" %}:</label>
+										<label class="control-label col-lg-3">{% trans "Taxation" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="tax_classification" class="form-control" placeholder="{% trans 'Enter tax classification' %}..." required>
+											<input type="text" name="taxation" class="form-control" placeholder="{% trans 'Enter taxation' %}..." required>
 										</div>
 									</div>
 
