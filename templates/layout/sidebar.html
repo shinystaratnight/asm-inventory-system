@@ -39,12 +39,12 @@
                     </li>
 
                     <li>
-                        <a href="#"><i class="icon-cart2"></i> <span>{% trans "Sales contract creation" %}</span></a>
+                        <a href="#"><i class="icon-cart2"></i> <span>{% trans "Contract" %}</span></a>
                         <ul>
-                            <li class="{% active 'trader-sales' %}"><a href="{% url 'trader-sales' %}">{% trans "Trader sales" %}</a></li>
-                            <li class="{% active 'trader-purchases' %}"><a href="{% url 'trader-purchases' %}">{% trans "Trader purchases" %}</a></li>
-                            <li class="{% active 'hall-sales' %}"><a href="{% url 'hall-sales' %}">{% trans "Hall sales" %}</a></li>
-                            <li class="{% active 'hall-purchases' %}"><a href="{% url 'hall-purchases' %}">{% trans "Hall purchases" %}</a></li>
+                            <li class="{% active 'contract:trader-sales' %}"><a href="{% url 'contract:trader-sales' %}">{% trans "Trader sales" %}</a></li>
+                            <li class="{% active 'contract:trader-purchases' %}"><a href="{% url 'contract:trader-purchases' %}">{% trans "Trader purchases" %}</a></li>
+                            <li class="{% active 'contract:hall-sales' %}"><a href="{% url 'contract:hall-sales' %}">{% trans "Hall sales" %}</a></li>
+                            <li class="{% active 'contract:hall-purchases' %}"><a href="{% url 'contract:hall-purchases' %}">{% trans "Hall purchases" %}</a></li>
                         </ul>
                     </li>
                     

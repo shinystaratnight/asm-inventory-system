@@ -1,13 +1,12 @@
 {% extends 'layout/base.html' %}
 {% load i18n %}
 {% load static %}
-{% block title %} Sold by Trader {% endblock title %}
+{% block title %} {% trans "Contract" %} {% endblock title %}
 
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
 	<link rel="stylesheet" href="{% static 'assets/css/customize_table.css' %}" />
-	<input type="hidden" name="alt-path" value="{{ base_url }}/contract/trader-sales">
 	
 	<!-- Main content -->
 	<div class="content-wrapper">
@@ -16,42 +15,17 @@
 		<div class="page-header">
 			<div class="page-header-content">
 				<div class="page-title">
-					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "Sales contract creation" %}</span> - {% trans "Trader sales" %}</h4>
-				</div>
-
-				<div class="heading-elements">
-					<div class="heading-btn-group">
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>{% trans "Statistics" %}</span></a>
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>{% trans "Invoices" %}</span></a>
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>{% trans "Schedule" %}</span></a>
-					</div>
+					<h4>
+						<i class="icon-arrow-left52 position-left"></i>
+						<span class="text-semibold">{% trans "Contract" %}</span> - {% trans "Trader sales" %}
+					</h4>
 				</div>
 			</div>
 
 			<div class="breadcrumb-line breadcrumb-line-component">
 				<ul class="breadcrumb">
-					<li><a href="index.html"><i class="icon-home2 position-left"></i> {% trans "Home" %}</a></li>
-					<li><a href="datatable_styling.html">{% trans "Sales contract creation" %}</a></li>
+					<li><a><i class="icon-cart2 position-left"></i>{% trans "Contract" %}</a></li>
 					<li class="active">{% trans "Trader sales" %}</li>
-				</ul>
-
-				<ul class="breadcrumb-elements">
-					<li><a href="#"><i class="icon-comment-discussion position-left"></i> {% trans "Support" %}</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-gear position-left"></i>
-								{% trans "Settings" %}
-							<span class="caret"></span>
-						</a>
-
-						<ul class="dropdown-menu dropdown-menu-right">
-							<li><a href="#"><i class="icon-user-lock"></i> {% trans "Account security" %}</a></li>
-							<li><a href="#"><i class="icon-statistics"></i> {% trans "Analytics" %}</a></li>
-							<li><a href="#"><i class="icon-accessibility"></i> {% trans "Accessibility" %}</a></li>
-							<li class="divider"></li>
-							<li><a href="#"><i class="icon-gear"></i> {% trans "All settings" %}</a></li>
-						</ul>
-					</li>
 				</ul>
 			</div>
 		</div>
@@ -75,7 +49,7 @@
 										<input type="hidden" name="transaction_id" value="{{ transaction_id }}" >
 									</div>
 									<div class="col-6 d-flex align-items-center justify-content-center">
-										<h2 class="panel-title text-center">{% trans "Sales contract and invoice" %}</h2>
+										<h2 class="panel-title text-center">{% trans "Contract and invoice" %}</h2>
 									</div>
 									
 									<div class="col-3 col-sm-12">
@@ -149,7 +123,7 @@
 										<div class="row">
 											<div class="col-12 col-sm-12">
 												<div class="form-group d-flex row">
-													<label class="control-label w-12-5 col-sm-3 mt-auto">{% trans "Street address" %}</label>
+													<label class="control-label w-12-5 col-sm-3 mt-auto">{% trans "Address" %}</label>
 													<div class="col-6">
 														<input type="text" name="customer_address" class="form-control">
 													</div>
@@ -573,7 +547,7 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="control-label">{% trans "Street address" %}</label>
+												<label class="control-label">{% trans "Address" %}</label>
 												<div class="">
 													<textarea type="text" name="document_shipping_address" class="form-control"></textarea>
 												</div>
@@ -660,15 +634,7 @@
 					<!-- /traffic sources -->
 
 				</div>
-
-			
 			</div>
-			
-			<!-- Footer -->
-			<div class="footer text-muted">
-				&copy; 2020. {% trans "Copyright" %}
-			</div>
-			<!-- /footer -->
 
 		</div>
 		<!-- /content area -->
