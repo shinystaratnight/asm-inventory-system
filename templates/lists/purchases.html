@@ -5,50 +5,25 @@
 
 {% block stylesheets %}{% endblock stylesheets %}
 
-{% block content %}	
-	<input type="hidden" name="alt-path" value="{{ base_url }}/list/purchases">
+{% block content %}
+
 	<div class="content-wrapper">
 
 		<!-- Page header -->
 		<div class="page-header">
 			<div class="page-header-content">
 				<div class="page-title">
-					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "List" %}</span> - {% trans "Purchases history" %}</h4>
-				</div>
-
-				<div class="heading-elements">
-					<div class="heading-btn-group">
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>{% trans "Statistics" %}</span></a>
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>{% trans "Invoices" %}</span></a>
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>{% trans "Schedule" %}</span></a>
-					</div>
+					<h4>
+						<i class="icon-arrow-left52 position-left"></i>
+						<span class="text-semibold">{% trans "List" %}</span> - {% trans "Purchases (contract)" %}
+					</h4>
 				</div>
 			</div>
 
 			<div class="breadcrumb-line breadcrumb-line-component">
 				<ul class="breadcrumb">
-					<li><a href="index.html"><i class="icon-home2 position-left"></i> {% trans "Home" %}</a></li>
-					<li><a href="datatable_styling.html">{% trans "List" %}</a></li>
-					<li class="active">{% trans "Purchases history" %}</li>
-				</ul>
-
-				<ul class="breadcrumb-elements">
-					<li><a href="#"><i class="icon-comment-discussion position-left"></i> {% trans "Support" %}</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-gear position-left"></i>
-								{% trans "Settings" %}
-							<span class="caret"></span>
-						</a>
-
-						<ul class="dropdown-menu dropdown-menu-right">
-							<li><a href="#"><i class="icon-user-lock"></i> {% trans "Account security" %}</a></li>
-							<li><a href="#"><i class="icon-statistics"></i> {% trans "Analytics" %}</a></li>
-							<li><a href="#"><i class="icon-accessibility"></i> {% trans "Accessibility" %}</a></li>
-							<li class="divider"></li>
-							<li><a href="#"><i class="icon-gear"></i> {% trans "All settings" %}</a></li>
-						</ul>
-					</li>
+					<li><a><i class="icon-cart2 position-left"></i>{% trans "List" %}</a></li>
+					<li class="active">{% trans "Purchases (contract)" %}</li>
 				</ul>
 			</div>
 		</div>
@@ -59,7 +34,7 @@
 
 			<div class="panel panel-flat">
 				<div class="panel-heading">
-					<h5 class="panel-title">{% trans "Purchases history" %}</h5>
+					<h5 class="panel-title">{% trans "Purchases (contract)" %}</h5>
 					<div class="heading-elements">
 						<ul class="icons-list">
 							<li><a data-action="collapse"></a></li>
@@ -74,14 +49,14 @@
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
-									<label>{% trans "Transaction ID" %}:</label>
-									<input type="text" class="form-control" placeholder="{% trans 'Transaction ID' %}">
+									<label>{% trans "Contract ID" %}:</label>
+									<input type="text" class="form-control" placeholder="{% trans 'Contract ID' %}">
 								</div>
 							</div>
 
 							<div class="col-md-4">
 								<div class="form-group">
-									<label>{% trans "Contract date" %}:</label>
+									<label>{% trans "Created date" %}:</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="icon-calendar22"></i></span>
 										<input type="text" class="form-control daterange-single">
@@ -91,12 +66,12 @@
 
 							<div class="col-md-4">
 								<div class="form-group">
-									<label>{% trans "Supplier" %}:</label>
+									<label>{% trans "Customer" %}:</label>
 									<select class="multiselect-no-active-class" multiple="multiple">
-										<option value="supplier01">{% trans "Supplier" %}01</option>
-										<option value="supplier02" selected="selected">{% trans "Supplier" %}r01</option>
-										<option value="supplier03">{% trans "Supplier" %}01</option>
-										<option value="supplier04">{% trans "Supplier" %}01</option>
+										<option value="customer01">{% trans "Customer" %}01</option>
+										<option value="customer02" selected="selected">{% trans "Customer" %}02</option>
+										<option value="customer03">{% trans "Customer" %}03</option>
+										<option value="customer04">{% trans "Customer" %}04</option>
 									</select>
 								</div>
 							</div>
@@ -112,8 +87,11 @@
 
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>{% trans "Inventory clearing" %}:</label>
-									<input type="text" class="form-control">
+									<label>{% trans "Inventory status" %}:</label>
+									<select name="select" class="form-control">
+										<option value="completed" selected="selected">{% trans "Completed" %}</option>
+										<option value="not_completed">{% trans "Not completed" %}</option>
+									</select>
 								</div>
 							</div>
 						</div>
@@ -133,100 +111,99 @@
 					<table class="table table-bordered table-hover table-framed">
 						<thead>
 							<tr class="bg-blue">
-								<th>{% trans "Transaction ID" %}</th>
+								<th>{% trans "Contract ID" %}</th>
 								<th>{% trans "Contract date" %}</th>
-								<th>{% trans "Supplier" %}</th>
-								<th>{% trans "Delivery destination" %}</th>
-								<th>{% trans "In charge" %}</th>
+								<th>{% trans "Customer" %}</th>
+								<th>{% trans "Delivered place" %}</th>
+								<th>{% trans "Person in charge" %}</th>
 								<th>{% trans "Payment day" %}</th>
 								<th>{% trans "Product name" %}</th>
 								<th>{% trans "Number of units" %}</th>
-								<th>{% trans "Amount of money" %}</th>
-								<th>{% trans "Inventory clearing" %}</th>
+								<th>{% trans "Amount" %}</th>
+								<th>{% trans "Inventory status" %}</th>
 							</tr>
 						</thead>
 
 						<tbody>
 							<tr>
 								<td>0000000001</td>
-								<td>2020/10/5</td>
-								<td>Stephen, Richard</td>
-								<td>Huston, USA</td>
-								<td>Robert</td>
-								<td>2020/10/25</td>
-								<td>Product 01</td>
-								<td>120</td>
+								<td>2021/03/15</td>
+								<td>アイエス販売</td>
+								<td>バーラー５力ラット</td>
+								<td>金昇志</td>
+								<td>2021/04/15</td>
+								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
+								<td>2</td>
 								<td>2,000</td>
-								<td>Not finished</td>
+								<td>未</td>
 							</tr>
 
 							<tr>
-								<td>0000000012</td>
-								<td>2020/10/5</td>
-								<td>Stephen, Richard</td>
-								<td>Huston, USA</td>
-								<td>Robert</td>
-								<td>2020/10/25</td>
-								<td>Product 01</td>
-								<td>120</td>
+								<td>0000000002</td>
+								<td>2021/03/15</td>
+								<td>アイエス販売</td>
+								<td>バーラー５力ラット</td>
+								<td>金昇志</td>
+								<td>2021/04/15</td>
+								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
+								<td>2</td>
 								<td>2,000</td>
-								<td>Not finished</td>
+								<td>未</td>
 							</tr>
 
 							<tr>
 								<td>0000000013</td>
-								<td>2020/10/5</td>
-								<td>Stephen, Richard</td>
-								<td>Huston, USA</td>
-								<td>Robert</td>
-								<td>2020/10/25</td>
-								<td>Product 01</td>
-								<td>120</td>
+								<td>2021/03/15</td>
+								<td>アイエス販売</td>
+								<td>バーラー５力ラット</td>
+								<td>金昇志</td>
+								<td>2021/04/15</td>
+								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
+								<td>2</td>
 								<td>2,000</td>
-								<td>Not finished</td>
+								<td>未</td>
 							</tr>
 
 							<tr>
 								<td>0000000018</td>
-								<td>2020/10/5</td>
-								<td>Stephen, Richard</td>
-								<td>Huston, USA</td>
-								<td>Robert</td>
-								<td>2020/10/25</td>
-								<td>Product 01</td>
-								<td>120</td>
+								<td>2021/03/15</td>
+								<td>アイエス販売</td>
+								<td>バーラー５力ラット</td>
+								<td>金昇志</td>
+								<td>2021/04/15</td>
+								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
+								<td>2</td>
 								<td>2,000</td>
-								<td>Not finished</td>
+								<td>未</td>
 							</tr>
 
 							<tr>
 								<td>0000000021</td>
-								<td>2020/10/5</td>
-								<td>Stephen, Richard</td>
-								<td>Huston, USA</td>
-								<td>Robert</td>
-								<td>2020/10/25</td>
-								<td>Product 01</td>
-								<td>120</td>
+								<td>2021/03/15</td>
+								<td>アイエス販売</td>
+								<td>バーラー５力ラット</td>
+								<td>金昇志</td>
+								<td>2021/04/15</td>
+								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
+								<td>2</td>
 								<td>2,000</td>
-								<td>Not finished</td>
+								<td>済</td>
 							</tr>
 
 							<tr>
 								<td>0000000022</td>
-								<td>2020/10/5</td>
-								<td>Stephen, Richard</td>
-								<td>Huston, USA</td>
-								<td>Robert</td>
-								<td>2020/10/25</td>
-								<td>Product 01</td>
-								<td>120</td>
+								<td>2021/03/15</td>
+								<td>アイエス販売</td>
+								<td>バーラー５力ラット</td>
+								<td>金昇志</td>
+								<td>2021/04/15</td>
+								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
+								<td>2</td>
 								<td>2,000</td>
-								<td>Not finished</td>
+								<td>済</td>
 							</tr>
 							
 						</tbody>
-
 					</table>
 				</div>
 
@@ -242,7 +219,6 @@
 					</ul>
 				</div>
 
-
 				<div class="row">
 					<div class="col-md-12">
 						<div class="my-5-s text-center">
@@ -251,13 +227,6 @@
 					</div>
 				</div>
 			</div>
-
-
-			<!-- Footer -->
-			<div class="footer text-muted">
-				&copy; 2020. {% trans "Copyright" %}
-			</div>
-			<!-- /footer -->
 
 		</div>
 		<!-- /content area -->

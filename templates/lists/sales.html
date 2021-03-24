@@ -5,7 +5,8 @@
 
 {% block stylesheets %}{% endblock stylesheets %}
 
-{% block content %}	
+{% block content %}
+
 	<div class="content-wrapper">
 
 		<!-- Page header -->
@@ -86,8 +87,11 @@
 
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>{% trans "Inventory clearing" %}:</label>
-									<input type="text" class="form-control">
+									<label>{% trans "Inventory status" %}:</label>
+									<select name="select" class="form-control">
+										<option value="completed" selected="selected">{% trans "Completed" %}</option>
+										<option value="not_completed">{% trans "Not completed" %}</option>
+									</select>
 								</div>
 							</div>
 						</div>
@@ -107,100 +111,99 @@
 					<table class="table table-bordered table-hover table-framed">
 						<thead>
 							<tr class="bg-blue">
-								<th>{% trans "Transaction ID" %}</th>
+								<th>{% trans "Contract ID" %}</th>
 								<th>{% trans "Contract date" %}</th>
-								<th>{% trans "Supplier" %}</th>
-								<th>{% trans "Delivery destination" %}</th>
-								<th>{% trans "In charge" %}</th>
+								<th>{% trans "Customer" %}</th>
+								<th>{% trans "Delivered place" %}</th>
+								<th>{% trans "Person in charge" %}</th>
 								<th>{% trans "Payment day" %}</th>
 								<th>{% trans "Product name" %}</th>
 								<th>{% trans "Number of units" %}</th>
-								<th>{% trans "Amount of money" %}</th>
-								<th>{% trans "Inventory clearing" %}</th>
+								<th>{% trans "Amount" %}</th>
+								<th>{% trans "Inventory status" %}</th>
 							</tr>
 						</thead>
 
 						<tbody>
 							<tr>
 								<td>0000000001</td>
-								<td>2020/10/5</td>
-								<td>Stephen, Richard</td>
-								<td>Huston, USA</td>
-								<td>Robert</td>
-								<td>2020/10/25</td>
-								<td>Product 01</td>
-								<td>120</td>
+								<td>2021/03/15</td>
+								<td>アイエス販売</td>
+								<td>バーラー５力ラット</td>
+								<td>金昇志</td>
+								<td>2021/04/15</td>
+								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
+								<td>2</td>
 								<td>2,000</td>
-								<td>Not finished</td>
+								<td>未</td>
 							</tr>
 
 							<tr>
-								<td>0000000012</td>
-								<td>2020/10/5</td>
-								<td>Stephen, Richard</td>
-								<td>Huston, USA</td>
-								<td>Robert</td>
-								<td>2020/10/25</td>
-								<td>Product 01</td>
-								<td>120</td>
+								<td>0000000002</td>
+								<td>2021/03/15</td>
+								<td>アイエス販売</td>
+								<td>バーラー５力ラット</td>
+								<td>金昇志</td>
+								<td>2021/04/15</td>
+								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
+								<td>2</td>
 								<td>2,000</td>
-								<td>Not finished</td>
+								<td>未</td>
 							</tr>
 
 							<tr>
 								<td>0000000013</td>
-								<td>2020/10/5</td>
-								<td>Stephen, Richard</td>
-								<td>Huston, USA</td>
-								<td>Robert</td>
-								<td>2020/10/25</td>
-								<td>Product 01</td>
-								<td>120</td>
+								<td>2021/03/15</td>
+								<td>アイエス販売</td>
+								<td>バーラー５力ラット</td>
+								<td>金昇志</td>
+								<td>2021/04/15</td>
+								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
+								<td>2</td>
 								<td>2,000</td>
-								<td>Not finished</td>
+								<td>未</td>
 							</tr>
 
 							<tr>
 								<td>0000000018</td>
-								<td>2020/10/5</td>
-								<td>Stephen, Richard</td>
-								<td>Huston, USA</td>
-								<td>Robert</td>
-								<td>2020/10/25</td>
-								<td>Product 01</td>
-								<td>120</td>
+								<td>2021/03/15</td>
+								<td>アイエス販売</td>
+								<td>バーラー５力ラット</td>
+								<td>金昇志</td>
+								<td>2021/04/15</td>
+								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
+								<td>2</td>
 								<td>2,000</td>
-								<td>Not finished</td>
+								<td>未</td>
 							</tr>
 
 							<tr>
 								<td>0000000021</td>
-								<td>2020/10/5</td>
-								<td>Stephen, Richard</td>
-								<td>Huston, USA</td>
-								<td>Robert</td>
-								<td>2020/10/25</td>
-								<td>Product 01</td>
-								<td>120</td>
+								<td>2021/03/15</td>
+								<td>アイエス販売</td>
+								<td>バーラー５力ラット</td>
+								<td>金昇志</td>
+								<td>2021/04/15</td>
+								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
+								<td>2</td>
 								<td>2,000</td>
-								<td>Not finished</td>
+								<td>済</td>
 							</tr>
 
 							<tr>
 								<td>0000000022</td>
-								<td>2020/10/5</td>
-								<td>Stephen, Richard</td>
-								<td>Huston, USA</td>
-								<td>Robert</td>
-								<td>2020/10/25</td>
-								<td>Product 01</td>
-								<td>120</td>
+								<td>2021/03/15</td>
+								<td>アイエス販売</td>
+								<td>バーラー５力ラット</td>
+								<td>金昇志</td>
+								<td>2021/04/15</td>
+								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
+								<td>2</td>
 								<td>2,000</td>
-								<td>Not finished</td>
+								<td>済</td>
 							</tr>
 							
 						</tbody>
-
 					</table>
 				</div>
 

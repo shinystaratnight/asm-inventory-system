@@ -6,49 +6,24 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-	<input type="hidden" name="alt-path" value="{{ base_url }}/list/inventories">
+
 	<div class="content-wrapper">
 
 		<!-- Page header -->
 		<div class="page-header">
 			<div class="page-header-content">
 				<div class="page-title">
-					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "List" %}</span> - {% trans "Inventory" %}</h4>
-				</div>
-
-				<div class="heading-elements">
-					<div class="heading-btn-group">
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>{% trans "Statistics" %}</span></a>
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>{% trans "Invoices" %}</span></a>
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>{% trans "Schedule" %}</span></a>
-					</div>
+					<h4>
+						<i class="icon-arrow-left52 position-left"></i>
+						<span class="text-semibold">{% trans "List" %}</span> - {% trans "Inventory" %}
+					</h4>
 				</div>
 			</div>
 
 			<div class="breadcrumb-line breadcrumb-line-component">
 				<ul class="breadcrumb">
-					<li><a href="index.html"><i class="icon-home2 position-left"></i> {% trans "Home" %}</a></li>
-					<li><a href="datatable_styling.html">{% trans "List" %}</a></li>
+					<li><a><i class="icon-cart2 position-left"></i>{% trans "List" %}</a></li>
 					<li class="active">{% trans "Inventory" %}</li>
-				</ul>
-
-				<ul class="breadcrumb-elements">
-					<li><a href="#"><i class="icon-comment-discussion position-left"></i> {% trans "Support" %}</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-gear position-left"></i>
-								{% trans "Settings" %}
-							<span class="caret"></span>
-						</a>
-
-						<ul class="dropdown-menu dropdown-menu-right">
-							<li><a href="#"><i class="icon-user-lock"></i> {% trans "Account security" %}</a></li>
-							<li><a href="#"><i class="icon-statistics"></i> {% trans "Analytics" %}</a></li>
-							<li><a href="#"><i class="icon-accessibility"></i> {% trans "Accessibility" %}</a></li>
-							<li class="divider"></li>
-							<li><a href="#"><i class="icon-gear"></i> {% trans "All settings" %}</a></li>
-						</ul>
-					</li>
 				</ul>
 			</div>
 		</div>
@@ -59,7 +34,7 @@
 
 			<div class="panel panel-flat">
 				<div class="panel-heading">
-					<h5 class="panel-title">{% trans "Inventory list" %}</h5>
+					<h5 class="panel-title">{% trans "Inventory" %}</h5>
 					<div class="heading-elements">
 						<ul class="icons-list">
 							<li><a data-action="collapse"></a></li>
@@ -74,7 +49,7 @@
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
-									<label>{% trans "Contract date" %}:</label>
+									<label>{% trans "Created date" %}:</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="icon-calendar22"></i></span>
 										<input type="text" class="form-control daterange-single">
@@ -85,18 +60,18 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>{% trans "Product name" %}:</label>
-									<input type="text" class="form-control" placeholder="Product name">
+									<input type="text" class="form-control" placeholder="{% trans 'Product name' %}">
 								</div>
 							</div>
 
 							<div class="col-md-4">
 								<div class="form-group">
-									<label>{% trans "Supplier" %}:</label>
+									<label>{% trans "Customer" %}:</label>
 									<select class="multiselect-no-active-class" multiple="multiple">
-										<option value="supplier01">Supplier01</option>
-										<option value="supplier02" selected="selected">Supplier01</option>
-										<option value="supplier03">Supplier01</option>
-										<option value="supplier04">Supplier01</option>
+										<option value="customer01">{% trans "Customer" %}01</option>
+										<option value="customer02" selected="selected">{% trans "Customer" %}02</option>
+										<option value="customer03">{% trans "Customer" %}03</option>
+										<option value="customer04">{% trans "Customer" %}04</option>
 									</select>
 								</div>
 							</div>
@@ -229,13 +204,6 @@
 					</div>
 				</div>
 			</div>
-
-
-			<!-- Footer -->
-			<div class="footer text-muted">
-				&copy; 2020. {% trans "Copyright" %}
-			</div>
-			<!-- /footer -->
 
 		</div>
 		<!-- /content area -->
