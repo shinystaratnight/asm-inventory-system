@@ -832,7 +832,7 @@ msgstr "支出"
 #: templates/lists/inventory.html:206 templates/lists/purchases.html:225
 #: templates/lists/sales.html:225
 msgid "Export To CSV"
-msgstr "CSVにエクスポート"
+msgstr "CSVに出力"
 
 #: templates/csvs/sales.html:4 templates/csvs/sales.html:18
 #: templates/csvs/sales.html:26 templates/csvs/sales.html:37
