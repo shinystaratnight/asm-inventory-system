@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-24 08:33+0000\n"
+"POT-Creation-Date: 2021-03-24 09:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -812,7 +812,9 @@ msgstr "請求書原本が必要な場合は必ずチェックしてください
 msgid "Unnecessary"
 msgstr "不要"
 
-#: templates/csvs/purchases.html:4 templates/layout/sidebar.html:64
+#: templates/csvs/purchases.html:4 templates/csvs/purchases.html:18
+#: templates/csvs/purchases.html:26 templates/csvs/purchases.html:37
+#: templates/layout/sidebar.html:64
 msgid "Purchase"
 msgstr "購入"
 
@@ -821,15 +823,6 @@ msgstr "購入"
 #: templates/layout/sidebar.html:61
 msgid "Accounting software CSV"
 msgstr "会計ソフトCSV"
-
-#: templates/csvs/purchases.html:18 templates/csvs/purchases.html:26
-msgid "Purchases data"
-msgstr "購入"
-
-#: templates/csvs/purchases.html:37 templates/layout/sidebar.html:55
-#: templates/lists/purchases.html:4
-msgid "Purchases"
-msgstr "仕入"
 
 #: templates/csvs/purchases.html:55
 msgid "Expense"
@@ -937,6 +930,10 @@ msgstr "一覧表"
 #: templates/layout/sidebar.html:54 templates/lists/sales.html:4
 msgid "Sales"
 msgstr "売上"
+
+#: templates/layout/sidebar.html:55 templates/lists/purchases.html:4
+msgid "Purchases"
+msgstr "仕入"
 
 #: templates/layout/sidebar.html:56 templates/lists/inventory.html:4
 #: templates/lists/inventory.html:18 templates/lists/inventory.html:26
@@ -1275,6 +1272,9 @@ msgstr "あなたのメール"
 #: templates/registration/password_reset_form.html:23
 msgid "Reset password"
 msgstr "パスワードを再設定する"
+
+#~ msgid "Purchases data"
+#~ msgstr "購入"
 
 #~ msgid "Statistics"
 #~ msgstr "統計"
