@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-24 06:25+0000\n"
+"POT-Creation-Date: 2021-03-24 06:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,21 +63,18 @@ msgstr "購入データ"
 #: templates/accounting_csv/accounting_csv_purchases.html:21
 #: templates/accounting_csv/accounting_csv_sales.html:21
 #: templates/lists/inventory.html:21 templates/lists/purchases.html:21
-#: templates/lists/sales.html:21
 msgid "Statistics"
 msgstr "統計"
 
 #: templates/accounting_csv/accounting_csv_purchases.html:22
 #: templates/accounting_csv/accounting_csv_sales.html:22
 #: templates/lists/inventory.html:22 templates/lists/purchases.html:22
-#: templates/lists/sales.html:22
 msgid "Invoices"
 msgstr "請求書"
 
 #: templates/accounting_csv/accounting_csv_purchases.html:23
 #: templates/accounting_csv/accounting_csv_sales.html:23
 #: templates/lists/inventory.html:23 templates/lists/purchases.html:23
-#: templates/lists/sales.html:23
 msgid "Schedule"
 msgstr "スケジュール"
 
@@ -85,67 +82,60 @@ msgstr "スケジュール"
 #: templates/accounting_csv/accounting_csv_sales.html:30
 #: templates/error/404.html:17 templates/error/500.html:17
 #: templates/lists/inventory.html:30 templates/lists/purchases.html:30
-#: templates/lists/sales.html:30
 msgid "Home"
 msgstr "ホーム"
 
 #: templates/accounting_csv/accounting_csv_purchases.html:36
 #: templates/accounting_csv/accounting_csv_sales.html:36
 #: templates/lists/inventory.html:36 templates/lists/purchases.html:36
-#: templates/lists/sales.html:36
 msgid "Support"
 msgstr "サポート"
 
 #: templates/accounting_csv/accounting_csv_purchases.html:40
 #: templates/accounting_csv/accounting_csv_sales.html:40
 #: templates/lists/inventory.html:40 templates/lists/purchases.html:40
-#: templates/lists/sales.html:40
 msgid "Settings"
 msgstr "設定"
 
 #: templates/accounting_csv/accounting_csv_purchases.html:45
 #: templates/accounting_csv/accounting_csv_sales.html:45
 #: templates/lists/inventory.html:45 templates/lists/purchases.html:45
-#: templates/lists/sales.html:45
 msgid "Account security"
 msgstr "アカウントのセキュリティ"
 
 #: templates/accounting_csv/accounting_csv_purchases.html:46
 #: templates/accounting_csv/accounting_csv_sales.html:46
 #: templates/lists/inventory.html:46 templates/lists/purchases.html:46
-#: templates/lists/sales.html:46
 msgid "Analytics"
 msgstr "分析"
 
 #: templates/accounting_csv/accounting_csv_purchases.html:47
 #: templates/accounting_csv/accounting_csv_sales.html:47
 #: templates/lists/inventory.html:47 templates/lists/purchases.html:47
-#: templates/lists/sales.html:47
 msgid "Accessibility"
 msgstr "アクセシビリティ"
 
 #: templates/accounting_csv/accounting_csv_purchases.html:49
 #: templates/accounting_csv/accounting_csv_sales.html:49
 #: templates/lists/inventory.html:49 templates/lists/purchases.html:49
-#: templates/lists/sales.html:49
 msgid "All settings"
 msgstr "すべての設定"
 
 #: templates/accounting_csv/accounting_csv_purchases.html:62
+#: templates/layout/sidebar.html:55
 msgid "Purchases"
-msgstr "購入"
+msgstr "仕入"
 
 #: templates/accounting_csv/accounting_csv_purchases.html:100
 #: templates/accounting_csv/accounting_csv_sales.html:99
 #: templates/lists/inventory.html:227 templates/lists/purchases.html:249
-#: templates/lists/sales.html:249
+#: templates/lists/sales.html:222
 msgid "Export To CSV"
 msgstr "CSVにエクスポート"
 
 #: templates/accounting_csv/accounting_csv_purchases.html:109
 #: templates/accounting_csv/accounting_csv_sales.html:108
 #: templates/lists/inventory.html:236 templates/lists/purchases.html:258
-#: templates/lists/sales.html:258
 msgid "Copyright"
 msgstr "著作権"
 
@@ -156,8 +146,9 @@ msgid "Sales data"
 msgstr "売買データ"
 
 #: templates/accounting_csv/accounting_csv_sales.html:62
+#: templates/layout/sidebar.html:54
 msgid "Sales"
-msgstr "売買"
+msgstr "売上"
 
 #: templates/contracts/hall_purchases.html:19
 #: templates/contracts/hall_purchases.html:26
@@ -218,7 +209,7 @@ msgstr "キーワード検索"
 #: templates/contracts/trader_purchases.html:185
 #: templates/contracts/trader_sales.html:178
 #: templates/contracts/trader_sales.html:187 templates/lists/inventory.html:124
-#: templates/lists/purchases.html:124 templates/lists/sales.html:124
+#: templates/lists/purchases.html:124 templates/lists/sales.html:98
 msgid "Search"
 msgstr "検索"
 
@@ -338,7 +329,7 @@ msgstr "単価"
 #: templates/contracts/hall_sales.html:184
 #: templates/contracts/hall_sales.html:390
 #: templates/contracts/hall_sales.html:516 templates/lists/purchases.html:144
-#: templates/lists/sales.html:144
+#: templates/lists/sales.html:118
 msgid "Amount of money"
 msgstr "金額"
 
@@ -431,7 +422,7 @@ msgstr "機種数"
 
 #: templates/contracts/hall_purchases.html:516
 #: templates/contracts/hall_sales.html:515 templates/lists/inventory.html:142
-#: templates/lists/purchases.html:143 templates/lists/sales.html:143
+#: templates/lists/purchases.html:143 templates/lists/sales.html:117
 msgid "Number of units"
 msgstr "台数"
 
@@ -573,7 +564,7 @@ msgstr "振込先口座"
 #: templates/contracts/hall_purchases.html:843
 #: templates/contracts/hall_sales.html:847 templates/lists/inventory.html:108
 #: templates/lists/inventory.html:109 templates/lists/inventory.html:141
-#: templates/lists/purchases.html:140 templates/lists/sales.html:140
+#: templates/lists/purchases.html:140 templates/lists/sales.html:114
 msgid "In charge"
 msgstr "担当名"
 
@@ -630,7 +621,7 @@ msgid "Contract and invoice"
 msgstr "売買契約 兼 請求書"
 
 #: templates/contracts/trader_purchases.html:53
-#: templates/contracts/trader_sales.html:56
+#: templates/contracts/trader_sales.html:56 templates/lists/sales.html:58
 msgid "Created date"
 msgstr "契約日"
 
@@ -961,11 +952,8 @@ msgstr "ログアウト"
 msgid "Master data"
 msgstr "マスタデータ"
 
-#: templates/layout/sidebar.html:33 templates/master_data/customers.html:4
-#: templates/master_data/customers.html:17
-#: templates/master_data/customers.html:25
-#: templates/master_data/customers.html:36
-msgid "Customer"
+#: templates/layout/sidebar.html:33
+msgid "Customer master"
 msgstr "取引先マスタ"
 
 #: templates/layout/sidebar.html:34 templates/master_data/halls.html:4
@@ -996,20 +984,10 @@ msgstr "商品名そのほか"
 
 #: templates/layout/sidebar.html:52 templates/lists/inventory.html:16
 #: templates/lists/inventory.html:31 templates/lists/purchases.html:16
-#: templates/lists/purchases.html:31 templates/lists/sales.html:16
-#: templates/lists/sales.html:31
+#: templates/lists/purchases.html:31 templates/lists/sales.html:17
+#: templates/lists/sales.html:24
 msgid "List"
 msgstr "一覧表"
-
-#: templates/layout/sidebar.html:54 templates/lists/sales.html:16
-#: templates/lists/sales.html:32 templates/lists/sales.html:62
-msgid "Sales history"
-msgstr "販売履歴"
-
-#: templates/layout/sidebar.html:55 templates/lists/purchases.html:16
-#: templates/lists/purchases.html:32 templates/lists/purchases.html:62
-msgid "Purchases history"
-msgstr "購入履歴"
 
 #: templates/layout/sidebar.html:56 templates/lists/inventory.html:16
 #: templates/lists/inventory.html:32
@@ -1021,15 +999,14 @@ msgid "Inventory list"
 msgstr "在庫リスト"
 
 #: templates/lists/inventory.html:77 templates/lists/purchases.html:84
-#: templates/lists/purchases.html:137 templates/lists/sales.html:84
-#: templates/lists/sales.html:137
+#: templates/lists/purchases.html:137 templates/lists/sales.html:111
 msgid "Contract date"
 msgstr "契約日"
 
 #: templates/lists/inventory.html:87 templates/lists/inventory.html:137
 #: templates/lists/purchases.html:108 templates/lists/purchases.html:109
-#: templates/lists/purchases.html:142 templates/lists/sales.html:108
-#: templates/lists/sales.html:109 templates/lists/sales.html:142
+#: templates/lists/purchases.html:142 templates/lists/sales.html:82
+#: templates/lists/sales.html:83 templates/lists/sales.html:116
 msgid "Product name"
 msgstr "商品名"
 
@@ -1037,9 +1014,7 @@ msgstr "商品名"
 #: templates/lists/purchases.html:94 templates/lists/purchases.html:96
 #: templates/lists/purchases.html:97 templates/lists/purchases.html:98
 #: templates/lists/purchases.html:99 templates/lists/purchases.html:138
-#: templates/lists/sales.html:94 templates/lists/sales.html:96
-#: templates/lists/sales.html:97 templates/lists/sales.html:98
-#: templates/lists/sales.html:99 templates/lists/sales.html:138
+#: templates/lists/sales.html:112
 msgid "Supplier"
 msgstr "サプライヤー"
 
@@ -1048,9 +1023,9 @@ msgid "Stock"
 msgstr "在庫"
 
 #: templates/lists/inventory.html:132 templates/lists/purchases.html:132
-#: templates/lists/sales.html:132
+#: templates/lists/sales.html:106
 msgid "Search results"
-msgstr "の検索結果"
+msgstr "検索結果"
 
 #: templates/lists/inventory.html:136 templates/master_data/customers.html:51
 #: templates/master_data/halls.html:51 templates/master_data/others.html:51
@@ -1071,29 +1046,51 @@ msgstr "購入日"
 msgid "Total Price"
 msgstr "合計金額"
 
+#: templates/lists/purchases.html:16 templates/lists/purchases.html:32
+#: templates/lists/purchases.html:62
+msgid "Purchases history"
+msgstr "購入履歴"
+
 #: templates/lists/purchases.html:77 templates/lists/purchases.html:78
-#: templates/lists/purchases.html:136 templates/lists/sales.html:77
-#: templates/lists/sales.html:78 templates/lists/sales.html:136
+#: templates/lists/purchases.html:136 templates/lists/sales.html:110
 msgid "Transaction ID"
 msgstr "トランザクションID"
 
 #: templates/lists/purchases.html:115 templates/lists/purchases.html:145
-#: templates/lists/sales.html:115 templates/lists/sales.html:145
+#: templates/lists/sales.html:89 templates/lists/sales.html:119
 msgid "Inventory clearing"
 msgstr "在庫清算"
 
-#: templates/lists/purchases.html:139 templates/lists/sales.html:139
+#: templates/lists/purchases.html:139 templates/lists/sales.html:113
 msgid "Delivery destination"
 msgstr "配達目的地"
 
-#: templates/lists/purchases.html:141 templates/lists/sales.html:141
+#: templates/lists/purchases.html:141 templates/lists/sales.html:115
 msgid "Payment day"
 msgstr "支払い日"
 
-#: templates/master_data/customers.html:52
+#: templates/lists/sales.html:17 templates/lists/sales.html:25
+#: templates/lists/sales.html:36
+msgid "Sales (contract)"
+msgstr "売上（売買契求書）"
+
+#: templates/lists/sales.html:51 templates/lists/sales.html:52
+msgid "Contract ID"
+msgstr "取引ID"
+
+#: templates/lists/sales.html:68 templates/lists/sales.html:70
+#: templates/lists/sales.html:71 templates/lists/sales.html:72
+#: templates/lists/sales.html:73 templates/master_data/customers.html:52
 #: templates/master_data/customers.html:105
 msgid "Customer name"
 msgstr "取引先名"
+
+#: templates/master_data/customers.html:4
+#: templates/master_data/customers.html:17
+#: templates/master_data/customers.html:25
+#: templates/master_data/customers.html:36
+msgid "Customer"
+msgstr "取引先"
 
 #: templates/master_data/customers.html:58
 #: templates/master_data/customers.html:147
@@ -1327,6 +1324,9 @@ msgstr "あなたのメール"
 #: templates/registration/password_reset_form.html:23
 msgid "Reset password"
 msgstr "パスワードを再設定する"
+
+#~ msgid "Sales history"
+#~ msgstr "販売履歴"
 
 #~ msgid "Sales contract creation"
 #~ msgstr "売買契約の作成"

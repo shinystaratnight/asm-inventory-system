@@ -26,11 +26,11 @@
         <div class="sidebar-category sidebar-category-visible">
             <div class="category-content no-padding">
                 <ul class="navigation navigation-main navigation-accordion">
-
+Ω
                     <li>
                         <a href="#"><i class="icon-stack2"></i> <span>{% trans "Master data" %}</span></a>
                         <ul>
-                            <li class="{% active 'masterdata:customer' %}"><a href="{% url 'masterdata:customer' %}">{% trans "Customer" %}</a></li>
+                            <li class="{% active 'masterdata:customer' %}"><a href="{% url 'masterdata:customer' %}">{% trans "Customer master" %}</a></li>
                             <li class="{% active 'masterdata:hall' %}"><a href="{% url 'masterdata:hall' %}">{% trans "Hall" %}</a></li>
                             <li class="{% active 'masterdata:receiver' %}"><a href="{% url 'masterdata:receiver' %}">{% trans "Receiver" %}</a></li>
                             <li class="{% active 'masterdata:product' %}"><a href="{% url 'masterdata:product' %}">{% trans "Product" %}</a></li>
@@ -51,8 +51,8 @@
                     <li>
                         <a href="#"><i class="icon-list"></i> <span>{% trans "List" %}</span></a>
                         <ul>
-                            <li class="{% active 'list/sales' %}"><a href="{% url 'list-sales' %}">{% trans "Sales history" %}</a></li>
-                            <li class="{% active 'list/purchases' %}"><a href="{% url 'list-purchases' %}">{% trans "Purchases history" %}</a></li>
+                            <li class="{% active 'list/sales' %}"><a href="{% url 'list-sales' %}">{% trans "Sales" %}</a></li>
+                            <li class="{% active 'list/purchases' %}"><a href="{% url 'list-purchases' %}">{% trans "Purchases" %}</a></li>
                             <li class="{% active 'list/inventories' %}"><a href="{% url 'list-inventories' %}">{% trans "Inventory" %}</a></li>
                         </ul>
                     </li>
