@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-24 08:12+0000\n"
+"POT-Creation-Date: 2021-03-24 08:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -812,80 +812,44 @@ msgstr "請求書原本が必要な場合は必ずチェックしてください
 msgid "Unnecessary"
 msgstr "不要"
 
-#: templates/csvs/purchases.html:16 templates/csvs/purchases.html:31
-#: templates/csvs/sales.html:16 templates/csvs/sales.html:31
+#: templates/csvs/purchases.html:4 templates/layout/sidebar.html:64
+msgid "Purchase"
+msgstr "購入"
+
+#: templates/csvs/purchases.html:18 templates/csvs/purchases.html:25
+#: templates/csvs/sales.html:18 templates/csvs/sales.html:25
 #: templates/layout/sidebar.html:61
 msgid "Accounting software CSV"
 msgstr "会計ソフトCSV"
 
-#: templates/csvs/purchases.html:16 templates/csvs/purchases.html:32
+#: templates/csvs/purchases.html:18 templates/csvs/purchases.html:26
 msgid "Purchases data"
 msgstr "購入"
 
-#: templates/csvs/purchases.html:21 templates/csvs/sales.html:21
-msgid "Statistics"
-msgstr "統計"
-
-#: templates/csvs/purchases.html:22 templates/csvs/sales.html:22
-msgid "Invoices"
-msgstr "請求書"
-
-#: templates/csvs/purchases.html:23 templates/csvs/sales.html:23
-msgid "Schedule"
-msgstr "スケジュール"
-
-#: templates/csvs/purchases.html:30 templates/csvs/sales.html:30
-#: templates/error/404.html:17 templates/error/500.html:17
-msgid "Home"
-msgstr "ホーム"
-
-#: templates/csvs/purchases.html:36 templates/csvs/sales.html:36
-msgid "Support"
-msgstr "サポート"
-
-#: templates/csvs/purchases.html:40 templates/csvs/sales.html:40
-msgid "Settings"
-msgstr "設定"
-
-#: templates/csvs/purchases.html:45 templates/csvs/sales.html:45
-msgid "Account security"
-msgstr "アカウントのセキュリティ"
-
-#: templates/csvs/purchases.html:46 templates/csvs/sales.html:46
-msgid "Analytics"
-msgstr "分析"
-
-#: templates/csvs/purchases.html:47 templates/csvs/sales.html:47
-msgid "Accessibility"
-msgstr "アクセシビリティ"
-
-#: templates/csvs/purchases.html:49 templates/csvs/sales.html:49
-msgid "All settings"
-msgstr "すべての設定"
-
-#: templates/csvs/purchases.html:62 templates/layout/sidebar.html:55
+#: templates/csvs/purchases.html:37 templates/layout/sidebar.html:55
 #: templates/lists/purchases.html:4
 msgid "Purchases"
 msgstr "仕入"
 
-#: templates/csvs/purchases.html:100 templates/csvs/sales.html:99
+#: templates/csvs/purchases.html:55
+msgid "Expense"
+msgstr "支出"
+
+#: templates/csvs/purchases.html:75 templates/csvs/sales.html:74
 #: templates/lists/inventory.html:206 templates/lists/purchases.html:225
 #: templates/lists/sales.html:225
 msgid "Export To CSV"
 msgstr "CSVにエクスポート"
 
-#: templates/csvs/purchases.html:109 templates/csvs/sales.html:108
-msgid "Copyright"
-msgstr "著作権"
-
-#: templates/csvs/sales.html:16 templates/csvs/sales.html:32
-msgid "Sales data"
+#: templates/csvs/sales.html:4 templates/csvs/sales.html:18
+#: templates/csvs/sales.html:26 templates/csvs/sales.html:37
+#: templates/layout/sidebar.html:63
+msgid "Sale"
 msgstr "売却"
 
-#: templates/csvs/sales.html:62 templates/layout/sidebar.html:54
-#: templates/lists/sales.html:4
-msgid "Sales"
-msgstr "売上"
+#: templates/csvs/sales.html:55
+msgid "Income"
+msgstr "収入"
 
 #: templates/error/404.html:13
 msgid "Error"
@@ -894,6 +858,10 @@ msgstr "エラー"
 #: templates/error/404.html:17
 msgid "Page not found"
 msgstr "ページが見つかりません"
+
+#: templates/error/404.html:17 templates/error/500.html:17
+msgid "Home"
+msgstr "ホーム"
 
 #: templates/error/500.html:13
 msgid "Oups! Error"
@@ -966,19 +934,15 @@ msgstr "商品名そのほか"
 msgid "List"
 msgstr "一覧表"
 
+#: templates/layout/sidebar.html:54 templates/lists/sales.html:4
+msgid "Sales"
+msgstr "売上"
+
 #: templates/layout/sidebar.html:56 templates/lists/inventory.html:4
 #: templates/lists/inventory.html:18 templates/lists/inventory.html:26
 #: templates/lists/inventory.html:37
 msgid "Inventory"
 msgstr "在庫"
-
-#: templates/layout/sidebar.html:63
-msgid "Sale"
-msgstr "売却"
-
-#: templates/layout/sidebar.html:64
-msgid "Purchase"
-msgstr "購入"
 
 #: templates/lists/inventory.html:62 templates/lists/inventory.html:63
 #: templates/lists/inventory.html:112 templates/lists/purchases.html:83
@@ -1311,6 +1275,39 @@ msgstr "あなたのメール"
 #: templates/registration/password_reset_form.html:23
 msgid "Reset password"
 msgstr "パスワードを再設定する"
+
+#~ msgid "Statistics"
+#~ msgstr "統計"
+
+#~ msgid "Invoices"
+#~ msgstr "請求書"
+
+#~ msgid "Schedule"
+#~ msgstr "スケジュール"
+
+#~ msgid "Support"
+#~ msgstr "サポート"
+
+#~ msgid "Settings"
+#~ msgstr "設定"
+
+#~ msgid "Account security"
+#~ msgstr "アカウントのセキュリティ"
+
+#~ msgid "Analytics"
+#~ msgstr "分析"
+
+#~ msgid "Accessibility"
+#~ msgstr "アクセシビリティ"
+
+#~ msgid "All settings"
+#~ msgstr "すべての設定"
+
+#~ msgid "Copyright"
+#~ msgstr "著作権"
+
+#~ msgid "Sales data"
+#~ msgstr "売却"
 
 #~ msgid "Inventory list"
 #~ msgstr "在庫リスト"
