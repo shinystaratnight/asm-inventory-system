@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 17:48+0000\n"
+"POT-Creation-Date: 2021-03-24 06:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,6 @@ msgstr "購入データ"
 #: templates/accounting_csv/accounting_csv_sales.html:21
 #: templates/contracts/hall_purchases.html:22
 #: templates/contracts/hall_sales.html:22
-#: templates/contracts/trader_purchases.html:23
 #: templates/history/list_inventory.html:21
 #: templates/history/list_purchases_history.html:21
 #: templates/history/list_sales_history.html:21
@@ -75,7 +74,6 @@ msgstr "統計"
 #: templates/accounting_csv/accounting_csv_sales.html:22
 #: templates/contracts/hall_purchases.html:23
 #: templates/contracts/hall_sales.html:23
-#: templates/contracts/trader_purchases.html:24
 #: templates/history/list_inventory.html:22
 #: templates/history/list_purchases_history.html:22
 #: templates/history/list_sales_history.html:22
@@ -86,7 +84,6 @@ msgstr "請求書"
 #: templates/accounting_csv/accounting_csv_sales.html:23
 #: templates/contracts/hall_purchases.html:24
 #: templates/contracts/hall_sales.html:24
-#: templates/contracts/trader_purchases.html:25
 #: templates/history/list_inventory.html:23
 #: templates/history/list_purchases_history.html:23
 #: templates/history/list_sales_history.html:23
@@ -96,8 +93,7 @@ msgstr "スケジュール"
 #: templates/accounting_csv/accounting_csv_purchases.html:30
 #: templates/accounting_csv/accounting_csv_sales.html:30
 #: templates/contracts/hall_purchases.html:31
-#: templates/contracts/hall_sales.html:31
-#: templates/contracts/trader_purchases.html:32 templates/error/404.html:17
+#: templates/contracts/hall_sales.html:31 templates/error/404.html:17
 #: templates/error/500.html:17 templates/history/list_inventory.html:30
 #: templates/history/list_purchases_history.html:30
 #: templates/history/list_sales_history.html:30
@@ -108,7 +104,6 @@ msgstr "ホーム"
 #: templates/accounting_csv/accounting_csv_sales.html:36
 #: templates/contracts/hall_purchases.html:37
 #: templates/contracts/hall_sales.html:37
-#: templates/contracts/trader_purchases.html:38
 #: templates/history/list_inventory.html:36
 #: templates/history/list_purchases_history.html:36
 #: templates/history/list_sales_history.html:36
@@ -119,7 +114,6 @@ msgstr "サポート"
 #: templates/accounting_csv/accounting_csv_sales.html:40
 #: templates/contracts/hall_purchases.html:41
 #: templates/contracts/hall_sales.html:41
-#: templates/contracts/trader_purchases.html:42
 #: templates/history/list_inventory.html:40
 #: templates/history/list_purchases_history.html:40
 #: templates/history/list_sales_history.html:40
@@ -130,7 +124,6 @@ msgstr "設定"
 #: templates/accounting_csv/accounting_csv_sales.html:45
 #: templates/contracts/hall_purchases.html:46
 #: templates/contracts/hall_sales.html:46
-#: templates/contracts/trader_purchases.html:47
 #: templates/history/list_inventory.html:45
 #: templates/history/list_purchases_history.html:45
 #: templates/history/list_sales_history.html:45
@@ -141,7 +134,6 @@ msgstr "アカウントのセキュリティ"
 #: templates/accounting_csv/accounting_csv_sales.html:46
 #: templates/contracts/hall_purchases.html:47
 #: templates/contracts/hall_sales.html:47
-#: templates/contracts/trader_purchases.html:48
 #: templates/history/list_inventory.html:46
 #: templates/history/list_purchases_history.html:46
 #: templates/history/list_sales_history.html:46
@@ -152,7 +144,6 @@ msgstr "分析"
 #: templates/accounting_csv/accounting_csv_sales.html:47
 #: templates/contracts/hall_purchases.html:48
 #: templates/contracts/hall_sales.html:48
-#: templates/contracts/trader_purchases.html:49
 #: templates/history/list_inventory.html:47
 #: templates/history/list_purchases_history.html:47
 #: templates/history/list_sales_history.html:47
@@ -163,7 +154,6 @@ msgstr "アクセシビリティ"
 #: templates/accounting_csv/accounting_csv_sales.html:49
 #: templates/contracts/hall_purchases.html:50
 #: templates/contracts/hall_sales.html:50
-#: templates/contracts/trader_purchases.html:51
 #: templates/history/list_inventory.html:49
 #: templates/history/list_purchases_history.html:49
 #: templates/history/list_sales_history.html:49
@@ -186,7 +176,6 @@ msgstr "CSVにエクスポート"
 #: templates/accounting_csv/accounting_csv_sales.html:108
 #: templates/contracts/hall_purchases.html:914
 #: templates/contracts/hall_sales.html:908
-#: templates/contracts/trader_purchases.html:676
 #: templates/history/list_inventory.html:236
 #: templates/history/list_purchases_history.html:258
 #: templates/history/list_sales_history.html:258
@@ -207,8 +196,6 @@ msgstr "売買"
 #: templates/contracts/hall_purchases.html:32
 #: templates/contracts/hall_sales.html:17
 #: templates/contracts/hall_sales.html:32
-#: templates/contracts/trader_purchases.html:18
-#: templates/contracts/trader_purchases.html:33
 msgid "Sales contract creation"
 msgstr "売買契約の作成"
 
@@ -219,13 +206,12 @@ msgstr "ホール買"
 
 #: templates/contracts/hall_purchases.html:73
 #: templates/contracts/hall_sales.html:73
-#: templates/contracts/trader_purchases.html:74
 msgid "Sales contract"
 msgstr "売買契求書"
 
 #: templates/contracts/hall_purchases.html:91
 #: templates/contracts/hall_sales.html:91
-#: templates/contracts/trader_purchases.html:538
+#: templates/contracts/trader_purchases.html:512
 msgid "Buyer"
 msgstr "買主"
 
@@ -236,8 +222,8 @@ msgstr "甲"
 
 #: templates/contracts/hall_purchases.html:95
 #: templates/contracts/hall_sales.html:95
-#: templates/contracts/trader_purchases.html:127
-#: templates/contracts/trader_sales.html:104
+#: templates/contracts/trader_purchases.html:101
+#: templates/contracts/trader_sales.html:103
 #: templates/master_data/customers.html:53
 #: templates/master_data/customers.html:112 templates/master_data/halls.html:53
 #: templates/master_data/halls.html:110 templates/master_data/receivers.html:53
@@ -256,10 +242,10 @@ msgstr "キーワード検索"
 #: templates/contracts/hall_sales.html:111
 #: templates/contracts/hall_sales.html:188
 #: templates/contracts/hall_sales.html:197
-#: templates/contracts/trader_purchases.html:202
-#: templates/contracts/trader_purchases.html:211
-#: templates/contracts/trader_sales.html:179
-#: templates/contracts/trader_sales.html:188
+#: templates/contracts/trader_purchases.html:176
+#: templates/contracts/trader_purchases.html:185
+#: templates/contracts/trader_sales.html:178
+#: templates/contracts/trader_sales.html:187
 #: templates/history/list_inventory.html:124
 #: templates/history/list_purchases_history.html:124
 #: templates/history/list_sales_history.html:124
@@ -268,7 +254,7 @@ msgstr "検索"
 
 #: templates/contracts/hall_purchases.html:115
 #: templates/contracts/hall_sales.html:115
-#: templates/contracts/trader_purchases.html:546
+#: templates/contracts/trader_purchases.html:520
 msgid "Seller"
 msgstr "売主"
 
@@ -279,12 +265,8 @@ msgstr "乙"
 
 #: templates/contracts/hall_purchases.html:119
 #: templates/contracts/hall_sales.html:119
-#: templates/contracts/trader_purchases.html:103
-#: templates/contracts/trader_purchases.html:450
-#: templates/contracts/trader_purchases.html:493
-#: templates/contracts/trader_sales.html:80
-#: templates/contracts/trader_sales.html:506
-#: templates/contracts/trader_sales.html:543
+#: templates/contracts/trader_purchases.html:424
+#: templates/contracts/trader_purchases.html:467
 msgid "Company name"
 msgstr "会社名"
 
@@ -292,10 +274,8 @@ msgstr "会社名"
 #: templates/contracts/hall_purchases.html:161
 #: templates/contracts/hall_sales.html:125
 #: templates/contracts/hall_sales.html:161
-#: templates/contracts/trader_purchases.html:148
-#: templates/contracts/trader_purchases.html:456
-#: templates/contracts/trader_purchases.html:499
-#: templates/contracts/trader_sales.html:512
+#: templates/contracts/trader_purchases.html:430
+#: templates/contracts/trader_purchases.html:473
 msgid "Street address"
 msgstr "住所"
 
@@ -303,12 +283,12 @@ msgstr "住所"
 #: templates/contracts/hall_purchases.html:169
 #: templates/contracts/hall_sales.html:132
 #: templates/contracts/hall_sales.html:169
-#: templates/contracts/trader_purchases.html:159
-#: templates/contracts/trader_purchases.html:462
-#: templates/contracts/trader_purchases.html:505
-#: templates/contracts/trader_sales.html:136
-#: templates/contracts/trader_sales.html:518
-#: templates/contracts/trader_sales.html:555
+#: templates/contracts/trader_purchases.html:133
+#: templates/contracts/trader_purchases.html:436
+#: templates/contracts/trader_purchases.html:479
+#: templates/contracts/trader_sales.html:135
+#: templates/contracts/trader_sales.html:517
+#: templates/contracts/trader_sales.html:554
 #: templates/master_data/customers.html:56
 #: templates/master_data/customers.html:133 templates/master_data/halls.html:56
 #: templates/master_data/halls.html:131 templates/master_data/receivers.html:56
@@ -318,11 +298,11 @@ msgstr "TEL"
 
 #: templates/contracts/hall_purchases.html:138
 #: templates/contracts/hall_sales.html:138
-#: templates/contracts/trader_purchases.html:167
-#: templates/contracts/trader_sales.html:144
-#: templates/contracts/trader_sales.html:524
-#: templates/contracts/trader_sales.html:561
-#: templates/contracts/trader_sales.html:610
+#: templates/contracts/trader_purchases.html:141
+#: templates/contracts/trader_sales.html:143
+#: templates/contracts/trader_sales.html:523
+#: templates/contracts/trader_sales.html:560
+#: templates/contracts/trader_sales.html:609
 #: templates/master_data/customers.html:57
 #: templates/master_data/customers.html:140 templates/master_data/halls.html:57
 #: templates/master_data/halls.html:138 templates/master_data/receivers.html:57
@@ -354,8 +334,8 @@ msgstr ""
 
 #: templates/contracts/hall_purchases.html:206
 #: templates/contracts/hall_sales.html:205
-#: templates/contracts/trader_purchases.html:219
-#: templates/contracts/trader_sales.html:196
+#: templates/contracts/trader_purchases.html:193
+#: templates/contracts/trader_sales.html:195
 #: templates/master_data/products.html:52
 #: templates/master_data/products.html:96
 msgid "Model name"
@@ -370,8 +350,8 @@ msgstr "中分類"
 #: templates/contracts/hall_purchases.html:414
 #: templates/contracts/hall_sales.html:207
 #: templates/contracts/hall_sales.html:413
-#: templates/contracts/trader_purchases.html:220
-#: templates/contracts/trader_sales.html:198
+#: templates/contracts/trader_purchases.html:194
+#: templates/contracts/trader_sales.html:197
 msgid "Quantity"
 msgstr "数量"
 
@@ -379,8 +359,8 @@ msgstr "数量"
 #: templates/contracts/hall_purchases.html:415
 #: templates/contracts/hall_sales.html:208
 #: templates/contracts/hall_sales.html:414
-#: templates/contracts/trader_purchases.html:221
-#: templates/contracts/trader_sales.html:199
+#: templates/contracts/trader_purchases.html:195
+#: templates/contracts/trader_sales.html:198
 #: templates/history/list_inventory.html:143
 msgid "Unit price"
 msgstr "単価"
@@ -391,8 +371,6 @@ msgstr "単価"
 #: templates/contracts/hall_sales.html:209
 #: templates/contracts/hall_sales.html:415
 #: templates/contracts/hall_sales.html:541
-#: templates/contracts/trader_purchases.html:222
-#: templates/contracts/trader_sales.html:200
 #: templates/history/list_purchases_history.html:144
 #: templates/history/list_sales_history.html:144
 msgid "Amount of money"
@@ -408,11 +386,11 @@ msgstr "金額"
 #: templates/contracts/hall_sales.html:301
 #: templates/contracts/hall_sales.html:339
 #: templates/contracts/hall_sales.html:377
-#: templates/contracts/trader_sales.html:216
-#: templates/contracts/trader_sales.html:254
-#: templates/contracts/trader_sales.html:292
-#: templates/contracts/trader_sales.html:330
-#: templates/contracts/trader_sales.html:368
+#: templates/contracts/trader_sales.html:215
+#: templates/contracts/trader_sales.html:253
+#: templates/contracts/trader_sales.html:291
+#: templates/contracts/trader_sales.html:329
+#: templates/contracts/trader_sales.html:367
 msgid "Main body"
 msgstr "本体"
 
@@ -426,11 +404,11 @@ msgstr "本体"
 #: templates/contracts/hall_sales.html:302
 #: templates/contracts/hall_sales.html:340
 #: templates/contracts/hall_sales.html:378
-#: templates/contracts/trader_sales.html:217
-#: templates/contracts/trader_sales.html:255
-#: templates/contracts/trader_sales.html:293
-#: templates/contracts/trader_sales.html:331
-#: templates/contracts/trader_sales.html:369
+#: templates/contracts/trader_sales.html:216
+#: templates/contracts/trader_sales.html:254
+#: templates/contracts/trader_sales.html:292
+#: templates/contracts/trader_sales.html:330
+#: templates/contracts/trader_sales.html:368
 msgid "Frame"
 msgstr "枠"
 
@@ -444,11 +422,11 @@ msgstr "枠"
 #: templates/contracts/hall_sales.html:303
 #: templates/contracts/hall_sales.html:341
 #: templates/contracts/hall_sales.html:379
-#: templates/contracts/trader_sales.html:218
-#: templates/contracts/trader_sales.html:256
-#: templates/contracts/trader_sales.html:294
-#: templates/contracts/trader_sales.html:332
-#: templates/contracts/trader_sales.html:370
+#: templates/contracts/trader_sales.html:217
+#: templates/contracts/trader_sales.html:255
+#: templates/contracts/trader_sales.html:293
+#: templates/contracts/trader_sales.html:331
+#: templates/contracts/trader_sales.html:369
 msgid "Cell"
 msgstr "セル"
 
@@ -462,11 +440,11 @@ msgstr "セル"
 #: templates/contracts/hall_sales.html:304
 #: templates/contracts/hall_sales.html:342
 #: templates/contracts/hall_sales.html:380
-#: templates/contracts/trader_sales.html:219
-#: templates/contracts/trader_sales.html:257
-#: templates/contracts/trader_sales.html:295
-#: templates/contracts/trader_sales.html:333
-#: templates/contracts/trader_sales.html:371
+#: templates/contracts/trader_sales.html:218
+#: templates/contracts/trader_sales.html:256
+#: templates/contracts/trader_sales.html:294
+#: templates/contracts/trader_sales.html:332
+#: templates/contracts/trader_sales.html:370
 msgid "Nail sheet"
 msgstr "釘シート"
 
@@ -509,46 +487,40 @@ msgstr "書類代"
 #: templates/contracts/hall_purchases.html:694
 #: templates/contracts/hall_purchases.html:887
 #: templates/contracts/hall_sales.html:693
-#: templates/contracts/trader_purchases.html:405
-#: templates/contracts/trader_purchases.html:481
-#: templates/contracts/trader_purchases.html:524
-#: templates/contracts/trader_sales.html:415
-#: templates/contracts/trader_sales.html:616
 msgid "Remark"
 msgstr "備考"
 
 #: templates/contracts/hall_purchases.html:703
 #: templates/contracts/hall_sales.html:702
-#: templates/contracts/trader_purchases.html:418
-#: templates/contracts/trader_sales.html:426
+#: templates/contracts/trader_purchases.html:392
+#: templates/contracts/trader_sales.html:425
 msgid "Subtotal"
 msgstr "小計"
 
 #: templates/contracts/hall_purchases.html:707
 #: templates/contracts/hall_sales.html:706
-#: templates/contracts/trader_purchases.html:422
-#: templates/contracts/trader_sales.html:431
+#: templates/contracts/trader_purchases.html:396
+#: templates/contracts/trader_sales.html:430
 msgid "Consumption tax"
 msgstr "消費税"
 
 #: templates/contracts/hall_purchases.html:715
 #: templates/contracts/hall_sales.html:714
-#: templates/contracts/trader_purchases.html:426
-#: templates/contracts/trader_sales.html:436
+#: templates/contracts/trader_purchases.html:400
+#: templates/contracts/trader_sales.html:435
 msgid "Insurance fee"
 msgstr "保険代"
 
 #: templates/contracts/hall_purchases.html:715
 #: templates/contracts/hall_sales.html:714
-#: templates/contracts/trader_purchases.html:426
-#: templates/contracts/trader_sales.html:436
+#: templates/contracts/trader_purchases.html:400
+#: templates/contracts/trader_sales.html:435
 msgid "Tax exempt"
 msgstr "非課税"
 
 #: templates/contracts/hall_purchases.html:722
 #: templates/contracts/hall_sales.html:721
-#: templates/contracts/trader_purchases.html:430
-#: templates/contracts/trader_sales.html:441
+#: templates/contracts/trader_purchases.html:404
 msgid "Total amount"
 msgstr "合計"
 
@@ -569,31 +541,31 @@ msgstr "開店日"
 
 #: templates/contracts/hall_purchases.html:760
 #: templates/contracts/hall_sales.html:759
-#: templates/contracts/trader_sales.html:462
+#: templates/contracts/trader_sales.html:461
 msgid "Payment method"
 msgstr "お支払方法"
 
 #: templates/contracts/hall_purchases.html:761
 #: templates/contracts/hall_sales.html:760
-#: templates/contracts/trader_sales.html:463
+#: templates/contracts/trader_sales.html:462
 msgid "Transfer"
 msgstr "振込"
 
 #: templates/contracts/hall_purchases.html:762
 #: templates/contracts/hall_sales.html:761
-#: templates/contracts/trader_sales.html:464
+#: templates/contracts/trader_sales.html:463
 msgid "Check"
 msgstr "小切手"
 
 #: templates/contracts/hall_purchases.html:763
 #: templates/contracts/hall_sales.html:762
-#: templates/contracts/trader_sales.html:465
+#: templates/contracts/trader_sales.html:464
 msgid "Bill"
 msgstr "手形"
 
 #: templates/contracts/hall_purchases.html:764
 #: templates/contracts/hall_sales.html:763
-#: templates/contracts/trader_sales.html:466
+#: templates/contracts/trader_sales.html:465
 msgid "Cash"
 msgstr "現金"
 
@@ -629,15 +601,13 @@ msgstr "5回"
 
 #: templates/contracts/hall_purchases.html:861
 #: templates/contracts/hall_sales.html:864
-#: templates/contracts/trader_purchases.html:593
-#: templates/contracts/trader_sales.html:605
+#: templates/contracts/trader_purchases.html:567
+#: templates/contracts/trader_sales.html:604
 msgid "Transfer account"
 msgstr "振込先口座"
 
 #: templates/contracts/hall_purchases.html:868
 #: templates/contracts/hall_sales.html:872
-#: templates/contracts/trader_purchases.html:188
-#: templates/contracts/trader_sales.html:165
 #: templates/history/list_inventory.html:108
 #: templates/history/list_inventory.html:109
 #: templates/history/list_inventory.html:141
@@ -653,15 +623,11 @@ msgstr "確認印"
 
 #: templates/contracts/hall_purchases.html:898
 #: templates/contracts/hall_sales.html:891
-#: templates/contracts/trader_purchases.html:659
-#: templates/contracts/trader_sales.html:624
 msgid "Create Contract"
 msgstr "契約を作成する"
 
 #: templates/contracts/hall_purchases.html:899
 #: templates/contracts/hall_sales.html:892
-#: templates/contracts/trader_purchases.html:660
-#: templates/contracts/trader_sales.html:625
 msgid "Create Invoice"
 msgstr "請求書を作成する"
 
@@ -671,43 +637,57 @@ msgid "Hall sales"
 msgstr "ホール売"
 
 #: templates/contracts/hall_sales.html:857
-#: templates/contracts/trader_sales.html:603
 msgid "Please bear the transfer fee at your expense."
 msgstr "お振込み手数料は貴社ご負担でお願いします。"
 
-#: templates/contracts/trader_purchases.html:18
-#: templates/contracts/trader_purchases.html:34
+#: templates/contracts/trader_purchases.html:19
+#: templates/contracts/trader_purchases.html:26
+#: templates/contracts/trader_sales.html:4
+#: templates/contracts/trader_sales.html:19
+#: templates/contracts/trader_sales.html:26 templates/layout/sidebar.html:42
+msgid "Contract"
+msgstr "売買契約の作成"
+
+#: templates/contracts/trader_purchases.html:19
+#: templates/contracts/trader_purchases.html:27
 #: templates/layout/sidebar.html:45
 msgid "Trader purchases"
 msgstr "業者買"
 
-#: templates/contracts/trader_purchases.html:79
-#: templates/contracts/trader_sales.html:57
-#: templates/history/list_inventory.html:77
-#: templates/history/list_purchases_history.html:84
-#: templates/history/list_purchases_history.html:137
-#: templates/history/list_sales_history.html:84
-#: templates/history/list_sales_history.html:137
-msgid "Contract date"
+#: templates/contracts/trader_purchases.html:48
+#: templates/contracts/trader_sales.html:51
+msgid "Contract and invoice"
+msgstr "売買契約 兼 請求書"
+
+#: templates/contracts/trader_purchases.html:53
+#: templates/contracts/trader_sales.html:56
+msgid "Created date"
 msgstr "契約日"
 
-#: templates/contracts/trader_purchases.html:86
-#: templates/contracts/trader_sales.html:64
-msgid "Update date"
+#: templates/contracts/trader_purchases.html:60
+#: templates/contracts/trader_sales.html:63
+msgid "Updated date"
 msgstr "更新日"
 
-#: templates/contracts/trader_purchases.html:108
-#: templates/contracts/trader_sales.html:85
+#: templates/contracts/trader_purchases.html:77
+#: templates/contracts/trader_sales.html:79
+#: templates/contracts/trader_sales.html:505
+#: templates/contracts/trader_sales.html:542
+msgid "Company"
+msgstr "会社名"
+
+#: templates/contracts/trader_purchases.html:82
+#: templates/contracts/trader_sales.html:84
 msgid "CO."
 msgstr "御中"
 
-#: templates/contracts/trader_purchases.html:119
-#: templates/contracts/trader_sales.html:96
+#: templates/contracts/trader_purchases.html:93
+#: templates/contracts/trader_sales.html:95
 msgid "Mr."
 msgstr "様"
 
-#: templates/contracts/trader_purchases.html:137
-#: templates/contracts/trader_sales.html:114
+#: templates/contracts/trader_purchases.html:111
+#: templates/contracts/trader_sales.html:113
 #: templates/master_data/customers.html:54
 #: templates/master_data/customers.html:119 templates/master_data/halls.html:54
 #: templates/master_data/halls.html:117 templates/master_data/receivers.html:54
@@ -715,35 +695,64 @@ msgstr "様"
 msgid "Postal code"
 msgstr "郵便番号"
 
-#: templates/contracts/trader_purchases.html:180
-#: templates/contracts/trader_sales.html:157
-msgid "Membership number"
+#: templates/contracts/trader_purchases.html:122
+#: templates/contracts/trader_sales.html:124
+#: templates/contracts/trader_sales.html:511
+#: templates/contracts/trader_sales.html:548
+#: templates/master_data/customers.html:55
+#: templates/master_data/customers.html:126 templates/master_data/halls.html:55
+#: templates/master_data/halls.html:124 templates/master_data/receivers.html:55
+#: templates/master_data/receivers.html:123
+msgid "Address"
+msgstr "住所"
+
+#: templates/contracts/trader_purchases.html:154
+#: templates/contracts/trader_sales.html:156
+msgid "Member ID"
 msgstr "会員番号"
 
-#: templates/contracts/trader_purchases.html:366
+#: templates/contracts/trader_purchases.html:162
+#: templates/contracts/trader_sales.html:164
+msgid "Person in charge"
+msgstr "担当名"
+
+#: templates/contracts/trader_purchases.html:196
+#: templates/contracts/trader_sales.html:199
+msgid "Amount"
+msgstr "金額"
+
+#: templates/contracts/trader_purchases.html:340
 msgid "Removal date"
 msgstr "撤去日"
 
-#: templates/contracts/trader_purchases.html:377
+#: templates/contracts/trader_purchases.html:351
 msgid "Frame color"
 msgstr "枠色"
 
-#: templates/contracts/trader_purchases.html:385
+#: templates/contracts/trader_purchases.html:359
 msgid "Date of shipment"
 msgstr "発送日"
 
-#: templates/contracts/trader_purchases.html:396
-#: templates/contracts/trader_sales.html:455
+#: templates/contracts/trader_purchases.html:370
+#: templates/contracts/trader_sales.html:454
 msgid "Picking up"
 msgstr "引取"
 
-#: templates/contracts/trader_purchases.html:439
+#: templates/contracts/trader_purchases.html:379
+#: templates/contracts/trader_purchases.html:455
+#: templates/contracts/trader_purchases.html:498
+#: templates/contracts/trader_sales.html:414
+#: templates/contracts/trader_sales.html:615
+msgid "Remarks"
+msgstr "備考"
+
+#: templates/contracts/trader_purchases.html:413
 msgid ""
 "It is assumed that the contract has been concluded with the arrival of our "
 "certificate of sale."
 msgstr "売却証明書の弊社到着をもちまして契約が成立したものとします。"
 
-#: templates/contracts/trader_purchases.html:440
+#: templates/contracts/trader_purchases.html:414
 #, python-format
 msgid ""
 "If you cancel after sending the proof of purchase, you will be compensated "
@@ -752,7 +761,7 @@ msgstr ""
 "購入証明書送付後、キャンセルした場合には売買成立代金の100%%を賠償するものとし"
 "ます。"
 
-#: templates/contracts/trader_purchases.html:441
+#: templates/contracts/trader_purchases.html:415
 msgid ""
 "We will notify you of any missing items or damage within 3 days after the "
 "item arrives. No further returns or exchanges will be accepted."
@@ -760,203 +769,209 @@ msgstr ""
 "欠品、破損などのご連絡は商品到着後3日以内とします。以降の返品、交換は一切出来"
 "かねます。"
 
-#: templates/contracts/trader_purchases.html:448
-#: templates/contracts/trader_sales.html:504
+#: templates/contracts/trader_purchases.html:422
 msgid "Product shipping address"
 msgstr "商品発送先"
 
-#: templates/contracts/trader_purchases.html:468
-#: templates/contracts/trader_purchases.html:511
+#: templates/contracts/trader_purchases.html:442
+#: templates/contracts/trader_purchases.html:485
 msgid "Desired arrival date"
 msgstr "到着希望日"
 
-#: templates/contracts/trader_purchases.html:475
-#: templates/contracts/trader_purchases.html:518
+#: templates/contracts/trader_purchases.html:449
+#: templates/contracts/trader_purchases.html:492
 msgid "Shipping company"
 msgstr "運送会社"
 
-#: templates/contracts/trader_purchases.html:491
-#: templates/contracts/trader_sales.html:541
+#: templates/contracts/trader_purchases.html:465
 msgid "Document shipping address"
 msgstr "書類発送先"
 
-#: templates/contracts/trader_purchases.html:533
+#: templates/contracts/trader_purchases.html:507
 msgid "Please check the contents, seal it, and fax it to us."
 msgstr "内容をご確認の上、ご捺印後弊社までリファックス願います。"
 
-#: templates/contracts/trader_purchases.html:534
+#: templates/contracts/trader_purchases.html:508
 msgid "Return address"
 msgstr "返送先"
 
-#: templates/contracts/trader_purchases.html:578
+#: templates/contracts/trader_purchases.html:552
 msgid "Transfer deadline"
 msgstr "振込期限日"
 
-#: templates/contracts/trader_purchases.html:598
+#: templates/contracts/trader_purchases.html:572
 msgid "Bank name"
 msgstr "銀行名"
 
-#: templates/contracts/trader_purchases.html:606
+#: templates/contracts/trader_purchases.html:580
 msgid "Account number"
 msgstr "口座番号"
 
-#: templates/contracts/trader_purchases.html:621
+#: templates/contracts/trader_purchases.html:595
 msgid "Original invoice"
 msgstr "請求書原本"
 
-#: templates/contracts/trader_purchases.html:624
+#: templates/contracts/trader_purchases.html:598
+#: templates/contracts/trader_sales.html:611
 msgid "Necessary"
 msgstr "必要"
 
-#: templates/contracts/trader_purchases.html:626
+#: templates/contracts/trader_purchases.html:600
 msgid "Unncessary"
 msgstr "不要"
 
-#: templates/contracts/trader_purchases.html:631
+#: templates/contracts/trader_purchases.html:605
 msgid "Branch name"
 msgstr "支店名"
 
-#: templates/contracts/trader_purchases.html:641
+#: templates/contracts/trader_purchases.html:615
 msgid "Account holder"
 msgstr "口座名義"
 
-#: templates/contracts/trader_purchases.html:653
+#: templates/contracts/trader_purchases.html:627
 msgid "Please describe the transfer destination."
 msgstr "お振込み先の記載をお願いします。"
 
-#: templates/contracts/trader_sales.html:4
-#: templates/contracts/trader_sales.html:20
-#: templates/contracts/trader_sales.html:27 templates/layout/sidebar.html:42
-msgid "Contract"
-msgstr "売買契約の作成"
+#: templates/contracts/trader_purchases.html:633
+#: templates/contracts/trader_sales.html:623
+msgid "Create contract"
+msgstr "契約の作成"
 
-#: templates/contracts/trader_sales.html:20
-#: templates/contracts/trader_sales.html:28 templates/layout/sidebar.html:44
+#: templates/contracts/trader_purchases.html:634
+#: templates/contracts/trader_sales.html:624
+msgid "Create invoice"
+msgstr "請求書の作成"
+
+#: templates/contracts/trader_sales.html:19
+#: templates/contracts/trader_sales.html:27 templates/layout/sidebar.html:44
 msgid "Trader sales"
 msgstr "業者売"
 
-#: templates/contracts/trader_sales.html:52
-msgid "Contract and invoice"
-msgstr "売買契約 兼 請求書"
-
-#: templates/contracts/trader_sales.html:125
-#: templates/contracts/trader_sales.html:549
-#: templates/master_data/customers.html:55
-#: templates/master_data/customers.html:126 templates/master_data/halls.html:55
-#: templates/master_data/halls.html:124 templates/master_data/receivers.html:55
-#: templates/master_data/receivers.html:123
-msgid "Address"
-msgstr "住所"
-
-#: templates/contracts/trader_sales.html:197
+#: templates/contracts/trader_sales.html:196
 msgid "Product type"
 msgstr "中分類"
 
-#: templates/contracts/trader_sales.html:404
-msgid "Machine shipping date"
+#: templates/contracts/trader_sales.html:403
+msgid "Shipping date"
 msgstr "機械発送日"
 
-#: templates/contracts/trader_sales.html:453
+#: templates/contracts/trader_sales.html:440
+msgid "Total"
+msgstr "合計"
+
+#: templates/contracts/trader_sales.html:452
 msgid "Shiping method"
 msgstr "運送方法"
 
-#: templates/contracts/trader_sales.html:454
+#: templates/contracts/trader_sales.html:453
 msgid "Shipping"
 msgstr "発送"
 
-#: templates/contracts/trader_sales.html:456
-msgid "Change"
-msgstr "変更"
+#: templates/contracts/trader_sales.html:455
+msgid "ID Change"
+msgstr "ID変更"
 
-#: templates/contracts/trader_sales.html:457
+#: templates/contracts/trader_sales.html:456
 msgid "Blank"
 msgstr "空白"
 
-#: templates/contracts/trader_sales.html:473
-msgid "Billed amount"
+#: templates/contracts/trader_sales.html:472
+msgid "Billing amount"
 msgstr "御請求金額"
 
-#: templates/contracts/trader_sales.html:479
-msgid "Payment deadline"
+#: templates/contracts/trader_sales.html:478
+msgid "Due date"
 msgstr "お支払期限"
 
-#: templates/contracts/trader_sales.html:490
+#: templates/contracts/trader_sales.html:489
 msgid ""
-"It is assumed that the contract is concluded when the signatures and seals "
-"of both the seller and the buyer are complete."
+"The contract will be effective when both seller and buyer sign and seal."
 msgstr "売主、買主、双方の署名・捺印が揃った時点で契約が成立したものとします。"
+
+#: templates/contracts/trader_sales.html:490
+msgid "As a general rule, the contract cannot be canceled once signed."
+msgstr "契約が成立後、原則として売買契約を解除できないものとします。"
 
 #: templates/contracts/trader_sales.html:491
 msgid ""
-"As a general rule, the sales contract cannot be canceled after the contract "
-"is concluded."
-msgstr "契約が成立後、原則として売買契約を解除できないものとします。"
+"3 days warranty after delivery will be provided just in case of defects or "
+"malfunctions in the products."
+msgstr "当該商品に不備及び故障がある場合の保障は、納品後3日以内とします。"
 
 #: templates/contracts/trader_sales.html:492
 msgid ""
-"If the product is defective or defective, the warranty is within 3 days "
-"after delivery."
-msgstr "当該商品に不備及び故障がある場合の保障は、納品後3日以内とします。"
-
-#: templates/contracts/trader_sales.html:493
-msgid ""
-"Ownership of the property for sale is reserved by the seller until the buyer "
-"completes the full payment."
+"The seller will keep the ownership of the products until the buyer makes the "
+"full payment."
 msgstr ""
 "買主が代金全額支払いを完了するまでは、売買物件の所有権は売主において留保す"
 "る。"
 
-#: templates/contracts/trader_sales.html:494
+#: templates/contracts/trader_sales.html:493
 msgid ""
-"Ownership of the property for sale shall be transferred to the 'buyer' when "
-"the delivery is completed and the payment is completed."
+"The Ownership of the products shall be transferred to the buyer when product "
+"delivery is completed and full payment is made."
 msgstr ""
 "売買物件の所有権は、引渡しが終了し、支払いが完了した時点で買主」に移行するも"
 "のとする。"
 
-#: templates/contracts/trader_sales.html:495
+#: templates/contracts/trader_sales.html:494
 msgid ""
-"In the following cases, the seller may, without any procedure, lose the "
-"profit of the period and request immediate payment of the balance, or cancel "
-"this contract and withdraw the property for sale."
+"In the following cases, the seller may, without any procedure, request the "
+"immediate payment of the remaining balance, or cancel the contract and take "
+"back the products."
 msgstr ""
 "下記の場合の売主は、何らかの手続きを経ずして、その選択により期の利益を喪失せ"
 "しめて残代金の即時支払いを求めるか、又は本契約を解除して売買物件を引き上げる"
 "事が出来る。"
 
-#: templates/contracts/trader_sales.html:496
-msgid "If you fail to pay the price even once."
+#: templates/contracts/trader_sales.html:495
+msgid "When the buyer fail to make the payment even once."
 msgstr "代金の支払いを1回でも怠った場合。"
 
-#: templates/contracts/trader_sales.html:497
+#: templates/contracts/trader_sales.html:496
 msgid ""
-"When a petition for arrangement, consensus, damage, etc. is received after "
-"the execution of provisional seizure, provisional disposition, etc."
+"When the products were forfeited or disposed temporarily, or the request for "
+"arrangement, reconciliation, damage etc is received."
 msgstr ""
 "仮差押え、仮処分等の執行を受け、整理・和議・破損等の申立てを受けた場合。"
 
-#: templates/contracts/trader_sales.html:530
-#: templates/contracts/trader_sales.html:567
+#: templates/contracts/trader_sales.html:503
+msgid "Product sender"
+msgstr "商品発送先"
+
+#: templates/contracts/trader_sales.html:529
+#: templates/contracts/trader_sales.html:566
 msgid "Expected arrival date"
 msgstr "到着予定日"
 
-#: templates/contracts/trader_sales.html:578
-msgid "Buyer's seal field"
+#: templates/contracts/trader_sales.html:540
+msgid "Document sender"
+msgstr "書類発送先"
+
+#: templates/contracts/trader_sales.html:577
+msgid "Buyer seal"
 msgstr "買主捺印欄"
 
-#: templates/contracts/trader_sales.html:586
-msgid "Seller's seal field"
+#: templates/contracts/trader_sales.html:585
+msgid "Seller seal"
 msgstr "売主捺印欄"
 
-#: templates/contracts/trader_sales.html:609
-msgid "Please check the contents, seal it, and reply to us."
+#: templates/contracts/trader_sales.html:602
+msgid "Please be noted that the transfer fee will be at your company expense."
+msgstr "お振込み手数料は貴社ご負担でお願いします。"
+
+#: templates/contracts/trader_sales.html:608
+msgid "Please check the contents. After seal, kindly revert back to us."
 msgstr "内容をご確認の上、捺印後弊社まで返信お願いします。"
 
-#: templates/contracts/trader_sales.html:612
+#: templates/contracts/trader_sales.html:611
 msgid ""
-"If you need the original invoice, be sure to check it. [Necessary / "
-"Unnecessary]"
-msgstr "請求書原本が必要な場合は必ずチェックしてください。【必要・不要不要】"
+"If you need the original invoice, please make sure to tick the checkbox."
+msgstr "請求書原本が必要な場合は必ずチェックしてください。"
+
+#: templates/contracts/trader_sales.html:611
+msgid "Unnecessary"
+msgstr "不要"
 
 #: templates/error/404.html:13
 msgid "Error"
@@ -992,6 +1007,14 @@ msgstr "在庫"
 #: templates/history/list_inventory.html:62
 msgid "Inventory list"
 msgstr "在庫リスト"
+
+#: templates/history/list_inventory.html:77
+#: templates/history/list_purchases_history.html:84
+#: templates/history/list_purchases_history.html:137
+#: templates/history/list_sales_history.html:84
+#: templates/history/list_sales_history.html:137
+msgid "Contract date"
+msgstr "契約日"
 
 #: templates/history/list_inventory.html:87
 #: templates/history/list_inventory.html:137
@@ -1384,6 +1407,12 @@ msgstr "あなたのメール"
 #: templates/registration/password_reset_form.html:23
 msgid "Reset password"
 msgstr "パスワードを再設定する"
+
+#~ msgid "Update date"
+#~ msgstr "更新日"
+
+#~ msgid "Membership number"
+#~ msgstr "会員番号"
 
 #~ msgid "Online"
 #~ msgstr "オンライン"

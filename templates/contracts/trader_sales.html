@@ -6,8 +6,7 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-	<link rel="stylesheet" href="{% static 'assets/css/customize_table.css' %}" />
-	
+
 	<!-- Main content -->
 	<div class="content-wrapper">
 
@@ -45,7 +44,7 @@
 							<div class="panel-title-wrapper container-fluid">
 								<div class="row d-flex flex-wrap">
 									<div class="col-3 text-left d-flex align-items-center">
-										<div class="transaction-id-text">No.{{ transaction_id }}</div>
+										<div class="transaction-id-text">No.{{ contract }}</div>
 										<input type="hidden" name="transaction_id" value="{{ transaction_id }}" >
 									</div>
 									<div class="col-6 d-flex align-items-center justify-content-center">
@@ -54,14 +53,14 @@
 									
 									<div class="col-3 col-sm-12">
 										<div class="d-flex align-items-center justify-content-end">
-											<span class="contract-date-label">{% trans "Contract date" %}</span>
+											<span class="contract-date-label">{% trans "Created date" %}</span>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
 												<input type="text" name="contract_date" class="form-control daterange-single">
 											</div>
 										</div>
 										<div class="d-flex align-items-center justify-content-end mt-3">
-											<span class="contract-date-label">{% trans "Update date" %}</span>
+											<span class="contract-date-label">{% trans "Updated date" %}</span>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
 												<input type="text" name="update_at" class="form-control daterange-single">
@@ -77,7 +76,7 @@
 										<div class="row d-flex flex-wrap">
 											<div class="col-6 col-sm-12">
 												<div class="mb-1 d-flex row">
-													<label class="control-label col-3 mt-auto">{% trans "Company name" %}</label>
+													<label class="control-label col-3 mt-auto">{% trans "Company" %}</label>
 													<div class="col-9">
 														<div class="has-feedback">
 															<input type="text" name="customer_name" class="form-control" placeholder="">
@@ -154,17 +153,17 @@
 										<div>
 											<div class="form-group d-flex row">
 												<div class="w-100 d-flex align-items-center">
-													<label class="control-label col-5 mt-auto">P-SENSOR {% trans "Membership number" %}</label>
+													<label class="control-label col-5 mt-auto">P-SENSOR {% trans "Member ID" %}</label>
 													<div class="col-7">
-														<input type="text" name="membership_number" class="form-control" value="">
+														<input type="text" name="member_id" class="form-control" value="">
 													</div>
 												</div>
 											</div>
 											<div class="form-group d-flex row">
 												<div class="w-100 d-flex align-items-center">
-													<label class="control-label col-5 mt-auto">{% trans "In charge" %}</label>
+													<label class="control-label col-5 mt-auto">{% trans "Person in charge" %}</label>
 													<div class="col-7">
-														<input type="text" name="in_charge" class="form-control" value="">
+														<input type="text" name="person_in_charge" class="form-control" value="">
 													</div>
 												</div>
 											</div>
@@ -185,7 +184,7 @@
 														</div>
 													</div>
 												</div>
-												<button type="button" class="btn btn-primary">{% trans "Search" %}</button>
+												<button type="button" name="product_search_btn" class="btn btn-primary">{% trans "Search" %}</button>
 											</div>
 										</div>
 									</div>
@@ -197,7 +196,7 @@
 													<th>{% trans "Product type" %}</th>
 													<th>{% trans "Quantity" %}</th>
 													<th>{% trans "Unit price" %}</th>
-													<th>{% trans "Amount of money" %}</th>
+													<th>{% trans "Amount" %}</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -357,14 +356,14 @@
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-7 px-0">
-																<input type="text" class="form-control" value="Model name 1">
+																<input type="text" name="model_name" class="form-control" value="Model name 1">
 															</div>
 														</div>
 													</td>
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-10 px-0">
-																<select name="select" class="form-control">
+																<select name="product_type" class="form-control">
 																	<option value="">{% trans "Main body" %}</option>
 																	<option value="">{% trans "Frame" %}</option>
 																	<option value="">{% trans "Cell" %}</option>
@@ -401,8 +400,8 @@
 											<div class="col-lg-6 form-group">
 												<div class="position-relative">
 													<div class="input-group">
-														<span class="input-group-addon">{% trans "Machine shipping date" %}</span>
-														<input type="text" name="shipping_method_date" class="form-control daterange-single">
+														<span class="input-group-addon">{% trans "Shipping date" %}</span>
+														<input type="text" name="shipping_date" class="form-control daterange-single">
 													</div>
 													<div class="form-control-feedback">
 														<i class="icon-calendar22"></i>
@@ -412,8 +411,8 @@
 											<div class="col-lg-12 col-xs-12">
 												<div class="">
 													<div class="input-group">
-														<span class="input-group-addon">{% trans "Remark" %}</span>
-														<textarea type="text" name="remarks" class="form-control remark"></textarea>
+														<span class="input-group-addon">{% trans "Remarks" %}</span>
+														<textarea type="text" name="remarks" class="form-control remarks"></textarea>
 													</div>
 												</div>
 											</div>
@@ -438,9 +437,9 @@
 													<input type="hidden" name="insurance_fee" value="">
 												</tr>
 												<tr>
-													<td>{% trans "Total amount" %}</td>
+													<td>{% trans "Total" %}</td>
 													<td>93,600</td>
-													<input type="hidden" name="total_amount" value="">
+													<input type="hidden" name="total" value="">
 												</tr>
 											</tbody>
 										</table>
@@ -453,7 +452,7 @@
 												<option value="">{% trans "Shiping method" %}</option>
 												<option value="{% trans 'Shipping' %}">{% trans "Shipping" %}</option>
 												<option value="{% trans 'Picking up' %}">{% trans "Picking up" %}</option>
-												<option value="ID {% trans 'Change' %}">ID {% trans "Change" %}</option>
+												<option value="{% trans 'ID Change' %}">{% trans "ID Change" %}</option>
 												<option value="* {% trans 'Blank' %}">* {% trans "Blank" %}</option>
 											</select>
 										</div>
@@ -470,14 +469,14 @@
 									<div class="col-6">
 										<div class="form-group">
 											<div class="input-group">
-												<span class="input-group-addon">{% trans "Billed amount" %}</span>
-												<!-- <input type="text" class="form-control" name="total_amount"> -->
+												<span class="input-group-addon">{% trans "Billing amount" %}</span>
+												<input type="text" class="form-control" name="total_amount">
 											</div>
 										</div>
 										<div class="position-relative form-group">
 											<div class="input-group">
-												<span class="input-group-addon">{% trans "Payment deadline" %}</span>
-												<input type="text" name="payment_deadline" class="form-control daterange-single">
+												<span class="input-group-addon">{% trans "Due date" %}</span>
+												<input type="text" name="due_date" class="form-control daterange-single">
 											</div>
 											<div class="form-control-feedback">
 												<i class="icon-calendar22"></i>
@@ -487,29 +486,29 @@
 								</div>
 								<div class="row">
 									<div class="col-12 form-group">
-										<textarea type="text" class="form-control h-200-px">※ {% trans "It is assumed that the contract is concluded when the signatures and seals of both the seller and the buyer are complete." %}
-※ {% trans "As a general rule, the sales contract cannot be canceled after the contract is concluded." %}
-※ {% trans "If the product is defective or defective, the warranty is within 3 days after delivery." %}
-※ {% trans "Ownership of the property for sale is reserved by the seller until the buyer completes the full payment." %}
-※ {% trans "Ownership of the property for sale shall be transferred to the 'buyer' when the delivery is completed and the payment is completed." %}
-※ {% trans "In the following cases, the seller may, without any procedure, lose the profit of the period and request immediate payment of the balance, or cancel this contract and withdraw the property for sale." %}
-1) {% trans "If you fail to pay the price even once." %}
-2) {% trans "When a petition for arrangement, consensus, damage, etc. is received after the execution of provisional seizure, provisional disposition, etc." %}
+										<textarea type="text" class="form-control h-200-px">※ {% trans "The contract will be effective when both seller and buyer sign and seal." %}
+※ {% trans "As a general rule, the contract cannot be canceled once signed." %}
+※ {% trans "3 days warranty after delivery will be provided just in case of defects or malfunctions in the products." %}
+※ {% trans "The seller will keep the ownership of the products until the buyer makes the full payment." %}
+※ {% trans "The Ownership of the products shall be transferred to the buyer when product delivery is completed and full payment is made." %}
+※ {% trans "In the following cases, the seller may, without any procedure, request the immediate payment of the remaining balance, or cancel the contract and take back the products." %}
+	1) {% trans "When the buyer fail to make the payment even once." %}
+	2) {% trans "When the products were forfeited or disposed temporarily, or the request for arrangement, reconciliation, damage etc is received." %}
 										</textarea>
 									</div>
 								</div>
 								<div class="row d-flex flex-wrap mt-5-s">
 									<div class="col-lg-6 col-xs-12">
 										<fieldset class="content-group">
-											<legend class="text-bold text-center">{% trans "Product shipping address" %}</legend>
+											<legend class="text-bold text-center">{% trans "Product sender" %}</legend>
 											<div class="form-group">
-												<label class="control-label">{% trans "Company name" %}</label>
+												<label class="control-label">{% trans "Company" %}</label>
 												<div class="">
 													<input type="text" name="product_shipping_company" class="form-control">
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="control-label">{% trans "Street address" %}</label>
+												<label class="control-label">{% trans "Address" %}</label>
 												<div class="">
 													<textarea type="text" name="product_shipping_address" class="form-control"></textarea>
 												</div>
@@ -538,9 +537,9 @@
 									</div>
 									<div class="col-lg-6 col-xs-12">
 										<fieldset class="content-group">
-											<legend class="text-bold text-center">{% trans "Document shipping address" %}</legend>
+											<legend class="text-bold text-center">{% trans "Document sender" %}</legend>
 											<div class="form-group">
-												<label class="control-label">{% trans "Company name" %}</label>
+												<label class="control-label">{% trans "Company" %}</label>
 												<div class="">
 													<input type="text" name="document_shipping_company" class="form-control">
 												</div>
@@ -575,7 +574,7 @@
 								</div>
 								<div class="row mt-5-s">
 									<div class="col-lg-6 col-xs-12">
-										<h6 class="text-center">{% trans "Buyer's seal field" %}</h6>
+										<h6 class="text-center">{% trans "Buyer seal" %}</h6>
 										<div class="seal-wrapper">
 											<div class="seal">
 												印
@@ -583,7 +582,7 @@
 										</div>
 									</div>
 									<div class="col-lg-6 col-xs-12">
-										<h6 class="text-center">{% trans "Seller's seal field" %}</h6>
+										<h6 class="text-center">{% trans "Seller seal" %}</h6>
 										<div class="seal-wrapper">
 											<p>〒537―0021　大阪府大阪市東成区東中本2丁目4―15</p>
 											<h4>バッジオ株式会社</h4>
@@ -600,29 +599,29 @@
 								</div>
 								<div class="row mt-5-s">
 									<div class="col-lg-6 col-xs-12">
-										<p>※ {% trans "Please bear the transfer fee at your expense." %}</p>
+										<p>※ {% trans "Please be noted that the transfer fee will be at your company expense." %}</p>
 										<p>
 											<span>{% trans "Transfer account" %}:</span>
 											<span>りそな銀行　船場支店（101）　普通　0530713　バッジオカブシキガイシャ</span>
 										</p>
 										<p>
-											<span>{% trans "Please check the contents, seal it, and reply to us." %}</span>
+											<span>{% trans "Please check the contents. After seal, kindly revert back to us." %}</span>
 											<span class="ml-4">{% trans "FAX" %} 06-6753-8079</span>
 										</p>
-										<p>※ {% trans "If you need the original invoice, be sure to check it. [Necessary / Unnecessary]" %}</p>
+										<p>※ {% trans "If you need the original invoice, please make sure to tick the checkbox." %} 【{% trans "Necessary" %}・{% trans "Unnecessary" %}】</p>
 									</div>
 									<div class="col-lg-6 col-xs-12">
 										<div class="input-group">
-											<span class="input-group-addon">{% trans "Remark" %}</span>
-											<textarea type="text" class="form-control remark"></textarea>
+											<span class="input-group-addon">{% trans "Remarks" %}</span>
+											<textarea type="text" class="form-control remarks"></textarea>
 										</div>
 									</div>
 								</div>
 								<div class="row print-btn-group">
 									<div class="col-md-12">
 										<div class="mb-4 text-center">
-											<button type="submit" class="btn btn-primary mr-4"><i class="fa fa-print position-left"></i> {% trans "Create Contract" %}</button>
-											<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> {% trans "Create Invoice" %}</button>
+											<button type="submit" class="btn btn-primary mr-4"><i class="fa fa-print position-left"></i> {% trans "Create contract" %}</button>
+											<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> {% trans "Create invoice" %}</button>
 										</div>
 									</div>
 								</div>

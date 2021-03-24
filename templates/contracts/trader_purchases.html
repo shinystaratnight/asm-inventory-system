@@ -6,8 +6,7 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-	<link rel="stylesheet" href="{% static 'assets/css/customize_table.css' %}" />
-	<input type="hidden" name="alt-path" value="{{ base_url }}/contract/trader-purchases">
+
 	<!-- Main content -->
 	<div class="content-wrapper">
 
@@ -15,42 +14,17 @@
 		<div class="page-header">
 			<div class="page-header-content">
 				<div class="page-title">
-					<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{% trans "Sales contract creation" %}</span> - {% trans "Trader purchases" %}</h4>
-				</div>
-
-				<div class="heading-elements">
-					<div class="heading-btn-group">
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>{% trans "Statistics" %}</span></a>
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>{% trans "Invoices" %}</span></a>
-						<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>{% trans "Schedule" %}</span></a>
-					</div>
+					<h4>
+						<i class="icon-arrow-left52 position-left"></i>
+						<span class="text-semibold">{% trans "Contract" %}</span> - {% trans "Trader purchases" %}
+					</h4>
 				</div>
 			</div>
 
 			<div class="breadcrumb-line breadcrumb-line-component">
 				<ul class="breadcrumb">
-					<li><a href="index.html"><i class="icon-home2 position-left"></i> {% trans "Home" %}</a></li>
-					<li><a href="datatable_styling.html">{% trans "Sales contract creation" %}</a></li>
+					<li><a><i class="icon-cart2 position-left"></i>{% trans "Contract" %}</a></li>
 					<li class="active">{% trans "Trader purchases" %}</li>
-				</ul>
-
-				<ul class="breadcrumb-elements">
-					<li><a href="#"><i class="icon-comment-discussion position-left"></i> {% trans "Support" %}</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-gear position-left"></i>
-								{% trans "Settings" %}
-							<span class="caret"></span>
-						</a>
-
-						<ul class="dropdown-menu dropdown-menu-right">
-							<li><a href="#"><i class="icon-user-lock"></i> {% trans "Account security" %}</a></li>
-							<li><a href="#"><i class="icon-statistics"></i> {% trans "Analytics" %}</a></li>
-							<li><a href="#"><i class="icon-accessibility"></i> {% trans "Accessibility" %}</a></li>
-							<li class="divider"></li>
-							<li><a href="#"><i class="icon-gear"></i> {% trans "All settings" %}</a></li>
-						</ul>
-					</li>
 				</ul>
 			</div>
 		</div>
@@ -71,19 +45,19 @@
 									<div class="transaction-id-text">No.10005008</div>
 								</div>
 								<div class="col-6 d-flex align-items-center justify-content-center">
-									<h2 class="panel-title text-center">{% trans "Sales contract" %}</h2>
+									<h2 class="panel-title text-center">{% trans "Contract and invoice" %}</h2>
 								</div>
 								
 								<div class="col-3 col-sm-12">
 									<div class="d-flex align-items-center justify-content-end">
-										<span class="contract-date-label">{% trans "Contract date" %}</span>
+										<span class="contract-date-label">{% trans "Created date" %}</span>
 										<div class="input-group">
 											<span class="input-group-addon"><i class="icon-calendar22"></i></span>
 											<input type="text" class="form-control daterange-single">
 										</div>
 									</div>
 									<div class="d-flex align-items-center justify-content-end mt-3">
-										<span class="contract-date-label">{% trans "Update date" %}</span>
+										<span class="contract-date-label">{% trans "Updated date" %}</span>
 										<div class="input-group">
 											<span class="input-group-addon"><i class="icon-calendar22"></i></span>
 											<input type="text" class="form-control daterange-single">
@@ -100,7 +74,7 @@
 									<div class="row d-flex flex-wrap">
 										<div class="col-6 col-sm-12">
 											<div class="mb-1 d-flex row">
-												<label class="control-label col-3 mt-auto">{% trans "Company name" %}</label>
+												<label class="control-label col-3 mt-auto">{% trans "Company" %}</label>
 												<div class="col-9">
 													<div class="has-feedback">
 														<input type="text" class="form-control" placeholder="">
@@ -145,7 +119,7 @@
 									<div class="row">
 										<div class="col-12 col-sm-12">
 											<div class="form-group d-flex row">
-												<label class="control-label w-12-5 col-sm-3 mt-auto">{% trans "Street address" %}</label>
+												<label class="control-label w-12-5 col-sm-3 mt-auto">{% trans "Address" %}</label>
 												<div class="col-6">
 													<input type="text" class="form-control" value="1108-3">
 												</div>
@@ -177,7 +151,7 @@
 									<div>
 										<div class="form-group d-flex row">
 											<div class="w-100 d-flex align-items-center">
-												<label class="control-label col-5 mt-auto">P-SENSOR {% trans "Membership number" %}</label>
+												<label class="control-label col-5 mt-auto">P-SENSOR {% trans "Member ID" %}</label>
 												<div class="col-7">
 													<input type="text" class="form-control" value="">
 												</div>
@@ -185,7 +159,7 @@
 										</div>
 										<div class="form-group d-flex row">
 											<div class="w-100 d-flex align-items-center">
-												<label class="control-label col-5 mt-auto">{% trans "In charge" %}</label>
+												<label class="control-label col-5 mt-auto">{% trans "Person in charge" %}</label>
 												<div class="col-7">
 													<input type="text" class="form-control" value="">
 												</div>
@@ -219,7 +193,7 @@
 												<th>{% trans "Model name" %}</th>
 												<th>{% trans "Quantity" %}</th>
 												<th>{% trans "Unit price" %}</th>
-												<th>{% trans "Amount of money" %}</th>
+												<th>{% trans "Amount" %}</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -402,7 +376,7 @@
 											<div class="">
 												<div class="input-group">
 													<span class="input-group-btn">
-														<button class="btn btn-default h-70">{% trans "Remark" %}</button>
+														<button class="btn btn-default h-70">{% trans "Remarks" %}</button>
 													</span>
 													<textarea type="text" class="form-control h-70"></textarea>
 												</div>
@@ -436,7 +410,7 @@
 							</div>
 							<div class="row">
 								<div class="col-12 form-group">
-									<textarea type="text" class="form-control remark" rows="5">※ {% trans "It is assumed that the contract has been concluded with the arrival of our certificate of sale." %} 
+									<textarea type="text" class="form-control remarks" rows="5">※ {% trans "It is assumed that the contract has been concluded with the arrival of our certificate of sale." %} 
 ※ {% trans "If you cancel after sending the proof of purchase, you will be compensated for 100% of the closing price." %}
 ※ {% trans "We will notify you of any missing items or damage within 3 days after the item arrives. No further returns or exchanges will be accepted." %}
 									</textarea>
@@ -478,7 +452,7 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">{% trans "Remark" %}</label>
+											<label class="control-label">{% trans "Remarks" %}</label>
 											<div class="">
 												<input type="text" class="form-control"></input>
 											</div>
@@ -521,7 +495,7 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">{% trans "Remark" %}</label>
+											<label class="control-label">{% trans "Remarks" %}</label>
 											<div class="">
 												<input type="text" class="form-control"></input>
 											</div>
@@ -656,8 +630,8 @@
 							<div class="row print-btn-group">
 								<div class="col-md-12">
 									<div class="mb-4 text-center">
-										<button type="button" class="btn btn-primary mr-4"><i class="fa fa-print position-left"></i> {% trans "Create Contract" %}</button>
-										<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> {% trans "Create Invoice" %}</button>
+										<button type="button" class="btn btn-primary mr-4"><i class="fa fa-print position-left"></i> {% trans "Create contract" %}</button>
+										<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> {% trans "Create invoice" %}</button>
 									</div>
 								</div>
 							</div>
@@ -667,15 +641,7 @@
 					<!-- /traffic sources -->
 
 				</div>
-
-			
 			</div>			
-			
-			<!-- Footer -->
-			<div class="footer text-muted">
-				&copy; 2020. {% trans "Copyright" %}
-			</div>
-			<!-- /footer -->
 
 		</div>
 		<!-- /content area -->
