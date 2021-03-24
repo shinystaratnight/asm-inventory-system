@@ -448,22 +448,27 @@
 								<div class="row mt-5-s d-flex flex-wrap">
 									<div class="col-6">
 										<div class="form-group">
-											<select name="shipping_method" class="selectbox">
-												<option value="">{% trans "Shiping method" %}</option>
-												<option value="{% trans 'Shipping' %}">{% trans "Shipping" %}</option>
-												<option value="{% trans 'Picking up' %}">{% trans "Picking up" %}</option>
-												<option value="{% trans 'ID Change' %}">{% trans "ID Change" %}</option>
-												<option value="* {% trans 'Blank' %}">* {% trans "Blank" %}</option>
-											</select>
+											<div class="input-group">
+												<span class="input-group-addon">{% trans "Shiping method" %}</span>
+												<select name="shipping_method" class="selectbox">
+													<option value="{% trans 'Shipping' %}">{% trans "Shipping" %}</option>
+													<option value="{% trans 'Picking up' %}">{% trans "Picking up" %}</option>
+													<option value="{% trans 'ID Change' %}">{% trans "ID Change" %}</option>
+													<option value="* {% trans 'Blank' %}">* {% trans "Blank" %}</option>
+												</select>
+											</div>
+											
 										</div>
 										<div class="form-group">
-											<select name="payment_method" class="selectbox">
-												<option value="">{% trans "Payment method" %}</option>
-												<option value="{% trans 'Transfer' %}">{% trans "Transfer" %}</option>
-												<option value="{% trans 'Check' %}">{% trans "Check" %}</option>
-												<option value="{% trans 'Bill' %}">{% trans "Bill" %}</option>
-												<option value="{% trans 'Cash' %}">{% trans "Cash" %}</option>
-											</select>
+											<div class="input-group">
+												<span class="input-group-addon">{% trans "Payment method" %}</span>
+												<select name="payment_method" class="selectbox">
+													<option value="{% trans 'Transfer' %}">{% trans "Transfer" %}</option>
+													<option value="{% trans 'Check' %}">{% trans "Check" %}</option>
+													<option value="{% trans 'Bill' %}">{% trans "Bill" %}</option>
+													<option value="{% trans 'Cash' %}">{% trans "Cash" %}</option>
+												</select>
+											</div>
 										</div>
 									</div>
 									<div class="col-6">

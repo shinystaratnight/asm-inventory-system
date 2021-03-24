@@ -711,7 +711,7 @@
 
 							<div class="row flex-wrap">
 								<div class="col-lg-6">
-									<div class="position-relative form-group">
+									<div class="form-group position-relative">
 										<div class="input-group">
 											<span class="input-group-addon">{% trans "Delivery date" %}</span>
 											<input type="text" class="form-control daterange-single">
@@ -720,7 +720,7 @@
 											<i class="icon-calendar22"></i>
 										</div>
 									</div>
-									<div class="position-relative form-group">
+									<div class="form-group position-relative">
 										<div class="input-group">
 											<span class="input-group-addon">{% trans "Opening date" %}</span>
 											<input type="text" class="form-control daterange-single">
@@ -730,13 +730,15 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<select name="select" class="selectbox">
-											<option value="">{% trans "Payment method" %}</option>
-											<option value="">{% trans "Transfer" %}</option>
-											<option value="">{% trans "Check" %}</option>
-											<option value="">{% trans "Bill" %}</option>
-											<option value="">{% trans "Cash" %}</option>
-										</select>
+										<div class="input-group">
+											<span class="input-group-addon">{% trans "Payment method" %}</span>
+											<select name="select" class="selectbox">
+												<option value="">{% trans "Transfer" %}</option>
+												<option value="">{% trans "Check" %}</option>
+												<option value="">{% trans "Bill" %}</option>
+												<option value="">{% trans "Cash" %}</option>
+											</select>
+										</div>
 									</div>
 								</div>
 								<div class="col-lg-6 d-flex justify-content-end">
