@@ -68,7 +68,7 @@ def hall_sales(request):
 @login_required(login_url='login')
 def hall_purchases(request):
     context = {}
-    return render(request, 'contracts/trader_purchases.html', context)
+    return render(request, 'contracts/hall_purchases.html', context)
 
 def generate_transaction_id():
     ts = time.time()

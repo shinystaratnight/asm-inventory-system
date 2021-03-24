@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'users',
     'masterdata',
     'contracts',
-    'list',
+    'lists',
     'accounting',
 ]
 
