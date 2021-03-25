@@ -7,5 +7,6 @@ urlpatterns = [
     path('hall/', HallView.as_view(), name='hall'),
     path('receiver/', ReceiverView.as_view(), name='receiver'),
     path('product/', ProductView.as_view(), name='product'),
-    path('other/', OtherView.as_view(), name='other'),
+    path('document/', DocumentView.as_view(), name='document'),
+    path('search-customer/', CustomerSearchAjaxView.as_view(), name='customer-search'),
 ]

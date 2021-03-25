@@ -39,13 +39,17 @@
 
 					<!-- Traffic sources -->
 					<form action="" method="POST">
+
 						{% csrf_token %}
+
 						<div class="panel panel-flat px-3">
 							<div class="panel-title-wrapper container-fluid">
 								<div class="row d-flex flex-wrap">
 									<div class="col-3 text-left d-flex align-items-center">
-										<div class="transaction-id-text">No.{{ contract }}</div>
-										<input type="hidden" name="transaction_id" value="{{ transaction_id }}" >
+										<label class="control-label mb-0">No.</label>
+										<div class="col-6">
+											<input type="text" class="form-control border-none" name="contract_id" value="{{ contract_id }}" readonly>
+										</div>
 									</div>
 									<div class="col-6 d-flex align-items-center justify-content-center">
 										<h2 class="panel-title text-center">{% trans "Contract and invoice" %}</h2>
@@ -56,14 +60,14 @@
 											<span class="contract-date-label">{% trans "Created date" %}</span>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-												<input type="text" name="contract_date" class="form-control daterange-single">
+												<input type="text" name="created_at" class="form-control daterange-single">
 											</div>
 										</div>
 										<div class="d-flex align-items-center justify-content-end mt-3">
 											<span class="contract-date-label">{% trans "Updated date" %}</span>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-												<input type="text" name="update_at" class="form-control daterange-single">
+												<input type="text" name="updated_at" class="form-control daterange-single">
 											</div>
 										</div>
 									</div>
@@ -78,11 +82,12 @@
 												<div class="mb-1 d-flex row">
 													<label class="control-label col-3 mt-auto">{% trans "Company" %}</label>
 													<div class="col-9">
-														<div class="has-feedback">
-															<input type="text" name="customer_name" class="form-control" placeholder="">
-															<div class="form-control-feedback w-50-px">
-																<span>{% trans "CO." %}</span>
-															</div>
+														<select class="select-customer" name="name">
+															<option value="0" selected>{% trans "Search by name, frigana, tel or fax" %}...</option>
+														</select>
+														
+														<div class="form-control-feedback w-50-px">
+															<span>{% trans "CO." %}</span>
 														</div>
 													</div>
 												</div>
@@ -90,7 +95,7 @@
 													<label class="control-label col-3 mt-auto"></label>
 													<div class="col-9">
 														<div class="has-feedback">
-															<input type="text" name="customer_supplier" class="form-control" placeholder="">
+															<input type="text" name="manager" class="form-control" placeholder="">
 															<div class="form-control-feedback w-50-px">
 																<span>{% trans "Mr." %}</span>
 															</div>
@@ -102,7 +107,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label col-3 mt-auto text-right">{% trans "Frigana" %}</label>
 													<div class="col-9">
-														<input type="text" name="customer_frigana" class="form-control">
+														<input type="text" name="frigana" class="form-control" readonly>
 													</div>
 												</div>
 											</div>
@@ -112,7 +117,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label col-3 mt-auto">{% trans "Postal code" %}</label>
 													<div class="col-7">
-														<input type="text" name="customer_postalcode" class="form-control">
+														<input type="text" name="postal_code" class="form-control" readonly>
 													</div>
 												</div>
 											</div>
@@ -123,7 +128,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label w-12-5 col-sm-3 mt-auto">{% trans "Address" %}</label>
 													<div class="col-6">
-														<input type="text" name="customer_address" class="form-control">
+														<input type="text" name="address" class="form-control" readonly>
 													</div>
 												</div>
 											</div>
@@ -134,7 +139,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label col-3 mt-auto">{% trans "TEL" %}</label>
 													<div class="col-7">
-														<input type="text" name="customer_tel" class="form-control">
+														<input type="text" name="tel" class="form-control" readonly>
 													</div>
 												</div>
 											</div>										
@@ -142,7 +147,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label col-2 mt-auto text-center">{% trans "FAX" %}</label>
 													<div class="col-8">
-														<input type="text" name="customer_fax" class="form-control">
+														<input type="text" name="fax" class="form-control" readonly>
 													</div>
 												</div>
 											</div>
@@ -155,7 +160,7 @@
 												<div class="w-100 d-flex align-items-center">
 													<label class="control-label col-5 mt-auto">P-SENSOR {% trans "Member ID" %}</label>
 													<div class="col-7">
-														<input type="text" name="member_id" class="form-control" value="">
+														<input type="text" name="member_id" class="form-control" value="8240-2413-3628" readonly>
 													</div>
 												</div>
 											</div>
@@ -189,13 +194,13 @@
 										</div>
 									</div>
 									<div class="col-12">
-										<table class="table datatable-basic table-hover">
+										<table class="table">
 											<thead>
 												<tr>
 													<th>{% trans "Model name" %}</th>
 													<th>{% trans "Product type" %}</th>
 													<th>{% trans "Quantity" %}</th>
-													<th>{% trans "Unit price" %}</th>
+													<th>{% trans "Price" %}</th>
 													<th>{% trans "Amount" %}</th>
 												</tr>
 											</thead>
@@ -212,10 +217,10 @@
 														<div class="form-group mb-0">
 															<div class="col-lg-10 px-0">
 																<select name="select" class="selectbox">
-																	<option value="">{% trans "Main body" %}</option>
-																	<option value="">{% trans "Frame" %}</option>
-																	<option value="">{% trans "Cell" %}</option>
-																	<option value="">{% trans "Nail sheet" %}</option>
+																	<option value="M">{% trans "Main body" %}</option>
+																	<option value="F">{% trans "Frame" %}</option>
+																	<option value="C">{% trans "Cell" %}</option>
+																	<option value="N">{% trans "Nail sheet" %}</option>
 																</select>
 															</div>
 														</div>
@@ -238,6 +243,7 @@
 														70000
 													</td>
 												</tr>
+
 												<tr>
 													<td>
 														<div class="form-group mb-0">
@@ -250,10 +256,10 @@
 														<div class="form-group mb-0">
 															<div class="col-lg-10 px-0">
 																<select name="select" class="selectbox">
-																	<option value="">{% trans "Main body" %}</option>
-																	<option value="">{% trans "Frame" %}</option>
-																	<option value="">{% trans "Cell" %}</option>
-																	<option value="">{% trans "Nail sheet" %}</option>
+																	<option value="M">{% trans "Main body" %}</option>
+																	<option value="F">{% trans "Frame" %}</option>
+																	<option value="C">{% trans "Cell" %}</option>
+																	<option value="N">{% trans "Nail sheet" %}</option>
 																</select>
 															</div>
 														</div>
@@ -276,119 +282,131 @@
 														70000
 													</td>
 												</tr>
+												
+											</tbody>
+										</table>
+									</div>
+
+									<div class="col-12">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>{% trans "Document" %}</th>
+													<th>{% trans "Quantity" %}</th>
+													<th>{% trans "Price" %}</th>
+													<th>{% trans "Amount" %}</th>
+												</tr>
+											</thead>
+											<tbody>
 												<tr>
 													<td>
-														<div class="form-group mb-0">
-															<div class="col-lg-7 px-0">
-																<input type="text" class="form-control" value="Model name 1">
-															</div>
+														<div class="col-lg-7 px-0">
+															<input type="text" class="form-control" value="">
 														</div>
 													</td>
 													<td>
 														<div class="form-group mb-0">
-															<div class="col-lg-10 px-0">
-																<select name="select" class="selectbox">
-																	<option value="">{% trans "Main body" %}</option>
-																	<option value="">{% trans "Frame" %}</option>
-																	<option value="">{% trans "Cell" %}</option>
-																	<option value="">{% trans "Nail sheet" %}</option>
-																</select>
-															</div>
-														</div>
-													</td>
-													<td>
-														<div class="form-group mb-0">
-															<div class="col-lg-7 px-0">
+															<div class="col-lg-6 px-0">
 																<input type="text" class="form-control" value="1">
 															</div>
 														</div>
 													</td>
 													<td>
 														<div class="form-group mb-0">
-															<div class="col-lg-7 px-0">
-																<input type="text" class="form-control" value="70000">
+															<div class="col-lg-6 px-0">
+																<input type="text" class="form-control" value="7000">
 															</div>
 														</div>
 													</td>
-													<td>
-														70000
-													</td>
+													<td>7000</td>
 												</tr>
 												<tr>
 													<td>
-														<div class="form-group mb-0">
-															<div class="col-lg-7 px-0">
-																<input type="text" class="form-control" value="Model name 1">
-															</div>
+														<div class="col-lg-7 px-0">
+															<input type="text" class="form-control" value="">
 														</div>
 													</td>
 													<td>
 														<div class="form-group mb-0">
-															<div class="col-lg-10 px-0">
-																<select name="select" class="selectbox">
-																	<option value="">{% trans "Main body" %}</option>
-																	<option value="">{% trans "Frame" %}</option>
-																	<option value="">{% trans "Cell" %}</option>
-																	<option value="">{% trans "Nail sheet" %}</option>
-																</select>
-															</div>
-														</div>
-													</td>
-													<td>
-														<div class="form-group mb-0">
-															<div class="col-lg-7 px-0">
+															<div class="col-lg-6 px-0">
 																<input type="text" class="form-control" value="1">
 															</div>
 														</div>
 													</td>
 													<td>
 														<div class="form-group mb-0">
-															<div class="col-lg-7 px-0">
-																<input type="text" class="form-control" value="70000">
+															<div class="col-lg-6 px-0">
+																<input type="text" class="form-control" value="7000">
 															</div>
 														</div>
 													</td>
-													<td>
-														70000
-													</td>
+													<td>7000</td>
 												</tr>
 												<tr>
 													<td>
-														<div class="form-group mb-0">
-															<div class="col-lg-7 px-0">
-																<input type="text" name="model_name" class="form-control" value="Model name 1">
-															</div>
+														<div class="col-lg-7 px-0">
+															<input type="text" class="form-control" value="">
 														</div>
 													</td>
 													<td>
 														<div class="form-group mb-0">
-															<div class="col-lg-10 px-0">
-																<select name="product_type" class="form-control">
-																	<option value="">{% trans "Main body" %}</option>
-																	<option value="">{% trans "Frame" %}</option>
-																	<option value="">{% trans "Cell" %}</option>
-																	<option value="">{% trans "Nail sheet" %}</option>
-																</select>
-															</div>
-														</div>
-													</td>
-													<td>
-														<div class="form-group mb-0">
-															<div class="col-lg-7 px-0">
+															<div class="col-lg-6 px-0">
 																<input type="text" class="form-control" value="1">
 															</div>
 														</div>
 													</td>
 													<td>
 														<div class="form-group mb-0">
-															<div class="col-lg-7 px-0">
-																<input type="text" class="form-control" value="70000">
+															<div class="col-lg-6 px-0">
+																<input type="text" class="form-control" value="7000">
+															</div>
+														</div>
+													</td>
+													<td>7000</td>
+												</tr>
+												<tr>
+													<td>
+														<div class="col-lg-7 px-0">
+															<input type="text" class="form-control" value="">
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-6 px-0">
+																<input type="text" class="form-control" value="1">
 															</div>
 														</div>
 													</td>
 													<td>
-														70000
+														<div class="form-group mb-0">
+															<div class="col-lg-6 px-0">
+																<input type="text" class="form-control" value="7000">
+															</div>
+														</div>
 													</td>
+													<td>7000</td>
+												</tr>
+												<tr>
+													<td>
+														<div class="col-lg-7 px-0">
+															<input type="text" class="form-control" value="">
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-6 px-0">
+																<input type="text" class="form-control" value="1">
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-6 px-0">
+																<input type="text" class="form-control" value="7000">
+															</div>
+														</div>
+													</td>
+													<td>7000</td>
 												</tr>
 											</tbody>
 										</table>
@@ -451,10 +469,10 @@
 											<div class="input-group">
 												<span class="input-group-addon">{% trans "Shiping method" %}</span>
 												<select name="shipping_method" class="selectbox">
-													<option value="{% trans 'Shipping' %}">{% trans "Shipping" %}</option>
-													<option value="{% trans 'Picking up' %}">{% trans "Picking up" %}</option>
-													<option value="{% trans 'ID Change' %}">{% trans "ID Change" %}</option>
-													<option value="* {% trans 'Blank' %}">* {% trans "Blank" %}</option>
+													<option value="D">{% trans "Delivery" %}</option>
+													<option value="R">{% trans "Receipt" %}</option>
+													<option value="C">{% trans "ID Change" %}</option>
+													<option value="B">{% trans "* Blank" %}</option>
 												</select>
 											</div>
 											
@@ -463,10 +481,10 @@
 											<div class="input-group">
 												<span class="input-group-addon">{% trans "Payment method" %}</span>
 												<select name="payment_method" class="selectbox">
-													<option value="{% trans 'Transfer' %}">{% trans "Transfer" %}</option>
-													<option value="{% trans 'Check' %}">{% trans "Check" %}</option>
-													<option value="{% trans 'Bill' %}">{% trans "Bill" %}</option>
-													<option value="{% trans 'Cash' %}">{% trans "Cash" %}</option>
+													<option value="TR">{% trans "Transfer" %}</option>
+													<option value="CH">{% trans "Check" %}</option>
+													<option value="BL">{% trans "Bill" %}</option>
+													<option value="CA">{% trans "Cash" %}</option>
 												</select>
 											</div>
 										</div>

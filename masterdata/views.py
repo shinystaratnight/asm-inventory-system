@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from django.views.generic.base import TemplateView
+from django.views.generic.base import View, TemplateView
 from django.views.generic.edit import FormMixin, FormView
+from django.http import JsonResponse
+from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
 from .forms import *
+from .models import Customer
 
 class MasterView(AdminLoginRequiredMixin, TemplateView, FormMixin):
     def get(self, request, *args, **kwargs):
@@ -42,6 +45,27 @@ class ProductView(MasterView):
     form_class = ProductForm
 
 
-class OtherView(MasterView):
-    template_name = 'master_data/others.html'
-    form_class = OtherForm
+class DocumentView(MasterView):
+    template_name = 'master_data/documents.html'
+    form_class = DocumentForm
+
+
+class CustomerSearchAjaxView(AdminLoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        if self.request.method == 'GET' and self.request.is_ajax():
+            search = self.request.GET.get('q')
+            page = int(self.request.GET.get('page', 1))
+            start = 30 * (page - 1)
+            end = 30 * page
+            customer_qs = Customer.objects.filter(
+                Q(name__icontains=search) |
+                Q(frigana__icontains=search) |
+                Q(tel__icontains=search) |
+                Q(fax__icontains=search)
+            )
+            total_count = customer_qs.count()
+            customer_qs = customer_qs.order_by('id')[start:end].values('id', 'name', 'frigana', 'tel', 'fax', 'postal_code', 'address')
+            customers = list(customer_qs)
+            
+            return JsonResponse({"customers": customers, "total_count": total_count}, safe=False, status=200)
+        return JsonResponse({'success': False}, status=400)

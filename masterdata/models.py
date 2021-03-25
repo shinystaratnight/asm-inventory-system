@@ -43,7 +43,7 @@ class Product(models.Model):
         return self.name
 
 
-class Other(models.Model):
+class Document(models.Model):
     name = models.CharField(max_length=200)
     term = models.CharField(max_length=200)
     taxation = models.CharField(max_length=100)

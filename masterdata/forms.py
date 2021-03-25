@@ -27,7 +27,7 @@ class ProductForm(ModelForm):
         fields = '__all__'
 
 
-class OtherForm(ModelForm):
+class DocumentForm(ModelForm):
     class Meta:
-        model = Other
+        model = Document
         fields = '__all__'
