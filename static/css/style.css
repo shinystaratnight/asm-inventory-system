@@ -272,17 +272,17 @@
 }
 @media screen and (min-width: 768px) {
 	.sidebar-xs .header-highlight .navbar-header .navbar-brand > span {
-			display: none;
+        display: none;
 	}
 	.pl-md-0 {
-		padding-left: 0;
+        padding-left: 0;
 	}
 }
 @media screen and (max-width: 1200px) {
 	.boder-sm-top {
-			border-top: 1px solid;
+        border-top: 1px solid;
 	}
 	.border-sm-right-0 {
-			border-right: 0 !important;
+        border-right: 0 !important;
 	}
 }
