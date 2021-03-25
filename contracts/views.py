@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView
 import time
 from users.views import AdminLoginRequiredMixin
+from masterdata.models import Document
 from .models import *
 from .forms import *
 
@@ -23,6 +24,7 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['contract_id'] = generate_contract_id()
+        context['documents'] = Document.objects.all().values('name')
         return context
 
 

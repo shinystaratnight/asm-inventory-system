@@ -75,4 +75,56 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     // End of select customer select2 initialization and formatting
 
+
+    // Select product select2 initialization and formatting
+    function formatProduct (product) {
+        if (product.loading) return product.text;
+
+        var markup = "<div class='select2-result-customer clearfix'>" +
+            "<div class='select2-result-customer__name'><b>" + customer.name + "</b></div>" +
+            "<div class='select2-result-customer__frigana'>【" + customer.frigana + "】</div>";
+            if (customer.tel) {
+                markup += "<div class='select2-result-customer__tel'>TEL : <b>" + customer.tel + "</b></div>";
+            }
+            if (customer.fax) {
+                markup += "<div class='select2-result-customer__fax'>FAX : <b>" + customer.fax + "</b></div>";
+            }
+            markup += "</div>";
+        return markup;
+    }
+
+    function formatProductSelection (product) {
+        return product.name || product.text;
+    }
+
+    $('.select-product').select2({
+        ajax: {
+            url: "/master/search-product/",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    q: params.term,
+                    page: params.page
+                };
+            },
+            processResults: function (data, params) {
+                params.page = params.page || 1;
+                return {
+                    results: data.customers,
+                    pagination: {
+                        more: (params.page * 30) < data.total_count
+                    }
+                };
+            },
+            cache: true
+        },
+        escapeMarkup: function (markup) { return markup; },
+        // allowClear: true,
+        minimumInputLength: 1,
+        templateResult: formatProduct,
+        templateSelection: formatProductSelection
+    });
+    // End of select product select2 initialization and formatting
+
 });

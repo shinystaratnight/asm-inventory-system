@@ -181,15 +181,12 @@
 										<div class="col-6 col-sm-12 px-0">
 											<div class="form-group has-feedback d-flex">
 												<label class="control-label col-2 mt-auto">{% trans "Search" %}</label>
-												<div class="col-lg-4">
-													<div class="form-group">
-														<input type="text" class="form-control" placeholder="">
-														<div class="form-control-feedback">
-															<i class="icon-search4 text-size-base"></i>
-														</div>
-													</div>
+												<div class="col-lg-8">
+													<select class="select-product">
+														<option value="0" selected>{% trans "Search by product or document name" %}...</option>
+													</select>
 												</div>
-												<button type="button" name="product_search_btn" class="btn btn-primary">{% trans "Search" %}</button>
+												<button type="button" name="product_add_btn" class="btn btn-primary">{% trans "Add" %}</button>
 											</div>
 										</div>
 									</div>
@@ -286,7 +283,24 @@
 											</tbody>
 										</table>
 									</div>
+								</div>
 
+								<div class="row">
+									<div class="d-flex flex-wrap mt-5-s">
+										<div class="col-6 col-sm-12 px-0">
+											<div class="form-group has-feedback d-flex">
+												<label class="control-label col-2 mt-auto">{% trans "Search" %}</label>
+												<div class="col-lg-8">
+													<select name="select" class="selectbox">
+														{% for document in documents %}
+														<option value="{{ forloop.counter }}">{% trans document.name %}</option>
+														{% endfor %}
+													</select>
+												</div>
+												<button type="button" name="product_add_btn" class="btn btn-primary">{% trans "Add" %}</button>
+											</div>
+										</div>
+									</div>
 									<div class="col-12">
 										<table class="table">
 											<thead>
@@ -298,72 +312,6 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>
-														<div class="col-lg-7 px-0">
-															<input type="text" class="form-control" value="">
-														</div>
-													</td>
-													<td>
-														<div class="form-group mb-0">
-															<div class="col-lg-6 px-0">
-																<input type="text" class="form-control" value="1">
-															</div>
-														</div>
-													</td>
-													<td>
-														<div class="form-group mb-0">
-															<div class="col-lg-6 px-0">
-																<input type="text" class="form-control" value="7000">
-															</div>
-														</div>
-													</td>
-													<td>7000</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="col-lg-7 px-0">
-															<input type="text" class="form-control" value="">
-														</div>
-													</td>
-													<td>
-														<div class="form-group mb-0">
-															<div class="col-lg-6 px-0">
-																<input type="text" class="form-control" value="1">
-															</div>
-														</div>
-													</td>
-													<td>
-														<div class="form-group mb-0">
-															<div class="col-lg-6 px-0">
-																<input type="text" class="form-control" value="7000">
-															</div>
-														</div>
-													</td>
-													<td>7000</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="col-lg-7 px-0">
-															<input type="text" class="form-control" value="">
-														</div>
-													</td>
-													<td>
-														<div class="form-group mb-0">
-															<div class="col-lg-6 px-0">
-																<input type="text" class="form-control" value="1">
-															</div>
-														</div>
-													</td>
-													<td>
-														<div class="form-group mb-0">
-															<div class="col-lg-6 px-0">
-																<input type="text" class="form-control" value="7000">
-															</div>
-														</div>
-													</td>
-													<td>7000</td>
-												</tr>
 												<tr>
 													<td>
 														<div class="col-lg-7 px-0">
