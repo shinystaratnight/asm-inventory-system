@@ -110,6 +110,9 @@
 .pb-5, .py-5 {
     padding-bottom: 3rem !important;
 }
+.pb-80-px, .py-80-px {
+    padding-bottom: 80px !important;
+}
 .pl-0, .px-0 {
 	padding-left: 0px;
 }
@@ -140,6 +143,9 @@
 }
 .w-50-px {
     width: 50px;
+}
+.w-min-150-px {
+    min-width: 150px;
 }
 .border-top-0 {
     border-top: 0 !important;
@@ -292,6 +298,9 @@
 	.col-sm-12 {
 		width: 100%;
 	}
+}
+.table-product tbody tr td:first-child {
+    width: 30%;
 }
 @media screen and (min-width: 768px) {
 	.sidebar-xs .header-highlight .navbar-header .navbar-brand > span {
