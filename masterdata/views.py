@@ -72,7 +72,7 @@ class CustomerSearchAjaxView(AdminLoginRequiredMixin, View):
 
 class ProductSearchAjaxView(AdminLoginRequiredMixin, View):
     def get(self, *args, **kwargs):
-        if self.request.method == 'GET' and self.request.is_ajax():
+        if self.request.is_ajax():
             search = self.request.GET.get('q')
             page = int(self.request.GET.get('page', 1))
             start = 30 * (page - 1)
