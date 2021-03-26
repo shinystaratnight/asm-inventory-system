@@ -1,7 +1,8 @@
+import time
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.views.generic.base import TemplateView
-import time
+from django.views.generic.base import TemplateView, View
+from django.http import JsonResponse
 from users.views import AdminLoginRequiredMixin
 from masterdata.models import Document
 from .models import *
@@ -20,10 +21,6 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
 
     def post(self, request, *args, **kwargs):
         product_formset = ProductFormSet(self.request.POST)
-        print(self.request.POST)
-        print(product_formset.is_valid())
-        print(product_formset.errors)
-
         return render(request, self.template_name, self.get_context_data(**kwargs))
     
     def get_context_data(self, **kwargs):
@@ -34,54 +31,13 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
         return context
 
 
-# @login_required(login_url='login')
-# def trader_sales(request):
-#     transaction_id = generate_transaction_id()
+class TraderSalesValidatorView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            print("Ajax")
+            return JsonResponse({'success': True}, status=200)
+        return JsonResponse({'success': False}, status=400)
 
-#     product_shipping_address_form = ProductShippingAddressFrom()
-#     sale_form = SaleForm()
-#     # print("****", request.method)
-#     if request.method == 'POST':
-#         product_shipping_address_data = {
-#             'company_name': request.POST.get('product_shipping_company'),
-#             'address': request.POST.get('product_shipping_address'),
-#             'tel': request.POST.get('product_shipping_tel'),
-#             'fax': request.POST.get('product_shipping_fax'),
-#             'expected_arrival_date': request.POST.get('product_shipping_arrival_date'),
-#         }
-#         product_shipping_address_form = ProductShippingAddressFrom(product_shipping_address_data)
-#         # print('*********', product_shipping_address_form.is_valid())
-#         # print(product_shipping_address_data)
-#         if product_shipping_address_form.is_valid():
-#             # print('if ***', product_shipping_address_form.is_valid())
-#             product_shipping_address_form.save()
-#         else:
-#             return redirect('trader-sales')
-
-#         sale_data = {
-#             'transaction_id': request.POST.get('transaction_id'),
-#             'contract_date': request.POST.get('contract_date'),
-#             'in_charge': request.POST.get('in_charge'),
-#             'membership_number': request.POST.get('membership_number'),
-#             'shipping_method': request.POST.get('shipping_method'),
-#             'shipping_method_date': request.POST.get('shipping_method_date'),
-#             'remarks': request.POST.get('remarks'),
-#             'payment_method': request.POST.get('payment_method'),
-#             'payment_deadline': request.POST.get('payment_deadline'),
-#             'subtotal': request.POST.get('subtotal'),
-#             'consumption_tax': request.POST.get('consumption_tax'),
-#             'insurance_fee': request.POST.get('insurance_fee'),
-#             'total_amount': request.POST.get('total_amount'),
-#             'product_shipping_address': product_shipping_address_form,
-#             'update_at': request.POST.get('update_at'),
-#         }
-#         sale_form = SaleForm(sale_data)
-#         print(sale_form.is_valid())
-#         if sale_form.is_valid():
-#             sale_form.save()
-#             return redirect('trader-sales')
-#     context = {'transaction_id': transaction_id}
-#     return render(request, 'contracts/trader_sales.html', context)
 
 @login_required(login_url='login')
 def trader_purchases(request):

@@ -60,4 +60,41 @@ document.addEventListener('DOMContentLoaded', function() {
         alert("Changed");
     });
 
+
+    // Form validator function for trader sales contract page
+    $('form[name="trader_sales"]').submit( function (e) {
+        $.ajax({
+            type: "POST",
+            url: '/contract/validate/trader-sales/',
+            data: $(this).serialize(),
+            // dataType: 'json',
+            beforeSend: function(request) {
+                request.setRequestHeader('X-CSRFToken', csrftoken);
+            },
+            success: function (result) {
+                console.log(result);
+                return true;
+            }
+        });
+        return false;
+    });
+
+
+    // Form validator function for trader purchases contract page
+    $('form[name="trader_purchases"]').submit( function (e) {
+        return false;
+    });
+
+
+    // Form validator function for hall sales contract page
+    $('form[name="hall_sales"]').submit( function (e) {
+        return false;
+    });
+
+
+    // Form validator function for hall purchases contract page
+    $('form[name="hall_purchases"]').submit( function (e) {
+        return false;
+    });
+
 });

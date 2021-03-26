@@ -38,7 +38,7 @@
 				<div class="col-lg-12">
 
 					<!-- Traffic sources -->
-					<form action="" method="POST" class="contract">
+					<form action="" method="POST" name="trader_sales">
 
 						{% csrf_token %}
 
@@ -48,7 +48,7 @@
 									<div class="col-3 text-left d-flex align-items-center">
 										<label class="control-label mb-0">No.</label>
 										<div class="col-6">
-											<input type="text" class="form-control border-none" name="contract_id" value="{{ contract_id }}" readonly required>
+											<input type="text" class="form-control border-none" name="contract_id" value="{{ contract_id }}" readonly>
 										</div>
 									</div>
 									<div class="col-6 d-flex align-items-center justify-content-center">
@@ -82,7 +82,7 @@
 												<div class="mb-1 d-flex row">
 													<label class="control-label w-18-5 mt-auto">{% trans "Company" %}</label>
 													<div class="col-9">
-														<select class="select-customer" name="name" required>
+														<select class="select-customer" name="name">
 															<option value="" selected>{% trans "Search by customer, frigana, tel or fax" %}</option>
 														</select>
 														
