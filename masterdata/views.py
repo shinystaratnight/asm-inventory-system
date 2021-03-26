@@ -66,7 +66,6 @@ class CustomerSearchAjaxView(AdminLoginRequiredMixin, View):
             total_count = customer_qs.count()
             customer_qs = customer_qs.order_by('id')[start:end].values('id', 'name', 'frigana', 'tel', 'fax', 'postal_code', 'address')
             customers = list(customer_qs)
-            
             return JsonResponse({"customers": customers, "total_count": total_count}, safe=False, status=200)
         return JsonResponse({'success': False}, status=400)
 
@@ -75,16 +74,13 @@ class ProductSearchAjaxView(AdminLoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         if self.request.method == 'GET' and self.request.is_ajax():
             search = self.request.GET.get('q')
-            # page = int(self.request.GET.get('page', 1))
-            # start = 30 * (page - 1)
-            # end = 30 * page
-            product_qs = Product.objects.filter(name__icontains=search).order_by('id')
-            document_qs = Document.objects.filter(name__icontains=search).order_by('id')
-
+            page = int(self.request.GET.get('page', 1))
+            start = 30 * (page - 1)
+            end = 30 * page
+            product_qs = Product.objects.filter(name__icontains=search)
             total_count = product_qs.count()
             product_qs = product_qs.order_by('id')[start:end].values('id', 'name')
             products = list(product_qs)
-            
             return JsonResponse({"products": products, "total_count": total_count}, safe=False, status=200)
         return JsonResponse({'success': False}, status=400)
 

@@ -80,16 +80,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function formatProduct (product) {
         if (product.loading) return product.text;
 
-        var markup = "<div class='select2-result-customer clearfix'>" +
-            "<div class='select2-result-customer__name'><b>" + customer.name + "</b></div>" +
-            "<div class='select2-result-customer__frigana'>【" + customer.frigana + "】</div>";
-            if (customer.tel) {
-                markup += "<div class='select2-result-customer__tel'>TEL : <b>" + customer.tel + "</b></div>";
-            }
-            if (customer.fax) {
-                markup += "<div class='select2-result-customer__fax'>FAX : <b>" + customer.fax + "</b></div>";
-            }
-            markup += "</div>";
+        var markup = "<div class='select2-result-product clearfix'>" +
+            "<div class='select2-result-product__name'><b>" + product.name + "</b></div></div>";
         return markup;
     }
 
@@ -111,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
             processResults: function (data, params) {
                 params.page = params.page || 1;
                 return {
-                    results: data.customers,
+                    results: data.products,
                     pagination: {
                         more: (params.page * 30) < data.total_count
                     }

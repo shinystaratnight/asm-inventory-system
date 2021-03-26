@@ -19,12 +19,18 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
         return render(request, self.template_name, self.get_context_data(**kwargs))
 
     def post(self, request, *args, **kwargs):
+        product_formset = ProductFormSet(self.request.POST)
+        print(self.request.POST)
+        print(product_formset.is_valid())
+        print(product_formset.errors)
+
         return render(request, self.template_name, self.get_context_data(**kwargs))
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['contract_id'] = generate_contract_id()
         context['documents'] = Document.objects.all().values('name')
+        context['productformset'] = ProductFormSet()
         return context
 
 

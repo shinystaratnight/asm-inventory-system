@@ -259,7 +259,7 @@
     vertical-align: middle;
     font-size: 1.2rem;
 }
-.form-control[readonly] {
+.form-control[disabled], .form-control[readonly] {
     background-color: #fff;
     opacity: 1;
 }
