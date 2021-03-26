@@ -209,8 +209,8 @@
 													{% for field in form.visible_fields %}
 													<td class="w-30">
 														<div class="form-group mb-0">
-															{% if forloop.counter != 2 %}
-																<div class="col-lg-7 px-0">
+															{% if forloop.first %}
+																<div class="px-0">
 																	{% if forloop.first %}
 																		{% for hidden in form.hidden_fields %}
 																			{{ hidden }}
@@ -219,9 +219,15 @@
 																	{{ field }}
 																</div>
 															{% endif %}
-
+															
 															{% if forloop.counter == 2 %}
 																<div class="col-lg-10 px-0">
+																	{{ field }}
+																</div>
+															{% endif %}
+															
+															{% if forloop.counter > 2 %}
+																<div class="col-lg-7 px-0">
 																	{{ field }}
 																</div>
 															{% endif %}
@@ -238,7 +244,7 @@
 												<tr id="non-formset-row" style="display: none;">
 													<td>
 														<div class="form-group mb-0">
-															<div class="col-lg-10 px-0">
+															<div class="px-0">
 																<input type="hidden" name="form-xx-id" id="id_form-xx-id">
 																<input type="text" name="form-xx-name" class="form-control" disabled="" id="id_form-xx-name">
 															</div>
