@@ -43,7 +43,7 @@
 						{% csrf_token %}
 
 						<div class="panel panel-flat px-3">
-							<div class="panel-title-wrapper container-fluid">
+							<div class="panel-title-wrapper container-fluid pt-5">
 								<div class="row d-flex flex-wrap">
 									<div class="col-3 text-left d-flex align-items-center">
 										<label class="control-label mb-0">No.</label>
@@ -78,9 +78,9 @@
 								<div class="row flex-wrap align-items-end d-flex">
 									<div class="col-lg-8 col-xs-12 text-left">
 										<div class="row d-flex flex-wrap">
-											<div class="col-6 col-sm-12">
+											<div class="col-8 col-sm-12">
 												<div class="mb-1 d-flex row">
-													<label class="control-label col-3 mt-auto">{% trans "Company" %}</label>
+													<label class="control-label w-18-5 mt-auto">{% trans "Company" %}</label>
 													<div class="col-9">
 														<select class="select-customer" name="name" required>
 															<option value="" selected>{% trans "Search by customer, frigana, tel or fax" %}</option>
@@ -92,7 +92,7 @@
 													</div>
 												</div>
 												<div class="form-group d-flex row">
-													<label class="control-label col-3 mt-auto"></label>
+													<label class="control-label w-18-5 mt-auto"></label>
 													<div class="col-9">
 														<div class="has-feedback">
 															<input type="text" name="manager" class="form-control" placeholder="">
@@ -103,7 +103,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="col-6 col-sm-12">
+											<div class="col-4 col-sm-12">
 												<div class="form-group d-flex row">
 													<label class="control-label col-3 mt-auto text-right">{% trans "Frigana" %}</label>
 													<div class="col-9">
@@ -191,8 +191,8 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-12">
-										<table class="table table-product">
+									<div class="col-12 pb-5">
+										<table class="table table-product border-bottom">
 											{{ productformset.management_form }}
 											<thead>
 												<tr>
@@ -205,9 +205,9 @@
 											</thead>
 											<tbody>
 												{% for form in productformset.forms %}
-												<tr class="formset_row-{{ productformset.prefix }}">
+												<tr class="formset_row-{{ productformset.prefix }} w-100">
 													{% for field in form.visible_fields %}
-													<td>
+													<td class="w-30">
 														<div class="form-group mb-0">
 															{% if forloop.counter != 2 %}
 																<div class="col-lg-7 px-0">
@@ -300,8 +300,8 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-12">
-										<table class="table">
+									<div class="col-12 pb-5">
+										<table class="table border-bottom">
 											<thead>
 												<tr>
 													<th>{% trans "Document" %}</th>

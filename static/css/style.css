@@ -104,6 +104,12 @@
 .p-0 {
     padding: 0 !important;
 }
+.pt-5, .py-5 {
+    padding-top: 3rem !important;
+}
+.pb-5, .py-5 {
+    padding-bottom: 3rem !important;
+}
 .pl-0, .px-0 {
 	padding-left: 0px;
 }
@@ -123,8 +129,14 @@
 .w-50 {
     width: 50%;
 }
+.w-30 {
+    width: 30%;
+}
 .w-12-5 {
     width: 12.5%;
+}
+.w-18-5 {
+    width: 18.5%;
 }
 .w-50-px {
     width: 50px;
