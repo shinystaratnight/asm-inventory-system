@@ -31,12 +31,12 @@ class TraderSalesContract(models.Model):
     customer = models.ForeignKey(Customer, related_name='trader_sales_contracts', on_delete=models.SET_NULL, null=True)
     remarks = models.TextField(null=True, blank=True)
     shipping_method = models.CharField(max_length=1, choices=SHIPPING_METHOD_CHOICES)
-    shipping_date = models.DateTimeField()
+    shipping_date = models.DateField()
     payment_method = models.CharField(max_length=2, choices=PAYMENT_METHOD_CHOICES)
-    payment_due_date = models.DateTimeField()
+    payment_due_date = models.DateField()
     insurance_fee = models.PositiveIntegerField(null=True, blank=True)
-    update_at = models.DateTimeField()
-    created_at = models.DateTimeField()
+    update_at = models.DateField()
+    created_at = models.DateField()
 
     def __str__(self):
         return self.contract_date
@@ -82,9 +82,9 @@ class Sender(models.Model):
 
 class ProductSender(Sender):
     contract = models.OneToOneField(TraderSalesContract, on_delete=models.CASCADE)
-    expected_arrival_date = models.DateTimeField()
+    expected_arrival_date = models.DateField()
 
 
 class DocumentSender(Sender):
     contract = models.OneToOneField(TraderSalesContract, on_delete=models.CASCADE)
-    expected_arrival_date = models.DateTimeField()
+    expected_arrival_date = models.DateField()

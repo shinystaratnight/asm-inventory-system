@@ -1,8 +1,18 @@
 from django import forms
 from django.forms import formset_factory, BaseFormSet
 from django.core.exceptions import ValidationError
-
 from .models import *
+
+class TraderSalesContractForm(forms.Form):
+    name = forms.CharField()
+    person_in_charge = forms.CharField()
+    created_at = forms.DateField()
+    updated_at = forms.DateField()
+    shipping_method = forms.CharField()
+    shipping_date = forms.DateField()
+    remarks = forms.CharField(required=False)
+    fee_free = forms.BooleanField()
+    payment_method = forms.CharField()
 
 
 class ProductForm(forms.Form):
