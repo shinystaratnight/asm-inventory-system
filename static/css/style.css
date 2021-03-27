@@ -126,6 +126,9 @@
 .pb-10-px, .py-10-px {
     padding-bottom: 10px;
 }
+.pl-10-px, .px-10-px {
+    padding-left: 10px;
+}
 .w-100 {
     width: 100%;
 }
@@ -283,6 +286,23 @@
 }
 .select-customer + .select2-container {
     padding-right: 36px;
+}
+#modal_error .modal-body {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    border: 1px solid #ff5722;
+}
+div.checkbox input.styled {
+    width: 18px;
+    height: 18px;
+    margin-top: 0px;
+}
+input.is_invalid,
+textarea.is_invalid,
+select.selectbox.is_invalid+span.selectboxit-container > span.selectboxit {
+    border: 1px solid #ff5722;
 }
 
 @media screen and (max-width: 768px) {
