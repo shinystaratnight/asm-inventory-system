@@ -26,32 +26,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-
+    function resetTotalFormNumber(prefix) {
+        if ($('table.table-' + prefix + ' .odd').length) {
+            $('#id_' + prefix + '-TOTAL_FORMS').val(0);
+        }
+    }
     // Adding the product to ProductFormSet based table
     $('button[name="add_product_btn"]').click( function (e) {
-        var prefix = product_prefix;
+        // unless product is selected, nothing happens
         var value = $('select.select-product').val();
         if (value == "") return;
 
+        resetTotalFormNumber(product_prefix);
         var data = $('select.select-product').select2('data');
         var product = data[0].name;
         $('select.select-product').val(null).trigger('change');
         
-        var formNum = parseInt($('#id_' + prefix + '-TOTAL_FORMS').val());
-        if (formNum == 0) $('table.table-product .odd').remove();
-
-        var $hiddenTR = $('table.table-product #' + prefix + '-formset-row');
-        var $newTR = $hiddenTR.clone().removeAttr('style').removeAttr('id').addClass('formset_row-' + prefix);
-        $('#id_' + prefix + '-TOTAL_FORMS').val(formNum + 1);
+        if ($('table.table-product .odd').length) {
+            $('table.table-product .odd').remove();
+        }
+        var formNum = parseInt($('#id_' + product_prefix + '-TOTAL_FORMS').val());
+        var $hiddenTR = $('table.table-product #' + product_prefix + '-formset-row');
+        var $newTR = $hiddenTR.clone().removeAttr('style').removeAttr('id').addClass('formset_row-' + product_prefix);
+        $('#id_' + product_prefix + '-TOTAL_FORMS').val(formNum + 1);
 
         $hiddenTR.before($newTR);
-        var formRegex = RegExp(`${prefix}-xx-`, 'g');
-        var html = $newTR.html().replace(formRegex, `${prefix}-${formNum}-`);
+        var formRegex = RegExp(`${product_prefix}-xx-`, 'g');
+        var html = $newTR.html().replace(formRegex, `${product_prefix}-${formNum}-`);
         $newTR.html(html);
 
-        var productID = `#id_${prefix}-${formNum}-id`;
+        var productID = `#id_${product_prefix}-${formNum}-id`;
         $(productID).val(value);
-        var productName = `#id_${prefix}-${formNum}-name`;
+        var productName = `#id_${product_prefix}-${formNum}-name`;
         $(productName).val(product);
 
         $newTR.find(".new-selectbox").selectBoxIt({
@@ -62,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Adding change event lister to input field inside table-product
     $('table.table-product').on('keyup mousedown', 'input', function (e) {
-        console.log($(this));
+        $parent = $(this).closest('tr');
     });
 
 
@@ -70,6 +76,10 @@ document.addEventListener('DOMContentLoaded', function() {
     $('form[name="trader_sales"]').submit( function (e) {
         var $form = $(this);
         var lang = $('input[name="selected-lang"]').val();
+
+        // To prevent the cached total_form_num hidden value from being sent to the server,
+        // reset it to zero if no product has been added.
+        resetTotalFormNumber(product_prefix);
         
         // if customer is not selected
         // var customer = $form.find('select[name="name"]').val();
@@ -84,12 +94,16 @@ document.addEventListener('DOMContentLoaded', function() {
         //     return false;
         // }
 
-        var formNum = $form.find('table.table-product #id_' + product_prefix + '-TOTAL_FORMS').val();
-        if (formNum == 0) {
-            alert('At least one product should be added.');
-            return false;
-        }
+        // var formNum = $form.find('table.table-product #id_' + product_prefix + '-TOTAL_FORMS').val();
+        // if (formNum == 0) {
+        //     alert('At least one product should be added.');
+        //     return false;
+        // }
 
+        /*
+        // In case of Ajax POST request, i18n throws issues (403) because of automatic url pattern resolve.
+        // lang prefix should be added to the url.
+         */
         $.ajax({
             type: "POST",
             url: '/' + lang + '/contract/validate/trader-sales/',
