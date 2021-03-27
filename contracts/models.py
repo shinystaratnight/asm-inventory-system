@@ -35,6 +35,7 @@ class TraderSalesContract(models.Model):
     payment_method = models.CharField(max_length=2, choices=PAYMENT_METHOD_CHOICES)
     payment_due_date = models.DateField()
     insurance_fee = models.PositiveIntegerField(null=True, blank=True)
+    # total = models.PositiveIntegerField()
     update_at = models.DateField()
     created_at = models.DateField()
 

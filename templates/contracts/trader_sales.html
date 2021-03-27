@@ -449,30 +449,26 @@
 											<tbody>
 												<tr>
 													<td>{% trans "Subtotal" %}</td>
-													<td>85,000</td>
-													<input type="hidden" name="subtotal" value="">
+													<td class="sub_total">85,000</td>
 												</tr>
 												<tr>
 													<td>{% trans "Consumption tax" %} (10%)</td>
-													<td>8,500</td>
-													<input type="hidden" name="consumption_tax" value="">
+													<td class="consumption_tax">8,500</td>
 												</tr>
 												<tr>
 													<td>
 														<div class="checkbox my-0">
 															<label>
-																<input type="checkbox" name="fee_free" class="styled">
+																<input type="checkbox" name="fee_free" checked="" class="form-control styled">
 																{% trans "Insurance fee" %} ({% trans "No tax" %})
 															</label>
 														</div>
 													</td>
-													<td>100</td>
-													<input type="hidden" name="insurance_fee" value="">
+													<td><input type="text" class="form-control" name="insurance_fee" value="100"></td>
 												</tr>
 												<tr>
 													<td>{% trans "Total" %}</td>
-													<td>93,600</td>
-													<input type="hidden" name="total" value="">
+													<td><input type="text" class="form-control" name="total" value="93600" disabled=""></td>
 												</tr>
 											</tbody>
 										</table>
@@ -482,7 +478,7 @@
 									<div class="col-6">
 										<div class="form-group">
 											<div class="input-group">
-												<span class="input-group-addon">{% trans "Shiping method" %}</span>
+												<span class="input-group-addon">{% trans "Shipping method" %}</span>
 												<select name="shipping_method" class="selectbox">
 													<option value="D">{% trans "Delivery" %}</option>
 													<option value="R">{% trans "Receipt" %}</option>
@@ -507,7 +503,7 @@
 										<div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">{% trans "Billing amount" %}</span>
-												<input type="text" class="form-control" name="total_amount">
+												<input type="text" class="form-control" name="billing_amount" disabled>
 											</div>
 										</div>
 										<div class="position-relative form-group">
@@ -523,7 +519,7 @@
 								</div>
 								<div class="row">
 									<div class="col-12 form-group">
-										<textarea type="text" class="form-control h-200-px">※ {% trans "The contract will be effective when both seller and buyer sign and seal." %}
+										<textarea type="text" class="form-control h-200-px" disabled="">※ {% trans "The contract will be effective when both seller and buyer sign and seal." %}
 ※ {% trans "As a general rule, the contract cannot be canceled once signed." %}
 ※ {% trans "3 days warranty after delivery will be provided just in case of defects or malfunctions in the products." %}
 ※ {% trans "The seller will keep the ownership of the products until the buyer makes the full payment." %}
@@ -657,7 +653,7 @@
 									<div class="col-lg-6 col-xs-12">
 										<div class="input-group">
 											<span class="input-group-addon">{% trans "Remarks" %}</span>
-											<textarea type="text" class="form-control remarks"></textarea>
+											<textarea type="text" class="form-control remarks" name="remarks-2"></textarea>
 										</div>
 									</div>
 								</div>

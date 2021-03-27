@@ -35,10 +35,16 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
 class TraderSalesValidateView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         if self.request.method == 'POST' and self.request.is_ajax():
-            product_formset = ProductFormSet(self.request.POST, prefix='product')
+            data = self.request.POST
+            # Check if contract form is valid
+            contract_form = TraderSalesContractForm(data)
+            if not contract_form.is_valid():
+                return JsonResponse({'success': False}, status=400)
+            # Check the validity of product formset
+            product_formset = ProductFormSet(data, prefix='product')
             if not product_formset.is_valid():
                 return JsonResponse({'success': False}, status=400)
-            # document_formset = DocumentFormSet(self.request.POST, prefix='document')
+            # document_formset = DocumentFormSet(data, prefix='document')
             # if not document_formset.is_valid():
                 # return JsonResponse({'success': False}, status=400)
             return JsonResponse({'success': True}, status=200)

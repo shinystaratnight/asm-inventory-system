@@ -11,8 +11,8 @@ class TraderSalesContractForm(forms.Form):
     shipping_method = forms.CharField()
     shipping_date = forms.DateField()
     remarks = forms.CharField(required=False)
-    fee_free = forms.BooleanField()
     payment_method = forms.CharField()
+    # total = forms.IntegerField()
 
 
 class ProductForm(forms.Form):
