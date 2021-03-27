@@ -8,5 +8,5 @@ urlpatterns = [
     path('hall-sales/', hall_sales, name='hall-sales'),
     path('hall-purchases/', hall_purchases, name='hall-purchases'),
 
-    path('validate/trader-sales/', TraderSalesValidatorView.as_view(), name="trader-sales-validator"),
+    path('validate/trader-sales/', TraderSalesValidateView.as_view(), name="trader-sales-validate"),
 ]

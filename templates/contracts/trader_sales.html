@@ -169,7 +169,7 @@
 												<div class="w-100 d-flex align-items-center">
 													<label class="control-label col-5 mt-auto">{% trans "Person in charge" %}</label>
 													<div class="col-7">
-														<input type="text" name="person_in_charge" class="form-control" value="">
+														<input type="text" name="person_in_charge" class="form-control person_in_charge" value="">
 													</div>
 												</div>
 											</div>
@@ -207,32 +207,56 @@
 												{% for form in productformset.forms %}
 												<tr class="formset_row-{{ productformset.prefix }} w-100">
 													{% for field in form.visible_fields %}
-													<td class="w-30">
+													{% if forloop.first %}
+													<td>
 														<div class="form-group mb-0">
-															{% if forloop.first %}
-																<div class="px-0">
-																	{% if forloop.first %}
-																		{% for hidden in form.hidden_fields %}
-																			{{ hidden }}
-																		{% endfor %}
-																	{% endif %}
-																	{{ field }}
-																</div>
-															{% endif %}
-															
-															{% if forloop.counter == 2 %}
-																<div class="col-lg-10 px-0">
-																	{{ field }}
-																</div>
-															{% endif %}
-															
-															{% if forloop.counter > 2 %}
-																<div class="col-lg-7 px-0">
-																	{{ field }}
-																</div>
-															{% endif %}
+															<div class="px-0">
+																{% if forloop.first %}
+																	{% for hidden in form.hidden_fields %}
+																		{{ hidden }}
+																	{% endfor %}
+																{% endif %}
+																<input type="text" 
+																	id="id_{{ productformset.prefix }}-{{ forloop.parentloop.counter0 }}-name"
+																	class="form-control" disabled="">
+															</div>
 														</div>
 													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-10 px-0">
+																{{ field }}
+															</div>
+														</div>
+													</td>
+													{% elif forloop.counter == 2 %}
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																{{ field }}
+															</div>
+														</div>
+													</td>
+													{% elif forloop.last %}
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																{{ field }}
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																<input type="text"
+																	class="form-control"
+																	disabled=""
+																	id="id_{{ productformset.prefix }}-{{ forloop.parentloop.counter0 }}-amount"
+																	value="0">
+															</div>
+														</div>
+													</td>
+													{% endif %}
 													{% endfor %}
 												</tr>
 												{% empty %}
@@ -241,19 +265,19 @@
 												</tr>
 												{% endfor %}
 
-												<tr id="non-formset-row" style="display: none;">
+												<tr id="{{ productformset.prefix }}-formset-row" style="display: none;">
 													<td>
 														<div class="form-group mb-0">
 															<div class="px-0">
-																<input type="hidden" name="form-xx-id" id="id_form-xx-id">
-																<input type="text" name="form-xx-name" class="form-control" disabled="" id="id_form-xx-name">
+																<input type="hidden" name="{{ productformset.prefix }}-xx-id" id="id_{{ productformset.prefix }}-xx-id">
+																<input type="text" class="form-control" disabled="" id="id_{{ productformset.prefix }}-xx-name">
 															</div>
 														</div>
 													</td>
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-10 px-0">
-																<select name="form-xx-type" class="new-selectbox" id="id_form-xx-type">
+																<select name="{{ productformset.prefix }}-xx-type" class="new-selectbox" id="id_{{ productformset.prefix }}-xx-type">
 																	<option value="M">{% trans "Main body" %}</option>
 																	<option value="F">{% trans "Frame" %}</option>
 																	<option value="C">{% trans "Cell" %}</option>
@@ -265,21 +289,21 @@
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-7 px-0">
-																<input type="number" name="form-xx-quantity" class="form-control" id="id_form-xx-quantity" value="0">
+																<input type="number" name="{{ productformset.prefix }}-xx-quantity" class="form-control" id="id_{{ productformset.prefix }}-xx-quantity" value="0">
 															</div>
 														</div>
 													</td>
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-7 px-0">
-																<input type="number" name="form-xx-price" class="form-control" id="id_form-xx-price" value="0">
+																<input type="number" name="{{ productformset.prefix }}-xx-price" class="form-control" id="id_product-xx-price" value="0">
 															</div>
 														</div>
 													</td>
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-7 px-0">
-																<input type="text" name="form-xx-amount" class="form-control" disabled="" id="id_form-xx-amount" value="0">
+																<input type="text" class="form-control" disabled="" id="id_{{ productformset.prefix }}-xx-amount" value="0">
 															</div>
 														</div>
 													</td>
@@ -307,7 +331,8 @@
 										</div>
 									</div>
 									<div class="col-12 pb-80-px">
-										<table class="table border-bottom">
+										<table class="table table-product border-bottom">
+											{{ documentformset.management_form }}
 											<thead>
 												<tr>
 													<th>{% trans "Document" %}</th>
@@ -317,10 +342,54 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
+												{% for form in documentformset.forms %}
+												<tr class="formset_row-{{ documentformset.prefix }} w-100">
+													{% for field in form.visible_fields %}
+													<td class="w-30">
+														<div class="form-group mb-0">
+															{% if forloop.first %}
+																<div class="col-lg-7 px-0">
+																	{% for hidden in form.hidden_fields %}
+																		{{ hidden }}
+																	{% endfor %}
+																	{{ field }}
+																</div>
+															{% endif %}
+
+															{% if forloop.last %}
+																<div class="col-lg-7 px-0">
+																	{{ field }}
+																</div>
+															{% endif %}
+															
+															{% if forloop.counter == 2 %}
+																<div class="col-lg-6 px-0">
+																	{{ field }}
+																</div>
+															{% endif %}
+
+															{% if forloop.counter == 3 %}
+																<div class="col-lg-6 px-0">
+																	{{ field }}
+																</div>
+															{% endif %}
+															
+														</div>
+													</td>
+													{% endfor %}
+												</tr>
+												{% empty %}
+												<tr class="odd">
+													<td class="text-center" colspan="5" valign="top">{% trans "No document has been added." %}</td>
+												</tr>
+												{% endfor %}
+
+												<tr id="non-formset-row" style="display: none;">
 													<td>
-														<div class="col-lg-7 px-0">
-															<input type="text" class="form-control" value="">
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																<input type="text" class="form-control" value="">
+															</div>
 														</div>
 													</td>
 													<td>
@@ -347,6 +416,7 @@
 												</tr>
 											</tbody>
 										</table>
+
 									</div>
 								</div>
 								
@@ -543,9 +613,9 @@
 									<div class="col-lg-6 col-xs-12">
 										<h6 class="text-center">{% trans "Buyer seal" %}</h6>
 										<div class="seal-wrapper">
-											<p>〒<span class="buyer-postal-code"></span> &nbsp;<span class="buyer-address"></span></p>
+											<p>〒<span class="buyer-postal-code ml-4"></span><span class="buyer-address ml-4"></span></p>
 											<h4 class="buyer-company"></h4>
-											<p><span>代表取締役 &nbsp;</span><span class="purchase-manager"></span></p>
+											<p><span>代表取締役</span><span class="buyer ml-4"></span></p>
 											<p class="mb-0 d-flex">
 												<span class="w-min-150-px">TEL : <span class="buyer-tel"></span></span>
 												<span class="ml-4 w-min-150-px">FAX : <span class="buyer-fax"></span></span>
@@ -558,9 +628,9 @@
 									<div class="col-lg-6 col-xs-12">
 										<h6 class="text-center">{% trans "Seller seal" %}</h6>
 										<div class="seal-wrapper">
-											<p>〒<span class="seller-postal-code">537―0021</span> &nbsp;<span class="seller-address">大阪府大阪市東成区東中本2丁目4―15</span></p>
+											<p>〒<span class="seller-postal-code ml-4">537―0021</span><span class="seller-address ml-4">大阪府大阪市東成区東中本2丁目4―15</span></p>
 											<h4 class="seller-company">バッジオ株式会社</h4>
-											<p><span>代表取締役 &nbsp;</span><span class="sales-manager">金 昇志</span></p>
+											<p><span>代表取締役</span><span class="seller ml-4">金 昇志</span></p>
 											<p class="mb-0 d-flex">
 												<span class="w-min-150-px">TEL : <span class="seller-tel">06-6753-8078</span></span>
 												<span class="ml-4 w-min-150-px">FAX : <span class="seller-fax">06-6753-8078</span></span>
@@ -609,6 +679,14 @@
 			</div>
 
 			{% include "layout/modal.html" %}
+
+			<script>
+				$(document).ready(function () {
+					$('input[name="person_in_charge"]').change(function (e) {
+						$('span.buyer').text($(this).val());
+					});
+				});
+			</script>
 
 		</div>
 		<!-- /content area -->
