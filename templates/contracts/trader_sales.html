@@ -458,7 +458,14 @@
 													<input type="hidden" name="consumption_tax" value="">
 												</tr>
 												<tr>
-													<td>{% trans "Insurance fee" %}・{% trans "No tax" %}</td>
+													<td>
+														<div class="checkbox my-0">
+															<label>
+																<input type="checkbox" class="styled">
+																{% trans "Insurance fee" %} ({% trans "No tax" %})
+															</label>
+														</div>
+													</td>
 													<td>100</td>
 													<input type="hidden" name="insurance_fee" value="">
 												</tr>
