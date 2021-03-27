@@ -29,6 +29,7 @@
                             日本語
                         <span class="caret"></span>
                     {% endif %}
+                    <input type="hidden" name="selected-lang" value="{{ LANGUAGE_CODE }}">
                 </a>
                 <ul class="dropdown-menu">
                     <li><a data-lang="ja" class="languge"><img src="{% static 'images/flags/ja.png' %}" alt="">日本語</a></li>
