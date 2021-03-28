@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
 from django.utils.translation import gettext_lazy as _
-from masterdata.models import Customer
+from masterdata.models import Customer, Receiver, Hall
+
 
 SHIPPING_METHOD_CHOICES = (
     ('D', _('Delivery')),
@@ -27,6 +28,7 @@ PRODUCT_TYPE_CHOICES = (
 
 class TraderSalesContract(models.Model):
     contract_id = models.CharField(max_length=200)
+    # manager = models.CharField(max_length=200, null=True, blank=True)
     person_in_charge = models.CharField(max_length=200)
     customer = models.ForeignKey(Customer, related_name='trader_sales_contracts', on_delete=models.SET_NULL, null=True)
     remarks = models.TextField(null=True, blank=True)
@@ -35,7 +37,6 @@ class TraderSalesContract(models.Model):
     payment_method = models.CharField(max_length=2, choices=PAYMENT_METHOD_CHOICES)
     payment_due_date = models.DateField()
     insurance_fee = models.PositiveIntegerField(null=True, blank=True)
-    # total = models.PositiveIntegerField()
     update_at = models.DateField()
     created_at = models.DateField()
 
@@ -74,18 +75,20 @@ class TraderSalesProduct(models.Model):
         return self.quantity * self.price
 
 
-class Sender(models.Model):
-    name = models.CharField(max_length=200)
-    address = models.CharField(max_length=255)
-    tel = models.CharField(max_length=30, null=True, blank=True)
-    fax = models.CharField(max_length=30, null=True, blank=True)
+ITEM_CHOICES = (
+    ('P', _('Product')),
+    ('D', _('Document'))
+)
 
-
-class ProductSender(Sender):
-    contract = models.OneToOneField(TraderSalesContract, on_delete=models.CASCADE)
+class SaleSender(models.Model):
+    type = models.CharField(max_length=1, choices=ITEM_CHOICES)
+    sender = models.ForeignKey(Receiver, on_delete=models.CASCADE)
     expected_arrival_date = models.DateField()
 
 
-class DocumentSender(Sender):
-    contract = models.OneToOneField(TraderSalesContract, on_delete=models.CASCADE)
-    expected_arrival_date = models.DateField()
+class PurchaseSender(models.Model):
+    type = models.CharField(max_length=1, choices=ITEM_CHOICES)
+    sender = models.ForeignKey(Receiver, on_delete=models.CASCADE)
+    desired_arrival_date = models.DateField()
+    shipping_company = models.CharField(max_length=100)
+    remarks = models.TextField(null=True, blank=True)

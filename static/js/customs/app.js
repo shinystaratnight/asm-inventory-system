@@ -4,6 +4,74 @@ document.addEventListener('DOMContentLoaded', function() {
     var product_prefix = 'product';
     var document_prefix = 'document';
 
+    // Resett the form total number in management form
+    function resetTotalFormNumber(prefix) {
+        if ($('table.table-' + prefix + ' .odd').length) {
+            $('#id_' + prefix + '-TOTAL_FORMS').val(0);
+        }
+    }
+
+
+    // Re-calculation of the price
+    function calculateTotal() {
+        var sub_total = 0;
+        var insurance_fee = 0;
+        var total = 0;
+        $('table.table-formset').each(function () {
+            $table = $(this);
+            $table.find('tbody tr').each(function () {
+                $tr = $(this);
+                var classname = $tr.attr('class');
+                var rowRegex = RegExp(`formset_row-(${document_prefix}|${product_prefix})`, 'g');
+                if (rowRegex.test(classname)) {
+                    var prefix = null;
+                    var prefixRegex = RegExp(`(${document_prefix}|${product_prefix})-\\d+-`, 'g');
+                    var $amount = $(this).find('td').last().find('input');
+                    var amount_el_id = $amount.attr('id');
+                    var m = amount_el_id.match(prefixRegex);
+                    if (m) prefix = m[0];
+                    if (prefix) {
+                        var amount = parseInt($amount.val());
+                        var price = $('#id_' + prefix + 'price').val();
+                        var quantity = $('#id_' + prefix + 'quantity').val();
+                        var rounded_price = Math.round(price / 1000) * 1000;
+                        var unit_fee = 100 * quantity;
+                        if (rounded_price > 100000) {
+                            // when rounded price is larger than 101,000
+                            unit_fee = parseInt(200 * quantity * (rounded_price / 100000));
+                        }
+                        insurance_fee += unit_fee;
+                        sub_total += amount;
+                    }
+                }
+            });
+        });
+
+        $('td.sub_total').text(sub_total);
+        var consumption_tax = parseInt(sub_total / 10);
+        $('td.consumption_tax').text(consumption_tax);
+        $('#insurance_fee').val(insurance_fee);
+        var feeIncluded = true;
+        if ($('#fee_free').length)
+            feeIncluded = $('#fee_free').prop("checked");
+        insuranceFeeCalculation(feeIncluded);
+    }
+
+
+    // Include/exclude insurance fee
+    function insuranceFeeCalculation(included) {
+        var sub_total = parseInt($('td.sub_total').text());
+        var insurance_tax = parseInt($('#insurance_fee').val());
+        var total = parseInt(sub_total * 1.1);
+        if (included) {
+            total += insurance_tax;
+        }
+        $('td.total').text(total);
+        if ($('#billing_amount').length)
+            $('#billing_amount').val(total);
+    }
+
+
     // SetLang
     $('a[data-lang]').click(function(e) {
         e.stopImmediatePropagation();
@@ -26,80 +94,123 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    function resetTotalFormNumber(prefix) {
-        if ($('table.table-' + prefix + ' .odd').length) {
-            $('#id_' + prefix + '-TOTAL_FORMS').val(0);
-        }
-    }
+ 
     // Adding the product to ProductFormSet based table
     $('button[name="add_product_btn"]').click( function (e) {
         // unless product is selected, nothing happens
         var value = $('select.select-product').val();
         if (value == "") return;
 
+        // reset total number of forms in management form section if there is any cached value
+        // after adding selected product name, reset the select2 back to empty option
         resetTotalFormNumber(product_prefix);
         var data = $('select.select-product').select2('data');
         var product = data[0].name;
         $('select.select-product').val(null).trigger('change');
-        
         if ($('table.table-product .odd').length) {
             $('table.table-product .odd').remove();
         }
+
+        // Clone the hiddent formset-row and populate the selected product id/name into the cloned td fields
         var formNum = parseInt($('#id_' + product_prefix + '-TOTAL_FORMS').val());
         var $hiddenTR = $('table.table-product #' + product_prefix + '-formset-row');
         var $newTR = $hiddenTR.clone().removeAttr('style').removeAttr('id').addClass('formset_row-' + product_prefix);
         $('#id_' + product_prefix + '-TOTAL_FORMS').val(formNum + 1);
-
         $hiddenTR.before($newTR);
-        var formRegex = RegExp(`${product_prefix}-xx-`, 'g');
-        var html = $newTR.html().replace(formRegex, `${product_prefix}-${formNum}-`);
+        var trRegex = RegExp(`${product_prefix}-xx-`, 'g');
+        var html = $newTR.html().replace(trRegex, `${product_prefix}-${formNum}-`);
         $newTR.html(html);
-
         var productID = `#id_${product_prefix}-${formNum}-id`;
         $(productID).val(value);
         var productName = `#id_${product_prefix}-${formNum}-name`;
         $(productName).val(product);
 
+        // after population, make the selectbox inside cloned tr work.
         $newTR.find(".new-selectbox").selectBoxIt({
             autoWidth: false
         });
     });
+    
+
+    $('button[name="add_document_btn"]').click( function (e) {
+        // unless any document is selected, nothing happens
+        var value = $('select.select-document').val();
+        var document = $('select.select-document').children("option:selected").text();
+        if (value == "") return;
+
+        // reset total number of forms in management form section if there is any cached value
+        // after adding selected product name, reset the selectbox
+        resetTotalFormNumber(document_prefix);
+        if ($('table.table-document .odd').length) {
+            $('table.table-document .odd').remove();
+        }
+        $('select.select-document').val("").trigger('change');
+
+        // Clone the hiddent formset-row and populate the selected document id/name into the cloned td fields
+        var formNum = parseInt($('#id_' + document_prefix + '-TOTAL_FORMS').val());
+        var $hiddenTR = $('table.table-document #' + document_prefix + '-formset-row');
+        var $newTR = $hiddenTR.clone().removeAttr('style').removeAttr('id').addClass('formset_row-' + document_prefix);
+        $('#id_' + document_prefix + '-TOTAL_FORMS').val(formNum + 1);
+        $hiddenTR.before($newTR);
+        var trRegex = RegExp(`${document_prefix}-xx-`, 'g');
+        var html = $newTR.html().replace(trRegex, `${document_prefix}-${formNum}-`);
+        $newTR.html(html);
+        var documentID = `#id_${document_prefix}-${formNum}-id`;
+        $(documentID).val(value);
+        var documentName = `#id_${document_prefix}-${formNum}-name`;
+        $(documentName).val(document);
+    });
 
 
     // Adding change event lister to input field inside table-product
-    $('table.table-product').on('keyup mousedown', 'input', function (e) {
-        $parent = $(this).closest('tr');
+    $('table').on('input', 'input', function (e) {
+        // Calculate quantity * price and set it in id_document-xx-amount td element
+        var $self = $(this);
+        var $parent = $self.closest('tr');
+        var $pair = null;
+        var priceRegex = RegExp(`((${document_prefix}|${product_prefix})-\\d+-)price`, 'g');
+        var prefixRegex = RegExp(`(${document_prefix}|${product_prefix})-\\d+-`, 'g');
+        var prefix = null;
+        var name = $self.attr('name');
+        var m = name.match(prefixRegex);
+        if (m) prefix = m[0];
+
+        if (prefix) {
+            if (priceRegex.test(name))
+                $pair = $parent.find('#id_' + prefix + 'quantity');
+            else
+                $pair = $parent.find('#id_' + prefix + 'price');
+            var $amount = $parent.find('#id_' + prefix + 'amount');
+            $amount.val(parseInt($self.val()) * parseInt($pair.val()));
+
+            // Call the calculate function to reflect the changes
+            calculateTotal();
+        }
+    });
+
+    // when insurance fee value changes...
+    $('#insurance_fee').on('input', function () {
+        if ($('#fee_free').length) {
+            insuranceFeeCalculation($('#fee_free').prop("checked"));
+        } else
+            insuranceFeeCalculation(true);
+    });
+
+
+    // when fee_fre checkbox is checked/unchecked...
+    $('#fee_free').change(function () {
+        insuranceFeeCalculation(this.checked);
     });
 
 
     // Form validator function for trader sales contract page
     $('form[name="trader_sales"]').submit( function (e) {
-        var $form = $(this);
         var lang = $('input[name="selected-lang"]').val();
 
         // To prevent the cached total_form_num hidden value from being sent to the server,
         // reset it to zero if no product has been added.
         resetTotalFormNumber(product_prefix);
         
-        // if customer is not selected
-        // var customer = $form.find('select[name="name"]').val();
-        // if (customer == "") {
-        //     alert('Customer must be selected.');
-        //     return false;
-        // }
-
-        // var personInCharge = $form.find('input[name="person_in_charge"]').val().trim();
-        // if (personInCharge == "") {
-        //     alert('Person in charge should be entered.');
-        //     return false;
-        // }
-
-        // var formNum = $form.find('table.table-product #id_' + product_prefix + '-TOTAL_FORMS').val();
-        // if (formNum == 0) {
-        //     alert('At least one product should be added.');
-        //     return false;
-        // }
-
         /*
         // In case of Ajax POST request, i18n throws issues (403) because of automatic url pattern resolve.
         // lang prefix should be added to the url.
@@ -113,7 +224,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 return true;
             },
             error: function (error) {
-                alert('Products or documents should be added properly.');
                 return false;
             }
         });

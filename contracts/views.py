@@ -39,14 +39,35 @@ class TraderSalesValidateView(AdminLoginRequiredMixin, View):
             # Check if contract form is valid
             contract_form = TraderSalesContractForm(data)
             if not contract_form.is_valid():
+                print(contract_form.errors)
                 return JsonResponse({'success': False}, status=400)
             # Check the validity of product formset
             product_formset = ProductFormSet(data, prefix='product')
             if not product_formset.is_valid():
+                print(product_formset.errors)
+                print(product_formset.non_form_errors())
                 return JsonResponse({'success': False}, status=400)
-            # document_formset = DocumentFormSet(data, prefix='document')
-            # if not document_formset.is_valid():
-                # return JsonResponse({'success': False}, status=400)
+            document_formset = DocumentFormSet(data, prefix='document')
+            if not document_formset.is_valid():
+                print(document_formset.errors)
+                print(document_formset.non_form_errors())
+                return JsonResponse({'success': False}, status=400)
+            # If shipping method is receipt, senderform validation should be checked
+            if contract_form.cleaned_data.get('shipping_method') == 'R':
+                product_sender = {
+                    'id': data.get('product_sender_id'),
+                    'expected_arrival_date': data.get('produt_sender_expected_arrival_date')
+                }
+                document_sender = {
+                    'id': data.get('document_sender_id'),
+                    'expected_arrival_date': data.get('document_sender_expected_arrival_date')
+                }
+                product_sender_form = SenderForm(product_sender)
+                document_sender_form = SenderForm(document_sender)
+                if product_sender_form.is_valid() and document_sender_form.is_valid():
+                    pass
+                else:
+                    return JsonResponse({'success': False}, status=400)
             return JsonResponse({'success': True}, status=200)
 
 
