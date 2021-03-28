@@ -34,10 +34,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         var price = $('#id_' + prefix + 'price').val();
                         var quantity = $('#id_' + prefix + 'quantity').val();
                         var rounded_price = Math.round(price / 1000) * 1000;
-                        var unit_fee = 100 * quantity;
-                        if (rounded_price > 100000) {
-                            // when rounded price is larger than 101,000
-                            unit_fee = parseInt(200 * quantity * (rounded_price / 100000));
+                        var unit_fee = 0;
+                        if (prefix.indexOf('product') !== -1) {
+                            unit_fee = 100 * quantity;
+                            if (rounded_price > 100000) {
+                                // when rounded price is larger than 101,000
+                                unit_fee = parseInt(200 * quantity * (rounded_price / 100000));
+                            }
                         }
                         insurance_fee += unit_fee;
                         sub_total += amount;
@@ -95,8 +98,10 @@ document.addEventListener('DOMContentLoaded', function() {
     $('button[name="add_product_btn"]').click( function (e) {
         // unless product is selected, nothing happens
         var value = $('select.select-product').val();
-        if (value == "") return;
-
+        if (value == "") {
+            $('#modal_product_error').modal('toggle');
+            return;
+        }
         // reset total number of forms in management form section if there is any cached value
         // after adding selected product name, reset the select2 back to empty option
         resetTotalFormNumber(product_prefix);
@@ -132,7 +137,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // unless any document is selected, nothing happens
         var value = $('select.select-document').val();
         var document = $('select.select-document').children("option:selected").text();
-        if (value == "") return;
+        if (value == "") {
+            $('#modal_document_error').modal('toggle');
+            return;
+        }
 
         // reset total number of forms in management form section if there is any cached value
         // after adding selected product name, reset the selectbox
@@ -202,9 +210,9 @@ document.addEventListener('DOMContentLoaded', function() {
         var $fs = $self.closest('fieldset');
 
         if (id == "") {
-            $fs.find('textarea[name="address"]').val(null);
-            $fs.find('input[name="tel"]').val(null);
-            $fs.find('input[name="fax"]').val(null);
+            $fs.find('textarea.address').val(null);
+            $fs.find('input.tel').val(null);
+            $fs.find('input.fax').val(null);
             return;
         }
         
@@ -216,9 +224,9 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             success: function (result) {
                 console.log(result);
-                $fs.find('textarea[name="address"]').val(result.address);
-                $fs.find('input[name="tel"]').val(result.tel);
-                $fs.find('input[name="fax"]').val(result.fax);
+                $fs.find('textarea.address').val(result.address);
+                $fs.find('input.tel').val(result.tel);
+                $fs.find('input.fax').val(result.fax);
             }
         });
     });
