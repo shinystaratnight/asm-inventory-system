@@ -668,12 +668,13 @@
 									<div class="col-lg-6 col-xs-12">
 										<h6 class="text-center">{% trans "Seller seal" %}</h6>
 										<div class="seal-wrapper">
-											<p>〒<span class="seller-postal-code ml-4">537―0021</span><span class="seller-address ml-4">大阪府大阪市東成区東中本2丁目4―15</span></p>
-											<h4 class="seller-company">バッジオ株式会社</h4>
-											<p><span>{% trans "CEO" %} : </span><span class="seller ml-4">金 昇志</span></p>
+											<p>〒<span class="seller-postal-code ml-4">{{ seller_postal_code }}</span>
+												<span class="seller-address ml-4">{{ seller_address }}</span></p>
+											<h4 class="seller-company">{{ seller_company }}</h4>
+											<p><span>{% trans "CEO" %} : </span><span class="seller ml-4">{{ seller_ceo }}</span></p>
 											<p class="mb-0 d-flex">
-												<span class="w-min-150-px">TEL : <span class="seller-tel">06-6753-8078</span></span>
-												<span class="ml-4 w-min-150-px">FAX : <span class="seller-fax">06-6753-8078</span></span>
+												<span class="w-min-150-px">TEL : <span class="seller-tel">{{ seller_tel }}</span></span>
+												<span class="ml-4 w-min-150-px">FAX : <span class="seller-fax">{{ seller_fax }}</span></span>
 											</p>
 											<div class="seal">
 												印
@@ -686,11 +687,11 @@
 										<p>※ {% trans "Please be noted that the transfer fee will be at your company expense." %}</p>
 										<p>
 											<span>{% trans "Transfer account" %}:</span>
-											<span>りそな銀行　船場支店（101）　普通　0530713　バッジオカブシキガイシャ</span>
+											<span>{{ seller_payee_account }}</span>
 										</p>
 										<p>
 											<span>{% trans "Please check the contents. After seal, kindly revert back to us." %}</span>
-											<span class="ml-4">{% trans "FAX" %} 06-6753-8079</span>
+											<span class="ml-4">{% trans "FAX" %} : {{ seller_reply_fax }}</span>
 										</p>
 										<p>※ {% trans "If you need the original invoice, please make sure to tick the checkbox." %} 【{% trans "Required" %}・{% trans "Not required" %}】</p>
 									</div>
