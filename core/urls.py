@@ -18,9 +18,10 @@ from django.urls import path, include
 from django.conf.urls import url, i18n, handler404, handler500
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
+# from django.views.i18n import JavaScriptCatalog
 
 urlpatterns = [
-    # url(r'^jsi18n/$', javascript_catalog),
+    # url('jsi18n/', JavaScriptCatalog.as_view(), name='javascript_catalog'),
     path('i18n/', include(i18n)),
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('images/favicon.ico')))
 ]
