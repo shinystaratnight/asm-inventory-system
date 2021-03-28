@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 04:38+0000\n"
+"POT-Creation-Date: 2021-03-28 06:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,6 +127,19 @@ msgstr "商品名"
 #: templates/contracts/trader_sales.html:356
 msgid "Document"
 msgstr "書類"
+
+#: contracts/views.py:79
+msgid "Receipt date"
+msgstr "機械引取日"
+
+#: contracts/views.py:81
+msgid "ID Change date"
+msgstr "機械ID変更日"
+
+#: contracts/views.py:83 templates/contracts/hall_purchases.html:717
+#: templates/contracts/trader_sales.html:474
+msgid "Delivery date"
+msgstr "機械発送日"
 
 #: masterdata/models.py:33 templates/contracts/hall_purchases.html:528
 #: templates/contracts/hall_purchases.html:556
@@ -412,11 +425,6 @@ msgstr "合計"
 msgid "We will charge you as follows."
 msgstr "下記の通りご請求申し上げます。"
 
-#: templates/contracts/hall_purchases.html:717
-#: templates/contracts/hall_sales.html:716
-msgid "Delivery date"
-msgstr "納品日"
-
 #: templates/contracts/hall_purchases.html:726
 #: templates/contracts/hall_sales.html:725
 msgid "Opening date"
@@ -507,6 +515,10 @@ msgstr "ホール売"
 #: templates/master_data/receivers.html:116
 msgid "Address"
 msgstr "住所"
+
+#: templates/contracts/hall_sales.html:716
+msgid "Shipping date"
+msgstr "納品日"
 
 #: templates/contracts/hall_sales.html:834
 msgid "Please bear the transfer fee at your expense."
@@ -670,11 +682,12 @@ msgstr "請求書原本"
 
 #: templates/contracts/trader_purchases.html:598
 #: templates/contracts/trader_sales.html:696
-msgid "Necessary"
+msgid "Required"
 msgstr "必要"
 
 #: templates/contracts/trader_purchases.html:600
-msgid "Unncessary"
+#: templates/contracts/trader_sales.html:696
+msgid "Not required"
 msgstr "不要"
 
 #: templates/contracts/trader_purchases.html:605
@@ -740,10 +753,6 @@ msgstr "その他売上を選択してください"
 #: templates/contracts/trader_sales.html:409
 msgid "No document has been added."
 msgstr "書類が追加されていません。"
-
-#: templates/contracts/trader_sales.html:474
-msgid "Shipping date"
-msgstr "機械発送日"
 
 #: templates/contracts/trader_sales.html:515
 msgid "Total"
@@ -830,6 +839,11 @@ msgstr "書類発送先"
 msgid "Buyer seal"
 msgstr "買主捺印欄"
 
+#: templates/contracts/trader_sales.html:659
+#: templates/contracts/trader_sales.html:674
+msgid "CEO"
+msgstr "代表取締役"
+
 #: templates/contracts/trader_sales.html:670
 msgid "Seller seal"
 msgstr "売主捺印欄"
@@ -846,10 +860,6 @@ msgstr "内容をご確認の上、捺印後弊社まで返信お願いします
 msgid ""
 "If you need the original invoice, please make sure to tick the checkbox."
 msgstr "請求書原本が必要な場合は必ずチェックしてください。"
-
-#: templates/contracts/trader_sales.html:696
-msgid "Unnecessary"
-msgstr "不要"
 
 #: templates/csvs/purchases.html:4 templates/csvs/purchases.html:18
 #: templates/csvs/purchases.html:26 templates/csvs/purchases.html:37
@@ -907,6 +917,53 @@ msgstr "サーバーエラー、サポートに連絡してください"
 #: templates/layout/base_not_logged.html:42 templates/layout/navbar.html:6
 msgid "Inventory System"
 msgstr "在庫システム"
+
+#: templates/layout/modal.html:13
+msgid "Customer must be selected."
+msgstr "取引先のフィールドは必須です。"
+
+#: templates/layout/modal.html:14
+msgid "Person in charge must be provided."
+msgstr "担当名のフィールドは必須です。"
+
+#: templates/layout/modal.html:15
+msgid "At least one product must be added."
+msgstr "少なくとも1つの商品名を追加する必要があります。"
+
+#: templates/layout/modal.html:16
+msgid "Price and quantity for each product must be positive integer."
+msgstr "商品の単価と数量は正の整数でなければなりません。"
+
+#: templates/layout/modal.html:17
+msgid "At least one document must be added."
+msgstr "少なくとも1つの書類を追加する必要があります。"
+
+#: templates/layout/modal.html:18
+msgid "Price and quantity for each document must be positive integer."
+msgstr "書類の単価と数量は正の整数でなければなりません。"
+
+#: templates/layout/modal.html:19
+msgid "At least one document fee must be added."
+msgstr "少なくとも1つの書類代を追加する必要があります。"
+
+#: templates/layout/modal.html:20
+msgid ""
+"Number of models and quantity for each document fee must be positive integer."
+msgstr "書類代の機種数と台数は正の整数でなければなりません。"
+
+#: templates/layout/modal.html:21
+msgid ""
+"When the shipping method is delivery, product sender and document sender "
+"must be selected."
+msgstr ""
+"運送方法が引取の場合は、商品発送先と書類発送先を選択する必要があります。"
+
+#: templates/layout/modal.html:26 templates/master_data/customers.html:150
+#: templates/master_data/documents.html:113
+#: templates/master_data/halls.html:148 templates/master_data/products.html:115
+#: templates/master_data/receivers.html:139
+msgid "Close"
+msgstr "閉じる"
 
 #: templates/layout/navbar.html:48
 msgid "My profile"
@@ -1110,13 +1167,6 @@ msgstr "FAXを入力してください"
 msgid "Enter CSV name"
 msgstr "会計ソフト用の名称を入力してください"
 
-#: templates/master_data/customers.html:150
-#: templates/master_data/documents.html:113
-#: templates/master_data/halls.html:148 templates/master_data/products.html:115
-#: templates/master_data/receivers.html:139
-msgid "Close"
-msgstr "閉じる"
-
 #: templates/master_data/documents.html:45
 #: templates/master_data/documents.html:90
 msgid "Name"
@@ -1291,3 +1341,12 @@ msgstr "あなたのメール"
 #: templates/registration/password_reset_form.html:23
 msgid "Reset password"
 msgstr "パスワードを再設定する"
+
+#~ msgid "Necessary"
+#~ msgstr "必要"
+
+#~ msgid "Unncessary"
+#~ msgstr "不要"
+
+#~ msgid "Unnecessary"
+#~ msgstr "不要"

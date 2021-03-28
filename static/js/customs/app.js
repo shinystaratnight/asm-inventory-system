@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-
     // Re-calculation of the price
     function calculateTotal() {
         var sub_total = 0;
@@ -57,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
         insuranceFeeCalculation(feeIncluded);
     }
 
-
     // Include/exclude insurance fee
     function insuranceFeeCalculation(included) {
         var sub_total = parseInt($('td.sub_total').text());
@@ -70,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if ($('#billing_amount').length)
             $('#billing_amount').val(total);
     }
-
 
     // SetLang
     $('a[data-lang]').click(function(e) {
@@ -94,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
- 
     // Adding the product to ProductFormSet based table
     $('button[name="add_product_btn"]').click( function (e) {
         // unless product is selected, nothing happens
@@ -131,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-
+    // When clicking "Add Document" button
     $('button[name="add_document_btn"]').click( function (e) {
         // unless any document is selected, nothing happens
         var value = $('select.select-document').val();
@@ -160,7 +156,6 @@ document.addEventListener('DOMContentLoaded', function() {
         var documentName = `#id_${document_prefix}-${formNum}-name`;
         $(documentName).val(document);
     });
-
 
     // Adding change event lister to input field inside table-product
     $('table').on('input', 'input', function (e) {
@@ -196,12 +191,10 @@ document.addEventListener('DOMContentLoaded', function() {
             insuranceFeeCalculation(true);
     });
 
-
     // when fee_fre checkbox is checked/unchecked...
     $('#fee_free').change(function () {
         insuranceFeeCalculation(this.checked);
     });
-
 
     // Form validator function for trader sales contract page
     $('form[name="trader_sales"]').submit( function (e) {
@@ -221,10 +214,10 @@ document.addEventListener('DOMContentLoaded', function() {
             data: $(this).serialize(),
             dataType: 'json',
             success: function (result) {
+                console.log(result);
+                if (('success' in result) && result['success'] == false)
+                    $('#modal_error').modal('toggle');
                 return true;
-            },
-            error: function (error) {
-                return false;
             }
         });
         return false;
@@ -236,12 +229,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return false;
     });
 
-
     // Form validator function for hall sales contract page
     $('form[name="hall_sales"]').submit( function (e) {
         return false;
     });
-
 
     // Form validator function for hall purchases contract page
     $('form[name="hall_purchases"]').submit( function (e) {

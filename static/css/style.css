@@ -120,6 +120,10 @@
     padding-left: 1rem;
     padding-right: 1rem;
 }
+.px-5 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
 .pt-10-px, .py-10-px {
     padding-top: 10px;
 }
@@ -288,11 +292,16 @@
     padding-right: 36px;
 }
 #modal_error .modal-body {
-    width: 60%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 60px;
-    border: 1px solid #ff5722;
+    margin-top: 3rem;
+    border-radius: 2%;
+    padding: 45px;
+}
+#modal_error .modal-body ul li{
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 div.checkbox input.styled {
     width: 18px;

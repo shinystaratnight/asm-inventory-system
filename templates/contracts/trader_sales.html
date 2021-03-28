@@ -471,7 +471,7 @@
 											<div class="col-lg-6 form-group">
 												<div class="position-relative">
 													<div class="input-group">
-														<span class="input-group-addon shipping_date_label">{% trans "Shipping date" %}</span>
+														<span class="input-group-addon shipping_date_label">{% trans "Delivery date" %}</span>
 														<input type="text" name="shipping_date" class="form-control daterange-single">
 													</div>
 													<div class="form-control-feedback">
@@ -548,7 +548,7 @@
 										<div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">{% trans "Billing amount" %}</span>
-												<input type="text" class="form-control" name="billing_amount" id="billing_amount" disabled>
+												<input type="text" class="form-control" name="billing_amount" id="billing_amount" value="0" disabled>
 											</div>
 										</div>
 										<div class="position-relative form-group">
@@ -656,7 +656,7 @@
 										<div class="seal-wrapper">
 											<p>〒<span class="buyer-postal-code ml-4"></span><span class="buyer-address ml-4"></span></p>
 											<h4 class="buyer-company"></h4>
-											<p><span>代表取締役</span><span class="buyer ml-4"></span></p>
+											<p><span>{% trans "CEO" %} : </span><span class="buyer ml-4"></span></p>
 											<p class="mb-0 d-flex">
 												<span class="w-min-150-px">TEL : <span class="buyer-tel"></span></span>
 												<span class="ml-4 w-min-150-px">FAX : <span class="buyer-fax"></span></span>
@@ -671,7 +671,7 @@
 										<div class="seal-wrapper">
 											<p>〒<span class="seller-postal-code ml-4">537―0021</span><span class="seller-address ml-4">大阪府大阪市東成区東中本2丁目4―15</span></p>
 											<h4 class="seller-company">バッジオ株式会社</h4>
-											<p><span>代表取締役</span><span class="seller ml-4">金 昇志</span></p>
+											<p><span>{% trans "CEO" %} : </span><span class="seller ml-4">金 昇志</span></p>
 											<p class="mb-0 d-flex">
 												<span class="w-min-150-px">TEL : <span class="seller-tel">06-6753-8078</span></span>
 												<span class="ml-4 w-min-150-px">FAX : <span class="seller-fax">06-6753-8078</span></span>
@@ -693,7 +693,7 @@
 											<span>{% trans "Please check the contents. After seal, kindly revert back to us." %}</span>
 											<span class="ml-4">{% trans "FAX" %} 06-6753-8079</span>
 										</p>
-										<p>※ {% trans "If you need the original invoice, please make sure to tick the checkbox." %} 【{% trans "Necessary" %}・{% trans "Unnecessary" %}】</p>
+										<p>※ {% trans "If you need the original invoice, please make sure to tick the checkbox." %} 【{% trans "Required" %}・{% trans "Not required" %}】</p>
 									</div>
 									<div class="col-lg-6 col-xs-12">
 										<div class="input-group">
@@ -728,18 +728,21 @@
 					});
 
 					$('#shipping_method').change(function () {
-						var shipping_method = $(this).val();
-						switch (shipping_method) {
-							case 'R':
-								$('span.shipping_date_label').text(shipping_method);
-								break;
-							case 'C':
-								$('span.shipping_date_label').text(shipping_method);
-								break;
-							default:
-								$('span.shipping_date_label').text(shipping_method);
-								break;
-						}
+						var shipping_date_value = $(this).val();
+						var lang = $('input[name="selected-lang"]').val();
+						$.ajax({
+							type: 'POST',
+							url: '/' + lang + '/contract/shipping-label/',
+							data: {
+								data: shipping_date_value,
+							},
+							beforeSend: function(request) {
+								request.setRequestHeader('X-CSRFToken', csrftoken);
+							},
+							success: function (result) {
+								$('span.shipping_date_label').text(result.data);
+							}
+						});
 					});
 				});
 			</script>

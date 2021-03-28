@@ -8,15 +8,22 @@
                 <h6 class="modal-title text-center">{% trans "Error" %}</h6>
             </div>
 
-            <div class="modal-body alert-danger">
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+            <div class="modal-body alert-danger mb-5-s">
+                <ul>
+                    <li>{% trans "Customer must be selected." %}</li>
+                    <li>{% trans "Person in charge must be provided." %}</li>
+                    <li>{% trans "At least one product must be added." %}</li>
+                    <li>{% trans "Price and quantity for each product must be positive integer." %}</li>
+                    <li>{% trans "At least one document must be added." %}</li>
+                    <li>{% trans "Price and quantity for each document must be positive integer." %}</li>
+                    <li>{% trans "At least one document fee must be added." %}</li>
+                    <li>{% trans "Number of models and quantity for each document fee must be positive integer." %}</li>
+                    <li>{% trans "When the shipping method is delivery, product sender and document sender must be selected." %}</li>
+                </ul>
             </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-danger px-5" data-dismiss="modal">{% trans "Close" %}</button>
             </div>
         </div>
     </div>

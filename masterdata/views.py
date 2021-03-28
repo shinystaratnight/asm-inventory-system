@@ -67,7 +67,7 @@ class CustomerSearchAjaxView(AdminLoginRequiredMixin, View):
             customer_qs = customer_qs.order_by('id')[start:end].values('id', 'name', 'frigana', 'tel', 'fax', 'postal_code', 'address')
             customers = list(customer_qs)
             return JsonResponse({"customers": customers, "total_count": total_count}, safe=False, status=200)
-        return JsonResponse({'success': False}, status=400)
+        return JsonResponse({'success': False}, status=200)
 
 
 class ProductSearchAjaxView(AdminLoginRequiredMixin, View):
@@ -82,5 +82,5 @@ class ProductSearchAjaxView(AdminLoginRequiredMixin, View):
             product_qs = product_qs.order_by('id')[start:end].values('id', 'name')
             products = list(product_qs)
             return JsonResponse({"products": products, "total_count": total_count}, safe=False, status=200)
-        return JsonResponse({'success': False}, status=400)
+        return JsonResponse({'success': False}, status=200)
 

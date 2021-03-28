@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView, View
 from django.http import JsonResponse
+from django.utils.translation import gettext_lazy as _
 from users.views import AdminLoginRequiredMixin
 from masterdata.models import Document
 from .models import *
@@ -40,18 +41,18 @@ class TraderSalesValidateView(AdminLoginRequiredMixin, View):
             contract_form = TraderSalesContractForm(data)
             if not contract_form.is_valid():
                 print(contract_form.errors)
-                return JsonResponse({'success': False}, status=400)
+                return JsonResponse({'success': False}, status=200)
             # Check the validity of product formset
             product_formset = ProductFormSet(data, prefix='product')
             if not product_formset.is_valid():
                 print(product_formset.errors)
                 print(product_formset.non_form_errors())
-                return JsonResponse({'success': False}, status=400)
+                return JsonResponse({'success': False}, status=200)
             document_formset = DocumentFormSet(data, prefix='document')
             if not document_formset.is_valid():
                 print(document_formset.errors)
                 print(document_formset.non_form_errors())
-                return JsonResponse({'success': False}, status=400)
+                return JsonResponse({'success': False}, status=200)
             # If shipping method is receipt, senderform validation should be checked
             if contract_form.cleaned_data.get('shipping_method') == 'R':
                 product_sender = {
@@ -67,8 +68,20 @@ class TraderSalesValidateView(AdminLoginRequiredMixin, View):
                 if product_sender_form.is_valid() and document_sender_form.is_valid():
                     pass
                 else:
-                    return JsonResponse({'success': False}, status=400)
+                    return JsonResponse({'success': False}, status=200)
             return JsonResponse({'success': True}, status=200)
+
+class ContractShippingLabelAjaxView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            data = self.request.POST.get('data')
+            if data == 'R':
+                return JsonResponse({'data': _('Receipt date')}, status=200)
+            elif data == 'C':
+                return JsonResponse({'data': _('ID Change date')}, status=200)
+            else:
+                return JsonResponse({'data': _('Delivery date')}, status=200)
+        return JsonResponse({'success': False}, status=200)
 
 
 @login_required(login_url='login')
