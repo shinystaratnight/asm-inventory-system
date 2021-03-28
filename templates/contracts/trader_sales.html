@@ -742,6 +742,23 @@
 							}
 						});
 					});
+					
+					$.ajax({
+						type: 'GET',
+						url: '/contract/manager/',
+						data: null,
+						success: function (result) {
+							var people = [];
+							var data = result.people;
+							var i = 0;
+							for (var i=0; i<data.length; i++) {
+								people.push(data[i].name);
+							}
+							$('input[name="person_in_charge"]').autocomplete({
+								source: people
+							});
+						}
+					});
 				});
 			</script>
 

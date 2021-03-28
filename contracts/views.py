@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView, View
 from django.http import JsonResponse
+from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
 from users.views import AdminLoginRequiredMixin
 from masterdata.models import Document
@@ -79,6 +80,16 @@ class ContractShippingLabelAjaxView(AdminLoginRequiredMixin, View):
                 return JsonResponse({'data': _('ID Change date')}, status=200)
             else:
                 return JsonResponse({'data': _('Delivery date')}, status=200)
+        return JsonResponse({'success': False}, status=400)
+
+
+class ContractManagerAjaxView(AdminLoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        if self.request.method == 'GET' and self.request.is_ajax():
+            people = TraderSalesContract.objects.values('person_in_charge').annotate(
+                people_count=Count('person_in_charge')
+            ).filter(people_count=1)
+            return JsonResponse({'people': list(people)}, status=200)
         return JsonResponse({'success': False}, status=400)
 
 

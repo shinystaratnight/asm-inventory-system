@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
         $(documentName).val(document);
     });
 
-    // Adding change event lister to input field inside table-product
+   // Adding change event lister to input field inside table-product
     $('table').on('input', 'input', function (e) {
         // Calculate quantity * price and set it in id_document-xx-amount td element
         var $self = $(this);
