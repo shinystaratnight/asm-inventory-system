@@ -10,4 +10,5 @@ urlpatterns = [
     path('document/', DocumentView.as_view(), name='document'),
     path('search-customer/', CustomerSearchAjaxView.as_view(), name='customer-search'),
     path('search-product/', ProductSearchAjaxView.as_view(), name='product-search'),
+    path('receiver-detail/', ReceiverDetailAjaxView.as_view(), name='receiver-detail')
 ]

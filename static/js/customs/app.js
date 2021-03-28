@@ -196,6 +196,33 @@ document.addEventListener('DOMContentLoaded', function() {
         insuranceFeeCalculation(this.checked);
     });
 
+    $('select.select-sender').change(function (e) {
+        var id = $(this).val();
+        var $self = $(this);
+        var $fs = $self.closest('fieldset');
+
+        if (id == "") {
+            $fs.find('textarea[name="address"]').val(null);
+            $fs.find('input[name="tel"]').val(null);
+            $fs.find('input[name="fax"]').val(null);
+            return;
+        }
+        
+        $.ajax({
+            type: 'GET',
+            url: '/master/receiver-detail/',
+            data: {
+                id: id,
+            },
+            success: function (result) {
+                console.log(result);
+                $fs.find('textarea[name="address"]').val(result.address);
+                $fs.find('input[name="tel"]').val(result.tel);
+                $fs.find('input[name="fax"]').val(result.fax);
+            }
+        });
+    });
+
     // Form validator function for trader sales contract page
     $('form[name="trader_sales"]').submit( function (e) {
         var lang = $('input[name="selected-lang"]').val();

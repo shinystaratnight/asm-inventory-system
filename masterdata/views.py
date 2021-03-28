@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
 from .forms import *
-from .models import Customer
+from .models import Customer, Receiver
 
 class MasterView(AdminLoginRequiredMixin, TemplateView, FormMixin):
     def get(self, request, *args, **kwargs):
@@ -67,7 +67,7 @@ class CustomerSearchAjaxView(AdminLoginRequiredMixin, View):
             customer_qs = customer_qs.order_by('id')[start:end].values('id', 'name', 'frigana', 'tel', 'fax', 'postal_code', 'address')
             customers = list(customer_qs)
             return JsonResponse({"customers": customers, "total_count": total_count}, safe=False, status=200)
-        return JsonResponse({'success': False}, status=200)
+        return JsonResponse({'success': False}, status=400)
 
 
 class ProductSearchAjaxView(AdminLoginRequiredMixin, View):
@@ -82,5 +82,16 @@ class ProductSearchAjaxView(AdminLoginRequiredMixin, View):
             product_qs = product_qs.order_by('id')[start:end].values('id', 'name')
             products = list(product_qs)
             return JsonResponse({"products": products, "total_count": total_count}, safe=False, status=200)
-        return JsonResponse({'success': False}, status=200)
+        return JsonResponse({'success': False}, status=400)
 
+
+class ReceiverDetailAjaxView(AdminLoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        if self.request.method == 'GET' and self.request.is_ajax():
+            id = self.request.GET.get('id')
+            receiver = Receiver.objects.get(id=id)
+            return JsonResponse(
+                {'address': receiver.address, 'tel': receiver.tel, 'fax': receiver.fax},
+                status=200
+            )
+        return JsonResponse({'success': False}, status=400)

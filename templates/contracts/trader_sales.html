@@ -340,7 +340,7 @@
 													<select name="select-document" class="selectbox select-document">
 														<option value="">{% trans 'Select document' %}...</option>
 														{% for document in documents %}
-														<option value="{{ forloop.counter }}">{{ document.name }}</option>
+														<option value="{{ document.id }}">{{ document.name }}</option>
 														{% endfor %}
 													</select>
 												</div>
@@ -581,70 +581,75 @@
 											<legend class="text-bold text-center">{% trans "Product sender" %}</legend>
 											<div class="form-group">
 												<label class="control-label">{% trans "Company" %}</label>
-												<div class="">
-													<input type="text" name="product_sender" class="form-control">
-												</div>
+												<select name="id" class="selectbox select-sender">
+													<option value="">{% trans 'Select product sender' %}...</option>
+													{% for sender in senders %}
+													<option value="{{ sender.id }}">{{ sender.name }}</option>
+													{% endfor %}
+												</select>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "Address" %}</label>
 												<div class="">
-													<textarea type="text" name="product_sender_address" class="form-control" disabled=""></textarea>
+													<textarea type="text" name="address" class="form-control" disabled=""></textarea>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "TEL" %}</label>
 												<div class="">
-													<input type="text" name="product_sender_tel" class="form-control" disabled="" />
+													<input type="text" name="tel" class="form-control" disabled="" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "FAX" %}</label>
 												<div class="">
-													<input type="text" name="product_sender_fax" class="form-control" disabled="" />
+													<input type="text" name="fax" class="form-control" disabled="" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "Expected arrival date" %}</label>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-													<input type="text" name="produt_sender_expected_arrival_date" class="form-control daterange-single">
+													<input type="text" name="expected_arrival_date" class="form-control daterange-single">
 												</div>
 											</div>
 										</fieldset>
-										
 									</div>
 									<div class="col-lg-6 col-xs-12">
 										<fieldset class="content-group">
 											<legend class="text-bold text-center">{% trans "Document sender" %}</legend>
 											<div class="form-group">
 												<label class="control-label">{% trans "Company" %}</label>
-												<div class="">
-													<input type="text" name="document_sender" class="form-control">
-												</div>
+												<select name="id" class="selectbox select-sender">
+													<option value="">{% trans 'Select document sender' %}...</option>
+													{% for sender in senders %}
+													<option value="{{ sender.id }}">{{ sender.name }}</option>
+													{% endfor %}
+												</select>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "Address" %}</label>
 												<div class="">
-													<textarea type="text" name="document_sender_address" class="form-control" disabled=""></textarea>
+													<textarea type="text" name="address" class="form-control" disabled=""></textarea>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "TEL" %}</label>
 												<div class="">
-													<input type="text" name="document_sender_tel" class="form-control" disabled="" />
+													<input type="text" name="tel" class="form-control" disabled="" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "FAX" %}</label>
 												<div class="">
-													<input type="text" name="document_sender_fax" class="form-control" disabled="" />
+													<input type="text" name="fax" class="form-control" disabled="" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "Expected arrival date" %}</label>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-													<input type="text" name="document_sender_expected_arrival_date" class="form-control daterange-single">
+													<input type="text" name="expected_arrival_date" class="form-control daterange-single">
 												</div>
 											</div>
 										</fieldset>

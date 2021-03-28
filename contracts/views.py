@@ -27,7 +27,8 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['contract_id'] = generate_contract_id()
-        context['documents'] = Document.objects.all().values('name')
+        context['documents'] = Document.objects.all().values('id', 'name')
+        context['senders'] = Receiver.objects.all().values('id', 'name')
         context['productformset'] = ProductFormSet(prefix='product')
         context['documentformset'] = DocumentFormSet(prefix='document')
         return context
@@ -70,6 +71,8 @@ class TraderSalesValidateView(AdminLoginRequiredMixin, View):
                 else:
                     return JsonResponse({'success': False}, status=200)
             return JsonResponse({'success': True}, status=200)
+        return JsonResponse({'success': False}, status=400)
+
 
 class ContractShippingLabelAjaxView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
@@ -81,7 +84,7 @@ class ContractShippingLabelAjaxView(AdminLoginRequiredMixin, View):
                 return JsonResponse({'data': _('ID Change date')}, status=200)
             else:
                 return JsonResponse({'data': _('Delivery date')}, status=200)
-        return JsonResponse({'success': False}, status=200)
+        return JsonResponse({'success': False}, status=400)
 
 
 @login_required(login_url='login')
