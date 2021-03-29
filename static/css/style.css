@@ -316,7 +316,9 @@ textarea.is_invalid,
 select.selectbox.is_invalid+span.selectboxit-container > span.selectboxit {
     border: 1px solid #ff5722;
 }
-
+.table-product thead tr th, .table-document thead tr th {
+    border-top: 1px solid #ddd !important;
+}
 @media screen and (max-width: 768px) {
 	.panel .visible-elements {
         padding-top: 20px;
