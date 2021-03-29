@@ -39,17 +39,19 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
         shipping_method = contract_form.cleaned_data.get('shipping_method')
         if shipping_method == 'R':
             product_sender = {
-                'id': self.request.POST.get('product_sender_id'),
+                'sender_id': self.request.POST.get('product_sender_id'),
                 'expected_arrival_date': self.request.POST.get('product_sender_expected_arrival_date')
             }
             product_sender_form = SenderForm(product_sender, type='P', contract_id=contract.id)
-            product_sender_form.save()
+            if product_sender_form.is_valid():
+                product_sender_form.save()
             document_sender = {
-                'id': self.request.POST.get('document_sender_id'),
+                'sender_id': self.request.POST.get('document_sender_id'),
                 'expected_arrival_date': self.request.POST.get('document_sender_expected_arrival_date')
             }
             document_sender_form = SenderForm(document_sender, type='D', contract_id=contract.id)
-            document_sender_form.save()
+            if document_sender_form.is_valid():
+                document_sender_form.save()
         return render(request, self.template_name, self.get_context_data(**kwargs))
     
     def get_context_data(self, **kwargs):
@@ -80,11 +82,11 @@ class TraderSalesValidateView(AdminLoginRequiredMixin, View):
             # If shipping method is receipt, senderform validation should be checked
             if contract_form.cleaned_data.get('shipping_method') == 'R':
                 product_sender = {
-                    'id': data.get('product_sender_id'),
+                    'sender_id': data.get('product_sender_id'),
                     'expected_arrival_date': data.get('product_sender_expected_arrival_date')
                 }
                 document_sender = {
-                    'id': data.get('document_sender_id'),
+                    'sender_id': data.get('document_sender_id'),
                     'expected_arrival_date': data.get('document_sender_expected_arrival_date')
                 }
                 product_sender_form = SenderForm(product_sender)

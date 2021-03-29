@@ -83,6 +83,7 @@ ITEM_CHOICES = (
 )
 
 class SaleSender(models.Model):
+    contract = models.ForeignKey(TraderSalesContract, on_delete=models.CASCADE, related_name='senders')
     type = models.CharField(max_length=1, choices=ITEM_CHOICES)
     sender = models.ForeignKey(Receiver, on_delete=models.CASCADE)
     expected_arrival_date = models.DateField()

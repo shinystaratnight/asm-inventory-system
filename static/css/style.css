@@ -294,7 +294,7 @@
 .select-customer + .select2-container {
     padding-right: 36px;
 }
-#modal_error .modal-body {
+.modal_error .modal-body {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -302,7 +302,7 @@
     border-radius: 2%;
     padding: 45px;
 }
-#modal_error .modal-body ul li{
+.modal_error .modal-body ul li{
     padding-top: 5px;
     padding-bottom: 5px;
 }

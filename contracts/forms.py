@@ -111,18 +111,23 @@ class TraderSalesContractForm(forms.Form):
 
 
 class SenderForm(forms.Form):
-    id = forms.IntegerField()
+    sender_id = forms.IntegerField()
     expected_arrival_date = forms.DateField()
 
     def __init__(self, *args, **kwargs):
         if kwargs.get('type', None):
             self.type = kwargs.pop('type')
-            print(self.type)
         if kwargs.get('contract_id', None):
             self.contract_id = kwargs.pop('contract_id')
-            print(self.contract_id)
         super().__init__(*args, **kwargs)
     
     def save(self):
-        pass
+        data = {
+            'contract': TraderSalesContract.objects.get(id=self.contract_id),
+            'type': self.type,
+            'sender': Receiver.objects.get(id=self.cleaned_data.get('sender_id')),
+            'expected_arrival_date': self.cleaned_data.get('expected_arrival_date'),
+        }
+        SaleSender.objects.create(**data)
+
 # End of Trader Sales Forms
