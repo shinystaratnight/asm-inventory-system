@@ -1,6 +1,93 @@
 {% load i18n %}
 
-<div id="modal_error" class="modal fade" tabindex="-1">
+<div id="modal_trader_sales_error" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title text-center">{% trans "Error" %}</h6>
+            </div>
+
+            <div class="modal-body alert-danger mb-5-s">
+                <ul>
+                    <li>{% trans "Customer must be selected." %}</li>
+                    <li>{% trans "Person in charge must be provided." %}</li>
+                    <li>{% trans "At least one product must be added." %}</li>
+                    <li>{% trans "Price and quantity for each product must be positive integer." %}</li>
+                    <li>{% trans "At least one document must be added." %}</li>
+                    <li>{% trans "Price and quantity for each document must be positive integer." %}</li>
+                    <li>{% trans "At least one document fee must be added." %}</li>
+                    <li>{% trans "Number of models and quantity for each document fee must be positive integer." %}</li>
+                    <li>{% trans "When the shipping method is delivery, product sender and document sender must be selected." %}</li>
+                </ul>
+            </div>
+
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-danger px-5" data-dismiss="modal">{% trans "Close" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal_trader_purchases_error" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title text-center">{% trans "Error" %}</h6>
+            </div>
+
+            <div class="modal-body alert-danger mb-5-s">
+                <ul>
+                    <li>{% trans "Customer must be selected." %}</li>
+                    <li>{% trans "Person in charge must be provided." %}</li>
+                    <li>{% trans "At least one product must be added." %}</li>
+                    <li>{% trans "Price and quantity for each product must be positive integer." %}</li>
+                    <li>{% trans "At least one document must be added." %}</li>
+                    <li>{% trans "Price and quantity for each document must be positive integer." %}</li>
+                    <li>{% trans "At least one document fee must be added." %}</li>
+                    <li>{% trans "Number of models and quantity for each document fee must be positive integer." %}</li>
+                    <li>{% trans "When the shipping method is delivery, product sender and document sender must be selected." %}</li>
+                </ul>
+            </div>
+
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-danger px-5" data-dismiss="modal">{% trans "Close" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal_hall_sales_error" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title text-center">{% trans "Error" %}</h6>
+            </div>
+
+            <div class="modal-body alert-danger mb-5-s">
+                <ul>
+                    <li>{% trans "Customer must be selected." %}</li>
+                    <li>{% trans "Person in charge must be provided." %}</li>
+                    <li>{% trans "At least one product must be added." %}</li>
+                    <li>{% trans "Price and quantity for each product must be positive integer." %}</li>
+                    <li>{% trans "At least one document must be added." %}</li>
+                    <li>{% trans "Price and quantity for each document must be positive integer." %}</li>
+                    <li>{% trans "At least one document fee must be added." %}</li>
+                    <li>{% trans "Number of models and quantity for each document fee must be positive integer." %}</li>
+                    <li>{% trans "When the shipping method is delivery, product sender and document sender must be selected." %}</li>
+                </ul>
+            </div>
+
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-danger px-5" data-dismiss="modal">{% trans "Close" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal_hall_purchases_error" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-danger">

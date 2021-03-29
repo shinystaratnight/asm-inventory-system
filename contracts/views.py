@@ -22,7 +22,27 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
         return render(request, self.template_name, self.get_context_data(**kwargs))
 
     def post(self, request, *args, **kwargs):
-        product_formset = ProductFormSet(self.request.POST)
+        contract_form = TraderSalesContractForm(self.request.POST)
+        if contract_form.is_valid():
+            contract = contract_form.save()
+            
+        product_formset = ProductFormSet(self.request.POST, form_kwargs={'contract_id': contract.id}, prefix='product')
+        for form in product_formset.forms:
+            if form.is_valid():
+                form.save()
+
+        document_formset = DocumentFormSet(self.request.POST, form_kwargs={'contract_id': contract.id}, prefix='document')
+        for form in document_formset.forms:
+            if form.is_valid():
+                form.save()
+        
+        shipping_method = contract_form.cleaned_data.get('shipping_method')
+        if shipping_method == 'R':
+            product_sender = {
+                'id': self.request.POST.get('product_sender_id'),
+                'expected_arrival_date': self.request.POST.get('product_sender_expected_arrival_date')
+            }
+            product_sender_form = SenderForm(product_sender)
         return render(request, self.template_name, self.get_context_data(**kwargs))
     
     def get_context_data(self, **kwargs):

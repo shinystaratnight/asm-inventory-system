@@ -232,8 +232,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Form validator function for trader sales contract page
-    $('form[name="trader_sales"]').submit( function (e) {
+    $('form[name="trader_sales"] button[type="submit"]').click( function (e) {
+        e.preventDefault();
+
         var lang = $('input[name="selected-lang"]').val();
+        var $form = $('form[name="trader_sales"]');
 
         // To prevent the cached total_form_num hidden value from being sent to the server,
         // reset it to zero if no product has been added.
@@ -246,16 +249,16 @@ document.addEventListener('DOMContentLoaded', function() {
         $.ajax({
             type: "POST",
             url: '/' + lang + '/contract/validate/trader-sales/',
-            data: $(this).serialize(),
+            data: $form.serialize(),
             dataType: 'json',
             success: function (result) {
-                console.log(result);
-                if (('success' in result) && result['success'] == false)
-                    $('#modal_error').modal('toggle');
-                return true;
+                if (('success' in result) && result['success'] == false) {
+                    $('#modal_trader_sales_error').modal('toggle');
+                    return false;
+                }
+                $('form[name="trader_sales"]').submit();
             }
         });
-        return false;
     });
 
     
