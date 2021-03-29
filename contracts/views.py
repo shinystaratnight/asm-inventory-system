@@ -42,7 +42,14 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
                 'id': self.request.POST.get('product_sender_id'),
                 'expected_arrival_date': self.request.POST.get('product_sender_expected_arrival_date')
             }
-            product_sender_form = SenderForm(product_sender)
+            product_sender_form = SenderForm(product_sender, type='P', contract_id=contract.id)
+            product_sender_form.save()
+            document_sender = {
+                'id': self.request.POST.get('document_sender_id'),
+                'expected_arrival_date': self.request.POST.get('document_sender_expected_arrival_date')
+            }
+            document_sender_form = SenderForm(document_sender, type='D', contract_id=contract.id)
+            document_sender_form.save()
         return render(request, self.template_name, self.get_context_data(**kwargs))
     
     def get_context_data(self, **kwargs):

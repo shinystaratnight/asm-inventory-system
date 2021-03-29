@@ -38,10 +38,26 @@ class DocumentForm(forms.Form):
         if kwargs.get('contract_id', None):
             self.contract_id = kwargs.pop('contract_id')
         super().__init__(*args, **kwargs)
+    
+    def save(self):
+        contract = TraderSalesContract.objects.get(id=self.contract_id)
+        document = Document.objects.get(id=self.cleaned_data.get('id'))
+        data = {
+            'quantity': self.cleaned_data.get('quantity'),
+            'price': self.cleaned_data.get('price'),
+            'document': document,
+            'content_object': contract,
+        }
+        TraderSalesDocument.objects.create(**data)
 
 
 class DocumentFeeForm(forms.Form):
-    pass
+    id = forms.CharField(widget=forms.HiddenInput(attrs={'autocomplete': 'off'}))
+
+    def __init__(self, *args, **kwargs):
+        if kwargs.get('contract_id', None):
+            self.contract_id = kwargs.pop('contract_id')
+        super().__init__(*args, **kwargs)
 
 
 class ItemValidationFormSet(BaseFormSet):
@@ -71,6 +87,7 @@ ProductFormSet = formset_factory(ProductForm, formset=ItemValidationFormSet, ext
 DocumentFormSet = formset_factory(DocumentForm, formset=ItemValidationFormSet, extra=0)
 # End of Common Forms
 
+
 #===================================#
 # Trader Sales Forms
 class TraderSalesContractForm(forms.Form):
@@ -96,4 +113,16 @@ class TraderSalesContractForm(forms.Form):
 class SenderForm(forms.Form):
     id = forms.IntegerField()
     expected_arrival_date = forms.DateField()
+
+    def __init__(self, *args, **kwargs):
+        if kwargs.get('type', None):
+            self.type = kwargs.pop('type')
+            print(self.type)
+        if kwargs.get('contract_id', None):
+            self.contract_id = kwargs.pop('contract_id')
+            print(self.contract_id)
+        super().__init__(*args, **kwargs)
+    
+    def save(self):
+        pass
 # End of Trader Sales Forms
