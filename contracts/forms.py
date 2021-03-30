@@ -62,7 +62,6 @@ class DocumentForm(forms.Form):
 
 class DocumentFeeForm(forms.Form):
     id = forms.CharField(widget=forms.HiddenInput(attrs={'autocomplete': 'off'}))
-    type = forms.ChoiceField(widget=forms.Select(attrs={'class': 'selectbox'}), choices=TYPE_CHOICES)
     number_of_models = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     number_of_units = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
 

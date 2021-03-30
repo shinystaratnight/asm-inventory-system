@@ -53,7 +53,7 @@ class Document(models.Model):
 
 
 class DocumentFee(models.Model):
-    type = models.CharField(max_length=1, choices=TYPE_CHOICES)
+    type = models.CharField(max_length=1, choices=TYPE_CHOICES, default='P')
     model_price = models.IntegerField()
     unit_price = models.IntegerField()
     application_fee = models.IntegerField(default=30000)
