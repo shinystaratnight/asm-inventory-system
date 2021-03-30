@@ -1,11 +1,12 @@
 import django_filters
+from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
 from .models import Customer
 
 
 class CustomerFilter(django_filters.FilterSet):
-    keyword = django_filters.CharFilter(method='filter_by_keyword')
+    keyword = django_filters.CharFilter(method='filter_by_keyword', widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Customer
