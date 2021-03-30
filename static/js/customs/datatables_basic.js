@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // Basic datatable
-    $('.datatable-basic').DataTable();
+    $('.datatable-basic').DataTable({searching: false, paging: false, info: false});
 
 
     // External table additions
