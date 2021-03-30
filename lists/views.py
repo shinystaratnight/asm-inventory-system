@@ -1,17 +1,27 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.views.generic.list import ListView
+from users.views import AdminLoginRequiredMixin
+from contracts.models import *
 
-@login_required(login_url='login')
-def sales(request):
-    context = {}
-    return render(request, 'lists/sales.html', context)
 
-@login_required(login_url='login')
-def purchases(request):
-    context = {}
-    return render(request, 'lists/purchases.html', context)
+class SalesListView(AdminLoginRequiredMixin, ListView):
+    template_name = 'lists/sales.html'
+    context_object_name = 'products'
 
-@login_required(login_url='login')
-def inventory(request):
-    context = {}
-    return render(request, 'lists/inventory.html', context)
+    def get_queryset(self):
+        return ContractProduct.objects.all()
+
+
+class PurchasesListView(AdminLoginRequiredMixin, ListView):
+    template_name = 'lists/purchases.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        return ContractProduct.objects.all()
+
+
+class InventoryListView(AdminLoginRequiredMixin, ListView):
+    template_name = 'lists/inventory.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        return ContractProduct.objects.all()

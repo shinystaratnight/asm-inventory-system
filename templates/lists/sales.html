@@ -113,84 +113,20 @@
 						</thead>
 
 						<tbody>
+							{% for product in products %}
 							<tr>
-								<td>0000000001</td>
-								<td>2021/03/15</td>
-								<td>アイエス販売</td>
-								<td>バーラー５力ラット</td>
-								<td>金昇志</td>
-								<td>2021/04/15</td>
-								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
-								<td>2</td>
-								<td>2,000</td>
+								<td>{{ product.contract.contract_id }}</td>
+								<td>{{ product.contract.created_at }}</td>
+								<td>{{ product.contract.customer.name }}</td>
+								<td></td>
+								<td>{{ product.contract.person_in_charge }}</td>
+								<td>{{ product.contract.contract.payment_due_date }}</td>
+								<td>{{ product.product.name }}</td>
+								<td>{{ product.quantity }}</td>
+								<td>{{ product.price }}</td>
 								<td>未</td>
 							</tr>
-
-							<tr>
-								<td>0000000002</td>
-								<td>2021/03/15</td>
-								<td>アイエス販売</td>
-								<td>バーラー５力ラット</td>
-								<td>金昇志</td>
-								<td>2021/04/15</td>
-								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
-								<td>2</td>
-								<td>2,000</td>
-								<td>未</td>
-							</tr>
-
-							<tr>
-								<td>0000000013</td>
-								<td>2021/03/15</td>
-								<td>アイエス販売</td>
-								<td>バーラー５力ラット</td>
-								<td>金昇志</td>
-								<td>2021/04/15</td>
-								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
-								<td>2</td>
-								<td>2,000</td>
-								<td>未</td>
-							</tr>
-
-							<tr>
-								<td>0000000018</td>
-								<td>2021/03/15</td>
-								<td>アイエス販売</td>
-								<td>バーラー５力ラット</td>
-								<td>金昇志</td>
-								<td>2021/04/15</td>
-								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
-								<td>2</td>
-								<td>2,000</td>
-								<td>未</td>
-							</tr>
-
-							<tr>
-								<td>0000000021</td>
-								<td>2021/03/15</td>
-								<td>アイエス販売</td>
-								<td>バーラー５力ラット</td>
-								<td>金昇志</td>
-								<td>2021/04/15</td>
-								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
-								<td>2</td>
-								<td>2,000</td>
-								<td>済</td>
-							</tr>
-
-							<tr>
-								<td>0000000022</td>
-								<td>2021/03/15</td>
-								<td>アイエス販売</td>
-								<td>バーラー５力ラット</td>
-								<td>金昇志</td>
-								<td>2021/04/15</td>
-								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
-								<td>2</td>
-								<td>2,000</td>
-								<td>済</td>
-							</tr>
-							
+							{% endfor %}
 						</tbody>
 					</table>
 				</div>

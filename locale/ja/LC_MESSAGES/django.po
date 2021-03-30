@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-30 08:08+0000\n"
+"POT-Creation-Date: 2021-03-30 08:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,25 +36,25 @@ msgid "* Blank"
 msgstr "* 空白"
 
 #: contracts/models.py:15 templates/contracts/hall_purchases.html:655
-#: templates/contracts/hall_sales.html:654
+#: templates/contracts/hall_sales.html:655
 #: templates/contracts/trader_sales.html:532
 msgid "Transfer"
 msgstr "振込"
 
 #: contracts/models.py:16 templates/contracts/hall_purchases.html:656
-#: templates/contracts/hall_sales.html:655
+#: templates/contracts/hall_sales.html:656
 #: templates/contracts/trader_sales.html:533
 msgid "Check"
 msgstr "小切手"
 
 #: contracts/models.py:17 templates/contracts/hall_purchases.html:657
-#: templates/contracts/hall_sales.html:656
+#: templates/contracts/hall_sales.html:657
 #: templates/contracts/trader_sales.html:534
 msgid "Bill"
 msgstr "手形"
 
 #: contracts/models.py:18 templates/contracts/hall_purchases.html:658
-#: templates/contracts/hall_sales.html:657
+#: templates/contracts/hall_sales.html:658
 #: templates/contracts/trader_sales.html:535
 msgid "Cash"
 msgstr "現金"
@@ -275,7 +275,7 @@ msgstr "機種名で検索してください"
 #: templates/contracts/hall_purchases.html:460
 #: templates/contracts/hall_sales.html:170
 #: templates/contracts/hall_sales.html:327
-#: templates/contracts/hall_sales.html:459
+#: templates/contracts/hall_sales.html:460
 #: templates/contracts/trader_purchases.html:190
 #: templates/contracts/trader_purchases.html:347
 #: templates/contracts/trader_sales.html:190
@@ -299,7 +299,7 @@ msgstr "機種名"
 #: templates/contracts/hall_purchases.html:181
 #: templates/contracts/hall_purchases.html:470
 #: templates/contracts/hall_sales.html:180
-#: templates/contracts/hall_sales.html:469
+#: templates/contracts/hall_sales.html:470
 #: templates/contracts/trader_purchases.html:200
 #: templates/contracts/trader_sales.html:200
 msgid "Product type"
@@ -332,7 +332,7 @@ msgstr "単価"
 #: templates/contracts/hall_purchases.html:473
 #: templates/contracts/hall_sales.html:183
 #: templates/contracts/hall_sales.html:339
-#: templates/contracts/hall_sales.html:472
+#: templates/contracts/hall_sales.html:473
 #: templates/contracts/trader_purchases.html:203
 #: templates/contracts/trader_purchases.html:359
 #: templates/contracts/trader_sales.html:203
@@ -376,29 +376,29 @@ msgstr "書類が追加されていません。"
 #: templates/contracts/hall_purchases.html:452
 #: templates/contracts/hall_purchases.html:481
 #: templates/contracts/hall_sales.html:451
-#: templates/contracts/hall_sales.html:480
+#: templates/contracts/hall_sales.html:481
 msgid "Document fee"
 msgstr "書類代"
 
 #: templates/contracts/hall_purchases.html:471
-#: templates/contracts/hall_sales.html:470
+#: templates/contracts/hall_sales.html:471
 msgid "Number of models"
 msgstr "機種数"
 
 #: templates/contracts/hall_purchases.html:472
-#: templates/contracts/hall_sales.html:471 templates/lists/inventory.html:105
+#: templates/contracts/hall_sales.html:472 templates/lists/inventory.html:105
 #: templates/lists/purchases.html:109 templates/lists/sales.html:109
 msgid "Number of units"
 msgstr "台数"
 
 #: templates/contracts/hall_purchases.html:524
-#: templates/contracts/hall_sales.html:523
+#: templates/contracts/hall_sales.html:524
 msgid "No document fee has been added."
 msgstr "書類代が追加されていません。"
 
 #: templates/contracts/hall_purchases.html:586
 #: templates/contracts/hall_purchases.html:739
-#: templates/contracts/hall_sales.html:585
+#: templates/contracts/hall_sales.html:586
 #: templates/contracts/trader_purchases.html:509
 #: templates/contracts/trader_purchases.html:589
 #: templates/contracts/trader_purchases.html:635
@@ -408,73 +408,73 @@ msgid "Remarks"
 msgstr "備考"
 
 #: templates/contracts/hall_purchases.html:595
-#: templates/contracts/hall_sales.html:594
+#: templates/contracts/hall_sales.html:595
 #: templates/contracts/trader_purchases.html:521
 #: templates/contracts/trader_sales.html:495
 msgid "Subtotal"
 msgstr "小計"
 
 #: templates/contracts/hall_purchases.html:599
-#: templates/contracts/hall_sales.html:598
+#: templates/contracts/hall_sales.html:599
 #: templates/contracts/trader_purchases.html:525
 #: templates/contracts/trader_sales.html:499
 msgid "Consumption tax"
 msgstr "消費税"
 
 #: templates/contracts/hall_purchases.html:607
-#: templates/contracts/hall_sales.html:606
+#: templates/contracts/hall_sales.html:607
 #: templates/contracts/trader_purchases.html:529
 #: templates/contracts/trader_sales.html:503
 msgid "Insurance fee"
 msgstr "保険代"
 
 #: templates/contracts/hall_purchases.html:607
-#: templates/contracts/hall_sales.html:606
+#: templates/contracts/hall_sales.html:607
 #: templates/contracts/trader_purchases.html:529
 #: templates/contracts/trader_sales.html:503
 msgid "No tax"
 msgstr "非課税"
 
 #: templates/contracts/hall_purchases.html:614
-#: templates/contracts/hall_sales.html:613
+#: templates/contracts/hall_sales.html:614
 msgid "Total amount"
 msgstr "合計"
 
 #: templates/contracts/hall_purchases.html:625
-#: templates/contracts/hall_sales.html:624
+#: templates/contracts/hall_sales.html:625
 msgid "We will charge you as follows."
 msgstr "下記の通りご請求申し上げます。"
 
 #: templates/contracts/hall_purchases.html:634
-#: templates/contracts/hall_sales.html:633
+#: templates/contracts/hall_sales.html:634
 msgid "Shipping date"
 msgstr "納品日"
 
 #: templates/contracts/hall_purchases.html:643
-#: templates/contracts/hall_sales.html:642
+#: templates/contracts/hall_sales.html:643
 msgid "Opening date"
 msgstr "開店日"
 
 #: templates/contracts/hall_purchases.html:653
-#: templates/contracts/hall_sales.html:652
+#: templates/contracts/hall_sales.html:653
 #: templates/contracts/trader_sales.html:530
 msgid "Payment method"
 msgstr "お支払方法"
 
 #: templates/contracts/hall_purchases.html:669
-#: templates/contracts/hall_sales.html:668
+#: templates/contracts/hall_sales.html:669
 msgid "Payment breakdown"
 msgstr "お支払内訳"
 
 #: templates/contracts/hall_purchases.html:713
-#: templates/contracts/hall_sales.html:716
+#: templates/contracts/hall_sales.html:717
 #: templates/contracts/trader_purchases.html:712
 #: templates/contracts/trader_sales.html:689
 msgid "Transfer account"
 msgstr "振込先口座"
 
 #: templates/contracts/hall_purchases.html:720
-#: templates/contracts/hall_sales.html:724
+#: templates/contracts/hall_sales.html:725
 #: templates/contracts/trader_purchases.html:170
 #: templates/contracts/trader_sales.html:170 templates/lists/purchases.html:106
 #: templates/lists/sales.html:106
@@ -482,19 +482,19 @@ msgid "Person in charge"
 msgstr "担当名"
 
 #: templates/contracts/hall_purchases.html:728
-#: templates/contracts/hall_sales.html:732
+#: templates/contracts/hall_sales.html:733
 msgid "Confirmor"
 msgstr "確認印"
 
 #: templates/contracts/hall_purchases.html:750
-#: templates/contracts/hall_sales.html:743
+#: templates/contracts/hall_sales.html:744
 #: templates/contracts/trader_purchases.html:778
 #: templates/contracts/trader_sales.html:708
 msgid "Create contract"
 msgstr "契約の作成"
 
 #: templates/contracts/hall_purchases.html:751
-#: templates/contracts/hall_sales.html:744
+#: templates/contracts/hall_sales.html:745
 #: templates/contracts/trader_purchases.html:779
 #: templates/contracts/trader_sales.html:709
 msgid "Create invoice"
@@ -505,7 +505,11 @@ msgstr "請求書の作成"
 msgid "Hall sales"
 msgstr "ホール売"
 
-#: templates/contracts/hall_sales.html:709
+#: templates/contracts/hall_sales.html:454
+msgid "Select document fee"
+msgstr "書類代を選択してください"
+
+#: templates/contracts/hall_sales.html:710
 msgid "Please bear the transfer fee at your expense."
 msgstr "お振込み手数料は貴社ご負担でお願いします。"
 
@@ -1314,17 +1318,17 @@ msgstr "あなたのメール"
 msgid "Reset password"
 msgstr "パスワードを再設定する"
 
-msgid "1st"
-msgstr "初回"
+#~ msgid "1st"
+#~ msgstr "初回"
 
-msgid "2nd"
-msgstr "2回"
+#~ msgid "2nd"
+#~ msgstr "2回"
 
-msgid "3rd"
-msgstr "3回"
+#~ msgid "3rd"
+#~ msgstr "3回"
 
-msgid "4th"
-msgstr "4回"
+#~ msgid "4th"
+#~ msgstr "4回"
 
-msgid "5th"
-msgstr "5回"
+#~ msgid "5th"
+#~ msgstr "5回"

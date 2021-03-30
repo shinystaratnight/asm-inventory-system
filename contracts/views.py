@@ -1,6 +1,5 @@
 import time
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.views.generic.base import TemplateView, View
 from django.http import JsonResponse
@@ -27,12 +26,20 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
         if contract_form.is_valid():
             contract = contract_form.save()
             
-        product_formset = ProductFormSet(self.request.POST, form_kwargs={'contract_id': contract.id}, prefix='product')
+        product_formset = ProductFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'TraderSalesContract'},
+            prefix='product'
+        )
         for form in product_formset.forms:
             if form.is_valid():
                 form.save()
 
-        document_formset = DocumentFormSet(self.request.POST, form_kwargs={'contract_id': contract.id}, prefix='document')
+        document_formset = DocumentFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'TraderSalesContract'},
+            prefix='document'
+        )
         for form in document_formset.forms:
             if form.is_valid():
                 form.save()
@@ -126,10 +133,61 @@ class ContractShippingLabelAjaxView(AdminLoginRequiredMixin, View):
         return JsonResponse({'success': False}, status=400)
 
 
-@login_required(login_url='login')
-def trader_purchases(request):
-    context = {}
-    return render(request, 'contracts/trader_purchases.html', context)
+class TraderPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
+    template_name = 'contracts/trader_purchases.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.get_context_data(**kwargs))
+
+    def post(self, request, *args, **kwargs):
+        contract_form = TraderPurchasesContractForm(self.request.POST)
+        if contract_form.is_valid():
+            contract = contract_form.save()
+            
+        product_formset = ProductFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'TraderPurchasesContract'},
+            prefix='product'
+        )
+        for form in product_formset.forms:
+            if form.is_valid():
+                form.save()
+
+        document_formset = DocumentFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'TraderPurchasesContract'},
+            prefix='document'
+        )
+        for form in document_formset.forms:
+            if form.is_valid():
+                form.save()
+        
+        shipping_method = contract_form.cleaned_data.get('shipping_method')
+        if shipping_method == 'R':
+            product_sender = {
+                'sender_id': self.request.POST.get('product_sender_id'),
+                'expected_arrival_date': self.request.POST.get('product_sender_expected_arrival_date')
+            }
+            product_sender_form = SalesSenderForm(product_sender, type='P', contract_id=contract.id)
+            if product_sender_form.is_valid():
+                product_sender_form.save()
+            document_sender = {
+                'sender_id': self.request.POST.get('document_sender_id'),
+                'expected_arrival_date': self.request.POST.get('document_sender_expected_arrival_date')
+            }
+            document_sender_form = SalesSenderForm(document_sender, type='D', contract_id=contract.id)
+            if document_sender_form.is_valid():
+                document_sender_form.save()
+        return render(request, self.template_name, self.get_context_data(**kwargs))
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['contract_id'] = generate_contract_id()
+        context['documents'] = Document.objects.all().values('id', 'name')
+        context['senders'] = Receiver.objects.all().values('id', 'name')
+        context['productformset'] = ProductFormSet(prefix='product')
+        context['documentformset'] = DocumentFormSet(prefix='document')
+        return context
 
 
 class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
@@ -143,12 +201,20 @@ class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
         if contract_form.is_valid():
             contract = contract_form.save()
             
-        product_formset = ProductFormSet(self.request.POST, form_kwargs={'contract_id': contract.id}, prefix='product')
+        product_formset = ProductFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'HallSalesContract'},
+            prefix='product'
+        )
         for form in product_formset.forms:
             if form.is_valid():
                 form.save()
 
-        document_formset = DocumentFormSet(self.request.POST, form_kwargs={'contract_id': contract.id}, prefix='document')
+        document_formset = DocumentFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'HallSalesContract'},
+            prefix='document'
+        )
         for form in document_formset.forms:
             if form.is_valid():
                 form.save()
@@ -178,16 +244,24 @@ class HallPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
         return render(request, self.template_name, self.get_context_data(**kwargs))
 
     def post(self, request, *args, **kwargs):
-        contract_form = HallSalesContractForm(self.request.POST)
+        contract_form = HallPurchasesContractForm(self.request.POST)
         if contract_form.is_valid():
             contract = contract_form.save()
             
-        product_formset = ProductFormSet(self.request.POST, form_kwargs={'contract_id': contract.id}, prefix='product')
+        product_formset = ProductFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'HallPurchasesContract'},
+            prefix='product'
+        )
         for form in product_formset.forms:
             if form.is_valid():
                 form.save()
 
-        document_formset = DocumentFormSet(self.request.POST, form_kwargs={'contract_id': contract.id}, prefix='document')
+        document_formset = DocumentFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'HallPurchasesContract'},
+            prefix='document'
+        )
         for form in document_formset.forms:
             if form.is_valid():
                 form.save()
@@ -227,10 +301,3 @@ class HallSalesValidateAjaxView(AdminLoginRequiredMixin, View):
                 return JsonResponse({'success': False}, status=200)
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'success': False}, status=400)
-
-
-@login_required(login_url='login')
-def hall_purchases(request):
-    context = {}
-    return render(request, 'contracts/hall_purchases.html', context)
-
