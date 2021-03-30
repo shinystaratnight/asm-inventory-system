@@ -331,6 +331,12 @@ select.selectbox.is_invalid+span.selectboxit-container > span.selectboxit {
 .payment-step-label {
     margin-top: 4rem !important;
 }
+form.master-search-form {
+    width: 100%;
+}
+form.master-search-form input {
+    width: 100%;
+}
 @media screen and (max-width: 768px) {
 	.panel .visible-elements {
         padding-top: 20px;
