@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.views.generic.base import View, TemplateView
+from django.views.generic.list import ListView
 from django.views.generic.edit import FormMixin, FormView
 from django.http import JsonResponse
 from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
 from .forms import *
+from .filters import *
 from .models import Customer, Receiver
 
 class MasterView(AdminLoginRequiredMixin, TemplateView, FormMixin):
@@ -25,9 +27,20 @@ class MasterView(AdminLoginRequiredMixin, TemplateView, FormMixin):
         return context
     
 
-class CustomerView(MasterView):
+class CustomerView(ListView):
     template_name = 'master_data/customers.html'
     form_class = CustomerForm
+    queryset = Customer.objects.all()
+    context_object_name = 'master_data'
+    paginate_by = 10
+    
+    def get_queryset(self):
+        return CustomerFilter(self.request.GET, queryset=self.queryset).qs.order_by('pk')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['customer_filter'] = CustomerFilter(self.request.GET)
+        return context
 
 
 class HallView(MasterView):

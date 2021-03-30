@@ -276,5 +276,5 @@ document.addEventListener('DOMContentLoaded', function() {
     $('form[name="hall_purchases"]').submit( function (e) {
         return false;
     });
-
+    
 });
