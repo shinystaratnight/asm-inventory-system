@@ -9,23 +9,6 @@ from .forms import *
 from .filters import *
 from .models import Customer, Receiver
 
-class MasterView(AdminLoginRequiredMixin, TemplateView, FormMixin):
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, self.get_context_data(**kwargs))
-
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        if form.is_valid():
-            form.save()
-        return render(request, self.template_name, self.get_context_data(**kwargs))
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        model = self.form_class.Meta.model
-        context['master_data'] = model.objects.all()
-        return context
-    
 
 class CustomerView(AdminLoginRequiredMixin, ListView):
     template_name = 'master_data/customers.html'

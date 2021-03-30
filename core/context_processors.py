@@ -8,5 +8,6 @@ def seller(request):
         'seller_fax': '06-6753-8078',
 
         'seller_payee_account': 'りそな銀行　船場支店（101）　普通　0530713　バッジオカブシキガイシャ',
-        'seller_reply_fax': '06-6753-8079'
+        'seller_reply_fax': '06-6753-8079',
+        'seller_p_sensor_number': '8240-2413-3628',
     }

@@ -5,6 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from masterdata.models import Product, TYPE_CHOICES
 from .models import *
 
+
 # Common Forms like Product, Document and Insurance Fee
 class ProductForm(forms.Form):
     id = forms.CharField(widget=forms.HiddenInput(attrs={'autocomplete': 'off'}))
