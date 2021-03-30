@@ -1,6 +1,7 @@
 import time
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.contenttypes.models import ContentType
 from django.views.generic.base import TemplateView, View
 from django.http import JsonResponse
 from django.db.models import Count
@@ -64,7 +65,7 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
         return context
 
 
-class TraderSalesValidateView(AdminLoginRequiredMixin, View):
+class TraderSalesValidateAjaxView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         if self.request.method == 'POST' and self.request.is_ajax():
             data = self.request.POST
@@ -99,6 +100,19 @@ class TraderSalesValidateView(AdminLoginRequiredMixin, View):
         return JsonResponse({'success': False}, status=400)
 
 
+class ContractManagerAjaxView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            contract = self.request.POST.get('contract')
+            content_type = ContentType.objects.get(model=contract)
+            contract_model = content_type.model_class()
+            people = contract_model.objects.values('person_in_charge').annotate(
+                people_count=Count('person_in_charge')
+            ).filter(people_count=1)
+            return JsonResponse({'people': list(people)}, status=200)
+        return JsonResponse({'success': False}, status=400)
+
+
 class ContractShippingLabelAjaxView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         if self.request.method == 'POST' and self.request.is_ajax():
@@ -112,25 +126,59 @@ class ContractShippingLabelAjaxView(AdminLoginRequiredMixin, View):
         return JsonResponse({'success': False}, status=400)
 
 
-class ContractManagerAjaxView(AdminLoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-        if self.request.method == 'GET' and self.request.is_ajax():
-            people = TraderSalesContract.objects.values('person_in_charge').annotate(
-                people_count=Count('person_in_charge')
-            ).filter(people_count=1)
-            return JsonResponse({'people': list(people)}, status=200)
-        return JsonResponse({'success': False}, status=400)
-
-
 @login_required(login_url='login')
 def trader_purchases(request):
     context = {}
     return render(request, 'contracts/trader_purchases.html', context)
 
-@login_required(login_url='login')
-def hall_sales(request):
-    context = {}
-    return render(request, 'contracts/hall_sales.html', context)
+
+class HallSalesContractView(AdminLoginRequiredMixin, View):
+    template_name = 'contracts/hall_sales.html'
+
+    def get(self, *args, **kwargs):
+        pass
+
+    def post(self, *args, **kwargs):
+        pass
+
+    def get_context_data(self, **kwargs):
+        pass
+
+
+class HallSalesValidateAjaxView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            data = self.request.POST
+            # Check if contract form is valid
+            contract_form = TraderSalesContractForm(data)
+            if not contract_form.is_valid():
+                return JsonResponse({'success': False}, status=200)
+            # Check the validity of product formset
+            product_formset = ProductFormSet(data, prefix='product')
+            if not product_formset.is_valid():
+                return JsonResponse({'success': False}, status=200)
+            document_formset = DocumentFormSet(data, prefix='document')
+            if not document_formset.is_valid():
+                return JsonResponse({'success': False}, status=200)
+            # If shipping method is receipt, senderform validation should be checked
+            if contract_form.cleaned_data.get('shipping_method') == 'R':
+                product_sender = {
+                    'sender_id': data.get('product_sender_id'),
+                    'expected_arrival_date': data.get('product_sender_expected_arrival_date')
+                }
+                document_sender = {
+                    'sender_id': data.get('document_sender_id'),
+                    'expected_arrival_date': data.get('document_sender_expected_arrival_date')
+                }
+                product_sender_form = SenderForm(product_sender)
+                document_sender_form = SenderForm(document_sender)
+                if product_sender_form.is_valid() and document_sender_form.is_valid():
+                    pass
+                else:
+                    return JsonResponse({'success': False}, status=200)
+            return JsonResponse({'success': True}, status=200)
+        return JsonResponse({'success': False}, status=400)
+
 
 @login_required(login_url='login')
 def hall_purchases(request):

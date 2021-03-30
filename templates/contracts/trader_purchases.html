@@ -788,6 +788,35 @@
 				</div>
 			</div>			
 
+			{% include "layout/modal.html" %}
+
+			<script>
+				$(document).ready(function () {
+					
+					$.ajax({
+						type: 'POST',
+						url: '/' + lang + '/contract/manager/',
+						data: {
+							'contract': 'TraderPurchasesContract'
+						},
+						beforeSend: function(request) {
+							request.setRequestHeader('X-CSRFToken', csrftoken);
+						},
+						success: function (result) {
+							var people = [];
+							var data = result.people;
+							var i = 0;
+							for (var i=0; i<data.length; i++) {
+								people.push(data[i].person_in_charge);
+							}
+							$('input[name="person_in_charge"]').autocomplete({
+								source: people
+							});
+						}
+					});
+				});
+			</script>
+
 		</div>
 		<!-- /content area -->
 
