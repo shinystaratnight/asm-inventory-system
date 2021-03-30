@@ -341,6 +341,9 @@ form.master-search-form input {
 .table-hover.border-top {
     border-color: #bbb !important;
 }
+.no-table-header+div.dataTables_wrapper .datatable-header {
+    display: none;
+}
 @media screen and (max-width: 768px) {
 	.panel .visible-elements {
         padding-top: 20px;
