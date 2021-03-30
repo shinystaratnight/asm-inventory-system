@@ -228,7 +228,6 @@ class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
         documentfee = lambda df: {'id': df.id, 'name': df.get_type_display()}
         documentfees = [documentfee(document) for document in DocumentFee.objects.all()]
         context['documentfees'] = documentfees
-        print(documentfees)
         context['productformset'] = ProductFormSet(prefix='product')
         context['documentformset'] = DocumentFormSet(prefix='document')
         context['documentfeeformset'] = DocumentFormSet(prefix='documentfee')
