@@ -101,11 +101,11 @@
 								<th>{% trans "Control number" %}</th>
 								<th>{% trans "Purchases date" %}</th>
 								<th>{% trans "Supplier" %}</th>
-								<th>{% trans "In charge" %}</th>
+								<th>{% trans "Person in charge" %}</th>
 								<th>{% trans "Number of units" %}</th>
 								<th>{% trans "Price" %}</th>
 								<th>{% trans "Stock" %}</th>
-								<th>{% trans "Total Price" %}</th>
+								<th>{% trans "Total price" %}</th>
 							</tr>
 						</thead>
 
@@ -191,7 +191,10 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="my-5-s text-center">
-							<button type="button" class="btn btn-primary"><i class="icon-exit3 position-left"></i>{% trans "Export To CSV" %}</button>
+							<form action="" method="post">
+								{% csrf_token %}
+								<button type="submit" class="btn btn-primary"><i class="icon-exit3 position-left"></i>{% trans "Export To CSV" %}</button>
+							</form>
 						</div>
 					</div>
 				</div>
