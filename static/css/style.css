@@ -206,6 +206,9 @@
 .h-180-px {
     height: 180px !important;
 }
+.h-197-px {
+    height: 197px !important;
+}
 .h-200-px {
     height: 200px !important;
 }
@@ -318,6 +321,9 @@ select.selectbox.is_invalid+span.selectboxit-container > span.selectboxit {
 }
 .table-product thead tr th, .table-document thead tr th {
     border-top: 1px solid #ddd !important;
+}
+.seal-wrapper .buyer-company {
+    min-height: 29px;
 }
 @media screen and (max-width: 768px) {
 	.panel .visible-elements {
