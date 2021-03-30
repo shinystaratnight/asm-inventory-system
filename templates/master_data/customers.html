@@ -185,6 +185,7 @@
 				// Pagination customization
 				$('#pagination').twbsPagination({
 					totalPages: "{{ page_obj.paginator.num_pages }}",
+					startPage: "{{ page_obj.number }}",
 					visiblePages: 5,
 					hideOnlyOnePage:true,
 					first:'&laquo;',
@@ -195,13 +196,11 @@
 					var url = location.href;
 					var urlRegex = RegExp('page=\\d+', 'g');
 					if (urlRegex.test(url)) {
-						url.replace(urlRegex, `page=${page}`);
+						url = url.replace(urlRegex, `page=${page}`);
 					} else {
 						url += `?page=${page}`;
 					}
-					console.log(url);
-					console.log(location.href);
-					// location.href = "{% url 'masterdata:customer' %}";
+					location.href = url;
 				});
 			});
 		</script>
