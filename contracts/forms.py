@@ -7,7 +7,7 @@ from .models import *
 # Common Forms like Product, Document and Insurance Fee
 class ProductForm(forms.Form):
     id = forms.CharField(widget=forms.HiddenInput(attrs={'autocomplete': 'off'}))
-    type = forms.ChoiceField(widget=forms.Select(attrs={'class': 'selectbox'}), choices = PRODUCT_TYPE_CHOICES)
+    type = forms.ChoiceField(widget=forms.Select(attrs={'class': 'selectbox'}), choices=PRODUCT_TYPE_CHOICES)
     quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     price = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
 
@@ -26,7 +26,7 @@ class ProductForm(forms.Form):
             'product': product,
             'content_object': contract,
         }
-        TraderSalesProduct.objects.create(**data)
+        ContractProduct.objects.create(**data)
 
 
 class DocumentForm(forms.Form):
@@ -48,16 +48,29 @@ class DocumentForm(forms.Form):
             'document': document,
             'content_object': contract,
         }
-        TraderSalesDocument.objects.create(**data)
+        ContractDocument.objects.create(**data)
 
 
 class DocumentFeeForm(forms.Form):
     id = forms.CharField(widget=forms.HiddenInput(attrs={'autocomplete': 'off'}))
+    type = forms.ChoiceField(widget=forms.Select(attrs={'class': 'selectbox'}), choices=MODEL_TYPE_CHOICES)
+    number_of_models = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    number_of_units = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+
 
     def __init__(self, *args, **kwargs):
         if kwargs.get('contract_id', None):
             self.contract_id = kwargs.pop('contract_id')
         super().__init__(*args, **kwargs)
+    
+    def save(self):
+        contract = TraderSalesContract.objects.get(id=self.contract_id)
+        data = {
+            'number_of_models': self.cleaned_data.get('number_of_models'),
+            'number_of_units': self.cleaned_data.get('number_of_units'),
+            'content_object': contract,
+        }
+        ContractDocumentFee.objects.create(**data)
 
 
 class ItemValidationFormSet(BaseFormSet):

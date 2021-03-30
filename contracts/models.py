@@ -25,7 +25,18 @@ PRODUCT_TYPE_CHOICES = (
     ('N', _('Nail sheet')),
 )
 
-class TraderSalesProduct(models.Model):
+MODEL_TYPE_CHOICES = (
+    ('P', _('Pachinko')),
+    ('S', _('Slot')),
+)
+
+ITEM_CHOICES = (
+    ('P', _('Product')),
+    ('D', _('Document'))
+)
+
+
+class ContractProduct(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     type = models.CharField(max_length=1, choices=PRODUCT_TYPE_CHOICES)
     quantity = models.PositiveIntegerField()
@@ -35,10 +46,27 @@ class TraderSalesProduct(models.Model):
     content_object = GenericForeignKey('content_type', 'object_id')
 
 
-class TraderSalesDocument(models.Model):
+class ContractDocument(models.Model):
     document = models.ForeignKey(Document, on_delete=models.SET_NULL, null=True)
     quantity = models.PositiveIntegerField()
     price = models.PositiveIntegerField()
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+
+class ContractDocumentFee(models.Model):
+    type = models.CharField(max_length=1, choices=MODEL_TYPE_CHOICES)
+    number_of_models = models.IntegerField()
+    number_of_units = models.IntegerField()
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+
+class Milestone(models.Model):
+    date = models.DateField()
+    amount = models.IntegerField()
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
@@ -57,8 +85,8 @@ class TraderSalesContract(models.Model):
     insurance_fee = models.IntegerField()
     updated_at = models.DateField()
     created_at = models.DateField()
-    products = GenericRelation(TraderSalesProduct, related_query_name='contract')
-    documents = GenericRelation(TraderSalesDocument, related_query_name='contract')
+    products = GenericRelation(ContractProduct, related_query_name='contract')
+    documents = GenericRelation(ContractDocument, related_query_name='contract')
 
     @property
     def sub_total(self):
@@ -77,10 +105,25 @@ class TraderSalesContract(models.Model):
         return self.total
 
 
-ITEM_CHOICES = (
-    ('P', _('Product')),
-    ('D', _('Document'))
-)
+class HallSalesContract(models.Model):
+    contract_id = models.CharField(max_length=200)
+    customer = models.ForeignKey(Customer, related_name='hall_sales_contracts', on_delete=models.CASCADE)
+    hall = models.ForeignKey(Hall, related_name='hall_sales_contracts', on_delete=models.CASCADE)
+    remarks = models.TextField(null=True, blank=True)
+    insurance_fee_include = models.BooleanField(default=True)
+    insurance_fee = models.IntegerField()
+    shipping_date = models.DateField()
+    opening_date = models.DateField()
+    payment_method = models.CharField(max_length=2, choices=PAYMENT_METHOD_CHOICES)
+    transfer_account = models.CharField(max_length=255)
+    person_in_charge = models.CharField(max_length=200)
+    confirmor = models.CharField(max_length=200)
+    created_at = models.DateField()
+    products = GenericRelation(ContractProduct, related_query_name='contract')
+    documents = GenericRelation(ContractDocument, related_query_name='contract')
+    document_fees = GenericRelation(ContractDocumentFee, related_query_name='contract')
+    milestones = GenericRelation(Milestone, related_query_name='contract')
+
 
 class SaleSender(models.Model):
     contract = models.ForeignKey(TraderSalesContract, on_delete=models.CASCADE, related_name='senders')
