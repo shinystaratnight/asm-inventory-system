@@ -4,7 +4,7 @@ from .views import *
 app_name = 'contract'
 urlpatterns = [
     path('trader-sales/', TraderSalesContractView.as_view(), name='trader-sales'),
-    path('trader-purchases/', trader_purchases, name='trader-purchases'),
+    path('trader-purchases/', TraderPurchasesContractView.as_view(), name='trader-purchases'),
     path('hall-sales/', HallSalesContractView.as_view(), name='hall-sales'),
     path('hall-purchases/', HallPurchasesContractView.as_view(), name='hall-purchases'),
 

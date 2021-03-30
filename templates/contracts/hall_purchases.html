@@ -452,6 +452,7 @@
 												<label class="control-label col-2 mt-auto">{% trans "Document fee" %}</label>
 												<div class="col-lg-8">
 													<select name="select-document-fee" class="selectbox select-document-fee">
+														<option value="">{% trans 'Select document fee' %}...</option>
 														{% for documentfee in documentfees %}
 														<option value="{{ documentfee.id }}">{{ documentfee.name }}</option>
 														{% endfor %}
