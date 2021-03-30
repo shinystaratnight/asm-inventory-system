@@ -50,3 +50,11 @@ class Document(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class DocumentFee(models.Model):
+    type = models.CharField(max_length=1, choices=TYPE_CHOICES)
+    model_price = models.IntegerField()
+    unit_price = models.IntegerField()
+    application_fee = models.IntegerField(default=30000)
+   

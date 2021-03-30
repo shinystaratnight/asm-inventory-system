@@ -688,14 +688,16 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon">{% trans "Payment method" %}</span>
-												<select name="select" class="selectbox">
-													<option value="transfer">{% trans "Transfer" %}</option>
-													<option value="check">{% trans "Check" %}</option>
-													<option value="bill">{% trans "Bill" %}</option>
-													<option value="cash">{% trans "Cash" %}</option>
-												</select>
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon">{% trans "Payment method" %}</span>
+													<select name="payment_method" class="selectbox">
+														<option value="TR">{% trans "Transfer" %}</option>
+														<option value="CH">{% trans "Check" %}</option>
+														<option value="BL">{% trans "Bill" %}</option>
+														<option value="CA">{% trans "Cash" %}</option>
+													</select>
+												</div>
 											</div>
 										</div>
 									</div>

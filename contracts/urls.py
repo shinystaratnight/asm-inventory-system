@@ -5,7 +5,7 @@ app_name = 'contract'
 urlpatterns = [
     path('trader-sales/', TraderSalesContractView.as_view(), name='trader-sales'),
     path('trader-purchases/', trader_purchases, name='trader-purchases'),
-    path('hall-sales/', HallSalesContractView, name='hall-sales'),
+    path('hall-sales/', HallSalesContractView.as_view(), name='hall-sales'),
     path('hall-purchases/', hall_purchases, name='hall-purchases'),
 
     path('validate/trader-sales/', TraderSalesValidateAjaxView.as_view(), name='trader-sales-validate'),

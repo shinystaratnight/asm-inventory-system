@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
 from django.utils.translation import gettext_lazy as _
-from masterdata.models import Customer, Receiver, Hall, Product, Document
+from masterdata.models import Customer, Receiver, Hall, Product, Document, DocumentFee
 
 SHIPPING_METHOD_CHOICES = (
     ('D', _('Delivery')),
@@ -23,11 +23,6 @@ PRODUCT_TYPE_CHOICES = (
     ('F', _('Frame')),
     ('C', _('Cell')),
     ('N', _('Nail sheet')),
-)
-
-MODEL_TYPE_CHOICES = (
-    ('P', _('Pachinko')),
-    ('S', _('Slot')),
 )
 
 ITEM_CHOICES = (
@@ -56,7 +51,7 @@ class ContractDocument(models.Model):
 
 
 class ContractDocumentFee(models.Model):
-    type = models.CharField(max_length=1, choices=MODEL_TYPE_CHOICES)
+    document_fee = models.ForeignKey(DocumentFee, on_delete=models.SET_NULL, null=True)
     number_of_models = models.IntegerField()
     number_of_units = models.IntegerField()
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)

@@ -1,7 +1,8 @@
 from django import forms
 from django.forms import formset_factory, BaseFormSet
 from django.core.exceptions import ValidationError
-from masterdata.models import Product
+from django.contrib.contenttypes.models import ContentType
+from masterdata.models import Product, TYPE_CHOICES
 from .models import *
 
 # Common Forms like Product, Document and Insurance Fee
@@ -14,10 +15,14 @@ class ProductForm(forms.Form):
     def __init__(self, *args, **kwargs):
         if kwargs.get('contract_id', None):
             self.contract_id = kwargs.pop('contract_id')
+        if kwargs.get('contract_class', None):
+            self.contract_class = kwargs.pop('contract_class')
         super().__init__(*args, **kwargs)
     
     def save(self):
-        contract = TraderSalesContract.objects.get(id=self.contract_id)
+        contract_class_name = ContentType.objects.get(model=self.contract_class)
+        contract_class = contract_class_name.model_class()
+        contract = contract_class.objects.get(id=self.contract_id)
         product = Product.objects.get(id=self.cleaned_data.get('id'))
         data = {
             'type': self.cleaned_data.get('type'),
@@ -37,10 +42,14 @@ class DocumentForm(forms.Form):
     def __init__(self, *args, **kwargs):
         if kwargs.get('contract_id', None):
             self.contract_id = kwargs.pop('contract_id')
+        if kwargs.get('contract_class', None):
+            self.contract_class = kwargs.pop('contract_class')
         super().__init__(*args, **kwargs)
     
     def save(self):
-        contract = TraderSalesContract.objects.get(id=self.contract_id)
+        contract_class_name = ContentType.objects.get(model=self.contract_class)
+        contract_class = contract_class_name.model_class()
+        contract = contract_class.objects.get(id=self.contract_id)
         document = Document.objects.get(id=self.cleaned_data.get('id'))
         data = {
             'quantity': self.cleaned_data.get('quantity'),
@@ -53,18 +62,21 @@ class DocumentForm(forms.Form):
 
 class DocumentFeeForm(forms.Form):
     id = forms.CharField(widget=forms.HiddenInput(attrs={'autocomplete': 'off'}))
-    type = forms.ChoiceField(widget=forms.Select(attrs={'class': 'selectbox'}), choices=MODEL_TYPE_CHOICES)
+    type = forms.ChoiceField(widget=forms.Select(attrs={'class': 'selectbox'}), choices=TYPE_CHOICES)
     number_of_models = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     number_of_units = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
-
 
     def __init__(self, *args, **kwargs):
         if kwargs.get('contract_id', None):
             self.contract_id = kwargs.pop('contract_id')
+        if kwargs.get('contract_class', None):
+            self.contract_class = kwargs.pop('contract_class')
         super().__init__(*args, **kwargs)
     
     def save(self):
-        contract = TraderSalesContract.objects.get(id=self.contract_id)
+        contract_class_name = ContentType.objects.get(model=self.contract_class)
+        contract_class = contract_class_name.model_class()
+        contract = contract_class.objects.get(id=self.contract_id)
         data = {
             'number_of_models': self.cleaned_data.get('number_of_models'),
             'number_of_units': self.cleaned_data.get('number_of_units'),
@@ -96,8 +108,24 @@ class ItemValidationFormSet(BaseFormSet):
             return {'contract_id': contract_id}
         return {}
 
+
+class DocumentFeeValidationFormSet(BaseFormSet):
+    def clean(self):
+        if any(self.errors):
+            return
+        # Add here our validation
+    
+    def get_form_kwargs(self, index):
+        kwargs = super().get_form_kwargs(index)
+        contract_id = kwargs.get('contract_id', None)
+        if contract_id:
+            return {'contract_id': contract_id}
+        return {}
+
+
 ProductFormSet = formset_factory(ProductForm, formset=ItemValidationFormSet, extra=0)
 DocumentFormSet = formset_factory(DocumentForm, formset=ItemValidationFormSet, extra=0)
+DocumentFeeFormSet = formset_factory(DocumentFeeForm, formset=DocumentFeeValidationFormSet, extra=0)
 # End of Common Forms
 
 
@@ -123,7 +151,7 @@ class TraderSalesContractForm(forms.Form):
         return TraderSalesContract.objects.create(**contract_data)
 
 
-class SenderForm(forms.Form):
+class SalesSenderForm(forms.Form):
     sender_id = forms.IntegerField()
     expected_arrival_date = forms.DateField()
 
@@ -142,5 +170,30 @@ class SenderForm(forms.Form):
             'expected_arrival_date': self.cleaned_data.get('expected_arrival_date'),
         }
         SaleSender.objects.create(**data)
+
+
+class PurchasesSenderForm(forms.Form):
+    sender_id = forms.IntegerField()
+    desired_arrival_date = forms.DateField()
+    shipping_company = forms.CharField()
+    remarks = forms.CharField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        if kwargs.get('type', None):
+            self.type = kwargs.pop('type')
+        if kwargs.get('contract_id', None):
+            self.contract_id = kwargs.pop('contract_id')
+        super().__init__(*args, **kwargs)
+    
+    def save(self):
+        data = {
+            'contract': TraderPurchasesContract.objects.get(id=self.contract_id),
+            'type': self.type,
+            'sender': Receiver.objects.get(id=self.cleaned_data.get('sender_id')),
+            'desired_arrival_date': self.cleaned_data.get('desired_arrival_date'),
+            'shipping_company': self.cleaned_data.get('shipping_company'),
+            'remarks': self.cleaned_data.get('remarks'),
+        }
+        PurchaseSender.objects.create(**data)
 
 # End of Trader Sales Forms

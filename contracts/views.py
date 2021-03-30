@@ -43,14 +43,14 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
                 'sender_id': self.request.POST.get('product_sender_id'),
                 'expected_arrival_date': self.request.POST.get('product_sender_expected_arrival_date')
             }
-            product_sender_form = SenderForm(product_sender, type='P', contract_id=contract.id)
+            product_sender_form = SalesSenderForm(product_sender, type='P', contract_id=contract.id)
             if product_sender_form.is_valid():
                 product_sender_form.save()
             document_sender = {
                 'sender_id': self.request.POST.get('document_sender_id'),
                 'expected_arrival_date': self.request.POST.get('document_sender_expected_arrival_date')
             }
-            document_sender_form = SenderForm(document_sender, type='D', contract_id=contract.id)
+            document_sender_form = SalesSenderForm(document_sender, type='D', contract_id=contract.id)
             if document_sender_form.is_valid():
                 document_sender_form.save()
         return render(request, self.template_name, self.get_context_data(**kwargs))
@@ -80,7 +80,7 @@ class TraderSalesValidateAjaxView(AdminLoginRequiredMixin, View):
             document_formset = DocumentFormSet(data, prefix='document')
             if not document_formset.is_valid():
                 return JsonResponse({'success': False}, status=200)
-            # If shipping method is receipt, senderform validation should be checked
+            # If shipping method is receipt, salessenderform validation should be checked
             if contract_form.cleaned_data.get('shipping_method') == 'R':
                 product_sender = {
                     'sender_id': data.get('product_sender_id'),
@@ -90,8 +90,8 @@ class TraderSalesValidateAjaxView(AdminLoginRequiredMixin, View):
                     'sender_id': data.get('document_sender_id'),
                     'expected_arrival_date': data.get('document_sender_expected_arrival_date')
                 }
-                product_sender_form = SenderForm(product_sender)
-                document_sender_form = SenderForm(document_sender)
+                product_sender_form = SalesSenderForm(product_sender)
+                document_sender_form = SalesSenderForm(document_sender)
                 if product_sender_form.is_valid() and document_sender_form.is_valid():
                     pass
                 else:
@@ -132,17 +132,37 @@ def trader_purchases(request):
     return render(request, 'contracts/trader_purchases.html', context)
 
 
-class HallSalesContractView(AdminLoginRequiredMixin, View):
+class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
     template_name = 'contracts/hall_sales.html'
 
-    def get(self, *args, **kwargs):
-        pass
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.get_context_data(**kwargs))
 
-    def post(self, *args, **kwargs):
-        pass
+    def post(self, request, *args, **kwargs):
+        contract_form = HallSalesContractForm(self.request.POST)
+        if contract_form.is_valid():
+            contract = contract_form.save()
+            
+        product_formset = ProductFormSet(self.request.POST, form_kwargs={'contract_id': contract.id}, prefix='product')
+        for form in product_formset.forms:
+            if form.is_valid():
+                form.save()
+
+        document_formset = DocumentFormSet(self.request.POST, form_kwargs={'contract_id': contract.id}, prefix='document')
+        for form in document_formset.forms:
+            if form.is_valid():
+                form.save()
+        
+        return render(request, self.template_name, self.get_context_data(**kwargs))
 
     def get_context_data(self, **kwargs):
-        pass
+        context = super().get_context_data(**kwargs)
+        context['contract_id'] = generate_contract_id()
+        context['documents'] = Document.objects.all().values('id', 'name')
+        context['productformset'] = ProductFormSet(prefix='product')
+        context['documentformset'] = DocumentFormSet(prefix='document')
+        context['documentfeeformset'] = DocumentFormSet(prefix='documentfee')
+        return context
 
 
 class HallSalesValidateAjaxView(AdminLoginRequiredMixin, View):
@@ -160,22 +180,6 @@ class HallSalesValidateAjaxView(AdminLoginRequiredMixin, View):
             document_formset = DocumentFormSet(data, prefix='document')
             if not document_formset.is_valid():
                 return JsonResponse({'success': False}, status=200)
-            # If shipping method is receipt, senderform validation should be checked
-            if contract_form.cleaned_data.get('shipping_method') == 'R':
-                product_sender = {
-                    'sender_id': data.get('product_sender_id'),
-                    'expected_arrival_date': data.get('product_sender_expected_arrival_date')
-                }
-                document_sender = {
-                    'sender_id': data.get('document_sender_id'),
-                    'expected_arrival_date': data.get('document_sender_expected_arrival_date')
-                }
-                product_sender_form = SenderForm(product_sender)
-                document_sender_form = SenderForm(document_sender)
-                if product_sender_form.is_valid() and document_sender_form.is_valid():
-                    pass
-                else:
-                    return JsonResponse({'success': False}, status=200)
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'success': False}, status=400)
 
