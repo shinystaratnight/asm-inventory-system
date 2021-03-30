@@ -328,6 +328,9 @@ select.selectbox.is_invalid+span.selectboxit-container > span.selectboxit {
 .panel .panel-title-wrapper {
     padding-top: 3rem !important;
 }
+.payment-step-label {
+    margin-top: 3rem !important;
+}
 @media screen and (max-width: 768px) {
 	.panel .visible-elements {
         padding-top: 20px;
