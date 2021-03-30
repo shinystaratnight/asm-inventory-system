@@ -159,9 +159,54 @@ class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['contract_id'] = generate_contract_id()
         context['documents'] = Document.objects.all().values('id', 'name')
+        documentfee = lambda df: {'id': df.id, 'name': df.get_type_display()}
+        documentfees = [documentfee(document) for document in DocumentFee.objects.all()]
+        context['documentfees'] = documentfees
+        print(documentfees)
         context['productformset'] = ProductFormSet(prefix='product')
         context['documentformset'] = DocumentFormSet(prefix='document')
         context['documentfeeformset'] = DocumentFormSet(prefix='documentfee')
+        MilestoneFormSet = formset_factory(MilestoneForm, formset=MilestoneValidationFormSet, extra=5)
+        context['milestoneformset'] = MilestoneFormSet(prefix='milestone')
+        return context
+
+
+class HallPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
+    template_name = 'contracts/hall_purchases.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.get_context_data(**kwargs))
+
+    def post(self, request, *args, **kwargs):
+        contract_form = HallSalesContractForm(self.request.POST)
+        if contract_form.is_valid():
+            contract = contract_form.save()
+            
+        product_formset = ProductFormSet(self.request.POST, form_kwargs={'contract_id': contract.id}, prefix='product')
+        for form in product_formset.forms:
+            if form.is_valid():
+                form.save()
+
+        document_formset = DocumentFormSet(self.request.POST, form_kwargs={'contract_id': contract.id}, prefix='document')
+        for form in document_formset.forms:
+            if form.is_valid():
+                form.save()
+        
+        return render(request, self.template_name, self.get_context_data(**kwargs))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['contract_id'] = generate_contract_id()
+        context['documents'] = Document.objects.all().values('id', 'name')
+        documentfee = lambda df: {'id': df.id, 'name': df.get_type_display()}
+        documentfees = [documentfee(document) for document in DocumentFee.objects.all()]
+        context['documentfees'] = documentfees
+        print(documentfees)
+        context['productformset'] = ProductFormSet(prefix='product')
+        context['documentformset'] = DocumentFormSet(prefix='document')
+        context['documentfeeformset'] = DocumentFormSet(prefix='documentfee')
+        MilestoneFormSet = formset_factory(MilestoneForm, formset=MilestoneValidationFormSet, extra=5)
+        context['milestoneformset'] = MilestoneFormSet(prefix='milestone')
         return context
 
 

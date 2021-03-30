@@ -70,6 +70,26 @@ class CustomerSearchAjaxView(AdminLoginRequiredMixin, View):
         return JsonResponse({'success': False}, status=400)
 
 
+class HallSearchAjaxView(AdminLoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        if self.request.method == 'GET' and self.request.is_ajax():
+            search = self.request.GET.get('q')
+            page = int(self.request.GET.get('page', 1))
+            start = 30 * (page - 1)
+            end = 30 * page
+            hall_qs = Hall.objects.filter(
+                Q(name__icontains=search) |
+                Q(frigana__icontains=search) |
+                Q(tel__icontains=search) |
+                Q(fax__icontains=search)
+            )
+            total_count = hall_qs.count()
+            hall_qs = hall_qs.order_by('id')[start:end].values('id', 'name', 'frigana', 'tel', 'fax', 'postal_code', 'address')
+            halls = list(hall_qs)
+            return JsonResponse({"halls": halls, "total_count": total_count}, safe=False, status=200)
+        return JsonResponse({'success': False}, status=400)
+
+
 class ProductSearchAjaxView(AdminLoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         if self.request.is_ajax():

@@ -1,6 +1,7 @@
 {% extends 'layout/base.html' %}
 {% load i18n %}
 {% load static %}
+{% load contract_tags %}
 {% block title %} {% trans "Hall sales" %} {% endblock title %}
 
 {% block stylesheets %}{% endblock stylesheets %}
@@ -46,9 +47,10 @@
 							<div class="panel-title-wrapper container-fluid">
 								<div class="row d-flex flex-wrap pt-10-px">
 									<div class="col-3 text-left d-flex align-items-center">
-										<div class="transaction-id-text">
+										<div class="contract_id">
 											<span>No.</span>
-											<input type="text" class="form-control border-none" name="contract_id" value="1223" readonly></div>
+											<input type="text" class="form-control border-none" name="contract_id" value="1223" readonly>
+										</div>
 									</div>
 									<div class="col-6 d-flex align-items-center justify-content-center">
 										<h2 class="panel-title text-center">{% trans "Sales contract" %}</h2>
@@ -63,7 +65,6 @@
 										</div>
 									</div>
 								</div>
-								
 							</div>
 	
 							<div class="container-fluid">
@@ -82,7 +83,6 @@
 													</div>
 												</div>
 											</div>
-											<button type="button" class="btn btn-primary">{% trans "Search" %}</button>
 										</div>
 									</div>
 									<div class="col-lg-6">
@@ -451,8 +451,9 @@
 												<label class="control-label col-2 mt-auto">{% trans "Document fee" %}</label>
 												<div class="col-lg-8">
 													<select name="select-document-fee" class="selectbox select-document-fee">
-														<option value="P">{% trans "Pachinko" %}</option>
-														<option value="S">{% trans "Slot" %}</option>
+														{% for documentfee in documentfees %}
+														<option value="{{ documentfee.id }}">{{ documentfee.name }}</option>
+														{% endfor %}
 													</select>
 												</div>
 												<button type="button" name="add_document_fee_btn" class="btn btn-primary">{% trans "Add" %}</button>
@@ -510,7 +511,7 @@
 																<input type="text"
 																	class="form-control"
 																	id="id_{{ documentfeeformset.prefix }}-{{ forloop.parentloop.counter0 }}-amount"
-																	value="70000">
+																	value="70000" disabled>
 															</div>
 														</div>
 													</td>
@@ -542,9 +543,9 @@
 														<div class="form-group mb-0">
 															<div class="col-lg-6 px-0">
 																<input type="number"
-																	name="{{ documentfeeformset.prefix }}-xx-quantity"
+																	name="{{ documentfeeformset.prefix }}-xx-number_of_models"
 																	class="form-control"
-																	id="id_{{ documentfeeformset.prefix }}-xx-quantity"
+																	id="id_{{ documentfeeformset.prefix }}-xx-number_of_models"
 																	value="0">
 															</div>
 														</div>
@@ -553,9 +554,9 @@
 														<div class="form-group mb-0">
 															<div class="col-lg-6 px-0">
 																<input type="number"
-																	name="{{ documentfeeformset.prefix }}-xx-price"
+																	name="{{ documentfeeformset.prefix }}-xx-number_of_units"
 																	class="form-control"
-																	id="id_{{ documentfeeformset.prefix }}-xx-price"
+																	id="id_{{ documentfeeformset.prefix }}-xx-number_of_units"
 																	value="0">
 															</div>
 														</div>
@@ -575,48 +576,6 @@
 											</tbody>
 										</table>
 									</div>
-									<table class="table datatable-basic table-hover">
-										<thead>
-											<tr>
-												<th></th>
-												<th>{% trans "Product type" %}</th>
-												<th>{% trans "Number of models" %}</th>
-												<th>{% trans "Number of units" %}</th>
-												<th>{% trans "Amount" %}</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>
-													{% trans "Document fee" %}
-												</td>
-												<td>
-													<div class="col-lg-7 px-0">
-														<select name="select" class="selectbox">
-															<option value="">{% trans "Pachinko" %}</option>
-															<option value="">{% trans "Slot" %}</option>
-														</select>
-													</div>
-												</td>
-												<td>
-													<div class="form-group mb-0">
-														<div class="col-lg-6 px-0">
-															<input type="text" class="form-control" value="1">
-														</div>
-													</div>
-												</td>
-												<td>
-													<div class="form-group mb-0">
-														<div class="col-lg-6 px-0">
-															<input type="text" class="form-control" value="7000">
-														</div>
-													</div>
-												</td>
-												<td>7000</td>
-											</tr>
-											
-										</tbody>
-									</table>
 								</div>
 	
 								<div class="row flex-wrap d-flex justify-content-between">
@@ -625,7 +584,7 @@
 											<span class="input-group-btn">
 												<button class="btn btn-default h-180-px">{% trans "Remarks" %}</button>
 											</span>
-											<textarea type="text" class="form-control h-180-px"></textarea>
+											<textarea type="text" name="remarks" class="form-control h-180-px"></textarea>
 										</div>
 									</div>
 									<div class="col-lg-4 col-xs-12">
@@ -709,76 +668,32 @@
 														<td rowspan="3" width="25%" class="border-left border-bottom text-center">{% trans "Payment breakdown" %}</td>
 														<td class="p-0 border-top-0">
 															<table  class="table table-bordered">
-																<tr>
-																	<td width="20%">{% trans "1st" %}</td>
-																	<td>
-																		<div class="position-relative">
-																			<input type="text" class="form-control daterange-single">
-																			<div class="form-control-feedback">
-																				<i class="icon-calendar22"></i>
+																{{ milestoneformset.management_form }}
+																<tbody>
+																	{% for form in milestoneformset.forms %}
+																	{% ordinal forloop.counter as nth %}
+																	<tr class="formset_row-{{ milestoneformset.prefix }} w-100">
+																		{% for field in form.visible_fields %}
+																		{% if forloop.first %}
+																		
+																		<td width="20%">{% trans nth %}</td>
+																		<td>
+																			<div class="position-relative">
+																				{{ field }}
+																				<div class="form-control-feedback">
+																					<i class="icon-calendar22"></i>
+																				</div>
 																			</div>
-																		</div>
-																	</td>
-																	<td>
-																		<input type="text" class="form-control" />
-																	</td>
-																</tr>
-																<tr>
-																	<td>{% trans "2nd" %}</td>
-																	<td>
-																		<div class="position-relative">
-																			<input type="text" class="form-control daterange-single">
-																			<div class="form-control-feedback">
-																				<i class="icon-calendar22"></i>
-																			</div>
-																		</div>
-																	</td>
-																	<td>
-																		<input type="text" class="form-control" />
-																	</td>
-																</tr>
-																<tr>
-																	<td>{% trans "3rd" %}</td>
-																	<td>
-																		<div class="position-relative">
-																			<input type="text" class="form-control daterange-single">
-																			<div class="form-control-feedback">
-																				<i class="icon-calendar22"></i>
-																			</div>
-																		</div>
-																	</td>
-																	<td>
-																		<input type="text" class="form-control" />
-																	</td>
-																</tr>
-																<tr>
-																	<td>{% trans "4th" %}</td>
-																	<td>
-																		<div class="position-relative">
-																			<input type="text" class="form-control daterange-single">
-																			<div class="form-control-feedback">
-																				<i class="icon-calendar22"></i>
-																			</div>
-																		</div>
-																	</td>
-																	<td>
-																		<input type="text" class="form-control" />
-																	</td>
-																</tr>
-																<tr>
-																	<td>{% trans "5th" %}</td>
-																	<td>
-																		<div class="position-relative">
-																			<input type="text" class="form-control daterange-single">
-																			<div class="form-control-feedback">
-																				<i class="icon-calendar22"></i>
-																			</div>
-																		</div>
-																	</td>
-																	<td>
-																		<input type="text" class="form-control" />
-																	</td>
-																</tr>
+																		</td>
+																		{% elif forloop.last %}
+																		<td>
+																			{{ field }}
+																		</td>
+																		{% endif %}
+																		{% endfor %}
+																	</tr>
+																	{% endfor %}
+																</tbody>
 															</table>
 														</td>
 													</tr>
@@ -800,7 +715,7 @@
 											<span class="input-group-btn">
 												<button class="btn btn-default">{% trans "Transfer account" %}</button>
 											</span>
-											<input type="text" class="form-control" name="transfer_account" value="りそな銀行　船場支店（101）　普通　0530713　バッジオカブシキガイシャ">
+											<input type="text" class="form-control" name="transfer_account" value="" placeholder="りそな銀行　船場支店（101）　普通　0530713　バッジオカブシキガイシャ">
 										</div>
 									</div>
 	

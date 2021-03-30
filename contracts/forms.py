@@ -103,23 +103,43 @@ class ItemValidationFormSet(BaseFormSet):
     def get_form_kwargs(self, index):
         kwargs = super().get_form_kwargs(index)
         contract_id = kwargs.get('contract_id', None)
+        contract_class = kwargs.get('contract_class', None)
+        
+        data = {}
         if contract_id:
-            return {'contract_id': contract_id}
-        return {}
+            data['contract_id'] = contract_id
+        if contract_class:
+            data['contract_class'] = contract_class
+        return data
 
 
 class DocumentFeeValidationFormSet(BaseFormSet):
     def clean(self):
         if any(self.errors):
             return
-        # Add here our validation
+        if self.total_form_count() == 0:
+            raise ValidationError("At least one document fee must be added.")
+        for form in self.forms:
+            number_of_models = form.cleaned_data.get('number_of_models')
+            if number_of_models < 1:
+                form.add_error('number_of_models', 'Number of models should be positive integer value.')
+                return
+            number_of_units = form.cleaned_data.get('number_of_units')
+            if number_of_units < 1:
+                form.add_error('number_of_units', 'Number of units should be postive integer value.')
+                return
     
     def get_form_kwargs(self, index):
         kwargs = super().get_form_kwargs(index)
         contract_id = kwargs.get('contract_id', None)
+        contract_class = kwargs.get('contract_class', None)
+        
+        data = {}
         if contract_id:
-            return {'contract_id': contract_id}
-        return {}
+            data['contract_id'] = contract_id
+        if contract_class:
+            data['contract_class'] = contract_class
+        return data
 
 
 ProductFormSet = formset_factory(ProductForm, formset=ItemValidationFormSet, extra=0)
@@ -127,6 +147,45 @@ DocumentFormSet = formset_factory(DocumentForm, formset=ItemValidationFormSet, e
 DocumentFeeFormSet = formset_factory(DocumentFeeForm, formset=DocumentFeeValidationFormSet, extra=0)
 # End of Common Forms
 
+class MilestoneForm(forms.Form):
+    date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}))
+    amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    def __init__(self, *args, **kwargs):
+        if kwargs.get('contract_id', None):
+            self.contract_id = kwargs.pop('contract_id')
+        if kwargs.get('contract_class', None):
+            self.contract_class = kwargs.pop('contract_class')
+        super().__init__(*args, **kwargs)
+    
+    def save(self):
+        contract_class_name = ContentType.objects.get(model=self.contract_class)
+        contract_class = contract_class_name.model_class()
+        contract = contract_class.objects.get(id=self.contract_id)
+        data = {
+            'date': self.cleaned_data.get('date'),
+            'amount': self.cleaned_data.get('amount'),
+            'content_object': contract,
+        }
+        Milestone.objects.create(**data)
+
+class MilestoneValidationFormSet(BaseFormSet):
+    def clean(self):
+        if any(self.errors):
+            return
+        # Add Here
+    
+    def get_form_kwargs(self, index):
+        kwargs = super().get_form_kwargs(index)
+        contract_id = kwargs.get('contract_id', None)
+        contract_class = kwargs.get('contract_class', None)
+        
+        data = {}
+        if contract_id:
+            data['contract_id'] = contract_id
+        if contract_class:
+            data['contract_class'] = contract_class
+        return data
 
 #===================================#
 # Trader Sales Forms
