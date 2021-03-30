@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', function() {
         singleDatePicker: true
     });
 
+    // Single picker
+    $('.datepicker-milestone').datepicker({
+        'defaultDate': null
+    });
+
 
     
 });

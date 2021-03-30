@@ -148,7 +148,7 @@ DocumentFeeFormSet = formset_factory(DocumentFeeForm, formset=DocumentFeeValidat
 # End of Common Forms
 
 class MilestoneForm(forms.Form):
-    date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}))
+    date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control datepicker-milestone'}))
     amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     def __init__(self, *args, **kwargs):
