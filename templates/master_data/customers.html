@@ -1,6 +1,5 @@
 {% extends 'layout/base.html' %}
 {% load i18n %}
-{% load contract_tags %}
 
 {% block title %} {% trans "Customer master" %} {% endblock title %}
 
@@ -71,7 +70,7 @@
 					<tbody>
 						{% for customer in master_data %}
 						<tr>
-							<td>{{ forloop.counter }}</td>
+							<td>{{ forloop.counter0|add:page_obj.start_index }}</td>
 							<td>{{ customer.name }}</td>
 							<td>{{ customer.frigana }}</td>
 							<td>{{ customer.postal_code|default_if_none:"" }}</td>
@@ -183,29 +182,31 @@
 		<script>
 			$(function () {
 				// Pagination customization
-				var startPage = parseInt("{{ page_obj.number }}");
-				$('#pagination').twbsPagination({
-					totalPages: "{{ page_obj.paginator.num_pages }}",
-					visiblePages: 5,
-					startPage: startPage,
-					hideOnlyOnePage:true,
-					first:'&laquo;',
-					prev:'&lsaquo;',
-					next:'&rsaquo;',
-					last:'&raquo;',
-				}).on('page', function (event, page) {
-					var url = location.href;
-					var urlRegex = RegExp('page=\\d+', 'g');
-					if (urlRegex.test(url)) {
-						url = url.replace(urlRegex, `page=${page}`);
-					} else {
-						if (url.indexOf('?') == -1)
-							url += `?page=${page}`;
-						else
-							url += `&page=${page}`;
-					}
-					location.href = url;
-				});
+				if ($('#pagination').length) {
+					var startPage = parseInt("{{ page_obj.number }}");
+					$('#pagination').twbsPagination({
+						totalPages: "{{ page_obj.paginator.num_pages }}",
+						visiblePages: 5,
+						startPage: startPage,
+						hideOnlyOnePage:true,
+						first:'&laquo;',
+						prev:'&lsaquo;',
+						next:'&rsaquo;',
+						last:'&raquo;',
+					}).on('page', function (event, page) {
+						var url = location.href;
+						var urlRegex = RegExp('page=\\d+', 'g');
+						if (urlRegex.test(url)) {
+							url = url.replace(urlRegex, `page=${page}`);
+						} else {
+							if (url.indexOf('?') == -1)
+								url += `?page=${page}`;
+							else
+								url += `&page=${page}`;
+						}
+						location.href = url;
+					});
+				}
 			});
 		</script>
 

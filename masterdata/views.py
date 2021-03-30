@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.base import View, TemplateView
 from django.views.generic.list import ListView
-from django.views.generic.edit import FormMixin, FormView
+from django.views.generic.edit import FormMixin, FormView, CreateView
 from django.http import JsonResponse
 from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
@@ -27,9 +27,8 @@ class MasterView(AdminLoginRequiredMixin, TemplateView, FormMixin):
         return context
     
 
-class CustomerView(ListView):
+class CustomerView(AdminLoginRequiredMixin, ListView):
     template_name = 'master_data/customers.html'
-    form_class = CustomerForm
     queryset = Customer.objects.all()
     context_object_name = 'master_data'
     paginate_by = 10
@@ -41,26 +40,88 @@ class CustomerView(ListView):
         context = super().get_context_data(**kwargs)
         context['customer_filter'] = CustomerFilter(self.request.GET)
         return context
+    
+    def post(self, request, *args, **kwargs):
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('masterdata:customer')
 
 
-class HallView(MasterView):
+class HallView(AdminLoginRequiredMixin, ListView):
     template_name = 'master_data/halls.html'
-    form_class = HallForm
+    queryset = Hall.objects.all()
+    context_object_name = 'master_data'
+    paginate_by = 10
+    
+    def get_queryset(self):
+        return HallFilter(self.request.GET, queryset=self.queryset).qs.order_by('pk')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['hall_filter'] = HallFilter(self.request.GET)
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        form = HallForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('masterdata:hall')
 
 
-class ReceiverView(MasterView):
+class ReceiverView(AdminLoginRequiredMixin, ListView):
     template_name = 'master_data/receivers.html'
-    form_class = ReceiverForm
+    queryset = Receiver.objects.all()
+    context_object_name = 'master_data'
+    paginate_by = 10
+    
+    def get_queryset(self):
+        return ReceiverFilter(self.request.GET, queryset=self.queryset).qs.order_by('pk')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['receiver_filter'] = ReceiverFilter(self.request.GET)
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        form = ReceiverForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('masterdata:receiver')
 
 
-class ProductView(MasterView):
+class ProductView(AdminLoginRequiredMixin, ListView):
     template_name = 'master_data/products.html'
-    form_class = ProductForm
+    queryset = Product.objects.all()
+    context_object_name = 'master_data'
+    paginate_by = 10
+    
+    def get_queryset(self):
+        return ProductFilter(self.request.GET, queryset=self.queryset).qs.order_by('pk')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product_filter'] = ProductFilter(self.request.GET)
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('masterdata:product')
 
 
-class DocumentView(MasterView):
+class DocumentView(AdminLoginRequiredMixin, ListView):
     template_name = 'master_data/documents.html'
-    form_class = DocumentForm
+    queryset = Document.objects.all()
+    context_object_name = 'master_data'
+    paginate_by = 10
+    
+    def post(self, request, *args, **kwargs):
+        form = DocumentForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('masterdata:document')
 
 
 class CustomerSearchAjaxView(AdminLoginRequiredMixin, View):
