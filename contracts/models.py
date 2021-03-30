@@ -72,9 +72,9 @@ class Milestone(models.Model):
     content_object = GenericForeignKey('content_type', 'object_id')
 
 
-class TraderSalesContract(models.Model):
+class TraderContract(models.Model):
     contract_id = models.CharField(max_length=200)
-    customer = models.ForeignKey(Customer, related_name='trader_sales_contracts', on_delete=models.SET_NULL, null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     manager = models.CharField(max_length=200, null=True, blank=True)
     person_in_charge = models.CharField(max_length=200)
     remarks = models.TextField(null=True, blank=True)
@@ -87,6 +87,9 @@ class TraderSalesContract(models.Model):
     created_at = models.DateField()
     products = GenericRelation(ContractProduct, related_query_name='contract')
     documents = GenericRelation(ContractDocument, related_query_name='contract')
+
+    class Meta:
+        abstract = True
 
     @property
     def sub_total(self):
@@ -105,10 +108,22 @@ class TraderSalesContract(models.Model):
         return self.total
 
 
-class HallSalesContract(models.Model):
+class TraderSalesContract(TraderContract):
+    pass
+
+
+class TraderPurchasesContract(TraderContract):
+    transfer_deadline = models.DateField()
+    bank_name = models.CharField(max_length=200)
+    account_number = models.CharField(max_length=200)
+    branch_name = models.CharField(max_length=200)
+    account_holder = models.CharField(max_length=200)
+
+
+class HallContract(models.Model):
     contract_id = models.CharField(max_length=200)
-    customer = models.ForeignKey(Customer, related_name='hall_sales_contracts', on_delete=models.CASCADE)
-    hall = models.ForeignKey(Hall, related_name='hall_sales_contracts', on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    hall = models.ForeignKey(Hall, on_delete=models.CASCADE)
     remarks = models.TextField(null=True, blank=True)
     insurance_fee_include = models.BooleanField(default=True)
     insurance_fee = models.IntegerField()
@@ -123,6 +138,17 @@ class HallSalesContract(models.Model):
     documents = GenericRelation(ContractDocument, related_query_name='contract')
     document_fees = GenericRelation(ContractDocumentFee, related_query_name='contract')
     milestones = GenericRelation(Milestone, related_query_name='contract')
+
+    class Meta:
+        abstract = True
+
+
+class HallSalesContract(HallContract):
+    pass
+
+
+class HallPurchasesContract(HallContract):
+    pass
 
 
 class SaleSender(models.Model):
