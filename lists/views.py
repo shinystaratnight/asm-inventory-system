@@ -63,7 +63,7 @@ class InventoryListView(AdminLoginRequiredMixin, ListView):
         response['Content-Disposition'] = 'attachment; filename="inventory_list_{}.csv"'.format(int(time.time()))
         writer = csv.writer(response)
         writer.writerow([
-            _('Product name'), _('Control number'), _('Purchase date'), _('Supplier'), _('Person in charge'),
+            _('Product name'), _('Control number'), _('Purchases date'), _('Supplier'), _('Person in charge'),
             _('Number of units'), _('Price'), _('Stock'), _('Total price')
         ])
 
