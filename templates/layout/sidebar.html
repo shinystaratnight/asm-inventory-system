@@ -51,17 +51,17 @@
                     <li>
                         <a href="#"><i class="icon-list"></i> <span>{% trans "List" %}</span></a>
                         <ul>
-                            <li class="{% active 'list/sales' %}"><a href="{% url 'sales-list' %}">{% trans "Sales" %}</a></li>
-                            <li class="{% active 'list/purchases' %}"><a href="{% url 'purchases-list' %}">{% trans "Purchases" %}</a></li>
-                            <li class="{% active 'list/inventory' %}"><a href="{% url 'inventory-list' %}">{% trans "Inventory" %}</a></li>
+                            <li class="{% active 'list:sales' %}"><a href="{% url 'list:sales' %}">{% trans "Sales" %}</a></li>
+                            <li class="{% active 'list:purchases' %}"><a href="{% url 'list:purchases' %}">{% trans "Purchases" %}</a></li>
+                            <li class="{% active 'list:inventory' %}"><a href="{% url 'list:inventory' %}">{% trans "Inventory" %}</a></li>
                         </ul>
                     </li>
 
                     <li>
                         <a href="#"><i class="icon-exit3"></i> <span>{% trans "Accounting software CSV" %}</span></a>
                         <ul>
-                            <li class="{% active 'csv/sales' %}"><a href="{% url 'csv-sales' %}">{% trans "Sale" %}</a></li>
-                            <li class="{% active 'csv/purchases' %}"><a href="{% url 'csv-purchases' %}">{% trans "Purchase" %}</a></li>
+                            <li class="{% active 'csv:sales' %}"><a href="{% url 'csv:sales' %}">{% trans "Sale" %}</a></li>
+                            <li class="{% active 'csv:purchases' %}"><a href="{% url 'csv:purchases' %}">{% trans "Purchase" %}</a></li>
                         </ul>
                     </li>
 

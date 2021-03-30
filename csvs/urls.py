@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import *
 
+app_name = 'csv'
 urlpatterns = [
-    path('sales/', sales, name='csv-sales'),
-    path('purchases/', purchases, name='csv-purchases'),
+    path('sales/', SalesListView.as_view(), name='sales'),
+    path('purchases/', PurchasesListView.as_view(), name='purchases'),
 ]

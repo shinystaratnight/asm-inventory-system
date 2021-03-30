@@ -52,7 +52,7 @@
 									<label>{% trans "Created date" %}:</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-										<input type="text" class="form-control daterange-single">
+										<input type="text" class="form-control datepicker-milestone">
 									</div>
 								</div>
 							</div>
@@ -132,14 +132,7 @@
 				</div>
 
 				<div class="panel panel-body border-top-teal text-center">
-					<ul class="pagination pagination-separated pagination-rounded">
-						<li><a href="#">&lsaquo;</a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li class="disabled"><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">&rsaquo;</a></li>
+					<ul class="pagination pagination-separated pagination-rounded" id="pagination">
 					</ul>
 				</div>
 
@@ -153,6 +146,37 @@
 			</div>
 		</div>
 		<!-- /content area -->
+
+		<script>
+			$(function () {
+				// Pagination customization
+				if ($('#pagination').length) {
+					var startPage = parseInt("{{ page_obj.number }}");
+					$('#pagination').twbsPagination({
+						totalPages: "{{ page_obj.paginator.num_pages }}",
+						visiblePages: 5,
+						startPage: startPage,
+						hideOnlyOnePage:true,
+						first:'&laquo;',
+						prev:'&lsaquo;',
+						next:'&rsaquo;',
+						last:'&raquo;',
+					}).on('page', function (event, page) {
+						var url = location.href;
+						var urlRegex = RegExp('page=\\d+', 'g');
+						if (urlRegex.test(url)) {
+							url = url.replace(urlRegex, `page=${page}`);
+						} else {
+							if (url.indexOf('?') == -1)
+								url += `?page=${page}`;
+							else
+								url += `&page=${page}`;
+						}
+						location.href = url;
+					});
+				}
+			});
+		</script>
 
 	</div>
 {% endblock %}
