@@ -186,8 +186,15 @@
 					next:'&rsaquo;',
 					last:'&raquo;',
 				}).on('page', function (event, page) {
-					var params = "{{ request.GET }}";
-					console.log(params);
+					var url = location.href;
+					var urlRegex = RegExp('page=\\d+', 'g');
+					if (urlRegex.test(url)) {
+						url.replace(urlRegex, `page=${page}`);
+					} else {
+						url += `?page=${page}`;
+					}
+					console.log(url);
+					console.log(location.href);
 					// location.href = "{% url 'masterdata:customer' %}";
 				});
 			});
