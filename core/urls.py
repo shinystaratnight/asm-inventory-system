@@ -32,7 +32,7 @@ urlpatterns += i18n.i18n_patterns(
     path('master/', include('masterdata.urls')),
     path('contract/', include('contracts.urls')),
     path('list/', include('lists.urls')),
-    path('csv/', include('csvs.urls')),
+    path('accounting/', include('accounting.urls')),
 )
 
 handler404 = 'users.views.page_not_found'

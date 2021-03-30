@@ -1,7 +1,7 @@
 {% extends 'layout/base.html' %}
 {% load i18n %}
 
-{% block title %} {% trans "Purchase" %} {% endblock title %}
+{% block title %} {% trans "Sale" %} {% endblock title %}
 
 {% block stylesheets %}{% endblock stylesheets %}
 
@@ -15,7 +15,7 @@
 				<div class="page-title">
 					<h4>
 						<i class="icon-arrow-left52 position-left"></i>
-						<span class="text-semibold">{% trans "Accounting software CSV" %}</span> - {% trans "Purchase" %}
+						<span class="text-semibold">{% trans "Accounting software CSV" %}</span> - {% trans "Sale" %}
 					</h4>
 				</div>
 			</div>
@@ -23,7 +23,7 @@
 			<div class="breadcrumb-line breadcrumb-line-component">
 				<ul class="breadcrumb">
 					<li><a><i class="icon-cart2 position-left"></i>{% trans "Accounting software CSV" %}</a></li>
-					<li class="active">{% trans "Purchase" %}</li>
+					<li class="active">{% trans "Sale" %}</li>
 				</ul>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 
 			<div class="panel panel-flat">
 				<div class="panel-heading">
-					<h2 class="panel-title">{% trans "Purchase" %}</h2>
+					<h2 class="panel-title">{% trans "Sale" %}</h2>
 				</div>
 
 				<div class="panel-body" style="padding-bottom: 0"></div>
@@ -44,28 +44,30 @@
 						
 						<tbody>
 							<tr>
-								<td>2020/10/5</td>
-								<td>{% trans "Expense" %}</td>
-								<td>課対仕入10%</td>
-								<td>147,950</td>
-								<td>（株）三友商事</td>
+								<td>2021/03/31</td>
+								<td>{% trans "Income" %}</td>
+								<td>課税売上10%</td>
+								<td>93,500</td>
+								<td>（株）ライム</td>
 							</tr>
 							<tr>
-								<td>2020/10/5</td>
+								<td>2020/03/31</td>
 								<td></td>
-								<td>非課仕入</td>
-								<td>260</td>
-								<td>（株）三友商事</td>
+								<td>非課売上</td>
+								<td>100</td>
+								<td>（株）ライム</td>
 							</tr>
 						</tbody>
-
 					</table>
 				</div>
 
 				<div class="row">
 					<div class="col-md-12">
 						<div class="my-5-s text-center">
-							<button type="button" class="btn btn-primary"><i class="icon-exit3 position-left"></i>{% trans "Export To CSV" %}</button>
+							<form action="" method="post">
+								{% csrf_token %}
+								<button type="submit" class="btn btn-primary"><i class="icon-exit3 position-left"></i>{% trans "Export To CSV" %}</button>
+							</form>
 						</div>
 					</div>
 				</div>

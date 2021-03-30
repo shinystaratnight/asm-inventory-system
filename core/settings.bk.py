@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'masterdata',
     'contracts',
     'lists',
-    'csvs',
+    'accounting',
 ]
 
 MIDDLEWARE = [
