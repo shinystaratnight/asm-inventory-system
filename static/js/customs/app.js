@@ -223,7 +223,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 id: id,
             },
             success: function (result) {
-                console.log(result);
                 $fs.find('textarea.address').val(result.address);
                 $fs.find('input.tel').val(result.tel);
                 $fs.find('input.fax').val(result.fax);
@@ -276,5 +275,5 @@ document.addEventListener('DOMContentLoaded', function() {
     $('form[name="hall_purchases"]').submit( function (e) {
         return false;
     });
-    
+
 });

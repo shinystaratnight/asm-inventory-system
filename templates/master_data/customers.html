@@ -183,10 +183,11 @@
 		<script>
 			$(function () {
 				// Pagination customization
+				var startPage = parseInt("{{ page_obj.number }}");
 				$('#pagination').twbsPagination({
 					totalPages: "{{ page_obj.paginator.num_pages }}",
-					// startPage: "{{ page_obj.number }}",
 					visiblePages: 5,
+					startPage: startPage,
 					hideOnlyOnePage:true,
 					first:'&laquo;',
 					prev:'&lsaquo;',
