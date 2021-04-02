@@ -43,7 +43,7 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>{% trans "Contract ID" %}:</label>
-									<input type="text" class="form-control" placeholder="{% trans 'Contract ID' %}">
+									<input type="text" class="form-control" name="contract_id" placeholder="{% trans 'Customer' %}">
 								</div>
 							</div>
 
@@ -52,7 +52,7 @@
 									<label>{% trans "Created date" %}:</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-										<input type="text" class="form-control datepicker-milestone">
+										<input type="text" class="form-control datepicker-milestone" name="created_at">
 									</div>
 								</div>
 							</div>
@@ -76,7 +76,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>{% trans "Inventory status" %}:</label>
-									<select name="select" class="selectbox">
+									<select class="selectbox">
 										<option value="" selected="selected">{% trans "All" %}</option>
 										<option value="completed">{% trans "Completed" %}</option>
 										<option value="not_completed">{% trans "Not completed" %}</option>
@@ -88,7 +88,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="mb-3 text-right">
-									<button type="button" class="btn btn-primary"><i class="icon-search4 position-left"></i>{% trans "Search" %}</button>
+									<button type="submit" class="btn btn-primary"><i class="icon-search4 position-left"></i>{% trans "Search" %}</button>
 								</div>
 							</div>
 						</div>
@@ -116,12 +116,12 @@
 						<tbody>
 							{% for product in products %}
 							<tr>
-								<td>{{ product.contract.contract_id }}</td>
-								<td>{{ product.contract.created_at }}</td>
-								<td>{{ product.contract.customer.name }}</td>
+								<td>{{ product.content_object.contract_id }}</td>
+								<td>{{ product.content_object.created_at }}</td>
+								<td>{{ product.content_object.customer.name }}</td>
 								<td></td>
-								<td>{{ product.contract.person_in_charge }}</td>
-								<td>{{ product.contract.contract.payment_due_date }}</td>
+								<td>{{ product.content_object.person_in_charge }}</td>
+								<td>{{ product.content_object.payment_due_date }}</td>
 								<td>{{ product.product.name }}</td>
 								<td>{{ product.quantity }}</td>
 								<td>{{ product.price }}</td>

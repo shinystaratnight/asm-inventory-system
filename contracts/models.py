@@ -80,8 +80,6 @@ class TraderContract(models.Model):
     insurance_fee = models.IntegerField()
     updated_at = models.DateField()
     created_at = models.DateField()
-    products = GenericRelation(ContractProduct, related_query_name='contract')
-    documents = GenericRelation(ContractDocument, related_query_name='contract')
 
     class Meta:
         abstract = True
@@ -104,7 +102,8 @@ class TraderContract(models.Model):
 
 
 class TraderSalesContract(TraderContract):
-    pass
+    products = GenericRelation(ContractProduct, related_query_name='trader_sales_contract')
+    documents = GenericRelation(ContractDocument, related_query_name='trader_sales_contract')
 
 
 class TraderPurchasesContract(TraderContract):
@@ -113,6 +112,8 @@ class TraderPurchasesContract(TraderContract):
     account_number = models.CharField(max_length=200)
     branch_name = models.CharField(max_length=200)
     account_holder = models.CharField(max_length=200)
+    products = GenericRelation(ContractProduct, related_query_name='trader_purchases_contract')
+    documents = GenericRelation(ContractDocument, related_query_name='trader_purchases_contract')
 
 
 class HallContract(models.Model):
@@ -129,21 +130,23 @@ class HallContract(models.Model):
     person_in_charge = models.CharField(max_length=200)
     confirmor = models.CharField(max_length=200)
     created_at = models.DateField()
-    products = GenericRelation(ContractProduct, related_query_name='contract')
-    documents = GenericRelation(ContractDocument, related_query_name='contract')
-    document_fees = GenericRelation(ContractDocumentFee, related_query_name='contract')
-    milestones = GenericRelation(Milestone, related_query_name='contract')
 
     class Meta:
         abstract = True
 
 
 class HallSalesContract(HallContract):
-    pass
+    products = GenericRelation(ContractProduct, related_query_name='hall_sales_contract')
+    documents = GenericRelation(ContractDocument, related_query_name='hall_sales_contract')
+    document_fees = GenericRelation(ContractDocumentFee, related_query_name='hall_sales_contract')
+    milestones = GenericRelation(Milestone, related_query_name='hall_sales_contract')
 
 
 class HallPurchasesContract(HallContract):
-    pass
+    products = GenericRelation(ContractProduct, related_query_name='hall_purchases_contract')
+    documents = GenericRelation(ContractDocument, related_query_name='hall_purchases_contract')
+    document_fees = GenericRelation(ContractDocumentFee, related_query_name='hall_purchases_contract')
+    milestones = GenericRelation(Milestone, related_query_name='hall_purchases_contract')
 
 
 class SaleSender(models.Model):

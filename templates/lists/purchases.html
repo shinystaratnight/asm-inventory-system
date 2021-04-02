@@ -116,12 +116,12 @@
 						<tbody>
 							{% for product in products %}
 							<tr>
-								<td>{{ product.contract.contract_id }}</td>
-								<td>{{ product.contract.created_at }}</td>
-								<td>{{ product.contract.customer.name }}</td>
+								<td>{{ product.content_object.contract_id }}</td>
+								<td>{{ product.content_object.created_at }}</td>
+								<td>{{ product.content_object.customer.name }}</td>
 								<td></td>
-								<td>{{ product.contract.person_in_charge }}</td>
-								<td>{{ product.contract.contract.payment_due_date }}</td>
+								<td>{{ product.content_object.person_in_charge }}</td>
+								<td>{{ product.content_object.payment_due_date }}</td>
 								<td>{{ product.product.name }}</td>
 								<td>{{ product.quantity }}</td>
 								<td>{{ product.price }}</td>

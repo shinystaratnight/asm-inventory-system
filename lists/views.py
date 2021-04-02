@@ -5,6 +5,11 @@ from django.http import HttpResponse
 from django.utils.translation import gettext_lazy as _
 from users.views import AdminLoginRequiredMixin
 from contracts.models import *
+from .filters import *
+
+
+def ProductFilter(queryset, **params):
+    return queryset
 
 
 class SalesListView(AdminLoginRequiredMixin, ListView):
@@ -14,6 +19,8 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
     paginate_by = 5
 
     def get_queryset(self):
+        params = self.request.GET.copy()
+        print(params)
         return self.queryset
     
     def post(self, request, *args, **kwargs):
@@ -26,6 +33,11 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
         ])
 
         return response
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['sales_filter'] = SalesFilter(self.request.GET)
+        return context
 
 
 class PurchasesListView(AdminLoginRequiredMixin, ListView):
