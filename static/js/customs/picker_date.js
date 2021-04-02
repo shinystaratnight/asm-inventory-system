@@ -8,12 +8,10 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
-
-    // Date range picker
-    // ------------------------------
-
+    var lang = $('input[name="selected-lang"]').val();
+    moment.locale(lang);
     
-    // Single picker
+    // Date ranger picker with single date
     $('.daterange-single').daterangepicker({ 
         singleDatePicker: true
     });
@@ -22,7 +20,5 @@ document.addEventListener('DOMContentLoaded', function() {
     $('.datepicker-milestone').datepicker({
         'defaultDate': null
     });
-
-
     
 });
