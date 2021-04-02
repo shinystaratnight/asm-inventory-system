@@ -5,6 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from masterdata.models import Product, TYPE_CHOICES
 from .models import *
 
+INPUT_FORMATS = ['%Y/%m/%d', '%m/%d/%Y']
 
 # Common Forms like Product, Document and Insurance Fee
 class ProductForm(forms.Form):
@@ -197,12 +198,12 @@ class TraderSalesContractForm(forms.Form):
     person_in_charge = forms.CharField()
     remarks = forms.CharField(required=False)
     shipping_method = forms.CharField()
-    shipping_date = forms.DateField()
+    shipping_date = forms.DateField(input_formats=INPUT_FORMATS)
     payment_method = forms.CharField()
-    payment_due_date = forms.DateField()
+    payment_due_date = forms.DateField(input_formats=INPUT_FORMATS)
     insurance_fee = forms.IntegerField()
-    created_at = forms.DateField()
-    updated_at = forms.DateField()
+    created_at = forms.DateField(input_formats=INPUT_FORMATS)
+    updated_at = forms.DateField(input_formats=INPUT_FORMATS)
     # insurance_included = forms.BooleanField()
 
     def save(self):
@@ -212,7 +213,7 @@ class TraderSalesContractForm(forms.Form):
 
 class SalesSenderForm(forms.Form):
     sender_id = forms.IntegerField()
-    expected_arrival_date = forms.DateField()
+    expected_arrival_date = forms.DateField(input_formats=INPUT_FORMATS)
 
     def __init__(self, *args, **kwargs):
         if kwargs.get('type', None):
@@ -233,7 +234,7 @@ class SalesSenderForm(forms.Form):
 
 class PurchasesSenderForm(forms.Form):
     sender_id = forms.IntegerField()
-    desired_arrival_date = forms.DateField()
+    desired_arrival_date = forms.DateField(input_formats=INPUT_FORMATS)
     shipping_company = forms.CharField()
     remarks = forms.CharField(required=False)
 

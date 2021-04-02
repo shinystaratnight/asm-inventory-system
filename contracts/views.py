@@ -1,8 +1,8 @@
-import time
+import time, csv
 from django.shortcuts import render, redirect
 from django.contrib.contenttypes.models import ContentType
 from django.views.generic.base import TemplateView, View
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
 from users.views import AdminLoginRequiredMixin
@@ -60,7 +60,22 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
             document_sender_form = SalesSenderForm(document_sender, type='D', contract_id=contract.id)
             if document_sender_form.is_valid():
                 document_sender_form.save()
-        return render(request, self.template_name, self.get_context_data(**kwargs))
+        
+        # Export the contract data into CSV
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="trader_sales_contract_{}.csv"'.format(contract_form.cleaned_data['contract_id'])
+        writer = csv.writer(response)
+        writer.writerow([
+            _('Contract ID'), _('Created at'), _('Updated at'), _('Customer'), _('Person in charge'), _('Remarks'),
+            _('Shipping method'), _('Shipping date'), _('Payment method'), _('Payment due date')
+        ])
+        writer.writerow([
+            contract.contract_id, contract.created_at, contract.updated_at, contract.customer.name, contract.person_in_charge,
+            contract.remarks, contract.get_shipping_method_display(), contract.shipping_date,
+            contract.get_payment_method_display(), contract.payment_due_date,
+        ])
+        return response
+        # return render(request, self.template_name, self.get_context_data(**kwargs))
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
