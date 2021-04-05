@@ -1,4 +1,4 @@
-import csv
+import unicodecsv as csv
 from django.shortcuts import render, redirect
 from django.contrib.contenttypes.models import ContentType
 from django.views.generic.base import TemplateView, View
@@ -57,22 +57,7 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
             document_sender_form = SalesSenderForm(document_sender, type='D', contract_id=contract.id)
             if document_sender_form.is_valid():
                 document_sender_form.save()
-        
-        # Export the contract data into CSV
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="trader_sales_contract_{}.csv"'.format(contract_form.cleaned_data['contract_id'])
-        writer = csv.writer(response)
-        writer.writerow([
-            _('Contract ID'), _('Created at'), _('Updated at'), _('Customer'), _('Person in charge'), _('Remarks'),
-            _('Shipping method'), _('Shipping date'), _('Payment method'), _('Payment due date')
-        ])
-        writer.writerow([
-            contract.contract_id, contract.created_at, contract.updated_at, contract.customer.name, contract.person_in_charge,
-            contract.remarks, contract.get_shipping_method_display(), contract.shipping_date,
-            contract.get_payment_method_display(), contract.payment_due_date,
-        ])
-        return response
-        # return render(request, self.template_name, self.get_context_data(**kwargs))
+        return render(request, self.template_name, self.get_context_data(**kwargs))
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -82,6 +67,136 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
         context['productformset'] = ProductFormSet(prefix='product')
         context['documentformset'] = DocumentFormSet(prefix='document')
         return context
+
+
+class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        contract_form = TraderSalesContractForm(self.request.POST)
+        contract_id = contract_form.data.get('contract_id', '')
+        created_at = contract_form.data.get('created_at', '')
+        updated_at = contract_form.data.get('updated_at', '')
+        customer_id = contract_form.data.get('customer_id', None)
+        person_in_charge = contract_form.data.get('person_in_charge', '')
+        p_sensor_number = '8240-2413-3628'
+        company = frigana = postal_code = address = tel = fax = None
+        if customer_id:
+            customer = Customer.objects.get(id=customer_id)
+            company = customer.name
+            frigana = customer.frigana
+            postal_code = customer.postal_code
+            address = customer.address
+            tel = customer.tel
+            fax = customer.fax
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="trader_sales_contract_{}.csv"'.format(contract_id)
+        writer = csv.writer(response, encoding='utf-8-sig')
+
+        rows = [
+            ['','', '売買契約 兼 請求書'],
+            ['No. {}'.format(contract_id), '', '', '', '', '', '契約日', created_at],
+            ['', '', '', '', '', '', '更新日', updated_at],
+            ['会社名', company, '', 'フリガナ', frigana],
+            ['郵便番号', postal_code],
+            ['住所', address, '', '', '', '', 'P-SENSOR 会員番号', p_sensor_number],
+            ['TEL', tel, '', 'FAX', None, '', '担当名', person_in_charge],
+            [],
+            ['商品名'],
+            ['機種名', '中分類', '数量', '単価', '金額'],
+        ]
+        writer.writerows(rows)
+
+        product_formset = ProductFormSet(
+            self.request.POST,
+            prefix='product'
+        )
+        num_of_products = product_formset.total_form_count()
+        if num_of_products:
+            product_rows = []
+            for form in product_formset.forms:
+                form.is_valid()
+                id = form.cleaned_data.get('id')
+                product_name = Product.objects.get(id=id).name
+                type = form.cleaned_data.get('type')
+                quantity = form.cleaned_data.get('quantity', 0)
+                price = form.cleaned_data.get('price', 0)
+                amount = quantity * price
+                product_rows.append([product_name, type, quantity, price, amount])
+            writer.writerows(product_rows)
+        
+        rows = [
+            [],
+            ['商品名そのほか'],
+            ['書類', '数量', '単価', '金額']
+        ]
+        writer.writerows(rows)
+
+        document_formset = DocumentFormSet(
+            self.request.POST,
+            prefix='document'
+        )
+        num_of_documents = document_formset.total_form_count()
+        if num_of_documents:
+            document_rows = []
+            for form in document_formset.forms:
+                form.is_valid()
+                id = form.cleaned_data.get('id')
+                document_name = Document.objects.get(id=id).name
+                quantity = form.cleaned_data.get('quantity', 0)
+                price = form.cleaned_data.get('price', 0)
+                amount = quantity * price
+                document_rows.append([document_name, quantity, price, amount])
+            writer.writerows(document_rows)
+        
+        shipping_method = contract_form.data.get('shipping_method')
+        shipping_date = contract_form.data.get('shipping_date')
+        payment_method = contract_form.data.get('payment_method')
+        payment_due_date = contract_form.data.get('payment_due_date')
+        insurance_fee = contract_form.data.get('insurance_fee', 0)
+        remarks = contract_form.data.get('remarks', None)
+
+        rows = [
+            [],
+            ['機械発送日', shipping_date, '', '小計', '820000'],
+            ['備考', remarks, '', '消費税 (10%)', '1200'],
+            ['', '', '', '保険代 (非課税)', insurance_fee],
+            ['', '', '', '合計', '13200'],
+            ['運送方法', shipping_method, '', '御請求金額', '13200'],
+            ['お支払方法', payment_method, '', '支払期限', payment_due_date],
+            []
+        ]
+        writer.writerows(rows)
+
+        if shipping_method == 'R':
+            product_sender_id = self.request.POST.get('product_sender_id', None)
+            product_sender_company = product_sender_address = product_sender_tel = product_sender_fax = None
+            product_sender_expected_arrival_date = self.request.POST.get('product_sender_expected_arrival_date', None)
+            if product_sender_id:
+                product_sender = Receiver.objects.get(id=product_sender_id)
+                product_sender_company = product_sender.name
+                product_sender_address = product_sender.address
+                product_sender_tel = product_sender.tel
+                product_sender_fax = product_sender.fax
+            document_sender_company = document_sender_address = document_sender_tel = document_sender_fax = None
+            document_sender_id = self.request.POST.get('document_sender_id', None)
+            document_sender_expected_arrival_date = self.request.POST.get('document_sender_expected_arrival_date', None)
+            if document_sender_id:
+                document_sender = Receiver.objects.get(id=document_sender_id)
+                document_sender_company = document_sender.name
+                document_sender_address = document_sender.address
+                document_sender_tel = document_sender.tel
+                document_sender_fax = document_sender.fax
+            rows = [
+                ['商品発送先', '', '', '書類発送先'],
+                ['会社名', product_sender_company, '', '会社名', document_sender_company],
+                ['住所', product_sender_address, '', '住所', document_sender_address],
+                ['TEL', product_sender_tel, '', 'TEL', document_sender_tel],
+                ['FAX', product_sender_fax, '', 'FAX', document_sender_fax],
+                ['到着予定日', product_sender_expected_arrival_date, '', '到着予定日', document_sender_expected_arrival_date]
+            ]
+            writer.writerows(rows)
+   
+        return response
 
 
 class TraderSalesValidateAjaxView(AdminLoginRequiredMixin, View):

@@ -2,9 +2,7 @@
 {% load i18n %}
 {% load static %}
 {% block title %} {% trans "Trader sales" %} {% endblock title %}
-
 {% block stylesheets %}{% endblock stylesheets %}
-
 {% block content %}
 
 	<!-- Main content -->
@@ -706,7 +704,7 @@
 									<div class="col-md-12">
 										<div class="mb-4 text-center">
 											<button type="submit" class="btn btn-primary mr-4"><i class="fa fa-print position-left"></i> {% trans "Create contract" %}</button>
-											<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> {% trans "Create invoice" %}</button>
+											<button type="button" class="btn btn-primary create-invoice"><i class="fa fa-print position-left"></i> {% trans "Create invoice" %}</button>
 										</div>
 									</div>
 								</div>
@@ -730,7 +728,6 @@
 
 					$('#shipping_method').change(function () {
 						var shipping_date_value = $(this).val();
-						
 						$.ajax({
 							type: 'POST',
 							url: '/' + lang + '/contract/shipping-label/',
@@ -766,6 +763,11 @@
 								source: people
 							});
 						}
+					});
+
+					$('button.create-invoice').click( function (e) {
+						$('form').attr('action', "{% url 'contract:trader-sales-invoice' %}");
+						$('form').submit();
 					});
 				});
 			</script>
