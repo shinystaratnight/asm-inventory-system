@@ -98,7 +98,6 @@ class DocumentView(AdminLoginRequiredMixin, ListView):
     template_name = 'master_data/documents.html'
     queryset = Document.objects.all()
     context_object_name = 'master_data'
-    paginate_by = 10
     
     def post(self, request, *args, **kwargs):
         form = DocumentForm(request.POST)

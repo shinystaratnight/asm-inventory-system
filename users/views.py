@@ -37,7 +37,7 @@ class LoginView(AdminCheckMixin, View):
             username = request.POST.get('username')
             password = request.POST.get('password')
             user = authenticate(request, username=username, password=password)
-            if self.is_admin(user):
+            if user and self.is_admin(user):
                 login(request, user)
                 redirect_url = request.GET.get('next', 'dashboard')
                 return redirect(redirect_url)

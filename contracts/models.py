@@ -116,6 +116,21 @@ class TraderPurchasesContract(TraderContract):
     documents = GenericRelation(ContractDocument, related_query_name='trader_purchases_contract')
 
 
+class SaleSender(models.Model):
+    contract = models.ForeignKey(TraderSalesContract, on_delete=models.CASCADE, related_name='senders')
+    type = models.CharField(max_length=1, choices=ITEM_CHOICES)
+    sender = models.ForeignKey(Receiver, on_delete=models.CASCADE)
+    expected_arrival_date = models.DateField()
+
+
+class PurchaseSender(models.Model):
+    type = models.CharField(max_length=1, choices=ITEM_CHOICES)
+    sender = models.ForeignKey(Receiver, on_delete=models.CASCADE)
+    desired_arrival_date = models.DateField()
+    shipping_company = models.CharField(max_length=100)
+    remarks = models.TextField(null=True, blank=True)
+
+
 class HallContract(models.Model):
     contract_id = models.CharField(max_length=200)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
@@ -149,16 +164,4 @@ class HallPurchasesContract(HallContract):
     milestones = GenericRelation(Milestone, related_query_name='hall_purchases_contract')
 
 
-class SaleSender(models.Model):
-    contract = models.ForeignKey(TraderSalesContract, on_delete=models.CASCADE, related_name='senders')
-    type = models.CharField(max_length=1, choices=ITEM_CHOICES)
-    sender = models.ForeignKey(Receiver, on_delete=models.CASCADE)
-    expected_arrival_date = models.DateField()
 
-
-class PurchaseSender(models.Model):
-    type = models.CharField(max_length=1, choices=ITEM_CHOICES)
-    sender = models.ForeignKey(Receiver, on_delete=models.CASCADE)
-    desired_arrival_date = models.DateField()
-    shipping_company = models.CharField(max_length=100)
-    remarks = models.TextField(null=True, blank=True)

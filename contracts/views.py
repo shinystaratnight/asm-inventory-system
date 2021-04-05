@@ -1,4 +1,4 @@
-import time, csv
+import csv
 from django.shortcuts import render, redirect
 from django.contrib.contenttypes.models import ContentType
 from django.views.generic.base import TemplateView, View
@@ -9,10 +9,7 @@ from users.views import AdminLoginRequiredMixin
 from masterdata.models import Document
 from .models import *
 from .forms import *
-
-
-def generate_contract_id():
-    return int(time.time())
+from .utilities import *
 
 
 class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
