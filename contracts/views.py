@@ -78,6 +78,7 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
         customer_id = contract_form.data.get('customer_id', None)
         person_in_charge = contract_form.data.get('person_in_charge', '')
         p_sensor_number = '8240-2413-3628'
+        sub_total = 0
         company = frigana = postal_code = address = tel = fax = None
         if customer_id:
             customer = Customer.objects.get(id=customer_id)
@@ -121,6 +122,7 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
                 quantity = form.cleaned_data.get('quantity', 0)
                 price = form.cleaned_data.get('price', 0)
                 amount = quantity * price
+                sub_total += amount
                 product_rows.append([product_name, type, quantity, price, amount])
             writer.writerows(product_rows)
         
@@ -145,6 +147,7 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
                 quantity = form.cleaned_data.get('quantity', 0)
                 price = form.cleaned_data.get('price', 0)
                 amount = quantity * price
+                sub_total += amount
                 document_rows.append([document_name, quantity, price, amount])
             writer.writerows(document_rows)
         
@@ -154,14 +157,16 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
         payment_due_date = contract_form.data.get('payment_due_date')
         insurance_fee = contract_form.data.get('insurance_fee', 0)
         remarks = contract_form.data.get('remarks', None)
+        tax = int(sub_total * 0.1)
+        total = sub_total + tax + insurance_fee
 
         rows = [
             [],
-            ['機械発送日', shipping_date, '', '小計', '820000'],
-            ['備考', remarks, '', '消費税 (10%)', '1200'],
+            ['機械発送日', shipping_date, '', '小計', sub_total],
+            ['備考', remarks, '', '消費税 (10%)', tax],
             ['', '', '', '保険代 (非課税)', insurance_fee],
-            ['', '', '', '合計', '13200'],
-            ['運送方法', shipping_method, '', '御請求金額', '13200'],
+            ['', '', '', '合計', total],
+            ['運送方法', shipping_method, '', '御請求金額', total],
             ['お支払方法', payment_method, '', '支払期限', payment_due_date],
             []
         ]
