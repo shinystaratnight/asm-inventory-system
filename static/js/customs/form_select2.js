@@ -185,6 +185,6 @@ document.addEventListener('DOMContentLoaded', function() {
         templateResult: formatProduct,
         templateSelection: formatProductSelection
     });
-    // End of select product select2 initialization and formatting
+    // End of select hall select2 initialization and formatting
 
 });

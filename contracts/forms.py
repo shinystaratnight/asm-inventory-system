@@ -230,6 +230,28 @@ class SalesSenderForm(forms.Form):
             'expected_arrival_date': self.cleaned_data.get('expected_arrival_date'),
         }
         SaleSender.objects.create(**data)
+# End of Trader Sales Forms
+
+
+# Trader Purchases Forms
+class TraderPurchasesContractForm(forms.Form):
+    contract_id = forms.CharField()
+    customer_id = forms.IntegerField()
+    created_at = forms.DateField(input_formats=INPUT_FORMATS)
+    updated_at = forms.DateField(input_formats=INPUT_FORMATS)
+    manager = forms.CharField(required=False)
+    person_in_charge = forms.CharField()
+    removal_date = forms.DateField(input_formats=INPUT_FORMATS)
+    shipping_date = forms.DateField(input_formats=INPUT_FORMATS)
+    frame_color = forms.CharField()
+    receipt = forms.CharField()
+    remarks = forms.CharField(required=False)
+    insurance_fee = forms.IntegerField()
+    transfer_deadline = forms.DateField()
+    bank_name = forms.CharField()
+    account_number = forms.CharField()
+    branch_name = forms.CharField()
+    account_holder = forms.CharField()
 
 
 class PurchasesSenderForm(forms.Form):
@@ -255,5 +277,4 @@ class PurchasesSenderForm(forms.Form):
             'remarks': self.cleaned_data.get('remarks'),
         }
         PurchaseSender.objects.create(**data)
-
-# End of Trader Sales Forms
+# End of trader purchases form

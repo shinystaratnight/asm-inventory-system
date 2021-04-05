@@ -6,6 +6,7 @@ urlpatterns = [
     path('trader-sales/', TraderSalesContractView.as_view(), name='trader-sales'),
     path('trader-sales/invoice/', TraderSalesInvoiceView.as_view(), name='trader-sales-invoice'),
     path('trader-purchases/', TraderPurchasesContractView.as_view(), name='trader-purchases'),
+    path('trader-purchases/invoice/', TraderPurchasesInvoiceView.as_view(), name='trader-purchases-invoice'),
     path('hall-sales/', HallSalesContractView.as_view(), name='hall-sales'),
     path('hall-purchases/', HallPurchasesContractView.as_view(), name='hall-purchases'),
 
