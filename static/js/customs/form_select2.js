@@ -133,26 +133,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     // End of select hall select2 initialization and formatting
     
-    // customer-search select2 changed event
-    $('.select-customer').on('select2:select', function(e) {
-        var customer = e.params.data;
-        var frigana = customer.frigana;
-        var postal_code = customer.postal_code;
-        var address = customer.address;
-        var tel = customer.tel;
-        var fax = customer.fax;
+    // hall-search select2 changed event
+    $('.select-hall').on('select2:select', function(e) {
+        var hall = e.params.data;
+        var address = hall.address;
+        var tel = hall.tel;
 
-        $('input[name="frigana"]').val(frigana);
-        $('input[name="postal_code"]').val(postal_code);
-        $('input[name="address"]').val(address);
-        $('input[name="tel"]').val(tel);
-        $('input[name="fax"]').val(fax);
-
-        $('span.buyer-postal-code').text(postal_code);
-        $('span.buyer-address').text(address);
-        $('h4.buyer-company').text(customer.name);
-        $('span.buyer-tel').text(tel);
-        $('span.buyer-fax').text(fax);
+        $('input#hall_address').val(address);
+        $('input#hall_tel').val(tel);
     });
 
 

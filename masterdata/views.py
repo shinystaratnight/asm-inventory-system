@@ -140,7 +140,7 @@ class HallSearchAjaxView(AdminLoginRequiredMixin, View):
                 Q(fax__icontains=search)
             )
             total_count = hall_qs.count()
-            hall_qs = hall_qs.order_by('id')[start:end].values('id', 'name', 'frigana', 'tel', 'fax', 'postal_code', 'address')
+            hall_qs = hall_qs.order_by('id')[start:end].values('id', 'name', 'frigana', 'tel', 'fax', 'address')
             halls = list(hall_qs)
             return JsonResponse({"halls": halls, "total_count": total_count}, safe=False, status=200)
         return JsonResponse({'success': False}, status=400)
