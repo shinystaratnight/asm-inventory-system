@@ -344,6 +344,12 @@ form.master-search-form input {
 .no-table-header+div.dataTables_wrapper .datatable-header {
     display: none;
 }
+.content-wrapper.trader-sales-contract {
+    background: rgb(241, 191, 192);
+}
+.content-wrapper.trader-purchases-contract {
+    background: rgb(171, 172, 226);
+}
 @media screen and (max-width: 768px) {
 	.panel .visible-elements {
         padding-top: 20px;
