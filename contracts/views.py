@@ -158,7 +158,7 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
         insurance_fee = contract_form.data.get('insurance_fee', 0)
         remarks = contract_form.data.get('remarks', None)
         tax = int(sub_total * 0.1)
-        total = sub_total + tax + insurance_fee
+        total = sub_total + tax + int(insurance_fee)
 
         rows = [
             [],
