@@ -128,7 +128,7 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
             ['会社名', company, '', 'フリガナ', frigana],
             ['郵便番号', postal_code],
             ['住所', address, '', '', '', '', 'P-SENSOR 会員番号', p_sensor_number],
-            ['TEL', tel, '', 'FAX', None, '', '担当名', person_in_charge],
+            ['TEL', tel, '', 'FAX', fax, '', '担当名', person_in_charge],
             [],
             ['商品名'],
             ['機種名', '中分類', '数量', '単価', '金額'],
@@ -357,7 +357,7 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
             ['会社名', company, '', 'フリガナ', frigana],
             ['郵便番号', postal_code],
             ['住所', address, '', '', '', '', 'P-SENSOR 会員番号', p_sensor_number],
-            ['TEL', tel, '', 'FAX', None, '', '担当名', person_in_charge],
+            ['TEL', tel, '', 'FAX', fax, '', '担当名', person_in_charge],
             [],
             ['商品名'],
             ['機種名', '中分類', '数量', '単価', '金額'],
@@ -422,7 +422,7 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
             ['', '', '', '', '', '', '小計', sub_total],
             ['撤去日', removal_date, '', '枠色', frame_color, '', '消費税 (10%)', tax],
             ['発送日', shipping_date, '', '引取', receipt, '', '保険代 (非課税)', insurance_fee],
-            ['備考', '', '', '', '', '', '合計', total],
+            ['備考', remarks, '', '', '', '', '合計', total],
             []
         ]
         writer.writerows(rows)
