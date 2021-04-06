@@ -15,9 +15,9 @@ class HallForm(ModelForm):
         fields = '__all__'
 
 
-class ReceiverForm(ModelForm):
+class SenderForm(ModelForm):
     class Meta:
-        model = Receiver
+        model = Sender
         fields = '__all__'
 
 

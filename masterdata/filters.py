@@ -43,11 +43,11 @@ class HallFilter(django_filters.FilterSet):
         return queryset
 
 
-class ReceiverFilter(django_filters.FilterSet):
+class SenderFilter(django_filters.FilterSet):
     keyword = django_filters.CharFilter(method='filter_by_keyword', widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
-        model = Receiver
+        model = Sender
         fields = '__all__'
         
     def filter_by_keyword(self, queryset, name, value):

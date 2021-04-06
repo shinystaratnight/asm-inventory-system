@@ -91,7 +91,7 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['contract_id'] = generate_contract_id()
         context['documents'] = Document.objects.all().values('id', 'name')
-        context['senders'] = Receiver.objects.all().values('id', 'name')
+        context['senders'] = Sender.objects.all().values('id', 'name')
         context['productformset'] = ProductFormSet(prefix='product')
         context['documentformset'] = DocumentFormSet(prefix='document')
         return context
@@ -205,7 +205,7 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
             product_sender_company = product_sender_address = product_sender_tel = product_sender_fax = None
             product_sender_expected_arrival_date = self.request.POST.get('product_sender_expected_arrival_date', None)
             if product_sender_id:
-                product_sender = Receiver.objects.get(id=product_sender_id)
+                product_sender = Sender.objects.get(id=product_sender_id)
                 product_sender_company = product_sender.name
                 product_sender_address = product_sender.address
                 product_sender_tel = product_sender.tel
@@ -214,7 +214,7 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
             document_sender_id = self.request.POST.get('document_sender_id', None)
             document_sender_expected_arrival_date = self.request.POST.get('document_sender_expected_arrival_date', None)
             if document_sender_id:
-                document_sender = Receiver.objects.get(id=document_sender_id)
+                document_sender = Sender.objects.get(id=document_sender_id)
                 document_sender_company = document_sender.name
                 document_sender_address = document_sender.address
                 document_sender_tel = document_sender.tel
@@ -320,7 +320,7 @@ class TraderPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['contract_id'] = generate_contract_id('02')
         context['documents'] = Document.objects.all().values('id', 'name')
-        context['senders'] = Receiver.objects.all().values('id', 'name')
+        context['senders'] = Sender.objects.all().values('id', 'name')
         context['productformset'] = ProductFormSet(prefix='product')
         context['documentformset'] = DocumentFormSet(prefix='document')
         return context
@@ -433,7 +433,7 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         product_sender_remarks = self.request.POST.get('product_sender_remarks', None)
         product_sender_desired_arrival_date = self.request.POST.get('product_sender_desired_arrival_date', None)
         if product_sender_id:
-            product_sender = Receiver.objects.get(id=product_sender_id)
+            product_sender = Sender.objects.get(id=product_sender_id)
             product_sender_company = product_sender.name
             product_sender_address = product_sender.address
             product_sender_tel = product_sender.tel
@@ -443,7 +443,7 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         document_sender_remarks = self.request.POST.get('document_sender_remarks', None)
         document_sender_desired_arrival_date = self.request.POST.get('document_sender_desired_arrival_date', None)
         if document_sender_id:
-            document_sender = Receiver.objects.get(id=document_sender_id)
+            document_sender = Sender.objects.get(id=document_sender_id)
             document_sender_company = document_sender.name
             document_sender_address = document_sender.address
             document_sender_tel = document_sender.tel

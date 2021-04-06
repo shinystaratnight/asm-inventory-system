@@ -25,7 +25,7 @@ class Hall(MasterData):
     payee = models.CharField(max_length=200)
 
 
-class Receiver(MasterData):
+class Sender(MasterData):
     pass
 
 

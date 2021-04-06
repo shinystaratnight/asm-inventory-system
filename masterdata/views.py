@@ -7,7 +7,7 @@ from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
 from .forms import *
 from .filters import *
-from .models import Customer, Receiver
+from .models import *
 
 
 class CustomerView(AdminLoginRequiredMixin, ListView):
@@ -52,25 +52,25 @@ class HallView(AdminLoginRequiredMixin, ListView):
         return redirect('masterdata:hall')
 
 
-class ReceiverView(AdminLoginRequiredMixin, ListView):
-    template_name = 'master_data/receivers.html'
-    queryset = Receiver.objects.all()
+class SenderView(AdminLoginRequiredMixin, ListView):
+    template_name = 'master_data/senders.html'
+    queryset = Sender.objects.all()
     context_object_name = 'master_data'
     paginate_by = 10
     
     def get_queryset(self):
-        return ReceiverFilter(self.request.GET, queryset=self.queryset).qs.order_by('pk')
+        return SenderFilter(self.request.GET, queryset=self.queryset).qs.order_by('pk')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['receiver_filter'] = ReceiverFilter(self.request.GET)
+        context['sender_filter'] = SenderFilter(self.request.GET)
         return context
     
     def post(self, request, *args, **kwargs):
-        form = ReceiverForm(request.POST)
+        form = SenderForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('masterdata:receiver')
+        return redirect('masterdata:sender')
 
 
 class ProductView(AdminLoginRequiredMixin, ListView):
@@ -161,13 +161,13 @@ class ProductSearchAjaxView(AdminLoginRequiredMixin, View):
         return JsonResponse({'success': False}, status=400)
 
 
-class ReceiverDetailAjaxView(AdminLoginRequiredMixin, View):
+class SenderDetailAjaxView(AdminLoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         if self.request.method == 'GET' and self.request.is_ajax():
             id = self.request.GET.get('id')
-            receiver = Receiver.objects.get(id=id)
+            sender = Sender.objects.get(id=id)
             return JsonResponse(
-                {'address': receiver.address, 'tel': receiver.tel, 'fax': receiver.fax},
+                {'address': sender.address, 'tel': sender.tel, 'fax': sender.fax},
                 status=200
             )
         return JsonResponse({'success': False}, status=400)

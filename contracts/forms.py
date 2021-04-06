@@ -149,6 +149,7 @@ DocumentFormSet = formset_factory(DocumentForm, formset=ItemValidationFormSet, e
 DocumentFeeFormSet = formset_factory(DocumentFeeForm, formset=DocumentFeeValidationFormSet, extra=0)
 # End of Common Forms
 
+
 class MilestoneForm(forms.Form):
     date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control datepicker-milestone'}))
     amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -171,6 +172,7 @@ class MilestoneForm(forms.Form):
         }
         Milestone.objects.create(**data)
 
+
 class MilestoneValidationFormSet(BaseFormSet):
     def clean(self):
         if any(self.errors):
@@ -189,12 +191,15 @@ class MilestoneValidationFormSet(BaseFormSet):
             data['contract_class'] = contract_class
         return data
 
+
 #===================================#
 # Trader Sales Forms
 class TraderSalesContractForm(forms.Form):
     contract_id = forms.CharField()
     customer_id = forms.IntegerField()
     manager = forms.CharField(required=False)
+    created_at = forms.DateField(input_formats=INPUT_FORMATS)
+    updated_at = forms.DateField(input_formats=INPUT_FORMATS)
     person_in_charge = forms.CharField()
     remarks = forms.CharField(required=False)
     shipping_method = forms.CharField()
@@ -202,8 +207,7 @@ class TraderSalesContractForm(forms.Form):
     payment_method = forms.CharField()
     payment_due_date = forms.DateField(input_formats=INPUT_FORMATS)
     insurance_fee = forms.IntegerField()
-    created_at = forms.DateField(input_formats=INPUT_FORMATS)
-    updated_at = forms.DateField(input_formats=INPUT_FORMATS)
+    memo = forms.CharField()
     # insurance_included = forms.BooleanField()
 
     def save(self):
@@ -226,7 +230,7 @@ class SalesSenderForm(forms.Form):
         data = {
             'contract': TraderSalesContract.objects.get(id=self.contract_id),
             'type': self.type,
-            'sender': Receiver.objects.get(id=self.cleaned_data.get('sender_id')),
+            'sender': Sender.objects.get(id=self.cleaned_data.get('sender_id')),
             'expected_arrival_date': self.cleaned_data.get('expected_arrival_date'),
         }
         SaleSender.objects.create(**data)
@@ -271,7 +275,7 @@ class PurchasesSenderForm(forms.Form):
         data = {
             'contract': TraderPurchasesContract.objects.get(id=self.contract_id),
             'type': self.type,
-            'sender': Receiver.objects.get(id=self.cleaned_data.get('sender_id')),
+            'sender': Sender.objects.get(id=self.cleaned_data.get('sender_id')),
             'desired_arrival_date': self.cleaned_data.get('desired_arrival_date'),
             'shipping_company': self.cleaned_data.get('shipping_company'),
             'remarks': self.cleaned_data.get('remarks'),

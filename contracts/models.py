@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
 from django.utils.translation import gettext_lazy as _
-from masterdata.models import Customer, Receiver, Hall, Product, Document, DocumentFee
+from masterdata.models import *
 
 SHIPPING_METHOD_CHOICES = (
     ('D', _('Delivery')),
@@ -102,6 +102,7 @@ class TraderContract(models.Model):
 
 
 class TraderSalesContract(TraderContract):
+    memo = models.TextField(null=True, blank=True)
     products = GenericRelation(ContractProduct, related_query_name='trader_sales_contract')
     documents = GenericRelation(ContractDocument, related_query_name='trader_sales_contract')
 
@@ -119,13 +120,13 @@ class TraderPurchasesContract(TraderContract):
 class SaleSender(models.Model):
     contract = models.ForeignKey(TraderSalesContract, on_delete=models.CASCADE, related_name='senders')
     type = models.CharField(max_length=1, choices=ITEM_CHOICES)
-    sender = models.ForeignKey(Receiver, on_delete=models.CASCADE)
+    sender = models.ForeignKey(Sender, on_delete=models.CASCADE)
     expected_arrival_date = models.DateField()
 
 
 class PurchaseSender(models.Model):
     type = models.CharField(max_length=1, choices=ITEM_CHOICES)
-    sender = models.ForeignKey(Receiver, on_delete=models.CASCADE)
+    sender = models.ForeignKey(Sender, on_delete=models.CASCADE)
     desired_arrival_date = models.DateField()
     shipping_company = models.CharField(max_length=100)
     remarks = models.TextField(null=True, blank=True)

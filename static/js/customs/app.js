@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         $.ajax({
             type: 'GET',
-            url: '/master/receiver-detail/',
+            url: '/master/sender-detail/',
             data: {
                 id: id,
             },
