@@ -3,9 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set formset prefixes here
     var product_prefix = 'product';
     var document_prefix = 'document';
-    var document_fee_prefix = 'document_fee'
+    var document_fee_prefix = 'document_fee';
+    var lang = $('input[name="selected-lang"]').val();
 
-    // Resett the form total number in management form
+    // Reset the form total number in management form
     function resetTotalFormNumber(prefix) {
         if ($('table.table-' + prefix + ' .odd').length) {
             $('#id_' + prefix + '-TOTAL_FORMS').val(0);
@@ -251,10 +252,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         $.ajax({
-            type: 'GET',
-            url: '/master/sender-detail/',
+            type: 'POST',
+            url: `/${lang}/master/sender-detail/`,
             data: {
                 id: id,
+            },
+            beforeSend: function(request) {
+                request.setRequestHeader('X-CSRFToken', csrftoken);
             },
             success: function (result) {
                 $fs.find('textarea.address').val(result.address);

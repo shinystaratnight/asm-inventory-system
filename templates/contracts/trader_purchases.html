@@ -795,7 +795,7 @@
 					
 					$.ajax({
 						type: 'POST',
-						url: '/' + lang + '/contract/manager/',
+						url: "{% url 'contract:manager-list' %}",
 						data: {
 							'contract': 'TraderPurchasesContract'
 						},
@@ -819,6 +819,7 @@
 						$('form').attr('action', "{% url 'contract:trader-purchases-invoice' %}");
 						$('form').submit();
 					});
+					
 				});
 			</script>
 

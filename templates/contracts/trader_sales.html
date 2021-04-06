@@ -722,17 +722,13 @@
 			<script>
 				$(function () {
 					
-					$('input[name="person_in_charge"]').on('input', function (e) {
-						$('span.buyer').text($(this).val());
-					});
-
 					$('#shipping_method').change(function () {
-						var shipping_date_value = $(this).val();
+						var shipping_method = $(this).val();
 						$.ajax({
 							type: 'POST',
-							url: '/' + lang + '/contract/shipping-label/',
+							url: "{% url 'contract:shipping-label' %}",
 							data: {
-								data: shipping_date_value,
+								data: shipping_method,
 							},
 							beforeSend: function(request) {
 								request.setRequestHeader('X-CSRFToken', csrftoken);
@@ -745,7 +741,7 @@
 					
 					$.ajax({
 						type: 'POST',
-						url: '/' + lang + '/contract/manager/',
+						url: "{% url 'contract:manager-list' %}",
 						data: {
 							'contract': 'TraderSalesContract'
 						},
@@ -769,6 +765,7 @@
 						$('form').attr('action', "{% url 'contract:trader-sales-invoice' %}");
 						$('form').submit();
 					});
+
 				});
 			</script>
 

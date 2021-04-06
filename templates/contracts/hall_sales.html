@@ -755,7 +755,7 @@
 					
 					$.ajax({
 						type: 'POST',
-						url: '/' + lang + '/contract/manager/',
+						url: "{% url 'contract:manager-list' %}",
 						data: {
 							'contract': 'HallSalesContract'
 						},

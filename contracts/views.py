@@ -228,7 +228,6 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
                 ['到着予定日', product_sender_expected_arrival_date, '', '到着予定日', document_sender_expected_arrival_date]
             ]
             writer.writerows(rows)
-   
         return response
 
 

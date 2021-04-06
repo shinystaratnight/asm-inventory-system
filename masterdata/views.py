@@ -162,9 +162,9 @@ class ProductSearchAjaxView(AdminLoginRequiredMixin, View):
 
 
 class SenderDetailAjaxView(AdminLoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-        if self.request.method == 'GET' and self.request.is_ajax():
-            id = self.request.GET.get('id')
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            id = self.request.POST.get('id')
             sender = Sender.objects.get(id=id)
             return JsonResponse(
                 {'address': sender.address, 'tel': sender.tel, 'fax': sender.fax},
