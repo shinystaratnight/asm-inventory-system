@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-06 01:48+0000\n"
+"POT-Creation-Date: 2021-04-06 14:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,26 +43,26 @@ msgstr "ID変更"
 msgid "* Blank"
 msgstr "* 空白"
 
-#: contracts/models.py:15 templates/contracts/hall_purchases.html:656
-#: templates/contracts/hall_sales.html:655
+#: contracts/models.py:15 templates/contracts/hall_purchases.html:653
+#: templates/contracts/hall_sales.html:652
 #: templates/contracts/trader_sales.html:530
 msgid "Transfer"
 msgstr "振込"
 
-#: contracts/models.py:16 templates/contracts/hall_purchases.html:657
-#: templates/contracts/hall_sales.html:656
+#: contracts/models.py:16 templates/contracts/hall_purchases.html:654
+#: templates/contracts/hall_sales.html:653
 #: templates/contracts/trader_sales.html:531
 msgid "Check"
 msgstr "小切手"
 
-#: contracts/models.py:17 templates/contracts/hall_purchases.html:658
-#: templates/contracts/hall_sales.html:657
+#: contracts/models.py:17 templates/contracts/hall_purchases.html:655
+#: templates/contracts/hall_sales.html:654
 #: templates/contracts/trader_sales.html:532
 msgid "Bill"
 msgstr "手形"
 
-#: contracts/models.py:18 templates/contracts/hall_purchases.html:659
-#: templates/contracts/hall_sales.html:658
+#: contracts/models.py:18 templates/contracts/hall_purchases.html:656
+#: templates/contracts/hall_sales.html:655
 #: templates/contracts/trader_sales.html:533
 msgid "Cash"
 msgstr "現金"
@@ -150,8 +150,8 @@ msgid "Delivered place"
 msgstr "納品先"
 
 #: lists/views.py:37 lists/views.py:63 lists/views.py:84
-#: templates/contracts/hall_purchases.html:721
-#: templates/contracts/hall_sales.html:725
+#: templates/contracts/hall_purchases.html:716
+#: templates/contracts/hall_sales.html:720
 #: templates/contracts/trader_purchases.html:170
 #: templates/contracts/trader_sales.html:168 templates/lists/inventory.html:104
 #: templates/lists/purchases.html:107 templates/lists/sales.html:107
@@ -173,8 +173,8 @@ msgid "Product name"
 msgstr "商品名"
 
 #: lists/views.py:38 lists/views.py:64 lists/views.py:85
-#: templates/contracts/hall_purchases.html:473
-#: templates/contracts/hall_sales.html:472 templates/lists/inventory.html:105
+#: templates/contracts/hall_purchases.html:472
+#: templates/contracts/hall_sales.html:471 templates/lists/inventory.html:105
 #: templates/lists/purchases.html:110 templates/lists/sales.html:110
 msgid "Number of units"
 msgstr "台数"
@@ -182,10 +182,10 @@ msgstr "台数"
 #: lists/views.py:38 lists/views.py:64
 #: templates/contracts/hall_purchases.html:184
 #: templates/contracts/hall_purchases.html:340
-#: templates/contracts/hall_purchases.html:474
+#: templates/contracts/hall_purchases.html:473
 #: templates/contracts/hall_sales.html:183
 #: templates/contracts/hall_sales.html:339
-#: templates/contracts/hall_sales.html:473
+#: templates/contracts/hall_sales.html:472
 #: templates/contracts/trader_purchases.html:203
 #: templates/contracts/trader_purchases.html:359
 #: templates/contracts/trader_sales.html:201
@@ -232,11 +232,11 @@ msgstr "在庫"
 msgid "Total price"
 msgstr "合計金額"
 
-#: masterdata/models.py:33 templates/master_data/products.html:121
+#: masterdata/models.py:5 templates/master_data/products.html:121
 msgid "Pachinko"
 msgstr "パチンコ"
 
-#: masterdata/models.py:34 templates/master_data/products.html:122
+#: masterdata/models.py:6 templates/master_data/products.html:122
 msgid "Slot"
 msgstr "スロット"
 
@@ -439,9 +439,9 @@ msgid "Model name"
 msgstr "機種名"
 
 #: templates/contracts/hall_purchases.html:181
-#: templates/contracts/hall_purchases.html:471
+#: templates/contracts/hall_purchases.html:470
 #: templates/contracts/hall_sales.html:180
-#: templates/contracts/hall_sales.html:470
+#: templates/contracts/hall_sales.html:469
 #: templates/contracts/trader_purchases.html:200
 #: templates/contracts/trader_sales.html:198
 msgid "Product type"
@@ -491,9 +491,9 @@ msgid "No document has been added."
 msgstr "書類が追加されていません。"
 
 #: templates/contracts/hall_purchases.html:452
-#: templates/contracts/hall_purchases.html:482
+#: templates/contracts/hall_purchases.html:481
 #: templates/contracts/hall_sales.html:451
-#: templates/contracts/hall_sales.html:481
+#: templates/contracts/hall_sales.html:480
 msgid "Document fee"
 msgstr "書類代"
 
@@ -502,19 +502,19 @@ msgstr "書類代"
 msgid "Select document fee"
 msgstr "書類代を選択してください"
 
-#: templates/contracts/hall_purchases.html:472
-#: templates/contracts/hall_sales.html:471
+#: templates/contracts/hall_purchases.html:471
+#: templates/contracts/hall_sales.html:470
 msgid "Number of models"
 msgstr "機種数"
 
-#: templates/contracts/hall_purchases.html:525
-#: templates/contracts/hall_sales.html:524
+#: templates/contracts/hall_purchases.html:524
+#: templates/contracts/hall_sales.html:523
 msgid "No document fee has been added."
 msgstr "書類代が追加されていません。"
 
-#: templates/contracts/hall_purchases.html:587
-#: templates/contracts/hall_purchases.html:740
-#: templates/contracts/hall_sales.html:586
+#: templates/contracts/hall_purchases.html:585
+#: templates/contracts/hall_purchases.html:734
+#: templates/contracts/hall_sales.html:584
 #: templates/contracts/trader_purchases.html:509
 #: templates/contracts/trader_purchases.html:589
 #: templates/contracts/trader_purchases.html:635
@@ -523,86 +523,86 @@ msgstr "書類代が追加されていません。"
 msgid "Remarks"
 msgstr "備考"
 
-#: templates/contracts/hall_purchases.html:596
-#: templates/contracts/hall_sales.html:595
+#: templates/contracts/hall_purchases.html:593
+#: templates/contracts/hall_sales.html:592
 #: templates/contracts/trader_purchases.html:521
 #: templates/contracts/trader_sales.html:493
 msgid "Subtotal"
 msgstr "小計"
 
-#: templates/contracts/hall_purchases.html:600
-#: templates/contracts/hall_sales.html:599
+#: templates/contracts/hall_purchases.html:597
+#: templates/contracts/hall_sales.html:596
 #: templates/contracts/trader_purchases.html:525
 #: templates/contracts/trader_sales.html:497
 msgid "Consumption tax"
 msgstr "消費税"
 
-#: templates/contracts/hall_purchases.html:608
-#: templates/contracts/hall_sales.html:607
+#: templates/contracts/hall_purchases.html:605
+#: templates/contracts/hall_sales.html:604
 #: templates/contracts/trader_purchases.html:529
 #: templates/contracts/trader_sales.html:501
 msgid "Insurance fee"
 msgstr "保険代"
 
-#: templates/contracts/hall_purchases.html:608
-#: templates/contracts/hall_sales.html:607
+#: templates/contracts/hall_purchases.html:605
+#: templates/contracts/hall_sales.html:604
 #: templates/contracts/trader_purchases.html:529
 #: templates/contracts/trader_sales.html:501
 msgid "No tax"
 msgstr "非課税"
 
-#: templates/contracts/hall_purchases.html:615
-#: templates/contracts/hall_sales.html:614
+#: templates/contracts/hall_purchases.html:612
+#: templates/contracts/hall_sales.html:611
 msgid "Total amount"
 msgstr "合計"
 
-#: templates/contracts/hall_purchases.html:626
-#: templates/contracts/hall_sales.html:625
+#: templates/contracts/hall_purchases.html:623
+#: templates/contracts/hall_sales.html:622
 msgid "We will charge you as follows."
 msgstr "下記の通りご請求申し上げます。"
 
-#: templates/contracts/hall_purchases.html:635
-#: templates/contracts/hall_sales.html:634
+#: templates/contracts/hall_purchases.html:632
+#: templates/contracts/hall_sales.html:631
 msgid "Shipping date"
 msgstr "納品日"
 
-#: templates/contracts/hall_purchases.html:644
-#: templates/contracts/hall_sales.html:643
+#: templates/contracts/hall_purchases.html:641
+#: templates/contracts/hall_sales.html:640
 msgid "Opening date"
 msgstr "開店日"
 
-#: templates/contracts/hall_purchases.html:654
-#: templates/contracts/hall_sales.html:653
+#: templates/contracts/hall_purchases.html:651
+#: templates/contracts/hall_sales.html:650
 #: templates/contracts/trader_sales.html:528
 msgid "Payment method"
 msgstr "お支払方法"
 
-#: templates/contracts/hall_purchases.html:670
-#: templates/contracts/hall_sales.html:669
+#: templates/contracts/hall_purchases.html:667
+#: templates/contracts/hall_sales.html:666
 msgid "Payment breakdown"
 msgstr "お支払内訳"
 
-#: templates/contracts/hall_purchases.html:714
-#: templates/contracts/hall_sales.html:717
+#: templates/contracts/hall_purchases.html:710
+#: templates/contracts/hall_sales.html:713
 #: templates/contracts/trader_purchases.html:712
 #: templates/contracts/trader_sales.html:687
 msgid "Transfer account"
 msgstr "振込先口座"
 
-#: templates/contracts/hall_purchases.html:729
-#: templates/contracts/hall_sales.html:733
+#: templates/contracts/hall_purchases.html:724
+#: templates/contracts/hall_sales.html:728
 msgid "Confirmor"
 msgstr "確認印"
 
-#: templates/contracts/hall_purchases.html:751
-#: templates/contracts/hall_sales.html:744
+#: templates/contracts/hall_purchases.html:744
+#: templates/contracts/hall_sales.html:739
 #: templates/contracts/trader_purchases.html:778
 #: templates/contracts/trader_sales.html:706
 msgid "Save"
 msgstr "保存"
 
-#: templates/contracts/hall_purchases.html:752
-#: templates/contracts/hall_sales.html:745
+#: templates/contracts/hall_purchases.html:745
+#: templates/contracts/hall_sales.html:740
 #: templates/contracts/trader_purchases.html:779
 #: templates/contracts/trader_sales.html:707
 msgid "CSV Output"
@@ -613,7 +613,7 @@ msgstr "CSV出力"
 msgid "Hall sales"
 msgstr "ホール売"
 
-#: templates/contracts/hall_sales.html:710
+#: templates/contracts/hall_sales.html:707
 msgid "Please bear the transfer fee at your expense."
 msgstr "お振込み手数料は貴社ご負担でお願いします。"
 
@@ -901,10 +901,10 @@ msgid ""
 "If you need the original invoice, please make sure to tick the checkbox."
 msgstr "請求書原本が必要な場合は必ずチェックしてください。"
 
-#: templates/error/404.html:13 templates/layout/modal.html:8
-#: templates/layout/modal.html:37 templates/layout/modal.html:66
-#: templates/layout/modal.html:95 templates/layout/modal.html:124
-#: templates/layout/modal.html:139 templates/layout/modal.html:154
+#: templates/error/404.html:13 templates/layout/error_modal.html:8
+#: templates/layout/error_modal.html:35 templates/layout/error_modal.html:68
+#: templates/layout/error_modal.html:100 templates/layout/error_modal.html:132
+#: templates/layout/error_modal.html:147 templates/layout/error_modal.html:162
 msgid "Error"
 msgstr "エラー"
 
@@ -929,57 +929,44 @@ msgstr "サーバーエラー、サポートに連絡してください"
 msgid "Inventory System"
 msgstr "在庫システム"
 
-#: templates/layout/modal.html:13 templates/layout/modal.html:42
-#: templates/layout/modal.html:71 templates/layout/modal.html:100
+#: templates/layout/error_modal.html:13
 msgid "Customer must be selected."
 msgstr "取引先のフィールドは必須です。"
 
-#: templates/layout/modal.html:14 templates/layout/modal.html:43
-#: templates/layout/modal.html:72 templates/layout/modal.html:101
-msgid "Person in charge must be provided."
+#: templates/layout/error_modal.html:14 templates/layout/error_modal.html:41
+#: templates/layout/error_modal.html:83 templates/layout/error_modal.html:115
+msgid "Person in charge field must be provided."
 msgstr "担当名のフィールドは必須です。"
 
-#: templates/layout/modal.html:15 templates/layout/modal.html:44
-#: templates/layout/modal.html:73 templates/layout/modal.html:102
+#: templates/layout/error_modal.html:15 templates/layout/error_modal.html:42
+#: templates/layout/error_modal.html:75 templates/layout/error_modal.html:107
 msgid "At least one product must be added."
 msgstr "少なくとも1つの商品名を追加する必要があります。"
 
-#: templates/layout/modal.html:16 templates/layout/modal.html:45
-#: templates/layout/modal.html:74 templates/layout/modal.html:103
+#: templates/layout/error_modal.html:16 templates/layout/error_modal.html:43
+#: templates/layout/error_modal.html:76 templates/layout/error_modal.html:108
 msgid "Price and quantity for each product must be positive integer."
 msgstr "商品の単価と数量は正の整数でなければなりません。"
 
-#: templates/layout/modal.html:17 templates/layout/modal.html:46
-#: templates/layout/modal.html:75 templates/layout/modal.html:104
+#: templates/layout/error_modal.html:17 templates/layout/error_modal.html:44
+#: templates/layout/error_modal.html:77 templates/layout/error_modal.html:109
 msgid "At least one document must be added."
 msgstr "少なくとも1つの書類を追加する必要があります。"
 
-#: templates/layout/modal.html:18 templates/layout/modal.html:47
-#: templates/layout/modal.html:76 templates/layout/modal.html:105
+#: templates/layout/error_modal.html:18 templates/layout/error_modal.html:45
+#: templates/layout/error_modal.html:78 templates/layout/error_modal.html:110
 msgid "Price and quantity for each document must be positive integer."
 msgstr "書類の単価と数量は正の整数でなければなりません。"
 
-#: templates/layout/modal.html:19 templates/layout/modal.html:48
-#: templates/layout/modal.html:77 templates/layout/modal.html:106
-msgid "At least one document fee must be added."
-msgstr "少なくとも1つの書類代を追加する必要があります。"
-
-#: templates/layout/modal.html:20 templates/layout/modal.html:49
-#: templates/layout/modal.html:78 templates/layout/modal.html:107
-msgid ""
-"Number of models and quantity for each document fee must be positive integer."
-msgstr "書類代の機種数と台数は正の整数でなければなりません。"
-
-#: templates/layout/modal.html:21 templates/layout/modal.html:50
-#: templates/layout/modal.html:79 templates/layout/modal.html:108
+#: templates/layout/error_modal.html:19
 msgid ""
 "When the shipping method is delivery, product sender and document sender "
 "must be selected."
 msgstr ""
 "運送方法が引取の場合は、商品発送先と書類発送先を選択する必要があります。"
 
-#: templates/layout/modal.html:26 templates/layout/modal.html:55
-#: templates/layout/modal.html:84 templates/layout/modal.html:113
+#: templates/layout/error_modal.html:24 templates/layout/error_modal.html:57
+#: templates/layout/error_modal.html:89 templates/layout/error_modal.html:121
 #: templates/master_data/customers.html:171
 #: templates/master_data/documents.html:113
 #: templates/master_data/halls.html:170 templates/master_data/products.html:137
@@ -987,15 +974,76 @@ msgstr ""
 msgid "Close"
 msgstr "閉じる"
 
-#: templates/layout/modal.html:128
+#: templates/layout/error_modal.html:40 templates/layout/error_modal.html:73
+#: templates/layout/error_modal.html:105
+msgid "Customer field must be selected."
+msgstr "取引先のフィールドは必須です。"
+
+#: templates/layout/error_modal.html:46
+msgid ""
+"Sender and shipping company for product sender and document sender forms "
+"must be given."
+msgstr ""
+"商品発送先と書類発送先で会社名と運送会社を指定する必要があります。"
+
+#: templates/layout/error_modal.html:47
+msgid "Frame color field must be selected."
+msgstr "枠色のフィールドは必須です。"
+
+#: templates/layout/error_modal.html:48
+msgid "Receipt field must be selected."
+msgstr "引取のフィールドは必須です。"
+
+#: templates/layout/error_modal.html:49
+msgid "Bank name field must be selected."
+msgstr "銀行名のフィールドは必須です。"
+
+#: templates/layout/error_modal.html:50
+msgid "Account number field must be selected."
+msgstr "口座番号のフィールドは必須です。"
+
+#: templates/layout/error_modal.html:51
+msgid "Branch name field must be selected."
+msgstr "支店名のフィールドは必須です。"
+
+#: templates/layout/error_modal.html:52
+msgid "Account holder field must be selected."
+msgstr "口座名義のフィールドは必須です。"
+
+#: templates/layout/error_modal.html:74 templates/layout/error_modal.html:106
+msgid "Hall field must be selected."
+msgstr "ホール名のフィールドは必須です。"
+
+#: templates/layout/error_modal.html:79 templates/layout/error_modal.html:111
+msgid "At least one document fee must be added."
+msgstr "少なくとも1つの書類代を追加する必要があります。"
+
+#: templates/layout/error_modal.html:80 templates/layout/error_modal.html:112
+msgid ""
+"Number of models and quantity for each document fee must be positive integer."
+msgstr "書類代の機種数と台数は正の整数でなければなりません。"
+
+#: templates/layout/error_modal.html:81 templates/layout/error_modal.html:113
+msgid "At least one milestone must be added."
+msgstr "少なくとも1つのお支払内訳を追加する必要があります。"
+
+#: templates/layout/error_modal.html:82 templates/layout/error_modal.html:114
+msgid "Transfer account field must be provided."
+msgstr "振込先口座のフィールドは必須です。"
+
+#: templates/layout/error_modal.html:84 templates/layout/error_modal.html:116
+msgid "Confirmor field must be provided."
+msgstr "確認印のフィールドは必須です。"
+
+#: templates/layout/error_modal.html:136
 msgid "Select the product before adding to the table."
 msgstr "追加する前に商品名を選択してください。"
 
-#: templates/layout/modal.html:143
+#: templates/layout/error_modal.html:151
 msgid "Select the document before adding to the table."
 msgstr "追加する前に書類を選択してください。"
 
-#: templates/layout/modal.html:158
+#: templates/layout/error_modal.html:166
 msgid "Select the document fee before adding to the table."
 msgstr "追加する前に書類代を選択してください。"
 
