@@ -1,6 +1,21 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+TYPE_CHOICES = (
+    ('P', _('Pachinko')),
+    ('S', _('Slot'))
+)
+
+POSTAL_CODE = '537―0021'
+ADDRESS = '大阪府大阪市東成区東中本2丁目4―15'
+COMPANY_NAME = 'バッジオ株式会社'
+CEO = '金 昇志'
+TEL = '06-6753-8078'
+FAX = '06-6753-8078'
+TRANSFER_ACCOUNT = 'りそな銀行　船場支店（101）　普通　0530713　バッジオカブシキガイシャ'
+REFAX = '06-6753-8079'
+P_SENSOR_NUMBER = '8240-2413-3628'
+
 
 class MasterData(models.Model):
     name = models.CharField(max_length=200)
@@ -28,11 +43,6 @@ class Hall(MasterData):
 class Sender(MasterData):
     pass
 
-
-TYPE_CHOICES = (
-    ('P', _('Pachinko')),
-    ('S', _('Slot'))
-)
 
 class Product(models.Model):
     name = models.CharField(max_length=200)

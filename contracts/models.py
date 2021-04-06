@@ -163,6 +163,7 @@ class HallPurchasesContract(HallContract):
     documents = GenericRelation(ContractDocument, related_query_name='hall_purchases_contract')
     document_fees = GenericRelation(ContractDocumentFee, related_query_name='hall_purchases_contract')
     milestones = GenericRelation(Milestone, related_query_name='hall_purchases_contract')
+    memo = models.TextField(null=True, blank=True)
 
 
 

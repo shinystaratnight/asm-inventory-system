@@ -1,13 +1,25 @@
+from masterdata.models import (
+    POSTAL_CODE,
+    ADDRESS,
+    COMPANY_NAME,
+    CEO,
+    TEL,
+    FAX,
+    TRANSFER_ACCOUNT,
+    REFAX,
+    P_SENSOR_NUMBER
+)
+
 def seller(request):
     return {
-        "seller_postal_code": '537―0021',
-        'seller_address': '大阪府大阪市東成区東中本2丁目4―15',
-        'seller_company': 'バッジオ株式会社',
-        'seller_ceo': '金 昇志',
-        'seller_tel': '06-6753-8078',
-        'seller_fax': '06-6753-8078',
+        "seller_postal_code": POSTAL_CODE,
+        'seller_address': ADDRESS,
+        'seller_company': COMPANY_NAME,
+        'seller_ceo': CEO,
+        'seller_tel': TEL,
+        'seller_fax': FAX,
 
-        'seller_payee_account': 'りそな銀行　船場支店（101）　普通　0530713　バッジオカブシキガイシャ',
-        'seller_reply_fax': '06-6753-8079',
-        'seller_p_sensor_number': '8240-2413-3628',
+        'seller_payee_account': TRANSFER_ACCOUNT,
+        'seller_reply_fax': REFAX,
+        'seller_p_sensor_number': P_SENSOR_NUMBER,
     }

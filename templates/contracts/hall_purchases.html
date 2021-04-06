@@ -145,7 +145,7 @@
 												<div class="form-group col-lg-4 col-xs-12">
 													<label class="control-label">{% trans "TEL" %}</label>
 													<div class="">
-														<input id="hall_tel" type="text" class="form-control" disabled></input>
+														<input type="text" id="hall_tel" class="form-control" disabled></input>
 													</div>
 												</div>
 											</div>
@@ -467,7 +467,6 @@
 											{{ documentfeeformset.management_form }}
 											<thead>
 												<tr>
-													<th></th>
 													<th>{% trans "Product type" %}</th>
 													<th>{% trans "Number of models" %}</th>
 													<th>{% trans "Number of units" %}</th>
@@ -602,7 +601,7 @@
 													<td>
 														<div class="checkbox my-0">
 															<label>
-																<input type="checkbox" checked="checked" class="styled">
+																<input type="checkbox" name="fee_included" checked="checked" class="styled">
 																{% trans "Insurance fee" %} ({% trans "No tax" %})
 															</label>
 														</div>
@@ -743,7 +742,7 @@
 									<div class="col-md-12">
 										<div class="mb-4 text-center">
 											<button type="submit" class="btn btn-primary mr-4"><i class="fa fa-print position-left"></i> {% trans "Save" %}</button>
-											<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> {% trans "CSV Output" %}</button>
+											<button type="button" class="btn btn-primary create-invoice"><i class="fa fa-print position-left"></i> {% trans "CSV Output" %}</button>
 										</div>
 									</div>
 								</div>
@@ -780,6 +779,11 @@
 								source: people
 							});
 						}
+					});
+
+					$('button.create-invoice').click( function (e) {
+						$('form').attr('action', "{% url 'contract:hall-purchases-invoice' %}");
+						$('form').submit();
 					});
 				});
 			</script>

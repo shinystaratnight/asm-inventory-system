@@ -269,11 +269,12 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
 
         var lang = $('input[name="selected-lang"]').val();
-        var $form = $('form[name="trader_sales"]');
+        var $form = $(this).closest('form');
 
         // To prevent the cached total_form_num hidden value from being sent to the server,
-        // reset it to zero if no product has been added.
+        // reset it to zero if no items has been added.
         resetTotalFormNumber(product_prefix);
+        resetTotalFormNumber(document_prefix);
         
         /*
         // In case of Ajax POST request, i18n throws issues (403) because of automatic url pattern resolve.
@@ -289,15 +290,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     $('#modal_trader_sales_error').modal('toggle');
                     return false;
                 }
-                $('form[name="trader_sales"]').submit();
+                $form.submit();
             }
         });
     });
 
-    
     // Form validator function for trader purchases contract page
-    $('form[name="trader_purchases"]').submit( function (e) {
-        return false;
+    $('form[name="trader_purchases"] button[type="submit"]').click( function (e) {
+        e.preventDefault();
+        var lang = $('input[name="selected-lang"]').val();
+        var $form = $(this).closest('form');
+        resetTotalFormNumber(product_prefix);
+        resetTotalFormNumber(document_prefix);
+        $.ajax({
+            type: "POST",
+            url: '/' + lang + '/contract/validate/trader-purchases/',
+            data: $form.serialize(),
+            dataType: 'json',
+            success: function (result) {
+                if (('success' in result) && result['success'] == false) {
+                    $('#modal_trader_purchases_error').modal('toggle');
+                    return false;
+                }
+                $form.submit();
+            }
+        });
     });
 
     // Form validator function for hall sales contract page
@@ -305,6 +322,8 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         var lang = $('input[name="selected-lang"]').val();
         var $form = $(this).closest('form');
+        resetTotalFormNumber(product_prefix);
+        resetTotalFormNumber(document_prefix);
         resetTotalFormNumber(document_fee_prefix);
         $.ajax({
             type: "POST",
@@ -322,8 +341,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Form validator function for hall purchases contract page
-    $('form[name="hall_purchases"]').submit( function (e) {
-        return false;
+    $('form[name="hall_purchases"] button[type="submit"]').click( function (e) {
+        e.preventDefault();
+        var lang = $('input[name="selected-lang"]').val();
+        var $form = $(this).closest('form');
+        resetTotalFormNumber(product_prefix);
+        resetTotalFormNumber(document_prefix);
+        resetTotalFormNumber(document_fee_prefix);
+        $.ajax({
+            type: "POST",
+            url: '/' + lang + '/contract/validate/hall-purchases/',
+            data: $form.serialize(),
+            dataType: 'json',
+            success: function (result) {
+                if (('success' in result) && result['success'] == false) {
+                    $('#modal_hall_purchases_error').modal('toggle');
+                    return false;
+                }
+                $form.submit();
+            }
+        });
     });
 
 });

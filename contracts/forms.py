@@ -145,7 +145,10 @@ class DocumentFeeValidationFormSet(BaseFormSet):
 
 
 class MilestoneForm(forms.Form):
-    date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control datepicker-milestone'}))
+    date = forms.DateField(
+        widget=forms.TextInput(attrs={'class': 'form-control datepicker-milestone'}),
+        input_formats=INPUT_FORMATS
+    )
     amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     def __init__(self, *args, **kwargs):
@@ -174,7 +177,7 @@ class MilestoneValidationFormSet(BaseFormSet):
         if self.total_form_count() == 0:
             raise ValidationError("At least one milestone should be set.")
         for form in self.forms:
-            amount = form.cleaned_data.get('amount')
+            amount = form.cleaned_data.get('amount', 0)
             if amount <= 0:
                 form.add_error('amount', 'Amount should be positive value.')
                 return
@@ -257,7 +260,7 @@ class TraderPurchasesContractForm(forms.Form):
     receipt = forms.CharField()
     remarks = forms.CharField(required=False)
     insurance_fee = forms.IntegerField()
-    transfer_deadline = forms.DateField()
+    transfer_deadline = forms.DateField(input_formats=INPUT_FORMATS)
     bank_name = forms.CharField()
     account_number = forms.CharField()
     branch_name = forms.CharField()

@@ -6,7 +6,7 @@ from django.http import HttpResponse, JsonResponse
 from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
 from users.views import AdminLoginRequiredMixin
-from masterdata.models import Document
+from masterdata.models import *
 from .models import *
 from .forms import *
 from .utilities import *
@@ -106,7 +106,6 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
         updated_at = contract_form.data.get('updated_at', '')
         customer_id = contract_form.data.get('customer_id', None)
         person_in_charge = contract_form.data.get('person_in_charge', '')
-        p_sensor_number = '8240-2413-3628'
         sub_total = 0
         company = frigana = postal_code = address = tel = fax = None
         if customer_id:
@@ -128,7 +127,7 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
             ['', '', '', '', '', '', '更新日', updated_at],
             ['会社名', company, '', 'フリガナ', frigana],
             ['郵便番号', postal_code],
-            ['住所', address, '', '', '', '', 'P-SENSOR 会員番号', p_sensor_number],
+            ['住所', address, '', '', '', '', 'P-SENSOR 会員番号', P_SENSOR_NUMBER],
             ['TEL', tel, '', 'FAX', fax, '', '担当名', person_in_charge],
             [],
             ['商品名'],
@@ -337,7 +336,6 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         created_at = contract_form.data.get('created_at', '')
         updated_at = contract_form.data.get('updated_at', '')
         person_in_charge = contract_form.data.get('person_in_charge', '')
-        p_sensor_number = '8240-2413-3628'
         sub_total = 0
         company = frigana = postal_code = address = tel = fax = None
         if customer_id:
@@ -359,7 +357,7 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
             ['', '', '', '', '', '', '更新日', updated_at],
             ['会社名', company, '', 'フリガナ', frigana],
             ['郵便番号', postal_code],
-            ['住所', address, '', '', '', '', 'P-SENSOR 会員番号', p_sensor_number],
+            ['住所', address, '', '', '', '', 'P-SENSOR 会員番号', P_SENSOR_NUMBER],
             ['TEL', tel, '', 'FAX', fax, '', '担当名', person_in_charge],
             [],
             ['商品名'],
@@ -580,39 +578,45 @@ class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
 
 class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
-        contract_form = TraderPurchasesContractForm(self.request.POST)
+        contract_form = HallSalesContractForm(self.request.POST)
         contract_id = contract_form.data.get('contract_id', '')
         customer_id = contract_form.data.get('customer_id', None)
         created_at = contract_form.data.get('created_at', '')
-        updated_at = contract_form.data.get('updated_at', '')
-        person_in_charge = contract_form.data.get('person_in_charge', '')
-        p_sensor_number = '8240-2413-3628'
+        hall_id = contract_form.data.get('hall_id', None)
         sub_total = 0
-        company = frigana = postal_code = address = tel = fax = None
+        company = address = tel = fax = None
         if customer_id:
             customer = Customer.objects.get(id=customer_id)
             company = customer.name
-            frigana = customer.frigana
-            postal_code = customer.postal_code
             address = customer.address
             tel = customer.tel
             fax = customer.fax
+        hall_name = hall_address = hall_tel = None
+        if hall_id:
+            hall = Hall.objects.get(id=hall_id)
+            hall_name = hall.name
+            hall_address = hall.address
+            hall_tel = hall.tel
 
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="trader_sales_contract_{}.csv"'.format(contract_id)
+        response['Content-Disposition'] = 'attachment; filename="hall_sales_contract_{}.csv"'.format(contract_id)
         writer = csv.writer(response, encoding='utf-8-sig')
-
         rows = [
-            ['','', '売買契約 兼 請求書'],
-            ['No. {}'.format(contract_id), '', '', '', '', '', '契約日', created_at],
-            ['', '', '', '', '', '', '更新日', updated_at],
-            ['会社名', company, '', 'フリガナ', frigana],
-            ['郵便番号', postal_code],
-            ['住所', address, '', '', '', '', 'P-SENSOR 会員番号', p_sensor_number],
-            ['TEL', tel, '', 'FAX', fax, '', '担当名', person_in_charge],
+            ['','', '売買契求書'],
+            ['No. {}'.format(contract_id), '', '', '', '契約日', created_at],
+            [],
+            ['買主(甲)', '', '', '売主(乙)'],
+            ['', '会社名', company, '', '会社名', COMPANY_NAME],
+            ['', '住所', address, '', '住所', ADDRESS],
+            ['', 'TEL ', tel, '', 'TEL ', TEL],
+            ['', 'FAX', fax, '', 'FAX', FAX],
+            [],
+            ['設置場所'],
+            ['', 'ホール名', hall_name, '', '住所', hall_address],
+            ['', 'TEL', hall_tel],
             [],
             ['商品名'],
-            ['機種名', '中分類', '数量', '単価', '金額'],
+            ['', '機種名', '中分類', '数量', '単価', '金額']
         ]
         writer.writerows(rows)
 
@@ -632,16 +636,15 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
                 price = form.cleaned_data.get('price', 0)
                 amount = quantity * price
                 sub_total += amount
-                product_rows.append([product_name, type, quantity, price, amount])
+                product_rows.append([None, product_name, type, quantity, price, amount])
             writer.writerows(product_rows)
         
         rows = [
             [],
             ['商品名そのほか'],
-            ['書類', '数量', '単価', '金額']
+            ['', '書類', '数量', '単価', '金額']
         ]
         writer.writerows(rows)
-
         document_formset = DocumentFormSet(
             self.request.POST,
             prefix='document'
@@ -657,69 +660,87 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
                 price = form.cleaned_data.get('price', 0)
                 amount = quantity * price
                 sub_total += amount
-                document_rows.append([document_name, quantity, price, amount])
+                document_rows.append([None, document_name, quantity, price, amount])
             writer.writerows(document_rows)
         
-        removal_date = contract_form.data.get('removal_date')
-        shipping_date = contract_form.data.get('shipping_date')
-        frame_color = contract_form.data.get('frame_color')
-        receipt = contract_form.data.get('receipt')
+        rows = [
+            [],
+            ['書類代'],
+            ['', '中分類', '機種数', '台数', '金額']
+        ]
+        writer.writerows(rows)
+        document_fee_formset = DocumentFeeFormSet(
+            self.request.POST,
+            prefix='document_fee'
+        )
+        num_of_document_fees = document_fee_formset.total_form_count()
+        if num_of_document_fees:
+            document_fee_rows = []
+            for form in document_fee_formset.forms:
+                form.is_valid()
+                id = form.cleaned_data.get('id')
+                document_fee = DocumentFee.objects.get(id=id)
+                type = document_fee.type
+                number_of_models = form.cleaned_data.get('number_of_models', 0)
+                number_of_units = form.cleaned_data.get('number_of_units', 0)
+                model_price = document_fee.model_price
+                unit_price = document_fee.unit_price
+                amount = model_price * number_of_models + unit_price * number_of_units + document_fee.application_fee
+                sub_total += amount
+                document_fee_rows.append([None, type, number_of_models, number_of_units, amount])
+            writer.writerows(document_fee_rows)
+
         remarks = contract_form.data.get('remarks', None)
         insurance_fee = contract_form.data.get('insurance_fee', 0)
+        fee_included = contract_form.data.get('fee_included', False)
+        shipping_date = contract_form.data.get('shipping_date')
+        opening_date = contract_form.data.get('opening_date')
+        payment_method = contract_form.data.get('payment_method')
+        transfer_account = contract_form.data.get('transfer_account')
+        person_in_charge = contract_form.data.get('person_in_charge', '')
+        confirmor = contract_form.data.get('confirmor')
         tax = int(sub_total * 0.1)
-        total = sub_total + tax + int(insurance_fee)
+        total = sub_total + tax
+        if fee_included:
+            total += int(insurance_fee)
 
         rows = [
             [],
-            ['', '', '', '', '', '', '小計', sub_total],
-            ['撤去日', removal_date, '', '枠色', frame_color, '', '消費税 (10%)', tax],
-            ['発送日', shipping_date, '', '引取', receipt, '', '保険代 (非課税)', insurance_fee],
-            ['備考', remarks, '', '', '', '', '合計', total],
+            ['備考', remarks, '', '', '小計', sub_total],
+            ['', '', '', '', '消費税 (10%)', tax],
+            ['', '', '', '', '保険代 (非課税)', insurance_fee],
+            ['', '', '', '', '合計', total],
             []
         ]
         writer.writerows(rows)
 
-        product_sender_company = product_sender_address = product_sender_tel = None
-        product_sender_id = self.request.POST.get('product_sender_id', None)
-        product_sender_shipping_company = self.request.POST.get('product_sender_shipping_company', None)
-        product_sender_remarks = self.request.POST.get('product_sender_remarks', None)
-        product_sender_desired_arrival_date = self.request.POST.get('product_sender_desired_arrival_date', None)
-        if product_sender_id:
-            product_sender = Sender.objects.get(id=product_sender_id)
-            product_sender_company = product_sender.name
-            product_sender_address = product_sender.address
-            product_sender_tel = product_sender.tel
-        document_sender_company = document_sender_address = document_sender_tel = None
-        document_sender_id = self.request.POST.get('document_sender_id', None)
-        document_sender_shipping_company = self.request.POST.get('document_sender_shipping_company', None)
-        document_sender_remarks = self.request.POST.get('document_sender_remarks', None)
-        document_sender_desired_arrival_date = self.request.POST.get('document_sender_desired_arrival_date', None)
-        if document_sender_id:
-            document_sender = Sender.objects.get(id=document_sender_id)
-            document_sender_company = document_sender.name
-            document_sender_address = document_sender.address
-            document_sender_tel = document_sender.tel
-        rows = [
-            ['商品発送先', '', '', '書類発送先'],
-            ['会社名', product_sender_company, '', '会社名', document_sender_company],
-            ['住所', product_sender_address, '', '住所', document_sender_address],
-            ['TEL', product_sender_tel, '', 'TEL', document_sender_tel],
-            ['到着希望日', product_sender_desired_arrival_date, '', '到着希望日', document_sender_desired_arrival_date],
-            ['運送会社', product_sender_shipping_company, '', '運送会社', document_sender_shipping_company],
-            ['備考', product_sender_remarks, '', '備考', document_sender_remarks]
-        ]
+        milestone_formset = MilestoneFormSet(
+            self.request.POST,
+            prefix='milestone'
+        )
+        rows = []
+        idx = 1
+        for form in milestone_formset.forms:
+            form.is_valid()
+            date = form.cleaned_data.get('date', None)
+            amount = form.cleaned_data.get('amount', None)
+            
+            if idx == 1:
+                rows.append(['納品日', shipping_date, '支払内訳', '初回', date, amount])
+            elif idx == 2:
+                rows.append(['開店日', opening_date, '', '2回', date, amount])
+            elif idx == 3:
+                rows.append(['お支払方法', payment_method, '', '3回', date, amount])
+            elif idx == 4:
+                rows.append(['', '', '', '4回', date, amount])
+            else:
+                rows.append(['', '', '', '5回', date, amount])
+            idx += 1
         writer.writerows(rows)
-
-        transfer_deadline = self.request.POST.get('transfer_deadline', None)
-        bank_name = self.request.POST.get('bank_name', None)
-        account_number = self.request.POST.get('account_number', None)
-        branch_name = self.request.POST.get('branch_name', None)
-        account_holder = self.request.POST.get('account_holder', None)
+        
         rows = [
             [],
-            ['振込期限日', transfer_deadline, ''],
-            ['銀行名', bank_name, '', '支店名', branch_name],
-            ['口座番号', account_number, '', '口座名義', account_holder]
+            ['振込先口座', transfer_account, '担当名', person_in_charge, '確認印', confirmor],
         ]
         writer.writerows(rows)
         return response
@@ -729,30 +750,20 @@ class HallSalesValidateAjaxView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         if self.request.method == 'POST' and self.request.is_ajax():
             data = self.request.POST
-            print(data)
             contract_form = HallSalesContractForm(data)
             if not contract_form.is_valid():
-                print(contract_form.errors)
                 return JsonResponse({'success': False}, status=200)
             product_formset = ProductFormSet(data, prefix='product')
             if not product_formset.is_valid():
-                print(product_formset.errors)
-                print(product_formset.non_form_errors())
                 return JsonResponse({'success': False}, status=200)
             document_formset = DocumentFormSet(data, prefix='document')
             if not document_formset.is_valid():
-                print(document_formset.errors)
-                print(document_formset.non_form_errors())
                 return JsonResponse({'success': False}, status=200)
             document_fee_formset = DocumentFeeFormSet(data, prefix='document_fee')
             if not document_fee_formset.is_valid():
-                print(document_fee_formset.errors)
-                print(document_fee_formset.non_form_errors())
                 return JsonResponse({'success': False}, status=200)
             milestone_formset = MilestoneFormSet(data, prefix='milestone')
             if not milestone_formset.is_valid():
-                print(milestone_formset.errors)
-                print(milestone_formset.non_form_errors())
                 return JsonResponse({'success': False}, status=200)
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'success': False}, status=400)
@@ -807,39 +818,45 @@ class HallPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
 
 class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
-        contract_form = TraderPurchasesContractForm(self.request.POST)
+        contract_form = HallPurchasesContractForm(self.request.POST)
         contract_id = contract_form.data.get('contract_id', '')
         customer_id = contract_form.data.get('customer_id', None)
         created_at = contract_form.data.get('created_at', '')
-        updated_at = contract_form.data.get('updated_at', '')
-        person_in_charge = contract_form.data.get('person_in_charge', '')
-        p_sensor_number = '8240-2413-3628'
+        hall_id = contract_form.data.get('hall_id', None)
         sub_total = 0
-        company = frigana = postal_code = address = tel = fax = None
+        company = address = tel = fax = None
         if customer_id:
             customer = Customer.objects.get(id=customer_id)
             company = customer.name
-            frigana = customer.frigana
-            postal_code = customer.postal_code
             address = customer.address
             tel = customer.tel
             fax = customer.fax
+        hall_name = hall_address = hall_tel = None
+        if hall_id:
+            hall = Hall.objects.get(id=hall_id)
+            hall_name = hall.name
+            hall_address = hall.address
+            hall_tel = hall.tel
 
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="trader_sales_contract_{}.csv"'.format(contract_id)
+        response['Content-Disposition'] = 'attachment; filename="hall_purchases_contract_{}.csv"'.format(contract_id)
         writer = csv.writer(response, encoding='utf-8-sig')
-
         rows = [
-            ['','', '売買契約 兼 請求書'],
-            ['No. {}'.format(contract_id), '', '', '', '', '', '契約日', created_at],
-            ['', '', '', '', '', '', '更新日', updated_at],
-            ['会社名', company, '', 'フリガナ', frigana],
-            ['郵便番号', postal_code],
-            ['住所', address, '', '', '', '', 'P-SENSOR 会員番号', p_sensor_number],
-            ['TEL', tel, '', 'FAX', fax, '', '担当名', person_in_charge],
+            ['','', '売買契求書'],
+            ['No. {}'.format(contract_id), '', '', '', '契約日', created_at],
+            [],
+            ['買主(甲)', '', '', '売主(乙)'],
+            ['', '会社名', company, '', '会社名', COMPANY_NAME],
+            ['', '住所', address, '', '住所', ADDRESS],
+            ['', 'TEL ', tel, '', 'TEL ', TEL],
+            ['', 'FAX', fax, '', 'FAX', FAX],
+            [],
+            ['設置場所'],
+            ['', 'ホール名', hall_name, '', '住所', hall_address],
+            ['', 'TEL', hall_tel],
             [],
             ['商品名'],
-            ['機種名', '中分類', '数量', '単価', '金額'],
+            ['', '機種名', '中分類', '数量', '単価', '金額']
         ]
         writer.writerows(rows)
 
@@ -859,16 +876,15 @@ class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
                 price = form.cleaned_data.get('price', 0)
                 amount = quantity * price
                 sub_total += amount
-                product_rows.append([product_name, type, quantity, price, amount])
+                product_rows.append([None, product_name, type, quantity, price, amount])
             writer.writerows(product_rows)
         
         rows = [
             [],
             ['商品名そのほか'],
-            ['書類', '数量', '単価', '金額']
+            ['', '書類', '数量', '単価', '金額']
         ]
         writer.writerows(rows)
-
         document_formset = DocumentFormSet(
             self.request.POST,
             prefix='document'
@@ -884,69 +900,88 @@ class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
                 price = form.cleaned_data.get('price', 0)
                 amount = quantity * price
                 sub_total += amount
-                document_rows.append([document_name, quantity, price, amount])
+                document_rows.append([None, document_name, quantity, price, amount])
             writer.writerows(document_rows)
         
-        removal_date = contract_form.data.get('removal_date')
-        shipping_date = contract_form.data.get('shipping_date')
-        frame_color = contract_form.data.get('frame_color')
-        receipt = contract_form.data.get('receipt')
+        rows = [
+            [],
+            ['書類代'],
+            ['', '中分類', '機種数', '台数', '金額']
+        ]
+        writer.writerows(rows)
+        document_fee_formset = DocumentFeeFormSet(
+            self.request.POST,
+            prefix='document_fee'
+        )
+        num_of_document_fees = document_fee_formset.total_form_count()
+        if num_of_document_fees:
+            document_fee_rows = []
+            for form in document_fee_formset.forms:
+                form.is_valid()
+                id = form.cleaned_data.get('id')
+                document_fee = DocumentFee.objects.get(id=id)
+                type = document_fee.type
+                number_of_models = form.cleaned_data.get('number_of_models', 0)
+                number_of_units = form.cleaned_data.get('number_of_units', 0)
+                model_price = document_fee.model_price
+                unit_price = document_fee.unit_price
+                amount = model_price * number_of_models + unit_price * number_of_units + document_fee.application_fee
+                sub_total += amount
+                document_fee_rows.append([None, type, number_of_models, number_of_units, amount])
+            writer.writerows(document_fee_rows)
+
         remarks = contract_form.data.get('remarks', None)
         insurance_fee = contract_form.data.get('insurance_fee', 0)
+        fee_included = contract_form.data.get('fee_included', False)
+        shipping_date = contract_form.data.get('shipping_date')
+        opening_date = contract_form.data.get('opening_date')
+        payment_method = contract_form.data.get('payment_method')
+        transfer_account = contract_form.data.get('transfer_account')
+        person_in_charge = contract_form.data.get('person_in_charge', '')
+        confirmor = contract_form.data.get('confirmor')
         tax = int(sub_total * 0.1)
-        total = sub_total + tax + int(insurance_fee)
+        total = sub_total + tax
+        if fee_included:
+            total += int(insurance_fee)
 
         rows = [
             [],
-            ['', '', '', '', '', '', '小計', sub_total],
-            ['撤去日', removal_date, '', '枠色', frame_color, '', '消費税 (10%)', tax],
-            ['発送日', shipping_date, '', '引取', receipt, '', '保険代 (非課税)', insurance_fee],
-            ['備考', remarks, '', '', '', '', '合計', total],
+            ['備考', remarks, '', '', '小計', sub_total],
+            ['', '', '', '', '消費税 (10%)', tax],
+            ['', '', '', '', '保険代 (非課税)', insurance_fee],
+            ['', '', '', '', '合計', total],
             []
         ]
         writer.writerows(rows)
 
-        product_sender_company = product_sender_address = product_sender_tel = None
-        product_sender_id = self.request.POST.get('product_sender_id', None)
-        product_sender_shipping_company = self.request.POST.get('product_sender_shipping_company', None)
-        product_sender_remarks = self.request.POST.get('product_sender_remarks', None)
-        product_sender_desired_arrival_date = self.request.POST.get('product_sender_desired_arrival_date', None)
-        if product_sender_id:
-            product_sender = Sender.objects.get(id=product_sender_id)
-            product_sender_company = product_sender.name
-            product_sender_address = product_sender.address
-            product_sender_tel = product_sender.tel
-        document_sender_company = document_sender_address = document_sender_tel = None
-        document_sender_id = self.request.POST.get('document_sender_id', None)
-        document_sender_shipping_company = self.request.POST.get('document_sender_shipping_company', None)
-        document_sender_remarks = self.request.POST.get('document_sender_remarks', None)
-        document_sender_desired_arrival_date = self.request.POST.get('document_sender_desired_arrival_date', None)
-        if document_sender_id:
-            document_sender = Sender.objects.get(id=document_sender_id)
-            document_sender_company = document_sender.name
-            document_sender_address = document_sender.address
-            document_sender_tel = document_sender.tel
-        rows = [
-            ['商品発送先', '', '', '書類発送先'],
-            ['会社名', product_sender_company, '', '会社名', document_sender_company],
-            ['住所', product_sender_address, '', '住所', document_sender_address],
-            ['TEL', product_sender_tel, '', 'TEL', document_sender_tel],
-            ['到着希望日', product_sender_desired_arrival_date, '', '到着希望日', document_sender_desired_arrival_date],
-            ['運送会社', product_sender_shipping_company, '', '運送会社', document_sender_shipping_company],
-            ['備考', product_sender_remarks, '', '備考', document_sender_remarks]
-        ]
+        milestone_formset = MilestoneFormSet(
+            self.request.POST,
+            prefix='milestone'
+        )
+        rows = []
+        idx = 1
+        for form in milestone_formset.forms:
+            form.is_valid()
+            date = form.cleaned_data.get('date', None)
+            amount = form.cleaned_data.get('amount', None)
+            
+            if idx == 1:
+                rows.append(['納品日', shipping_date, '支払内訳', '初回', date, amount])
+            elif idx == 2:
+                rows.append(['開店日', opening_date, '', '2回', date, amount])
+            elif idx == 3:
+                rows.append(['お支払方法', payment_method, '', '3回', date, amount])
+            elif idx == 4:
+                rows.append(['', '', '', '4回', date, amount])
+            else:
+                rows.append(['', '', '', '5回', date, amount])
+            idx += 1
         writer.writerows(rows)
-
-        transfer_deadline = self.request.POST.get('transfer_deadline', None)
-        bank_name = self.request.POST.get('bank_name', None)
-        account_number = self.request.POST.get('account_number', None)
-        branch_name = self.request.POST.get('branch_name', None)
-        account_holder = self.request.POST.get('account_holder', None)
+        
         rows = [
             [],
-            ['振込期限日', transfer_deadline, ''],
-            ['銀行名', bank_name, '', '支店名', branch_name],
-            ['口座番号', account_number, '', '口座名義', account_holder]
+            ['振込先口座', transfer_account],
+            ['担当名', person_in_charge, '確認印', confirmor]
         ]
         writer.writerows(rows)
         return response
@@ -956,30 +991,20 @@ class HallPurchasesValidateAjaxView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         if self.request.method == 'POST' and self.request.is_ajax():
             data = self.request.POST
-            print(data)
             contract_form = HallPurchasesContractForm(data)
             if not contract_form.is_valid():
-                print(contract_form.errors)
                 return JsonResponse({'success': False}, status=200)
             product_formset = ProductFormSet(data, prefix='product')
             if not product_formset.is_valid():
-                print(product_formset.errors)
-                print(product_formset.non_form_errors())
                 return JsonResponse({'success': False}, status=200)
             document_formset = DocumentFormSet(data, prefix='document')
             if not document_formset.is_valid():
-                print(document_formset.errors)
-                print(document_formset.non_form_errors())
                 return JsonResponse({'success': False}, status=200)
             document_fee_formset = DocumentFeeFormSet(data, prefix='document_fee')
             if not document_fee_formset.is_valid():
-                print(document_fee_formset.errors)
-                print(document_fee_formset.non_form_errors())
                 return JsonResponse({'success': False}, status=200)
             milestone_formset = MilestoneFormSet(data, prefix='milestone')
             if not milestone_formset.is_valid():
-                print(milestone_formset.errors)
-                print(milestone_formset.non_form_errors())
                 return JsonResponse({'success': False}, status=200)
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'success': False}, status=400)
