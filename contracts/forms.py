@@ -309,7 +309,7 @@ class HallSalesContractForm(forms.Form):
 
 
 # Hall Purchases Forms
-class HallSalesContractForm(forms.Form):
+class HallPurchasesContractForm(forms.Form):
     contract_id = forms.CharField()
     customer_id = forms.IntegerField()
     created_at = forms.DateField(input_formats=INPUT_FORMATS)
