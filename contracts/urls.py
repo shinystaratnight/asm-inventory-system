@@ -11,6 +11,7 @@ urlpatterns = [
     path('hall-purchases/', HallPurchasesContractView.as_view(), name='hall-purchases'),
 
     path('validate/trader-sales/', TraderSalesValidateAjaxView.as_view(), name='trader-sales-validate'),
+    path('validate/hall-sales/', HallSalesValidateAjaxView.as_view(), name='hall-sales-validate'),
     path('shipping-label/', ContractShippingLabelAjaxView.as_view(), name='shipping-label'),
     path('manager/', ContractManagerAjaxView.as_view(), name='manager'),
 ]

@@ -503,19 +503,36 @@ class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
             if form.is_valid():
                 form.save()
         
+        document_fee_formset = DocumentFeeFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'HallSalesContract'},
+            prefix='document_fee'
+        )
+        for form in document_fee_formset.forms:
+            if form.is_valid():
+                form.save()
+        
+        milestone_formset = MilestoneFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'HallSalesContract'},
+            prefix='milestone'
+        )
+        for form in milestone_formset.forms:
+            if form.is_valid():
+                form.save()
+        
         return render(request, self.template_name, self.get_context_data(**kwargs))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['contract_id'] = generate_contract_id()
+        context['contract_id'] = generate_contract_id('03')
         context['documents'] = Document.objects.all().values('id', 'name')
-        documentfee = lambda df: {'id': df.id, 'name': df.get_type_display()}
-        documentfees = [documentfee(document) for document in DocumentFee.objects.all()]
-        context['documentfees'] = documentfees
+        document_fee_lambda = lambda df: {'id': df.id, 'name': df.get_type_display()}
+        document_fees = [document_fee_lambda(document_fee) for document_fee in DocumentFee.objects.all()]
+        context['document_fees'] = document_fees
         context['productformset'] = ProductFormSet(prefix='product')
         context['documentformset'] = DocumentFormSet(prefix='document')
-        context['documentfeeformset'] = DocumentFormSet(prefix='documentfee')
-        MilestoneFormSet = formset_factory(MilestoneForm, formset=MilestoneValidationFormSet, extra=5)
+        context['documentfeeformset'] = DocumentFeeFormSet(prefix='document_fee')
         context['milestoneformset'] = MilestoneFormSet(prefix='milestone')
         return context
 
@@ -553,15 +570,14 @@ class HallPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['contract_id'] = generate_contract_id()
+        document_fee_lambda = lambda df: {'id': df.id, 'name': df.get_type_display()}
+        document_fees = [document_fee_lambda(document_fee) for document_fee in DocumentFee.objects.all()]
+        context['contract_id'] = generate_contract_id('04')
         context['documents'] = Document.objects.all().values('id', 'name')
-        documentfee = lambda df: {'id': df.id, 'name': df.get_type_display()}
-        documentfees = [documentfee(document) for document in DocumentFee.objects.all()]
-        context['documentfees'] = documentfees
+        context['document_fees'] = document_fees
         context['productformset'] = ProductFormSet(prefix='product')
         context['documentformset'] = DocumentFormSet(prefix='document')
-        context['documentfeeformset'] = DocumentFormSet(prefix='documentfee')
-        MilestoneFormSet = formset_factory(MilestoneForm, formset=MilestoneValidationFormSet, extra=5)
+        context['documentfeeformset'] = DocumentFeeFormSet(prefix='document_fee')
         context['milestoneformset'] = MilestoneFormSet(prefix='milestone')
         return context
 
@@ -570,16 +586,30 @@ class HallSalesValidateAjaxView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         if self.request.method == 'POST' and self.request.is_ajax():
             data = self.request.POST
-            # Check if contract form is valid
-            contract_form = TraderSalesContractForm(data)
+            print(data)
+            contract_form = HallSalesContractForm(data)
             if not contract_form.is_valid():
+                print(contract_form.errors)
                 return JsonResponse({'success': False}, status=200)
-            # Check the validity of product formset
             product_formset = ProductFormSet(data, prefix='product')
             if not product_formset.is_valid():
+                print(product_formset.errors)
+                print(product_formset.non_form_errors())
                 return JsonResponse({'success': False}, status=200)
             document_formset = DocumentFormSet(data, prefix='document')
             if not document_formset.is_valid():
+                print(document_formset.errors)
+                print(document_formset.non_form_errors())
+                return JsonResponse({'success': False}, status=200)
+            document_fee_formset = DocumentFeeFormSet(data, prefix='document_fee')
+            if not document_fee_formset.is_valid():
+                print(document_fee_formset.errors)
+                print(document_fee_formset.non_form_errors())
+                return JsonResponse({'success': False}, status=200)
+            milestone_formset = MilestoneFormSet(data, prefix='milestone')
+            if not milestone_formset.is_valid():
+                print(milestone_formset.errors)
+                print(milestone_formset.non_form_errors())
                 return JsonResponse({'success': False}, status=200)
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'success': False}, status=400)

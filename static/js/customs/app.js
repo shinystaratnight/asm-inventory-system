@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set formset prefixes here
     var product_prefix = 'product';
     var document_prefix = 'document';
+    var document_fee_prefix = 'document_fee'
 
     // Resett the form total number in management form
     function resetTotalFormNumber(prefix) {
@@ -165,6 +166,39 @@ document.addEventListener('DOMContentLoaded', function() {
         $(documentName).val(document);
     });
 
+    // When clicking "Add Document Fee" button
+    $('button[name="add_document_fee_btn"]').click( function (e) {
+        // unless any document is selected, nothing happens
+        var value = $('select.select-document-fee').val();
+        var document_fee = $('select.select-document-fee').children("option:selected").text();
+        if (value == "") {
+            $('#modal_document_fee_error').modal('toggle');
+            return;
+        }
+
+        // reset total number of forms in management form section if there is any cached value
+        // after adding selected product name, reset the selectbox
+        resetTotalFormNumber(document_fee_prefix);
+        if ($('table.table-document_fee .odd').length) {
+            $('table.table-document_fee .odd').remove();
+        }
+        $('select.select-document-fee').val("").trigger('change');
+
+        // Clone the hiddent formset-row and populate the selected document id/name into the cloned td fields
+        var formNum = parseInt($('#id_' + document_fee_prefix + '-TOTAL_FORMS').val());
+        var $hiddenTR = $('table.table-document_fee #' + document_fee_prefix + '-formset-row');
+        var $newTR = $hiddenTR.clone().removeAttr('style').removeAttr('id').addClass('formset_row-' + document_fee_prefix);
+        $('#id_' + document_fee_prefix + '-TOTAL_FORMS').val(formNum + 1);
+        $hiddenTR.before($newTR);
+        var trRegex = RegExp(`${document_fee_prefix}-xx-`, 'g');
+        var html = $newTR.html().replace(trRegex, `${document_fee_prefix}-${formNum}-`);
+        $newTR.html(html);
+        var documentFeeID = `#id_${document_fee_prefix}-${formNum}-id`;
+        $(documentFeeID).val(value);
+        var documentFeeName = `#id_${document_fee_prefix}-${formNum}-name`;
+        $(documentFeeName).val(document_fee);
+    });
+
    // Adding change event lister to input field inside table-product
     $('table').on('input', 'input', function (e) {
         // Calculate quantity * price and set it in id_document-xx-amount td element
@@ -267,8 +301,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Form validator function for hall sales contract page
-    $('form[name="hall_sales"]').submit( function (e) {
-        return false;
+    $('form[name="hall_sales"] button[type="submit"]').click( function (e) {
+        e.preventDefault();
+        var lang = $('input[name="selected-lang"]').val();
+        var $form = $(this).closest('form');
+        resetTotalFormNumber(document_fee_prefix);
+        $.ajax({
+            type: "POST",
+            url: '/' + lang + '/contract/validate/hall-sales/',
+            data: $form.serialize(),
+            dataType: 'json',
+            success: function (result) {
+                if (('success' in result) && result['success'] == false) {
+                    $('#modal_hall_sales_error').modal('toggle');
+                    return false;
+                }
+                $form.submit();
+            }
+        });
     });
 
     // Form validator function for hall purchases contract page

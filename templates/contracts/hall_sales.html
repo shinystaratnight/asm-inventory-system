@@ -452,8 +452,8 @@
 												<div class="col-lg-8">
 													<select name="select-document-fee" class="selectbox select-document-fee">
 														<option value="">{% trans 'Select document fee' %}...</option>
-														{% for documentfee in documentfees %}
-														<option value="{{ documentfee.id }}">{{ documentfee.name }}</option>
+														{% for document_fee in document_fees %}
+														<option value="{{ document_fee.id }}">{{ document_fee.name }}</option>
 														{% endfor %}
 													</select>
 												</div>
@@ -462,11 +462,10 @@
 										</div>
 									</div>
 									<div class="col-12 pb-80-px">
-										<table class="table table-formset table-document-fee border-bottom">
+										<table class="table table-formset table-document_fee border-bottom">
 											{{ documentfeeformset.management_form }}
 											<thead>
 												<tr>
-													<th></th>
 													<th>{% trans "Product type" %}</th>
 													<th>{% trans "Number of models" %}</th>
 													<th>{% trans "Number of units" %}</th>
@@ -582,9 +581,7 @@
 								<div class="row flex-wrap d-flex justify-content-between">
 									<div class="col-lg-8">
 										<div class="input-group h-180-px">
-											<span class="input-group-btn">
-												<button class="btn btn-default h-197-px">{% trans "Remarks" %}</button>
-											</span>
+											<span class="input-group-addon h-197-px">{% trans "Remarks" %}</span>
 											<textarea type="text" name="remarks" class="form-control h-197-px"></textarea>
 										</div>
 									</div>
@@ -603,7 +600,7 @@
 													<td>
 														<div class="checkbox my-0">
 															<label>
-																<input type="checkbox" class="styled">
+																<input type="checkbox" name="fee_included" checked="" class="styled">
 																{% trans "Insurance fee" %} ({% trans "No tax" %})
 															</label>
 														</div>
@@ -713,10 +710,8 @@
 									
 									<div class="col-lg-6">
 										<div class="input-group">
-											<span class="input-group-btn">
-												<button class="btn btn-default">{% trans "Transfer account" %}</button>
-											</span>
-											<input type="text" class="form-control" name="transfer_account" value="" placeholder="りそな銀行　船場支店（101）　普通　0530713　バッジオカブシキガイシャ">
+											<span class="input-group-addon">{% trans "Transfer account" %}</span>
+											<input type="text" class="form-control" name="transfer_account" value="" placeholder="りそな銀行 船場支店（101）普通 0530713 バッジオカブシキガイシャ">
 										</div>
 									</div>
 	
@@ -741,7 +736,7 @@
 								<div class="row print-btn-group">
 									<div class="col-md-12">
 										<div class="mb-4 text-center">
-											<button type="button" class="btn btn-primary mr-4"><i class="fa fa-print position-left"></i> {% trans "Save" %}</button>
+											<button type="submit" class="btn btn-primary mr-4"><i class="fa fa-print position-left"></i> {% trans "Save" %}</button>
 											<button type="button" class="btn btn-primary"><i class="fa fa-print position-left"></i> {% trans "CSV Output" %}</button>
 										</div>
 									</div>
@@ -753,7 +748,7 @@
 				</div>
 			</div>
 
-			{% include "layout/modal.html" %}
+			{% include "layout/error_modal.html" %}
 
 			<script>
 				$(document).ready(function () {
@@ -779,7 +774,6 @@
 							});
 						}
 					});
-					
 				
 				});
 			</script>

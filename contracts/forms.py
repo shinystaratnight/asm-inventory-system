@@ -144,12 +144,6 @@ class DocumentFeeValidationFormSet(BaseFormSet):
         return data
 
 
-ProductFormSet = formset_factory(ProductForm, formset=ItemValidationFormSet, extra=0)
-DocumentFormSet = formset_factory(DocumentForm, formset=ItemValidationFormSet, extra=0)
-DocumentFeeFormSet = formset_factory(DocumentFeeForm, formset=DocumentFeeValidationFormSet, extra=0)
-# End of Common Forms
-
-
 class MilestoneForm(forms.Form):
     date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control datepicker-milestone'}))
     amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -177,8 +171,14 @@ class MilestoneValidationFormSet(BaseFormSet):
     def clean(self):
         if any(self.errors):
             return
-        # Add Here
-    
+        if self.total_form_count() == 0:
+            raise ValidationError("At least one milestone should be set.")
+        for form in self.forms:
+            amount = form.cleaned_data.get('amount')
+            if amount <= 0:
+                form.add_error('amount', 'Amount should be positive value.')
+                return
+         
     def get_form_kwargs(self, index):
         kwargs = super().get_form_kwargs(index)
         contract_id = kwargs.get('contract_id', None)
@@ -190,6 +190,13 @@ class MilestoneValidationFormSet(BaseFormSet):
         if contract_class:
             data['contract_class'] = contract_class
         return data
+
+
+ProductFormSet = formset_factory(ProductForm, formset=ItemValidationFormSet, extra=0)
+DocumentFormSet = formset_factory(DocumentForm, formset=ItemValidationFormSet, extra=0)
+DocumentFeeFormSet = formset_factory(DocumentFeeForm, formset=DocumentFeeValidationFormSet, extra=0)
+MilestoneFormSet = formset_factory(MilestoneForm, formset=MilestoneValidationFormSet, extra=5)
+# End of Common Forms
 
 
 #===================================#
@@ -208,7 +215,6 @@ class TraderSalesContractForm(forms.Form):
     payment_due_date = forms.DateField(input_formats=INPUT_FORMATS)
     insurance_fee = forms.IntegerField()
     memo = forms.CharField()
-    # insurance_included = forms.BooleanField()
 
     def save(self):
         contract_data = self.cleaned_data
@@ -282,3 +288,40 @@ class PurchasesSenderForm(forms.Form):
         }
         PurchaseSender.objects.create(**data)
 # End of trader purchases form
+
+
+# Hall Sales Forms
+class HallSalesContractForm(forms.Form):
+    contract_id = forms.CharField()
+    customer_id = forms.IntegerField()
+    created_at = forms.DateField(input_formats=INPUT_FORMATS)
+    hall_id = forms.IntegerField()
+    remarks = forms.CharField(required=False)
+    insurance_fee = forms.IntegerField()
+    fee_included = forms.BooleanField(required=False)
+    shipping_date = forms.DateField(input_formats=INPUT_FORMATS)
+    opening_date = forms.DateField(input_formats=INPUT_FORMATS)
+    payment_method = forms.CharField()
+    transfer_account = forms.CharField()
+    person_in_charge = forms.CharField()
+    confirmor = forms.CharField()
+# End of hall sales form
+
+
+# Hall Purchases Forms
+class HallSalesContractForm(forms.Form):
+    contract_id = forms.CharField()
+    customer_id = forms.IntegerField()
+    created_at = forms.DateField(input_formats=INPUT_FORMATS)
+    hall_id = forms.IntegerField()
+    remarks = forms.CharField(required=False)
+    insurance_fee = forms.IntegerField()
+    fee_included = forms.BooleanField(required=False)
+    shipping_date = forms.DateField(input_formats=INPUT_FORMATS)
+    opening_date = forms.DateField(input_formats=INPUT_FORMATS)
+    payment_method = forms.CharField()
+    transfer_account = forms.CharField()
+    person_in_charge = forms.CharField()
+    confirmor = forms.CharField()
+    memo = forms.CharField(required=False)
+# End of hall purchases form
