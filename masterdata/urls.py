@@ -31,4 +31,6 @@ urlpatterns = [
     path('search-customer/', CustomerSearchAjaxView.as_view(), name='customer-search'),
     path('search-hall/', HallSearchAjaxView.as_view(), name='hall-search'),
     path('search-product/', ProductSearchAjaxView.as_view(), name='product-search'),
+
+    path('document-fee/', DocumentFeePriceAjaxView.as_view(), name='document-fee-price',)
 ]

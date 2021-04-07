@@ -265,6 +265,10 @@ class TraderPurchasesContractForm(forms.Form):
     account_number = forms.CharField()
     branch_name = forms.CharField()
     account_holder = forms.CharField()
+    
+    def save(self):
+        contract_data = self.cleaned_data
+        return TraderPurchasesContract.objects.create(**contract_data)
 
 
 class TraderPurchasesSenderForm(forms.Form):

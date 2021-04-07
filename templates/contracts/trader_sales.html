@@ -763,8 +763,14 @@
 
 					$('button.create-invoice').click( function (e) {
 						$('form').attr('action', "{% url 'contract:trader-sales-invoice' %}");
+						resetTotalFormNumber('product');
+						resetTotalFormNumber('document');
 						$('form').submit();
 					});
+
+					function resetTotalFormNumber(prefix) {
+						if ($('table.table-' + prefix + ' .odd').length) $('#id_' + prefix + '-TOTAL_FORMS').val(0);
+					}
 
 				});
 			</script>

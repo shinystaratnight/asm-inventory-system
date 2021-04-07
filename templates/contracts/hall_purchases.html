@@ -533,6 +533,15 @@
 																	name="{{ documentfeeformset.prefix }}-xx-id"
 																	id="id_{{ documentfeeformset.prefix }}-xx-id"
 																	autocomplete="off">
+																<input type="hidden"
+																	name="model_price"
+																	autocomplete="off">
+																<input type="hidden"
+																	name="unit_price"
+																	autocomplete="off">
+																<input type="hidden"
+																	name="application_fee"
+																	autocomplete="off">
 																<input type="text"
 																	class="form-control"
 																	disabled=""
@@ -591,17 +600,17 @@
 											<tbody>
 												<tr>
 													<td>{% trans "Subtotal" %}</td>
-													<td>85,000</td>
+													<td class="sub_total">0</td>
 												</tr>
 												<tr>
 													<td>{% trans "Consumption tax" %} (10%)</td>
-													<td>8,500</td>
+													<td class="consumption_tax">0</td>
 												</tr>
 												<tr>
 													<td>
 														<div class="checkbox my-0">
 															<label>
-																<input type="checkbox" name="fee_included" checked="checked" class="styled">
+																<input type="checkbox" id="fee_free" name="fee_included" checked="checked" class="styled">
 																{% trans "Insurance fee" %} ({% trans "No tax" %})
 															</label>
 														</div>
@@ -610,7 +619,7 @@
 												</tr>
 												<tr>
 													<td>{% trans "Total amount" %}</td>
-													<td>93,600</td>
+													<td class="total">0</td>
 												</tr>
 											</tbody>
 										</table>
@@ -783,8 +792,15 @@
 
 					$('button.create-invoice').click( function (e) {
 						$('form').attr('action', "{% url 'contract:hall-purchases-invoice' %}");
+						resetTotalFormNumber('product');
+						resetTotalFormNumber('document');
+						resetTotalFormNumber('document_fee');
 						$('form').submit();
 					});
+
+					function resetTotalFormNumber(prefix) {
+						if ($('table.table-' + prefix + ' .odd').length) $('#id_' + prefix + '-TOTAL_FORMS').val(0);
+					}
 					
 				});
 			</script>

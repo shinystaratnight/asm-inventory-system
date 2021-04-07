@@ -76,6 +76,25 @@ class TraderSalesValidateAjaxView(AdminLoginRequiredMixin, View):
         return JsonResponse({'success': False}, status=400)
 
 
+class TraderSalesUpdateView(AdminLoginRequiredMixin, TemplateView):
+    template_name = 'contracts/trader_sales_update.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.get_context_data(**kwargs))
+
+    def post(self, request, *args, **kwargs):
+        print(self.request.POST)
+        contract_form = TraderSalesContractForm(self.request.POST)
+        
+        return render(request, self.template_name, self.get_context_data(**kwargs))
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        id = kwargs.get('pk')
+        context['contract'] = TraderSalesContract.objects.get(id=id)
+        return context
+
+
 class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
     template_name = 'contracts/trader_sales.html'
 
@@ -1009,6 +1028,7 @@ class HallPurchasesValidateAjaxView(AdminLoginRequiredMixin, View):
         return JsonResponse({'success': False}, status=400)
 # End of hall purchases contract
 
-class ContractUpdateView(AdminLoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-        pass
+
+
+
+

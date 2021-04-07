@@ -340,7 +340,7 @@ class HallSearchAjaxView(AdminLoginRequiredMixin, View):
 
 class ProductSearchAjaxView(AdminLoginRequiredMixin, View):
     def get(self, *args, **kwargs):
-        if self.request.is_ajax():
+        if self.request.method == 'GET' and self.request.is_ajax():
             search = self.request.GET.get('q')
             page = int(self.request.GET.get('page', 1))
             start = 30 * (page - 1)
@@ -350,4 +350,16 @@ class ProductSearchAjaxView(AdminLoginRequiredMixin, View):
             product_qs = product_qs.order_by('id')[start:end].values('id', 'name')
             products = list(product_qs)
             return JsonResponse({"products": products, "total_count": total_count}, safe=False, status=200)
+        return JsonResponse({'success': False}, status=400)
+
+
+class DocumentFeePriceAjaxView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            id = self.request.POST.get('id')
+            document_fee = DocumentFee.objects.get(id=id)
+            model_price = document_fee.model_price
+            unit_price = document_fee.unit_price
+            application_fee = document_fee.application_fee
+            return JsonResponse({"model_price": model_price, "unit_price": unit_price, "application_fee": application_fee}, safe=False, status=200)
         return JsonResponse({'success': False}, status=400)

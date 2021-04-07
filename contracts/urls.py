@@ -13,6 +13,11 @@ urlpatterns = [
     path('invoice/hall-sales/', HallSalesInvoiceView.as_view(), name='hall-sales-invoice'),
     path('invoice/hall-purchases/', HallPurchasesInvoiceView.as_view(), name='hall-purchases-invoice'),
 
+    path('trader-sales/<int:pk>/update/', TraderSalesUpdateView.as_view(), name='trader-sales-update'),
+    # path('trader-purchases/update', TraderPurchasesUpdateView.as_view(), name='trader-purchases-update'),
+    # path('hall-sales/update/', HallSalesUpdateView.as_view(), name='hall-sales-update'),
+    # path('hall-purchases/update/', HallPurchasesUpdateView.as_view(), name='hall-purchases-update'),
+
     path('validate/trader-sales/', TraderSalesValidateAjaxView.as_view(), name='trader-sales-validate'),
     path('validate/trader-purchases/', TraderPurchasesValidateAjaxView.as_view(), name='trader-purchases-validate'),
     path('validate/hall-sales/', HallSalesValidateAjaxView.as_view(), name='hall-sales-validate'),
@@ -21,5 +26,4 @@ urlpatterns = [
     path('shipping-label/', ContractShippingLabelAjaxView.as_view(), name='shipping-label'),
     path('manager/', ContractManagerAjaxView.as_view(), name='manager-list'),
 
-    path('<int:pk>/update/', ContractUpdateView.as_view(), name='contract-update'),
 ]

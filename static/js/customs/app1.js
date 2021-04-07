@@ -17,18 +17,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function calculateTotal() {
         var sub_total = 0;
         var insurance_fee = 0;
-        $('table.table-product').each(function () {
+        var total = 0;
+        $('table.table-product, table.table-document').each(function () {
             var $table = $(this);
             $table.find('tbody tr').each(function () {
-                var $tr = $(this);
+                $tr = $(this);
                 var classname = $tr.attr('class');
-                var rowRegex = RegExp(`formset_row-${product_prefix}`, 'g');
+                var rowRegex = RegExp(`formset_row-(${document_prefix}|${product_prefix})`, 'g');
                 if (rowRegex.test(classname)) {
                     var prefix = null;
-                    var prefixRegex = RegExp(`${product_prefix}-\\d+-`, 'g');
-                    var $amount = $tr.find('td').last().find('input');
-                    var id = $amount.attr('id');
-                    var m = id.match(prefixRegex);
+                    var prefixRegex = RegExp(`(${document_prefix}|${product_prefix})-\\d+-`, 'g');
+                    var $amount = $(this).find('td').last().find('input');
+                    var amount_el_id = $amount.attr('id');
+                    var m = amount_el_id.match(prefixRegex);
                     if (m) prefix = m[0];
                     if (prefix) {
                         var amount = parseInt($amount.val());
@@ -50,28 +51,27 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        $('table.table-document').each(function () {
-            var $table = $(this);
-            $table.find('tbody tr').each(function () {
-                var $tr = $(this);
-                var classname = $tr.attr('class');
-                var rowRegex = RegExp(`formset_row-${document_prefix}`, 'g');
-                if (rowRegex.test(classname)) {
-                    var amount = parseInt($tr.find('td').last().find('input').val());
-                    sub_total += amount;
-                }
-            });
-        });
-
         $('table.table-document_fee').each(function () {
             var $table = $(this);
             $table.find('tbody tr').each(function () {
-                var $tr = $(this);
+                $tr = $(this);
                 var classname = $tr.attr('class');
                 var rowRegex = RegExp(`formset_row-${document_fee_prefix}`, 'g');
                 if (rowRegex.test(classname)) {
-                    var amount = parseInt($tr.find('td').last().find('input').val());
-                    sub_total += amount;
+                    var id =$tr.find('input').first().attr('id');
+                    var prefixRegex = RegExp(`${document_fee_prefix}-\\d+-`, 'g');
+                    var m = id.match(prefixRegex);
+                    var prefix = null;
+                    if (m) prefix = m[0];
+                    if (prefix) {
+                        var numOfModels = parseInt($tr.find(`#id_${prefix}number_of_models`).val());
+                        var numOfUnits = parseInt($tr.find(`#id_${prefix}number_of_units`).val());
+                        var modelPrice = parseInt($tr.find('input[name="model_price"]').val());
+                        var unitPrice = parseInt($tr.find('input[name="unit_price"]').val());
+                        var application_fee = parseInt($tr.find('input[name="application_fee"]').val());
+                        var amount = numOfModels * modelPrice + numOfUnits * unitPrice + application_fee;
+                        $tr.find(`#id_${prefix}amount`).val(amount);
+                    }
                 }
             });
         });
@@ -89,9 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Include/exclude insurance fee
     function insuranceFeeCalculation(included) {
         var sub_total = parseInt($('td.sub_total').text());
-        var consumption_tax = parseInt($('td.consumption_tax').text());
         var insurance_tax = parseInt($('#insurance_fee').val());
-        var total = sub_total + consumption_tax;
+        var total = parseInt(sub_total * 1.1);
         if (included) {
             total += insurance_tax;
         }
@@ -245,58 +244,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
    // Adding change event lister to input field inside table-product
-    $('table.table-product').on('input', 'input', function (e) {
-        // Calculate quantity * price and set it in id_product-xx-amount td element
+    $('table.table-product, table.table-document').on('input', 'input', function (e) {
+        // Calculate quantity * price and set it in id_document-xx-amount td element
         var $self = $(this);
         var $parent = $self.closest('tr');
-        var regex = RegExp(`${product_prefix}-\\d+-`, 'g');
+        var $pair = null;
+        var priceRegex = RegExp(`((${document_prefix}|${product_prefix})-\\d+-)price`, 'g');
+        var prefixRegex = RegExp(`(${document_prefix}|${product_prefix})-\\d+-`, 'g');
         var prefix = null;
         var name = $self.attr('name');
-        var m = name.match(regex);
+        var m = name.match(prefixRegex);
         if (m) prefix = m[0];
-        if (prefix) {
-            var quantity = $parent.find('#id_' + prefix + 'quantity').val();
-            var price = $parent.find('#id_' + prefix + 'price').val();
-            var $amount = $parent.find('#id_' + prefix + 'amount');
-            $amount.val(parseInt(quantity) * parseInt(price));
-            calculateTotal();
-        }
-    });
 
-    $('table.table-document').on('input', 'input', function (e) {
-        var $self = $(this);
-        var $parent = $self.closest('tr');
-        var regex = RegExp(`${document_prefix}-\\d+-`, 'g');
-        var prefix = null;
-        var name = $self.attr('name');
-        var m = name.match(regex);
-        if (m) prefix = m[0];
         if (prefix) {
-            var quantity = $parent.find('#id_' + prefix + 'quantity').val();
-            var price = $parent.find('#id_' + prefix + 'price').val();
+            if (priceRegex.test(name))
+                $pair = $parent.find('#id_' + prefix + 'quantity');
+            else
+                $pair = $parent.find('#id_' + prefix + 'price');
             var $amount = $parent.find('#id_' + prefix + 'amount');
-            $amount.val(parseInt(quantity) * parseInt(price));
-            calculateTotal();
-        }
-    });
+            $amount.val(parseInt($self.val()) * parseInt($pair.val()));
 
-    $('table.table-document_fee').on('input', 'input', function (e) {
-        var $self = $(this);
-        var $parent = $self.closest('tr');
-        var regex = RegExp(`${document_fee_prefix}-\\d+-`, 'g');
-        var prefix = null;
-        var name = $self.attr('name');
-        var m = name.match(regex);
-        if (m) prefix = m[0];
-        if (prefix) {
-            var numOfModels = $parent.find('#id_' + prefix + 'number_of_models').val();
-            var numOfUnits = $parent.find('#id_' + prefix + 'number_of_units').val();
-            var applicationFee = $parent.find('input[name="application_fee"]').val();
-            var modelPrice = $parent.find('input[name="model_price"]').val();
-            var unitPrice = $parent.find('input[name="unit_price"]').val();
-            var $amount = $parent.find('#id_' + prefix + 'amount');
-            var amount = parseInt(numOfModels) * parseInt(modelPrice) + parseInt(numOfUnits) * parseInt(unitPrice) + parseInt(applicationFee);
-            $amount.val(amount);
+            // Call the calculate function to reflect the changes
             calculateTotal();
         }
     });

@@ -76,15 +76,12 @@ class TraderContract(models.Model):
     contract_id = models.CharField(max_length=200)
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     manager = models.CharField(max_length=200, null=True, blank=True)
+    created_at = models.DateField()
+    updated_at = models.DateField()
     person_in_charge = models.CharField(max_length=200)
     remarks = models.TextField(null=True, blank=True)
-    shipping_method = models.CharField(max_length=1, choices=SHIPPING_METHOD_CHOICES)
     shipping_date = models.DateField()
-    payment_method = models.CharField(max_length=2, choices=PAYMENT_METHOD_CHOICES)
-    payment_due_date = models.DateField()
     insurance_fee = models.IntegerField()
-    updated_at = models.DateField()
-    created_at = models.DateField()
 
     class Meta:
         abstract = True
@@ -107,12 +104,18 @@ class TraderContract(models.Model):
 
 
 class TraderSalesContract(TraderContract):
+    shipping_method = models.CharField(max_length=1, choices=SHIPPING_METHOD_CHOICES)
+    payment_method = models.CharField(max_length=2, choices=PAYMENT_METHOD_CHOICES)
+    payment_due_date = models.DateField()
     memo = models.TextField(null=True, blank=True)
     products = GenericRelation(ContractProduct, related_query_name='trader_sales_contract')
     documents = GenericRelation(ContractDocument, related_query_name='trader_sales_contract')
 
 
 class TraderPurchasesContract(TraderContract):
+    removal_date = models.DateField()
+    frame_color = models.CharField(max_length=100)
+    receipt = models.CharField(max_length=100)
     transfer_deadline = models.DateField()
     bank_name = models.CharField(max_length=200)
     account_number = models.CharField(max_length=200)
@@ -130,6 +133,7 @@ class TraderSalesSender(models.Model):
 
 
 class TraderPurchasesSender(models.Model):
+    contract = models.ForeignKey(TraderPurchasesContract, on_delete=models.CASCADE, related_name='senders')
     type = models.CharField(max_length=1, choices=ITEM_CHOICES)
     sender = models.ForeignKey(Sender, on_delete=models.CASCADE)
     desired_arrival_date = models.DateField()
