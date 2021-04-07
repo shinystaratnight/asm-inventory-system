@@ -12,13 +12,8 @@ from contracts.utilities import *
 from .filters import *
 
 
-def ProductFilter(queryset, **params):
-    return queryset
-
-
 class SalesListView(AdminLoginRequiredMixin, ListView):
     template_name = 'lists/sales.html'
-    queryset = ContractProduct.objects.all().order_by('pk')
     context_object_name = 'products'
     paginate_by = 5
 
@@ -29,6 +24,28 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
             Q(content_type_id=trader_class_id) |
             Q(content_type_id=hall_class_id)
         ).order_by('-pk')
+        params = self.request.GET.copy()
+        for k, v in params.items():
+            if v:
+                if k == "contract_id":
+                    queryset = queryset.filter(
+                        Q(trader_sales_contract__contract_id__icontains=v) |
+                        Q(hall_sales_contract__contract_id__icontains=v)
+                    )
+                elif k == 'created_at':
+                    queryset = queryset.filter(
+                        Q(trader_sales_contract__created_at=v) |
+                        Q(hall_sales_contract__created_at=v)
+                    )
+                elif k == 'customer':
+                    queryset = queryset.filter(
+                        Q(trader_sales_contract__customer__name__icontains=v) |
+                        Q(hall_sales_contract__customer__name__icontains=v)
+                    )
+                elif k == 'name':
+                    queryset = queryset.filter(Q(product__name__icontains=v))
+                elif k == 'inventory_status':
+                    queryset = queryset.filter(Q(status=v))
         return queryset
     
     def post(self, request, *args, **kwargs):
@@ -44,7 +61,10 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['hall_contract_id'] = ContentType.objects.get(model='HallSalesContract').id
-        # context['sales_filter'] = SalesFilter(self.request.GET)
+        params = self.request.GET.copy()
+        for k, v in params.items():
+            if v:
+                context[k] = v
         return context
 
 
@@ -60,6 +80,28 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
             Q(content_type_id=trader_class_id) |
             Q(content_type_id=hall_class_id)
         ).order_by('-pk')
+        params = self.request.GET.copy()
+        for k, v in params.items():
+            if v:
+                if k == "contract_id":
+                    queryset = queryset.filter(
+                        Q(trader_purchases_contract__contract_id__icontains=v) |
+                        Q(hall_purchases_contract__contract_id__icontains=v)
+                    )
+                elif k == 'created_at':
+                    queryset = queryset.filter(
+                        Q(trader_purchases_contract__created_at=v) |
+                        Q(hall_purchases_contract__created_at=v)
+                    )
+                elif k == 'customer':
+                    queryset = queryset.filter(
+                        Q(trader_purchases_contract__customer__name__icontains=v) |
+                        Q(hall_purchases_contract__customer__name__icontains=v)
+                    )
+                elif k == 'name':
+                    queryset = queryset.filter(Q(product__name__icontains=v))
+                elif k == 'inventory_status':
+                    queryset = queryset.filter(Q(status=v))
         return queryset
     
     def post(self, request, *args, **kwargs):
@@ -75,13 +117,16 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['hall_contract_id'] = ContentType.objects.get(model='HallPurchasesContract').id
-        # context['sales_filter'] = SalesFilter(self.request.GET)
+        params = self.request.GET.copy()
+        for k, v in params.items():
+            if v:
+                context[k] = v
         return context
 
 
 class InventoryListView(AdminLoginRequiredMixin, ListView):
     template_name = 'lists/inventory.html'
-    queryset = InventoryProduct.objects.all()
+    queryset = InventoryProduct.objects.all().order_by('-pk')
     context_object_name = 'products'
     paginate_by = 5
 

@@ -43,7 +43,7 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>{% trans "Contract ID" %}:</label>
-									<input type="text" class="form-control" placeholder="{% trans 'Contract ID' %}">
+									<input type="text" class="form-control" name="contract_id" value="{{ contract_id }}" placeholder="{% trans 'Contract ID' %}">
 								</div>
 							</div>
 
@@ -52,7 +52,7 @@
 									<label>{% trans "Created date" %}:</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-										<input type="text" class="form-control datepicker-milestone">
+										<input type="text" class="form-control datepicker-milestone" name="created_at" value="{{created_at }}">
 									</div>
 								</div>
 							</div>
@@ -60,7 +60,7 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>{% trans "Customer" %}:</label>
-									<input type="text" class="form-control" placeholder="{% trans 'Customer' %}">
+									<input type="text" class="form-control" name="customer" value="{{ customer }}" placeholder="{% trans 'Customer' %}">
 								</div>
 							</div>
 						</div>
@@ -69,14 +69,14 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>{% trans "Product name" %}:</label>
-									<input type="text" class="form-control" placeholder="{% trans 'Product name' %}">
+									<input type="text" class="form-control" name="name" value="{{ name }}" placeholder="{% trans 'Product name' %}">
 								</div>
 							</div>
 
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>{% trans "Inventory status" %}:</label>
-									<select name="select" class="selectbox">
+									<select name="inventory_status" class="selectbox">
 										<option value="" selected="selected">{% trans "All" %}</option>
 										<option value="D">{% trans "Done" %}</option>
 										<option value="P">{% trans "Pending" %}</option>
@@ -88,7 +88,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="mb-3 text-right">
-									<button type="button" class="btn btn-primary"><i class="icon-search4 position-left"></i>{% trans "Search" %}</button>
+									<button type="submit" class="btn btn-primary"><i class="icon-search4 position-left"></i>{% trans "Search" %}</button>
 								</div>
 							</div>
 						</div>
@@ -320,6 +320,11 @@
 						}
 					});
 				});
+
+				var status = "{{ inventory_status }}";
+				if (status) {
+					$('select[name="inventory_status"]').selectBoxIt('selectOption', status);
+				}
 			});
 		</script>
 

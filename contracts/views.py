@@ -83,7 +83,6 @@ class TraderSalesUpdateView(AdminLoginRequiredMixin, TemplateView):
         return render(request, self.template_name, self.get_context_data(**kwargs))
 
     def post(self, request, *args, **kwargs):
-        print(self.request.POST)
         contract_form = TraderSalesContractForm(self.request.POST)
         
         return render(request, self.template_name, self.get_context_data(**kwargs))
