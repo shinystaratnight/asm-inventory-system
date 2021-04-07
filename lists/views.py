@@ -1,4 +1,4 @@
-import csv
+import unicodecsv as csv
 from django.shortcuts import redirect
 from django.views.generic.base import View
 from django.views.generic.list import ListView
@@ -50,12 +50,33 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
     
     def post(self, request, *args, **kwargs):
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="sales_list_{}.csv"'.format(generate_contract_id())
-        writer = csv.writer(response)
+        response['Content-Disposition'] = 'attachment; filename="listing_sales_{}.csv"'.format(generate_contract_id())
+        qs = self.get_queryset()
+        writer = csv.writer(response, encoding='utf-8-sig')
         writer.writerow([
             _('Contract ID'), _('Contract date'), _('Customer'), _('Delivered place'), _('Person in charge'),
             _('Payment date'), _('Product name'), _('Number of units'), _('Amount'), _('Inventory status')
         ])
+        for product in qs:
+            contract = product.content_object
+            contract_id = contract.contract_id
+            contract_date = contract.created_at
+            customer = contract.customer.name
+            person_in_charge = contract.person_in_charge
+            if product.content_type_id == ContentType.objects.get(model='HallSalesContract').id:
+                destination = contract.hall.name
+                payment_date = contract.shipping_date
+            else:
+                destination = None
+                payment_date = contract.payment_due_date
+            product_name = product.product.name
+            quantity = product.quantity
+            amount = product.amount
+            status = product.status
+            writer.writerow([
+                contract_id, contract_date, customer, destination, person_in_charge, payment_date, product_name,
+                quantity, amount, status
+            ])
         return response
     
     def get_context_data(self, **kwargs):
@@ -106,12 +127,33 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
     
     def post(self, request, *args, **kwargs):
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="purchase_list_{}.csv"'.format(generate_contract_id())
-        writer = csv.writer(response)
+        response['Content-Disposition'] = 'attachment; filename="listing_purchases_{}.csv"'.format(generate_contract_id())
+        qs = self.get_queryset()
+        writer = csv.writer(response, encoding='utf-8-sig')
         writer.writerow([
             _('Contract ID'), _('Contract date'), _('Customer'), _('Delivered place'), _('Person in charge'),
             _('Payment date'), _('Product name'), _('Number of units'), _('Amount'), _('Inventory status')
         ])
+        for product in qs:
+            contract = product.content_object
+            contract_id = contract.contract_id
+            contract_date = contract.created_at
+            customer = contract.customer.name
+            person_in_charge = contract.person_in_charge
+            if product.content_type_id == ContentType.objects.get(model='HallPurchasesContract').id:
+                destination = contract.hall.name
+                payment_date = contract.shipping_date
+            else:
+                destination = None
+                payment_date = contract.transfer_deadline
+            product_name = product.product.name
+            quantity = product.quantity
+            amount = product.amount
+            status = product.status
+            writer.writerow([
+                contract_id, contract_date, customer, destination, person_in_charge, payment_date, product_name,
+                quantity, amount, status
+            ])
         return response
     
     def get_context_data(self, **kwargs):
@@ -173,12 +215,7 @@ class ListingSalesProductDetailAjaxView(AdminLoginRequiredMixin, View):
         if self.request.method == 'POST' and self.request.is_ajax():
             id = self.request.POST.get('id')
             product = ContractProduct.objects.get(id=id)
-            if product.content_type_id == ContentType.objects.get(model='TraderSalesContract').id:
-                contract = product.trader_sales_contract.first()
-            elif product.content_type_id == ContentType.objects.get(model='HallSalesContract').id:
-                contract = product.hall_sales_contract.first()
-            else:
-                return JsonResponse({'success': False}, status=400)
+            contract = product.content_object
             contract_id = contract.contract_id
             contract_date = contract.created_at
             customer = contract.customer.name
@@ -213,12 +250,7 @@ class ListingPurchasesProductDetailAjaxView(AdminLoginRequiredMixin, View):
         if self.request.method == 'POST' and self.request.is_ajax():
             id = self.request.POST.get('id')
             product = ContractProduct.objects.get(id=id)
-            if product.content_type_id == ContentType.objects.get(model='TraderPurchasesContract').id:
-                contract = product.trader_purchases_contract.first()
-            elif product.content_type_id == ContentType.objects.get(model='HallPurchasesContract').id:
-                contract = product.hall_purchases_contract.first()
-            else:
-                return JsonResponse({'success': False}, status=400)
+            contract = product.content_object
             contract_id = contract.contract_id
             contract_date = contract.created_at
             customer = contract.customer.name

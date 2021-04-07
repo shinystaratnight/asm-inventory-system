@@ -45,6 +45,10 @@ class ContractProduct(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
 
+    @property
+    def amount(self):
+        return self.quantity * self.price
+
 
 class ContractDocument(models.Model):
     document = models.ForeignKey(Document, on_delete=models.SET_NULL, null=True)
