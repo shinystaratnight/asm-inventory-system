@@ -347,6 +347,7 @@ document.addEventListener('DOMContentLoaded', function() {
     $('form[name="trader_sales"] button[type="submit"]').click( function (e) {
         e.preventDefault();
         var $form = $(this).closest('form');
+        $form.attr('action', `/${lang}/contract/trader-sales/`);
         // To prevent the cached total_form_num hidden value from being sent to the server,
         // reset it to zero if no items has been added.
         resetTotalFormNumber(product_prefix);
@@ -373,13 +374,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form validator function for trader purchases contract page
     $('form[name="trader_purchases"] button[type="submit"]').click( function (e) {
         e.preventDefault();
-        var lang = $('input[name="selected-lang"]').val();
         var $form = $(this).closest('form');
+        $form.attr('action', `/${lang}/contract/trader-purchases/`);
         resetTotalFormNumber(product_prefix);
         resetTotalFormNumber(document_prefix);
         $.ajax({
             type: "POST",
-            url: '/' + lang + '/contract/validate/trader-purchases/',
+            url: `/${lang}/contract/validate/trader-purchases/`,
             data: $form.serialize(),
             dataType: 'json',
             success: function (result) {
@@ -395,14 +396,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form validator function for hall sales contract page
     $('form[name="hall_sales"] button[type="submit"]').click( function (e) {
         e.preventDefault();
-        var lang = $('input[name="selected-lang"]').val();
         var $form = $(this).closest('form');
+        $form.attr('action', `/${lang}/contract/hall-sales/`);
         resetTotalFormNumber(product_prefix);
         resetTotalFormNumber(document_prefix);
         resetTotalFormNumber(document_fee_prefix);
         $.ajax({
             type: "POST",
-            url: '/' + lang + '/contract/validate/hall-sales/',
+            url: `/${lang}/contract/validate/hall-sales/`,
             data: $form.serialize(),
             dataType: 'json',
             success: function (result) {
@@ -418,14 +419,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form validator function for hall purchases contract page
     $('form[name="hall_purchases"] button[type="submit"]').click( function (e) {
         e.preventDefault();
-        var lang = $('input[name="selected-lang"]').val();
         var $form = $(this).closest('form');
+        $form.attr('action', `/${lang}/contract/hall-purchases/`);
         resetTotalFormNumber(product_prefix);
         resetTotalFormNumber(document_prefix);
         resetTotalFormNumber(document_fee_prefix);
         $.ajax({
             type: "POST",
-            url: '/' + lang + '/contract/validate/hall-purchases/',
+            url: `/${lang}/contract/validate/hall-purchases/`,
             data: $form.serialize(),
             dataType: 'json',
             success: function (result) {

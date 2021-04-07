@@ -174,8 +174,15 @@ class MilestoneValidationFormSet(BaseFormSet):
     def clean(self):
         if any(self.errors):
             return
-        if self.total_form_count() == 0:
-            raise ValidationError("At least one milestone should be set.")
+        # Always return 5
+        # if self.total_form_count() == 0:
+        #     raise ValidationError("At least one milestone should be set.")
+        for form in self.forms:
+            if form.is_valid():
+                if form.cleaned_data.get('amount') and form.cleaned_data.get('date'):
+                    return
+        raise ValidationError("At least one milestone should be set.")
+
          
     def get_form_kwargs(self, index):
         kwargs = super().get_form_kwargs(index)
@@ -330,7 +337,7 @@ class HallPurchasesContractForm(forms.Form):
     person_in_charge = forms.CharField()
     confirmor = forms.CharField()
     memo = forms.CharField(required=False)
-
+    
     def save(self):
         contract_data = self.cleaned_data
         return HallPurchasesContract.objects.create(**contract_data)
