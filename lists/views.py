@@ -43,6 +43,7 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['hall_contract_id'] = ContentType.objects.get(model='HallSalesContract').id
         # context['sales_filter'] = SalesFilter(self.request.GET)
         return context
 
@@ -70,6 +71,12 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
             _('Payment date'), _('Product name'), _('Number of units'), _('Amount'), _('Inventory status')
         ])
         return response
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['hall_contract_id'] = ContentType.objects.get(model='HallPurchasesContract').id
+        # context['sales_filter'] = SalesFilter(self.request.GET)
+        return context
 
 
 class InventoryListView(AdminLoginRequiredMixin, ListView):
