@@ -30,12 +30,17 @@ ITEM_CHOICES = (
     ('D', _('Document'))
 )
 
+STOCK_CHOICES = (
+    ('D', _('Done')),
+    ('P', _('Pending'))
+)
 
 class ContractProduct(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     type = models.CharField(max_length=1, choices=PRODUCT_TYPE_CHOICES)
     quantity = models.PositiveIntegerField()
     price = models.PositiveIntegerField()
+    status = models.CharField(max_length=1, choices=STOCK_CHOICES, default='P')
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
