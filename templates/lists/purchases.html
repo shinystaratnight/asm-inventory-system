@@ -102,14 +102,14 @@
 							<tr class="bg-blue">
 								<th>{% trans "Contract ID" %}</th>
 								<th>{% trans "Contract date" %}</th>
-								<th>{% trans "Customer" %}</th>
-								<th>{% trans "Delivered place" %}</th>
+								<th class="w-10">{% trans "Customer" %}</th>
+								<th class="w-10">{% trans "Delivered place" %}</th>
 								<th>{% trans "Person in charge" %}</th>
-								<th>{% trans "Payment day" %}</th>
+								<th>{% trans "Payment date" %}</th>
 								<th>{% trans "Product name" %}</th>
 								<th>{% trans "Number of units" %}</th>
 								<th>{% trans "Amount" %}</th>
-								<th>{% trans "Inventory status" %}</th>
+								<th class="w-5">{% trans "Inventory status" %}</th>
 								<th>{% trans "Action" %}</th>
 							</tr>
 						</thead>
@@ -119,15 +119,18 @@
 							<tr>
 								<td>{{ product.content_object.contract_id }}</td>
 								<td>{{ product.content_object.created_at }}</td>
-								<td>{{ product.content_object.customer.name|truncatechars:25 }}</td>
+								<td>{{ product.content_object.customer.name }}</td>
 								<td></td>
 								<td>{{ product.content_object.person_in_charge }}</td>
 								<td>{{ product.content_object.payment_due_date }}</td>
-								<td>{{ product.product.name|truncatechars:25 }}</td>
+								<td>{{ product.product.name|truncatechars:20 }}</td>
 								<td>{{ product.quantity }}</td>
 								<td>{{ product.price }}</td>
 								<td>{{ product.get_status_display }}</td>
-								<td><a href="#">{% trans "Contract Details" %}</a></td>
+								<td>
+									<a href="#" data-id="{{product.id}}" class="edit-action"><i class="icon-pencil5 color-primary"></i></a>
+									<a href="#" data-id="{{product.id}}" class="edit-contract"><i class="icon-stack-text ml-3 color-danger"></i></a>
+								</td>
 							</tr>
 							{% endfor %}
 						</tbody>
@@ -150,6 +153,111 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- Disabled backdrop edit product data -->
+			<div id="modal_edit_data" class="modal fade" data-backdrop="false" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h5 class="modal-title">{% trans "Edit" %}</h5>
+						</div>
+
+						<div class="modal-body">
+							<hr/>
+
+							<form class="form-horizontal" method="POST" action="{% url 'list:listing-purchases-product-update' %}">
+								{% csrf_token %}
+								
+								<fieldset class="content-group">
+									<input type="hidden" name="id">
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Contract ID" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="contract_id" class="form-control" placeholder="{% trans 'Contract ID' %}..." disabled>
+										</div>
+									</div>
+
+									<!-- <div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Contract date" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="contract_date" class="form-control" placeholder="{% trans 'Contract date' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Customer" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="customer" class="form-control" placeholder="{% trans 'Customer' %}...">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Delivered place" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="destination" class="form-control" placeholder="{% trans 'Delivered place' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Person in charge" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="person_in_charge" class="form-control" placeholder="{% trans 'Person in charge' %}...">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Payment date" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="payment_date" class="form-control" placeholder="{% trans 'Payment date' %}...">
+										</div>
+									</div> -->
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Product name" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="product_name" class="form-control" placeholder="{% trans 'Product name' %}..." disabled>
+										</div>
+									</div>
+
+									<!-- <div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Number of units" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="quantity" class="form-control" placeholder="{% trans 'Number of units' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Amount" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="amount" class="form-control" placeholder="{% trans 'Amount' %}..." required>
+										</div>
+									</div> -->
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Inventory status" %}:</label>
+										<div class="col-lg-9">
+											<select name="status" class="selectbox" required>
+												<option value="D">{% trans 'Done' %}</option>
+												<option value="P">{% trans 'Pending' %}</option>
+											</select>
+										</div>
+									</div>
+
+								</fieldset>
+
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-primary">{% trans "Save" %}</button>
+									<button type="button" class="btn btn-link" data-dismiss="modal">{% trans "Close" %}</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /disabled backdrop -->
+
 		</div>
 		<!-- /content area -->
 
@@ -181,6 +289,29 @@
 						location.href = url;
 					});
 				}
+
+				$('a.edit-action').click( function (e) {
+					e.preventDefault();
+					var $this = $(this);
+					var id = $this.data('id');
+					$('#modal_edit_data input[name="id"]').val(id);
+					$.ajax({
+						type: 'POST',
+						url: "{% url 'list:listing-purchases-product-detail' %}",
+						data: {
+							id: id,
+						},
+						beforeSend: function(request) {
+							request.setRequestHeader('X-CSRFToken', csrftoken);
+						},
+						success: function (result) {
+							$('#modal_edit_data input[name="contract_id"]').val(result.contract_id);
+							$('#modal_edit_data input[name="product_name"]').val(result.product_name);
+							$('#modal_edit_data select[name="status"]').selectBoxIt('selectOption', result.status);
+							$('#modal_edit_data').modal('toggle');
+						}
+					});
+				});
 			});
 		</script>
 

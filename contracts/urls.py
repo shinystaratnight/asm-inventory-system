@@ -25,5 +25,4 @@ urlpatterns = [
 
     path('shipping-label/', ContractShippingLabelAjaxView.as_view(), name='shipping-label'),
     path('manager/', ContractManagerAjaxView.as_view(), name='manager-list'),
-
 ]

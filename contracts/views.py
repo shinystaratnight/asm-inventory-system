@@ -1032,4 +1032,3 @@ class HallPurchasesValidateAjaxView(AdminLoginRequiredMixin, View):
 
 
 
-
