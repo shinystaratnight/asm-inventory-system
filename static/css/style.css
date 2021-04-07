@@ -356,6 +356,9 @@ form.master-search-form input {
 .color-primary {
     color: #1e88e5;
 }
+.mb-delete {
+    margin-bottom: 20px;
+}
 @media screen and (max-width: 768px) {
 	.panel .visible-elements {
         padding-top: 20px;

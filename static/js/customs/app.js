@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var insurance_fee = 0;
         var total = 0;
         $('table.table-formset').each(function () {
-            $table = $(this);
+            var $table = $(this);
             $table.find('tbody tr').each(function () {
                 $tr = $(this);
                 var classname = $tr.attr('class');

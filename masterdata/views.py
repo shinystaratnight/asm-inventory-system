@@ -28,7 +28,48 @@ class CustomerListView(AdminLoginRequiredMixin, ListView):
         form = CustomerForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('masterdata:customer')
+        return redirect('masterdata:customer-list')
+
+
+class CustomerUpdateView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        data = self.request.POST
+        id = data['id']
+        customer = Customer.objects.get(id=id)
+        customer.name = data['name']
+        customer.frigana = data['frigana']
+        customer.postal_code = data['postal_code']
+        customer.address = data['address']
+        customer.tel = data['tel']
+        customer.fax = data['fax']
+        customer.csv = data['csv']
+        customer.save()
+        return redirect('masterdata:customer-list')
+
+
+class CustomerDeleteView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        data = self.request.POST
+        id = data['id']
+        customer = Customer.objects.get(id=id)
+        customer.delete()
+        return redirect('masterdata:customer-list')
+
+
+class CustomerDetailAjaxView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            id = self.request.POST.get('id')
+            customer = Customer.objects.get(id=id)
+            return JsonResponse({
+                'name': customer.name,
+                'frigana': customer.frigana,
+                'postal_code': customer.postal_code,
+                'address': customer.address,
+                'tel': customer.tel,
+                'fax': customer.fax,
+                'csv': customer.csv
+            })
 
 
 class HallListView(AdminLoginRequiredMixin, ListView):
@@ -49,7 +90,7 @@ class HallListView(AdminLoginRequiredMixin, ListView):
         form = HallForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('masterdata:hall')
+        return redirect('masterdata:hall-list')
 
 
 class SenderListView(AdminLoginRequiredMixin, ListView):
@@ -70,7 +111,7 @@ class SenderListView(AdminLoginRequiredMixin, ListView):
         form = SenderForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('masterdata:sender')
+        return redirect('masterdata:sender-list')
 
 
 class ProductListView(AdminLoginRequiredMixin, ListView):
@@ -91,7 +132,7 @@ class ProductListView(AdminLoginRequiredMixin, ListView):
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('masterdata:product')
+        return redirect('masterdata:product-list')
 
 
 class DocumentListView(AdminLoginRequiredMixin, ListView):
@@ -103,7 +144,7 @@ class DocumentListView(AdminLoginRequiredMixin, ListView):
         form = DocumentForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('masterdata:document')
+        return redirect('masterdata:document-list')
 
 
 class CustomerSearchAjaxView(AdminLoginRequiredMixin, View):

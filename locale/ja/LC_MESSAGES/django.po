@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-06 14:20+0000\n"
+"POT-Creation-Date: 2021-04-07 04:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -337,7 +337,8 @@ msgstr "会社名"
 #: templates/contracts/trader_sales.html:584
 #: templates/contracts/trader_sales.html:623
 #: templates/master_data/customers.html:64
-#: templates/master_data/customers.html:140 templates/master_data/halls.html:64
+#: templates/master_data/customers.html:145
+#: templates/master_data/customers.html:225 templates/master_data/halls.html:64
 #: templates/master_data/halls.html:139 templates/master_data/senders.html:64
 #: templates/master_data/senders.html:138
 msgid "Address"
@@ -354,7 +355,8 @@ msgstr "住所"
 #: templates/contracts/trader_sales.html:590
 #: templates/contracts/trader_sales.html:629
 #: templates/master_data/customers.html:65
-#: templates/master_data/customers.html:147 templates/master_data/halls.html:65
+#: templates/master_data/customers.html:152
+#: templates/master_data/customers.html:232 templates/master_data/halls.html:65
 #: templates/master_data/halls.html:146 templates/master_data/senders.html:65
 #: templates/master_data/senders.html:145
 msgid "TEL"
@@ -368,7 +370,8 @@ msgstr "TEL"
 #: templates/contracts/trader_sales.html:635
 #: templates/contracts/trader_sales.html:692
 #: templates/master_data/customers.html:66
-#: templates/master_data/customers.html:154 templates/master_data/halls.html:66
+#: templates/master_data/customers.html:159
+#: templates/master_data/customers.html:239 templates/master_data/halls.html:66
 #: templates/master_data/halls.html:153 templates/master_data/senders.html:66
 #: templates/master_data/senders.html:152
 msgid "FAX"
@@ -422,7 +425,7 @@ msgstr "機種名で検索してください"
 #: templates/contracts/trader_purchases.html:347
 #: templates/contracts/trader_sales.html:188
 #: templates/contracts/trader_sales.html:345
-#: templates/master_data/customers.html:170
+#: templates/master_data/customers.html:175
 #: templates/master_data/documents.html:112
 #: templates/master_data/halls.html:169 templates/master_data/products.html:136
 #: templates/master_data/senders.html:160
@@ -598,6 +601,7 @@ msgstr "確認印"
 #: templates/contracts/hall_sales.html:739
 #: templates/contracts/trader_purchases.html:778
 #: templates/contracts/trader_sales.html:706
+#: templates/master_data/customers.html:255
 msgid "Save"
 msgstr "保存"
 
@@ -662,7 +666,8 @@ msgstr "様"
 #: templates/contracts/trader_purchases.html:108
 #: templates/contracts/trader_sales.html:106
 #: templates/master_data/customers.html:62
-#: templates/master_data/customers.html:126 templates/master_data/halls.html:62
+#: templates/master_data/customers.html:131
+#: templates/master_data/customers.html:211 templates/master_data/halls.html:62
 #: templates/master_data/halls.html:125 templates/master_data/senders.html:62
 #: templates/master_data/senders.html:124
 msgid "Frigana"
@@ -671,7 +676,8 @@ msgstr "フリガナ"
 #: templates/contracts/trader_purchases.html:119
 #: templates/contracts/trader_sales.html:117
 #: templates/master_data/customers.html:63
-#: templates/master_data/customers.html:133 templates/master_data/halls.html:63
+#: templates/master_data/customers.html:138
+#: templates/master_data/customers.html:218 templates/master_data/halls.html:63
 #: templates/master_data/halls.html:132 templates/master_data/senders.html:63
 #: templates/master_data/senders.html:131
 msgid "Postal code"
@@ -967,7 +973,9 @@ msgstr ""
 
 #: templates/layout/error_modal.html:24 templates/layout/error_modal.html:57
 #: templates/layout/error_modal.html:89 templates/layout/error_modal.html:121
-#: templates/master_data/customers.html:171
+#: templates/master_data/customers.html:176
+#: templates/master_data/customers.html:256
+#: templates/master_data/customers.html:282
 #: templates/master_data/documents.html:113
 #: templates/master_data/halls.html:170 templates/master_data/products.html:137
 #: templates/master_data/senders.html:161
@@ -983,8 +991,7 @@ msgstr "取引先のフィールドは必須です。"
 msgid ""
 "Sender and shipping company for product sender and document sender forms "
 "must be given."
-msgstr ""
-"商品発送先と書類発送先で会社名と運送会社を指定する必要があります。"
+msgstr "商品発送先と書類発送先で会社名と運送会社を指定する必要があります。"
 
 #: templates/layout/error_modal.html:47
 msgid "Frame color field must be selected."
@@ -1150,52 +1157,81 @@ msgid "Sales (contract)"
 msgstr "売上（売買契求書）"
 
 #: templates/master_data/customers.html:61
-#: templates/master_data/customers.html:119
+#: templates/master_data/customers.html:124
+#: templates/master_data/customers.html:204
 msgid "Customer name"
 msgstr "顧客名"
 
 #: templates/master_data/customers.html:67
-#: templates/master_data/customers.html:161
+#: templates/master_data/customers.html:166
+#: templates/master_data/customers.html:246
 msgid "For CSV"
 msgstr "CSV用"
 
-#: templates/master_data/customers.html:95
-#: templates/master_data/customers.html:107
+#: templates/master_data/customers.html:68
+msgid "Action"
+msgstr "操作"
+
+#: templates/master_data/customers.html:100
+#: templates/master_data/customers.html:112
 msgid "Add customer"
 msgstr "新規顧客マスタ"
 
-#: templates/master_data/customers.html:121
+#: templates/master_data/customers.html:126
+#: templates/master_data/customers.html:206
 msgid "Enter customer name"
 msgstr "顧客名を入力してください"
 
-#: templates/master_data/customers.html:128
+#: templates/master_data/customers.html:133
+#: templates/master_data/customers.html:213
 #: templates/master_data/halls.html:127 templates/master_data/senders.html:126
 msgid "Enter frigana"
 msgstr "フリガナを入力してください"
 
-#: templates/master_data/customers.html:135
+#: templates/master_data/customers.html:140
+#: templates/master_data/customers.html:220
 #: templates/master_data/halls.html:134 templates/master_data/senders.html:133
 msgid "Enter postal code"
 msgstr "郵便番号を入力してください"
 
-#: templates/master_data/customers.html:142
+#: templates/master_data/customers.html:147
+#: templates/master_data/customers.html:227
 #: templates/master_data/halls.html:141 templates/master_data/senders.html:140
 msgid "Enter address"
 msgstr "住所を入力してください"
 
-#: templates/master_data/customers.html:149
+#: templates/master_data/customers.html:154
+#: templates/master_data/customers.html:234
 #: templates/master_data/halls.html:148 templates/master_data/senders.html:147
 msgid "Enter TEL"
 msgstr "TELを入力してください"
 
-#: templates/master_data/customers.html:156
+#: templates/master_data/customers.html:161
+#: templates/master_data/customers.html:241
 #: templates/master_data/halls.html:155 templates/master_data/senders.html:154
 msgid "Enter FAX"
 msgstr "FAXを入力してください"
 
-#: templates/master_data/customers.html:163
+#: templates/master_data/customers.html:168
+#: templates/master_data/customers.html:248
 msgid "Enter CSV name"
 msgstr "会計ソフト用の名称を入力してください"
+
+#: templates/master_data/customers.html:191
+msgid "Edit customer"
+msgstr "顧客マスタの更新"
+
+#: templates/master_data/customers.html:271
+msgid "Delete customer"
+msgstr "顧客マスタの削除"
+
+#: templates/master_data/customers.html:275
+msgid "Are you sure you want to remove this data?"
+msgstr "このデータを削除してもよろしいですか？"
+
+#: templates/master_data/customers.html:281
+msgid "Delete"
+msgstr "削除"
 
 #: templates/master_data/documents.html:45
 #: templates/master_data/documents.html:90
