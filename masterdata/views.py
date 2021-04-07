@@ -161,25 +161,24 @@ class SenderUpdateView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         data = self.request.POST
         id = data['id']
-        hall = Hall.objects.get(id=id)
-        hall.name = data['name']
-        hall.frigana = data['frigana']
-        hall.postal_code = data['postal_code']
-        hall.address = data['address']
-        hall.tel = data['tel']
-        hall.fax = data['fax']
-        hall.csv = data['csv']
-        hall.save()
-        return redirect('masterdata:hall-list')
+        sender = Sender.objects.get(id=id)
+        sender.name = data['name']
+        sender.frigana = data['frigana']
+        sender.postal_code = data['postal_code']
+        sender.address = data['address']
+        sender.tel = data['tel']
+        sender.fax = data['fax']
+        sender.save()
+        return redirect('masterdata:sender-list')
 
 
 class SenderDeleteView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         data = self.request.POST
         id = data['id']
-        hall = Hall.objects.get(id=id)
-        hall.delete()
-        return redirect('masterdata:hall-list')
+        sender = Sender.objects.get(id=id)
+        sender.delete()
+        return redirect('masterdata:sender-list')
 
 
 class SenderDetailAjaxView(AdminLoginRequiredMixin, View):
@@ -188,9 +187,12 @@ class SenderDetailAjaxView(AdminLoginRequiredMixin, View):
             id = self.request.POST.get('id')
             sender = Sender.objects.get(id=id)
             return JsonResponse({
+                'name': sender.name,
+                'frigana': sender.frigana,
+                'postal_code': sender.postal_code,
                 'address': sender.address,
                 'tel': sender.tel,
-                'fax': sender.fax
+                'fax': sender.fax,
             }, status=200)
         return JsonResponse({'success': False}, status=400)
 
@@ -266,40 +268,32 @@ class DocumentUpdateView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         data = self.request.POST
         id = data['id']
-        hall = Hall.objects.get(id=id)
-        hall.name = data['name']
-        hall.frigana = data['frigana']
-        hall.postal_code = data['postal_code']
-        hall.address = data['address']
-        hall.tel = data['tel']
-        hall.fax = data['fax']
-        hall.csv = data['csv']
-        hall.save()
-        return redirect('masterdata:hall-list')
+        document = Document.objects.get(id=id)
+        document.name = data['name']
+        document.term = data['term']
+        document.taxation = data['taxation']
+        document.save()
+        return redirect('masterdata:document-list')
 
 
 class DocumentDeleteView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         data = self.request.POST
         id = data['id']
-        hall = Hall.objects.get(id=id)
-        hall.delete()
-        return redirect('masterdata:hall-list')
+        document = Document.objects.get(id=id)
+        document.delete()
+        return redirect('masterdata:document-list')
 
 
 class DocumentDetailAjaxView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         if self.request.method == 'POST' and self.request.is_ajax():
             id = self.request.POST.get('id')
-            hall = Hall.objects.get(id=id)
+            document = Document.objects.get(id=id)
             return JsonResponse({
-                'name': hall.name,
-                'frigana': hall.frigana,
-                'postal_code': hall.postal_code,
-                'address': hall.address,
-                'tel': hall.tel,
-                'fax': hall.fax,
-                'csv': hall.csv
+                'name': document.name,
+                'term': document.term,
+                'taxation': document.taxation,
             }, status=200)
         return JsonResponse({'success': False}, status=400)
 
