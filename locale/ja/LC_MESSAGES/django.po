@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-07 04:12+0000\n"
+"POT-Creation-Date: 2021-04-07 05:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -232,11 +232,13 @@ msgstr "在庫"
 msgid "Total price"
 msgstr "合計金額"
 
-#: masterdata/models.py:5 templates/master_data/products.html:121
+#: masterdata/models.py:5 templates/master_data/products.html:126
+#: templates/master_data/products.html:178
 msgid "Pachinko"
 msgstr "パチンコ"
 
-#: masterdata/models.py:6 templates/master_data/products.html:122
+#: masterdata/models.py:6 templates/master_data/products.html:127
+#: templates/master_data/products.html:179
 msgid "Slot"
 msgstr "スロット"
 
@@ -339,8 +341,9 @@ msgstr "会社名"
 #: templates/master_data/customers.html:64
 #: templates/master_data/customers.html:145
 #: templates/master_data/customers.html:225 templates/master_data/halls.html:64
-#: templates/master_data/halls.html:139 templates/master_data/senders.html:64
-#: templates/master_data/senders.html:138
+#: templates/master_data/halls.html:144 templates/master_data/halls.html:223
+#: templates/master_data/senders.html:64 templates/master_data/senders.html:143
+#: templates/master_data/senders.html:214
 msgid "Address"
 msgstr "住所"
 
@@ -357,8 +360,9 @@ msgstr "住所"
 #: templates/master_data/customers.html:65
 #: templates/master_data/customers.html:152
 #: templates/master_data/customers.html:232 templates/master_data/halls.html:65
-#: templates/master_data/halls.html:146 templates/master_data/senders.html:65
-#: templates/master_data/senders.html:145
+#: templates/master_data/halls.html:151 templates/master_data/halls.html:230
+#: templates/master_data/senders.html:65 templates/master_data/senders.html:150
+#: templates/master_data/senders.html:221
 msgid "TEL"
 msgstr "TEL"
 
@@ -372,8 +376,9 @@ msgstr "TEL"
 #: templates/master_data/customers.html:66
 #: templates/master_data/customers.html:159
 #: templates/master_data/customers.html:239 templates/master_data/halls.html:66
-#: templates/master_data/halls.html:153 templates/master_data/senders.html:66
-#: templates/master_data/senders.html:152
+#: templates/master_data/halls.html:158 templates/master_data/halls.html:237
+#: templates/master_data/senders.html:66 templates/master_data/senders.html:157
+#: templates/master_data/senders.html:228
 msgid "FAX"
 msgstr "FAX"
 
@@ -384,7 +389,7 @@ msgstr "設置場所"
 
 #: templates/contracts/hall_purchases.html:130
 #: templates/contracts/hall_sales.html:129 templates/master_data/halls.html:61
-#: templates/master_data/halls.html:118
+#: templates/master_data/halls.html:123 templates/master_data/halls.html:202
 msgid "Hall name"
 msgstr "ホール名"
 
@@ -426,9 +431,9 @@ msgstr "機種名で検索してください"
 #: templates/contracts/trader_sales.html:188
 #: templates/contracts/trader_sales.html:345
 #: templates/master_data/customers.html:175
-#: templates/master_data/documents.html:112
-#: templates/master_data/halls.html:169 templates/master_data/products.html:136
-#: templates/master_data/senders.html:160
+#: templates/master_data/documents.html:117
+#: templates/master_data/halls.html:174 templates/master_data/products.html:141
+#: templates/master_data/senders.html:165
 msgid "Add"
 msgstr "追加"
 
@@ -437,7 +442,8 @@ msgstr "追加"
 #: templates/contracts/trader_purchases.html:199
 #: templates/contracts/trader_sales.html:197
 #: templates/master_data/products.html:61
-#: templates/master_data/products.html:111
+#: templates/master_data/products.html:116
+#: templates/master_data/products.html:168
 msgid "Model name"
 msgstr "機種名"
 
@@ -602,6 +608,9 @@ msgstr "確認印"
 #: templates/contracts/trader_purchases.html:778
 #: templates/contracts/trader_sales.html:706
 #: templates/master_data/customers.html:255
+#: templates/master_data/documents.html:167
+#: templates/master_data/halls.html:253 templates/master_data/products.html:193
+#: templates/master_data/senders.html:236
 msgid "Save"
 msgstr "保存"
 
@@ -668,8 +677,9 @@ msgstr "様"
 #: templates/master_data/customers.html:62
 #: templates/master_data/customers.html:131
 #: templates/master_data/customers.html:211 templates/master_data/halls.html:62
-#: templates/master_data/halls.html:125 templates/master_data/senders.html:62
-#: templates/master_data/senders.html:124
+#: templates/master_data/halls.html:130 templates/master_data/halls.html:209
+#: templates/master_data/senders.html:62 templates/master_data/senders.html:129
+#: templates/master_data/senders.html:200
 msgid "Frigana"
 msgstr "フリガナ"
 
@@ -678,8 +688,9 @@ msgstr "フリガナ"
 #: templates/master_data/customers.html:63
 #: templates/master_data/customers.html:138
 #: templates/master_data/customers.html:218 templates/master_data/halls.html:63
-#: templates/master_data/halls.html:132 templates/master_data/senders.html:63
-#: templates/master_data/senders.html:131
+#: templates/master_data/halls.html:137 templates/master_data/halls.html:216
+#: templates/master_data/senders.html:63 templates/master_data/senders.html:136
+#: templates/master_data/senders.html:207
 msgid "Postal code"
 msgstr "郵便番号"
 
@@ -976,9 +987,16 @@ msgstr ""
 #: templates/master_data/customers.html:176
 #: templates/master_data/customers.html:256
 #: templates/master_data/customers.html:282
-#: templates/master_data/documents.html:113
-#: templates/master_data/halls.html:170 templates/master_data/products.html:137
-#: templates/master_data/senders.html:161
+#: templates/master_data/documents.html:118
+#: templates/master_data/documents.html:168
+#: templates/master_data/documents.html:194
+#: templates/master_data/halls.html:175 templates/master_data/halls.html:254
+#: templates/master_data/halls.html:280 templates/master_data/products.html:142
+#: templates/master_data/products.html:194
+#: templates/master_data/products.html:220
+#: templates/master_data/senders.html:166
+#: templates/master_data/senders.html:237
+#: templates/master_data/senders.html:263
 msgid "Close"
 msgstr "閉じる"
 
@@ -1169,6 +1187,8 @@ msgid "For CSV"
 msgstr "CSV用"
 
 #: templates/master_data/customers.html:68
+#: templates/master_data/documents.html:48 templates/master_data/halls.html:68
+#: templates/master_data/products.html:64 templates/master_data/senders.html:67
 msgid "Action"
 msgstr "操作"
 
@@ -1184,31 +1204,41 @@ msgstr "顧客名を入力してください"
 
 #: templates/master_data/customers.html:133
 #: templates/master_data/customers.html:213
-#: templates/master_data/halls.html:127 templates/master_data/senders.html:126
+#: templates/master_data/halls.html:132 templates/master_data/halls.html:211
+#: templates/master_data/senders.html:131
+#: templates/master_data/senders.html:202
 msgid "Enter frigana"
 msgstr "フリガナを入力してください"
 
 #: templates/master_data/customers.html:140
 #: templates/master_data/customers.html:220
-#: templates/master_data/halls.html:134 templates/master_data/senders.html:133
+#: templates/master_data/halls.html:139 templates/master_data/halls.html:218
+#: templates/master_data/senders.html:138
+#: templates/master_data/senders.html:209
 msgid "Enter postal code"
 msgstr "郵便番号を入力してください"
 
 #: templates/master_data/customers.html:147
 #: templates/master_data/customers.html:227
-#: templates/master_data/halls.html:141 templates/master_data/senders.html:140
+#: templates/master_data/halls.html:146 templates/master_data/halls.html:225
+#: templates/master_data/senders.html:145
+#: templates/master_data/senders.html:216
 msgid "Enter address"
 msgstr "住所を入力してください"
 
 #: templates/master_data/customers.html:154
 #: templates/master_data/customers.html:234
-#: templates/master_data/halls.html:148 templates/master_data/senders.html:147
+#: templates/master_data/halls.html:153 templates/master_data/halls.html:232
+#: templates/master_data/senders.html:152
+#: templates/master_data/senders.html:223
 msgid "Enter TEL"
 msgstr "TELを入力してください"
 
 #: templates/master_data/customers.html:161
 #: templates/master_data/customers.html:241
-#: templates/master_data/halls.html:155 templates/master_data/senders.html:154
+#: templates/master_data/halls.html:160 templates/master_data/halls.html:239
+#: templates/master_data/senders.html:159
+#: templates/master_data/senders.html:230
 msgid "Enter FAX"
 msgstr "FAXを入力してください"
 
@@ -1226,95 +1256,146 @@ msgid "Delete customer"
 msgstr "顧客マスタの削除"
 
 #: templates/master_data/customers.html:275
+#: templates/master_data/documents.html:187
+#: templates/master_data/halls.html:273 templates/master_data/products.html:213
+#: templates/master_data/senders.html:256
 msgid "Are you sure you want to remove this data?"
 msgstr "このデータを削除してもよろしいですか？"
 
 #: templates/master_data/customers.html:281
+#: templates/master_data/documents.html:193
+#: templates/master_data/halls.html:279 templates/master_data/products.html:219
+#: templates/master_data/senders.html:262
 msgid "Delete"
 msgstr "削除"
 
 #: templates/master_data/documents.html:45
-#: templates/master_data/documents.html:90
+#: templates/master_data/documents.html:95
+#: templates/master_data/documents.html:145
 msgid "Name"
 msgstr "名称"
 
 #: templates/master_data/documents.html:46
-#: templates/master_data/documents.html:97
+#: templates/master_data/documents.html:102
+#: templates/master_data/documents.html:152
 msgid "Term"
 msgstr "勘定科目"
 
 #: templates/master_data/documents.html:47
-#: templates/master_data/documents.html:104
+#: templates/master_data/documents.html:109
+#: templates/master_data/documents.html:159
 msgid "Taxation"
 msgstr "税区分"
 
-#: templates/master_data/documents.html:67
-#: templates/master_data/documents.html:79
+#: templates/master_data/documents.html:72
+#: templates/master_data/documents.html:84
 msgid "Add other"
 msgstr "新規商品名そのほか"
 
-#: templates/master_data/documents.html:92
+#: templates/master_data/documents.html:97
+#: templates/master_data/documents.html:147
 msgid "Enter name"
 msgstr "名称を入力してください"
 
-#: templates/master_data/documents.html:99
+#: templates/master_data/documents.html:104
+#: templates/master_data/documents.html:154
 msgid "Enter term"
 msgstr "勘定科目を入力してください"
 
-#: templates/master_data/documents.html:106
+#: templates/master_data/documents.html:111
+#: templates/master_data/documents.html:161
 msgid "Enter taxation"
 msgstr "税区分を入力してください"
 
-#: templates/master_data/halls.html:67 templates/master_data/halls.html:160
+#: templates/master_data/documents.html:133
+msgid "Edit other"
+msgstr "商品名そのほかの更新"
+
+#: templates/master_data/documents.html:183
+msgid "Delete other"
+msgstr "商品名そのほかの削除"
+
+#: templates/master_data/halls.html:67 templates/master_data/halls.html:165
+#: templates/master_data/halls.html:244
 msgid "Payee"
 msgstr "振込先"
 
-#: templates/master_data/halls.html:95 templates/master_data/halls.html:107
+#: templates/master_data/halls.html:100 templates/master_data/halls.html:112
 msgid "Add hall"
 msgstr "新規ホール"
 
-#: templates/master_data/halls.html:120
+#: templates/master_data/halls.html:125 templates/master_data/halls.html:204
 msgid "Enter hall name"
 msgstr "ホール名を入力してください"
 
-#: templates/master_data/halls.html:162
+#: templates/master_data/halls.html:167 templates/master_data/halls.html:246
 msgid "Enter payee"
 msgstr "振込先を入力してください"
 
+#: templates/master_data/halls.html:190
+msgid "Edit hall"
+msgstr "ホールの更新"
+
+#: templates/master_data/halls.html:269
+msgid "Delete hall"
+msgstr "ホールの削除"
+
 #: templates/master_data/products.html:62
-#: templates/master_data/products.html:118
+#: templates/master_data/products.html:123
+#: templates/master_data/products.html:175
 msgid "Type"
 msgstr "分類"
 
 #: templates/master_data/products.html:63
-#: templates/master_data/products.html:128
+#: templates/master_data/products.html:133
+#: templates/master_data/products.html:185
 msgid "Maker"
 msgstr "メーカー"
 
-#: templates/master_data/products.html:88
-#: templates/master_data/products.html:100
+#: templates/master_data/products.html:93
+#: templates/master_data/products.html:105
 msgid "Add product"
 msgstr "新規商品名"
 
-#: templates/master_data/products.html:113
+#: templates/master_data/products.html:118
+#: templates/master_data/products.html:170
 msgid "Enter model name"
 msgstr "機種名を入力してください"
 
-#: templates/master_data/products.html:130
+#: templates/master_data/products.html:135
+#: templates/master_data/products.html:187
 msgid "Enter maker"
 msgstr "メーカーを入力してください"
 
-#: templates/master_data/senders.html:61 templates/master_data/senders.html:117
+#: templates/master_data/products.html:157
+msgid "Edit product"
+msgstr "商品名の更新"
+
+#: templates/master_data/products.html:209
+msgid "Delete product"
+msgstr "商品名の削除"
+
+#: templates/master_data/senders.html:61 templates/master_data/senders.html:122
+#: templates/master_data/senders.html:193
 msgid "Sender name"
 msgstr "配送先名"
 
-#: templates/master_data/senders.html:94 templates/master_data/senders.html:106
+#: templates/master_data/senders.html:99 templates/master_data/senders.html:111
 msgid "Add sender"
 msgstr "新規配送先"
 
-#: templates/master_data/senders.html:119
+#: templates/master_data/senders.html:124
+#: templates/master_data/senders.html:195
 msgid "Enter sender name"
 msgstr "配送先名を入力してください"
+
+#: templates/master_data/senders.html:181
+msgid "Edit sender"
+msgstr "配送先の更新"
+
+#: templates/master_data/senders.html:252
+msgid "Delete sender"
+msgstr "配送先の削除"
 
 #: templates/registration/login.html:13
 msgid "Login to your account"
