@@ -51,7 +51,7 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
                     queryset = queryset.filter(Q(product__name__icontains=v))
                 elif k == 'inventory_status':
                     queryset = queryset.filter(Q(status=v))
-        return queryset
+        return queryset.order_by('-pk')
     
     def post(self, request, *args, **kwargs):
         response = HttpResponse(content_type='text/csv')
@@ -80,7 +80,7 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
             status = product.status
             writer.writerow([
                 contract_id, contract_date, customer, destination, person_in_charge, payment_date, product_name,
-                quantity, amount, status
+                quantity, amount, dict(STOCK_CHOICES)[status]
             ])
         return response
     
@@ -132,7 +132,7 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
                     queryset = queryset.filter(Q(product__name__icontains=v))
                 elif k == 'inventory_status':
                     queryset = queryset.filter(Q(status=v))
-        return queryset
+        return queryset.order_by('-pk')
     
     def post(self, request, *args, **kwargs):
         response = HttpResponse(content_type='text/csv')
@@ -161,7 +161,7 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
             status = product.status
             writer.writerow([
                 contract_id, contract_date, customer, destination, person_in_charge, payment_date, product_name,
-                quantity, amount, status
+                quantity, amount, dict(STOCK_CHOICES)[status]
             ])
         return response
     
