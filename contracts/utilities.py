@@ -12,3 +12,6 @@ def generate_contract_id(prefix='01'):
     count += HallPurchasesContract.objects.count()
     contract_id += str(count + 1).zfill(5)
     return contract_id
+
+def ordinal(num):
+    return "%d%s" % (num,"tsnrhtdd"[(num//10%10!=1)*(num%10<4)*num%10::4])

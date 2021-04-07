@@ -4,7 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.views.generic.base import TemplateView, View
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Count
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 from users.views import AdminLoginRequiredMixin
 from masterdata.models import *
 from .models import *
@@ -176,16 +176,16 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
         writer = csv.writer(response, encoding='utf-8-sig')
 
         rows = [
-            ['','', '売買契約 兼 請求書'],
-            ['No. {}'.format(contract_id), '', '', '', '', '', '契約日', created_at],
-            ['', '', '', '', '', '', '更新日', updated_at],
-            ['会社名', company, '', 'フリガナ', frigana],
-            ['郵便番号', postal_code],
-            ['住所', address, '', '', '', '', 'P-SENSOR 会員番号', P_SENSOR_NUMBER],
-            ['TEL', tel, '', 'FAX', fax, '', '担当名', person_in_charge],
+            ['','', _('Contract and invoice')],
+            ['No. {}'.format(contract_id), '', '', '', '', '', _('Created date'), created_at],
+            ['', '', '', '', '', '', _('Updated date'), updated_at],
+            [_('Company'), company, '', _('Frigana'), frigana],
+            [_('Postal code'), postal_code],
+            [_('Address'), address, '', '', '', '', 'P-SENSOR ' + _('Member ID'), P_SENSOR_NUMBER],
+            [_(_('TEL')), tel, '', _(_('FAX')), fax, '', _('Person in charge'), person_in_charge],
             [],
-            ['商品名'],
-            ['機種名', '中分類', '数量', '単価', '金額'],
+            [_('Product')],
+            [_('Model name'), _('Product type'), _('Quantity'), _('Price'), _('Amount')],
         ]
         writer.writerows(rows)
 
@@ -205,13 +205,13 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
                 price = form.cleaned_data.get('price', 0)
                 amount = quantity * price
                 sub_total += amount
-                product_rows.append([product_name, type, quantity, price, amount])
+                product_rows.append([product_name, dict(PRODUCT_TYPE_CHOICES)[type], quantity, price, amount])
             writer.writerows(product_rows)
         
         rows = [
             [],
-            ['商品名そのほか'],
-            ['書類', '数量', '単価', '金額']
+            [_('Other')],
+            [_('Document'), _('Quantity'), _('Price'), _('Amount')]
         ]
         writer.writerows(rows)
 
@@ -244,12 +244,12 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
 
         rows = [
             [],
-            ['機械発送日', shipping_date, '', '小計', sub_total],
-            ['備考', remarks, '', '消費税 (10%)', tax],
-            ['', '', '', '保険代 (非課税)', insurance_fee],
-            ['', '', '', '合計', total],
-            ['運送方法', shipping_method, '', '御請求金額', total],
-            ['お支払方法', payment_method, '', '支払期限', payment_due_date],
+            [_('Delivery date'), shipping_date, '', _('Subtotal'), sub_total],
+            [_('Remarks'), remarks, '', _('Consumption tax') + '(10%)', tax],
+            ['', '', '', _('Insurance fee') + '(' + _('No tax') + ')', insurance_fee],
+            ['', '', '', _('Total amount'), total],
+            [_('Shipping method'), dict(SHIPPING_METHOD_CHOICES)[shipping_method], '', _('Billing amount'), total],
+            [_('Payment method'), dict(PAYMENT_METHOD_CHOICES)[payment_method], '', _('Payment due date'), payment_due_date],
             []
         ]
         writer.writerows(rows)
@@ -274,12 +274,12 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
                 document_sender_tel = document_sender.tel
                 document_sender_fax = document_sender.fax
             rows = [
-                ['商品発送先', '', '', '書類発送先'],
-                ['会社名', product_sender_company, '', '会社名', document_sender_company],
-                ['住所', product_sender_address, '', '住所', document_sender_address],
-                ['TEL', product_sender_tel, '', 'TEL', document_sender_tel],
-                ['FAX', product_sender_fax, '', 'FAX', document_sender_fax],
-                ['到着予定日', product_sender_expected_arrival_date, '', '到着予定日', document_sender_expected_arrival_date]
+                [_('Product sender'), '', '', _('Document sender')],
+                [_('Company'), product_sender_company, '', _('Company'), document_sender_company],
+                [_('Address'), product_sender_address, '', _('Address'), document_sender_address],
+                [_('TEL'), product_sender_tel, '', _('TEL'), document_sender_tel],
+                [_('FAX'), product_sender_fax, '', _('FAX'), document_sender_fax],
+                [_('Expected arrival date'), product_sender_expected_arrival_date, '', _('Expected arrival date'), document_sender_expected_arrival_date]
             ]
             writer.writerows(rows)
         return response
@@ -371,16 +371,16 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         writer = csv.writer(response, encoding='utf-8-sig')
 
         rows = [
-            ['','', '売買契約 兼 請求書'],
-            ['No. {}'.format(contract_id), '', '', '', '', '', '契約日', created_at],
-            ['', '', '', '', '', '', '更新日', updated_at],
-            ['会社名', company, '', 'フリガナ', frigana],
-            ['郵便番号', postal_code],
-            ['住所', address, '', '', '', '', 'P-SENSOR 会員番号', P_SENSOR_NUMBER],
-            ['TEL', tel, '', 'FAX', fax, '', '担当名', person_in_charge],
+            ['','', _('Contract and invoice')],
+            ['No. {}'.format(contract_id), '', '', '', '', '', _('Created date'), created_at],
+            ['', '', '', '', '', '', _('Updated date'), updated_at],
+            [_('Company'), company, '', _('Frigana'), frigana],
+            [_('Postal code'), postal_code],
+            [_('Address'), address, '', '', '', '', 'P-SENSOR ' + _('Member ID'), P_SENSOR_NUMBER],
+            [_('TEL'), tel, '', _('FAX'), fax, '', _('Person in charge'), person_in_charge],
             [],
-            ['商品名'],
-            ['機種名', '中分類', '数量', '単価', '金額'],
+            [_('Product')],
+            [_('Model name'), _('Product type'), _('Quantity'), _('Price'), _('Amount')],
         ]
         writer.writerows(rows)
 
@@ -400,13 +400,13 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
                 price = form.cleaned_data.get('price', 0)
                 amount = quantity * price
                 sub_total += amount
-                product_rows.append([product_name, type, quantity, price, amount])
+                product_rows.append([product_name, dict(PRODUCT_TYPE_CHOICES)[type], quantity, price, amount])
             writer.writerows(product_rows)
         
         rows = [
             [],
-            ['商品名そのほか'],
-            ['書類', '数量', '単価', '金額']
+            [_('Other')],
+            [_('Document'), _('Quantity'), _('Price'), _('Amount')]
         ]
         writer.writerows(rows)
 
@@ -439,10 +439,10 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
 
         rows = [
             [],
-            ['', '', '', '', '', '', '小計', sub_total],
-            ['撤去日', removal_date, '', '枠色', frame_color, '', '消費税 (10%)', tax],
-            ['発送日', shipping_date, '', '引取', receipt, '', '保険代 (非課税)', insurance_fee],
-            ['備考', remarks, '', '', '', '', '合計', total],
+            ['', '', '', '', '', '', _('Subtotal'), sub_total],
+            [_('Removal date'), removal_date, '', _('Frame color'), frame_color, '', _('Consumption tax') + '(10%)', tax],
+            [_('Date of shipment'), shipping_date, '', _('Receipt'), receipt, '', _('Insurance fee') + '(' + _('No tax') + ')', insurance_fee],
+            [_('Remarks'), remarks, '', '', '', '', _('Total amount'), total],
             []
         ]
         writer.writerows(rows)
@@ -468,13 +468,13 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
             document_sender_address = document_sender.address
             document_sender_tel = document_sender.tel
         rows = [
-            ['商品発送先', '', '', '書類発送先'],
-            ['会社名', product_sender_company, '', '会社名', document_sender_company],
-            ['住所', product_sender_address, '', '住所', document_sender_address],
-            ['TEL', product_sender_tel, '', 'TEL', document_sender_tel],
-            ['到着希望日', product_sender_desired_arrival_date, '', '到着希望日', document_sender_desired_arrival_date],
-            ['運送会社', product_sender_shipping_company, '', '運送会社', document_sender_shipping_company],
-            ['備考', product_sender_remarks, '', '備考', document_sender_remarks]
+            [_('Product sender'), '', '', _('Document sender')],
+            [_('Company'), product_sender_company, '', _('Company'), document_sender_company],
+            [_('Address'), product_sender_address, '', _('Address'), document_sender_address],
+            [_('TEL'), product_sender_tel, '', _('TEL'), document_sender_tel],
+            [_('Desired arrival date'), product_sender_desired_arrival_date, '', _('Desired arrival date'), document_sender_desired_arrival_date],
+            [_('Shipping company'), product_sender_shipping_company, '', _('Shipping company'), document_sender_shipping_company],
+            [_('Remarks'), product_sender_remarks, '', _('Remarks'), document_sender_remarks]
         ]
         writer.writerows(rows)
 
@@ -485,9 +485,9 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         account_holder = self.request.POST.get('account_holder', None)
         rows = [
             [],
-            ['振込期限日', transfer_deadline, ''],
-            ['銀行名', bank_name, '', '支店名', branch_name],
-            ['口座番号', account_number, '', '口座名義', account_holder]
+            [_('Transfer deadline'), transfer_deadline, ''],
+            [_('Bank name'), bank_name, '', _('Branch name'), branch_name],
+            [_('Account number'), account_number, '', _('Account holder'), account_holder]
         ]
         writer.writerows(rows)
         return response
@@ -623,21 +623,21 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
         response['Content-Disposition'] = 'attachment; filename="hall_sales_contract_{}.csv"'.format(contract_id)
         writer = csv.writer(response, encoding='utf-8-sig')
         rows = [
-            ['','', '売買契求書'],
-            ['No. {}'.format(contract_id), '', '', '', '契約日', created_at],
+            ['','', _('Sales contract')],
+            ['No. {}'.format(contract_id), '', '', '', _('Created date'), created_at],
             [],
-            ['買主(甲)', '', '', '売主(乙)'],
-            ['', '会社名', company, '', '会社名', COMPANY_NAME],
-            ['', '住所', address, '', '住所', ADDRESS],
-            ['', 'TEL ', tel, '', 'TEL ', TEL],
-            ['', 'FAX', fax, '', 'FAX', FAX],
+            [_('Buyer') + '(' + _('A') + ')', '', '', _('Seller') + '(' + _('B') + ')'],
+            ['', _('Company'), company, '', _('Company'), COMPANY_NAME],
+            ['', _('Address'), address, '', _('Address'), ADDRESS],
+            ['', _('TEL'), tel, '', _('TEL'), TEL],
+            ['', _('FAX'), fax, '', _('FAX'), FAX],
             [],
-            ['設置場所'],
-            ['', 'ホール名', hall_name, '', '住所', hall_address],
-            ['', 'TEL', hall_tel],
+            [_('Installation location')],
+            ['', _('Hall name'), hall_name, '', _('Address'), hall_address],
+            ['', _('TEL'), hall_tel],
             [],
-            ['商品名'],
-            ['', '機種名', '中分類', '数量', '単価', '金額']
+            [_('Product')],
+            ['', _('Model name'), _('Product type'), _('Quantity'), _('Price'), _('Amount')]
         ]
         writer.writerows(rows)
 
@@ -657,13 +657,13 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
                 price = form.cleaned_data.get('price', 0)
                 amount = quantity * price
                 sub_total += amount
-                product_rows.append([None, product_name, type, quantity, price, amount])
+                product_rows.append([None, product_name, dict(PRODUCT_TYPE_CHOICES)[type], quantity, price, amount])
             writer.writerows(product_rows)
         
         rows = [
             [],
-            ['商品名そのほか'],
-            ['', '書類', '数量', '単価', '金額']
+            [_('Other')],
+            ['', _('Document'), _('Quantity'), _('Price'), _('Amount')]
         ]
         writer.writerows(rows)
         document_formset = DocumentFormSet(
@@ -686,8 +686,8 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
         
         rows = [
             [],
-            ['書類代'],
-            ['', '中分類', '機種数', '台数', '金額']
+            [_('Document fee')],
+            ['', _('Product type'), _('Number of models'), _('Number of units'), _('Amount')]
         ]
         writer.writerows(rows)
         document_fee_formset = DocumentFeeFormSet(
@@ -727,10 +727,10 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
 
         rows = [
             [],
-            ['備考', remarks, '', '', '小計', sub_total],
-            ['', '', '', '', '消費税 (10%)', tax],
-            ['', '', '', '', '保険代 (非課税)', insurance_fee],
-            ['', '', '', '', '合計', total],
+            [_('Remarks'), remarks, '', '', _('Subtotal'), sub_total],
+            ['', '', '', '', _('Consumption tax') + '(10%)', tax],
+            ['', '', '', '', _('Insurance fee') + '(' + _('No tax') + ')', insurance_fee],
+            ['', '', '', '', _('Total amount'), total],
             []
         ]
         writer.writerows(rows)
@@ -747,21 +747,21 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
             amount = form.cleaned_data.get('amount', None)
             
             if idx == 1:
-                rows.append(['納品日', shipping_date, '支払内訳', '初回', date, amount])
+                rows.append([_('Shipping date'), shipping_date, _('Payment breakdown'), _(ordinal(idx)), date, amount])
             elif idx == 2:
-                rows.append(['開店日', opening_date, '', '2回', date, amount])
+                rows.append([_('Opening date'), opening_date, '', _(ordinal(idx)), date, amount])
             elif idx == 3:
-                rows.append(['お支払方法', payment_method, '', '3回', date, amount])
+                rows.append([_('Payment method'), dict(PAYMENT_METHOD_CHOICES)[payment_method], '', _(ordinal(idx)), date, amount])
             elif idx == 4:
-                rows.append(['', '', '', '4回', date, amount])
+                rows.append(['', '', '', _(ordinal(idx)), date, amount])
             else:
-                rows.append(['', '', '', '5回', date, amount])
+                rows.append(['', '', '', _(ordinal(idx)), date, amount])
             idx += 1
         writer.writerows(rows)
         
         rows = [
             [],
-            ['振込先口座', transfer_account, '担当名', person_in_charge, '確認印', confirmor],
+            [_('Transfer account'), transfer_account, _('Person in charge'), person_in_charge, _('Confirmor'), confirmor],
         ]
         writer.writerows(rows)
         return response
@@ -864,21 +864,21 @@ class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         response['Content-Disposition'] = 'attachment; filename="hall_purchases_contract_{}.csv"'.format(contract_id)
         writer = csv.writer(response, encoding='utf-8-sig')
         rows = [
-            ['','', '売買契求書'],
-            ['No. {}'.format(contract_id), '', '', '', '契約日', created_at],
+            ['', '', _('Sales contract')],
+            ['No. {}'.format(contract_id), '', '', '', _('Created date'), created_at],
             [],
-            ['買主(甲)', '', '', '売主(乙)'],
-            ['', '会社名', company, '', '会社名', COMPANY_NAME],
-            ['', '住所', address, '', '住所', ADDRESS],
-            ['', 'TEL ', tel, '', 'TEL ', TEL],
-            ['', 'FAX', fax, '', 'FAX', FAX],
+            [_('Buyer') + '(' + _('A') + ')', '', '', _('Seller') + '(' + _('B') + ')'],
+            ['', _('Company'), company, '', _('Company'), COMPANY_NAME],
+            ['', _('Address'), address, '', _('Address'), ADDRESS],
+            ['', _('TEL'), tel, '', _('TEL'), TEL],
+            ['', _('FAX'), fax, '', _('FAX'), FAX],
             [],
-            ['設置場所'],
-            ['', 'ホール名', hall_name, '', '住所', hall_address],
-            ['', 'TEL', hall_tel],
+            [_('Installation location')],
+            ['', _('Hall name'), hall_name, '', _('Address'), hall_address],
+            ['', _('TEL'), hall_tel],
             [],
-            ['商品名'],
-            ['', '機種名', '中分類', '数量', '単価', '金額']
+            [_('Product')],
+            ['', _('Model name'), _('Product type'), _('Quantity'), _('Price'), _('Amount')]
         ]
         writer.writerows(rows)
 
@@ -898,13 +898,13 @@ class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
                 price = form.cleaned_data.get('price', 0)
                 amount = quantity * price
                 sub_total += amount
-                product_rows.append([None, product_name, type, quantity, price, amount])
+                product_rows.append([None, product_name, dict(PRODUCT_TYPE_CHOICES)[type], quantity, price, amount])
             writer.writerows(product_rows)
         
         rows = [
             [],
-            ['商品名そのほか'],
-            ['', '書類', '数量', '単価', '金額']
+            [_('Other')],
+            ['', _('Document'), _('Quantity'), _('Price'), _('Amount')]
         ]
         writer.writerows(rows)
         document_formset = DocumentFormSet(
@@ -927,8 +927,8 @@ class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         
         rows = [
             [],
-            ['書類代'],
-            ['', '中分類', '機種数', '台数', '金額']
+            [_('Document fee')],
+            ['', _('Product type'), _('Number of models'), _('Number of units'), _('Amount')]
         ]
         writer.writerows(rows)
         document_fee_formset = DocumentFeeFormSet(
@@ -968,10 +968,10 @@ class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
 
         rows = [
             [],
-            ['備考', remarks, '', '', '小計', sub_total],
-            ['', '', '', '', '消費税 (10%)', tax],
-            ['', '', '', '', '保険代 (非課税)', insurance_fee],
-            ['', '', '', '', '合計', total],
+            [_('Remarks'), remarks, '', '', _('Subtotal'), sub_total],
+            ['', '', '', '', _('Consumption tax') + '(10%)', tax],
+            ['', '', '', '', _('Insurance fee') + '(' + _('No tax') + ')', insurance_fee],
+            ['', '', '', '', _('Total amount'), total],
             []
         ]
         writer.writerows(rows)
@@ -988,22 +988,22 @@ class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
             amount = form.cleaned_data.get('amount', None)
             
             if idx == 1:
-                rows.append(['納品日', shipping_date, '支払内訳', '初回', date, amount])
+                rows.append([_('Shipping date'), shipping_date, _('Payment breakdown'), _(ordinal(idx)), date, amount])
             elif idx == 2:
-                rows.append(['開店日', opening_date, '', '2回', date, amount])
+                rows.append([_('Opening date'), opening_date, '', _(ordinal(idx)), date, amount])
             elif idx == 3:
-                rows.append(['お支払方法', payment_method, '', '3回', date, amount])
+                rows.append([_('Payment method'), dict(PAYMENT_METHOD_CHOICES)[payment_method], '', _(ordinal(idx)), date, amount])
             elif idx == 4:
-                rows.append(['', '', '', '4回', date, amount])
+                rows.append(['', '', '', _(ordinal(idx)), date, amount])
             else:
-                rows.append(['', '', '', '5回', date, amount])
+                rows.append(['', '', '', _(ordinal(idx)), date, amount])
             idx += 1
         writer.writerows(rows)
         
         rows = [
             [],
-            ['振込先口座', transfer_account],
-            ['担当名', person_in_charge, '確認印', confirmor]
+            [_('Transfer account'), transfer_account],
+            [_('Person in charge'), person_in_charge, _('Confirmor'), confirmor]
         ]
         writer.writerows(rows)
         return response
