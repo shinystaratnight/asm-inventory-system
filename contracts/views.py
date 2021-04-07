@@ -140,7 +140,8 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
             document_sender_form = TraderSalesSenderForm(document_sender, type='D', contract_id=contract.id)
             if document_sender_form.is_valid():
                 document_sender_form.save()
-        return render(request, self.template_name, self.get_context_data(**kwargs))
+        # return render(request, self.template_name, self.get_context_data(**kwargs))
+        return redirect('list:sales')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -334,7 +335,8 @@ class TraderPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
         document_sender_form = TraderPurchasesSenderForm(document_sender, type='D', contract_id=contract.id)
         if document_sender_form.is_valid():
             document_sender_form.save()
-        return render(request, self.template_name, self.get_context_data(**kwargs))
+        # return render(request, self.template_name, self.get_context_data(**kwargs))
+        return redirect('list:purchases')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -579,7 +581,8 @@ class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
                 if form.cleaned_data.get('date') and form.cleaned_data.get('amount'):
                     form.save()
         
-        return render(request, self.template_name, self.get_context_data(**kwargs))
+        # return render(request, self.template_name, self.get_context_data(**kwargs))
+        return redirect('list:sales')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -819,7 +822,8 @@ class HallPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
             if form.is_valid():
                 form.save()
         
-        return render(request, self.template_name, self.get_context_data(**kwargs))
+        # return render(request, self.template_name, self.get_context_data(**kwargs))
+        return redirect('list:purchases')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
