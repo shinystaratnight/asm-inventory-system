@@ -217,14 +217,14 @@ class TraderSalesContractForm(forms.Form):
     payment_method = forms.CharField()
     payment_due_date = forms.DateField(input_formats=INPUT_FORMATS)
     insurance_fee = forms.IntegerField()
-    memo = forms.CharField()
+    memo = forms.CharField(required=False)
 
     def save(self):
         contract_data = self.cleaned_data
         return TraderSalesContract.objects.create(**contract_data)
 
 
-class SalesSenderForm(forms.Form):
+class TraderSalesSenderForm(forms.Form):
     sender_id = forms.IntegerField()
     expected_arrival_date = forms.DateField(input_formats=INPUT_FORMATS)
 
@@ -242,7 +242,7 @@ class SalesSenderForm(forms.Form):
             'sender': Sender.objects.get(id=self.cleaned_data.get('sender_id')),
             'expected_arrival_date': self.cleaned_data.get('expected_arrival_date'),
         }
-        SaleSender.objects.create(**data)
+        TraderSalesSender.objects.create(**data)
 # End of Trader Sales Forms
 
 
@@ -267,7 +267,7 @@ class TraderPurchasesContractForm(forms.Form):
     account_holder = forms.CharField()
 
 
-class PurchasesSenderForm(forms.Form):
+class TraderPurchasesSenderForm(forms.Form):
     sender_id = forms.IntegerField()
     desired_arrival_date = forms.DateField(input_formats=INPUT_FORMATS)
     shipping_company = forms.CharField()
@@ -289,7 +289,7 @@ class PurchasesSenderForm(forms.Form):
             'shipping_company': self.cleaned_data.get('shipping_company'),
             'remarks': self.cleaned_data.get('remarks'),
         }
-        PurchaseSender.objects.create(**data)
+        TraderPurchasesSender.objects.create(**data)
 # End of trader purchases form
 
 

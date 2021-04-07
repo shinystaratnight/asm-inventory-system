@@ -10,7 +10,7 @@ from .filters import *
 from .models import *
 
 
-class CustomerView(AdminLoginRequiredMixin, ListView):
+class CustomerListView(AdminLoginRequiredMixin, ListView):
     template_name = 'master_data/customers.html'
     queryset = Customer.objects.all()
     context_object_name = 'master_data'
@@ -31,7 +31,7 @@ class CustomerView(AdminLoginRequiredMixin, ListView):
         return redirect('masterdata:customer')
 
 
-class HallView(AdminLoginRequiredMixin, ListView):
+class HallListView(AdminLoginRequiredMixin, ListView):
     template_name = 'master_data/halls.html'
     queryset = Hall.objects.all()
     context_object_name = 'master_data'
@@ -52,7 +52,7 @@ class HallView(AdminLoginRequiredMixin, ListView):
         return redirect('masterdata:hall')
 
 
-class SenderView(AdminLoginRequiredMixin, ListView):
+class SenderListView(AdminLoginRequiredMixin, ListView):
     template_name = 'master_data/senders.html'
     queryset = Sender.objects.all()
     context_object_name = 'master_data'
@@ -73,7 +73,7 @@ class SenderView(AdminLoginRequiredMixin, ListView):
         return redirect('masterdata:sender')
 
 
-class ProductView(AdminLoginRequiredMixin, ListView):
+class ProductListView(AdminLoginRequiredMixin, ListView):
     template_name = 'master_data/products.html'
     queryset = Product.objects.all()
     context_object_name = 'master_data'
@@ -94,7 +94,7 @@ class ProductView(AdminLoginRequiredMixin, ListView):
         return redirect('masterdata:product')
 
 
-class DocumentView(AdminLoginRequiredMixin, ListView):
+class DocumentListView(AdminLoginRequiredMixin, ListView):
     template_name = 'master_data/documents.html'
     queryset = Document.objects.all()
     context_object_name = 'master_data'

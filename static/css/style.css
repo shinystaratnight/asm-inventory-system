@@ -350,6 +350,12 @@ form.master-search-form input {
 .content-wrapper.trader-purchases-contract {
     background: rgb(171, 172, 226);
 }
+.color-danger {
+    color: #d84315;
+}
+.color-primary {
+    color: #1e88e5;
+}
 @media screen and (max-width: 768px) {
 	.panel .visible-elements {
         padding-top: 20px;

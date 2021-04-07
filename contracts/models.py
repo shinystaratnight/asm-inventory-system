@@ -117,14 +117,14 @@ class TraderPurchasesContract(TraderContract):
     documents = GenericRelation(ContractDocument, related_query_name='trader_purchases_contract')
 
 
-class SaleSender(models.Model):
+class TraderSalesSender(models.Model):
     contract = models.ForeignKey(TraderSalesContract, on_delete=models.CASCADE, related_name='senders')
     type = models.CharField(max_length=1, choices=ITEM_CHOICES)
     sender = models.ForeignKey(Sender, on_delete=models.CASCADE)
     expected_arrival_date = models.DateField()
 
 
-class PurchaseSender(models.Model):
+class TraderPurchasesSender(models.Model):
     type = models.CharField(max_length=1, choices=ITEM_CHOICES)
     sender = models.ForeignKey(Sender, on_delete=models.CASCADE)
     desired_arrival_date = models.DateField()

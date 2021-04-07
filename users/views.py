@@ -54,7 +54,7 @@ class LogoutView(AdminLoginRequiredMixin, RedirectView):
 
 
 class DashboardView(AdminLoginRequiredMixin, RedirectView):
-    pattern_name = 'masterdata:customer'
+    pattern_name = 'masterdata:customer-list'
 
 
 def page_not_found(request, exception):

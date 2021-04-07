@@ -271,22 +271,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form validator function for trader sales contract page
     $('form[name="trader_sales"] button[type="submit"]').click( function (e) {
         e.preventDefault();
-
-        var lang = $('input[name="selected-lang"]').val();
         var $form = $(this).closest('form');
-
         // To prevent the cached total_form_num hidden value from being sent to the server,
         // reset it to zero if no items has been added.
         resetTotalFormNumber(product_prefix);
         resetTotalFormNumber(document_prefix);
-        
         /*
         // In case of Ajax POST request, i18n throws issues (403) because of automatic url pattern resolve.
         // lang prefix should be added to the url.
          */
         $.ajax({
             type: "POST",
-            url: '/' + lang + '/contract/validate/trader-sales/',
+            url: `/${lang}/contract/validate/trader-sales/`,
             data: $form.serialize(),
             dataType: 'json',
             success: function (result) {

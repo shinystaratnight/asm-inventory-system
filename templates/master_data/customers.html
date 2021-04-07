@@ -65,6 +65,7 @@
 							<th>{% trans "TEL" %}</th>
 							<th>{% trans "FAX" %}</th>
 							<th>{% trans "For CSV" %}</th>
+							<th>{% trans "Action" %}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -78,6 +79,10 @@
 							<td>{{ customer.tel|default_if_none:"" }}</td>
 							<td>{{ customer.fax|default_if_none:"" }}</td>
 							<td>{{ customer.csv }}</td>
+							<td>
+								<a><i class="icon-pen6 color-primary"></i></a>
+								<a><i class="icon-subtract ml-4 color-danger"></i></a>
+							</td>
 						</tr>
 						{% endfor %}
 					</tbody>
