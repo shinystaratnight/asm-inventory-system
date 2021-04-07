@@ -119,14 +119,15 @@
 							<tr>
 								<td>{{ product.content_object.contract_id }}</td>
 								<td>{{ product.content_object.created_at }}</td>
-								<td>{{ product.content_object.customer.name }}</td>
+								<td>{{ product.content_object.customer.name|truncatechars:25 }}</td>
 								<td></td>
 								<td>{{ product.content_object.person_in_charge }}</td>
 								<td>{{ product.content_object.payment_due_date }}</td>
-								<td>{{ product.product.name }}</td>
+								<td>{{ product.product.name|truncatechars:25 }}</td>
 								<td>{{ product.quantity }}</td>
 								<td>{{ product.price }}</td>
 								<td>{{ product.get_status_display }}</td>
+								<td><a href="{% url 'contract:contract-update' product.content_object.id %}">{% trans "Contract Details" %}</a></td>
 							</tr>
 							{% endfor %}
 						</tbody>

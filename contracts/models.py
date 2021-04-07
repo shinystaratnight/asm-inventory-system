@@ -171,4 +171,16 @@ class HallPurchasesContract(HallContract):
     memo = models.TextField(null=True, blank=True)
 
 
+class InventoryProduct(models.Model):
+    name = models.CharField(max_length=200)
+    mid = models.IntegerField()
+    purchase_date = models.DateField()
+    supplier = models.CharField(max_length=200)
+    person_in_charge = models.CharField(max_length=200)
+    quantity = models.IntegerField()
+    price = models.IntegerField()
+    stock = models.IntegerField()
 
+    @property
+    def amount(self):
+        return self.quantity * self.price

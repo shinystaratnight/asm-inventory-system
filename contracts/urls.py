@@ -20,4 +20,6 @@ urlpatterns = [
 
     path('shipping-label/', ContractShippingLabelAjaxView.as_view(), name='shipping-label'),
     path('manager/', ContractManagerAjaxView.as_view(), name='manager-list'),
+
+    path('<int:pk>/update/', ContractUpdateView.as_view(), name='contract-update'),
 ]

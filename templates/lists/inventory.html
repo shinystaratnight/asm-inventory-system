@@ -110,83 +110,30 @@
 						</thead>
 
 						<tbody>
+							{% for product in products %}
 							<tr>
-								<td>1</td>
-								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
-								<td>17884</td>
-								<td>2021/03/26</td>
-								<td>アイエス販売</td>
-								<td>金昇志</td>
-								<td>10</td>
-								<td>1500</td>
-								<td width="10%"><input type="text" name="stock" class="form-control" value="10"></td>
-								<td>15,000</td>
+								<td>{{ forloop.counter0|add:page_obj.start_index }}</td>
+								<td>{{ product.name }}</td>
+								<td>{{ product.mid }}</td>
+								<td>{{ product.purchase_date }}</td>
+								<td>{{ product.supplier }}</td>
+								<td>{{ product.person_in_charge }}</td>
+								<td>{{ product.quantity }}</td>
+								<td>{{ product.price }}</td>
+								<td class="w-10">
+									<input type="text" name="stock" class="form-control" value="{{ product.stock }}">
+								</td>
+								<td>{{ product.amount }}</td>
 							</tr>
-							<tr>
-								<td>2</td>
-								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
-								<td>17884</td>
-								<td>2021/03/26</td>
-								<td>アイエス販売</td>
-								<td>金昇志</td>
-								<td>10</td>
-								<td>1500</td>
-								<td width="10%"><input type="text" name="stock" class="form-control" value="10"></td>
-								<td>15,000</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
-								<td>17884</td>
-								<td>2021/03/26</td>
-								<td>アイエス販売</td>
-								<td>金昇志</td>
-								<td>10</td>
-								<td>1500</td>
-								<td width="10%"><input type="text" name="stock" class="form-control" value="10"></td>
-								<td>15,000</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
-								<td>17884</td>
-								<td>2021/03/26</td>
-								<td>アイエス販売</td>
-								<td>金昇志</td>
-								<td>10</td>
-								<td>1500</td>
-								<td width="10%"><input type="text" name="stock" class="form-control" value="10"></td>
-								<td>15,000</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ</td>
-								<td>17884</td>
-								<td>2021/03/26</td>
-								<td>アイエス販売</td>
-								<td>金昇志</td>
-								<td>10</td>
-								<td>1500</td>
-								<td width="10%"><input type="text" name="stock" class="form-control" value="10"></td>
-								<td>15,000</td>
-							</tr>
-							
+							{% endfor %}
 						</tbody>
 					</table>
 				</div>
 
 				<div class="panel panel-body border-top-teal text-center">
-					<ul class="pagination pagination-separated pagination-rounded">
-						<li><a href="#">&lsaquo;</a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li class="disabled"><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">&rsaquo;</a></li>
+					<ul class="pagination pagination-separated pagination-rounded" id="pagination">
 					</ul>
 				</div>
-
 
 				<div class="row">
 					<div class="col-md-12">

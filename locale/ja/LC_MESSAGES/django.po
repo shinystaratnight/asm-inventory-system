@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-07 06:21+0000\n"
+"POT-Creation-Date: 2021-04-07 07:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -268,8 +268,8 @@ msgstr "会計ソフトCSV"
 #: templates/contracts/hall_purchases.html:745
 #: templates/contracts/hall_sales.html:740
 #: templates/contracts/trader_purchases.html:779
-#: templates/contracts/trader_sales.html:707 templates/lists/inventory.html:196
-#: templates/lists/purchases.html:146 templates/lists/sales.html:145
+#: templates/contracts/trader_sales.html:707 templates/lists/inventory.html:143
+#: templates/lists/purchases.html:147 templates/lists/sales.html:147
 msgid "Export To CSV"
 msgstr "CSV出力"
 
@@ -1167,11 +1167,16 @@ msgstr "仕入（売買契求書）"
 msgid "All"
 msgstr "全て"
 
-#: templates/lists/purchases.html:113 templates/master_data/customers.html:68
+#: templates/lists/purchases.html:113 templates/lists/sales.html:113
+#: templates/master_data/customers.html:68
 #: templates/master_data/documents.html:48 templates/master_data/halls.html:68
 #: templates/master_data/products.html:64 templates/master_data/senders.html:67
 msgid "Action"
 msgstr "操作"
+
+#: templates/lists/purchases.html:130 templates/lists/sales.html:130
+msgid "Contract Details"
+msgstr "契約内容"
 
 #: templates/lists/sales.html:18 templates/lists/sales.html:26
 #: templates/lists/sales.html:37

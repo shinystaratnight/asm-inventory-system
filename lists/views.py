@@ -69,7 +69,7 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
 
 class InventoryListView(AdminLoginRequiredMixin, ListView):
     template_name = 'lists/inventory.html'
-    queryset = ContractProduct.objects.all()
+    queryset = InventoryProduct.objects.all()
     context_object_name = 'products'
     paginate_by = 5
 

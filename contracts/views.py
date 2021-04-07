@@ -1008,3 +1008,7 @@ class HallPurchasesValidateAjaxView(AdminLoginRequiredMixin, View):
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'success': False}, status=400)
 # End of hall purchases contract
+
+class ContractUpdateView(AdminLoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        pass
