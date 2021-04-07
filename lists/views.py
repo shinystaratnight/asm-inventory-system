@@ -1,4 +1,5 @@
 import unicodecsv as csv
+import datetime
 from django.shortcuts import redirect
 from django.views.generic.base import View
 from django.views.generic.list import ListView
@@ -33,6 +34,10 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
                         Q(hall_sales_contract__contract_id__icontains=v)
                     )
                 elif k == 'created_at':
+                    try:
+                        v = datetime.datetime.strptime(v, '%Y-%m-%d').date()
+                    except ValueError:
+                        v = datetime.datetime.strptime(v, '%Y/%m/%d').date()
                     queryset = queryset.filter(
                         Q(trader_sales_contract__created_at=v) |
                         Q(hall_sales_contract__created_at=v)
@@ -110,6 +115,10 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
                         Q(hall_purchases_contract__contract_id__icontains=v)
                     )
                 elif k == 'created_at':
+                    try:
+                        v = datetime.datetime.strptime(v, '%Y-%m-%d').date()
+                    except ValueError:
+                        v = datetime.datetime.strptime(v, '%Y/%m/%d').date()
                     queryset = queryset.filter(
                         Q(trader_purchases_contract__created_at=v) |
                         Q(hall_purchases_contract__created_at=v)
