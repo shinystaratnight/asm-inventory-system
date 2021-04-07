@@ -576,7 +576,8 @@ class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
         )
         for form in milestone_formset.forms:
             if form.is_valid():
-                form.save()
+                if form.cleaned_data.get('date') and form.cleaned_data.get('amount'):
+                    form.save()
         
         return render(request, self.template_name, self.get_context_data(**kwargs))
 

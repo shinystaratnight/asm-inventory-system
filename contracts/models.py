@@ -143,10 +143,11 @@ class TraderPurchasesSender(models.Model):
 
 class HallContract(models.Model):
     contract_id = models.CharField(max_length=200)
+    created_at = models.DateField()
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     hall = models.ForeignKey(Hall, on_delete=models.CASCADE)
     remarks = models.TextField(null=True, blank=True)
-    insurance_fee_include = models.BooleanField(default=True)
+    fee_included = models.BooleanField(default=True)
     insurance_fee = models.IntegerField()
     shipping_date = models.DateField()
     opening_date = models.DateField()
@@ -154,7 +155,6 @@ class HallContract(models.Model):
     transfer_account = models.CharField(max_length=255)
     person_in_charge = models.CharField(max_length=200)
     confirmor = models.CharField(max_length=200)
-    created_at = models.DateField()
 
     class Meta:
         abstract = True
@@ -168,11 +168,11 @@ class HallSalesContract(HallContract):
 
 
 class HallPurchasesContract(HallContract):
+    memo = models.TextField(null=True, blank=True)
     products = GenericRelation(ContractProduct, related_query_name='hall_purchases_contract')
     documents = GenericRelation(ContractDocument, related_query_name='hall_purchases_contract')
     document_fees = GenericRelation(ContractDocumentFee, related_query_name='hall_purchases_contract')
     milestones = GenericRelation(Milestone, related_query_name='hall_purchases_contract')
-    memo = models.TextField(null=True, blank=True)
 
 
 class InventoryProduct(models.Model):

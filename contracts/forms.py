@@ -176,11 +176,6 @@ class MilestoneValidationFormSet(BaseFormSet):
             return
         if self.total_form_count() == 0:
             raise ValidationError("At least one milestone should be set.")
-        for form in self.forms:
-            amount = form.cleaned_data.get('amount', 0)
-            if amount <= 0:
-                form.add_error('amount', 'Amount should be positive value.')
-                return
          
     def get_form_kwargs(self, index):
         kwargs = super().get_form_kwargs(index)
@@ -312,6 +307,10 @@ class HallSalesContractForm(forms.Form):
     transfer_account = forms.CharField()
     person_in_charge = forms.CharField()
     confirmor = forms.CharField()
+
+    def save(self):
+        contract_data = self.cleaned_data
+        return HallSalesContract.objects.create(**contract_data)
 # End of hall sales form
 
 
@@ -331,4 +330,8 @@ class HallPurchasesContractForm(forms.Form):
     person_in_charge = forms.CharField()
     confirmor = forms.CharField()
     memo = forms.CharField(required=False)
+
+    def save(self):
+        contract_data = self.cleaned_data
+        return HallPurchasesContract.objects.create(**contract_data)
 # End of hall purchases form
