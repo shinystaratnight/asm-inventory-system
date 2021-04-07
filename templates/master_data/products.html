@@ -61,6 +61,7 @@
 							<th>{% trans "Model name" %}</th>
 							<th>{% trans "Type" %}</th>
 							<th>{% trans "Maker" %}</th>
+							<th>{% trans "Action" %}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -71,6 +72,10 @@
 								<td>{{ product.name }}</td>
 								<td>{{ product.get_type_display }}</td>
 								<td>{{ product.maker }}</td>
+								<td>
+									<a href="#" data-id="{{product.id}}" class="edit-action"><i class="icon-pen6 color-primary"></i></a>
+									<a href="#" data-id="{{product.id}}" class="remove-action"><i class="icon-subtract ml-4 color-danger remove-action"></i></a>
+								</td>
 							</tr>
 						{% endfor %}
 					</tbody>
@@ -142,6 +147,85 @@
 				</div>
 			</div>
 			<!-- /disabled backdrop -->
+
+			<!-- Disabled backdrop edit Master Data Modal -->
+			<div id="modal_edit_data" class="modal fade" data-backdrop="false" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h5 class="modal-title">{% trans "Edit product" %}</h5>
+						</div>
+
+						<div class="modal-body">
+							<hr/>
+							<form class="form-horizontal" method="POST" action="{% url 'masterdata:product-update' %}">
+								{% csrf_token %}
+								<fieldset class="content-group">
+									<input type="hidden" name="id">
+									
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Model name" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="name" class="form-control" placeholder="{% trans 'Enter model name' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Type" %}:</label>
+										<div class="col-lg-9">
+											<select name="type" class="selectbox" required>
+												<option value="P">{% trans 'Pachinko' %}</option>
+												<option value="S">{% trans 'Slot' %}</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Maker" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="maker" class="form-control" placeholder="{% trans 'Enter maker' %}..." required>
+										</div>
+									</div>
+
+								</fieldset>
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-primary">{% trans "Save" %}</button>
+									<button type="button" class="btn btn-link" data-dismiss="modal">{% trans "Close" %}</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /disabled backdrop -->
+
+			<!-- Disabled backdrop delete master data modal -->
+			<div id="modal_delete_data" class="modal fade" data-backdrop="false" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header bg-danger">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h5 class="text-center modal-title">{% trans "Delete product" %}</h5>
+						</div>
+
+						<div class="modal-body">
+							<h6 class="text-center mb-delete">{% trans "Are you sure you want to remove this data?" %}</h6>
+							<hr/>
+							<form class="form-horizontal" method="POST" action="{% url 'masterdata:product-delete' %}">
+								{% csrf_token %}
+								<input type="hidden" name="id">
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-danger">{% trans "Delete" %}</button>
+									<button type="button" class="btn btn-link" data-dismiss="modal">{% trans "Close" %}</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /disabled backdrop -->
+
 		</div>
 		<!-- /content area -->
 
@@ -173,6 +257,39 @@
 						location.href = url;
 					});
 				}
+
+				$('a.edit-action').click( function (e) {
+					e.preventDefault();
+					var $this = $(this);
+					var id = $this.data('id');
+					$('#modal_edit_data input[name="id"]').val(id);
+					$.ajax({
+						type: 'POST',
+						url: "{% url 'masterdata:product-detail' %}",
+						data: {
+							id: id,
+						},
+						beforeSend: function(request) {
+							request.setRequestHeader('X-CSRFToken', csrftoken);
+						},
+						success: function (result) {
+							$('#modal_edit_data input[name="name"]').val(result.name);
+							var selectBox = $('#modal_edit_data select[name="type"]');
+							$('#modal_edit_data select[name="type"]').selectBoxIt('selectOption', result.type);
+							$('#modal_edit_data input[name="maker"]').val(result.maker);
+							$('#modal_edit_data').modal('toggle');
+						}
+					});
+					
+				});
+
+				$('a.remove-action').click( function (e) {
+					e.preventDefault();
+					var $this = $(this);
+					var id = $this.data('id');
+					$('#modal_delete_data input[name="id"]').val(id);
+					$('#modal_delete_data').modal('toggle');
+				});
 			});
 		</script>
 

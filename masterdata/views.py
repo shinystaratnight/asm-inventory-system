@@ -69,7 +69,8 @@ class CustomerDetailAjaxView(AdminLoginRequiredMixin, View):
                 'tel': customer.tel,
                 'fax': customer.fax,
                 'csv': customer.csv
-            })
+            }, status=200)
+        return JsonResponse({'success': False}, status=400)
 
 
 class HallListView(AdminLoginRequiredMixin, ListView):
@@ -93,6 +94,48 @@ class HallListView(AdminLoginRequiredMixin, ListView):
         return redirect('masterdata:hall-list')
 
 
+class HallUpdateView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        data = self.request.POST
+        id = data['id']
+        hall = Hall.objects.get(id=id)
+        hall.name = data['name']
+        hall.frigana = data['frigana']
+        hall.postal_code = data['postal_code']
+        hall.address = data['address']
+        hall.tel = data['tel']
+        hall.fax = data['fax']
+        hall.payee = data['payee']
+        hall.save()
+        return redirect('masterdata:hall-list')
+
+
+class HallDeleteView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        data = self.request.POST
+        id = data['id']
+        hall = Hall.objects.get(id=id)
+        hall.delete()
+        return redirect('masterdata:hall-list')
+
+
+class HallDetailAjaxView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            id = self.request.POST.get('id')
+            hall = Hall.objects.get(id=id)
+            return JsonResponse({
+                'name': hall.name,
+                'frigana': hall.frigana,
+                'postal_code': hall.postal_code,
+                'address': hall.address,
+                'tel': hall.tel,
+                'fax': hall.fax,
+                'payee': hall.payee
+            }, status=200)
+        return JsonResponse({'success': False}, status=400)
+
+
 class SenderListView(AdminLoginRequiredMixin, ListView):
     template_name = 'master_data/senders.html'
     queryset = Sender.objects.all()
@@ -112,6 +155,44 @@ class SenderListView(AdminLoginRequiredMixin, ListView):
         if form.is_valid():
             form.save()
         return redirect('masterdata:sender-list')
+
+
+class SenderUpdateView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        data = self.request.POST
+        id = data['id']
+        hall = Hall.objects.get(id=id)
+        hall.name = data['name']
+        hall.frigana = data['frigana']
+        hall.postal_code = data['postal_code']
+        hall.address = data['address']
+        hall.tel = data['tel']
+        hall.fax = data['fax']
+        hall.csv = data['csv']
+        hall.save()
+        return redirect('masterdata:hall-list')
+
+
+class SenderDeleteView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        data = self.request.POST
+        id = data['id']
+        hall = Hall.objects.get(id=id)
+        hall.delete()
+        return redirect('masterdata:hall-list')
+
+
+class SenderDetailAjaxView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            id = self.request.POST.get('id')
+            sender = Sender.objects.get(id=id)
+            return JsonResponse({
+                'address': sender.address,
+                'tel': sender.tel,
+                'fax': sender.fax
+            }, status=200)
+        return JsonResponse({'success': False}, status=400)
 
 
 class ProductListView(AdminLoginRequiredMixin, ListView):
@@ -135,6 +216,40 @@ class ProductListView(AdminLoginRequiredMixin, ListView):
         return redirect('masterdata:product-list')
 
 
+class ProductUpdateView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        data = self.request.POST
+        id = data['id']
+        product = Product.objects.get(id=id)
+        product.name = data['name']
+        product.type = data['type']
+        product.maker = data['maker']
+        product.save()
+        return redirect('masterdata:product-list')
+
+
+class ProductDeleteView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        data = self.request.POST
+        id = data['id']
+        product = Product.objects.get(id=id)
+        product.delete()
+        return redirect('masterdata:product-list')
+
+
+class ProductDetailAjaxView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            id = self.request.POST.get('id')
+            product = Product.objects.get(id=id)
+            return JsonResponse({
+                'name': product.name,
+                'type': product.type,
+                'maker': product.maker,
+            }, status=200)
+        return JsonResponse({'success': False}, status=400)
+
+
 class DocumentListView(AdminLoginRequiredMixin, ListView):
     template_name = 'master_data/documents.html'
     queryset = Document.objects.all()
@@ -145,6 +260,48 @@ class DocumentListView(AdminLoginRequiredMixin, ListView):
         if form.is_valid():
             form.save()
         return redirect('masterdata:document-list')
+
+
+class DocumentUpdateView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        data = self.request.POST
+        id = data['id']
+        hall = Hall.objects.get(id=id)
+        hall.name = data['name']
+        hall.frigana = data['frigana']
+        hall.postal_code = data['postal_code']
+        hall.address = data['address']
+        hall.tel = data['tel']
+        hall.fax = data['fax']
+        hall.csv = data['csv']
+        hall.save()
+        return redirect('masterdata:hall-list')
+
+
+class DocumentDeleteView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        data = self.request.POST
+        id = data['id']
+        hall = Hall.objects.get(id=id)
+        hall.delete()
+        return redirect('masterdata:hall-list')
+
+
+class DocumentDetailAjaxView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            id = self.request.POST.get('id')
+            hall = Hall.objects.get(id=id)
+            return JsonResponse({
+                'name': hall.name,
+                'frigana': hall.frigana,
+                'postal_code': hall.postal_code,
+                'address': hall.address,
+                'tel': hall.tel,
+                'fax': hall.fax,
+                'csv': hall.csv
+            }, status=200)
+        return JsonResponse({'success': False}, status=400)
 
 
 class CustomerSearchAjaxView(AdminLoginRequiredMixin, View):
@@ -199,16 +356,4 @@ class ProductSearchAjaxView(AdminLoginRequiredMixin, View):
             product_qs = product_qs.order_by('id')[start:end].values('id', 'name')
             products = list(product_qs)
             return JsonResponse({"products": products, "total_count": total_count}, safe=False, status=200)
-        return JsonResponse({'success': False}, status=400)
-
-
-class SenderDetailAjaxView(AdminLoginRequiredMixin, View):
-    def post(self, *args, **kwargs):
-        if self.request.method == 'POST' and self.request.is_ajax():
-            id = self.request.POST.get('id')
-            sender = Sender.objects.get(id=id)
-            return JsonResponse(
-                {'address': sender.address, 'tel': sender.tel, 'fax': sender.fax},
-                status=200
-            )
         return JsonResponse({'success': False}, status=400)
