@@ -201,27 +201,17 @@ class InventoryListView(AdminLoginRequiredMixin, ListView):
         return response
 
 
-class ListingSalesProductUpdateView(AdminLoginRequiredMixin, View):
+class ContractProductUpdateView(AdminLoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         id = request.POST.get('id')
         status = request.POST.get('status')
         product = ContractProduct.objects.get(id=id)
-        if status != product.status:
-            print('process')
-        return redirect('list:sales')
+        product.status = status
+        product.save()
+        return redirect('listing:sales-list')
 
 
-class ListingPurchasesProductUpdateView(AdminLoginRequiredMixin, View):
-    def post(self, request, *args, **kwargs):
-        id = request.POST.get('id')
-        status = request.POST.get('status')
-        product = ContractProduct.objects.get(id=id)
-        if status != product.status:
-            print('process')
-        return redirect('list:sales')
-
-
-class ListingSalesProductDetailAjaxView(AdminLoginRequiredMixin, View):
+class SalesProductDetailAjaxView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         if self.request.method == 'POST' and self.request.is_ajax():
             id = self.request.POST.get('id')
@@ -256,7 +246,7 @@ class ListingSalesProductDetailAjaxView(AdminLoginRequiredMixin, View):
         return JsonResponse({'success': False}, status=400)
 
 
-class ListingPurchasesProductDetailAjaxView(AdminLoginRequiredMixin, View):
+class PurchasesProductDetailAjaxView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         if self.request.method == 'POST' and self.request.is_ajax():
             id = self.request.POST.get('id')
