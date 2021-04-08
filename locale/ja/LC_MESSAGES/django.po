@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-08 16:04+0000\n"
+"POT-Creation-Date: 2021-04-08 17:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,8 +161,7 @@ msgstr "売買契約 兼 請求書"
 #: contracts/views.py:859 templates/contracts/trader_purchases.html:60
 #: templates/contracts/trader_sales.html:58
 #: templates/contracts/trader_sales_update.html:58
-#: templates/listing/inventory.html:45 templates/listing/purchases.html:52
-#: templates/listing/sales.html:52
+#: templates/listing/purchases.html:52 templates/listing/sales.html:52
 msgid "Created date"
 msgstr "契約日"
 
@@ -291,17 +290,18 @@ msgid "FAX"
 msgstr "FAX"
 
 #: contracts/views.py:176 contracts/views.py:371 contracts/views.py:755
-#: contracts/views.py:997 listing/views.py:64 listing/views.py:145
-#: listing/views.py:194 templates/contracts/hall_purchases.html:725
+#: contracts/views.py:997 listing/views.py:63 listing/views.py:144
+#: listing/views.py:207 templates/contracts/hall_purchases.html:725
 #: templates/contracts/hall_sales.html:729
 #: templates/contracts/hall_sales_update.html:728
 #: templates/contracts/trader_purchases.html:169
 #: templates/contracts/trader_sales.html:167
 #: templates/contracts/trader_sales_update.html:168
-#: templates/listing/inventory.html:104 templates/listing/purchases.html:107
-#: templates/listing/purchases.html:212 templates/listing/purchases.html:214
-#: templates/listing/sales.html:107 templates/listing/sales.html:212
-#: templates/listing/sales.html:214
+#: templates/listing/inventory.html:73 templates/listing/inventory.html:106
+#: templates/listing/inventory.html:204 templates/listing/inventory.html:206
+#: templates/listing/purchases.html:107 templates/listing/purchases.html:212
+#: templates/listing/purchases.html:214 templates/listing/sales.html:107
+#: templates/listing/sales.html:212 templates/listing/sales.html:214
 msgid "Person in charge"
 msgstr "担当名"
 
@@ -347,7 +347,7 @@ msgstr "数量"
 
 #: contracts/views.py:179 contracts/views.py:205 contracts/views.py:374
 #: contracts/views.py:400 contracts/views.py:631 contracts/views.py:657
-#: contracts/views.py:872 contracts/views.py:898 listing/views.py:195
+#: contracts/views.py:872 contracts/views.py:898 listing/views.py:208
 #: templates/contracts/hall_purchases.html:183
 #: templates/contracts/hall_purchases.html:339
 #: templates/contracts/hall_sales.html:182
@@ -358,14 +358,15 @@ msgstr "数量"
 #: templates/contracts/trader_purchases.html:357
 #: templates/contracts/trader_sales.html:199
 #: templates/contracts/trader_sales.html:355
-#: templates/listing/inventory.html:106
+#: templates/listing/inventory.html:108 templates/listing/inventory.html:218
+#: templates/listing/inventory.html:220
 msgid "Price"
 msgstr "単価"
 
 #: contracts/views.py:179 contracts/views.py:205 contracts/views.py:374
 #: contracts/views.py:400 contracts/views.py:631 contracts/views.py:657
 #: contracts/views.py:681 contracts/views.py:872 contracts/views.py:898
-#: contracts/views.py:922 listing/views.py:65 listing/views.py:146
+#: contracts/views.py:922 listing/views.py:64 listing/views.py:145
 #: templates/contracts/hall_purchases.html:184
 #: templates/contracts/hall_purchases.html:340
 #: templates/contracts/hall_purchases.html:473
@@ -603,12 +604,13 @@ msgstr "書類代"
 msgid "Number of models"
 msgstr "機種数"
 
-#: contracts/views.py:681 contracts/views.py:922 listing/views.py:65
-#: listing/views.py:146 listing/views.py:195
+#: contracts/views.py:681 contracts/views.py:922 listing/views.py:64
+#: listing/views.py:145 listing/views.py:208
 #: templates/contracts/hall_purchases.html:472
 #: templates/contracts/hall_sales.html:471
 #: templates/contracts/hall_sales_update.html:470
-#: templates/listing/inventory.html:105 templates/listing/purchases.html:110
+#: templates/listing/inventory.html:107 templates/listing/inventory.html:211
+#: templates/listing/inventory.html:213 templates/listing/purchases.html:110
 #: templates/listing/purchases.html:233 templates/listing/purchases.html:235
 #: templates/listing/sales.html:110 templates/listing/sales.html:233
 #: templates/listing/sales.html:235
@@ -652,7 +654,7 @@ msgstr "振込先口座"
 msgid "Confirmor"
 msgstr "確認印"
 
-#: listing/views.py:64 listing/views.py:145 templates/listing/purchases.html:45
+#: listing/views.py:63 listing/views.py:144 templates/listing/purchases.html:45
 #: templates/listing/purchases.html:46 templates/listing/purchases.html:103
 #: templates/listing/purchases.html:184 templates/listing/purchases.html:186
 #: templates/listing/sales.html:45 templates/listing/sales.html:46
@@ -661,15 +663,14 @@ msgstr "確認印"
 msgid "Contract ID"
 msgstr "取引ID"
 
-#: listing/views.py:64 listing/views.py:145
+#: listing/views.py:63 listing/views.py:144
 #: templates/listing/purchases.html:104 templates/listing/purchases.html:191
 #: templates/listing/purchases.html:193 templates/listing/sales.html:104
 #: templates/listing/sales.html:191 templates/listing/sales.html:193
 msgid "Contract date"
 msgstr "契約日"
 
-#: listing/views.py:64 listing/views.py:145 templates/listing/inventory.html:62
-#: templates/listing/inventory.html:63 templates/listing/purchases.html:62
+#: listing/views.py:63 listing/views.py:144 templates/listing/purchases.html:62
 #: templates/listing/purchases.html:63 templates/listing/purchases.html:105
 #: templates/listing/purchases.html:198 templates/listing/purchases.html:200
 #: templates/listing/sales.html:62 templates/listing/sales.html:63
@@ -678,23 +679,24 @@ msgstr "契約日"
 msgid "Customer"
 msgstr "取引先"
 
-#: listing/views.py:64 listing/views.py:145
+#: listing/views.py:63 listing/views.py:144
 #: templates/listing/purchases.html:106 templates/listing/purchases.html:205
 #: templates/listing/purchases.html:207 templates/listing/sales.html:106
 #: templates/listing/sales.html:205 templates/listing/sales.html:207
 msgid "Delivered place"
 msgstr "納品先"
 
-#: listing/views.py:65 listing/views.py:146
+#: listing/views.py:64 listing/views.py:145
 #: templates/listing/purchases.html:108 templates/listing/purchases.html:219
 #: templates/listing/purchases.html:221 templates/listing/sales.html:108
 #: templates/listing/sales.html:219 templates/listing/sales.html:221
 msgid "Payment date"
 msgstr "入金日"
 
-#: listing/views.py:65 listing/views.py:146 listing/views.py:194
-#: templates/listing/inventory.html:55 templates/listing/inventory.html:56
-#: templates/listing/inventory.html:100 templates/listing/purchases.html:71
+#: listing/views.py:64 listing/views.py:145 listing/views.py:207
+#: templates/listing/inventory.html:45 templates/listing/inventory.html:46
+#: templates/listing/inventory.html:102 templates/listing/inventory.html:173
+#: templates/listing/inventory.html:175 templates/listing/purchases.html:71
 #: templates/listing/purchases.html:72 templates/listing/purchases.html:109
 #: templates/listing/purchases.html:226 templates/listing/purchases.html:228
 #: templates/listing/sales.html:71 templates/listing/sales.html:72
@@ -703,31 +705,37 @@ msgstr "入金日"
 msgid "Product name"
 msgstr "商品名"
 
-#: listing/views.py:65 listing/views.py:146 templates/listing/purchases.html:78
+#: listing/views.py:64 listing/views.py:145 templates/listing/purchases.html:78
 #: templates/listing/purchases.html:112 templates/listing/purchases.html:247
 #: templates/listing/sales.html:78 templates/listing/sales.html:112
 #: templates/listing/sales.html:247
 msgid "Inventory status"
 msgstr "在庫消込"
 
-#: listing/views.py:194 templates/listing/inventory.html:101
+#: listing/views.py:207 templates/listing/inventory.html:103
+#: templates/listing/inventory.html:180 templates/listing/inventory.html:182
 msgid "Control number"
 msgstr "管理番号"
 
-#: listing/views.py:194 templates/listing/inventory.html:102
-msgid "Purchases date"
+#: listing/views.py:207 templates/listing/inventory.html:53
+#: templates/listing/inventory.html:104 templates/listing/inventory.html:187
+msgid "Purchase date"
 msgstr "仕入日"
 
-#: listing/views.py:194 templates/listing/inventory.html:103
+#: listing/views.py:207 templates/listing/inventory.html:64
+#: templates/listing/inventory.html:105 templates/listing/inventory.html:197
+#: templates/listing/inventory.html:199
 msgid "Supplier"
 msgstr "仕入先"
 
-#: listing/views.py:195 templates/listing/inventory.html:78
-#: templates/listing/inventory.html:79 templates/listing/inventory.html:107
+#: listing/views.py:208 templates/listing/inventory.html:80
+#: templates/listing/inventory.html:109 templates/listing/inventory.html:225
+#: templates/listing/inventory.html:227
 msgid "Stock"
 msgstr "在庫"
 
-#: listing/views.py:195 templates/listing/inventory.html:108
+#: listing/views.py:208 templates/listing/inventory.html:110
+#: templates/listing/inventory.html:232 templates/listing/inventory.html:234
 msgid "Total price"
 msgstr "合計金額"
 
@@ -760,9 +768,9 @@ msgstr "会計ソフトCSV"
 #: templates/contracts/trader_purchases.html:778
 #: templates/contracts/trader_sales.html:706
 #: templates/contracts/trader_sales_update.html:182
-#: templates/listing/inventory.html:143 templates/listing/purchases.html:158
+#: templates/listing/inventory.html:147 templates/listing/purchases.html:158
 #: templates/listing/sales.html:158
-msgid "Export To CSV"
+msgid "Export to CSV"
 msgstr "CSV出力"
 
 #: templates/accounting/sales.html:4 templates/accounting/sales.html:18
@@ -853,7 +861,7 @@ msgstr "機種名で検索してください"
 #: templates/contracts/trader_purchases.html:346
 #: templates/contracts/trader_sales.html:187
 #: templates/contracts/trader_sales.html:344
-#: templates/masterdata/customers.html:178
+#: templates/listing/inventory.html:241 templates/masterdata/customers.html:178
 #: templates/masterdata/documents.html:117 templates/masterdata/halls.html:178
 #: templates/masterdata/products.html:145 templates/masterdata/senders.html:169
 msgid "Add"
@@ -1168,8 +1176,8 @@ msgstr ""
 
 #: templates/layout/error_modal.html:24 templates/layout/error_modal.html:57
 #: templates/layout/error_modal.html:89 templates/layout/error_modal.html:121
-#: templates/listing/purchases.html:260 templates/listing/sales.html:260
-#: templates/masterdata/customers.html:179
+#: templates/listing/inventory.html:242 templates/listing/purchases.html:260
+#: templates/listing/sales.html:260 templates/masterdata/customers.html:179
 #: templates/masterdata/customers.html:259
 #: templates/masterdata/customers.html:285
 #: templates/masterdata/documents.html:118
@@ -1313,27 +1321,32 @@ msgstr "仕入"
 msgid "Inventory"
 msgstr "在庫"
 
-#: templates/listing/inventory.html:71 templates/listing/inventory.html:72
-msgid "In charge"
-msgstr "担当名"
-
-#: templates/listing/inventory.html:87 templates/listing/purchases.html:91
+#: templates/listing/inventory.html:89 templates/listing/purchases.html:91
 #: templates/listing/sales.html:91 templates/masterdata/customers.html:50
 #: templates/masterdata/halls.html:51 templates/masterdata/products.html:51
 #: templates/masterdata/senders.html:51
 msgid "Search"
 msgstr "検索"
 
-#: templates/listing/inventory.html:95 templates/listing/purchases.html:99
+#: templates/listing/inventory.html:97 templates/listing/purchases.html:99
 #: templates/listing/sales.html:99
 msgid "Search results"
 msgstr "検索結果"
 
-#: templates/listing/inventory.html:99 templates/masterdata/customers.html:62
+#: templates/listing/inventory.html:101 templates/masterdata/customers.html:62
 #: templates/masterdata/documents.html:44 templates/masterdata/halls.html:63
 #: templates/masterdata/products.html:63 templates/masterdata/senders.html:63
 msgid "No"
 msgstr "No."
+
+#: templates/listing/inventory.html:144
+msgid "New product"
+msgstr "在庫に追加"
+
+#: templates/listing/inventory.html:161 templates/masterdata/products.html:97
+#: templates/masterdata/products.html:109
+msgid "Add product"
+msgstr "新規商品名"
 
 #: templates/listing/purchases.html:18 templates/listing/purchases.html:26
 #: templates/listing/purchases.html:37
@@ -1522,10 +1535,6 @@ msgstr "分類"
 #: templates/masterdata/products.html:189
 msgid "Maker"
 msgstr "メーカー"
-
-#: templates/masterdata/products.html:97 templates/masterdata/products.html:109
-msgid "Add product"
-msgstr "新規商品名"
 
 #: templates/masterdata/products.html:122
 #: templates/masterdata/products.html:174

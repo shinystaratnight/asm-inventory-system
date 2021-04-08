@@ -67,4 +67,19 @@ class DocumentFee(models.Model):
     model_price = models.IntegerField()
     unit_price = models.IntegerField()
     application_fee = models.IntegerField(default=30000)
-   
+
+
+class InventoryProduct(models.Model):
+    name = models.CharField(max_length=200)
+    identifer = models.IntegerField()
+    purchase_date = models.DateField()
+    supplier = models.CharField(max_length=200)
+    person_in_charge = models.CharField(max_length=200)
+    quantity = models.IntegerField()
+    price = models.IntegerField()
+    stock = models.IntegerField()
+    amount = models.IntegerField()
+
+    # @property
+    # def amount(self):
+    #     return self.quantity * self.price

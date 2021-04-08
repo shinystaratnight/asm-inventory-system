@@ -42,25 +42,27 @@
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
-									<label>{% trans "Created date" %}:</label>
+									<label>{% trans "Product name" %}:</label>
+									<!-- <input type="text" class="form-control" placeholder="{% trans 'Product name' %}"> -->
+									{{ product_filter.form.name }}
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>{% trans "Purchase date" %}:</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-										<input type="text" class="form-control datepicker-milestone">
+										<!-- <input type="text" name="purchase_date" class="form-control datepicker-nullable"> -->
+										{{ product_filter.form.purchase_date }}
 									</div>
 								</div>
 							</div>
 
 							<div class="col-md-4">
 								<div class="form-group">
-									<label>{% trans "Product name" %}:</label>
-									<input type="text" class="form-control" placeholder="{% trans 'Product name' %}">
-								</div>
-							</div>
-
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>{% trans "Customer" %}:</label>
-									<input type="text" class="form-control" placeholder="{% trans 'Customer' %}">
+									<label>{% trans "Supplier" %}:</label>
+									{{ product_filter.form.supplier }}
 								</div>
 							</div>
 						</div>
@@ -68,15 +70,15 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>{% trans "In charge" %}:</label>
-									<input type="text" class="form-control" placeholder="{% trans 'In charge' %}">
+									<label>{% trans "Person in charge" %}:</label>
+									{{ product_filter.form.person_in_charge }}
 								</div>
 							</div>
 
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>{% trans "Stock" %}:</label>
-									<input type="text" class="form-control" placeholder="{% trans 'Stock' %}">
+									{{ product_filter.form.stock }}
 								</div>
 							</div>
 						</div>
@@ -84,7 +86,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="mb-3 text-right">
-									<button type="button" class="btn btn-primary"><i class="icon-search4 position-left"></i>{% trans "Search" %}</button>
+									<button type="submit" class="btn btn-primary"><i class="icon-search4 position-left"></i>{% trans "Search" %}</button>
 								</div>
 							</div>
 						</div>
@@ -99,7 +101,7 @@
 								<th>{% trans "No" %}</th>
 								<th>{% trans "Product name" %}</th>
 								<th>{% trans "Control number" %}</th>
-								<th>{% trans "Purchases date" %}</th>
+								<th>{% trans "Purchase date" %}</th>
 								<th>{% trans "Supplier" %}</th>
 								<th>{% trans "Person in charge" %}</th>
 								<th>{% trans "Number of units" %}</th>
@@ -114,15 +116,13 @@
 							<tr>
 								<td>{{ forloop.counter0|add:page_obj.start_index }}</td>
 								<td>{{ product.name }}</td>
-								<td>{{ product.mid }}</td>
+								<td>{{ product.identifier }}</td>
 								<td>{{ product.purchase_date }}</td>
 								<td>{{ product.supplier }}</td>
 								<td>{{ product.person_in_charge }}</td>
 								<td>{{ product.quantity }}</td>
 								<td>{{ product.price }}</td>
-								<td class="w-10">
-									<input type="text" name="stock" class="form-control" value="{{ product.stock }}">
-								</td>
+								<td>{{ product.stock }}</td>
 								<td>{{ product.amount }}</td>
 							</tr>
 							{% endfor %}
@@ -140,12 +140,113 @@
 						<div class="my-5-s text-center">
 							<form action="" method="post">
 								{% csrf_token %}
-								<button type="submit" class="btn btn-primary"><i class="icon-exit3 position-left"></i>{% trans "Export To CSV" %}</button>
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add_new_data">
+									<i class="icon-plus2 position-left"></i>{% trans "New product" %}
+								</button>
+								<button type="submit" class="btn btn-primary ml-3">
+									<i class="icon-exit3 position-left"></i>{% trans "Export to CSV" %}
+								</button>
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
+
+			<!-- Disabled backdrop Add New Master Data Modal -->
+			<div id="modal_add_new_data" class="modal fade" data-backdrop="false" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h5 class="modal-title">{% trans "Add product" %}</h5>
+						</div>
+
+						<div class="modal-body">
+							<hr/>
+
+							<form class="form-horizontal" method="POST" action="">
+								{% csrf_token %}
+								
+								<fieldset class="content-group">
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Product name" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="name" class="form-control" placeholder="{% trans 'Product name' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Control number" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="identifier" class="form-control" placeholder="{% trans 'Control number' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Purchase date" %}:</label>
+										<div class="col-lg-9">
+											<div class="input-group">
+												<input type="text" name="purchase_date" class="form-control daterange-single">
+												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Supplier" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="supplier" class="form-control" placeholder="{% trans 'Supplier' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Person in charge" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="person_in_charge" class="form-control" placeholder="{% trans 'Person in charge' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Number of units" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="quantity" class="form-control" placeholder="{% trans 'Number of units' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Price" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="price" class="form-control" placeholder="{% trans 'Price' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Stock" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="stock" class="form-control" placeholder="{% trans 'Stock' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Total price" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="amount" class="form-control" placeholder="{% trans 'Total price' %}..." required>
+										</div>
+									</div>
+
+								</fieldset>
+
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-primary">{% trans "Add" %}</button>
+									<button type="button" class="btn btn-link" data-dismiss="modal">{% trans "Close" %}</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /disabled backdrop -->
 
 		</div>
 		<!-- /content area -->

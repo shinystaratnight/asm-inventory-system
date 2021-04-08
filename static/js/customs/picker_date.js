@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         weekStart: 0,
     };
 
-    $('.datepicker-milestone').datepicker({
+    $('.datepicker-nullable').datepicker({
         language: lang,
     });
     

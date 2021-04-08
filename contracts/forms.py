@@ -146,7 +146,7 @@ class DocumentFeeValidationFormSet(BaseFormSet):
 
 class MilestoneForm(forms.Form):
     date = forms.DateField(
-        widget=forms.TextInput(attrs={'class': 'form-control datepicker-milestone'}),
+        widget=forms.TextInput(attrs={'class': 'form-control datepicker-nullable'}),
         input_formats=INPUT_FORMATS
     )
     amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}))

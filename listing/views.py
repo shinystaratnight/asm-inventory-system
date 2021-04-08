@@ -57,14 +57,14 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
     
     def post(self, request, *args, **kwargs):
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="listing_sales_{}.csv"'.format(generate_contract_id())
-        qs = self.get_queryset()
+        response['Content-Disposition'] = 'attachment; filename="listing_sales_{}.csv"'.format(generate_random_number())
         writer = csv.writer(response, encoding='utf-8-sig')
         writer.writerow([
             _('Contract ID'), _('Contract date'), _('Customer'), _('Delivered place'), _('Person in charge'),
             _('Payment date'), _('Product name'), _('Number of units'), _('Amount'), _('Inventory status')
         ])
-        for product in qs:
+        queryset = self.get_queryset()
+        for product in queryset:
             contract = product.content_object
             contract_id = contract.contract_id
             contract_date = contract.created_at
@@ -138,14 +138,14 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
     
     def post(self, request, *args, **kwargs):
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="listing_purchases_{}.csv"'.format(generate_contract_id())
-        qs = self.get_queryset()
+        response['Content-Disposition'] = 'attachment; filename="listing_purchases_{}.csv"'.format(generate_random_number())
         writer = csv.writer(response, encoding='utf-8-sig')
         writer.writerow([
             _('Contract ID'), _('Contract date'), _('Customer'), _('Delivered place'), _('Person in charge'),
             _('Payment date'), _('Product name'), _('Number of units'), _('Amount'), _('Inventory status')
         ])
-        for product in qs:
+        queryset = self.get_queryset()
+        for product in queryset:
             contract = product.content_object
             contract_id = contract.contract_id
             contract_date = contract.created_at
@@ -179,24 +179,39 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
 
 class InventoryListView(AdminLoginRequiredMixin, ListView):
     template_name = 'listing/inventory.html'
-    queryset = InventoryProduct.objects.all().order_by('-pk')
+    queryset = InventoryProduct.objects.all()
     context_object_name = 'products'
     paginate_by = 5
 
     def get_queryset(self):
-        return self.queryset
+        params = self.request.GET.copy()
+        if params.get('purchase_date'):
+            purchase_date = params.get('purchase_date')
+            try:
+                purchase_date = datetime.datetime.strptime(purchase_date, '%Y-%m-%d').date()
+            except ValueError:
+                purchase_date = datetime.datetime.strptime(purchase_date, '%Y/%m/%d').date()
+            params['purchase_date'] = purchase_date
+        return ProductFilter(params, queryset=self.queryset).qs.order_by('pk')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product_filter'] = ProductFilter(self.request.GET)
+        return context
     
     def post(self, request, *args, **kwargs):
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="inventory_list_{}.csv"'.format(generate_contract_id())
-        writer = csv.writer(response)
+        response['Content-Disposition'] = 'attachment; filename="inventory_listing_{}.csv"'.format(generate_random_number())
+        writer = csv.writer(response, encoding='utf-8-sig')
         writer.writerow([
-            _('Product name'), _('Control number'), _('Purchases date'), _('Supplier'), _('Person in charge'),
+            _('Product name'), _('Control number'), _('Purchase date'), _('Supplier'), _('Person in charge'),
             _('Number of units'), _('Price'), _('Stock'), _('Total price')
         ])
-        for i in range(0, 5):
+        queryset = self.get_queryset()
+        for product in queryset:
             writer.writerow([
-                'Ｓ聖闘士星矢海皇覚醒ＳＰ－ＫＦ', '17884', '2021/03/31', 'アイエス販売', '金昇志', '10', '1500', '10', '15000'
+                product.name, product.identifer, product.purchase_date, product.supplier, product.person_in_charge,
+                product.quantity, product.price, product.stock, product.amount
             ])
         return response
 

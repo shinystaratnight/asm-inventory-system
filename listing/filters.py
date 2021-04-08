@@ -2,13 +2,16 @@ import django_filters
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
-from contracts.models import *
+from masterdata.models import *
 
 
-class SalesFilter(django_filters.FilterSet):
-    id = django_filters.CharFilter(widget=forms.TextInput(attrs={'class': 'form-control'}))
+class ProductFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(lookup_expr='icontains', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    purchase_date = django_filters.CharFilter(widget=forms.TextInput(attrs={'class': 'form-control datepicker-nullable'}))
+    supplier = django_filters.CharFilter(lookup_expr='icontains', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    person_in_charge = django_filters.CharFilter(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    stock = django_filters.NumberFilter(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
-        model = ContractProduct
-        fields = ('id',)
-
+        model = InventoryProduct
+        fields = ('name', 'purchase_date', 'supplier', 'person_in_charge', 'stock')

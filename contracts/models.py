@@ -177,18 +177,3 @@ class HallPurchasesContract(HallContract):
     documents = GenericRelation(ContractDocument, related_query_name='hall_purchases_contract')
     document_fees = GenericRelation(ContractDocumentFee, related_query_name='hall_purchases_contract')
     milestones = GenericRelation(Milestone, related_query_name='hall_purchases_contract')
-
-
-class InventoryProduct(models.Model):
-    name = models.CharField(max_length=200)
-    mid = models.IntegerField()
-    purchase_date = models.DateField()
-    supplier = models.CharField(max_length=200)
-    person_in_charge = models.CharField(max_length=200)
-    quantity = models.IntegerField()
-    price = models.IntegerField()
-    stock = models.IntegerField()
-
-    @property
-    def amount(self):
-        return self.quantity * self.price

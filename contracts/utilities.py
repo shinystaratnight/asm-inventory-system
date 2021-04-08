@@ -13,5 +13,8 @@ def generate_contract_id(prefix='01'):
     contract_id += str(count + 1).zfill(5)
     return contract_id
 
+def generate_random_number():
+    return int(time.time() * 100)
+
 def ordinal(num):
     return "%d%s" % (num,"tsnrhtdd"[(num//10%10!=1)*(num%10<4)*num%10::4])
