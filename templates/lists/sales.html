@@ -97,7 +97,7 @@
 
 				<div class="table-responsive">
 					<p style="padding: 10px 20px; font-size: 16px;">{% trans "Search results" %}:</p>
-					<table class="table table-bordered table-hover table-framed">
+					<table class="table table-inventory table-bordered table-hover table-framed">
 						<thead>
 							<tr class="bg-blue">
 								<th>{% trans "Contract ID" %}</th>
@@ -106,7 +106,7 @@
 								<th class="w-10">{% trans "Delivered place" %}</th>
 								<th>{% trans "Person in charge" %}</th>
 								<th>{% trans "Payment date" %}</th>
-								<th>{% trans "Product name" %}</th>
+								<th class="w-18-5">{% trans "Product name" %}</th>
 								<th>{% trans "Number of units" %}</th>
 								<th>{% trans "Amount" %}</th>
 								<th class="w-5">{% trans "Inventory status" %}</th>
@@ -131,7 +131,7 @@
 								{% else %}
 								<td>{{ product.content_object.payment_due_date }}</td>
 								{% endif %}
-								<td>{{ product.product.name|truncatechars:20 }}</td>
+								<td>{{ product.product.name }}</td>
 								<td>{{ product.quantity }}</td>
 								<td>{{ product.amount }}</td>
 								<td>{{ product.get_status_display }}</td>

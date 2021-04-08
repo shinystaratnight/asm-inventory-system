@@ -145,6 +145,9 @@
 .w-30 {
     width: 30%;
 }
+.w-15 {
+    width: 15%;
+}
 .w-10 {
     width: 10%;
 }
@@ -352,6 +355,9 @@ form.master-search-form input {
 }
 .no-table-header+div.dataTables_wrapper .datatable-header {
     display: none;
+}
+.table-inventory {
+    min-width: 1400px;
 }
 .content-wrapper.trader-sales-contract {
     background: rgb(241, 191, 192);
