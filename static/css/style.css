@@ -374,6 +374,12 @@ form.master-search-form input {
 .mb-delete {
     margin-bottom: 20px;
 }
+.table-product tbody tr td:first-child {
+    width: 30%;
+}
+.sidebar-xs .header-highlight .navbar-header .navbar-brand {
+    background-size: auto 25px;
+}
 @media screen and (max-width: 768px) {
 	.panel .visible-elements {
         padding-top: 20px;
@@ -387,9 +393,6 @@ form.master-search-form input {
 	.col-sm-12 {
 		width: 100%;
 	}
-}
-.table-product tbody tr td:first-child {
-    width: 30%;
 }
 @media screen and (min-width: 768px) {
 	.sidebar-xs .header-highlight .navbar-header .navbar-brand > span {
