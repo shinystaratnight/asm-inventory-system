@@ -40,6 +40,15 @@ class ContractShippingLabelAjaxView(AdminLoginRequiredMixin, View):
         return JsonResponse({'success': False}, status=400)
 
 
+class ContractClassNameAjaxView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            object_id = self.request.POST.get('object_id')
+            class_id = self.request.POST.get('class_id')
+            ContentType.objects.get(id=class_id).model_class()
+        return JsonResponse({'success': False}, status=400)
+
+
 ## Trader Sales contract ##
 class TraderSalesValidateAjaxView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
@@ -1031,7 +1040,3 @@ class HallPurchasesValidateAjaxView(AdminLoginRequiredMixin, View):
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'success': False}, status=400)
 # End of hall purchases contract
-
-
-
-

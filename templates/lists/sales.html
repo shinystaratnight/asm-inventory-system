@@ -137,7 +137,7 @@
 								<td>{{ product.get_status_display }}</td>
 								<td>
 									<a href="#" data-id="{{product.id}}" class="edit-action"><i class="icon-pencil5 color-primary"></i></a>
-									<a href="#" data-id="{{product.id}}" class="edit-contract"><i class="icon-stack-text ml-3 color-danger"></i></a>
+									<a href="#" data-object-id="{{product.content_object.id}}" data-class-id="{{product.content_type_id}}" class="edit-contract"><i class="icon-stack-text ml-3 color-danger"></i></a>
 								</td>
 							</tr>
 							{% endfor %}
@@ -319,6 +319,14 @@
 							$('#modal_edit_data').modal('toggle');
 						}
 					});
+				});
+
+				$('a.edit-contract').click( function (e) {
+					e.preventDefault();
+					var $this = $(this);
+					var id = $this.data('object-id');
+					var clsName = $this.data('class-id');
+					console.log(id, clsName);
 				});
 
 				var status = "{{ inventory_status }}";
