@@ -201,7 +201,7 @@ class InventoryListView(AdminLoginRequiredMixin, ListView):
         return response
 
 
-class ContractProductUpdateView(AdminLoginRequiredMixin, View):
+class SalesProductUpdateView(AdminLoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         id = request.POST.get('id')
         status = request.POST.get('status')
@@ -209,6 +209,16 @@ class ContractProductUpdateView(AdminLoginRequiredMixin, View):
         product.status = status
         product.save()
         return redirect('listing:sales-list')
+
+
+class PurchasesProductUpdateView(AdminLoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        id = request.POST.get('id')
+        status = request.POST.get('status')
+        product = ContractProduct.objects.get(id=id)
+        product.status = status
+        product.save()
+        return redirect('listing:purchases-list')
 
 
 class SalesProductDetailAjaxView(AdminLoginRequiredMixin, View):
