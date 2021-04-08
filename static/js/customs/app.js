@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .done(function() {
-            window.location.href = `$/{lang}${url}`;
+            window.location.href = `/${new_lang}${url}`;
         });
     });
 
