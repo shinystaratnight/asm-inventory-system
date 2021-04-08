@@ -137,8 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (getCookie('inventory_collapsed') == 'collapsed')
         $('body').addClass('sidebar-xs');
 
-    console.log(document.cookie);
-
     // Sidebar controls
     // -------------------------
 

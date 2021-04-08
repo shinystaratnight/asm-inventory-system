@@ -10,7 +10,7 @@
         <div class="sidebar-user">
             <div class="category-content">
                 <div class="media">
-                    <a href="#" class="media-left"><img src="{% static 'images/user.jpg' %}" class="img-circle img-sm" alt=""></a>
+                    <a href="{% url 'dashboard' %}" class="media-left"><img src="{% static 'images/user.jpg' %}" class="img-circle img-sm" alt=""></a>
                     <div class="media-body">
                         <span class="media-heading text-semibold user-name">{{ request.user }}</span>
                         <div class="text-size-mini text-muted">
