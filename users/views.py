@@ -58,7 +58,10 @@ class DashboardView(AdminLoginRequiredMixin, RedirectView):
 
 
 def page_not_found(request, exception):
-    return render(request, 'error/404.html')
+    response = render(request, 'error/404.html', {})
+    response.status_code = 404
+    return response
+    # return render(request, 'error/404.html')
 
 def internal_error(request):
     return render(request, 'error/500.html')

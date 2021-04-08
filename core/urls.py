@@ -35,5 +35,5 @@ urlpatterns += i18n.i18n_patterns(
     path('accounting/', include('accounting.urls')),
 )
 
-# handler404 = 'users.views.page_not_found'
+handler404 = 'users.views.page_not_found'
 # handler500 = 'users.views.internal_error'
