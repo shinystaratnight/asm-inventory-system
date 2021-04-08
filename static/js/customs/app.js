@@ -104,21 +104,24 @@ document.addEventListener('DOMContentLoaded', function() {
     $('a[data-lang]').click(function(e) {
         e.stopImmediatePropagation();
         e.preventDefault();
+        var new_lang = $(e.currentTarget).data('lang');
+        if (lang == new_lang) return;
+
         var url = document.URL.replace(/^(?:\/\/|[^/]+)*\/(ja|en)/, '');
       
         $.ajax({
             type: 'POST',
             url: '/i18n/setlang/',
             data: {
-                language: $(e.currentTarget).data('lang'),
+                language: new_lang,
                 next: '/'
             },
             beforeSend: function(request) {
                 request.setRequestHeader('X-CSRFToken', csrftoken);
             }
         })
-        .done(function(response) {
-            window.location.href = url;
+        .done(function() {
+            window.location.href = `$/{lang}${url}`;
         });
     });
 
