@@ -58,10 +58,15 @@ class DashboardView(AdminLoginRequiredMixin, RedirectView):
 
 
 def page_not_found(request, exception):
+    # If onlye - return render(request, 'error/404.html'), it works on local/server with debug off. but it won't work with debug on.
+    # return render(request, 'error/404.html')
+    # render(request, 'error/404.html') returns HttpResponse, but its status code is 200. that's why it should be done as below.
     response = render(request, 'error/404.html', {})
     response.status_code = 404
     return response
-    # return render(request, 'error/404.html')
+    
 
 def internal_error(request):
-    return render(request, 'error/500.html')
+    response = render(request, 'error/500.html', {})
+    response.status_code = 500
+    return response

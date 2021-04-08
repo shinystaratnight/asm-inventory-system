@@ -36,4 +36,4 @@ urlpatterns += i18n.i18n_patterns(
 )
 
 handler404 = 'users.views.page_not_found'
-# handler500 = 'users.views.internal_error'
+handler500 = 'users.views.internal_error'
