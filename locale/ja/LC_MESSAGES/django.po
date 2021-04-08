@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-07 21:19+0000\n"
+"POT-Creation-Date: 2021-04-08 02:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1029,10 +1029,11 @@ msgid ""
 "If you need the original invoice, please make sure to tick the checkbox."
 msgstr "請求書原本が必要な場合は必ずチェックしてください。"
 
-#: templates/error/404.html:13 templates/layout/error_modal.html:8
-#: templates/layout/error_modal.html:35 templates/layout/error_modal.html:68
-#: templates/layout/error_modal.html:100 templates/layout/error_modal.html:132
-#: templates/layout/error_modal.html:147 templates/layout/error_modal.html:162
+#: templates/error/404.html:13 templates/error/500.html:13
+#: templates/layout/error_modal.html:8 templates/layout/error_modal.html:35
+#: templates/layout/error_modal.html:68 templates/layout/error_modal.html:100
+#: templates/layout/error_modal.html:132 templates/layout/error_modal.html:147
+#: templates/layout/error_modal.html:162
 msgid "Error"
 msgstr "エラー"
 
@@ -1045,8 +1046,8 @@ msgid "Home"
 msgstr "ホーム"
 
 #: templates/error/500.html:13
-msgid "Oups! Error"
-msgstr "おっと! エラー"
+msgid "Oups!"
+msgstr "おっと!"
 
 #: templates/error/500.html:17
 msgid "Server error, please contact support"
