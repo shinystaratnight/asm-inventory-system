@@ -31,7 +31,7 @@ urlpatterns += i18n.i18n_patterns(
     path('admin/', admin.site.urls),
     path('master/', include('masterdata.urls')),
     path('contract/', include('contracts.urls')),
-    path('list/', include('lists.urls')),
+    path('listing/', include('listing.urls')),
     path('accounting/', include('accounting.urls')),
 )
 

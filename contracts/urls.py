@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import *
+from .update_views import *
 
 app_name = 'contract'
 urlpatterns = [
@@ -13,9 +14,9 @@ urlpatterns = [
     path('invoice/hall-sales/', HallSalesInvoiceView.as_view(), name='hall-sales-invoice'),
     path('invoice/hall-purchases/', HallPurchasesInvoiceView.as_view(), name='hall-purchases-invoice'),
 
-    path('trader-sales/<int:pk>/update/', TraderSalesUpdateView.as_view(), name='trader-sales-update'),
+    path('trader-sales/<int:pk>/update/', TraderSalesContractUpdateView.as_view(), name='trader-sales-update'),
     # path('trader-purchases/update', TraderPurchasesUpdateView.as_view(), name='trader-purchases-update'),
-    # path('hall-sales/update/', HallSalesUpdateView.as_view(), name='hall-sales-update'),
+    path('hall-sales/<int:pk>/update/', HallSalesContractUpdateView.as_view(), name='hall-sales-update'),
     # path('hall-purchases/update/', HallPurchasesUpdateView.as_view(), name='hall-purchases-update'),
 
     path('validate/trader-sales/', TraderSalesValidateAjaxView.as_view(), name='trader-sales-validate'),

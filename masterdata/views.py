@@ -11,9 +11,9 @@ from .models import *
 
 
 class CustomerListView(AdminLoginRequiredMixin, ListView):
-    template_name = 'master_data/customers.html'
+    template_name = 'masterdata/customers.html'
     queryset = Customer.objects.all()
-    context_object_name = 'master_data'
+    context_object_name = 'customers'
     paginate_by = 10
     
     def get_queryset(self):
@@ -74,9 +74,9 @@ class CustomerDetailAjaxView(AdminLoginRequiredMixin, View):
 
 
 class HallListView(AdminLoginRequiredMixin, ListView):
-    template_name = 'master_data/halls.html'
+    template_name = 'masterdata/halls.html'
     queryset = Hall.objects.all()
-    context_object_name = 'master_data'
+    context_object_name = 'halls'
     paginate_by = 10
     
     def get_queryset(self):
@@ -137,9 +137,9 @@ class HallDetailAjaxView(AdminLoginRequiredMixin, View):
 
 
 class SenderListView(AdminLoginRequiredMixin, ListView):
-    template_name = 'master_data/senders.html'
+    template_name = 'masterdata/senders.html'
     queryset = Sender.objects.all()
-    context_object_name = 'master_data'
+    context_object_name = 'senders'
     paginate_by = 10
     
     def get_queryset(self):
@@ -198,9 +198,9 @@ class SenderDetailAjaxView(AdminLoginRequiredMixin, View):
 
 
 class ProductListView(AdminLoginRequiredMixin, ListView):
-    template_name = 'master_data/products.html'
+    template_name = 'masterdata/products.html'
     queryset = Product.objects.all()
-    context_object_name = 'master_data'
+    context_object_name = 'products'
     paginate_by = 10
     
     def get_queryset(self):
@@ -253,9 +253,9 @@ class ProductDetailAjaxView(AdminLoginRequiredMixin, View):
 
 
 class DocumentListView(AdminLoginRequiredMixin, ListView):
-    template_name = 'master_data/documents.html'
+    template_name = 'masterdata/documents.html'
     queryset = Document.objects.all()
-    context_object_name = 'master_data'
+    context_object_name = 'documents'
     
     def post(self, request, *args, **kwargs):
         form = DocumentForm(request.POST)

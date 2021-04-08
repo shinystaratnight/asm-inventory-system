@@ -14,7 +14,7 @@ from .filters import *
 
 
 class SalesListView(AdminLoginRequiredMixin, ListView):
-    template_name = 'lists/sales.html'
+    template_name = 'listing/sales.html'
     context_object_name = 'products'
     paginate_by = 5
 
@@ -34,6 +34,8 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
                         Q(hall_sales_contract__contract_id__icontains=v)
                     )
                 elif k == 'created_at':
+                    # Or we can implement the below logic using self.request.LANGUAGE_CODE
+                    # if the current language is ja. but let's use try/catch.
                     try:
                         v = datetime.datetime.strptime(v, '%Y-%m-%d').date()
                     except ValueError:
@@ -95,7 +97,7 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
 
 
 class PurchasesListView(AdminLoginRequiredMixin, ListView):
-    template_name = 'lists/purchases.html'
+    template_name = 'listing/purchases.html'
     context_object_name = 'products'
     paginate_by = 5
 
@@ -176,7 +178,7 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
 
 
 class InventoryListView(AdminLoginRequiredMixin, ListView):
-    template_name = 'lists/inventory.html'
+    template_name = 'listing/inventory.html'
     queryset = InventoryProduct.objects.all().order_by('-pk')
     context_object_name = 'products'
     paginate_by = 5
