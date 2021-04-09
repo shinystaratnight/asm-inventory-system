@@ -12,4 +12,9 @@ urlpatterns = [
 
     path('sales-product/detail/', SalesProductDetailAjaxView.as_view(), name='sales-product-detail'),
     path('purchases-product/detail/', PurchasesProductDetailAjaxView.as_view(), name='purchases-product-detail'),
+
+    path('inventory-product/detail/', InventoryProductDetailAjaxView.as_view(), name='inventory-product-detail'),
+    path('inventory-product/create/', InventoryProductCreateView.as_view(), name='inventory-product-create'),
+    path('inventory-product/update/', InventoryProductUpdateView.as_view(), name='inventory-product-update'),
+    path('inventory-product/delete/', InventoryProductDeleteView.as_view(), name='inventory-product-delete'),
 ]

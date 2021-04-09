@@ -97,7 +97,7 @@
 					<p style="padding: 10px 20px; font-size: 16px;">{% trans "Search results" %}:</p>
 					<table class="table table-inventory table-bordered table-hover table-framed">
 						<thead>
-							<tr class="bg-blue">
+							<tr>
 								<th>{% trans "No" %}</th>
 								<th>{% trans "Product name" %}</th>
 								<th>{% trans "Control number" %}</th>
@@ -108,6 +108,7 @@
 								<th>{% trans "Price" %}</th>
 								<th>{% trans "Stock" %}</th>
 								<th>{% trans "Total price" %}</th>
+								<th>{% trans "Action" %}</th>
 							</tr>
 						</thead>
 
@@ -115,15 +116,19 @@
 							{% for product in products %}
 							<tr>
 								<td>{{ forloop.counter0|add:page_obj.start_index }}</td>
-								<td>{{ product.name }}</td>
+								<td class="w-18-5">{{ product.name }}</td>
 								<td>{{ product.identifier }}</td>
 								<td>{{ product.purchase_date }}</td>
-								<td>{{ product.supplier }}</td>
+								<td class="w-18-5">{{ product.supplier }}</td>
 								<td>{{ product.person_in_charge }}</td>
 								<td>{{ product.quantity }}</td>
 								<td>{{ product.price }}</td>
 								<td>{{ product.stock }}</td>
 								<td>{{ product.amount }}</td>
+								<td>
+									<a href="#" data-id="{{product.id}}" class="edit-action"><i class="icon-pencil5 color-primary"></i></a>
+									<a href="#" data-id="{{product.id}}" class="remove-action"><i class="icon-minus-circle2 ml-3 color-danger"></i></a>
+								</td>
 							</tr>
 							{% endfor %}
 						</tbody>
@@ -164,7 +169,7 @@
 						<div class="modal-body">
 							<hr/>
 
-							<form class="form-horizontal" method="POST" action="">
+							<form class="form-horizontal" method="POST" action="{% url 'listing:inventory-product-create' %}">
 								{% csrf_token %}
 								
 								<fieldset class="content-group">
@@ -248,8 +253,203 @@
 			</div>
 			<!-- /disabled backdrop -->
 
+			<!-- Disabled backdrop edit modal -->
+			<div id="modal_edit_data" class="modal fade" data-backdrop="false" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h5 class="modal-title">{% trans "Edit product" %}</h5>
+						</div>
+
+						<div class="modal-body">
+							<hr/>
+
+							<form class="form-horizontal" method="POST" action="{% url 'listing:inventory-product-update' %}">
+								{% csrf_token %}
+								
+								<fieldset class="content-group">
+									<input type="hidden" name="id">
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Product name" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="name" class="form-control" placeholder="{% trans 'Product name' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Control number" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="identifier" class="form-control" placeholder="{% trans 'Control number' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Purchase date" %}:</label>
+										<div class="col-lg-9">
+											<div class="input-group">
+												<input type="text" name="purchase_date" class="form-control daterange-single">
+												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Supplier" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="supplier" class="form-control" placeholder="{% trans 'Supplier' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Person in charge" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="person_in_charge" class="form-control" placeholder="{% trans 'Person in charge' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Number of units" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="quantity" class="form-control" placeholder="{% trans 'Number of units' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Price" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="price" class="form-control" placeholder="{% trans 'Price' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Stock" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="stock" class="form-control" placeholder="{% trans 'Stock' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Total price" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="amount" class="form-control" placeholder="{% trans 'Total price' %}..." required>
+										</div>
+									</div>
+
+								</fieldset>
+
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-primary">{% trans "Save" %}</button>
+									<button type="button" class="btn btn-link" data-dismiss="modal">{% trans "Close" %}</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /disabled backdrop -->
+
+			<!-- Disabled backdrop delete master data modal -->
+			<div id="modal_delete_data" class="modal fade" data-backdrop="false" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header bg-danger">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h5 class="text-center modal-title">{% trans "Delete product" %}</h5>
+						</div>
+
+						<div class="modal-body">
+							<h6 class="text-center mb-delete">{% trans "Are you sure you want to remove this data?" %}</h6>
+							<hr/>
+							<form class="form-horizontal" method="POST" action="{% url 'listing:inventory-product-delete' %}">
+								{% csrf_token %}
+								<input type="hidden" name="id">
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-danger">{% trans "Delete" %}</button>
+									<button type="button" class="btn btn-link" data-dismiss="modal">{% trans "Close" %}</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /disabled backdrop -->
+
 		</div>
 		<!-- /content area -->
+
+		<script>
+			$(function () {
+				// Pagination customization
+				if ($('#pagination').length) {
+					var startPage = parseInt("{{ page_obj.number }}");
+					$('#pagination').twbsPagination({
+						totalPages: "{{ page_obj.paginator.num_pages }}",
+						visiblePages: 5,
+						startPage: startPage,
+						hideOnlyOnePage:true,
+						first:'&laquo;',
+						prev:'&lsaquo;',
+						next:'&rsaquo;',
+						last:'&raquo;',
+					}).on('page', function (event, page) {
+						var url = location.href;
+						var urlRegex = RegExp('page=\\d+', 'g');
+						if (urlRegex.test(url)) {
+							url = url.replace(urlRegex, `page=${page}`);
+						} else {
+							if (url.indexOf('?') == -1)
+								url += `?page=${page}`;
+							else
+								url += `&page=${page}`;
+						}
+						location.href = url;
+					});
+				}
+
+				$('a.edit-action').click( function (e) {
+					e.preventDefault();
+					var $this = $(this);
+					var id = $this.data('id');
+					$('#modal_edit_data input[name="id"]').val(id);
+					$.ajax({
+						type: 'POST',
+						url: "{% url 'listing:inventory-product-detail' %}",
+						data: {
+							id: id,
+						},
+						beforeSend: function(request) {
+							request.setRequestHeader('X-CSRFToken', csrftoken);
+						},
+						success: function (result) {
+							$('#modal_edit_data input[name="name"]').val(result.name);
+							$('#modal_edit_data input[name="identifier"]').val(result.identifier);
+							// $('#modal_edit_data input[name="purchase_date"]').val('2021/04/09');
+							$('#modal_edit_data input[name="purchase_date"]').val(result.purchase_date);
+							$('#modal_edit_data input[name="supplier"]').val(result.supplier);
+							$('#modal_edit_data input[name="person_in_charge"]').val(result.person_in_charge);
+							$('#modal_edit_data input[name="quantity"]').val(result.quantity);
+							$('#modal_edit_data input[name="price"]').val(result.price);
+							$('#modal_edit_data input[name="stock"]').val(result.stock);
+							$('#modal_edit_data input[name="amount"]').val(result.amount);
+							console.log(result.purchase_date);
+							// $('#modal_edit_data input[name="purchase_date"]').datepicker('setDate', '2021/04/09');
+							$('#modal_edit_data').modal('toggle');
+						}
+					});
+				});
+
+				$('a.remove-action').click( function (e) {
+					e.preventDefault();
+					var $this = $(this);
+					var id = $this.data('id');
+					$('#modal_delete_data input[name="id"]').val(id);
+					$('#modal_delete_data').modal('toggle');
+				});
+			});
+
+		</script>
 
 	</div>
 	{% endblock %}

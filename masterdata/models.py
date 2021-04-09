@@ -15,7 +15,7 @@ FAX = '06-6753-8078'
 TRANSFER_ACCOUNT = 'りそな銀行　船場支店（101）　普通　0530713　バッジオカブシキガイシャ'
 REFAX = '06-6753-8079'
 P_SENSOR_NUMBER = '8240-2413-3628'
-
+INPUT_FORMATS = ['%Y/%m/%d', '%m/%d/%Y']
 
 class MasterData(models.Model):
     name = models.CharField(max_length=200)
@@ -71,7 +71,7 @@ class DocumentFee(models.Model):
 
 class InventoryProduct(models.Model):
     name = models.CharField(max_length=200)
-    identifer = models.IntegerField()
+    identifier = models.CharField(max_length=20)
     purchase_date = models.DateField()
     supplier = models.CharField(max_length=200)
     person_in_charge = models.CharField(max_length=200)

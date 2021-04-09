@@ -11,6 +11,7 @@ from users.views import AdminLoginRequiredMixin
 from contracts.models import *
 from contracts.utilities import *
 from .filters import *
+from .forms import *
 
 
 class SalesListView(AdminLoginRequiredMixin, ListView):
@@ -196,6 +197,8 @@ class InventoryListView(AdminLoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # from django.conf.locale.ja import formats
+        # print(formats.DATE_INPUT_FORMATS)
         context['product_filter'] = ProductFilter(self.request.GET)
         return context
     
@@ -210,10 +213,69 @@ class InventoryListView(AdminLoginRequiredMixin, ListView):
         queryset = self.get_queryset()
         for product in queryset:
             writer.writerow([
-                product.name, product.identifer, product.purchase_date, product.supplier, product.person_in_charge,
+                product.name, product.identifier, product.purchase_date, product.supplier, product.person_in_charge,
                 product.quantity, product.price, product.stock, product.amount
             ])
         return response
+
+
+class InventoryProductCreateView(AdminLoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        product_form = ProductForm(request.POST)
+        if product_form.is_valid():
+            product_form.save()
+        return redirect('listing:inventory-list')
+
+
+class InventoryProductUpdateView(AdminLoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        product_form = ProductForm(request.POST)
+        if product_form.is_valid():
+            id = request.POST.get('id')
+            data = request.POST.copy()
+            data.pop('id')
+            print(data)
+            product = InventoryProduct.objects.get(id=id)
+            product.name = data.get('name')
+            product.identifier = data.get('identifier')
+            product.purchase_date = data.get('purchase_date')
+            product.supplier = data.get('supplier')
+            product.person_in_charge = data.get('person_in_charge')
+            product.quantity = data.get('quantity')
+            product.price = data.get('price')
+            product.stock = data.get('stock')
+            product.amount = data.get('amount')
+            product.save()
+        else:
+            print(product_form.errors)
+        return redirect('listing:inventory-list')
+
+
+class InventoryProductDeleteView(AdminLoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        id = request.POST.get('id')
+        product = InventoryProduct.objects.get(id=id)
+        product.delete()
+        return redirect('listing:inventory-list')
+
+
+class InventoryProductDetailAjaxView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            id = self.request.POST.get('id')
+            product = InventoryProduct.objects.get(id=id)
+            return JsonResponse({
+                'name': product.name,
+                'identifier': product.identifier,
+                'purchase_date': product.purchase_date,
+                'supplier': product.supplier,
+                'person_in_charge': product.person_in_charge,
+                'quantity': product.quantity,
+                'price': product.price,
+                'stock': product.stock,
+                'amount': product.amount,
+            }, status=200)
+        return JsonResponse({'success': False}, status=400)
 
 
 class SalesProductUpdateView(AdminLoginRequiredMixin, View):
