@@ -468,8 +468,8 @@
 											<thead>
 												<tr>
 													<th>{% trans "Product type" %}</th>
-													<th>{% trans "Number of models" %}</th>
-													<th>{% trans "Number of units" %}</th>
+													<th>{% trans "Model count" %}</th>
+													<th>{% trans "Unit count" %}</th>
 													<th>{% trans "Amount" %}</th>
 												</tr>
 											</thead>
@@ -553,9 +553,9 @@
 														<div class="form-group mb-0">
 															<div class="col-lg-6 px-0">
 																<input type="number"
-																	name="{{ documentfeeformset.prefix }}-xx-number_of_models"
+																	name="{{ documentfeeformset.prefix }}-xx-model_count"
 																	class="form-control"
-																	id="id_{{ documentfeeformset.prefix }}-xx-number_of_models"
+																	id="id_{{ documentfeeformset.prefix }}-xx-model_count"
 																	value="0">
 															</div>
 														</div>
@@ -564,9 +564,9 @@
 														<div class="form-group mb-0">
 															<div class="col-lg-6 px-0">
 																<input type="number"
-																	name="{{ documentfeeformset.prefix }}-xx-number_of_units"
+																	name="{{ documentfeeformset.prefix }}-xx-unit_count"
 																	class="form-control"
-																	id="id_{{ documentfeeformset.prefix }}-xx-number_of_units"
+																	id="id_{{ documentfeeformset.prefix }}-xx-unit_count"
 																	value="0">
 															</div>
 														</div>
@@ -599,7 +599,7 @@
 										<table class="table table-bordered">
 											<tbody>
 												<tr>
-													<td>{% trans "Subtotal" %}</td>
+													<td>{% trans "Sum" %}</td>
 													<td class="sub_total">0</td>
 												</tr>
 												<tr>

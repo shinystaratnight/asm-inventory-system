@@ -62,7 +62,7 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
         writer = csv.writer(response, encoding='utf-8-sig')
         writer.writerow([
             _('Contract ID'), _('Contract date'), _('Customer'), _('Delivered place'), _('Person in charge'),
-            _('Payment date'), _('Product name'), _('Number of units'), _('Amount'), _('Inventory status')
+            _('Payment date'), _('Product name'), _('Unit count'), _('Amount'), _('Inventory status')
         ])
         queryset = self.get_queryset()
         for product in queryset:
@@ -143,7 +143,7 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
         writer = csv.writer(response, encoding='utf-8-sig')
         writer.writerow([
             _('Contract ID'), _('Contract date'), _('Customer'), _('Delivered place'), _('Person in charge'),
-            _('Payment date'), _('Product name'), _('Number of units'), _('Amount'), _('Inventory status')
+            _('Payment date'), _('Product name'), _('Unit count'), _('Amount'), _('Inventory status')
         ])
         queryset = self.get_queryset()
         for product in queryset:
@@ -208,7 +208,7 @@ class InventoryListView(AdminLoginRequiredMixin, ListView):
         writer = csv.writer(response, encoding='utf-8-sig')
         writer.writerow([
             _('Product name'), _('Control number'), _('Purchase date'), _('Supplier'), _('Person in charge'),
-            _('Number of units'), _('Price'), _('Stock'), _('Total price')
+            _('Unit count'), _('Price'), _('Stock'), _('Total price')
         ])
         queryset = self.get_queryset()
         for product in queryset:

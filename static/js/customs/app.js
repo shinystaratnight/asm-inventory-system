@@ -292,8 +292,8 @@ document.addEventListener('DOMContentLoaded', function() {
         var m = name.match(regex);
         if (m) prefix = m[0];
         if (prefix) {
-            var numOfModels = $parent.find('#id_' + prefix + 'number_of_models').val();
-            var numOfUnits = $parent.find('#id_' + prefix + 'number_of_units').val();
+            var numOfModels = $parent.find('#id_' + prefix + 'model_count').val();
+            var numOfUnits = $parent.find('#id_' + prefix + 'unit_count').val();
             var applicationFee = $parent.find('input[name="application_fee"]').val();
             var modelPrice = $parent.find('input[name="model_price"]').val();
             var unitPrice = $parent.find('input[name="unit_price"]').val();

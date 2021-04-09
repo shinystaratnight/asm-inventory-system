@@ -235,7 +235,7 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
 
         rows = [
             [],
-            [_('Delivery date'), shipping_date, '', _('Subtotal'), sub_total],
+            [_('Delivery date'), shipping_date, '', _('Sum'), sub_total],
             [_('Remarks'), remarks, '', _('Consumption tax') + '(10%)', tax],
             ['', '', '', _('Insurance fee') + '(' + _('No tax') + ')', insurance_fee],
             ['', '', '', _('Total amount'), total],
@@ -430,7 +430,7 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
 
         rows = [
             [],
-            ['', '', '', '', '', '', _('Subtotal'), sub_total],
+            ['', '', '', '', '', '', _('Sum'), sub_total],
             [_('Removal date'), removal_date, '', _('Frame color'), frame_color, '', _('Consumption tax') + '(10%)', tax],
             [_('Date of shipment'), shipping_date, '', _('Receipt'), receipt, '', _('Insurance fee') + '(' + _('No tax') + ')', insurance_fee],
             [_('Remarks'), remarks, '', '', '', '', _('Total amount'), total],
@@ -678,7 +678,7 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
         rows = [
             [],
             [_('Document fee')],
-            ['', _('Product type'), _('Number of models'), _('Number of units'), _('Amount')]
+            ['', _('Product type'), _('Model count'), _('Unit count'), _('Amount')]
         ]
         writer.writerows(rows)
         document_fee_formset = DocumentFeeFormSet(
@@ -693,13 +693,13 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
                 id = form.cleaned_data.get('id')
                 document_fee = DocumentFee.objects.get(id=id)
                 type = document_fee.type
-                number_of_models = form.cleaned_data.get('number_of_models', 0)
-                number_of_units = form.cleaned_data.get('number_of_units', 0)
+                model_count = form.cleaned_data.get('model_count', 0)
+                unit_count = form.cleaned_data.get('unit_count', 0)
                 model_price = document_fee.model_price
                 unit_price = document_fee.unit_price
-                amount = model_price * number_of_models + unit_price * number_of_units + document_fee.application_fee
+                amount = model_price * model_count + unit_price * unit_count + document_fee.application_fee
                 sub_total += amount
-                document_fee_rows.append([None, type, number_of_models, number_of_units, amount])
+                document_fee_rows.append([None, type, model_count, unit_count, amount])
             writer.writerows(document_fee_rows)
 
         remarks = contract_form.data.get('remarks', None)
@@ -718,7 +718,7 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
 
         rows = [
             [],
-            [_('Remarks'), remarks, '', '', _('Subtotal'), sub_total],
+            [_('Remarks'), remarks, '', '', _('Sum'), sub_total],
             ['', '', '', '', _('Consumption tax') + '(10%)', tax],
             ['', '', '', '', _('Insurance fee') + '(' + _('No tax') + ')', insurance_fee],
             ['', '', '', '', _('Total amount'), total],
@@ -919,7 +919,7 @@ class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         rows = [
             [],
             [_('Document fee')],
-            ['', _('Product type'), _('Number of models'), _('Number of units'), _('Amount')]
+            ['', _('Product type'), _('Model count'), _('Unit count'), _('Amount')]
         ]
         writer.writerows(rows)
         document_fee_formset = DocumentFeeFormSet(
@@ -934,13 +934,13 @@ class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
                 id = form.cleaned_data.get('id')
                 document_fee = DocumentFee.objects.get(id=id)
                 type = document_fee.type
-                number_of_models = form.cleaned_data.get('number_of_models', 0)
-                number_of_units = form.cleaned_data.get('number_of_units', 0)
+                model_count = form.cleaned_data.get('model_count', 0)
+                unit_count = form.cleaned_data.get('unit_count', 0)
                 model_price = document_fee.model_price
                 unit_price = document_fee.unit_price
-                amount = model_price * number_of_models + unit_price * number_of_units + document_fee.application_fee
+                amount = model_price * model_count + unit_price * unit_count + document_fee.application_fee
                 sub_total += amount
-                document_fee_rows.append([None, type, number_of_models, number_of_units, amount])
+                document_fee_rows.append([None, type, model_count, unit_count, amount])
             writer.writerows(document_fee_rows)
 
         remarks = contract_form.data.get('remarks', None)
@@ -959,7 +959,7 @@ class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
 
         rows = [
             [],
-            [_('Remarks'), remarks, '', '', _('Subtotal'), sub_total],
+            [_('Remarks'), remarks, '', '', _('Sum'), sub_total],
             ['', '', '', '', _('Consumption tax') + '(10%)', tax],
             ['', '', '', '', _('Insurance fee') + '(' + _('No tax') + ')', insurance_fee],
             ['', '', '', '', _('Total amount'), total],

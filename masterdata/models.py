@@ -16,6 +16,8 @@ TRANSFER_ACCOUNT = 'りそな銀行　船場支店（101）　普通　0530713�
 REFAX = '06-6753-8079'
 P_SENSOR_NUMBER = '8240-2413-3628'
 INPUT_FORMATS = ['%Y/%m/%d', '%m/%d/%Y']
+THRESHOLD_PRICE = 100000
+SECURE_PAYMENT = 'あんしん決済'
 
 class MasterData(models.Model):
     name = models.CharField(max_length=200)

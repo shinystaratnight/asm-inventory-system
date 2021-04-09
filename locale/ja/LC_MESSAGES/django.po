@@ -404,7 +404,7 @@ msgstr "商品名そのほか"
 #: templates/contracts/hall_sales_update.html:600
 #: templates/contracts/trader_purchases.html:520
 #: templates/contracts/trader_sales.html:492
-msgid "Subtotal"
+msgid "Sum"
 msgstr "小計"
 
 #: contracts/views.py:239 contracts/views.py:436 contracts/views.py:468
@@ -601,7 +601,7 @@ msgstr "書類代"
 #: templates/contracts/hall_purchases.html:471
 #: templates/contracts/hall_sales.html:470
 #: templates/contracts/hall_sales_update.html:469
-msgid "Number of models"
+msgid "Model count"
 msgstr "機種数"
 
 #: contracts/views.py:681 contracts/views.py:922 listing/views.py:64
@@ -614,7 +614,7 @@ msgstr "機種数"
 #: templates/listing/purchases.html:233 templates/listing/purchases.html:235
 #: templates/listing/sales.html:110 templates/listing/sales.html:233
 #: templates/listing/sales.html:235
-msgid "Number of units"
+msgid "Unit count"
 msgstr "台数"
 
 #: contracts/views.py:741 contracts/views.py:982
@@ -1236,7 +1236,7 @@ msgstr "少なくとも1つの書類代を追加する必要があります。"
 
 #: templates/layout/error_modal.html:80 templates/layout/error_modal.html:112
 msgid ""
-"Number of models and quantity for each document fee must be positive integer."
+"Model count and quantity for each document fee must be positive integer."
 msgstr "書類代の機種数と台数は正の整数でなければなりません。"
 
 #: templates/layout/error_modal.html:81 templates/layout/error_modal.html:113

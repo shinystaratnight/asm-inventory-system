@@ -64,8 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     var prefix = null;
                     if (m) prefix = m[0];
                     if (prefix) {
-                        var numOfModels = parseInt($tr.find(`#id_${prefix}number_of_models`).val());
-                        var numOfUnits = parseInt($tr.find(`#id_${prefix}number_of_units`).val());
+                        var numOfModels = parseInt($tr.find(`#id_${prefix}model_count`).val());
+                        var numOfUnits = parseInt($tr.find(`#id_${prefix}unit_count`).val());
                         var modelPrice = parseInt($tr.find('input[name="model_price"]').val());
                         var unitPrice = parseInt($tr.find('input[name="unit_price"]').val());
                         var application_fee = parseInt($tr.find('input[name="application_fee"]').val());

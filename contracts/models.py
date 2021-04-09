@@ -48,6 +48,17 @@ class ContractProduct(models.Model):
     @property
     def amount(self):
         return self.quantity * self.price
+    
+    @property
+    def tax(self):
+        return int(self.amount * 0.1)
+
+    def get_insurance_fee(self):
+        price = round(self.price / 1000) * 1000
+        if price > THRESHOLD_PRICE:
+            return int(200 * self.quantity * (price / THRESHOLD_PRICE))
+        else:
+            return 100 * self.quantity
 
 
 class ContractDocument(models.Model):
@@ -58,14 +69,39 @@ class ContractDocument(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
 
+    @property
+    def amount(self):
+        return self.quantity * self.price
+    
+    @property
+    def is_secure_payment(self):
+        return self.document.name == SECURE_PAYMENT
+        
+    @property
+    def tax(self):
+        if self.is_secure_payment:
+            return 0
+        return int(self.amount * 0.1)
+
 
 class ContractDocumentFee(models.Model):
     document_fee = models.ForeignKey(DocumentFee, on_delete=models.SET_NULL, null=True)
-    number_of_models = models.IntegerField()
-    number_of_units = models.IntegerField()
+    model_count = models.IntegerField()
+    unit_count = models.IntegerField()
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
+
+    @property
+    def amount(self):
+        model_price = self.document_fee.model_price
+        unit_price = self.document_fee.unit_price
+        application_fee = self.document_fee.application_fee
+        return self.model_count * model_price + self.unit_count * unit_price + application_fee
+    
+    @property
+    def tax(self):
+        return int(self.amount * 0.1)
 
 
 class Milestone(models.Model):
@@ -91,7 +127,7 @@ class TraderContract(models.Model):
         abstract = True
 
     @property
-    def sub_total(self):
+    def sum(self):
         return 100
     
     @property
@@ -101,10 +137,6 @@ class TraderContract(models.Model):
     @property
     def total(self):
         return 100
-    
-    @property
-    def billing_amount(self):
-        return self.total
 
 
 class TraderSalesContract(TraderContract):
