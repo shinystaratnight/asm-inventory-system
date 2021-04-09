@@ -89,22 +89,24 @@
 							</tr>
 						</thead>
 						<tbody>
+							{% for contract in contracts %}
 							<tr>
-								<td>1617130845</td>
-								<td>2021/03/31</td>
-								<td>{% trans "Expense" %}</td>
+								<td>{{ contract.contract_id }}</td>
+								<td>{{ contract.created_at }}</td>
+								<td>{% trans "Income" %}</td>
 								<td>課対仕入10%</td>
-								<td>147,950</td>
-								<td>（株）三友商事</td>
+								<td>{{ contract.taxed_total }}</td>
+								<td>{{ contract.customer.name }}</td>
 							</tr>
 							<tr>
-								<td>1617130845</td>
-								<td>2021/03/31</td>
-								<td>{% trans "Expense" %}</td>
+								<td>{{ contract.contract_id }}</td>
+								<td>{{ contract.created_at }}</td>
+								<td>{% trans "Income" %}</td>
 								<td>非課仕入</td>
-								<td>260</td>
-								<td>（株）三友商事</td>
+								<td>{{ contract.insurance_fee }}</td>
+								<td>{{ contract.customer.name }}</td>
 							</tr>
+							{% endfor %}
 						</tbody>
 
 					</table>

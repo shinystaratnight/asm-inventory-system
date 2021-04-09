@@ -127,16 +127,36 @@ class TraderContract(models.Model):
         abstract = True
 
     @property
-    def sum(self):
-        return 100
+    def amount(self):
+        sum = 0
+        for product in self.products.all():
+            sum += product.amount
+        for document in self.documents.all():
+            sum += document.amount
+        return sum
     
     @property
-    def consumption_tax(self):
-        return 100
+    def tax(self):
+        sum = 0
+        for product in self.products.all():
+            sum += product.tax
+        for document in self.documents.all():
+            sum += document.tax
+        return sum
 
     @property
     def total(self):
-        return 100
+        return self.amount + self.tax + self.insurance_fee
+
+    @property
+    def taxed_total(self):
+        return self.total - self.insurance_fee
+    
+    def get_insurance_fee(self):
+        sum = 0
+        for product in self.products.all():
+            sum += product.get_insurance_fee()
+        return sum
 
 
 class TraderSalesContract(TraderContract):
@@ -167,7 +187,7 @@ class TraderSalesSender(models.Model):
     sender = models.ForeignKey(Sender, on_delete=models.CASCADE)
     expected_arrival_date = models.DateField()
 
-
+    
 class TraderPurchasesSender(models.Model):
     contract = models.ForeignKey(TraderPurchasesContract, on_delete=models.CASCADE, related_name='senders')
     type = models.CharField(max_length=1, choices=ITEM_CHOICES)
@@ -194,6 +214,42 @@ class HallContract(models.Model):
 
     class Meta:
         abstract = True
+    
+    @property
+    def amount(self):
+        sum = 0
+        for product in self.products.all():
+            sum += product.amount
+        for document in self.documents.all():
+            sum += document.amount
+        return sum
+        for document_fee in self.document_fees.all():
+            sum += document_fee.amount
+    
+    @property
+    def tax(self):
+        sum = 0
+        for product in self.products.all():
+            sum += product.tax
+        for document in self.documents.all():
+            sum += document.tax
+        for document_fee in self.document_fees.all():
+            sum += document_fee.tax
+        return sum
+
+    @property
+    def total(self):
+        return self.amount + self.tax + self.insurance_fee
+    
+    @property
+    def taxed_total(self):
+        return self.total - self.insurance_fee
+
+    def get_insurance_fee(self):
+        sum = 0
+        for product in self.products.all():
+            sum += product.get_insurance_fee()
+        return sum
 
 
 class HallSalesContract(HallContract):

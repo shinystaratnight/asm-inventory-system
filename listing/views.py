@@ -197,8 +197,6 @@ class InventoryListView(AdminLoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # from django.conf.locale.ja import formats
-        # print(formats.DATE_INPUT_FORMATS)
         context['product_filter'] = ProductFilter(self.request.GET)
         return context
     
@@ -234,7 +232,6 @@ class InventoryProductUpdateView(AdminLoginRequiredMixin, View):
             id = request.POST.get('id')
             data = request.POST.copy()
             data.pop('id')
-            print(data)
             product = InventoryProduct.objects.get(id=id)
             product.name = data.get('name')
             product.identifier = data.get('identifier')
@@ -246,8 +243,6 @@ class InventoryProductUpdateView(AdminLoginRequiredMixin, View):
             product.stock = data.get('stock')
             product.amount = data.get('amount')
             product.save()
-        else:
-            print(product_form.errors)
         return redirect('listing:inventory-list')
 
 

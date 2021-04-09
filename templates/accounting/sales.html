@@ -89,22 +89,24 @@
 							</tr>
 						</thead>
 						<tbody>
+							{% for contract in contracts %}
 							<tr>
-								<td>1617130845</td>
-								<td>2021/03/31</td>
+								<td>{{ contract.contract_id }}</td>
+								<td>{{ contract.created_at }}</td>
 								<td>{% trans "Income" %}</td>
 								<td>課税売上10%</td>
-								<td>93,500</td>
-								<td>（株）ライム</td>
+								<td>{{ contract.taxed_total }}</td>
+								<td>{{ contract.customer.name }}</td>
 							</tr>
 							<tr>
-								<td>1617130845</td>
-								<td>2020/03/31</td>
+								<td>{{ contract.contract_id }}</td>
+								<td>{{ contract.created_at }}</td>
 								<td>{% trans "Income" %}</td>
 								<td>非課売上</td>
-								<td>100</td>
-								<td>（株）ライム</td>
+								<td>{{ contract.insurance_fee }}</td>
+								<td>{{ contract.customer.name }}</td>
 							</tr>
+							{% endfor %}
 						</tbody>
 					</table>
 				</div>

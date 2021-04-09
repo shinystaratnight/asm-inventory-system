@@ -62,8 +62,8 @@ class DocumentForm(forms.Form):
 
 class DocumentFeeForm(forms.Form):
     id = forms.CharField(widget=forms.HiddenInput(attrs={'autocomplete': 'off'}))
-    number_of_models = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    number_of_units = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    model_count = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    unit_count = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
 
     def __init__(self, *args, **kwargs):
         if kwargs.get('contract_id', None):
@@ -76,9 +76,11 @@ class DocumentFeeForm(forms.Form):
         contract_class_name = ContentType.objects.get(model=self.contract_class)
         contract_class = contract_class_name.model_class()
         contract = contract_class.objects.get(id=self.contract_id)
+        document_fee = DocumentFee.objects.get(id=self.cleaned_data.get('id'))
         data = {
-            'number_of_models': self.cleaned_data.get('number_of_models'),
-            'number_of_units': self.cleaned_data.get('number_of_units'),
+            'model_count': self.cleaned_data.get('model_count'),
+            'unit_count': self.cleaned_data.get('unit_count'),
+            'document_fee': document_fee,
             'content_object': contract,
         }
         ContractDocumentFee.objects.create(**data)
@@ -120,13 +122,13 @@ class DocumentFeeValidationFormSet(BaseFormSet):
         if self.total_form_count() == 0:
             raise ValidationError("At least one document fee must be added.")
         for form in self.forms:
-            number_of_models = form.cleaned_data.get('number_of_models')
-            if number_of_models < 1:
-                form.add_error('number_of_models', 'Number of models should be positive integer value.')
+            model_count = form.cleaned_data.get('model_count')
+            if model_count < 1:
+                form.add_error('model_count', 'Number of models should be positive integer value.')
                 return
-            number_of_units = form.cleaned_data.get('number_of_units')
-            if number_of_units < 1:
-                form.add_error('number_of_units', 'Number of units should be postive integer value.')
+            unit_count = form.cleaned_data.get('unit_count')
+            if unit_count < 1:
+                form.add_error('unit_count', 'Number of units should be postive integer value.')
                 return
     
     def get_form_kwargs(self, index):
