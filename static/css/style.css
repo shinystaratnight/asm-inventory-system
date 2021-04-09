@@ -359,11 +359,15 @@ form.master-search-form input {
 .table-inventory {
     min-width: 1400px;
 }
-.content-wrapper.trader-sales-contract {
+.listing-sales {
     background: rgb(241, 191, 192);
 }
-.content-wrapper.trader-purchases-contract {
+.listing-purchases {
     background: rgb(171, 172, 226);
+}
+.search-result {
+    padding: 10px 20px;
+    font-size: 16px;
 }
 .color-danger {
     color: #d84315;

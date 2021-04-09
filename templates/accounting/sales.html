@@ -7,7 +7,7 @@
 
 {% block content %}
 
-	<div class="content-wrapper">
+	<div class="content-wrapper listing-sales">
 
 		<!-- Page header -->
 		<div class="page-header">
@@ -76,23 +76,18 @@
 				</div>
 
 				<div class="table-responsive">
+					<p class="search-result">{% trans "Search results" %}:</p>
 					<table class="table table-bordered table-hover table-framed">
 						<thead>
 							<tr>
 								<th>{% trans "Contract ID" %}</th>
 								<th>{% trans "Contract date" %}</th>
-								<th class="w-10">{% trans "Customer" %}</th>
-								<th class="w-10">{% trans "Delivered place" %}</th>
-								<th>{% trans "Person in charge" %}</th>
-								<th>{% trans "Payment date" %}</th>
-								<th class="w-18-5">{% trans "Product name" %}</th>
-								<th>{% trans "Number of units" %}</th>
+								<th>{% trans "Type" %}</th>
+								<th>{% trans "Taxation" %}</th>
 								<th>{% trans "Amount" %}</th>
-								<th class="w-5">{% trans "Inventory status" %}</th>
-								<th>{% trans "Action" %}</th>
+								<th>{% trans "Customer" %}</th>
 							</tr>
 						</thead>
-
 						<tbody>
 							<tr>
 								<td>1617130845</td>
@@ -105,7 +100,7 @@
 							<tr>
 								<td>1617130845</td>
 								<td>2020/03/31</td>
-								<td></td>
+								<td>{% trans "Income" %}</td>
 								<td>非課売上</td>
 								<td>100</td>
 								<td>（株）ライム</td>

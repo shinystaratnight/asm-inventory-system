@@ -7,7 +7,7 @@
 
 {% block content %}
 
-	<div class="content-wrapper">
+	<div class="content-wrapper listing-purchases">
 
 		<!-- Page header -->
 		<div class="page-header">
@@ -37,11 +37,57 @@
 					<h2 class="panel-title">{% trans "Purchase" %}</h2>
 				</div>
 
-				<div class="panel-body" style="padding-bottom: 0"></div>
+				<div class="panel-body">
+					<form action="" method="GET">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>{% trans "Contract ID" %}:</label>
+									<input type="text" class="form-control" name="contract_id" value="{{ contract_id }}" placeholder="{% trans 'Contract ID' %}">
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>{% trans "Created date" %}:</label>
+									<div class="input-group">
+										<span class="input-group-addon"><i class="icon-calendar22"></i></span>
+										<input type="text" class="form-control datepicker-nullable" name="created_at" value="{{ created_at }}">
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>{% trans "Customer" %}:</label>
+									<input type="text" class="form-control" name="customer" value="{{ customer }}" placeholder="{% trans 'Customer' %}">
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="mb-3 text-right">
+									<button type="submit" class="btn btn-primary"><i class="icon-search4 position-left"></i>{% trans "Search" %}</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
 
 				<div class="table-responsive">
+					<p class="search-result">{% trans "Search results" %}:</p>
 					<table class="table table-bordered table-hover table-framed">
-						
+						<thead>
+							<tr>
+								<th>{% trans "Contract ID" %}</th>
+								<th>{% trans "Contract date" %}</th>
+								<th>{% trans "Type" %}</th>
+								<th>{% trans "Taxation" %}</th>
+								<th>{% trans "Amount" %}</th>
+								<th>{% trans "Customer" %}</th>
+							</tr>
+						</thead>
 						<tbody>
 							<tr>
 								<td>1617130845</td>
