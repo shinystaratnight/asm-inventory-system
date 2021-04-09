@@ -67,7 +67,7 @@ class SalesListView(AdminLoginRequiredMixin, TemplateView):
                 contract.contract_id, contract.created_at, _('Income'), '課税売上10%', contract.taxed_total, contract.customer.name
             ])
             writer.writerow([
-                contract.contract_id, contract.created_at, _('Income'), '非課売上', contract.insurance_fee, contract.customer.name
+                contract.contract_id, contract.created_at, None, '非課売上', contract.insurance_fee, contract.customer.name
             ])
         return response
 
@@ -127,6 +127,6 @@ class PurchasesListView(AdminLoginRequiredMixin, TemplateView):
                 contract.contract_id, contract.created_at, _('Expense'), '課対仕入10%', contract.taxed_total, contract.customer.name
             ])
             writer.writerow([
-                contract.contract_id, contract.created_at, _('Income'), '非課仕入', contract.insurance_fee, contract.customer.name
+                contract.contract_id, contract.created_at, None, '非課仕入', contract.insurance_fee, contract.customer.name
             ])
         return response
