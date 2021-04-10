@@ -217,12 +217,11 @@ class InventoryProductCreateView(AdminLoginRequiredMixin, View):
 
 class InventoryProductUpdateView(AdminLoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
+        id = request.POST.get('id')
+        product = InventoryProduct.objects.get(id=id)
         product_form = ProductForm(request.POST)
         if product_form.is_valid():
-            id = request.POST.get('id')
-            data = request.POST.copy()
-            data.pop('id')
-            product = InventoryProduct.objects.get(id=id)
+            data = product_form.cleaned_data
             product.name = data.get('name')
             product.identifier = data.get('identifier')
             product.purchase_date = data.get('purchase_date')
