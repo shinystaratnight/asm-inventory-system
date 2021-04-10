@@ -1,5 +1,13 @@
 from django.urls import path
-from .views import *
+from .views import (
+    CustomerListView, CustomerDetailAjaxView, CustomerUpdateView, CustomerDeleteView,
+    HallListView, HallDetailAjaxView, HallUpdateView, HallDeleteView,
+    SenderListView, SenderDetailAjaxView, SenderUpdateView, SenderDeleteView,
+    ProductListView, ProductDetailAjaxView, ProductUpdateView, ProductDeleteView,
+    DocumentListView, DocumentDetailAjaxView, DocumentUpdateView, DocumentDeleteView,
+    CustomerSearchAjaxView, HallSearchAjaxView, ProductSearchAjaxView,
+    DocumentFeePriceAjaxView,
+)
 
 app_name = 'masterdata'
 urlpatterns = [

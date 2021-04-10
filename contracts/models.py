@@ -2,7 +2,11 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
 from django.utils.translation import gettext_lazy as _
-from masterdata.models import *
+from masterdata.models import (
+    Customer, Hall, Sender, Product, Document, DocumentFee, InventoryProduct,
+    PRODUCT_TYPE_CHOICES, STOCK_CHOICES, SHIPPING_METHOD_CHOICES,
+    PAYMENT_METHOD_CHOICES, ITEM_CHOICES, SECURE_PAYMENT,
+)
 
 
 class ContractProduct(models.Model):

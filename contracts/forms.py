@@ -3,13 +3,13 @@ from django.forms import formset_factory, BaseFormSet
 from django.core.exceptions import ValidationError
 from django.contrib.contenttypes.models import ContentType
 from masterdata.models import (
-    Product, Document, Sender,
-    TYPE_CHOICES, INPUT_FORMATS
+    Product, Document, Sender, DocumentFee,
+    TYPE_CHOICES, INPUT_FORMATS, PRODUCT_TYPE_CHOICES
 )
 from .models import (
     TraderSalesContract, TraderPurchasesContract, HallSalesContract, HallPurchasesContract,
-    ContractProduct, ContractDocument, TraderSalesSender, TraderPurchasesSender, Milestone,
-    PRODUCT_TYPE_CHOICES, 
+    TraderSalesSender, TraderPurchasesSender,
+    ContractProduct, ContractDocument, ContractDocumentFee, Milestone,
 )
 
 # Common Forms like Product, Document and Insurance Fee

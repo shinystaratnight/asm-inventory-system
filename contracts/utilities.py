@@ -1,5 +1,7 @@
 import time
-from contracts.models import *
+from contracts.models import (
+    TraderSalesContract, TraderPurchasesContract, HallSalesContract, HallPurchasesContract
+)
 
 def generate_contract_id(prefix='01'):
     year = time.strftime("%y", time.localtime())

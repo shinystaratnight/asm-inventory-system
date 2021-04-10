@@ -1,5 +1,13 @@
 from django.urls import path
-from .views import *
+from .views import (
+    TraderSalesContractView, TraderPurchasesContractView, HallSalesContractView, HallPurchasesContractView,
+    TraderSalesInvoiceView, TraderPurchasesInvoiceView, HallSalesInvoiceView, HallPurchasesInvoiceView,
+    TraderSalesValidateAjaxView, TraderPurchasesValidateAjaxView, HallSalesValidateAjaxView, HallPurchasesValidateAjaxView,
+    ContractShippingLabelAjaxView, ContractManagerAjaxView, ContractClassNameAjaxView,
+)
+from .update_views import (
+    TraderSalesContractUpdateView, HallSalesContractUpdateView,
+)
 from .update_views import *
 
 app_name = 'contract'

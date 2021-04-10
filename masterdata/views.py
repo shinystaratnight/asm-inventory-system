@@ -5,9 +5,9 @@ from django.views.generic.edit import FormMixin, FormView, CreateView
 from django.http import JsonResponse
 from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
-from .forms import *
-from .filters import *
-from .models import *
+from .models import Customer, Hall, Sender, Product, Document, DocumentFee
+from .forms import CustomerForm, HallForm, SenderForm, ProductForm, DocumentForm
+from .filters import CustomerFilter, HallFilter, SenderFilter, ProductFilter
 
 
 class CustomerListView(AdminLoginRequiredMixin, ListView):

@@ -2,7 +2,7 @@ import django_filters
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
-from masterdata.models import *
+from masterdata.models import InventoryProduct, INPUT_FORMATS
 
 
 class ProductFilter(django_filters.FilterSet):

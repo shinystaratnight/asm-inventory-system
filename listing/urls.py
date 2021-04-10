@@ -1,5 +1,10 @@
 from django.urls import path
-from .views import *
+from .views import (
+    SalesListView, PurchasesListView, InventoryListView,
+    SalesProductUpdateView, PurchasesProductUpdateView,
+    SalesProductDetailAjaxView, PurchasesProductDetailAjaxView,
+    InventoryProductDetailAjaxView, InventoryProductCreateView, InventoryProductUpdateView, InventoryProductDeleteView,
+)
 
 app_name = 'listing'
 urlpatterns = [

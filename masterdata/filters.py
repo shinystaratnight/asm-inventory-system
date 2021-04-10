@@ -2,7 +2,7 @@ import django_filters
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
-from .models import *
+from .models import Customer, Hall, Sender, Product
 
 
 class CustomerFilter(django_filters.FilterSet):
