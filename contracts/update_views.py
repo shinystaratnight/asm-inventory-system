@@ -12,6 +12,7 @@ from .forms import (
     TraderSalesContractForm, TraderPurchasesContractForm, HallSalesContractForm, HallPurchasesContractForm,
     ProductFormSet, DocumentFormSet, DocumentFeeFormSet, MilestoneFormSet, 
     TraderSalesSenderForm, TraderPurchasesSenderForm,
+    ProductForm,
 )
 from .utilities import generate_contract_id, ordinal
 
@@ -32,6 +33,32 @@ class TraderSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
         contract = TraderSalesContract.objects.get(id=id)
         products = contract.products
         context['contract'] = contract
+        
+        context['documents'] = Document.objects.all().values('id', 'name')
+        products = contract.products.all()
+        dataset = []
+        for product in products:
+            data = {
+                'id': product.product.id,
+                'type': product.type,
+                'quantity': product.quantity,
+                'price': product.price
+            }
+            product_form = ProductForm(data)
+            if product_form.is_valid():
+                dataset.append(data)
+
+        context['productformset'] = ProductFormSet(initial=dataset, prefix='product')
+        context['senders'] = Sender.objects.all().values('id', 'name')
+        
+        product_sender = contract.senders.filter(type='P').first()
+        product_sender_form = TraderSalesSenderForm({
+            'sender_id': product_sender.sender_id,
+            'expected_arrival_date': product_sender.expected_arrival_date
+        })
+        if product_sender_form.is_valid():
+            context['product_sender'] = product_sender
+
         return context
 
 
@@ -99,7 +126,20 @@ class HallSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
         document_fees = [document_fee_lambda(document_fee) for document_fee in DocumentFee.objects.all()]
         context['document_fees'] = document_fees
         products = contract.products.all()
-        context['productformset'] = ProductFormSet(initial=products, prefix='product')
+        dataset = []
+        for product in products:
+            data = {
+                'id': product.product.id,
+                'type': product.type,
+                'quantity': product.quantity,
+                'price': product.price
+            }
+            product_form = ProductForm(data)
+            if product_form.is_valid():
+                dataset.append(data)
+
+
+        context['productformset'] = ProductFormSet(initial=dataset, prefix='product')
         # documents = contract.documents.all()
         # context['documentformset'] = DocumentFormSet(documents, prefix='document')
         # document_fees = contract.document_fees

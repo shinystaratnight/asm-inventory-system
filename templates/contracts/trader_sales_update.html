@@ -175,6 +175,538 @@
 									</div>
 								</div>
 
+								<div class="row">
+									<div class="d-flex flex-wrap mt-5-s">
+										<div class="col-6 col-sm-12 px-0">
+											<div class="form-group has-feedback d-flex">
+												<label class="control-label col-2 mt-auto">{% trans "Product" %}</label>
+												<div class="col-lg-8">
+													<select class="select-product">
+														<option value="" selected>{% trans "Search by model name" %}...</option>
+													</select>
+												</div>
+												<button type="button" name="add_product_btn" class="btn btn-primary">{% trans "Add" %}</button>
+											</div>
+										</div>
+									</div>
+									<div class="col-12 pb-5">
+										<table class="table table-formset table-product border-bottom">
+											{{ productformset.management_form }}
+											<thead>
+												<tr>
+													<th>{% trans "Model name" %}</th>
+													<th>{% trans "Product type" %}</th>
+													<th>{% trans "Quantity" %}</th>
+													<th>{% trans "Price" %}</th>
+													<th>{% trans "Amount" %}</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for form in productformset.forms %}
+												<tr class="formset_row-{{ productformset.prefix }} w-100">
+													{% for field in form.visible_fields %}
+													{% if forloop.first %}
+													<td>
+														<div class="form-group mb-0">
+															<div class="px-0">
+																{% for hidden in form.hidden_fields %}
+																	{{ hidden }}
+																{% endfor %}
+																<input type="text"
+																	id="id_{{ productformset.prefix }}-{{ forloop.parentloop.counter0 }}-name"
+																	class="form-control" disabled="">
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-10 px-0">
+																{{ field }}
+															</div>
+														</div>
+													</td>
+													{% elif forloop.counter == 2 %}
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																{{ field }}
+															</div>
+														</div>
+													</td>
+													{% elif forloop.last %}
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																{{ field }}
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																<input type="text"
+																	class="form-control"
+																	disabled=""
+																	id="id_{{ productformset.prefix }}-{{ forloop.parentloop.counter0 }}-amount"
+																	value="0">
+															</div>
+														</div>
+													</td>
+													{% endif %}
+													{% endfor %}
+												</tr>
+												{% empty %}
+												<tr class="odd">
+													<td class="text-center" colspan="5" valign="top">{% trans "No product has been added." %}</td>
+												</tr>
+												{% endfor %}
+
+												<tr id="{{ productformset.prefix }}-formset-row" style="display: none;">
+													<td>
+														<div class="form-group mb-0">
+															<div class="px-0">
+																<input type="hidden"
+																	name="{{ productformset.prefix }}-xx-id"
+																	id="id_{{ productformset.prefix }}-xx-id"
+																	autocomplete="off">
+																<input type="text"
+																	class="form-control"
+																	disabled=""
+																	id="id_{{ productformset.prefix }}-xx-name">
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-10 px-0">
+																<select name="{{ productformset.prefix }}-xx-type"
+																class="new-selectbox"
+																id="id_{{ productformset.prefix }}-xx-type">
+																	<option value="M">{% trans "Main body" %}</option>
+																	<option value="F">{% trans "Frame" %}</option>
+																	<option value="C">{% trans "Cell" %}</option>
+																	<option value="N">{% trans "Nail sheet" %}</option>
+																</select>
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																<input type="number"
+																	name="{{ productformset.prefix }}-xx-quantity"
+																	class="form-control"
+																	id="id_{{ productformset.prefix }}-xx-quantity"
+																	value="0">
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																<input type="number"
+																	name="{{ productformset.prefix }}-xx-price"
+																	class="form-control"
+																	id="id_{{ productformset.prefix }}-xx-price"
+																	value="0">
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																<input type="text"
+																	class="form-control"
+																	disabled=""
+																	id="id_{{ productformset.prefix }}-xx-amount"
+																	value="0">
+															</div>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="d-flex flex-wrap mt-5-s">
+										<div class="col-6 col-sm-12 px-0">
+											<div class="form-group has-feedback d-flex">
+												<label class="control-label col-2 mt-auto">{% trans "Other" %}</label>
+												<div class="col-lg-8">
+													<select name="select-document" class="selectbox select-document">
+														<option value="">{% trans 'Select document' %}...</option>
+														{% for document in documents %}
+														<option value="{{ document.id }}">{{ document.name }}</option>
+														{% endfor %}
+													</select>
+												</div>
+												<button type="button" name="add_document_btn" class="btn btn-primary">{% trans "Add" %}</button>
+											</div>
+										</div>
+									</div>
+									<div class="col-12 pb-80-px">
+										<table class="table table-formset table-document border-bottom">
+											{{ documentformset.management_form }}
+											<thead>
+												<tr>
+													<th>{% trans "Document" %}</th>
+													<th>{% trans "Quantity" %}</th>
+													<th>{% trans "Price" %}</th>
+													<th>{% trans "Amount" %}</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for form in documentformset.forms %}
+												<tr class="formset_row-{{ documentformset.prefix }} w-100">
+													{% for field in form.visible_fields %}
+													{% if forloop.first %}
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																{% for hidden in form.hidden_fields %}
+																	{{ hidden }}
+																{% endfor %}
+																<input type="text"
+																	id="id_{{ documentformset.prefix }}-{{ forloop.parentloop.counter0 }}-name"
+																	class="form-control" disabled="">
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-6 px-0">
+																{{ field }}
+															</div>
+														</div>
+													</td>
+													{% elif forloop.last %}
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-6 px-0">
+																{{ field }}
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																<input type="text"
+																	class="form-control"
+																	id="id_{{ documentformset.prefix }}-{{ forloop.parentloop.counter0 }}-amount"
+																	value="70000">
+															</div>
+														</div>
+													</td>
+													{% endif %}
+													{% endfor %}
+												</tr>
+												{% empty %}
+												<tr class="odd">
+													<td class="text-center" colspan="5" valign="top">{% trans "No document has been added." %}</td>
+												</tr>
+												{% endfor %}
+
+												<tr id="{{ documentformset.prefix }}-formset-row" style="display: none;">
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																<input type="hidden"
+																	name="{{ documentformset.prefix }}-xx-id"
+																	id="id_{{ documentformset.prefix }}-xx-id"
+																	autocomplete="off">
+																<input type="text"
+																	class="form-control"
+																	disabled=""
+																	id="id_{{ documentformset.prefix }}-xx-name">
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-6 px-0">
+																<input type="number"
+																	name="{{ documentformset.prefix }}-xx-quantity"
+																	class="form-control"
+																	id="id_{{ documentformset.prefix }}-xx-quantity"
+																	value="0">
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-6 px-0">
+																<input type="number"
+																	name="{{ documentformset.prefix }}-xx-price"
+																	class="form-control"
+																	id="id_{{ documentformset.prefix }}-xx-price"
+																	value="0">
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																<input type="text"
+																	class="form-control"
+																	disabled=""
+																	id="id_{{ documentformset.prefix }}-xx-amount"
+																	value="0">
+															</div>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								
+								<div class="row flex-wrap d-flex justify-content-between">
+									<div class="col-lg-8 col-xs-12">
+										<div class="row">
+											<div class="col-lg-6 form-group">
+												<div class="position-relative">
+													<div class="input-group">
+														<span class="input-group-addon shipping_date_label">{% trans "Delivery date" %}</span>
+														<input type="text" name="shipping_date" class="form-control daterange-single">
+													</div>
+													<div class="form-control-feedback">
+														<i class="icon-calendar22"></i>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-12 col-xs-12">
+												<div class="">
+													<div class="input-group">
+														<span class="input-group-addon">{% trans "Remarks" %}</span>
+														<textarea type="text" name="remarks" class="form-control h-140-px"></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-xs-12">
+										<table class="table table-bordered">
+											<tbody>
+												<tr>
+													<td>{% trans "Sum" %}</td>
+													<td class="sub_total">0</td>
+												</tr>
+												<tr>
+													<td>{% trans "Consumption tax" %} (10%)</td>
+													<td class="consumption_tax">0</td>
+												</tr>
+												<tr>
+													<td>{% trans "Insurance fee" %} ({% trans "No tax" %})</td>
+													<td><input type="text" class="form-control" id="insurance_fee" name="insurance_fee" value="0"></td>
+												</tr>
+												<tr>
+													<td>{% trans "Total" %}</td>
+													<td class="total">0</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+
+								<div class="row mt-5-s d-flex flex-wrap">
+									<div class="col-6">
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">{% trans "Shipping method" %}</span>
+												<select id="shipping_method" name="shipping_method" class="selectbox">
+													<option value="D">{% trans "Delivery" %}</option>
+													<option value="R">{% trans "Receipt" %}</option>
+													<option value="C">{% trans "ID Change" %}</option>
+													<option value="B">{% trans "* Blank" %}</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">{% trans "Payment method" %}</span>
+												<select name="payment_method" class="selectbox">
+													<option value="TR">{% trans "Transfer" %}</option>
+													<option value="CH">{% trans "Check" %}</option>
+													<option value="BL">{% trans "Bill" %}</option>
+													<option value="CA">{% trans "Cash" %}</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">{% trans "Billing amount" %}</span>
+												<input type="text" class="form-control" name="billing_amount" id="billing_amount" value="0" disabled>
+											</div>
+										</div>
+										<div class="position-relative form-group">
+											<div class="input-group">
+												<span class="input-group-addon">{% trans "Payment due date" %}</span>
+												<input type="text" name="payment_due_date" class="form-control daterange-single">
+											</div>
+											<div class="form-control-feedback">
+												<i class="icon-calendar22"></i>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-12 form-group">
+										<span type="text" class="form-control h-200-px">
+※ {% trans "The contract will be effective when both seller and buyer sign and seal." %}<br/>
+※ {% trans "As a general rule, the contract cannot be canceled once signed." %}<br/>
+※ {% trans "3 days warranty after delivery will be provided just in case of defects or malfunctions in the products." %}<br/>
+※ {% trans "The seller will keep the ownership of the products until the buyer makes the full payment." %}<br/>
+※ {% trans "The Ownership of the products shall be transferred to the buyer when product delivery is completed and full payment is made." %}<br/>
+※ {% trans "In the following cases, the seller may, without any procedure, request the immediate payment of the remaining balance, or cancel the contract and take back the products." %}<br/>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;1) {% trans "When the buyer fail to make the payment even once." %}</span><br/>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;2) {% trans "When the products were forfeited or disposed temporarily, or the request for arrangement, reconciliation, damage etc is received." %}</span>
+										</span>
+									</div>
+								</div>
+								<div class="row d-flex flex-wrap mt-5-s">
+									<div class="col-lg-6 col-xs-12">
+										<fieldset class="content-group">
+											<legend class="text-bold text-center">{% trans "Product sender" %}</legend>
+											<div class="form-group">
+												<label class="control-label">{% trans "Company" %}</label>
+												<select name="product_sender_id" class="selectbox select-sender">
+													<option value="">{% trans 'Select product sender' %}...</option>
+													{% for sender in senders %}
+													<option value="{{ sender.id }}"
+														{% if sender.id == product_sender.sender_id %}selected="selected"{% endif %}>
+														{{ sender.name }}
+													</option>
+													{% endfor %}
+												</select>
+											</div>
+											<div class="form-group">
+												<label class="control-label">{% trans "Address" %}</label>
+												<div class="">
+													<textarea type="text" name="product_sender_address" class="form-control address" disabled=""></textarea>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label">{% trans "TEL" %}</label>
+												<div class="">
+													<input type="text" name="product_sender_tel" class="form-control tel" disabled="" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label">{% trans "FAX" %}</label>
+												<div class="">
+													<input type="text" name="product_sender_fax" class="form-control fax" disabled="" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label">{% trans "Expected arrival date" %}</label>
+												<div class="input-group">
+													<span class="input-group-addon"><i class="icon-calendar22"></i></span>
+													<input type="text" name="product_sender_expected_arrival_date" class="form-control daterange-single expected_arrival_date">
+												</div>
+											</div>
+										</fieldset>
+									</div>
+									<div class="col-lg-6 col-xs-12">
+										<fieldset class="content-group">
+											<legend class="text-bold text-center">{% trans "Document sender" %}</legend>
+											<div class="form-group">
+												<label class="control-label">{% trans "Company" %}</label>
+												<select name="document_sender_id" class="selectbox select-sender">
+													<option value="">{% trans 'Select document sender' %}...</option>
+													{% for sender in senders %}
+													<option value="{{ sender.id }}"
+														{% if sender.id == product_sender.sender_id %}selected="selected"{% endif %}>
+														{{ sender.name }}
+													</option>
+													{% endfor %}
+												</select>
+											</div>
+											<div class="form-group">
+												<label class="control-label">{% trans "Address" %}</label>
+												<div class="">
+													<textarea type="text" name="document_sender_address" class="form-control address" disabled=""></textarea>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label">{% trans "TEL" %}</label>
+												<div class="">
+													<input type="text" name="document_sender_tel" class="form-control tel" disabled="" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label">{% trans "FAX" %}</label>
+												<div class="">
+													<input type="text" name="document_sender_fax" class="form-control fax" disabled="" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label">{% trans "Expected arrival date" %}</label>
+												<div class="input-group">
+													<span class="input-group-addon"><i class="icon-calendar22"></i></span>
+													<input type="text" name="document_sender_expected_arrival_date" class="form-control daterange-single expected_arrival_date">
+												</div>
+											</div>
+										</fieldset>
+									</div>
+								</div>
+								<div class="row mt-5-s">
+									<div class="col-lg-6 col-xs-12">
+										<h6 class="text-center">{% trans "Buyer seal" %}</h6>
+										<div class="seal-wrapper">
+											<p>〒<span class="buyer-postal-code ml-4"></span><span class="buyer-address ml-4"></span></p>
+											<h4 class="buyer-company"></h4>
+											<p><span>{% trans "CEO" %} : </span><span class="buyer ml-4"></span></p>
+											<p class="mb-0 d-flex">
+												<span class="w-min-150-px">TEL : <span class="buyer-tel"></span></span>
+												<span class="ml-4 w-min-150-px">FAX : <span class="buyer-fax"></span></span>
+											</p>
+											<div class="seal">
+												印
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-xs-12">
+										<h6 class="text-center">{% trans "Seller seal" %}</h6>
+										<div class="seal-wrapper">
+											<p>〒<span class="seller-postal-code ml-4">{{ seller_postal_code }}</span>
+												<span class="seller-address ml-4">{{ seller_address }}</span></p>
+											<h4 class="seller-company">{{ seller_company }}</h4>
+											<p><span>{% trans "CEO" %} : </span><span class="seller ml-4">{{ seller_ceo }}</span></p>
+											<p class="mb-0 d-flex">
+												<span class="w-min-150-px">TEL : <span class="seller-tel">{{ seller_tel }}</span></span>
+												<span class="ml-4 w-min-150-px">FAX : <span class="seller-fax">{{ seller_fax }}</span></span>
+											</p>
+											<div class="seal">
+												印
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-5-s">
+									<div class="col-lg-6 col-xs-12">
+										<p>※ {% trans "Please be noted that the transfer fee will be at your company expense." %}</p>
+										<p>
+											<span>{% trans "Transfer account" %}:</span>
+											<span>{{ seller_payee_account }}</span>
+										</p>
+										<p>
+											<span>{% trans "Please check the contents. After seal, kindly revert back to us." %}</span>
+											<span class="ml-4">{% trans "FAX" %} : {{ seller_reply_fax }}</span>
+										</p>
+										<p>※ {% trans "If you need the original invoice, please make sure to tick the checkbox." %} 【{% trans "Required" %}・{% trans "Not required" %}】</p>
+									</div>
+									<div class="col-lg-6 col-xs-12">
+										<div class="input-group">
+											<span class="input-group-addon">{% trans "Remarks" %}</span>
+											<textarea type="text" class="form-control memo" name="memo"></textarea>
+										</div>
+									</div>
+								</div>
+
 								<div class="row print-btn-group">
 									<div class="col-md-12">
 										<div class="mb-4 text-center">
