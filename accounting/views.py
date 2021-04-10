@@ -7,8 +7,10 @@ from django.views.generic.list import ListView
 from django.utils.translation import gettext_lazy as _
 from django.core.paginator import Paginator
 from users.views import AdminLoginRequiredMixin
-from contracts.models import *
+from masterdata.models import NO_FEE_PURCHASES, NO_FEE_SALES, FEE_PURCHASES, FEE_SALES
+from contracts.models import TraderSalesContract, HallSalesContract, TraderPurchasesContract, HallPurchasesContract
 from contracts.utilities import generate_random_number
+from .forms import SearchForm
 
 paginate_by = 3
 
@@ -18,22 +20,20 @@ class SalesListView(AdminLoginRequiredMixin, TemplateView):
     def get_contract_list(self):
         trader_qs = TraderSalesContract.objects.all()
         hall_qs = HallSalesContract.objects.all()
-        params = self.request.GET.copy()
-        for k, v in params.items():
-            if v:
-                if k == "contract_id":
-                    trader_qs = trader_qs.filter(contract_id__icontains=v)
-                    hall_qs = hall_qs.filter(contract_id__icontains=v)
-                elif k == 'created_at':
-                    try:
-                        v = datetime.datetime.strptime(v, '%Y-%m-%d').date()
-                    except ValueError:
-                        v = datetime.datetime.strptime(v, '%Y/%m/%d').date()
-                    trader_qs = trader_qs.filter(created_at=v)
-                    hall_qs = hall_qs.filter(created_at=v)
-                elif k == 'customer':
-                    trader_qs = trader_qs.filter(customer__name__icontains=v)
-                    hall_qs = hall_qs.filter(customer__name__icontains=v)
+        search_form = SearchForm(self.request.GET)
+        if search_form.is_valid():
+            contract_id = search_form.cleaned_data.get('contract_id')
+            created_at = search_form.cleaned_data.get('created_at')
+            customer = search_form.cleaned_data.get('customer')
+            if contract_id:
+                trader_qs = trader_qs.filter(contract_id__icontains=contract_id)
+                hall_qs = hall_qs.filter(contract_id__icontains=contract_id)
+            if created_at:
+                trader_qs = trader_qs.filter(created_at=created_at)
+                hall_qs = hall_qs.filter(created_at=created_at)
+            if customer:
+                trader_qs = trader_qs.filter(customer__name__icontains=customer)
+                hall_qs = hall_qs.filter(customer__name__icontains=customer)
         contract_list = list(trader_qs) + list(hall_qs)
         return contract_list
     
@@ -64,10 +64,10 @@ class SalesListView(AdminLoginRequiredMixin, TemplateView):
         contract_list = self.get_contract_list()
         for contract in contract_list:
             writer.writerow([
-                contract.contract_id, contract.created_at, _('Income'), '課税売上10%', contract.taxed_total, contract.customer.name
+                contract.contract_id, contract.created_at, _('Income'), FEE_SALES, contract.taxed_total, contract.customer.name
             ])
             writer.writerow([
-                contract.contract_id, contract.created_at, None, '非課売上', contract.insurance_fee, contract.customer.name
+                contract.contract_id, contract.created_at, None, NO_FEE_SALES, contract.insurance_fee, contract.customer.name
             ])
         return response
 
@@ -78,22 +78,20 @@ class PurchasesListView(AdminLoginRequiredMixin, TemplateView):
     def get_contract_list(self):
         trader_qs = TraderPurchasesContract.objects.all()
         hall_qs = HallPurchasesContract.objects.all()
-        params = self.request.GET.copy()
-        for k, v in params.items():
-            if v:
-                if k == "contract_id":
-                    trader_qs = trader_qs.filter(contract_id__icontains=v)
-                    hall_qs = hall_qs.filter(contract_id__icontains=v)
-                elif k == 'created_at':
-                    try:
-                        v = datetime.datetime.strptime(v, '%Y-%m-%d').date()
-                    except ValueError:
-                        v = datetime.datetime.strptime(v, '%Y/%m/%d').date()
-                    trader_qs = trader_qs.filter(created_at=v)
-                    hall_qs = hall_qs.filter(created_at=v)
-                elif k == 'customer':
-                    trader_qs = trader_qs.filter(customer__name__icontains=v)
-                    hall_qs = hall_qs.filter(customer__name__icontains=v)
+        search_form = SearchForm(self.request.GET)
+        if search_form.is_valid():
+            contract_id = search_form.cleaned_data.get('contract_id')
+            created_at = search_form.cleaned_data.get('created_at')
+            customer = search_form.cleaned_data.get('customer')
+            if contract_id:
+                trader_qs = trader_qs.filter(contract_id__icontains=contract_id)
+                hall_qs = hall_qs.filter(contract_id__icontains=contract_id)
+            if created_at:
+                trader_qs = trader_qs.filter(created_at=created_at)
+                hall_qs = hall_qs.filter(created_at=created_at)
+            if customer:
+                trader_qs = trader_qs.filter(customer__name__icontains=customer)
+                hall_qs = hall_qs.filter(customer__name__icontains=customer)
         contract_list = list(trader_qs) + list(hall_qs)
         return contract_list
     
@@ -124,9 +122,9 @@ class PurchasesListView(AdminLoginRequiredMixin, TemplateView):
         contract_list = self.get_contract_list()
         for contract in contract_list:
             writer.writerow([
-                contract.contract_id, contract.created_at, _('Expense'), '課対仕入10%', contract.taxed_total, contract.customer.name
+                contract.contract_id, contract.created_at, _('Expense'), FEE_PURCHASES, contract.taxed_total, contract.customer.name
             ])
             writer.writerow([
-                contract.contract_id, contract.created_at, None, '非課仕入', contract.insurance_fee, contract.customer.name
+                contract.contract_id, contract.created_at, None, NO_FEE_PURCHASES, contract.insurance_fee, contract.customer.name
             ])
         return response

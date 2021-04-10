@@ -8,10 +8,10 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
-from contracts.models import *
-from contracts.utilities import *
-from .filters import *
-from .forms import *
+from contracts.models import ContractProduct, InventoryProduct
+from contracts.utilities import generate_random_number
+from .filters import ProductFilter
+from .forms import ListingSearchForm, ProductForm
 
 
 class SalesListView(AdminLoginRequiredMixin, ListView):
@@ -26,34 +26,32 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
             Q(content_type_id=trader_class_id) |
             Q(content_type_id=hall_class_id)
         ).order_by('-pk')
-        params = self.request.GET.copy()
-        for k, v in params.items():
-            if v:
-                if k == "contract_id":
-                    queryset = queryset.filter(
-                        Q(trader_sales_contract__contract_id__icontains=v) |
-                        Q(hall_sales_contract__contract_id__icontains=v)
-                    )
-                elif k == 'created_at':
-                    # Or we can implement the below logic using self.request.LANGUAGE_CODE
-                    # if the current language is ja. but let's use try/catch.
-                    try:
-                        v = datetime.datetime.strptime(v, '%Y-%m-%d').date()
-                    except ValueError:
-                        v = datetime.datetime.strptime(v, '%Y/%m/%d').date()
-                    queryset = queryset.filter(
-                        Q(trader_sales_contract__created_at=v) |
-                        Q(hall_sales_contract__created_at=v)
-                    )
-                elif k == 'customer':
-                    queryset = queryset.filter(
-                        Q(trader_sales_contract__customer__name__icontains=v) |
-                        Q(hall_sales_contract__customer__name__icontains=v)
-                    )
-                elif k == 'name':
-                    queryset = queryset.filter(Q(product__name__icontains=v))
-                elif k == 'inventory_status':
-                    queryset = queryset.filter(Q(status=v))
+        search_form = ListingSearchForm(self.request.GET)
+        if search_form.is_valid():
+            contract_id = search_form.cleaned_data.get('contract_id')
+            created_at =  search_form.cleaned_data.get('created_at')
+            customer = search_form.cleaned_data.get('customer')
+            name = search_form.cleaned_data.get('name')
+            inventory_status = search_form.cleaned_data.get('inventory_status')
+            if contract_id:
+                queryset = queryset.filter(
+                    Q(trader_sales_contract__contract_id__icontains=contract_id) |
+                    Q(hall_sales_contract__contract_id__icontains=contract_id)
+                )
+            if created_at:
+                queryset = queryset.filter(
+                    Q(trader_sales_contract__created_at=created_at) |
+                    Q(hall_sales_contract__created_at=created_at)
+                )
+            if customer:
+                queryset = queryset.filter(
+                    Q(trader_sales_contract__customer__name__icontains=customer) |
+                    Q(hall_sales_contract__customer__name__icontains=customer)
+                )
+            if name:
+                queryset = queryset.filter(Q(product__name__icontains=name))
+            if inventory_status:
+                queryset = queryset.filter(Q(status=inventory_status))
         return queryset.order_by('-pk')
     
     def post(self, request, *args, **kwargs):
@@ -109,32 +107,32 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
             Q(content_type_id=trader_class_id) |
             Q(content_type_id=hall_class_id)
         ).order_by('-pk')
-        params = self.request.GET.copy()
-        for k, v in params.items():
-            if v:
-                if k == "contract_id":
-                    queryset = queryset.filter(
-                        Q(trader_purchases_contract__contract_id__icontains=v) |
-                        Q(hall_purchases_contract__contract_id__icontains=v)
-                    )
-                elif k == 'created_at':
-                    try:
-                        v = datetime.datetime.strptime(v, '%Y-%m-%d').date()
-                    except ValueError:
-                        v = datetime.datetime.strptime(v, '%Y/%m/%d').date()
-                    queryset = queryset.filter(
-                        Q(trader_purchases_contract__created_at=v) |
-                        Q(hall_purchases_contract__created_at=v)
-                    )
-                elif k == 'customer':
-                    queryset = queryset.filter(
-                        Q(trader_purchases_contract__customer__name__icontains=v) |
-                        Q(hall_purchases_contract__customer__name__icontains=v)
-                    )
-                elif k == 'name':
-                    queryset = queryset.filter(Q(product__name__icontains=v))
-                elif k == 'inventory_status':
-                    queryset = queryset.filter(Q(status=v))
+        search_form = ListingSearchForm(self.request.GET)
+        if search_form.is_valid():
+            contract_id = search_form.cleaned_data.get('contract_id')
+            created_at =  search_form.cleaned_data.get('created_at')
+            customer = search_form.cleaned_data.get('customer')
+            name = search_form.cleaned_data.get('name')
+            inventory_status = search_form.cleaned_data.get('inventory_status')
+            if contract_id:
+                queryset = queryset.filter(
+                    Q(trader_purchases_contract__contract_id__icontains=contract_id) |
+                    Q(hall_purchases_contract__contract_id__icontains=contract_id)
+                )
+            if created_at:
+                queryset = queryset.filter(
+                    Q(trader_purchases_contract__created_at=created_at) |
+                    Q(hall_purchases_contract__created_at=created_at)
+                )
+            if customer:
+                queryset = queryset.filter(
+                    Q(trader_purchases_contract__customer__name__icontains=customer) |
+                    Q(hall_purchases_contract__customer__name__icontains=customer)
+                )
+            if name:
+                queryset = queryset.filter(Q(product__name__icontains=name))
+            if inventory_status:
+                queryset = queryset.filter(Q(status=inventory_status))
         return queryset.order_by('-pk')
     
     def post(self, request, *args, **kwargs):
@@ -185,15 +183,7 @@ class InventoryListView(AdminLoginRequiredMixin, ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        params = self.request.GET.copy()
-        if params.get('purchase_date'):
-            purchase_date = params.get('purchase_date')
-            try:
-                purchase_date = datetime.datetime.strptime(purchase_date, '%Y-%m-%d').date()
-            except ValueError:
-                purchase_date = datetime.datetime.strptime(purchase_date, '%Y/%m/%d').date()
-            params['purchase_date'] = purchase_date
-        return ProductFilter(params, queryset=self.queryset).qs.order_by('pk')
+        return ProductFilter(self.request.GET, queryset=self.queryset).qs.order_by('pk')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -1,11 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-TYPE_CHOICES = (
-    ('P', _('Pachinko')),
-    ('S', _('Slot'))
-)
-
 POSTAL_CODE = '537―0021'
 ADDRESS = '大阪府大阪市東成区東中本2丁目4―15'
 COMPANY_NAME = 'バッジオ株式会社'
@@ -18,6 +13,47 @@ P_SENSOR_NUMBER = '8240-2413-3628'
 INPUT_FORMATS = ['%Y/%m/%d', '%m/%d/%Y']
 THRESHOLD_PRICE = 100000
 SECURE_PAYMENT = 'あんしん決済'
+NO_FEE_SALES = '非課売上'
+FEE_SALES = '課税売上10%'
+NO_FEE_PURCHASES = '非課仕入'
+FEE_PURCHASES = '課対仕入10%'
+
+SHIPPING_METHOD_CHOICES = (
+    ('D', _('Delivery')),
+    ('R', _('Receipt')),
+    ('C', _('ID Change')),
+    ('B', _('* Blank')),
+)
+
+PAYMENT_METHOD_CHOICES = (
+    ('TR', _('Transfer')),
+    ('CH', _('Check')),
+    ('BL', _('Bill')),
+    ('CA', _('Cash')),
+)
+
+PRODUCT_TYPE_CHOICES = (
+    ('M', _('Main body')),
+    ('F', _('Frame')),
+    ('C', _('Cell')),
+    ('N', _('Nail sheet')),
+)
+
+ITEM_CHOICES = (
+    ('P', _('Product')),
+    ('D', _('Document'))
+)
+
+STOCK_CHOICES = (
+    ('D', _('Done')),
+    ('P', _('Pending'))
+)
+
+TYPE_CHOICES = (
+    ('P', _('Pachinko')),
+    ('S', _('Slot'))
+)
+
 
 class MasterData(models.Model):
     name = models.CharField(max_length=200)
@@ -81,7 +117,3 @@ class InventoryProduct(models.Model):
     price = models.IntegerField()
     stock = models.IntegerField()
     amount = models.IntegerField()
-
-    # @property
-    # def amount(self):
-    #     return self.quantity * self.price

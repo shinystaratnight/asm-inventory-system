@@ -94,7 +94,7 @@
 								<td>{{ contract.contract_id }}</td>
 								<td>{{ contract.created_at }}</td>
 								<td>{% trans "Income" %}</td>
-								<td>課税売上10%</td>
+								<td>{{ fee_sales }}</td>
 								<td>{{ contract.taxed_total }}</td>
 								<td>{{ contract.customer.name }}</td>
 							</tr>
@@ -102,7 +102,7 @@
 								<td>{{ contract.contract_id }}</td>
 								<td>{{ contract.created_at }}</td>
 								<td></td>
-								<td>非課売上</td>
+								<td>{{ no_fee_sales }}</td>
 								<td>{{ contract.insurance_fee }}</td>
 								<td>{{ contract.customer.name }}</td>
 							</tr>

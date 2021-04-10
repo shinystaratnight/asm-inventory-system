@@ -4,36 +4,6 @@ from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKe
 from django.utils.translation import gettext_lazy as _
 from masterdata.models import *
 
-SHIPPING_METHOD_CHOICES = (
-    ('D', _('Delivery')),
-    ('R', _('Receipt')),
-    ('C', _('ID Change')),
-    ('B', _('* Blank')),
-)
-
-PAYMENT_METHOD_CHOICES = (
-    ('TR', _('Transfer')),
-    ('CH', _('Check')),
-    ('BL', _('Bill')),
-    ('CA', _('Cash')),
-)
-
-PRODUCT_TYPE_CHOICES = (
-    ('M', _('Main body')),
-    ('F', _('Frame')),
-    ('C', _('Cell')),
-    ('N', _('Nail sheet')),
-)
-
-ITEM_CHOICES = (
-    ('P', _('Product')),
-    ('D', _('Document'))
-)
-
-STOCK_CHOICES = (
-    ('D', _('Done')),
-    ('P', _('Pending'))
-)
 
 class ContractProduct(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)

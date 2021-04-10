@@ -121,7 +121,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .done(function() {
-            window.location.href = url;
+            // Remove URL parameters to avoid date format inconsistency b/w English and Japanese
+            window.location.href = url.split('?')[0];
         });
     });
 

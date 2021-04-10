@@ -7,7 +7,9 @@ from masterdata.models import *
 
 class ProductFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    purchase_date = django_filters.CharFilter(widget=forms.TextInput(attrs={'class': 'form-control datepicker-nullable'}))
+    purchase_date = django_filters.DateFilter(
+        input_formats=INPUT_FORMATS,
+        widget=forms.TextInput(attrs={'class': 'form-control datepicker-nullable'}))
     supplier = django_filters.CharFilter(lookup_expr='icontains', widget=forms.TextInput(attrs={'class': 'form-control'}))
     person_in_charge = django_filters.CharFilter(widget=forms.TextInput(attrs={'class': 'form-control'}))
     stock = django_filters.NumberFilter(widget=forms.TextInput(attrs={'class': 'form-control'}))

@@ -7,7 +7,9 @@ from masterdata.models import (
     FAX,
     TRANSFER_ACCOUNT,
     REFAX,
-    P_SENSOR_NUMBER
+    P_SENSOR_NUMBER,
+
+    FEE_SALES, FEE_PURCHASES, NO_FEE_PURCHASES, NO_FEE_SALES
 )
 
 def seller(request):
@@ -22,4 +24,9 @@ def seller(request):
         'seller_payee_account': TRANSFER_ACCOUNT,
         'seller_reply_fax': REFAX,
         'seller_p_sensor_number': P_SENSOR_NUMBER,
+
+        'fee_sales': FEE_SALES,
+        'no_fee_sales': NO_FEE_SALES,
+        'fee_purchases': FEE_PURCHASES,
+        'no_fee_purchases': NO_FEE_PURCHASES,
     }
