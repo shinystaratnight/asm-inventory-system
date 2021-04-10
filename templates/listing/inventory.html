@@ -428,7 +428,6 @@
 						success: function (result) {
 							$('#modal_edit_data input[name="name"]').val(result.name);
 							$('#modal_edit_data input[name="identifier"]').val(result.identifier);
-							// $('#modal_edit_data input[name="purchase_date"]').val('2021/04/09');
 							$('#modal_edit_data input[name="purchase_date"]').val(result.purchase_date);
 							$('#modal_edit_data input[name="supplier"]').val(result.supplier);
 							$('#modal_edit_data input[name="person_in_charge"]').val(result.person_in_charge);
@@ -436,8 +435,9 @@
 							$('#modal_edit_data input[name="price"]').val(result.price);
 							$('#modal_edit_data input[name="stock"]').val(result.stock);
 							$('#modal_edit_data input[name="amount"]').val(result.amount);
-							console.log(result.purchase_date);
-							// $('#modal_edit_data input[name="purchase_date"]').datepicker('setDate', '2021/04/09');
+							$('#modal_edit_data input[name="purchase_date"]').daterangepicker({
+								singleDatePicker: true
+							});
 							$('#modal_edit_data').modal('toggle');
 						}
 					});

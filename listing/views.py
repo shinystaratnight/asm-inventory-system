@@ -248,15 +248,10 @@ class InventoryProductDetailAjaxView(AdminLoginRequiredMixin, View):
         if self.request.method == 'POST' and self.request.is_ajax():
             id = self.request.POST.get('id')
             product = InventoryProduct.objects.get(id=id)
-            language = self.request.LANGUAGE_CODE
-            if language == 'en':
-                purchase_date_str = date_dump(product.purchase_date, '%m/%d/%Y')
-            else:
-                purchase_date_str = date_dump(product.purchase_date, '%Y/%m/%d')
             return JsonResponse({
                 'name': product.name,
                 'identifier': product.identifier,
-                'purchase_date': purchase_date_str,
+                'purchase_date': date_dump(product.purchase_date, self.request.LANGUAGE_CODE),
                 'supplier': product.supplier,
                 'person_in_charge': product.person_in_charge,
                 'quantity': product.quantity,
