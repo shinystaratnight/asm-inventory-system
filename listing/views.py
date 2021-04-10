@@ -9,7 +9,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
 from contracts.models import ContractProduct, InventoryProduct
-from contracts.utilities import generate_random_number
+from contracts.utilities import generate_random_number, date_dump
 from .filters import ProductFilter
 from .forms import ListingSearchForm, ProductForm
 
@@ -248,10 +248,15 @@ class InventoryProductDetailAjaxView(AdminLoginRequiredMixin, View):
         if self.request.method == 'POST' and self.request.is_ajax():
             id = self.request.POST.get('id')
             product = InventoryProduct.objects.get(id=id)
+            language = self.request.LANGUAGE_CODE
+            if language == 'en':
+                purchase_date_str = date_dump(product.purchase_date, '%m/%d/%Y')
+            else:
+                purchase_date_str = date_dump(product.purchase_date, '%Y/%m/%d')
             return JsonResponse({
                 'name': product.name,
                 'identifier': product.identifier,
-                'purchase_date': product.purchase_date,
+                'purchase_date': purchase_date_str,
                 'supplier': product.supplier,
                 'person_in_charge': product.person_in_charge,
                 'quantity': product.quantity,
