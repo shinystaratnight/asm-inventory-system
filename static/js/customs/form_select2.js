@@ -67,17 +67,21 @@ document.addEventListener('DOMContentLoaded', function() {
         var tel = customer.tel;
         var fax = customer.fax;
 
-        $('input[name="frigana"]').val(frigana);
-        $('input[name="postal_code"]').val(postal_code);
-        $('input[name="address"]').val(address);
-        $('input[name="tel"]').val(tel);
-        $('input[name="fax"]').val(fax);
-
-        $('span.buyer-postal-code').text(postal_code);
-        $('span.buyer-address').text(address);
-        $('h4.buyer-company').text(customer.name);
-        $('span.buyer-tel').text(tel);
-        $('span.buyer-fax').text(fax);
+        if (frigana) {
+            // updates the values only when admin selects the customer manually
+            $('input[name="frigana"]').val(frigana);
+            $('input[name="postal_code"]').val(postal_code);
+            $('input[name="address"]').val(address);
+            $('input[name="tel"]').val(tel);
+            $('input[name="fax"]').val(fax);
+    
+            $('span.buyer-postal-code').text(postal_code);
+            $('span.buyer-address').text(address);
+            $('h4.buyer-company').text(customer.name);
+            $('span.buyer-tel').text(tel);
+            $('span.buyer-fax').text(fax);
+        }
+        
     });
     // End of select customer select2 initialization and formatting
 

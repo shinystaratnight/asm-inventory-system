@@ -57,7 +57,7 @@ class CheckTaxableAjaxView(AdminLoginRequiredMixin, View):
         if self.request.method == 'POST' and self.request.is_ajax():
             id = self.request.POST.get('id')
             document = Document.objects.get(id=id)
-            return JsonResponse({'taxed': int(document.taxed)}, status=200)
+            return JsonResponse({'taxable': int(document.taxable)}, status=200)
         return JsonResponse({'success': False}, status=400)
 
 
@@ -70,17 +70,6 @@ class TraderSalesValidateAjaxView(AdminLoginRequiredMixin, View):
             contract_form = TraderSalesContractForm(data)
             if not contract_form.is_valid():
                 return JsonResponse({'success': False}, status=200)
-            # Check the validity of product formset
-            product_formset = ProductFormSet(data, prefix='product')
-            if not product_formset.is_valid():
-                print(product_formset.errors)
-                print(product_formset.non_form_errors())
-                return JsonResponse({'success': False}, status=200)
-            document_formset = DocumentFormSet(data, prefix='document')
-            if not document_formset.is_valid():
-                print(document_formset.errors)
-                print(document_formset.non_form_errors())
-                return JsonResponse({'success': False}, status=200)
             # If shipping method is receipt, salessenderform validation should be checked
             if contract_form.cleaned_data.get('shipping_method') == 'R':
                 product_sender_form = TraderSalesProductSenderForm(self.request.POST)
@@ -89,6 +78,13 @@ class TraderSalesValidateAjaxView(AdminLoginRequiredMixin, View):
                     pass
                 else:
                     return JsonResponse({'success': False}, status=200)
+            # Check the validity of product formset
+            product_formset = ProductFormSet(data, prefix='product')
+            if not product_formset.is_valid():
+                return JsonResponse({'success': False}, status=200)
+            document_formset = DocumentFormSet(data, prefix='document')
+            if not document_formset.is_valid():
+                return JsonResponse({'success': False}, status=200)
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'success': False}, status=400)
 
@@ -103,24 +99,6 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
         contract_form = TraderSalesContractForm(self.request.POST)
         if contract_form.is_valid():
             contract = contract_form.save()
-            
-        product_formset = ProductFormSet(
-            self.request.POST,
-            form_kwargs={'contract_id': contract.id, 'contract_class': 'TraderSalesContract'},
-            prefix='product'
-        )
-        for form in product_formset.forms:
-            if form.is_valid():
-                form.save()
-
-        document_formset = DocumentFormSet(
-            self.request.POST,
-            form_kwargs={'contract_id': contract.id, 'contract_class': 'TraderSalesContract'},
-            prefix='document'
-        )
-        for form in document_formset.forms:
-            if form.is_valid():
-                form.save()
         
         shipping_method = contract_form.cleaned_data.get('shipping_method')
         if shipping_method == 'R':
@@ -130,6 +108,24 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
             document_sender_form = TraderSalesDocumentSenderForm(self.request.POST, contract_id=contract.id)
             if document_sender_form.is_valid():
                 document_sender_form.save()
+        
+        product_formset = ProductFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'TraderSalesContract'},
+            prefix='product'
+        )
+        for form in product_formset.forms:
+            if form.is_valid():
+                form.save()
+        
+        document_formset = DocumentFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'TraderSalesContract'},
+            prefix='document'
+        )
+        for form in document_formset.forms:
+            if form.is_valid():
+                form.save()
         return redirect('listing:sales-list')
     
     def get_context_data(self, **kwargs):

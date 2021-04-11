@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from masterdata.models import (
     Customer, Hall, Sender, Product, Document, DocumentFee, InventoryProduct,
     PRODUCT_TYPE_CHOICES, STOCK_CHOICES, SHIPPING_METHOD_CHOICES,
-    PAYMENT_METHOD_CHOICES, ITEM_CHOICES,
+    PAYMENT_METHOD_CHOICES, ITEM_CHOICES, THRESHOLD_PRICE,
 )
 
 
@@ -27,7 +27,8 @@ class ContractProduct(models.Model):
     def tax(self):
         return int(self.amount * 0.1)
 
-    def get_insurance_fee(self):
+    @property
+    def fee(self):
         price = round(self.price / 1000) * 1000
         if price > THRESHOLD_PRICE:
             return int(200 * self.quantity * (price / THRESHOLD_PRICE))
@@ -48,12 +49,12 @@ class ContractDocument(models.Model):
         return self.quantity * self.price
     
     @property
-    def taxed(self):
-        return self.document.taxed
+    def taxable(self):
+        return self.document.taxable
         
     @property
     def tax(self):
-        if self.taxed:
+        if self.taxable:
             return int(self.amount * 0.1)
         return 0
 
@@ -101,7 +102,7 @@ class TraderContract(models.Model):
         abstract = True
 
     @property
-    def amount(self):
+    def sub_total(self):
         sum = 0
         for product in self.products.all():
             sum += product.amount
@@ -120,18 +121,16 @@ class TraderContract(models.Model):
 
     @property
     def total(self):
-        return self.amount + self.tax + self.fee
+        return self.sub_total + self.tax + self.fee
+    
+    @property
+    def billing_amount(self):
+        return self.total
 
     @property
     def taxed_total(self):
         return self.total - self.fee
     
-    def get_insurance_fee(self):
-        sum = 0
-        for product in self.products.all():
-            sum += product.get_insurance_fee()
-        return sum
-
 
 class TraderSalesContract(TraderContract):
     shipping_method = models.CharField(max_length=1, choices=SHIPPING_METHOD_CHOICES)

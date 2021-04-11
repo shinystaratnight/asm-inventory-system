@@ -101,7 +101,7 @@ class Document(models.Model):
         return self.name
     
     @property
-    def taxed(self):
+    def taxable(self):
         return self.name != SECURE_PAYMENT
 
 

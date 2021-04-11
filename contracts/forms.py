@@ -19,7 +19,7 @@ class ProductForm(forms.Form):
     id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
     product_id = forms.IntegerField(widget=forms.HiddenInput())
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
-    type = forms.ChoiceField(widget=forms.Select(attrs={'class': 'new-selectbox'}), choices=PRODUCT_TYPE_CHOICES)
+    type = forms.ChoiceField(widget=forms.Select(attrs={'class': 'product-type-selectbox'}), choices=PRODUCT_TYPE_CHOICES)
     quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     price = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     tax = forms.IntegerField(widget=forms.HiddenInput(attrs={'disabled': 'disabled'}), required=False)
@@ -34,18 +34,18 @@ class ProductForm(forms.Form):
         super().__init__(*args, **kwargs)
     
     def save(self):
-        contract_class_name = ContentType.objects.get(model=self.contract_class)
-        contract_class = contract_class_name.model_class()
-        contract = contract_class.objects.get(id=self.contract_id)
-        product = Product.objects.get(id=self.cleaned_data.get('product_id'))
         id = self.cleaned_data.get('id', None)
         if id:
             contract_product = ContractProduct.objects.get(id=id)
             contract_product.type = self.cleaned_data.get('type')
             contract_product.quantity = self.cleaned_data.get('quantity')
             contract_product.price = self.cleaned_data.get('price')
-            contract.save()
+            contract_product.save()
         else:
+            contract_class_name = ContentType.objects.get(model=self.contract_class)
+            contract_class = contract_class_name.model_class()
+            contract = contract_class.objects.get(id=self.contract_id)
+            product = Product.objects.get(id=self.cleaned_data.get('product_id'))
             data = {
                 'type': self.cleaned_data.get('type'),
                 'quantity': self.cleaned_data.get('quantity'),
@@ -59,7 +59,7 @@ class ProductForm(forms.Form):
 class DocumentForm(forms.Form):
     id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
     document_id = forms.IntegerField(widget=forms.HiddenInput())
-    taxed = forms.IntegerField(widget=forms.HiddenInput())
+    taxable = forms.IntegerField(widget=forms.HiddenInput())
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
     quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     price = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
@@ -74,17 +74,24 @@ class DocumentForm(forms.Form):
         super().__init__(*args, **kwargs)
     
     def save(self):
-        contract_class_name = ContentType.objects.get(model=self.contract_class)
-        contract_class = contract_class_name.model_class()
-        contract = contract_class.objects.get(id=self.contract_id)
-        document = Document.objects.get(id=self.cleaned_data.get('document_id'))
-        data = {
-            'quantity': self.cleaned_data.get('quantity'),
-            'price': self.cleaned_data.get('price'),
-            'document': document,
-            'content_object': contract,
-        }
-        ContractDocument.objects.create(**data)
+        id = self.cleaned_data.get('id', None)
+        if id:
+            contract_document = ContractDocument.objects.get(id=id)
+            contract_document.quantity = self.cleaned_data.get('quantity')
+            contract_document.price = self.cleaned_data.get('price')
+            contract_document.save()
+        else:
+            contract_class_name = ContentType.objects.get(model=self.contract_class)
+            contract_class = contract_class_name.model_class()
+            contract = contract_class.objects.get(id=self.contract_id)
+            document = Document.objects.get(id=self.cleaned_data.get('document_id'))
+            data = {
+                'quantity': self.cleaned_data.get('quantity'),
+                'price': self.cleaned_data.get('price'),
+                'document': document,
+                'content_object': contract,
+            }
+            ContractDocument.objects.create(**data)
 
 
 class DocumentFeeForm(forms.Form):
@@ -266,8 +273,10 @@ class TraderSalesContractForm(forms.Form):
     memo = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-112-px'}), required=False)
 
     def __init__(self, *args, **kwargs):
-        if kwargs.get('id', None):
+        if kwargs.get('id'):
             self.id = kwargs.pop('id')
+        else:
+            self.id = None
         super().__init__(*args, **kwargs)
 
     def save(self):
@@ -309,6 +318,7 @@ class TraderSalesContractForm(forms.Form):
 
 
 class TraderSalesProductSenderForm(forms.Form):
+    p_id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
     product_sender_id = forms.IntegerField()
     product_sender_address = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-70', 'disabled': 'disabled'}), required=False)
     product_sender_tel = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
@@ -321,16 +331,24 @@ class TraderSalesProductSenderForm(forms.Form):
         super().__init__(*args, **kwargs)
     
     def save(self):
-        data = {
-            'contract': TraderSalesContract.objects.get(id=self.contract_id),
-            'type': 'P',
-            'sender': Sender.objects.get(id=self.cleaned_data.get('sender_id')),
-            'expected_arrival_date': self.cleaned_data.get('expected_arrival_date'),
-        }
-        TraderSalesSender.objects.create(**data)
+        if self.cleaned_data.get('p_id'):
+            contract_sender = TraderSalesSender.objects.get(id=self.cleaned_data.get('p_id'))
+            contract_sender.sender = Sender.objects.get(id=self.cleaned_data.get('product_sender_id'))
+            contract_sender.expected_arrival_date = self.cleaned_data.get('product_expected_arrival_date')
+            contract_sender.save()
+            return contract_sender
+        else:
+            data = {
+                'contract': TraderSalesContract.objects.get(id=self.contract_id),
+                'type': 'P',
+                'sender': Sender.objects.get(id=self.cleaned_data.get('product_sender_id')),
+                'expected_arrival_date': self.cleaned_data.get('product_expected_arrival_date'),
+            }
+            return TraderSalesSender.objects.create(**data)
 
 
 class TraderSalesDocumentSenderForm(forms.Form):
+    d_id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
     document_sender_id = forms.IntegerField()
     document_sender_address = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-70', 'disabled': 'disabled'}), required=False)
     document_sender_tel = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
@@ -343,13 +361,20 @@ class TraderSalesDocumentSenderForm(forms.Form):
         super().__init__(*args, **kwargs)
     
     def save(self):
-        data = {
-            'contract': TraderSalesContract.objects.get(id=self.contract_id),
-            'type': 'D',
-            'sender': Sender.objects.get(id=self.cleaned_data.get('sender_id')),
-            'expected_arrival_date': self.cleaned_data.get('expected_arrival_date'),
-        }
-        TraderSalesSender.objects.create(**data)
+        if self.cleaned_data.get('d_id'):
+            contract_sender = TraderSalesSender.objects.get(id=self.cleaned_data.get('d_id'))
+            contract_sender.sender = Sender.objects.get(id=self.cleaned_data.get('document_sender_id'))
+            contract_sender.expected_arrival_date = self.cleaned_data.get('document_expected_arrival_date')
+            contract_sender.save()
+            return contract_sender
+        else:
+            data = {
+                'contract': TraderSalesContract.objects.get(id=self.contract_id),
+                'type': 'D',
+                'sender': Sender.objects.get(id=self.cleaned_data.get('document_sender_id')),
+                'expected_arrival_date': self.cleaned_data.get('document_expected_arrival_date'),
+            }
+            return TraderSalesSender.objects.create(**data)
 # End of Trader Sales Forms
 
 

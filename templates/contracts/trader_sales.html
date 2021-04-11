@@ -450,8 +450,8 @@
 																	name="{{ documentformset.prefix }}-xx-document_id"
 																	id="id_{{ documentformset.prefix }}-xx-document_id">
 																<input type="hidden"
-																	name="{{ documentformset.prefix }}-xx-taxed"
-																	id="id_{{ documentformset.prefix }}-xx-taxed">
+																	name="{{ documentformset.prefix }}-xx-taxable"
+																	id="id_{{ documentformset.prefix }}-xx-taxable">
 																<input type="hidden" class="form-control"
 																	id="id_{{ documentformset.prefix }}-xx-tax"
 																	name="{{ documentformset.prefix }}-xx-tax"
@@ -612,10 +612,12 @@
 												<select name="product_sender_id" class="selectbox select-sender">
 													<option value="">{% trans 'Select product sender' %}...</option>
 													{% for sender in senders %}
-													<option value="{{ sender.id }}">{{ sender.name }}</option>
+													<option value="{{ sender.id }}"
+													{% if sender.id == product_sender_form.product_sender_id.value %}selected{% endif %}>{{ sender.name }}</option>
 													{% endfor %}
 												</select>
 											</div>
+											{{ product_sender_form.p_id }}
 											<div class="form-group">
 												<label class="control-label">{% trans "Address" %}</label>
 												<div>
@@ -651,10 +653,12 @@
 												<select name="document_sender_id" class="selectbox select-sender">
 													<option value="">{% trans 'Select document sender' %}...</option>
 													{% for sender in senders %}
-													<option value="{{ sender.id }}">{{ sender.name }}</option>
+													<option value="{{ sender.id }}"
+													{% if sender.id == document_sender_form.document_sender_id.value %}selected{% endif %}>{{ sender.name }}</option>
 													{% endfor %}
 												</select>
 											</div>
+											{{ document_sender_form.d_id }}
 											<div class="form-group">
 												<label class="control-label">{% trans "Address" %}</label>
 												<div>
@@ -758,11 +762,13 @@
 
 			<script>
 				$(function () {
-					
-					$(".select-customer").select2("trigger", "select", {
-                        data: { id: "{{contract_form.customer.id}}", text: "{{contract_form.customer.name}}" }
-                    });
 
+					{% if contract_form.customer_id.value %}
+						$(".select-customer").select2("trigger", "select", {
+							data: { id: "{{contract_form.customer_id.value}}", text: "{{customer_name}}" }
+						});	
+					{% endif %}
+					
 					$('#shipping_method').change(function () {
 						var shipping_method = $(this).val();
 						$.ajax({
@@ -802,15 +808,70 @@
 						}
 					});
 
+					var lang = $('input[name="selected-lang"]').val();
+					$('select[name="product_sender_id"]').change(function (e) {
+						var id = $(this).val();
+						var $self = $(this);
+						var $fs = $self.closest('fieldset');
+
+						if (id == "") {
+							$fs.find('textarea[name="product_sender_address"]').val(null);
+							$fs.find('input[name="product_sender_tel"]').val(null);
+							$fs.find('input[name="product_sender_fax"]').val(null);
+							return;
+						}
+						
+						$.ajax({
+							type: 'POST',
+							url: `/${lang}/master/sender/`,
+							data: {
+								id: id,
+							},
+							beforeSend: function(request) {
+								request.setRequestHeader('X-CSRFToken', csrftoken);
+							},
+							success: function (result) {
+								$fs.find('textarea[name="product_sender_address"]').val(result.address);
+								$fs.find('input[name="product_sender_tel"]').val(result.tel);
+								$fs.find('input[name="product_sender_fax"]').val(result.fax);
+							}
+						});
+					});
+
+					$('select[name="document_sender_id"]').change(function (e) {
+						var id = $(this).val();
+						var $self = $(this);
+						var $fs = $self.closest('fieldset');
+
+						if (id == "") {
+							$fs.find('textarea[name="document_sender_address"]').val(null);
+							$fs.find('input[name="document_sender_tel"]').val(null);
+							$fs.find('input[name="document_sender_fax"]').val(null);
+							return;
+						}
+						
+						$.ajax({
+							type: 'POST',
+							url: `/${lang}/master/sender/`,
+							data: {
+								id: id,
+							},
+							beforeSend: function(request) {
+								request.setRequestHeader('X-CSRFToken', csrftoken);
+							},
+							success: function (result) {
+								$fs.find('textarea[name="document_sender_address"]').val(result.address);
+								$fs.find('input[name="document_sender_tel"]').val(result.tel);
+								$fs.find('input[name="document_sender_fax"]').val(result.fax);
+							}
+						});
+					});
+
 					$('button.create-invoice').click( function (e) {
 						$('form').attr('action', "{% url 'contract:trader-sales-invoice' %}");
 						resetMangementForm('product');
 						resetMangementForm('document');
 						$('form').submit();
-					});
-
-					$("select.new-selectbox").selectBoxIt({
-						autoWidth: false
 					});
 
 				});

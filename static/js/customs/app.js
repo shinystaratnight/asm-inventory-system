@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 var $tr = $(this);
                 var amount = parseInt($tr.find('input[name$="-amount"]').val());
                 sub_total += amount;
-                var tax = parseInt($tr.find('input[name$="-amount"]').val());
+                var tax = parseInt($tr.find('input[name$="-tax"]').val());
                 tax_sum += tax;
                 if ($tr.find('input[name$="-fee"]').length) {
                     var fee = parseInt($tr.find('input[name$="-fee"]').val());
@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 $(this).attr('id', 'id_' + el_name);
             });
             index++;
-            $tr.find('select.new-selectbox').selectBoxIt('destroy');
-            $tr.find('select.new-selectbox').selectBoxIt({
+            $tr.find('select.product-type-selectbox').selectBoxIt('destroy');
+            $tr.find('select.product-type-selectbox').selectBoxIt({
                 autoWidth: false
             });
         });
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
         $(productName).val(product);
 
         // after population, make the selectbox inside cloned tr work.
-        $newTR.find("select").addClass('new-selectbox').selectBoxIt({
+        $newTR.find("select").addClass('product-type-selectbox').selectBoxIt({
             autoWidth: false
         });
     });
@@ -188,8 +188,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 request.setRequestHeader('X-CSRFToken', csrftoken);
             },
             success: function (result) {
-                var taxed = result.taxed;
-                $(`#id_${document_prefix}-${formNum}-taxed`).val(taxed);
+                var taxable = result.taxable;
+                $(`#id_${document_prefix}-${formNum}-taxable`).val(taxable);
             }
         });
     });
@@ -273,9 +273,9 @@ document.addEventListener('DOMContentLoaded', function() {
         var price = $tr.find('input[name$="-price"]').val();
         var quantity = $tr.find('input[name$="-quantity"]').val();
         var amount = parseInt(price) * parseInt(quantity);
-        var taxed = parseInt($tr.find('input[name$="-taxed"]').val());
+        var taxable = parseInt($tr.find('input[name$="-taxable"]').val());
         var tax = 0;
-        if (taxed) tax = parseInt(amount * 0.1);
+        if (taxable) tax = parseInt(amount * 0.1);
         $tr.find('input[name$="-amount"]').val(amount);
         $tr.find('input[name$="-tax"]').val(tax);
         calculateFees();
@@ -308,40 +308,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (this.checked) $('#id_fee').prop('readonly', false); else $('#id_fee').prop('readonly', true);
     });
 
-    $('select.select-sender').change(function (e) {
-        var id = $(this).val();
-        var $self = $(this);
-        var $fs = $self.closest('fieldset');
-
-        if (id == "") {
-            $fs.find('textarea.address').val(null);
-            $fs.find('input.tel').val(null);
-            $fs.find('input.fax').val(null);
-            return;
-        }
-        
-        $.ajax({
-            type: 'POST',
-            url: `/${lang}/master/sender/`,
-            data: {
-                id: id,
-            },
-            beforeSend: function(request) {
-                request.setRequestHeader('X-CSRFToken', csrftoken);
-            },
-            success: function (result) {
-                $fs.find('textarea.address').val(result.address);
-                $fs.find('input.tel').val(result.tel);
-                $fs.find('input.fax').val(result.fax);
-            }
-        });
-    });
-
     // Form validator function for trader sales contract page
     $('form[name="trader_sales"] button[type="submit"]').click( function (e) {
         e.preventDefault();
         var $form = $(this).closest('form');
-        $form.attr('action', `/${lang}/contract/trader-sales/`);
         // To prevent the cached total_form_num hidden value from being sent to the server,
         // reset it to zero if no items has been added.
         resetMangementForm(product_prefix);
@@ -360,6 +330,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     $('#modal_trader_sales_error').modal('toggle');
                     return false;
                 }
+                $form.attr('action', $(location).attr('href'));
                 $form.submit();
             }
         });

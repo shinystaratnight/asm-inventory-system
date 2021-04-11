@@ -13,11 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // ------------------------------
 
     // Basic initialization
-    $(".selectbox").selectBoxIt({
+    $(".selectbox, .product-type-selectbox").selectBoxIt({
         autoWidth: false
     });
 
-
+   
     // Other additions
     // ------------------------------
 
