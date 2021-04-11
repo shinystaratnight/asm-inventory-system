@@ -46,7 +46,7 @@
 									<div class="col-3 text-left d-flex align-items-center">
 										<label class="control-label mb-0">No.</label>
 										<div class="col-6">
-											<input type="text" class="form-control border-none" name="contract_id" value="{{ contract_id }}" readonly>
+											{{ contract_form.contract_id }}
 										</div>
 									</div>
 									<div class="col-6 d-flex align-items-center justify-content-center">
@@ -58,14 +58,14 @@
 											<span class="contract-date-label">{% trans "Created date" %}</span>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-												<input type="text" name="created_at" class="form-control daterange-single">
+												{{ contract_form.created_at }}
 											</div>
 										</div>
 										<div class="d-flex align-items-center justify-content-end mt-3">
 											<span class="contract-date-label">{% trans "Updated date" %}</span>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-												<input type="text" name="updated_at" class="form-control daterange-single">
+												{{ contract_form.updated_at }}
 											</div>
 										</div>
 									</div>
@@ -93,7 +93,7 @@
 													<label class="control-label w-18-5 mt-auto pl-10-px"></label>
 													<div class="col-9">
 														<div class="has-feedback">
-															<input type="text" name="manager" class="form-control" placeholder="">
+															{{ contract_form.manager }}
 															<div class="form-control-feedback w-50-px">
 																<span>{% trans "Mr." %}</span>
 															</div>
@@ -105,7 +105,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label col-4 mt-auto text-right">{% trans "Frigana" %}</label>
 													<div class="col-8">
-														<input type="text" name="frigana" class="form-control" disabled>
+														{{ contract_form.frigana }}
 													</div>
 												</div>
 											</div>
@@ -116,7 +116,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label col-3 mt-auto">{% trans "Postal code" %}</label>
 													<div class="col-7">
-														<input type="text" name="postal_code" class="form-control" disabled>
+														{{ contract_form.postal_code }}
 													</div>
 												</div>
 											</div>
@@ -127,7 +127,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label w-12-5 col-sm-3 mt-auto">{% trans "Address" %}</label>
 													<div class="col-6">
-														<input type="text" name="address" class="form-control" disabled>
+														{{ contract_form.address }}
 													</div>
 												</div>
 											</div>
@@ -138,7 +138,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label col-3 mt-auto">{% trans "TEL" %}</label>
 													<div class="col-7">
-														<input type="text" name="tel" class="form-control" disabled>
+														{{ contract_form.tel }}
 													</div>
 												</div>
 											</div>										
@@ -146,7 +146,7 @@
 												<div class="form-group d-flex row">
 													<label class="control-label col-2 mt-auto text-center">{% trans "FAX" %}</label>
 													<div class="col-8">
-														<input type="text" name="fax" class="form-control" disabled>
+														{{ contract_form.fax }}
 													</div>
 												</div>
 											</div>
@@ -166,7 +166,7 @@
 												<div class="w-100 d-flex align-items-center">
 													<label class="control-label col-5 mt-auto">{% trans "Person in charge" %}</label>
 													<div class="col-7">
-														<input type="text" name="person_in_charge" class="form-control person_in_charge" value="">
+														{{ contract_form.person_in_charge }}
 													</div>
 												</div>
 											</div>
@@ -198,6 +198,7 @@
 													<th>{% trans "Quantity" %}</th>
 													<th>{% trans "Price" %}</th>
 													<th>{% trans "Amount" %}</th>
+													<th>{% trans "Action" %}</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -211,12 +212,11 @@
 																{% for hidden in form.hidden_fields %}
 																	{{ hidden }}
 																{% endfor %}
-																<input type="text" 
-																	id="id_{{ productformset.prefix }}-{{ forloop.parentloop.counter0 }}-name"
-																	class="form-control" disabled="">
+																{{ field }}
 															</div>
 														</div>
 													</td>
+													{% elif forloop.counter == 2 %}
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-10 px-0">
@@ -224,7 +224,15 @@
 															</div>
 														</div>
 													</td>
-													{% elif forloop.counter == 2 %}
+													{% elif forloop.counter == 3 %}
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																{{ field }}
+															</div>
+														</div>
+													</td>
+													{% elif forloop.counter == 4 %}
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-7 px-0">
@@ -243,11 +251,8 @@
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-7 px-0">
-																<input type="text"
-																	class="form-control"
-																	disabled=""
-																	id="id_{{ productformset.prefix }}-{{ forloop.parentloop.counter0 }}-amount"
-																	value="0">
+																<a href="#" class="delete-action" name="delete_data">
+																	<i class="icon-minus-circle2 ml-3 color-danger"></i></a>
 															</div>
 														</div>
 													</td>
@@ -256,7 +261,7 @@
 												</tr>
 												{% empty %}
 												<tr class="odd">
-													<td class="text-center" colspan="5" valign="top">{% trans "No product has been added." %}</td>
+													<td class="text-center" colspan="6" valign="top">{% trans "No product has been added." %}</td>
 												</tr>
 												{% endfor %}
 
@@ -266,21 +271,33 @@
 															<div class="px-0">
 																<input type="hidden"
 																	name="{{ productformset.prefix }}-xx-id"
-																	id="id_{{ productformset.prefix }}-xx-id"
-																	autocomplete="off">
+																	id="id_{{ productformset.prefix }}-xx-id">
+																<input type="hidden"
+																	name="{{ productformset.prefix }}-xx-product_id"
+																	id="id_{{ productformset.prefix }}-xx-product_id">
+																<input type="hidden"
+																	class="form-control"
+																	name="{{ productformset.prefix }}-xx-tax"
+																	id="id_{{ productformset.prefix }}-xx-tax"
+																	disabled="">
+																<input type="hidden"
+																	class="form-control"
+																	name="{{ productformset.prefix }}-xx-fee"
+																	id="id_{{ productformset.prefix }}-xx-fee"
+																	disabled="">
 																<input type="text"
 																	class="form-control"
-																	disabled=""
-																	id="id_{{ productformset.prefix }}-xx-name">
+																	name="{{ productformset.prefix }}-xx-name"
+																	id="id_{{ productformset.prefix }}-xx-name"
+																	disabled="">
 															</div>
 														</div>
 													</td>
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-10 px-0">
-																<select name="{{ productformset.prefix }}-xx-type"
-																class="new-selectbox"
-																id="id_{{ productformset.prefix }}-xx-type">
+																<select id="id_{{ productformset.prefix }}-xx-type"
+																	name="{{ productformset.prefix }}-xx-type">
 																	<option value="M">{% trans "Main body" %}</option>
 																	<option value="F">{% trans "Frame" %}</option>
 																	<option value="C">{% trans "Cell" %}</option>
@@ -294,8 +311,8 @@
 															<div class="col-lg-7 px-0">
 																<input type="number"
 																	name="{{ productformset.prefix }}-xx-quantity"
-																	class="form-control"
 																	id="id_{{ productformset.prefix }}-xx-quantity"
+																	class="form-control"
 																	value="0">
 															</div>
 														</div>
@@ -316,9 +333,18 @@
 															<div class="col-lg-7 px-0">
 																<input type="text"
 																	class="form-control"
-																	disabled=""
+																	name="{{ productformset.prefix }}-xx-amount"
 																	id="id_{{ productformset.prefix }}-xx-amount"
-																	value="0">
+																	value="0"
+																	disabled="">
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																<a href="#" class="delete-action" name="delete_data">
+																	<i class="icon-minus-circle2 ml-3 color-danger"></i></a>
 															</div>
 														</div>
 													</td>
@@ -354,6 +380,7 @@
 													<th>{% trans "Quantity" %}</th>
 													<th>{% trans "Price" %}</th>
 													<th>{% trans "Amount" %}</th>
+													<th>{% trans "Action" %}</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -367,12 +394,19 @@
 																{% for hidden in form.hidden_fields %}
 																	{{ hidden }}
 																{% endfor %}
-																<input type="text"
-																	id="id_{{ documentformset.prefix }}-{{ forloop.parentloop.counter0 }}-name"
-																	class="form-control" disabled="">
+																{{ field }}
 															</div>
 														</div>
 													</td>
+													{% elif forloop.counter == 2 %}
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-6 px-0">
+																{{ field }}
+															</div>
+														</div>
+													</td>
+													{% elif forloop.counter == 3 %}
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-6 px-0">
@@ -383,7 +417,7 @@
 													{% elif forloop.last %}
 													<td>
 														<div class="form-group mb-0">
-															<div class="col-lg-6 px-0">
+															<div class="col-lg-7 px-0">
 																{{ field }}
 															</div>
 														</div>
@@ -391,10 +425,8 @@
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-7 px-0">
-																<input type="text"
-																	class="form-control"
-																	id="id_{{ documentformset.prefix }}-{{ forloop.parentloop.counter0 }}-amount"
-																	value="70000">
+																<a href="#" class="delete-action" name="delete_data">
+																	<i class="icon-minus-circle2 ml-3 color-danger"></i></a>
 															</div>
 														</div>
 													</td>
@@ -413,22 +445,30 @@
 															<div class="col-lg-7 px-0">
 																<input type="hidden"
 																	name="{{ documentformset.prefix }}-xx-id"
-																	id="id_{{ documentformset.prefix }}-xx-id"
-																	autocomplete="off">
-																<input type="text"
-																	class="form-control"
-																	disabled=""
-																	id="id_{{ documentformset.prefix }}-xx-name">
+																	id="id_{{ documentformset.prefix }}-xx-id">
+																<input type="hidden"
+																	name="{{ documentformset.prefix }}-xx-document_id"
+																	id="id_{{ documentformset.prefix }}-xx-document_id">
+																<input type="hidden"
+																	name="{{ documentformset.prefix }}-xx-taxed"
+																	id="id_{{ documentformset.prefix }}-xx-taxed">
+																<input type="hidden" class="form-control"
+																	id="id_{{ documentformset.prefix }}-xx-tax"
+																	name="{{ documentformset.prefix }}-xx-tax"
+																	disabled="">
+																<input type="text" class="form-control"
+																	id="id_{{ documentformset.prefix }}-xx-name"
+																	name="{{ documentformset.prefix }}-xx-name"
+																	disabled="">
 															</div>
 														</div>
 													</td>
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-6 px-0">
-																<input type="number"
-																	name="{{ documentformset.prefix }}-xx-quantity"
-																	class="form-control"
+																<input type="number" class="form-control"
 																	id="id_{{ documentformset.prefix }}-xx-quantity"
+																	name="{{ documentformset.prefix }}-xx-quantity"
 																	value="0">
 															</div>
 														</div>
@@ -436,10 +476,9 @@
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-6 px-0">
-																<input type="number"
-																	name="{{ documentformset.prefix }}-xx-price"
-																	class="form-control"
+																<input type="number" class="form-control"
 																	id="id_{{ documentformset.prefix }}-xx-price"
+																	name="{{ documentformset.prefix }}-xx-price"
 																	value="0">
 															</div>
 														</div>
@@ -447,11 +486,19 @@
 													<td>
 														<div class="form-group mb-0">
 															<div class="col-lg-7 px-0">
-																<input type="text"
-																	class="form-control"
-																	disabled=""
+																<input type="text" class="form-control"
 																	id="id_{{ documentformset.prefix }}-xx-amount"
-																	value="0">
+																	name="{{ documentformset.prefix }}-xx-amount"
+																	value="0"
+																	disabled="">
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="form-group mb-0">
+															<div class="col-lg-7 px-0">
+																<a href="#" class="delete-action" name="delete_data">
+																	<i class="icon-minus-circle2 ml-3 color-danger"></i></a>
 															</div>
 														</div>
 													</td>
@@ -468,7 +515,7 @@
 												<div class="position-relative">
 													<div class="input-group">
 														<span class="input-group-addon shipping_date_label">{% trans "Delivery date" %}</span>
-														<input type="text" name="shipping_date" class="form-control daterange-single">
+														{{ contract_form.shipping_date }}
 													</div>
 													<div class="form-control-feedback">
 														<i class="icon-calendar22"></i>
@@ -476,10 +523,10 @@
 												</div>
 											</div>
 											<div class="col-lg-12 col-xs-12">
-												<div class="">
+												<div>
 													<div class="input-group">
 														<span class="input-group-addon">{% trans "Remarks" %}</span>
-														<textarea type="text" name="remarks" class="form-control h-140-px"></textarea>
+														{{ contract_form.remarks }}
 													</div>
 												</div>
 											</div>
@@ -490,19 +537,19 @@
 											<tbody>
 												<tr>
 													<td>{% trans "Sum" %}</td>
-													<td class="sub_total">0</td>
+													<td class="py-0">{{ contract_form.sub_total }}</td>
 												</tr>
 												<tr>
 													<td>{% trans "Consumption tax" %} (10%)</td>
-													<td class="consumption_tax">0</td>
+													<td class="py-0">{{ contract_form.tax }}</td>
 												</tr>
 												<tr>
 													<td>{% trans "Insurance fee" %} ({% trans "No tax" %})</td>
-													<td><input type="text" class="form-control" id="insurance_fee" name="insurance_fee" value="0"></td>
+													<td>{{ contract_form.fee }}</td>
 												</tr>
 												<tr>
 													<td>{% trans "Total" %}</td>
-													<td class="total">0</td>
+													<td class="py-0">{{ contract_form.total }}</td>
 												</tr>
 											</tbody>
 										</table>
@@ -514,23 +561,13 @@
 										<div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">{% trans "Shipping method" %}</span>
-												<select id="shipping_method" name="shipping_method" class="selectbox">
-													<option value="D">{% trans "Delivery" %}</option>
-													<option value="R">{% trans "Receipt" %}</option>
-													<option value="C">{% trans "ID Change" %}</option>
-													<option value="B">{% trans "* Blank" %}</option>
-												</select>
+												{{ contract_form.shipping_method }}
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">{% trans "Payment method" %}</span>
-												<select name="payment_method" class="selectbox">
-													<option value="TR">{% trans "Transfer" %}</option>
-													<option value="CH">{% trans "Check" %}</option>
-													<option value="BL">{% trans "Bill" %}</option>
-													<option value="CA">{% trans "Cash" %}</option>
-												</select>
+												{{ contract_form.payment_method }}
 											</div>
 										</div>
 									</div>
@@ -538,13 +575,13 @@
 										<div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">{% trans "Billing amount" %}</span>
-												<input type="text" class="form-control" name="billing_amount" id="billing_amount" value="0" disabled>
+												{{ contract_form.billing_amount }}
 											</div>
 										</div>
 										<div class="position-relative form-group">
 											<div class="input-group">
 												<span class="input-group-addon">{% trans "Payment due date" %}</span>
-												<input type="text" name="payment_due_date" class="form-control daterange-single">
+												{{ contract_form.payment_due_date }}
 											</div>
 											<div class="form-control-feedback">
 												<i class="icon-calendar22"></i>
@@ -581,27 +618,27 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "Address" %}</label>
-												<div class="">
-													<textarea type="text" name="product_sender_address" class="form-control address" disabled=""></textarea>
+												<div>
+													{{ product_sender_form.product_sender_address }}
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "TEL" %}</label>
-												<div class="">
-													<input type="text" name="product_sender_tel" class="form-control tel" disabled="" />
+												<div>
+													{{ product_sender_form.product_sender_tel }}
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "FAX" %}</label>
-												<div class="">
-													<input type="text" name="product_sender_fax" class="form-control fax" disabled="" />
+												<div>
+													{{ product_sender_form.product_sender_fax }}
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "Expected arrival date" %}</label>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-													<input type="text" name="product_sender_expected_arrival_date" class="form-control daterange-single expected_arrival_date">
+													{{ product_sender_form.product_expected_arrival_date }}
 												</div>
 											</div>
 										</fieldset>
@@ -620,27 +657,27 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "Address" %}</label>
-												<div class="">
-													<textarea type="text" name="document_sender_address" class="form-control address" disabled=""></textarea>
+												<div>
+													{{ document_sender_form.document_sender_address }}
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "TEL" %}</label>
-												<div class="">
-													<input type="text" name="document_sender_tel" class="form-control tel" disabled="" />
+												<div>
+													{{ document_sender_form.document_sender_tel }}
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "FAX" %}</label>
-												<div class="">
-													<input type="text" name="document_sender_fax" class="form-control fax" disabled="" />
+												<div>
+													{{ document_sender_form.document_sender_fax }}
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label">{% trans "Expected arrival date" %}</label>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-													<input type="text" name="document_sender_expected_arrival_date" class="form-control daterange-single expected_arrival_date">
+													{{ document_sender_form.document_expected_arrival_date }}
 												</div>
 											</div>
 										</fieldset>
@@ -650,12 +687,13 @@
 									<div class="col-lg-6 col-xs-12">
 										<h6 class="text-center">{% trans "Buyer seal" %}</h6>
 										<div class="seal-wrapper">
-											<p>〒<span class="buyer-postal-code ml-4"></span><span class="buyer-address ml-4"></span></p>
-											<h4 class="buyer-company"></h4>
+											<p>〒<span class="buyer-postal-code ml-4">{{ contract_form.postal_code.value|default_if_none:"" }}</span>
+												<span class="buyer-address ml-4">{{ contract_form.address.value|default_if_none:"" }}</span></p>
+											<h4 class="buyer-company">{{ customer_name }}</h4>
 											<p><span>{% trans "CEO" %} : </span><span class="buyer ml-4"></span></p>
 											<p class="mb-0 d-flex">
-												<span class="w-min-150-px">TEL : <span class="buyer-tel"></span></span>
-												<span class="ml-4 w-min-150-px">FAX : <span class="buyer-fax"></span></span>
+												<span class="w-min-150-px">TEL : <span class="buyer-tel">{{ contract_form.tel.value|default_if_none:"" }}</span></span>
+												<span class="ml-4 w-min-150-px">FAX : <span class="buyer-fax">{{ contract_form.fax.value|default_if_none:"" }}</span></span>
 											</p>
 											<div class="seal">
 												印
@@ -695,7 +733,7 @@
 									<div class="col-lg-6 col-xs-12">
 										<div class="input-group">
 											<span class="input-group-addon">{% trans "Remarks" %}</span>
-											<textarea type="text" class="form-control memo" name="memo"></textarea>
+											{{ contract_form.memo }}
 										</div>
 									</div>
 								</div>
@@ -721,6 +759,10 @@
 			<script>
 				$(function () {
 					
+					$(".select-customer").select2("trigger", "select", {
+                        data: { id: "{{contract_form.customer.id}}", text: "{{contract_form.customer.name}}" }
+                    });
+
 					$('#shipping_method').change(function () {
 						var shipping_method = $(this).val();
 						$.ajax({
@@ -762,14 +804,14 @@
 
 					$('button.create-invoice').click( function (e) {
 						$('form').attr('action', "{% url 'contract:trader-sales-invoice' %}");
-						resetTotalFormNumber('product');
-						resetTotalFormNumber('document');
+						resetMangementForm('product');
+						resetMangementForm('document');
 						$('form').submit();
 					});
 
-					function resetTotalFormNumber(prefix) {
-						if ($('table.table-' + prefix + ' .odd').length) $('#id_' + prefix + '-TOTAL_FORMS').val(0);
-					}
+					$("select.new-selectbox").selectBoxIt({
+						autoWidth: false
+					});
 
 				});
 			</script>

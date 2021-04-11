@@ -139,8 +139,8 @@ document.addEventListener('DOMContentLoaded', function() {
         var address = hall.address;
         var tel = hall.tel;
 
-        $('input#hall_address').val(address);
-        $('input#hall_tel').val(tel);
+        $('input[name="address"]').val(address);
+        $('input[name="tel"]').val(tel);
     });
 
 

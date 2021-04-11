@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from masterdata.models import (
     Customer, Hall, Sender, Product, Document, DocumentFee, InventoryProduct,
     PRODUCT_TYPE_CHOICES, STOCK_CHOICES, SHIPPING_METHOD_CHOICES,
-    PAYMENT_METHOD_CHOICES, ITEM_CHOICES, SECURE_PAYMENT,
+    PAYMENT_METHOD_CHOICES, ITEM_CHOICES,
 )
 
 
@@ -48,14 +48,14 @@ class ContractDocument(models.Model):
         return self.quantity * self.price
     
     @property
-    def is_secure_payment(self):
-        return self.document.name == SECURE_PAYMENT
+    def taxed(self):
+        return self.document.taxed
         
     @property
     def tax(self):
-        if self.is_secure_payment:
-            return 0
-        return int(self.amount * 0.1)
+        if self.taxed:
+            return int(self.amount * 0.1)
+        return 0
 
 
 class ContractDocumentFee(models.Model):
@@ -88,14 +88,14 @@ class Milestone(models.Model):
 
 class TraderContract(models.Model):
     contract_id = models.CharField(max_length=200)
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
-    manager = models.CharField(max_length=200, null=True, blank=True)
     created_at = models.DateField()
     updated_at = models.DateField()
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    manager = models.CharField(max_length=200, null=True, blank=True)
     person_in_charge = models.CharField(max_length=200)
     remarks = models.TextField(null=True, blank=True)
     shipping_date = models.DateField()
-    insurance_fee = models.IntegerField()
+    fee = models.IntegerField()
 
     class Meta:
         abstract = True
@@ -120,11 +120,11 @@ class TraderContract(models.Model):
 
     @property
     def total(self):
-        return self.amount + self.tax + self.insurance_fee
+        return self.amount + self.tax + self.fee
 
     @property
     def taxed_total(self):
-        return self.total - self.insurance_fee
+        return self.total - self.fee
     
     def get_insurance_fee(self):
         sum = 0

@@ -99,6 +99,10 @@ class Document(models.Model):
 
     def __str__(self):
         return self.name
+    
+    @property
+    def taxed(self):
+        return self.name != SECURE_PAYMENT
 
 
 class DocumentFee(models.Model):

@@ -1,3 +1,9 @@
+// Reset the form total number in management form
+function resetMangementForm(prefix) {
+    var numTotalForms = $('table.table-' + prefix + ' tr[class^="formset_row-"]').length;
+    $('#id_' + prefix + '-TOTAL_FORMS').val(numTotalForms);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
 
     // Set formset prefixes here
@@ -6,98 +12,41 @@ document.addEventListener('DOMContentLoaded', function() {
     var document_fee_prefix = 'document_fee';
     var lang = $('input[name="selected-lang"]').val();
 
-    // Reset the form total number in management form
-    function resetTotalFormNumber(prefix) {
-        if ($('table.table-' + prefix + ' .odd').length) {
-            $('#id_' + prefix + '-TOTAL_FORMS').val(0);
-        }
-    }
-
     // Re-calculation of the price
-    function calculateTotal() {
+    function calculateFees() {
         var sub_total = 0;
-        var insurance_fee = 0;
-        $('table.table-product').each(function () {
+        var tax_sum = 0;
+        var fee_sum = 0;
+        $('table.table-formset').each(function () {
             var $table = $(this);
-            $table.find('tbody tr').each(function () {
+            $table.find('tbody tr[class^="formset_row-"]').each(function () {
                 var $tr = $(this);
-                var classname = $tr.attr('class');
-                var rowRegex = RegExp(`formset_row-${product_prefix}`, 'g');
-                if (rowRegex.test(classname)) {
-                    var prefix = null;
-                    var prefixRegex = RegExp(`${product_prefix}-\\d+-`, 'g');
-                    var $amount = $tr.find('td').last().find('input');
-                    var id = $amount.attr('id');
-                    var m = id.match(prefixRegex);
-                    if (m) prefix = m[0];
-                    if (prefix) {
-                        var amount = parseInt($amount.val());
-                        var price = $('#id_' + prefix + 'price').val();
-                        var quantity = $('#id_' + prefix + 'quantity').val();
-                        var rounded_price = Math.round(price / 1000) * 1000;
-                        var unit_fee = 0;
-                        if (prefix.indexOf('product') !== -1) {
-                            unit_fee = 100 * quantity;
-                            if (rounded_price > 100000) {
-                                // when rounded price is larger than 101,000
-                                unit_fee = parseInt(200 * quantity * (rounded_price / 100000));
-                            }
-                        }
-                        insurance_fee += unit_fee;
-                        sub_total += amount;
-                    }
+                var amount = parseInt($tr.find('input[name$="-amount"]').val());
+                sub_total += amount;
+                var tax = parseInt($tr.find('input[name$="-amount"]').val());
+                tax_sum += tax;
+                if ($tr.find('input[name$="-fee"]').length) {
+                    var fee = parseInt($tr.find('input[name$="-fee"]').val());
+                    fee_sum += fee;
                 }
             });
         });
 
-        $('table.table-document').each(function () {
-            var $table = $(this);
-            $table.find('tbody tr').each(function () {
-                var $tr = $(this);
-                var classname = $tr.attr('class');
-                var rowRegex = RegExp(`formset_row-${document_prefix}`, 'g');
-                if (rowRegex.test(classname)) {
-                    var amount = parseInt($tr.find('td').last().find('input').val());
-                    sub_total += amount;
-                }
-            });
-        });
-
-        $('table.table-document_fee').each(function () {
-            var $table = $(this);
-            $table.find('tbody tr').each(function () {
-                var $tr = $(this);
-                var classname = $tr.attr('class');
-                var rowRegex = RegExp(`formset_row-${document_fee_prefix}`, 'g');
-                if (rowRegex.test(classname)) {
-                    var amount = parseInt($tr.find('td').last().find('input').val());
-                    sub_total += amount;
-                }
-            });
-        });
-
-        $('td.sub_total').text(sub_total);
-        var consumption_tax = parseInt(sub_total / 10);
-        $('td.consumption_tax').text(consumption_tax);
-        $('#insurance_fee').val(insurance_fee);
-        var feeIncluded = true;
-        if ($('#fee_free').length)
-            feeIncluded = $('#fee_free').prop("checked");
-        insuranceFeeCalculation(feeIncluded);
+        $('#id_sub_total').val(sub_total);
+        $('#id_tax').val(tax_sum);
+        $('#id_fee').val(fee_sum);
+        calculateTotal();
     }
 
     // Include/exclude insurance fee
-    function insuranceFeeCalculation(included) {
-        var sub_total = parseInt($('td.sub_total').text());
-        var consumption_tax = parseInt($('td.consumption_tax').text());
-        var insurance_tax = parseInt($('#insurance_fee').val());
-        var total = sub_total + consumption_tax;
-        if (included) {
-            total += insurance_tax;
-        }
-        $('td.total').text(total);
-        if ($('#billing_amount').length)
-            $('#billing_amount').val(total);
+    function calculateTotal() {
+        var sub_total = parseInt($('#id_sub_total').val());
+        var tax = parseInt($('#id_tax').val());
+        var fee = parseInt($('#id_fee').val());
+        var total = sub_total + tax + fee;
+        $('#id_total').val(total);
+        if ($('#id_billing_amount').length)
+            $('#id_billing_amount').val(total);
     }
 
     // SetLang
@@ -126,6 +75,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+
+    // Delete the selected row and update the formset management
+    function deleteRow($table) {
+        var $inputTotalForm = $table.find('input[name$="-TOTAL_FORMS"]');
+        var numOfItems = parseInt($inputTotalForm.val());
+        $inputTotalForm.val(numOfItems - 1);
+        var index = 0;
+        $table.find('tr[class^="formset_row-"]').each(function (e) {
+            $tr = $(this);
+            $tr.find('input, select').each(function (e) {
+                var el_name = $(this).attr('name');
+                el_name = el_name.replace(/\d+/, index);
+                $(this).attr('name', el_name);
+                $(this).attr('id', 'id_' + el_name);
+            });
+            index++;
+            $tr.find('select.new-selectbox').selectBoxIt('destroy');
+            $tr.find('select.new-selectbox').selectBoxIt({
+                autoWidth: false
+            });
+        });
+    }
+
+    // Clicking on delete(-) button in each row inside product/document/documentfee tables
+    $('table').on('click', 'a[name="delete_data"]', function (e) {
+        e.preventDefault();
+        $this = $(this);
+        $tr = $this.closest('tr');
+        $table = $tr.closest('table');
+        $tr.remove();
+        deleteRow($table);
+        calculateFees();
+    });
+
     // Adding the product to ProductFormSet based table
     $('button[name="add_product_btn"]').click( function (e) {
         // unless product is selected, nothing happens
@@ -136,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         // reset total number of forms in management form section if there is any cached value
         // after adding selected product name, reset the select2 back to empty option
-        resetTotalFormNumber(product_prefix);
+        resetMangementForm(product_prefix);
         var data = $('select.select-product').select2('data');
         var product = data[0].name;
         $('select.select-product').val(null).trigger('change');
@@ -153,13 +136,13 @@ document.addEventListener('DOMContentLoaded', function() {
         var trRegex = RegExp(`${product_prefix}-xx-`, 'g');
         var html = $newTR.html().replace(trRegex, `${product_prefix}-${formNum}-`);
         $newTR.html(html);
-        var productID = `#id_${product_prefix}-${formNum}-id`;
+        var productID = `#id_${product_prefix}-${formNum}-product_id`;
         $(productID).val(value);
         var productName = `#id_${product_prefix}-${formNum}-name`;
         $(productName).val(product);
 
         // after population, make the selectbox inside cloned tr work.
-        $newTR.find(".new-selectbox").selectBoxIt({
+        $newTR.find("select").addClass('new-selectbox').selectBoxIt({
             autoWidth: false
         });
     });
@@ -176,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // reset total number of forms in management form section if there is any cached value
         // after adding selected product name, reset the selectbox
-        resetTotalFormNumber(document_prefix);
+        resetMangementForm(document_prefix);
         if ($('table.table-document .odd').length) {
             $('table.table-document .odd').remove();
         }
@@ -191,10 +174,24 @@ document.addEventListener('DOMContentLoaded', function() {
         var trRegex = RegExp(`${document_prefix}-xx-`, 'g');
         var html = $newTR.html().replace(trRegex, `${document_prefix}-${formNum}-`);
         $newTR.html(html);
-        var documentID = `#id_${document_prefix}-${formNum}-id`;
+        var documentID = `#id_${document_prefix}-${formNum}-document_id`;
         $(documentID).val(value);
         var documentName = `#id_${document_prefix}-${formNum}-name`;
         $(documentName).val(document);
+        $.ajax({
+            type: 'POST',
+            url: `/${lang}/contract/check-taxable/`,
+            data: {
+                id: value,
+            },
+            beforeSend: function(request) {
+                request.setRequestHeader('X-CSRFToken', csrftoken);
+            },
+            success: function (result) {
+                var taxed = result.taxed;
+                $(`#id_${document_prefix}-${formNum}-taxed`).val(taxed);
+            }
+        });
     });
 
     // When clicking "Add Document Fee" button
@@ -220,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 var unit_price = result.unit_price;
                 var application_fee = result.application_fee;
 
-                resetTotalFormNumber(document_fee_prefix);
+                resetMangementForm(document_fee_prefix);
                 if ($('table.table-document_fee .odd').length) {
                     $('table.table-document_fee .odd').remove();
                 }
@@ -244,78 +241,71 @@ document.addEventListener('DOMContentLoaded', function() {
                 $(documentFeeName).val(document_fee);
             }
         });
-
-        
     });
 
    // Adding change event lister to input field inside table-product
     $('table.table-product').on('input', 'input', function (e) {
         // Calculate quantity * price and set it in id_product-xx-amount td element
         var $self = $(this);
-        var $parent = $self.closest('tr');
-        var regex = RegExp(`${product_prefix}-\\d+-`, 'g');
-        var prefix = null;
-        var name = $self.attr('name');
-        var m = name.match(regex);
-        if (m) prefix = m[0];
-        if (prefix) {
-            var quantity = $parent.find('#id_' + prefix + 'quantity').val();
-            var price = $parent.find('#id_' + prefix + 'price').val();
-            var $amount = $parent.find('#id_' + prefix + 'amount');
-            $amount.val(parseInt(quantity) * parseInt(price));
-            calculateTotal();
+        var $tr = $self.closest('tr');
+        var trClassName = $tr.attr('class');
+        if (trClassName.startsWith('formset_row-') == false) return;
+        var price = $tr.find('input[name$="-price"]').val();
+        var quantity = $tr.find('input[name$="-quantity"]').val();
+        var amount = parseInt(price) * parseInt(quantity);
+        var tax = parseInt(amount * 0.1);
+        var fee = 100 * quantity;
+        var rounded_price = Math.round(price / 1000) * 1000;
+        if (rounded_price > 100000) {
+            fee = parseInt(200 * quantity * (rounded_price / 100000));
         }
+        $tr.find('input[name$="-amount"]').val(amount);
+        $tr.find('input[name$="-tax"]').val(tax);
+        $tr.find('input[name$="-fee"]').val(fee);
+        calculateFees();
     });
 
     $('table.table-document').on('input', 'input', function (e) {
         var $self = $(this);
-        var $parent = $self.closest('tr');
-        var regex = RegExp(`${document_prefix}-\\d+-`, 'g');
-        var prefix = null;
-        var name = $self.attr('name');
-        var m = name.match(regex);
-        if (m) prefix = m[0];
-        if (prefix) {
-            var quantity = $parent.find('#id_' + prefix + 'quantity').val();
-            var price = $parent.find('#id_' + prefix + 'price').val();
-            var $amount = $parent.find('#id_' + prefix + 'amount');
-            $amount.val(parseInt(quantity) * parseInt(price));
-            calculateTotal();
-        }
+        var $tr = $self.closest('tr');
+        var trClassName = $tr.attr('class');
+        if (trClassName.startsWith('formset_row-') == false) return;
+        var price = $tr.find('input[name$="-price"]').val();
+        var quantity = $tr.find('input[name$="-quantity"]').val();
+        var amount = parseInt(price) * parseInt(quantity);
+        var taxed = parseInt($tr.find('input[name$="-taxed"]').val());
+        var tax = 0;
+        if (taxed) tax = parseInt(amount * 0.1);
+        $tr.find('input[name$="-amount"]').val(amount);
+        $tr.find('input[name$="-tax"]').val(tax);
+        calculateFees();
     });
 
     $('table.table-document_fee').on('input', 'input', function (e) {
         var $self = $(this);
-        var $parent = $self.closest('tr');
-        var regex = RegExp(`${document_fee_prefix}-\\d+-`, 'g');
-        var prefix = null;
-        var name = $self.attr('name');
-        var m = name.match(regex);
-        if (m) prefix = m[0];
-        if (prefix) {
-            var numOfModels = $parent.find('#id_' + prefix + 'model_count').val();
-            var numOfUnits = $parent.find('#id_' + prefix + 'unit_count').val();
-            var applicationFee = $parent.find('input[name="application_fee"]').val();
-            var modelPrice = $parent.find('input[name="model_price"]').val();
-            var unitPrice = $parent.find('input[name="unit_price"]').val();
-            var $amount = $parent.find('#id_' + prefix + 'amount');
-            var amount = parseInt(numOfModels) * parseInt(modelPrice) + parseInt(numOfUnits) * parseInt(unitPrice) + parseInt(applicationFee);
-            $amount.val(amount);
-            calculateTotal();
-        }
+        var $tr = $self.closest('tr');
+        var trClassName = $tr.attr('class');
+        if (trClassName.startsWith('formset_row-') == false) return;
+        var modelCount = $tr.find('input[name$="-model_count"]').val();
+        var unitCount = $tr.find('input[name$="-unit_count"]').val();
+        var applicationFee = $tr.find('input[name$="-application_fee"]').val();
+        var modelPrice = $tr.find('input[name$="-model_price"]').val();
+        var unitPrice = $tr.find('input[name$="-unit_count"]').val();
+        var amount = parseInt(modelCount) * parseInt(modelPrice) + parseInt(unitCount) * parseInt(unitPrice) + parseInt(applicationFee);
+        var tax = parseInt(amount * 0.1);
+        $tr.find('input[name$="-amount"]').val(amount);
+        $tr.find('input[name$="-tax"]').val(tax);
+        calculateFees();
     });
 
     // when insurance fee value changes...
-    $('#insurance_fee').on('input', function () {
-        if ($('#fee_free').length) {
-            insuranceFeeCalculation($('#fee_free').prop("checked"));
-        } else
-            insuranceFeeCalculation(true);
+    $('#id_fee').on('input', function () {
+        calculateTotal();
     });
 
     // when fee_fre checkbox is checked/unchecked...
-    $('#fee_free').change(function () {
-        insuranceFeeCalculation(this.checked);
+    $('#fee_edit').change(function () {
+        if (this.checked) $('#id_fee').prop('readonly', false); else $('#id_fee').prop('readonly', true);
     });
 
     $('select.select-sender').change(function (e) {
@@ -354,8 +344,8 @@ document.addEventListener('DOMContentLoaded', function() {
         $form.attr('action', `/${lang}/contract/trader-sales/`);
         // To prevent the cached total_form_num hidden value from being sent to the server,
         // reset it to zero if no items has been added.
-        resetTotalFormNumber(product_prefix);
-        resetTotalFormNumber(document_prefix);
+        resetMangementForm(product_prefix);
+        resetMangementForm(document_prefix);
         /*
         // In case of Ajax POST request, i18n throws issues (403) because of automatic url pattern resolve.
         // lang prefix should be added to the url.
@@ -380,8 +370,8 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         var $form = $(this).closest('form');
         $form.attr('action', `/${lang}/contract/trader-purchases/`);
-        resetTotalFormNumber(product_prefix);
-        resetTotalFormNumber(document_prefix);
+        resetMangementForm(product_prefix);
+        resetMangementForm(document_prefix);
         $.ajax({
             type: "POST",
             url: `/${lang}/contract/validate/trader-purchases/`,
@@ -402,9 +392,9 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         var $form = $(this).closest('form');
         $form.attr('action', `/${lang}/contract/hall-sales/`);
-        resetTotalFormNumber(product_prefix);
-        resetTotalFormNumber(document_prefix);
-        resetTotalFormNumber(document_fee_prefix);
+        resetMangementForm(product_prefix);
+        resetMangementForm(document_prefix);
+        resetMangementForm(document_fee_prefix);
         $.ajax({
             type: "POST",
             url: `/${lang}/contract/validate/hall-sales/`,
@@ -425,9 +415,9 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         var $form = $(this).closest('form');
         $form.attr('action', `/${lang}/contract/hall-purchases/`);
-        resetTotalFormNumber(product_prefix);
-        resetTotalFormNumber(document_prefix);
-        resetTotalFormNumber(document_fee_prefix);
+        resetMangementForm(product_prefix);
+        resetMangementForm(document_prefix);
+        resetMangementForm(document_fee_prefix);
         $.ajax({
             type: "POST",
             url: `/${lang}/contract/validate/hall-purchases/`,

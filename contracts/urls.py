@@ -3,12 +3,11 @@ from .views import (
     TraderSalesContractView, TraderPurchasesContractView, HallSalesContractView, HallPurchasesContractView,
     TraderSalesInvoiceView, TraderPurchasesInvoiceView, HallSalesInvoiceView, HallPurchasesInvoiceView,
     TraderSalesValidateAjaxView, TraderPurchasesValidateAjaxView, HallSalesValidateAjaxView, HallPurchasesValidateAjaxView,
-    ContractShippingLabelAjaxView, ContractManagerAjaxView, ContractClassNameAjaxView,
+    ContractShippingLabelAjaxView, ContractManagerAjaxView, ContractClassNameAjaxView, CheckTaxableAjaxView,
 )
 from .update_views import (
-    TraderSalesContractUpdateView, HallSalesContractUpdateView,
+    TraderSalesContractUpdateView, HallSalesContractUpdateView, 
 )
-from .update_views import *
 
 app_name = 'contract'
 urlpatterns = [
@@ -35,4 +34,5 @@ urlpatterns = [
     path('shipping-label/', ContractShippingLabelAjaxView.as_view(), name='shipping-label'),
     path('manager/', ContractManagerAjaxView.as_view(), name='manager-list'),
     path('contract-name/', ContractClassNameAjaxView.as_view(), name='contract-name'),
+    path('check-taxable/', CheckTaxableAjaxView.as_view(), name='check-taxable'),
 ]

@@ -11,14 +11,14 @@ from .models import *
 from .forms import (
     TraderSalesContractForm, TraderPurchasesContractForm, HallSalesContractForm, HallPurchasesContractForm,
     ProductFormSet, DocumentFormSet, DocumentFeeFormSet, MilestoneFormSet, 
-    TraderSalesSenderForm, TraderPurchasesSenderForm,
-    ProductForm,
+    TraderSalesProductSenderForm, TraderPurchasesProductSenderForm,
+    ProductForm, DocumentForm,DocumentFeeForm
 )
 from .utilities import generate_contract_id, ordinal
 
 
 class TraderSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
-    template_name = 'contracts/trader_sales_update.html'
+    template_name = 'contracts/trader_sales.html'
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, self.get_context_data(**kwargs))
@@ -31,28 +31,45 @@ class TraderSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         id = kwargs.get('pk')
         contract = TraderSalesContract.objects.get(id=id)
-        products = contract.products
-        context['contract'] = contract
-        
+        context['contract_form'] = TraderSalesContractForm()
         context['documents'] = Document.objects.all().values('id', 'name')
+        context['senders'] = Sender.objects.all().values('id', 'name')
+        product_set = []
         products = contract.products.all()
-        dataset = []
         for product in products:
             data = {
-                'id': product.product.id,
+                'id': product.id,
+                'product_id': product.product.id,
+                'name': product.product.name,
                 'type': product.type,
                 'quantity': product.quantity,
-                'price': product.price
+                'price': product.price,
+                'amount': product.amount
             }
             product_form = ProductForm(data)
             if product_form.is_valid():
-                dataset.append(data)
-
-        context['productformset'] = ProductFormSet(initial=dataset, prefix='product')
-        context['senders'] = Sender.objects.all().values('id', 'name')
+                product_set.append(data)
+        context['productformset'] = ProductFormSet(initial=product_set, prefix='product')
+        
+        document_set = []
+        documents = contract.documents.all()
+        for document in documents:
+            data = {
+                'id': document.id,
+                'document_id': document.document.id,
+                'taxed': int(document.taxed),
+                'name': document.document.name,
+                'quantity': document.quantity,
+                'price': document.price,
+                'amount': document.amount
+            }
+            document_form = DocumentForm(data)
+            if document_form.is_valid():
+                document_set.append(data)
+        context['documentformset'] = DocumentFormSet(initial=document_set, prefix='document')
         
         product_sender = contract.senders.filter(type='P').first()
-        product_sender_form = TraderSalesSenderForm({
+        product_sender_form = TraderSalesProductSenderForm({
             'sender_id': product_sender.sender_id,
             'expected_arrival_date': product_sender.expected_arrival_date
         })
@@ -122,27 +139,58 @@ class HallSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
         contract = self.get_object(**kwargs)
         context['contract'] = contract
         context['documents'] = Document.objects.all().values('id', 'name')
-        document_fee_lambda = lambda df: {'id': df.id, 'name': df.get_type_display()}
-        document_fees = [document_fee_lambda(document_fee) for document_fee in DocumentFee.objects.all()]
-        context['document_fees'] = document_fees
+        context['senders'] = Sender.objects.all().values('id', 'name')
+        product_set = []
         products = contract.products.all()
-        dataset = []
         for product in products:
             data = {
-                'id': product.product.id,
+                'id': product.id,
+                'product_id': product.product.id,
+                'name': product.product.name,
                 'type': product.type,
                 'quantity': product.quantity,
-                'price': product.price
+                'price': product.price,
+                'amount': product.amount
             }
             product_form = ProductForm(data)
             if product_form.is_valid():
-                dataset.append(data)
+                product_set.append(data)
+        context['productformset'] = ProductFormSet(initial=product_set, prefix='product')
+        
+        document_set = []
+        documents = contract.documents.all()
+        for document in documents:
+            data = {
+                'id': document.id,
+                'document_id': document.document.id,
+                'taxed': int(document.taxed),
+                'name': document.document.name,
+                'quantity': document.quantity,
+                'price': document.price,
+                'amount': document.amount
+            }
+            document_form = DocumentForm(data)
+            if document_form.is_valid():
+                document_set.append(data)
+        context['documentformset'] = DocumentFormSet(initial=document_set, prefix='document')
 
-
-        context['productformset'] = ProductFormSet(initial=dataset, prefix='product')
-        # documents = contract.documents.all()
-        # context['documentformset'] = DocumentFormSet(documents, prefix='document')
-        # document_fees = contract.document_fees
+        document_fee_set = []
+        document_fees = contract.document_fees.all()
+        for document_fee in document_fees:
+            data = {
+                'id': document_fee.id,
+                'document_fee_id': document_fee.document_fee.id,
+                'model_price': document_fee.document_fee.model_price,
+                'unit_price': document_fee.document_fee.unit_price,
+                'application_fee': document_fee.document_fee.application_fee,
+                'model_count': document_fee.model_count,
+                'unit_count': document_fee.unit_count,
+                'amount': document_fee.amount
+            }
+            document_fee_form = DocumentFeeForm(data)
+            if document_fee_form.is_valid():
+                document_fee_set.append(data)
+        context['documentfeeformset'] = DocumentFeeFormSet(initial=document_fee_set, prefix='document_fee')
         # context['documentfeeformset'] = DocumentFeeFormSet(document_fees, prefix='document_fee')
         # milestones = contract.milestones.all()
         # extra = 5 - milestones.count()
