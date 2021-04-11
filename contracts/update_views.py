@@ -183,6 +183,13 @@ class TraderSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
         return context
 
 
+class TraderPurchasesUpdateView(AdminLoginRequiredMixin, View):
+    pass
+
+
+class HallPurchasesUpdateView(AdminLoginRequiredMixin, View):
+    pass
+
 class HallSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
     template_name = 'contracts/hall_sales_update.html'
 

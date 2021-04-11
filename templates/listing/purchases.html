@@ -139,7 +139,7 @@
 								<td>{{ product.get_status_display }}</td>
 								<td>
 									<a href="#" data-id="{{product.id}}" class="edit-action"><i class="icon-pencil5 color-primary"></i></a>
-									<a href="#" data-id="{{product.id}}" class="edit-contract"><i class="icon-stack-text ml-3 color-danger"></i></a>
+									<a href="#" data-object-id="{{product.content_object.id}}" data-class-id="{{product.content_type_id}}" class="edit-contract"><i class="icon-stack-text ml-3 color-danger"></i></a>
 								</td>
 							</tr>
 							{% endfor %}
@@ -319,6 +319,27 @@
 							$('#modal_edit_data input[name="product_name"]').val(result.product_name);
 							$('#modal_edit_data select[name="status"]').selectBoxIt('selectOption', result.status);
 							$('#modal_edit_data').modal('toggle');
+						}
+					});
+				});
+
+				$('a.edit-contract').click( function (e) {
+					e.preventDefault();
+					var $this = $(this);
+					var objID = $this.data('object-id');
+					var classID = $this.data('class-id');
+					$.ajax({
+						type: 'POST',
+						url: "{% url 'contract:contract-update-path' %}",
+						data: {
+							object_id: objID,
+							class_id: classID
+						},
+						beforeSend: function(request) {
+							request.setRequestHeader('X-CSRFToken', csrftoken);
+						},
+						success: function (result) {
+							location.href = result.url;
 						}
 					});
 				});

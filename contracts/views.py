@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.contenttypes.models import ContentType
 from django.views.generic.base import TemplateView, View
 from django.http import HttpResponse, JsonResponse
-from django.db.models import Count
+from django.urls import reverse
 from users.views import AdminLoginRequiredMixin
 from masterdata.models import (
     Customer, Product, Document, Sender, DocumentFee,
@@ -42,7 +42,10 @@ class ContractClassNameAjaxView(AdminLoginRequiredMixin, View):
         if self.request.method == 'POST' and self.request.is_ajax():
             object_id = self.request.POST.get('object_id')
             class_id = self.request.POST.get('class_id')
-            ContentType.objects.get(id=class_id).model_class()
+            model_name = ContentType.objects.get(id=class_id).model
+            url_name = "contract:{}-update".format(model_name)
+            url = reverse(url_name, kwargs={'pk': object_id})
+            return JsonResponse({'url': url}, status=200)
         return JsonResponse({'success': False}, status=400)
 
 

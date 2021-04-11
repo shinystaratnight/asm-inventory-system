@@ -5,7 +5,7 @@ from .views import (
     ContractShippingLabelAjaxView, ContractManagerAjaxView, ContractClassNameAjaxView, CheckTaxableAjaxView,
 )
 from .update_views import (
-    TraderSalesContractUpdateView, HallSalesContractUpdateView, 
+    TraderSalesContractUpdateView, TraderPurchasesUpdateView, HallSalesContractUpdateView, HallPurchasesUpdateView
 )
 from .invoice_views import (
     TraderSalesInvoiceView, TraderPurchasesInvoiceView, HallSalesInvoiceView, HallPurchasesInvoiceView
@@ -23,10 +23,10 @@ urlpatterns = [
     path('invoice/hall-sales/', HallSalesInvoiceView.as_view(), name='hall-sales-invoice'),
     path('invoice/hall-purchases/', HallPurchasesInvoiceView.as_view(), name='hall-purchases-invoice'),
 
-    path('trader-sales/<int:pk>/update/', TraderSalesContractUpdateView.as_view(), name='trader-sales-update'),
-    # path('trader-purchases/update', TraderPurchasesUpdateView.as_view(), name='trader-purchases-update'),
-    path('hall-sales/<int:pk>/update/', HallSalesContractUpdateView.as_view(), name='hall-sales-update'),
-    # path('hall-purchases/update/', HallPurchasesUpdateView.as_view(), name='hall-purchases-update'),
+    path('trader-sales/<int:pk>/update/', TraderSalesContractUpdateView.as_view(), name='tradersalescontract-update'),
+    path('trader-purchases/<int:pk>/update', TraderPurchasesUpdateView.as_view(), name='traderpurchasescontract-update'),
+    path('hall-sales/<int:pk>/update/', HallSalesContractUpdateView.as_view(), name='hallsalescontract-update'),
+    path('hall-purchases/<int:pk>/update/', HallPurchasesUpdateView.as_view(), name='hallpurchasescontract-update'),
 
     path('validate/trader-sales/', TraderSalesValidateAjaxView.as_view(), name='trader-sales-validate'),
     path('validate/trader-purchases/', TraderPurchasesValidateAjaxView.as_view(), name='trader-purchases-validate'),
@@ -35,6 +35,6 @@ urlpatterns = [
 
     path('shipping-label/', ContractShippingLabelAjaxView.as_view(), name='shipping-label'),
     path('manager/', ContractManagerAjaxView.as_view(), name='manager-list'),
-    path('contract-name/', ContractClassNameAjaxView.as_view(), name='contract-name'),
+    path('contract-update-path/', ContractClassNameAjaxView.as_view(), name='contract-update-path'),
     path('check-taxable/', CheckTaxableAjaxView.as_view(), name='check-taxable'),
 ]

@@ -326,8 +326,22 @@
 				$('a.edit-contract').click( function (e) {
 					e.preventDefault();
 					var $this = $(this);
-					var id = $this.data('object-id');
-					var clsName = $this.data('class-id');
+					var objID = $this.data('object-id');
+					var classID = $this.data('class-id');
+					$.ajax({
+						type: 'POST',
+						url: "{% url 'contract:contract-update-path' %}",
+						data: {
+							object_id: objID,
+							class_id: classID
+						},
+						beforeSend: function(request) {
+							request.setRequestHeader('X-CSRFToken', csrftoken);
+						},
+						success: function (result) {
+							location.href = result.url;
+						}
+					});
 				});
 
 				var status = "{{ inventory_status }}";
