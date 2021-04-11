@@ -10,7 +10,7 @@ from users.views import AdminLoginRequiredMixin
 from masterdata.models import Document, Sender
 from .models import (
     ContractProduct, ContractDocument, ContractDocumentFee,
-    TraderSalesContract
+    TraderSalesContract,
 )
 from .forms import (
     TraderSalesContractForm, TraderPurchasesContractForm, HallSalesContractForm, HallPurchasesContractForm,
@@ -18,7 +18,7 @@ from .forms import (
     TraderSalesProductSenderForm, TraderSalesDocumentSenderForm, TraderPurchasesProductSenderForm,
     ProductForm, DocumentForm,DocumentFeeForm
 )
-from .utilities import generate_contract_id, ordinal
+from .utilities import generate_contract_id
 
 
 class TraderSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):

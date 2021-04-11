@@ -1,4 +1,5 @@
 import time
+from django.utils.translation import gettext as _
 from contracts.models import (
     TraderSalesContract, TraderPurchasesContract, HallSalesContract, HallPurchasesContract
 )
@@ -25,3 +26,10 @@ def date_dump(date, lang_code):
     if lang_code == 'en':
         return date.strftime('%m/%d/%Y')
     return date.strftime('%Y/%m/%d')
+
+def get_shipping_date_label(mode):
+    if mode == 'R':
+        return _('Receipt date')
+    elif mode == 'C':
+        return _('ID Change date')
+    return _('Delivery date')

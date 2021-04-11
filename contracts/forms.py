@@ -261,10 +261,10 @@ class TraderSalesContractForm(forms.Form):
     fax = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
     person_in_charge = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control person_in_charge'}))
     remarks = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-140-px'}), required=False)
-    sub_total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'disabled': 'disabled'}), initial=0, required=False)
-    tax = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'disabled': 'disabled'}), initial=0, required=False)
+    sub_total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
+    tax = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
     fee = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), initial=0)
-    total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'disabled': 'disabled'}), initial=0, required=False)
+    total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
     billing_amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), initial=0, required=False)
     shipping_method = forms.ChoiceField(widget=forms.Select(attrs={'class': 'selectbox'}), choices=SHIPPING_METHOD_CHOICES)
     shipping_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
@@ -320,9 +320,9 @@ class TraderSalesContractForm(forms.Form):
 class TraderSalesProductSenderForm(forms.Form):
     p_id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
     product_sender_id = forms.IntegerField()
-    product_sender_address = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-70', 'disabled': 'disabled'}), required=False)
-    product_sender_tel = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
-    product_sender_fax = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
+    product_sender_address = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-70', 'readonly': 'readonly'}), required=False)
+    product_sender_tel = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), required=False)
+    product_sender_fax = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), required=False)
     product_expected_arrival_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
 
     def __init__(self, *args, **kwargs):
@@ -350,9 +350,9 @@ class TraderSalesProductSenderForm(forms.Form):
 class TraderSalesDocumentSenderForm(forms.Form):
     d_id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
     document_sender_id = forms.IntegerField()
-    document_sender_address = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-70', 'disabled': 'disabled'}), required=False)
-    document_sender_tel = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
-    document_sender_fax = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
+    document_sender_address = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-70', 'readonly': 'readonly'}), required=False)
+    document_sender_tel = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), required=False)
+    document_sender_fax = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), required=False)
     document_expected_arrival_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
 
     def __init__(self, *args, **kwargs):
