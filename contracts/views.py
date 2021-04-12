@@ -1,17 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.contenttypes.models import ContentType
 from django.views.generic.base import TemplateView, View
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.urls import reverse
 from users.views import AdminLoginRequiredMixin
 from masterdata.models import (
-    Customer, Product, Document, Sender, DocumentFee,
-    P_SENSOR_NUMBER, PRODUCT_TYPE_CHOICES
+    Customer, Product, Document, Sender, DocumentFee
 )
 from .forms import (
     TraderSalesContractForm, TraderPurchasesContractForm, HallSalesContractForm, HallPurchasesContractForm,
     ProductFormSet, DocumentFormSet, DocumentFeeFormSet, MilestoneFormSet, 
-    TraderSalesProductSenderForm, TraderSalesDocumentSenderForm, TraderPurchasesProductSenderForm, #TraderPurchasesProductSenderForm,
+    TraderSalesProductSenderForm, TraderSalesDocumentSenderForm, #TraderPurchasesProductSenderForm, #TraderPurchasesDocumentSenderForm,
 )
 from .utilities import generate_contract_id, get_shipping_date_label
 
@@ -255,9 +254,9 @@ class HallSalesValidateAjaxView(AdminLoginRequiredMixin, View):
             document_fee_formset = DocumentFeeFormSet(data, prefix='document_fee')
             if not document_fee_formset.is_valid():
                 return JsonResponse({'success': False}, status=200)
-            # milestone_formset = MilestoneFormSet(data, prefix='milestone')
-            # if not milestone_formset.is_valid():
-            #     return JsonResponse({'success': False}, status=200)
+            milestone_formset = MilestoneFormSet(data, prefix='milestone')
+            if not milestone_formset.is_valid():
+                return JsonResponse({'success': False}, status=200)
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'success': False}, status=400)
 
@@ -300,15 +299,15 @@ class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
             if form.is_valid():
                 form.save()
         
-        # milestone_formset = MilestoneFormSet(
-        #     self.request.POST,
-        #     form_kwargs={'contract_id': contract.id, 'contract_class': 'HallSalesContract'},
-        #     prefix='milestone'
-        # )
-        # for form in milestone_formset.forms:
-        #     if form.is_valid():
-        #         if form.cleaned_data.get('date') and form.cleaned_data.get('amount'):
-        #             form.save()
+        milestone_formset = MilestoneFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'HallSalesContract'},
+            prefix='milestone'
+        )
+        for form in milestone_formset.forms:
+            if form.is_valid():
+                if form.cleaned_data.get('date') and form.cleaned_data.get('amount'):
+                    form.save()
         
         return redirect('listing:sales-list')
 

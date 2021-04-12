@@ -750,8 +750,14 @@
 																		
 																		<td width="20%">{% trans nth %}</td>
 																		<td>
+																			{% for hidden in form.hidden_fields %}
+																				{{ hidden }}
+																			{% endfor %}
 																			<div class="position-relative">
-																				{{ field }}
+																				<input type="text"
+																					name="milestone-{{ forloop.parentloop.counter0 }}-date"
+																					id="id_milestone-{{ forloop.parentloop.counter0 }}-date"
+																					value="{% date_conversion field.value %}" class="form-control datepicker-nullable">
 																				<div class="form-control-feedback">
 																					<i class="icon-calendar22"></i>
 																				</div>

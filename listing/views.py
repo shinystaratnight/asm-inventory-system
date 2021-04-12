@@ -1,5 +1,4 @@
 import unicodecsv as csv
-import datetime
 from django.shortcuts import redirect
 from django.views.generic.base import View
 from django.views.generic.list import ListView
@@ -8,7 +7,8 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
-from contracts.models import ContractProduct, InventoryProduct
+from masterdata.models import InventoryProduct
+from contracts.models import ContractProduct
 from contracts.utilities import generate_random_number, date_dump
 from .filters import ProductFilter
 from .forms import ListingSearchForm, ProductForm

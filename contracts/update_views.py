@@ -1,22 +1,21 @@
 import unicodecsv as csv
 from django.shortcuts import render, redirect
 from django.contrib.contenttypes.models import ContentType
-from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.base import TemplateView, View
 from django.http import HttpResponse, JsonResponse
-from django.db.models import Count
 from django.utils.translation import gettext as _
+from django.forms import formset_factory
 from users.views import AdminLoginRequiredMixin
 from masterdata.models import Sender, Document, DocumentFee
 from .models import (
-    ContractProduct, ContractDocument, ContractDocumentFee,
+    ContractProduct, ContractDocument, ContractDocumentFee, Milestone,
     TraderSalesContract, HallSalesContract,
 )
 from .forms import (
     TraderSalesContractForm, TraderPurchasesContractForm, HallSalesContractForm, HallPurchasesContractForm,
-    ProductFormSet, DocumentFormSet, DocumentFeeFormSet, MilestoneFormSet, 
-    TraderSalesProductSenderForm, TraderSalesDocumentSenderForm, TraderPurchasesProductSenderForm,
-    ProductForm, DocumentForm,DocumentFeeForm
+    ProductFormSet, DocumentFormSet, DocumentFeeFormSet, MilestoneFormSet, MilestoneValidationFormSet,
+    TraderSalesProductSenderForm, TraderSalesDocumentSenderForm, #TraderPurchasesProductSenderForm,
+    ProductForm, DocumentForm, DocumentFeeForm, MilestoneForm,
 )
 from .utilities import generate_contract_id
 
@@ -262,15 +261,26 @@ class HallSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
                 if document_fee_id not in updated_ids:
                     ContractDocumentFee.objects.get(id=document_fee_id).delete()
         
-        # milestone_formset = MilestoneFormSet(
-        #     self.request.POST,
-        #     form_kwargs={'contract_id': contract.id, 'contract_class': 'HallSalesContract'},
-        #     prefix='milestone'
-        # )
-        # for form in milestone_formset.forms:
-        #     if form.is_valid():
-        #         if form.cleaned_data.get('date') and form.cleaned_data.get('amount'):
-        #             form.save()
+        milestone_formset = MilestoneFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'HallSalesContract'},
+            prefix='milestone'
+        )
+        if milestone_formset.is_valid():
+            milestone_qs = contract.milestones.values('id')
+            old_milestone_ids = set()
+            for milestone in milestone_qs:
+                old_milestone_ids.add(milestone['id'])
+            updated_ids = set()
+            for form in milestone_formset.forms:
+                if form.is_valid():
+                    if form.cleaned_data.get('date') and form.cleaned_data.get('amount'):
+                        if form.cleaned_data.get('id'):
+                            updated_ids.add(form.cleaned_data.get('id'))
+                        form.save()
+            for milestone_id in old_milestone_ids:
+                if milestone_id not in updated_ids:
+                    Milestone.objects.get(id=milestone_id).delete()
         
         return redirect('listing:sales-list')
 
@@ -285,8 +295,8 @@ class HallSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
             'customer_name': contract.customer.name,
             'hall_id': contract.hall.id,
             'hall_name': contract.hall.name,
-            'address': contract.customer.address,
-            'tel': contract.customer.tel,
+            'address': contract.hall.address,
+            'tel': contract.hall.tel,
             'remarks': contract.remarks,
             'sub_total': contract.sub_total,
             'tax': contract.tax,
@@ -362,8 +372,18 @@ class HallSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
             if document_fee_form.is_valid():
                 document_fee_set.append(data)
         context['documentfeeformset'] = DocumentFeeFormSet(initial=document_fee_set, prefix='document_fee')
-        # milestones = contract.milestones.all()
-        # extra = 5 - milestones.count()
-        # MilestoneEditFormSet = formset_factory(MilestoneForm, formset=MilestoneValidationFormSet, extra=extra)
-        # context['milestoneformset'] = MilestoneEditFormSet(milestones, prefix='milestone')
+        milestone_set = []
+        milestones = contract.milestones.all()
+        for milestone in milestones:
+            data = {
+                'id': milestone.id,
+                'date': milestone.date,
+                'amount': milestone.amount
+            }
+            milestone_form = MilestoneForm(data)
+            if milestone_form.is_valid():
+                milestone_set.append(data)
+        extra = 5 - milestones.count()
+        MilestoneUpdateFormSet = formset_factory(MilestoneForm, formset=MilestoneValidationFormSet, extra=extra)
+        context['milestoneformset'] = MilestoneUpdateFormSet(initial=milestone_set, prefix='milestone')
         return context

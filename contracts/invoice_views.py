@@ -1,18 +1,19 @@
 import unicodecsv as csv
 from django.views.generic.base import View
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse
 from django.utils.translation import gettext as _
 from users.views import AdminLoginRequiredMixin
 from masterdata.models import (
-    Customer, Sender, Product, Document,
-    P_SENSOR_NUMBER, PRODUCT_TYPE_CHOICES, SHIPPING_METHOD_CHOICES, PAYMENT_METHOD_CHOICES,
+    Customer, Hall, Sender, Product, Document, DocumentFee,
+    PRODUCT_TYPE_CHOICES, SHIPPING_METHOD_CHOICES, PAYMENT_METHOD_CHOICES, TYPE_CHOICES,
+    P_SENSOR_NUMBER, COMPANY_NAME, ADDRESS, TEL, FAX,
 )
 from .forms import (
-    TraderSalesContractForm,
+    TraderSalesContractForm, HallSalesContractForm,
     TraderSalesProductSenderForm, TraderSalesDocumentSenderForm,
-    ProductFormSet, DocumentFormSet,
+    ProductFormSet, DocumentFormSet, DocumentFeeFormSet, MilestoneFormSet
 )
-from .utilities import get_shipping_date_label
+from .utilities import get_shipping_date_label, ordinal
 
 
 class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
@@ -350,7 +351,7 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
             product_rows = []
             for form in product_formset.forms:
                 form.is_valid()
-                id = form.cleaned_data.get('id')
+                id = form.cleaned_data.get('product_id')
                 product_name = Product.objects.get(id=id).name
                 type = form.cleaned_data.get('type')
                 quantity = form.cleaned_data.get('quantity', 0)
@@ -375,7 +376,7 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
             document_rows = []
             for form in document_formset.forms:
                 form.is_valid()
-                id = form.cleaned_data.get('id')
+                id = form.cleaned_data.get('document_id')
                 document_name = Document.objects.get(id=id).name
                 quantity = form.cleaned_data.get('quantity', 0)
                 price = form.cleaned_data.get('price', 0)
@@ -399,7 +400,7 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
             document_fee_rows = []
             for form in document_fee_formset.forms:
                 form.is_valid()
-                id = form.cleaned_data.get('id')
+                id = form.cleaned_data.get('document_fee_id')
                 document_fee = DocumentFee.objects.get(id=id)
                 type = document_fee.type
                 model_count = form.cleaned_data.get('model_count', 0)
@@ -408,28 +409,26 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
                 unit_price = document_fee.unit_price
                 amount = model_price * model_count + unit_price * unit_count + document_fee.application_fee
                 sub_total += amount
-                document_fee_rows.append([None, type, model_count, unit_count, amount])
+                document_fee_rows.append([None, dict(TYPE_CHOICES)[type], model_count, unit_count, amount])
             writer.writerows(document_fee_rows)
 
         remarks = contract_form.data.get('remarks', None)
-        insurance_fee = contract_form.data.get('insurance_fee', 0)
-        fee_included = contract_form.data.get('fee_included', False)
+        sub_total = contract_form.data.get('sub_total')
+        tax = contract_form.data.get('tax')
+        fee = contract_form.data.get('fee')
+        total = contract_form.data.get('total')
         shipping_date = contract_form.data.get('shipping_date')
         opening_date = contract_form.data.get('opening_date')
         payment_method = contract_form.data.get('payment_method')
         transfer_account = contract_form.data.get('transfer_account')
         person_in_charge = contract_form.data.get('person_in_charge', '')
         confirmor = contract_form.data.get('confirmor')
-        tax = int(sub_total * 0.1)
-        total = sub_total + tax
-        if fee_included:
-            total += int(insurance_fee)
-
+        
         rows = [
             [],
             [_('Remarks'), remarks, '', '', _('Sum'), sub_total],
             ['', '', '', '', _('Consumption tax') + '(10%)', tax],
-            ['', '', '', '', _('Insurance fee') + '(' + _('No tax') + ')', insurance_fee],
+            ['', '', '', '', _('Insurance fee') + '(' + _('No tax') + ')', fee],
             ['', '', '', '', _('Total amount'), total],
             []
         ]
@@ -452,9 +451,7 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
                 rows.append([_('Opening date'), opening_date, '', _(ordinal(idx)), date, amount])
             elif idx == 3:
                 rows.append([_('Payment method'), dict(PAYMENT_METHOD_CHOICES)[payment_method], '', _(ordinal(idx)), date, amount])
-            elif idx == 4:
-                rows.append(['', '', '', _(ordinal(idx)), date, amount])
-            else:
+            elif idx >= 4:
                 rows.append(['', '', '', _(ordinal(idx)), date, amount])
             idx += 1
         writer.writerows(rows)

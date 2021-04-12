@@ -193,11 +193,16 @@ class DocumentFeeValidationFormSet(BaseFormSet):
 
 
 class MilestoneForm(forms.Form):
+    id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
     date = forms.DateField(
         widget=forms.TextInput(attrs={'class': 'form-control datepicker-nullable'}),
-        input_formats=INPUT_FORMATS
+        input_formats=INPUT_FORMATS,
+        required=False
     )
-    amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    amount = forms.IntegerField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        required=False
+    )
 
     def __init__(self, *args, **kwargs):
         if kwargs.get('contract_id', None):
@@ -206,31 +211,46 @@ class MilestoneForm(forms.Form):
             self.contract_class = kwargs.pop('contract_class')
         super().__init__(*args, **kwargs)
     
+    def clean_date(self):
+        data = self.cleaned_data['date']
+        return data
+    
     def save(self):
-        contract_class_name = ContentType.objects.get(model=self.contract_class)
-        contract_class = contract_class_name.model_class()
-        contract = contract_class.objects.get(id=self.contract_id)
-        data = {
-            'date': self.cleaned_data.get('date'),
-            'amount': self.cleaned_data.get('amount'),
-            'content_object': contract,
-        }
-        Milestone.objects.create(**data)
+        id = self.cleaned_data.get('id', None)
+        if id:
+            milestone = Milestone.objects.get(id=id)
+            milestone.date = self.cleaned_data.get('date')
+            milestone.amount = self.cleaned_data.get('amount')
+            milestone.save()
+        else:
+            contract_class_name = ContentType.objects.get(model=self.contract_class)
+            contract_class = contract_class_name.model_class()
+            contract = contract_class.objects.get(id=self.contract_id)
+            data = {
+                'date': self.cleaned_data.get('date'),
+                'amount': self.cleaned_data.get('amount'),
+                'content_object': contract,
+            }
+            Milestone.objects.create(**data)
 
 
 class MilestoneValidationFormSet(BaseFormSet):
     def clean(self):
         if any(self.errors):
             return
-        # Always return 5
-        # if self.total_form_count() == 0:
-        #     raise ValidationError("At least one milestone should be set.")
+        total_forms = 0
         for form in self.forms:
             if form.is_valid():
-                if form.cleaned_data.get('amount') and form.cleaned_data.get('date'):
+                if form.cleaned_data.get('amount') and form.cleaned_data.get('date') == None:
+                    form.add_error('date', 'This field is required.')
                     return
-        raise ValidationError("At least one milestone should be set.")
-
+                if form.cleaned_data.get('date') and form.cleaned_data.get('amount') == None:
+                    form.add_error('amount', 'This field is required.')
+                    return
+                if form.cleaned_data.get('amount') and form.cleaned_data.get('date'):
+                    total_forms += 1
+        if total_forms == 0:
+            raise ValidationError("At least one milestone should be set.")
          
     def get_form_kwargs(self, index):
         kwargs = super().get_form_kwargs(index)
