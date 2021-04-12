@@ -239,6 +239,29 @@ class TraderPurchasesValidateAjaxView(AdminLoginRequiredMixin, View):
 
 
 ## Hall sales contract
+class HallSalesValidateAjaxView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            data = self.request.POST
+            contract_form = HallSalesContractForm(data)
+            if not contract_form.is_valid():
+                return JsonResponse({'success': False}, status=200)
+            product_formset = ProductFormSet(data, prefix='product')
+            if not product_formset.is_valid():
+                return JsonResponse({'success': False}, status=200)
+            document_formset = DocumentFormSet(data, prefix='document')
+            if not document_formset.is_valid():
+                return JsonResponse({'success': False}, status=200)
+            document_fee_formset = DocumentFeeFormSet(data, prefix='document_fee')
+            if not document_fee_formset.is_valid():
+                return JsonResponse({'success': False}, status=200)
+            # milestone_formset = MilestoneFormSet(data, prefix='milestone')
+            # if not milestone_formset.is_valid():
+            #     return JsonResponse({'success': False}, status=200)
+            return JsonResponse({'success': True}, status=200)
+        return JsonResponse({'success': False}, status=400)
+
+
 class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
     template_name = 'contracts/hall_sales.html'
 
@@ -277,22 +300,21 @@ class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
             if form.is_valid():
                 form.save()
         
-        milestone_formset = MilestoneFormSet(
-            self.request.POST,
-            form_kwargs={'contract_id': contract.id, 'contract_class': 'HallSalesContract'},
-            prefix='milestone'
-        )
-        for form in milestone_formset.forms:
-            if form.is_valid():
-                if form.cleaned_data.get('date') and form.cleaned_data.get('amount'):
-                    form.save()
+        # milestone_formset = MilestoneFormSet(
+        #     self.request.POST,
+        #     form_kwargs={'contract_id': contract.id, 'contract_class': 'HallSalesContract'},
+        #     prefix='milestone'
+        # )
+        # for form in milestone_formset.forms:
+        #     if form.is_valid():
+        #         if form.cleaned_data.get('date') and form.cleaned_data.get('amount'):
+        #             form.save()
         
-        # return render(request, self.template_name, self.get_context_data(**kwargs))
         return redirect('listing:sales-list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['contract_id'] = generate_contract_id('03')
+        context['contract_form'] = HallSalesContractForm()
         context['documents'] = Document.objects.all().values('id', 'name')
         document_fee_lambda = lambda df: {'id': df.id, 'name': df.get_type_display()}
         document_fees = [document_fee_lambda(document_fee) for document_fee in DocumentFee.objects.all()]
@@ -302,29 +324,6 @@ class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
         context['documentfeeformset'] = DocumentFeeFormSet(prefix='document_fee')
         context['milestoneformset'] = MilestoneFormSet(prefix='milestone')
         return context
-
-
-class HallSalesValidateAjaxView(AdminLoginRequiredMixin, View):
-    def post(self, *args, **kwargs):
-        if self.request.method == 'POST' and self.request.is_ajax():
-            data = self.request.POST
-            contract_form = HallSalesContractForm(data)
-            if not contract_form.is_valid():
-                return JsonResponse({'success': False}, status=200)
-            product_formset = ProductFormSet(data, prefix='product')
-            if not product_formset.is_valid():
-                return JsonResponse({'success': False}, status=200)
-            document_formset = DocumentFormSet(data, prefix='document')
-            if not document_formset.is_valid():
-                return JsonResponse({'success': False}, status=200)
-            document_fee_formset = DocumentFeeFormSet(data, prefix='document_fee')
-            if not document_fee_formset.is_valid():
-                return JsonResponse({'success': False}, status=200)
-            milestone_formset = MilestoneFormSet(data, prefix='milestone')
-            if not milestone_formset.is_valid():
-                return JsonResponse({'success': False}, status=200)
-            return JsonResponse({'success': True}, status=200)
-        return JsonResponse({'success': False}, status=400)
 # End of hall sales contract
 
 

@@ -176,8 +176,7 @@ class HallContract(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     hall = models.ForeignKey(Hall, on_delete=models.CASCADE)
     remarks = models.TextField(null=True, blank=True)
-    fee_included = models.BooleanField(default=True)
-    insurance_fee = models.IntegerField()
+    fee = models.IntegerField()
     shipping_date = models.DateField()
     opening_date = models.DateField()
     payment_method = models.CharField(max_length=2, choices=PAYMENT_METHOD_CHOICES)
@@ -189,15 +188,15 @@ class HallContract(models.Model):
         abstract = True
     
     @property
-    def amount(self):
+    def sub_total(self):
         sum = 0
         for product in self.products.all():
             sum += product.amount
         for document in self.documents.all():
             sum += document.amount
-        return sum
         for document_fee in self.document_fees.all():
             sum += document_fee.amount
+        return sum
     
     @property
     def tax(self):
@@ -212,17 +211,11 @@ class HallContract(models.Model):
 
     @property
     def total(self):
-        return self.amount + self.tax + self.insurance_fee
+        return self.sub_total + self.tax + self.fee
     
     @property
     def taxed_total(self):
-        return self.total - self.insurance_fee
-
-    def get_insurance_fee(self):
-        sum = 0
-        for product in self.products.all():
-            sum += product.get_insurance_fee()
-        return sum
+        return self.total - self.fee
 
 
 class HallSalesContract(HallContract):

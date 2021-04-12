@@ -95,11 +95,12 @@ class DocumentForm(forms.Form):
 
 
 class DocumentFeeForm(forms.Form):
-    id = forms.IntegerField(widget=forms.HiddenInput())
+    id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
     document_fee_id = forms.IntegerField(widget=forms.HiddenInput())
     model_price = forms.IntegerField(widget=forms.HiddenInput())
     unit_price = forms.IntegerField(widget=forms.HiddenInput())
     application_fee = forms.IntegerField(widget=forms.HiddenInput())
+    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
     model_count = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     unit_count = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     tax = forms.IntegerField(widget=forms.HiddenInput(attrs={'disabled': 'disabled'}), required=False)
@@ -113,17 +114,24 @@ class DocumentFeeForm(forms.Form):
         super().__init__(*args, **kwargs)
     
     def save(self):
-        contract_class_name = ContentType.objects.get(model=self.contract_class)
-        contract_class = contract_class_name.model_class()
-        contract = contract_class.objects.get(id=self.contract_id)
-        document_fee = DocumentFee.objects.get(id=self.cleaned_data.get('id'))
-        data = {
-            'model_count': self.cleaned_data.get('model_count'),
-            'unit_count': self.cleaned_data.get('unit_count'),
-            'document_fee': document_fee,
-            'content_object': contract,
-        }
-        ContractDocumentFee.objects.create(**data)
+        id = self.cleaned_data.get('id', None)
+        if id:
+            contract_document_fee = ContractDocumentFee.objects.get(id=id)
+            contract_document_fee.model_count = self.cleaned_data.get('model_count')
+            contract_document_fee.unit_count = self.cleaned_data.get('unit_count')
+            contract_document_fee.save()
+        else:
+            contract_class_name = ContentType.objects.get(model=self.contract_class)
+            contract_class = contract_class_name.model_class()
+            contract = contract_class.objects.get(id=self.contract_id)
+            document_fee = DocumentFee.objects.get(id=self.cleaned_data.get('document_fee_id'))
+            data = {
+                'model_count': self.cleaned_data.get('model_count'),
+                'unit_count': self.cleaned_data.get('unit_count'),
+                'document_fee': document_fee,
+                'content_object': contract,
+            }
+            ContractDocumentFee.objects.create(**data)
 
 
 class ItemValidationFormSet(BaseFormSet):
@@ -253,6 +261,7 @@ class TraderSalesContractForm(forms.Form):
     created_at = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     updated_at = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     customer_id = forms.IntegerField()
+    customer_name = forms.CharField(required=False)
     manager = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
     frigana = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
     postal_code = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
@@ -431,23 +440,70 @@ class TraderPurchasesProductSenderForm(forms.Form):
 
 # Hall Sales Forms
 class HallSalesContractForm(forms.Form):
-    contract_id = forms.CharField()
+    contract_id = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}),
+        initial=generate_contract_id('03'))
+    created_at = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     customer_id = forms.IntegerField()
-    created_at = forms.DateField(input_formats=INPUT_FORMATS)
+    customer_name = forms.CharField(required=False)
     hall_id = forms.IntegerField()
-    remarks = forms.CharField(required=False)
-    insurance_fee = forms.IntegerField()
-    fee_included = forms.BooleanField(required=False)
-    shipping_date = forms.DateField(input_formats=INPUT_FORMATS)
-    opening_date = forms.DateField(input_formats=INPUT_FORMATS)
-    payment_method = forms.CharField()
-    transfer_account = forms.CharField()
-    person_in_charge = forms.CharField()
-    confirmor = forms.CharField()
+    hall_name = forms.CharField(required=False)
+    address = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
+    tel = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
+    remarks = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-197-px'}), required=False)
+    sub_total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
+    tax = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
+    fee = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), initial=0)
+    total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
+    shipping_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
+    opening_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
+    payment_method = forms.ChoiceField(widget=forms.Select(attrs={'class': 'selectbox'}), choices=PAYMENT_METHOD_CHOICES)
+    transfer_account = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "りそな銀行 船場支店（101）普通 0530713 バッジオカブシキガイシャ"}))
+    person_in_charge = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control person_in_charge'}))
+    confirmor = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    def __init__(self, *args, **kwargs):
+        if kwargs.get('id'):
+            self.id = kwargs.pop('id')
+        else:
+            self.id = None
+        super().__init__(*args, **kwargs)
 
     def save(self):
-        contract_data = self.cleaned_data
-        return HallSalesContract.objects.create(**contract_data)
+        if self.id:
+            contract = HallSalesContract.objects.get(id=self.id)
+            cleaned_data = self.cleaned_data
+            contract.created_at = cleaned_data.get('created_at')
+            contract.customer_id = cleaned_data.get('customer_id')
+            contract.hall_id = cleaned_data.get('hall_id')
+            contract.remarks = cleaned_data.get('remarks')
+            contract.fee = cleaned_data.get('fee')
+            contract.shipping_date = cleaned_data.get('shipping_date')
+            contract.opening_date = cleaned_data.get('opening_date')
+            contract.payment_method = cleaned_data.get('payment_method')
+            contract.transfer_account = cleaned_data.get('transfer_account')
+            contract.person_in_charge = cleaned_data.get('person_in_charge')
+            contract.confirmor = cleaned_data.get('confirmor')
+            contract.save()
+            return contract
+        else:
+            cleaned_data = self.cleaned_data
+            contract_data = {
+                'contract_id': cleaned_data.get('contract_id'),
+                'created_at': cleaned_data.get('created_at'),
+                'customer_id': cleaned_data.get('customer_id'),
+                'hall_id': cleaned_data.get('hall_id'),
+                'remarks': cleaned_data.get('remarks'),
+                'fee': cleaned_data.get('fee'),
+                'shipping_date': cleaned_data.get('shipping_date'),
+                'opening_date': cleaned_data.get('opening_date'),
+                'payment_method': cleaned_data.get('payment_method'),
+                'transfer_account': cleaned_data.get('transfer_account'),
+                'person_in_charge': cleaned_data.get('person_in_charge'),
+                'confirmor': cleaned_data.get('confirmor')
+            }
+            return HallSalesContract.objects.create(**contract_data)
 # End of hall sales form
 
 

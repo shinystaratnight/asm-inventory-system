@@ -142,9 +142,8 @@ document.addEventListener('DOMContentLoaded', function() {
         var hall = e.params.data;
         var address = hall.address;
         var tel = hall.tel;
-
-        $('input[name="address"]').val(address);
-        $('input[name="tel"]').val(tel);
+        if (address) $('input[name="address"]').val(address);
+        if (tel) $('input[name="tel"]').val(tel);
     });
 
 

@@ -203,6 +203,25 @@ document.addEventListener('DOMContentLoaded', function() {
             $('#modal_document_fee_error').modal('toggle');
             return;
         }
+        resetMangementForm(document_fee_prefix);
+        if ($('table.table-document_fee .odd').length) {
+            $('table.table-document_fee .odd').remove();
+        }
+        $('select.select-document-fee').val("").trigger('change');
+        // Clone the hiddent formset-row and populate the selected document id/name into the cloned td fields
+        var formNum = parseInt($('#id_' + document_fee_prefix + '-TOTAL_FORMS').val());
+        var $hiddenTR = $('table.table-document_fee #' + document_fee_prefix + '-formset-row');
+        var $newTR = $hiddenTR.clone().removeAttr('style').removeAttr('id').addClass('formset_row-' + document_fee_prefix);
+        $('#id_' + document_fee_prefix + '-TOTAL_FORMS').val(formNum + 1);
+        $hiddenTR.before($newTR);
+        var trRegex = RegExp(`${document_fee_prefix}-xx-`, 'g');
+        var html = $newTR.html().replace(trRegex, `${document_fee_prefix}-${formNum}-`);
+        $newTR.html(html);
+        var documentFeeID = `#id_${document_fee_prefix}-${formNum}-document_fee_id`;
+        $(documentFeeID).val(value);
+        var documentFeeName = `#id_${document_fee_prefix}-${formNum}-name`;
+        $(documentFeeName).val(document_fee);
+
         $.ajax({
             type: 'POST',
             url: `/${lang}/master/document-fee/`,
@@ -216,29 +235,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 var model_price = result.model_price;
                 var unit_price = result.unit_price;
                 var application_fee = result.application_fee;
-
-                resetMangementForm(document_fee_prefix);
-                if ($('table.table-document_fee .odd').length) {
-                    $('table.table-document_fee .odd').remove();
-                }
-                $('select.select-document-fee').val("").trigger('change');
-
-                // Clone the hiddent formset-row and populate the selected document id/name into the cloned td fields
-                var formNum = parseInt($('#id_' + document_fee_prefix + '-TOTAL_FORMS').val());
-                var $hiddenTR = $('table.table-document_fee #' + document_fee_prefix + '-formset-row');
-                var $newTR = $hiddenTR.clone().removeAttr('style').removeAttr('id').addClass('formset_row-' + document_fee_prefix);
-                $newTR.find('input[name="model_price"]').val(model_price);
-                $newTR.find('input[name="unit_price"]').val(unit_price);
-                $newTR.find('input[name="application_fee"]').val(application_fee);
-                $('#id_' + document_fee_prefix + '-TOTAL_FORMS').val(formNum + 1);
-                $hiddenTR.before($newTR);
-                var trRegex = RegExp(`${document_fee_prefix}-xx-`, 'g');
-                var html = $newTR.html().replace(trRegex, `${document_fee_prefix}-${formNum}-`);
-                $newTR.html(html);
-                var documentFeeID = `#id_${document_fee_prefix}-${formNum}-id`;
-                $(documentFeeID).val(value);
-                var documentFeeName = `#id_${document_fee_prefix}-${formNum}-name`;
-                $(documentFeeName).val(document_fee);
+                $(`#id_${document_fee_prefix}-${formNum}-model_price`).val(model_price);
+                $(`#id_${document_fee_prefix}-${formNum}-unit_price`).val(unit_price);
+                $(`#id_${document_fee_prefix}-${formNum}-application_fee`).val(application_fee);
             }
         });
     });
@@ -274,8 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var quantity = $tr.find('input[name$="-quantity"]').val();
         var amount = parseInt(price) * parseInt(quantity);
         var taxable = parseInt($tr.find('input[name$="-taxable"]').val());
-        var tax = 0;
-        if (taxable) tax = parseInt(amount * 0.1);
+        var tax = parseInt(taxable * amount * 0.1);
         $tr.find('input[name$="-amount"]').val(amount);
         $tr.find('input[name$="-tax"]').val(tax);
         calculateFees();
@@ -290,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var unitCount = $tr.find('input[name$="-unit_count"]').val();
         var applicationFee = $tr.find('input[name$="-application_fee"]').val();
         var modelPrice = $tr.find('input[name$="-model_price"]').val();
-        var unitPrice = $tr.find('input[name$="-unit_count"]').val();
+        var unitPrice = $tr.find('input[name$="-unit_price"]').val();
         var amount = parseInt(modelCount) * parseInt(modelPrice) + parseInt(unitCount) * parseInt(unitPrice) + parseInt(applicationFee);
         var tax = parseInt(amount * 0.1);
         $tr.find('input[name$="-amount"]').val(amount);
@@ -340,7 +338,6 @@ document.addEventListener('DOMContentLoaded', function() {
     $('form[name="trader_purchases"] button[type="submit"]').click( function (e) {
         e.preventDefault();
         var $form = $(this).closest('form');
-        $form.attr('action', `/${lang}/contract/trader-purchases/`);
         resetMangementForm(product_prefix);
         resetMangementForm(document_prefix);
         $.ajax({
@@ -353,6 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     $('#modal_trader_purchases_error').modal('toggle');
                     return false;
                 }
+                $form.attr('action', $(location).attr('href'));
                 $form.submit();
             }
         });
@@ -362,7 +360,6 @@ document.addEventListener('DOMContentLoaded', function() {
     $('form[name="hall_sales"] button[type="submit"]').click( function (e) {
         e.preventDefault();
         var $form = $(this).closest('form');
-        $form.attr('action', `/${lang}/contract/hall-sales/`);
         resetMangementForm(product_prefix);
         resetMangementForm(document_prefix);
         resetMangementForm(document_fee_prefix);
@@ -376,6 +373,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     $('#modal_hall_sales_error').modal('toggle');
                     return false;
                 }
+                $form.attr('action', $(location).attr('href'));
                 $form.submit();
             }
         });
@@ -385,7 +383,6 @@ document.addEventListener('DOMContentLoaded', function() {
     $('form[name="hall_purchases"] button[type="submit"]').click( function (e) {
         e.preventDefault();
         var $form = $(this).closest('form');
-        $form.attr('action', `/${lang}/contract/hall-purchases/`);
         resetMangementForm(product_prefix);
         resetMangementForm(document_prefix);
         resetMangementForm(document_fee_prefix);
@@ -399,6 +396,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     $('#modal_hall_purchases_error').modal('toggle');
                     return false;
                 }
+                $form.attr('action', $(location).attr('href'));
                 $form.submit();
             }
         });

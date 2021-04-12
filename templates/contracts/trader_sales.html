@@ -693,7 +693,7 @@
 										<div class="seal-wrapper">
 											<p>〒<span class="buyer-postal-code ml-4">{{ contract_form.postal_code.value|default_if_none:"" }}</span>
 												<span class="buyer-address ml-4">{{ contract_form.address.value|default_if_none:"" }}</span></p>
-											<h4 class="buyer-company">{{ customer_name }}</h4>
+											<h4 class="buyer-company">{{ contract_form.customer_name.value }}</h4>
 											<p><span>{% trans "CEO" %} : </span><span class="buyer ml-4"></span></p>
 											<p class="mb-0 d-flex">
 												<span class="w-min-150-px">TEL : <span class="buyer-tel">{{ contract_form.tel.value|default_if_none:"" }}</span></span>
@@ -765,7 +765,7 @@
 
 					{% if contract_form.customer_id.value %}
 						$(".select-customer").select2("trigger", "select", {
-							data: { id: "{{contract_form.customer_id.value}}", text: "{{customer_name}}" }
+							data: { id: "{{contract_form.customer_id.value}}", text: "{{contract_form.customer_name.value}}" }
 						});	
 					{% endif %}
 					
