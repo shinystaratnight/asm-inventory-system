@@ -5,7 +5,7 @@ from .views import (
     ContractShippingLabelAjaxView, ContractManagerAjaxView, ContractClassNameAjaxView, CheckTaxableAjaxView,
 )
 from .update_views import (
-    TraderSalesContractUpdateView, TraderPurchasesUpdateView, HallSalesContractUpdateView, HallPurchasesUpdateView
+    TraderSalesContractUpdateView, TraderPurchasesContractUpdateView, HallSalesContractUpdateView, HallPurchasesContractUpdateView
 )
 from .invoice_views import (
     TraderSalesInvoiceView, TraderPurchasesInvoiceView, HallSalesInvoiceView, HallPurchasesInvoiceView
@@ -24,9 +24,9 @@ urlpatterns = [
     path('invoice/hall-purchases/', HallPurchasesInvoiceView.as_view(), name='hall-purchases-invoice'),
 
     path('trader-sales/<int:pk>/update/', TraderSalesContractUpdateView.as_view(), name='tradersalescontract-update'),
-    path('trader-purchases/<int:pk>/update', TraderPurchasesUpdateView.as_view(), name='traderpurchasescontract-update'),
+    path('trader-purchases/<int:pk>/update', TraderPurchasesContractUpdateView.as_view(), name='traderpurchasescontract-update'),
     path('hall-sales/<int:pk>/update/', HallSalesContractUpdateView.as_view(), name='hallsalescontract-update'),
-    path('hall-purchases/<int:pk>/update/', HallPurchasesUpdateView.as_view(), name='hallpurchasescontract-update'),
+    path('hall-purchases/<int:pk>/update/', HallPurchasesContractUpdateView.as_view(), name='hallpurchasescontract-update'),
 
     path('validate/trader-sales/', TraderSalesValidateAjaxView.as_view(), name='trader-sales-validate'),
     path('validate/trader-purchases/', TraderPurchasesValidateAjaxView.as_view(), name='trader-purchases-validate'),

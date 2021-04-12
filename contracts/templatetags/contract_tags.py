@@ -12,4 +12,3 @@ def date_conversion(context, date):
     if date:
         return date_dump(date, context['request'].LANGUAGE_CODE)
     return ""
-

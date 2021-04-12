@@ -9,8 +9,9 @@ from masterdata.models import (
     P_SENSOR_NUMBER, COMPANY_NAME, ADDRESS, TEL, FAX,
 )
 from .forms import (
-    TraderSalesContractForm, HallSalesContractForm,
+    TraderSalesContractForm, TraderPurchasesContractForm, HallSalesContractForm,
     TraderSalesProductSenderForm, TraderSalesDocumentSenderForm,
+    TraderPurchasesProductSenderForm, TraderPurchasesDocumentSenderForm,
     ProductFormSet, DocumentFormSet, DocumentFeeFormSet, MilestoneFormSet
 )
 from .utilities import get_shipping_date_label, ordinal
@@ -22,8 +23,8 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
         contract_id = contract_form.data.get('contract_id', '')
         created_at = contract_form.data.get('created_at', '')
         updated_at = contract_form.data.get('updated_at', '')
-        customer_id = contract_form.data.get('customer_id', None)
         person_in_charge = contract_form.data.get('person_in_charge', '')
+        customer_id = contract_form.data.get('customer_id', None)
         sub_total = 0
         company = frigana = postal_code = address = tel = fax = None
         if customer_id:
@@ -156,10 +157,10 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         contract_form = TraderPurchasesContractForm(self.request.POST)
         contract_id = contract_form.data.get('contract_id', '')
-        customer_id = contract_form.data.get('customer_id', None)
         created_at = contract_form.data.get('created_at', '')
         updated_at = contract_form.data.get('updated_at', '')
         person_in_charge = contract_form.data.get('person_in_charge', '')
+        customer_id = contract_form.data.get('customer_id', None)
         sub_total = 0
         company = frigana = postal_code = address = tel = fax = None
         if customer_id:
@@ -198,7 +199,7 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
             product_rows = []
             for form in product_formset.forms:
                 form.is_valid()
-                id = form.cleaned_data.get('id')
+                id = form.cleaned_data.get('product_id')
                 product_name = Product.objects.get(id=id).name
                 type = form.cleaned_data.get('type')
                 quantity = form.cleaned_data.get('quantity', 0)
@@ -224,7 +225,7 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
             document_rows = []
             for form in document_formset.forms:
                 form.is_valid()
-                id = form.cleaned_data.get('id')
+                id = form.cleaned_data.get('document_id')
                 document_name = Document.objects.get(id=id).name
                 quantity = form.cleaned_data.get('quantity', 0)
                 price = form.cleaned_data.get('price', 0)
@@ -238,47 +239,52 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         frame_color = contract_form.data.get('frame_color')
         receipt = contract_form.data.get('receipt')
         remarks = contract_form.data.get('remarks', None)
-        insurance_fee = contract_form.data.get('insurance_fee', 0)
-        tax = int(sub_total * 0.1)
-        total = sub_total + tax + int(insurance_fee)
+        sub_total = contract_form.data.get('sub_total')
+        tax = contract_form.data.get('tax')
+        fee = contract_form.data.get('fee')
+        total = contract_form.data.get('total')
 
         rows = [
             [],
             ['', '', '', '', '', '', _('Sum'), sub_total],
             [_('Removal date'), removal_date, '', _('Frame color'), frame_color, '', _('Consumption tax') + '(10%)', tax],
-            [_('Date of shipment'), shipping_date, '', _('Receipt'), receipt, '', _('Insurance fee') + '(' + _('No tax') + ')', insurance_fee],
+            [_('Date of shipment'), shipping_date, '', _('Receipt'), receipt, '', _('Insurance fee') + '(' + _('No tax') + ')', fee],
             [_('Remarks'), remarks, '', '', '', '', _('Total amount'), total],
             []
         ]
         writer.writerows(rows)
 
-        product_sender_company = product_sender_address = product_sender_tel = None
+        product_sender_form = TraderPurchasesProductSenderForm(self.request.POST)
+        document_sender_form = TraderPurchasesDocumentSenderForm(self.request.POST)
         product_sender_id = self.request.POST.get('product_sender_id', None)
-        product_sender_shipping_company = self.request.POST.get('product_sender_shipping_company', None)
+        product_shipping_company = self.request.POST.get('product_shipping_company', None)
         product_sender_remarks = self.request.POST.get('product_sender_remarks', None)
-        product_sender_desired_arrival_date = self.request.POST.get('product_sender_desired_arrival_date', None)
+        product_desired_arrival_date = self.request.POST.get('product_desired_arrival_date', None)
+        product_sender_company = None
         if product_sender_id:
             product_sender = Sender.objects.get(id=product_sender_id)
             product_sender_company = product_sender.name
-            product_sender_address = product_sender.address
-            product_sender_tel = product_sender.tel
-        document_sender_company = document_sender_address = document_sender_tel = None
+        product_sender_address = product_sender_form.data.get('product_sender_address')
+        product_sender_tel = product_sender_form.data.get('product_sender_tel')
+
+        document_sender_company = None
         document_sender_id = self.request.POST.get('document_sender_id', None)
-        document_sender_shipping_company = self.request.POST.get('document_sender_shipping_company', None)
+        document_shipping_company = self.request.POST.get('document_shipping_company', None)
         document_sender_remarks = self.request.POST.get('document_sender_remarks', None)
-        document_sender_desired_arrival_date = self.request.POST.get('document_sender_desired_arrival_date', None)
+        document_desired_arrival_date = self.request.POST.get('document_desired_arrival_date', None)
         if document_sender_id:
             document_sender = Sender.objects.get(id=document_sender_id)
             document_sender_company = document_sender.name
-            document_sender_address = document_sender.address
-            document_sender_tel = document_sender.tel
+        document_sender_address = document_sender_form.data.get('document_sender_address')
+        document_sender_tel = document_sender_form.data.get('document_sender_tel')
+
         rows = [
             [_('Product sender'), '', '', _('Document sender')],
             [_('Company'), product_sender_company, '', _('Company'), document_sender_company],
             [_('Address'), product_sender_address, '', _('Address'), document_sender_address],
             [_('TEL'), product_sender_tel, '', _('TEL'), document_sender_tel],
-            [_('Desired arrival date'), product_sender_desired_arrival_date, '', _('Desired arrival date'), document_sender_desired_arrival_date],
-            [_('Shipping company'), product_sender_shipping_company, '', _('Shipping company'), document_sender_shipping_company],
+            [_('Desired arrival date'), product_desired_arrival_date, '', _('Desired arrival date'), document_desired_arrival_date],
+            [_('Shipping company'), product_shipping_company, '', _('Shipping company'), document_shipping_company],
             [_('Remarks'), product_sender_remarks, '', _('Remarks'), document_sender_remarks]
         ]
         writer.writerows(rows)

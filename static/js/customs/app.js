@@ -109,6 +109,36 @@ document.addEventListener('DOMContentLoaded', function() {
         calculateFees();
     });
 
+    // In Sender forms, handles the events when selecting sender
+    $('select.select-sender').change(function (e) {
+        var id = $(this).val();
+        var $self = $(this);
+        var $fs = $self.closest('fieldset');
+
+        if (id == "") {
+            $fs.find('textarea[name$="_sender_address"]').val(null);
+            $fs.find('input[name$="_sender_tel"]').val(null);
+            $fs.find('input[name$="_sender_fax"]').val(null);
+            return;
+        }
+        
+        $.ajax({
+            type: 'POST',
+            url: `/${lang}/master/sender/`,
+            data: {
+                id: id,
+            },
+            beforeSend: function(request) {
+                request.setRequestHeader('X-CSRFToken', csrftoken);
+            },
+            success: function (result) {
+                $fs.find('textarea[name$="_sender_address"]').val(result.address);
+                $fs.find('input[name$="_sender_tel"]').val(result.tel);
+                $fs.find('input[name$="_sender_fax"]').val(result.fax);
+            }
+        });
+    });
+
     // Adding the product to ProductFormSet based table
     $('button[name="add_product_btn"]').click( function (e) {
         // unless product is selected, nothing happens

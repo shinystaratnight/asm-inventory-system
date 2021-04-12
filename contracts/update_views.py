@@ -9,12 +9,12 @@ from users.views import AdminLoginRequiredMixin
 from masterdata.models import Sender, Document, DocumentFee
 from .models import (
     ContractProduct, ContractDocument, ContractDocumentFee, Milestone,
-    TraderSalesContract, HallSalesContract,
+    TraderSalesContract, HallSalesContract, TraderPurchasesContract,
 )
 from .forms import (
     TraderSalesContractForm, TraderPurchasesContractForm, HallSalesContractForm, HallPurchasesContractForm,
     ProductFormSet, DocumentFormSet, DocumentFeeFormSet, MilestoneFormSet, MilestoneValidationFormSet,
-    TraderSalesProductSenderForm, TraderSalesDocumentSenderForm, #TraderPurchasesProductSenderForm,
+    TraderSalesProductSenderForm, TraderSalesDocumentSenderForm, TraderPurchasesProductSenderForm, TraderPurchasesDocumentSenderForm,
     ProductForm, DocumentForm, DocumentFeeForm, MilestoneForm,
 )
 from .utilities import generate_contract_id
@@ -80,6 +80,7 @@ class TraderSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
             for document_id in old_document_ids:
                 if document_id not in updated_ids:
                     ContractDocument.objects.get(id=document_id).delete()
+         
         return render(request, self.template_name, self.get_context_data(**kwargs))
     
     def get_context_data(self, **kwargs):
@@ -182,11 +183,170 @@ class TraderSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
         return context
 
 
-class TraderPurchasesUpdateView(AdminLoginRequiredMixin, View):
+class TraderPurchasesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
+    template_name = 'contracts/trader_purchases.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.get_context_data(**kwargs))
+
+    def post(self, request, *args, **kwargs):
+        id = kwargs.get('pk')
+        contract_form = TraderPurchasesContractForm(self.request.POST, id=id)
+        if contract_form.is_valid():
+            contract = contract_form.save()
+        
+        product_sender_form = TraderPurchasesProductSenderForm(self.request.POST, contract_id=contract.id)
+        if product_sender_form.is_valid():
+            product_sender_form.save()
+        
+        document_sender_form = TraderPurchasesDocumentSenderForm(self.request.POST, contract_id=contract.id)
+        if document_sender_form.is_valid():
+            document_sender_form.save()
+            
+        product_formset = ProductFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'TraderPurchasesContract'},
+            prefix='product'
+        )
+        if product_formset.is_valid():
+            product_qs = contract.products.values('id')
+            old_product_ids = set()
+            for product in product_qs:
+                old_product_ids.add(product['id'])
+            updated_ids = set()
+            for form in product_formset.forms:
+                if form.is_valid():
+                    if form.cleaned_data.get('id'):
+                        updated_ids.add(form.cleaned_data.get('id'))
+                    form.save()
+            for product_id in old_product_ids:
+                if product_id not in updated_ids:
+                    ContractProduct.objects.get(id=product_id).delete()
+
+        document_formset = DocumentFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'TraderPurchasesContract'},
+            prefix='document'
+        )
+        if document_formset.is_valid():
+            document_qs = contract.documents.values('id')
+            old_document_ids = set()
+            for document in document_qs:
+                old_document_ids.add(document['id'])
+            updated_ids = set()
+            for form in document_formset.forms:
+                if form.is_valid():
+                    if form.cleaned_data.get('id'):
+                        updated_ids.add(form.cleaned_data.get('id'))
+                    form.save()
+            for document_id in old_document_ids:
+                if document_id not in updated_ids:
+                    ContractDocument.objects.get(id=document_id).delete()
+        
+        return render(request, self.template_name, self.get_context_data(**kwargs))
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        id = kwargs.get('pk')
+        contract = TraderPurchasesContract.objects.get(id=id)
+        contract_data = {
+            'contract_id': contract.contract_id,
+            'created_at': contract.created_at,
+            'updated_at': contract.updated_at,
+            'customer_id': contract.customer.id,
+            'customer_name': contract.customer.name,
+            'manager': contract.manager,
+            'frigana': contract.customer.frigana,
+            'postal_code': contract.customer.postal_code,
+            'address': contract.customer.address,
+            'tel': contract.customer.tel,
+            'fax': contract.customer.fax,
+            'person_in_charge': contract.person_in_charge,
+            'removal_date': contract.removal_date,
+            'shipping_date': contract.shipping_date,
+            'frame_color': contract.frame_color,
+            'receipt': contract.receipt,
+            'remarks': contract.remarks,
+            'sub_total': contract.sub_total,
+            'fee': contract.fee,
+            'tax': contract.tax,
+            'total': contract.total,
+            'transfer_deadline': contract.transfer_deadline,
+            'bank_name': contract.bank_name,
+            'account_number': contract.account_number,
+            'branch_name': contract.branch_name,
+            'account_holder': contract.account_holder
+        }
+        context['contract_form'] = TraderPurchasesContractForm(contract_data)
+        context['documents'] = Document.objects.all().values('id', 'name')
+        context['senders'] = Sender.objects.all().values('id', 'name')
+
+        product_set = []
+        products = contract.products.all()
+        for product in products:
+            data = {
+                'id': product.id,
+                'product_id': product.product.id,
+                'name': product.product.name,
+                'type': product.type,
+                'quantity': product.quantity,
+                'price': product.price,
+                'tax': product.tax,
+                'fee': product.fee,
+                'amount': product.amount
+            }
+            product_form = ProductForm(data)
+            if product_form.is_valid():
+                product_set.append(data)
+        context['productformset'] = ProductFormSet(initial=product_set, prefix='product')
+
+        document_set = []
+        documents = contract.documents.all()
+        for document in documents:
+            data = {
+                'id': document.id,
+                'document_id': document.document.id,
+                'taxable': int(document.taxable),
+                'tax': document.tax,
+                'name': document.document.name,
+                'quantity': document.quantity,
+                'price': document.price,
+                'amount': document.amount
+            }
+            document_form = DocumentForm(data)
+            if document_form.is_valid():
+                document_set.append(data)
+        context['documentformset'] = DocumentFormSet(initial=document_set, prefix='document')
+
+        product_sender = contract.senders.filter(type='P').first()
+        document_sender = contract.senders.filter(type='D').first()
+        product_sender_form = TraderPurchasesProductSenderForm({
+            'p_id': product_sender.id,
+            'product_sender_id': product_sender.sender.id,
+            'product_sender_address': product_sender.sender.address,
+            'product_sender_tel': product_sender.sender.tel,
+            'product_desired_arrival_date': product_sender.desired_arrival_date,
+            'product_shipping_company': product_sender.shipping_company,
+            'product_sender_remarks': product_sender.remarks
+        })
+        context['product_sender_form'] = product_sender_form
+
+        document_sender_form = TraderPurchasesDocumentSenderForm({
+            'd_id': document_sender.id,
+            'document_sender_id': document_sender.sender.id,
+            'document_sender_address': document_sender.sender.address,
+            'document_sender_tel': document_sender.sender.tel,
+            'document_desired_arrival_date': document_sender.desired_arrival_date,
+            'document_shipping_company': document_sender.shipping_company,
+            'document_sender_remarks': document_sender.remarks
+        })
+        context['document_sender_form'] = document_sender_form
+        
+        return context
     pass
 
 
-class HallPurchasesUpdateView(AdminLoginRequiredMixin, View):
+class HallPurchasesContractUpdateView(AdminLoginRequiredMixin, View):
     pass
 
 class HallSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):

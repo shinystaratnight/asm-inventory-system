@@ -10,7 +10,7 @@ from masterdata.models import (
 from .forms import (
     TraderSalesContractForm, TraderPurchasesContractForm, HallSalesContractForm, HallPurchasesContractForm,
     ProductFormSet, DocumentFormSet, DocumentFeeFormSet, MilestoneFormSet, 
-    TraderSalesProductSenderForm, TraderSalesDocumentSenderForm, #TraderPurchasesProductSenderForm, #TraderPurchasesDocumentSenderForm,
+    TraderSalesProductSenderForm, TraderSalesDocumentSenderForm, TraderPurchasesProductSenderForm, TraderPurchasesDocumentSenderForm,
 )
 from .utilities import generate_contract_id, get_shipping_date_label
 
@@ -123,6 +123,7 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
         for form in document_formset.forms:
             if form.is_valid():
                 form.save()
+        
         return redirect('listing:sales-list')
     
     def get_context_data(self, **kwargs):
@@ -139,6 +140,32 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
 
 
 ## Trader purchases contract ##
+class TraderPurchasesValidateAjaxView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            data = self.request.POST
+            # Check if contract form is valid
+            contract_form = TraderPurchasesContractForm(data)
+            if not contract_form.is_valid():
+                return JsonResponse({'success': False}, status=200)
+            product_sender_form = TraderPurchasesProductSenderForm(self.request.POST)
+            document_sender_form = TraderPurchasesDocumentSenderForm(self.request.POST)
+            if product_sender_form.is_valid() and document_sender_form.is_valid():
+                pass
+            else:
+                return JsonResponse({'success': False}, status=200)
+            
+            # Check the validity of product formset
+            product_formset = ProductFormSet(data, prefix='product')
+            if not product_formset.is_valid():
+                return JsonResponse({'success': False}, status=200)
+            document_formset = DocumentFormSet(data, prefix='document')
+            if not document_formset.is_valid():
+                return JsonResponse({'success': False}, status=200)
+            return JsonResponse({'success': True}, status=200)
+        return JsonResponse({'success': False}, status=400)
+
+
 class TraderPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
     template_name = 'contracts/trader_purchases.html'
 
@@ -149,6 +176,14 @@ class TraderPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
         contract_form = TraderPurchasesContractForm(self.request.POST)
         if contract_form.is_valid():
             contract = contract_form.save()
+        
+        product_sender_form = TraderPurchasesProductSenderForm(self.request.POST, contract_id=contract.id)
+        if product_sender_form.is_valid():
+            product_sender_form.save()
+        
+        document_sender_form = TraderPurchasesDocumentSenderForm(self.request.POST, contract_id=contract.id)
+        if document_sender_form.is_valid():
+            document_sender_form.save()
             
         product_formset = ProductFormSet(
             self.request.POST,
@@ -168,72 +203,18 @@ class TraderPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
             if form.is_valid():
                 form.save()
         
-        product_sender = {
-            'sender_id': self.request.POST.get('product_sender_id'),
-            'desired_arrival_date': self.request.POST.get('product_sender_desired_arrival_date'),
-            'shipping_company': self.request.POST.get('product_sender_shipping_company'),
-            'remarks': self.request.POST.get('product_sender_remarks')
-        }
-        product_sender_form = TraderPurchasesSenderForm(product_sender, type='P', contract_id=contract.id)
-        if product_sender_form.is_valid():
-            product_sender_form.save()
-        document_sender = {
-            'sender_id': self.request.POST.get('document_sender_id'),
-            'desired_arrival_date': self.request.POST.get('document_sender_desired_arrival_date'),
-            'shipping_company': self.request.POST.get('document_sender_shipping_company'),
-            'remarks': self.request.POST.get('document_sender_remarks')
-        }
-        document_sender_form = TraderPurchasesSenderForm(document_sender, type='D', contract_id=contract.id)
-        if document_sender_form.is_valid():
-            document_sender_form.save()
-        # return render(request, self.template_name, self.get_context_data(**kwargs))
         return redirect('listing:purchases-list')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['contract_id'] = generate_contract_id('02')
+        context['contract_form'] = TraderPurchasesContractForm()
         context['documents'] = Document.objects.all().values('id', 'name')
         context['senders'] = Sender.objects.all().values('id', 'name')
         context['productformset'] = ProductFormSet(prefix='product')
         context['documentformset'] = DocumentFormSet(prefix='document')
+        context['product_sender_form'] = TraderPurchasesProductSenderForm()
+        context['document_sender_form'] = TraderPurchasesDocumentSenderForm()
         return context
-
-
-class TraderPurchasesValidateAjaxView(AdminLoginRequiredMixin, View):
-    def post(self, *args, **kwargs):
-        if self.request.method == 'POST' and self.request.is_ajax():
-            data = self.request.POST
-            # Check if contract form is valid
-            contract_form = TraderPurchasesContractForm(data)
-            if not contract_form.is_valid():
-                return JsonResponse({'success': False}, status=200)
-            # Check the validity of product formset
-            product_formset = ProductFormSet(data, prefix='product')
-            if not product_formset.is_valid():
-                return JsonResponse({'success': False}, status=200)
-            document_formset = DocumentFormSet(data, prefix='document')
-            if not document_formset.is_valid():
-                return JsonResponse({'success': False}, status=200)
-            product_sender = {
-                'sender_id': data.get('product_sender_id'),
-                'desired_arrival_date': data.get('product_sender_desired_arrival_date'),
-                'shipping_company': data.get('product_sender_shipping_company'),
-                'remarks': data.get('product_sender_remarks')
-            }
-            document_sender = {
-                'sender_id': data.get('document_sender_id'),
-                'desired_arrival_date': data.get('document_sender_desired_arrival_date'),
-                'shipping_company': data.get('document_sender_shipping_company'),
-                'remarks': data.get('document_sender_remarks')
-            }
-            product_sender_form = TraderPurchasesSenderForm(product_sender)
-            document_sender_form = TraderPurchasesSenderForm(document_sender)
-            if product_sender_form.is_valid() and document_sender_form.is_valid():
-                pass
-            else:
-                return JsonResponse({'success': False}, status=200)
-            return JsonResponse({'success': True}, status=200)
-        return JsonResponse({'success': False}, status=400)
 # End of trader purchases form
 
 

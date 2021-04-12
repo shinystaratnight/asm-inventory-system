@@ -2,7 +2,9 @@
 {% load i18n %}
 {% load static %}
 {% block title %} {% trans "Trader sales" %} {% endblock title %}
+
 {% block stylesheets %}{% endblock stylesheets %}
+
 {% block content %}
 
 	<!-- Main content -->
@@ -693,7 +695,7 @@
 										<div class="seal-wrapper">
 											<p>〒<span class="buyer-postal-code ml-4">{{ contract_form.postal_code.value|default_if_none:"" }}</span>
 												<span class="buyer-address ml-4">{{ contract_form.address.value|default_if_none:"" }}</span></p>
-											<h4 class="buyer-company">{{ contract_form.customer_name.value }}</h4>
+											<h4 class="buyer-company">{{ contract_form.customer_name.value|default_if_none:"" }}</h4>
 											<p><span>{% trans "CEO" %} : </span><span class="buyer ml-4"></span></p>
 											<p class="mb-0 d-flex">
 												<span class="w-min-150-px">TEL : <span class="buyer-tel">{{ contract_form.tel.value|default_if_none:"" }}</span></span>
@@ -806,65 +808,6 @@
 								source: people
 							});
 						}
-					});
-
-					var lang = $('input[name="selected-lang"]').val();
-					$('select[name="product_sender_id"]').change(function (e) {
-						var id = $(this).val();
-						var $self = $(this);
-						var $fs = $self.closest('fieldset');
-
-						if (id == "") {
-							$fs.find('textarea[name="product_sender_address"]').val(null);
-							$fs.find('input[name="product_sender_tel"]').val(null);
-							$fs.find('input[name="product_sender_fax"]').val(null);
-							return;
-						}
-						
-						$.ajax({
-							type: 'POST',
-							url: `/${lang}/master/sender/`,
-							data: {
-								id: id,
-							},
-							beforeSend: function(request) {
-								request.setRequestHeader('X-CSRFToken', csrftoken);
-							},
-							success: function (result) {
-								$fs.find('textarea[name="product_sender_address"]').val(result.address);
-								$fs.find('input[name="product_sender_tel"]').val(result.tel);
-								$fs.find('input[name="product_sender_fax"]').val(result.fax);
-							}
-						});
-					});
-
-					$('select[name="document_sender_id"]').change(function (e) {
-						var id = $(this).val();
-						var $self = $(this);
-						var $fs = $self.closest('fieldset');
-
-						if (id == "") {
-							$fs.find('textarea[name="document_sender_address"]').val(null);
-							$fs.find('input[name="document_sender_tel"]').val(null);
-							$fs.find('input[name="document_sender_fax"]').val(null);
-							return;
-						}
-						
-						$.ajax({
-							type: 'POST',
-							url: `/${lang}/master/sender/`,
-							data: {
-								id: id,
-							},
-							beforeSend: function(request) {
-								request.setRequestHeader('X-CSRFToken', csrftoken);
-							},
-							success: function (result) {
-								$fs.find('textarea[name="document_sender_address"]').val(result.address);
-								$fs.find('input[name="document_sender_tel"]').val(result.tel);
-								$fs.find('input[name="document_sender_fax"]').val(result.fax);
-							}
-						});
 					});
 
 					$('button.create-invoice').click( function (e) {
