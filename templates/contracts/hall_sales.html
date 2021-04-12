@@ -71,7 +71,6 @@
 								<div class="row flex-wrap d-flex">
 									<div class="col-lg-6 col-xs-12">
 										<h3>{% trans "Buyer" %}({% trans "A" %})</h3>
-										
 										<div class="offset-1">
 											<div class="col-lg-12">
 												<div class="form-group d-flex row">
@@ -87,6 +86,7 @@
 									</div>
 									<div class="col-lg-6">
 										<h3>{% trans "Seller" %}({% trans "B" %})</h3>
+
 										<div class="offset-1">
 											<div class="form-group">
 												<span class="mr-4">
@@ -866,16 +866,12 @@
 
 					$('button.create-invoice').click( function (e) {
 						$('form').attr('action', "{% url 'contract:hall-sales-invoice' %}");
-						resetTotalFormNumber('product');
-						resetTotalFormNumber('document');
-						resetTotalFormNumber('document_fee');
+						resetMangementForm('product');
+						resetMangementForm('document');
+						resetMangementForm('document_fee');
 						$('form').submit();
 					});
 
-					function resetTotalFormNumber(prefix) {
-						if ($('table.table-' + prefix + ' .odd').length) $('#id_' + prefix + '-TOTAL_FORMS').val(0);
-					}
-				
 				});
 			</script>
 

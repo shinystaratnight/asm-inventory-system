@@ -9,7 +9,7 @@ from users.views import AdminLoginRequiredMixin
 from masterdata.models import Sender, Document, DocumentFee
 from .models import (
     ContractProduct, ContractDocument, ContractDocumentFee, Milestone,
-    TraderSalesContract, HallSalesContract, TraderPurchasesContract,
+    TraderSalesContract, TraderPurchasesContract, HallSalesContract, HallPurchasesContract,
 )
 from .forms import (
     TraderSalesContractForm, TraderPurchasesContractForm, HallSalesContractForm, HallPurchasesContractForm,
@@ -346,9 +346,6 @@ class TraderPurchasesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
     pass
 
 
-class HallPurchasesContractUpdateView(AdminLoginRequiredMixin, View):
-    pass
-
 class HallSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
     template_name = 'contracts/hall_sales.html'
 
@@ -442,7 +439,7 @@ class HallSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
                 if milestone_id not in updated_ids:
                     Milestone.objects.get(id=milestone_id).delete()
         
-        return redirect('listing:sales-list')
+        return render(request, self.template_name, self.get_context_data(**kwargs))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -470,6 +467,207 @@ class HallSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
             'confirmor': contract.confirmor,
         }
         context['contract_form'] = HallSalesContractForm(contract_data)
+        context['documents'] = Document.objects.all().values('id', 'name')
+        document_fee_lambda = lambda df: {'id': df.id, 'name': df.get_type_display()}
+        document_fees = [document_fee_lambda(document_fee) for document_fee in DocumentFee.objects.all()]
+        context['document_fees'] = document_fees
+        context['senders'] = Sender.objects.all().values('id', 'name')
+
+        product_set = []
+        products = contract.products.all()
+        for product in products:
+            data = {
+                'id': product.id,
+                'product_id': product.product.id,
+                'name': product.product.name,
+                'type': product.type,
+                'quantity': product.quantity,
+                'price': product.price,
+                'tax': product.tax,
+                'fee': product.fee,
+                'amount': product.amount
+            }
+            product_form = ProductForm(data)
+            if product_form.is_valid():
+                product_set.append(data)
+        context['productformset'] = ProductFormSet(initial=product_set, prefix='product')
+        
+        document_set = []
+        documents = contract.documents.all()
+        for document in documents:
+            data = {
+                'id': document.id,
+                'document_id': document.document.id,
+                'taxable': int(document.taxable),
+                'tax': document.tax,
+                'name': document.document.name,
+                'quantity': document.quantity,
+                'price': document.price,
+                'amount': document.amount
+            }
+            document_form = DocumentForm(data)
+            if document_form.is_valid():
+                document_set.append(data)
+        context['documentformset'] = DocumentFormSet(initial=document_set, prefix='document')
+
+        document_fee_set = []
+        document_fees = contract.document_fees.all()
+        for document_fee in document_fees:
+            data = {
+                'id': document_fee.id,
+                'document_fee_id': document_fee.document_fee.id,
+                'name': document_fee.document_fee.get_type_display,
+                'tax': document_fee.tax,
+                'model_price': document_fee.document_fee.model_price,
+                'unit_price': document_fee.document_fee.unit_price,
+                'application_fee': document_fee.document_fee.application_fee,
+                'model_count': document_fee.model_count,
+                'unit_count': document_fee.unit_count,
+                'amount': document_fee.amount
+            }
+            document_fee_form = DocumentFeeForm(data)
+            if document_fee_form.is_valid():
+                document_fee_set.append(data)
+        context['documentfeeformset'] = DocumentFeeFormSet(initial=document_fee_set, prefix='document_fee')
+        milestone_set = []
+        milestones = contract.milestones.all()
+        for milestone in milestones:
+            data = {
+                'id': milestone.id,
+                'date': milestone.date,
+                'amount': milestone.amount
+            }
+            milestone_form = MilestoneForm(data)
+            if milestone_form.is_valid():
+                milestone_set.append(data)
+        extra = 5 - milestones.count()
+        MilestoneUpdateFormSet = formset_factory(MilestoneForm, formset=MilestoneValidationFormSet, extra=extra)
+        context['milestoneformset'] = MilestoneUpdateFormSet(initial=milestone_set, prefix='milestone')
+        return context
+
+
+class HallPurchasesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
+    template_name = 'contracts/hall_purchases.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.get_context_data(**kwargs))
+    
+    def post(self, request, *args, **kwargs):
+        id = kwargs.get('pk')
+        contract_form = HallPurchasesContractForm(self.request.POST, id=id)
+        if contract_form.is_valid():
+            contract = contract_form.save()
+            
+        product_formset = ProductFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'HallPurchasesContract'},
+            prefix='product'
+        )
+        if product_formset.is_valid():
+            product_qs = contract.products.values('id')
+            old_product_ids = set()
+            for product in product_qs:
+                old_product_ids.add(product['id'])
+            updated_ids = set()
+            for form in product_formset.forms:
+                if form.is_valid():
+                    if form.cleaned_data.get('id'):
+                        updated_ids.add(form.cleaned_data.get('id'))
+                    form.save()
+            for product_id in old_product_ids:
+                if product_id not in updated_ids:
+                    ContractProduct.objects.get(id=product_id).delete()
+
+        document_formset = DocumentFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'HallPurchasesContract'},
+            prefix='document'
+        )
+        if document_formset.is_valid():
+            document_qs = contract.documents.values('id')
+            old_document_ids = set()
+            for document in document_qs:
+                old_document_ids.add(document['id'])
+            updated_ids = set()
+            for form in document_formset.forms:
+                if form.is_valid():
+                    if form.cleaned_data.get('id'):
+                        updated_ids.add(form.cleaned_data.get('id'))
+                    form.save()
+            for document_id in old_document_ids:
+                if document_id not in updated_ids:
+                    ContractDocument.objects.get(id=document_id).delete()
+        
+        document_fee_formset = DocumentFeeFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'HallPurchasesContract'},
+            prefix='document_fee'
+        )
+        if document_fee_formset.is_valid():
+            document_fee_qs = contract.document_fees.values('id')
+            old_document_fee_ids = set()
+            for document_fee in document_fee_qs:
+                old_document_fee_ids.add(document_fee['id'])
+            updated_ids = set()
+            for form in document_fee_formset.forms:
+                if form.is_valid():
+                    if form.cleaned_data.get('id'):
+                        updated_ids.add(form.cleaned_data.get('id'))
+                    form.save()
+            for document_fee_id in old_document_fee_ids:
+                if document_fee_id not in updated_ids:
+                    ContractDocumentFee.objects.get(id=document_fee_id).delete()
+        
+        milestone_formset = MilestoneFormSet(
+            self.request.POST,
+            form_kwargs={'contract_id': contract.id, 'contract_class': 'HallPurchasesContract'},
+            prefix='milestone'
+        )
+        if milestone_formset.is_valid():
+            milestone_qs = contract.milestones.values('id')
+            old_milestone_ids = set()
+            for milestone in milestone_qs:
+                old_milestone_ids.add(milestone['id'])
+            updated_ids = set()
+            for form in milestone_formset.forms:
+                if form.is_valid():
+                    if form.cleaned_data.get('date') and form.cleaned_data.get('amount'):
+                        if form.cleaned_data.get('id'):
+                            updated_ids.add(form.cleaned_data.get('id'))
+                        form.save()
+            for milestone_id in old_milestone_ids:
+                if milestone_id not in updated_ids:
+                    Milestone.objects.get(id=milestone_id).delete()
+        
+        return render(request, self.template_name, self.get_context_data(**kwargs))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        id = kwargs.get('pk')
+        contract = HallPurchasesContract.objects.get(id=id)
+        contract_data = {
+            'contract_id': contract.contract_id,
+            'created_at': contract.created_at,
+            'customer_id': contract.customer.id,
+            'customer_name': contract.customer.name,
+            'hall_id': contract.hall.id,
+            'hall_name': contract.hall.name,
+            'address': contract.hall.address,
+            'tel': contract.hall.tel,
+            'remarks': contract.remarks,
+            'sub_total': contract.sub_total,
+            'tax': contract.tax,
+            'fee': contract.fee,
+            'total': contract.total,
+            'shipping_date': contract.shipping_date,
+            'opening_date': contract.opening_date,
+            'payment_method': contract.payment_method,
+            'transfer_account': contract.transfer_account,
+            'person_in_charge': contract.person_in_charge,
+            'confirmor': contract.confirmor,
+            'memo': contract.memo,
+        }
+        context['contract_form'] = HallPurchasesContractForm(contract_data)
         context['documents'] = Document.objects.all().values('id', 'name')
         document_fee_lambda = lambda df: {'id': df.id, 'name': df.get_type_display()}
         document_fees = [document_fee_lambda(document_fee) for document_fee in DocumentFee.objects.all()]
