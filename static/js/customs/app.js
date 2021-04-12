@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // when fee_fre checkbox is checked/unchecked...
-    $('#fee_edit').change(function () {
+    $('#fee_editable').change(function () {
         if (this.checked) $('#id_fee').prop('readonly', false); else $('#id_fee').prop('readonly', true);
     });
 
