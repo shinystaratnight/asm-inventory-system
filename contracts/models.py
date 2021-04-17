@@ -60,8 +60,8 @@ class ContractDocument(models.Model):
 
 class ContractDocumentFee(models.Model):
     document_fee = models.ForeignKey(DocumentFee, on_delete=models.SET_NULL, null=True)
-    model_count = models.IntegerField()
-    unit_count = models.IntegerField()
+    model_count = models.PositiveIntegerField()
+    unit_count = models.PositiveIntegerField()
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
@@ -80,7 +80,7 @@ class ContractDocumentFee(models.Model):
 
 class Milestone(models.Model):
     date = models.DateField()
-    amount = models.IntegerField()
+    amount = models.PositiveIntegerField()
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
@@ -92,10 +92,10 @@ class TraderContract(models.Model):
     updated_at = models.DateField()
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     manager = models.CharField(max_length=200, null=True, blank=True)
-    person_in_charge = models.CharField(max_length=200)
+    person_in_charge = models.CharField(max_length=200, null=True, blank=True)
     remarks = models.TextField(null=True, blank=True)
-    shipping_date = models.DateField()
-    fee = models.IntegerField()
+    shipping_date = models.DateField(null=True, blank=True)
+    fee = models.IntegerField(default=0)
 
     class Meta:
         abstract = True
@@ -134,21 +134,21 @@ class TraderContract(models.Model):
 class TraderSalesContract(TraderContract):
     shipping_method = models.CharField(max_length=1, choices=SHIPPING_METHOD_CHOICES)
     payment_method = models.CharField(max_length=2, choices=PAYMENT_METHOD_CHOICES)
-    payment_due_date = models.DateField()
+    payment_due_date = models.DateField(null=True, blank=True)
     memo = models.TextField(null=True, blank=True)
     products = GenericRelation(ContractProduct, related_query_name='trader_sales_contract')
     documents = GenericRelation(ContractDocument, related_query_name='trader_sales_contract')
 
 
 class TraderPurchasesContract(TraderContract):
-    removal_date = models.DateField()
-    frame_color = models.CharField(max_length=100)
-    receipt = models.CharField(max_length=100)
-    transfer_deadline = models.DateField()
-    bank_name = models.CharField(max_length=200)
-    account_number = models.CharField(max_length=200)
-    branch_name = models.CharField(max_length=200)
-    account_holder = models.CharField(max_length=200)
+    removal_date = models.DateField(null=True, blank=True)
+    frame_color = models.CharField(max_length=100, null=True, blank=True)
+    receipt = models.CharField(max_length=100, null=True, blank=True)
+    transfer_deadline = models.DateField(null=True, blank=True)
+    bank_name = models.CharField(max_length=200, null=True, blank=True)
+    account_number = models.CharField(max_length=200, null=True, blank=True)
+    branch_name = models.CharField(max_length=200, null=True, blank=True)
+    account_holder = models.CharField(max_length=200, null=True, blank=True)
     products = GenericRelation(ContractProduct, related_query_name='trader_purchases_contract')
     documents = GenericRelation(ContractDocument, related_query_name='trader_purchases_contract')
 
@@ -156,16 +156,16 @@ class TraderPurchasesContract(TraderContract):
 class TraderSalesSender(models.Model):
     contract = models.ForeignKey(TraderSalesContract, on_delete=models.CASCADE, related_name='senders')
     type = models.CharField(max_length=1, choices=ITEM_CHOICES)
-    sender = models.ForeignKey(Sender, on_delete=models.CASCADE)
-    expected_arrival_date = models.DateField()
+    sender = models.ForeignKey(Sender, on_delete=models.SET_NULL, null=True)
+    expected_arrival_date = models.DateField(null=True, blank=True)
 
     
 class TraderPurchasesSender(models.Model):
     contract = models.ForeignKey(TraderPurchasesContract, on_delete=models.CASCADE, related_name='senders')
     type = models.CharField(max_length=1, choices=ITEM_CHOICES)
-    sender = models.ForeignKey(Sender, on_delete=models.CASCADE)
-    desired_arrival_date = models.DateField()
-    shipping_company = models.CharField(max_length=100)
+    sender = models.ForeignKey(Sender, on_delete=models.SET_NULL, null=True)
+    desired_arrival_date = models.DateField(null=True, blank=True)
+    shipping_company = models.CharField(max_length=100, null=True, blank=True)
     remarks = models.TextField(null=True, blank=True)
 
 

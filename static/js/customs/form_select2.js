@@ -190,4 +190,61 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     // End of select hall select2 initialization and formatting
 
+    // Select sender select2 initialization and formatting
+    function formatSender (sender) {
+        if (sender.loading) return sender.text;
+
+        var markup = "<div class='select2-result-sender clearfix'>" +
+            "<div class='select2-result-sender__name'><b>" + sender.name + "</b></div></div>";
+        return markup;
+    }
+
+    function formatSenderSelection (sender) {
+        return sender.name || sender.text;
+    }
+
+    $(".select-sender").select2({
+        ajax: {
+            url: "/master/search-sender/",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    q: params.term,
+                    page: params.page
+                };
+            },
+            processResults: function (data, params) {
+                params.page = params.page || 1;
+                return {
+                    results: data.senders,
+                    pagination: {
+                        more: (params.page * 30) < data.total_count
+                    }
+                };
+            },
+            cache: true
+        },
+        escapeMarkup: function (markup) { return markup; },
+        // allowClear: true,
+        minimumInputLength: 1,
+        templateResult: formatSender,
+        templateSelection: formatSenderSelection
+    });
+    
+    // sender search select2 changed event
+    $('.select-sender').on('select2:select', function(e) {
+        var sender = e.params.data;
+        var address = sender.address;
+        var tel = sender.tel;
+        var fax = sender.fax;
+
+        var $fieldset = $(this).closest('fieldset');
+        if (address) $fieldset.find('textarea[name$="_sender_address"]').val(address);
+        if (tel) $fieldset.find('input[name$="_sender_tel"]').val(tel);
+        if (fax) $fieldset.find('input[name="_sender_fax"]').val(fax);
+        
+    });
+    // End of select sender select2 initialization and formatting
+
 });

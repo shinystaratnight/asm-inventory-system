@@ -5,7 +5,7 @@ from .views import (
     SenderListView, SenderDetailAjaxView, SenderUpdateView, SenderDeleteView,
     ProductListView, ProductDetailAjaxView, ProductUpdateView, ProductDeleteView,
     DocumentListView, DocumentDetailAjaxView, DocumentUpdateView, DocumentDeleteView,
-    CustomerSearchAjaxView, HallSearchAjaxView, ProductSearchAjaxView,
+    CustomerSearchAjaxView, HallSearchAjaxView, SenderSearchAjaxView, ProductSearchAjaxView,
     DocumentFeePriceAjaxView,
 )
 
@@ -38,6 +38,7 @@ urlpatterns = [
 
     path('search-customer/', CustomerSearchAjaxView.as_view(), name='customer-search'),
     path('search-hall/', HallSearchAjaxView.as_view(), name='hall-search'),
+    path('search-sender/', SenderSearchAjaxView.as_view(), name='sender-search'),
     path('search-product/', ProductSearchAjaxView.as_view(), name='product-search'),
 
     path('document-fee/', DocumentFeePriceAjaxView.as_view(), name='document-fee-price',)

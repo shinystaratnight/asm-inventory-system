@@ -336,100 +336,46 @@ document.addEventListener('DOMContentLoaded', function() {
         if (this.checked) $('#id_fee').prop('readonly', false); else $('#id_fee').prop('readonly', true);
     });
 
-    // Form validator function for trader sales contract page
+    // Trader sales contract page
     $('form[name="trader_sales"] button[type="submit"]').click( function (e) {
         e.preventDefault();
-        var $form = $(this).closest('form');
-        // To prevent the cached total_form_num hidden value from being sent to the server,
-        // reset it to zero if no items has been added.
         resetMangementForm(product_prefix);
         resetMangementForm(document_prefix);
-        /*
-        // In case of Ajax POST request, i18n throws issues (403) because of automatic url pattern resolve.
-        // lang prefix should be added to the url.
-         */
-        $.ajax({
-            type: "POST",
-            url: `/${lang}/contract/validate/trader-sales/`,
-            data: $form.serialize(),
-            dataType: 'json',
-            success: function (result) {
-                if (('success' in result) && result['success'] == false) {
-                    $('#modal_trader_sales_error').modal('toggle');
-                    return false;
-                }
-                $form.attr('action', $(location).attr('href'));
-                $form.submit();
-            }
-        });
+        var $form = $(this).closest('form');
+        $form.attr('action', $(location).attr('href'));
+        $form.submit();
     });
 
-    // Form validator function for trader purchases contract page
+    // Trader purchases contract page
     $('form[name="trader_purchases"] button[type="submit"]').click( function (e) {
         e.preventDefault();
-        var $form = $(this).closest('form');
         resetMangementForm(product_prefix);
         resetMangementForm(document_prefix);
-        $.ajax({
-            type: "POST",
-            url: `/${lang}/contract/validate/trader-purchases/`,
-            data: $form.serialize(),
-            dataType: 'json',
-            success: function (result) {
-                if (('success' in result) && result['success'] == false) {
-                    $('#modal_trader_purchases_error').modal('toggle');
-                    return false;
-                }
-                $form.attr('action', $(location).attr('href'));
-                $form.submit();
-            }
-        });
+        var $form = $(this).closest('form');
+        $form.attr('action', $(location).attr('href'));
+        $form.submit();
     });
 
-    // Form validator function for hall sales contract page
+    // Hall sales contract page
     $('form[name="hall_sales"] button[type="submit"]').click( function (e) {
         e.preventDefault();
-        var $form = $(this).closest('form');
         resetMangementForm(product_prefix);
         resetMangementForm(document_prefix);
         resetMangementForm(document_fee_prefix);
-        $.ajax({
-            type: "POST",
-            url: `/${lang}/contract/validate/hall-sales/`,
-            data: $form.serialize(),
-            dataType: 'json',
-            success: function (result) {
-                if (('success' in result) && result['success'] == false) {
-                    $('#modal_hall_sales_error').modal('toggle');
-                    return false;
-                }
-                $form.attr('action', $(location).attr('href'));
-                $form.submit();
-            }
-        });
+        var $form = $(this).closest('form');
+        $form.attr('action', $(location).attr('href'));
+        $form.submit();
     });
 
-    // Form validator function for hall purchases contract page
+    // Hall purchases contract page
     $('form[name="hall_purchases"] button[type="submit"]').click( function (e) {
         e.preventDefault();
-        var $form = $(this).closest('form');
         resetMangementForm(product_prefix);
         resetMangementForm(document_prefix);
         resetMangementForm(document_fee_prefix);
-        $.ajax({
-            type: "POST",
-            url: `/${lang}/contract/validate/hall-purchases/`,
-            data: $form.serialize(),
-            dataType: 'json',
-            success: function (result) {
-                if (('success' in result) && result['success'] == false) {
-                    $('#modal_hall_purchases_error').modal('toggle');
-                    return false;
-                }
-                $form.attr('action', $(location).attr('href'));
-                $form.submit();
-            }
-        });
+        var $form = $(this).closest('form');
+        $form.attr('action', $(location).attr('href'));
+        $form.submit();
     });
 
 });

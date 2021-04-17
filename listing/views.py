@@ -289,29 +289,11 @@ class SalesProductDetailAjaxView(AdminLoginRequiredMixin, View):
             product = ContractProduct.objects.get(id=id)
             contract = product.content_object
             contract_id = contract.contract_id
-            contract_date = contract.created_at
-            customer = contract.customer.name
-            person_in_charge = contract.person_in_charge
-            if product.content_type_id == ContentType.objects.get(model='HallSalesContract').id:
-                destination = contract.hall.name
-                payment_date = contract.shipping_date
-            else:
-                destination = None
-                payment_date = contract.payment_due_date
             product_name = product.product.name
-            quantity = product.quantity
-            price = product.quantity * product.price
             status = product.status
             return JsonResponse({
                 'contract_id': contract_id,
-                'contract_date': contract_date,
-                'customer': customer,
-                'destination': destination,
-                'person_in_charge': person_in_charge,
-                'payment_date': payment_date,
                 'product_name': product_name,
-                'quantity': quantity,
-                'price': price,
                 'status': status
             }, status=200)
         return JsonResponse({'success': False}, status=400)
@@ -324,29 +306,11 @@ class PurchasesProductDetailAjaxView(AdminLoginRequiredMixin, View):
             product = ContractProduct.objects.get(id=id)
             contract = product.content_object
             contract_id = contract.contract_id
-            contract_date = contract.created_at
-            customer = contract.customer.name
-            person_in_charge = contract.person_in_charge
-            if product.content_type_id == ContentType.objects.get(model='HallPurchasesContract').id:
-                destination = contract.hall.name
-                payment_date = contract.shipping_date
-            else:
-                destination = None
-                payment_date = contract.transfer_deadline
             product_name = product.product.name
-            quantity = product.quantity
-            price = product.quantity * product.price
             status = product.status
             return JsonResponse({
                 'contract_id': contract_id,
-                'contract_date': contract_date,
-                'customer': customer,
-                'destination': destination,
-                'person_in_charge': person_in_charge,
-                'payment_date': payment_date,
                 'product_name': product_name,
-                'quantity': quantity,
-                'price': price,
                 'status': status
             }, status=200)
         return JsonResponse({'success': False}, status=400)

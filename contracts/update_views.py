@@ -91,14 +91,14 @@ class TraderSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
             'contract_id': contract.contract_id,
             'created_at': contract.created_at,
             'updated_at': contract.updated_at,
-            'customer_id': contract.customer.id,
-            'customer_name': contract.customer.name,
+            'customer_id': contract.customer.id if contract.customer else None,
+            'customer_name': contract.customer.name if contract.customer else None,
             'manager': contract.manager,
-            'frigana': contract.customer.frigana,
-            'postal_code': contract.customer.postal_code,
-            'address': contract.customer.address,
-            'tel': contract.customer.tel,
-            'fax': contract.customer.fax,
+            'frigana': contract.customer.frigana if contract.customer else None,
+            'postal_code': contract.customer.postal_code if contract.customer else None,
+            'address': contract.customer.address if contract.customer else None,
+            'tel': contract.customer.tel if contract.customer else None,
+            'fax': contract.customer.fax if contract.customer else None,
             'person_in_charge': contract.person_in_charge,
             'remarks': contract.remarks,
             'sub_total': contract.sub_total,
@@ -113,8 +113,37 @@ class TraderSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
             'memo': contract.memo
         }
         context['contract_form'] = TraderSalesContractForm(contract_data)
+
+        if contract.senders.count():
+            product_sender = contract.senders.filter(type='P').first()
+            document_sender = contract.senders.filter(type='D').first()
+            product_sender_form = TraderSalesProductSenderForm({
+                'p_id': product_sender.id,
+                'product_sender_id': product_sender.sender.id if product_sender.sender else None,
+                'product_sender_name': product_sender.sender.name if product_sender.sender else None,
+                'product_sender_address': product_sender.sender.address if product_sender.sender else None,
+                'product_sender_tel': product_sender.sender.tel if product_sender.sender else None,
+                'product_sender_fax': product_sender.sender.fax if product_sender.sender else None,
+                'product_expected_arrival_date': product_sender.expected_arrival_date
+            })
+            if product_sender_form.is_valid():
+                context['product_sender_form'] = product_sender_form
+            document_sender_form = TraderSalesDocumentSenderForm({
+                'd_id': document_sender.id,
+                'document_sender_id': document_sender.sender.id if document_sender.sender else None,
+                'document_sender_name': document_sender.sender.name if document_sender.sender else None,
+                'document_sender_address': document_sender.sender.address if document_sender.sender else None,
+                'document_sender_tel': document_sender.sender.tel if document_sender.sender else None,
+                'document_sender_fax': document_sender.sender.fax if document_sender.sender else None,
+                'document_expected_arrival_date': document_sender.expected_arrival_date
+            })
+            if document_sender_form.is_valid():
+                context['document_sender_form'] = document_sender_form
+        else:
+            context['product_sender_form'] = TraderSalesProductSenderForm()
+            context['document_sender_form'] = TraderSalesDocumentSenderForm()
+        
         context['documents'] = Document.objects.all().values('id', 'name')
-        context['senders'] = Sender.objects.all().values('id', 'name')
 
         product_set = []
         products = contract.products.all()
@@ -153,33 +182,6 @@ class TraderSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
                 document_set.append(data)
         context['documentformset'] = DocumentFormSet(initial=document_set, prefix='document')
         
-        if contract.senders.count():
-            product_sender = contract.senders.filter(type='P').first()
-            document_sender = contract.senders.filter(type='D').first()
-            product_sender_form = TraderSalesProductSenderForm({
-                'p_id': product_sender.id,
-                'product_sender_id': product_sender.sender.id,
-                'product_sender_address': product_sender.sender.address,
-                'product_sender_tel': product_sender.sender.tel,
-                'product_sender_fax': product_sender.sender.fax,
-                'product_expected_arrival_date': product_sender.expected_arrival_date
-            })
-            if product_sender_form.is_valid():
-                context['product_sender_form'] = product_sender_form
-            document_sender_form = TraderSalesDocumentSenderForm({
-                'd_id': document_sender.id,
-                'document_sender_id': document_sender.sender.id,
-                'document_sender_address': document_sender.sender.address,
-                'document_sender_tel': document_sender.sender.tel,
-                'document_sender_fax': document_sender.sender.fax,
-                'document_expected_arrival_date': document_sender.expected_arrival_date
-            })
-            if document_sender_form.is_valid():
-                context['document_sender_form'] = document_sender_form
-        else:
-            context['product_sender_form'] = TraderSalesProductSenderForm()
-            context['document_sender_form'] = TraderSalesDocumentSenderForm()
-
         return context
 
 
