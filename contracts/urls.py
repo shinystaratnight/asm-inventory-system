@@ -24,7 +24,7 @@ urlpatterns = [
     path('invoice/hall-purchases/', HallPurchasesInvoiceView.as_view(), name='hall-purchases-invoice'),
 
     path('trader-sales/<int:pk>/update/', TraderSalesContractUpdateView.as_view(), name='tradersalescontract-update'),
-    path('trader-purchases/<int:pk>/update', TraderPurchasesContractUpdateView.as_view(), name='traderpurchasescontract-update'),
+    path('trader-purchases/<int:pk>/update/', TraderPurchasesContractUpdateView.as_view(), name='traderpurchasescontract-update'),
     path('hall-sales/<int:pk>/update/', HallSalesContractUpdateView.as_view(), name='hallsalescontract-update'),
     path('hall-purchases/<int:pk>/update/', HallPurchasesContractUpdateView.as_view(), name='hallpurchasescontract-update'),
 

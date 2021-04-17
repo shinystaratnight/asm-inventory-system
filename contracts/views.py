@@ -208,7 +208,6 @@ class TraderPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['contract_form'] = TraderPurchasesContractForm()
         context['documents'] = Document.objects.all().values('id', 'name')
-        context['senders'] = Sender.objects.all().values('id', 'name')
         context['productformset'] = ProductFormSet(prefix='product')
         context['documentformset'] = DocumentFormSet(prefix='document')
         context['product_sender_form'] = TraderPurchasesProductSenderForm()

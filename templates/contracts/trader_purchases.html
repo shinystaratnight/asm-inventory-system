@@ -599,12 +599,8 @@
 											<legend class="text-bold text-center">{% trans "Product sender" %}</legend>
 											<div class="form-group">
 												<label class="control-label">{% trans "Company" %}</label>
-												<select name="product_sender_id" class="selectbox select-sender">
+												<select name="product_sender_id" class="select-sender select-product-sender">
 													<option value="">{% trans 'Select product sender' %}...</option>
-													{% for sender in senders %}
-													<option value="{{ sender.id }}"
-													{% if sender.id == product_sender_form.product_sender_id.value %}selected{% endif %}>{{ sender.name }}</option>
-													{% endfor %}
 												</select>
 											</div>
 											{{ product_sender_form.p_id }}
@@ -647,12 +643,8 @@
 											<legend class="text-bold text-center">{% trans "Document sender" %}</legend>
 											<div class="form-group">
 												<label class="control-label">{% trans "Company" %}</label>
-												<select name="document_sender_id" class="selectbox select-sender">
+												<select name="document_sender_id" class="select-sender select-document-sender">
 													<option value="">{% trans 'Select document sender' %}...</option>
-													{% for sender in senders %}
-													<option value="{{ sender.id }}"
-													{% if sender.id == document_sender_form.document_sender_id.value %}selected{% endif %}>{{ sender.name }}</option>
-													{% endfor %}
 												</select>
 											</div>
 											{{ document_sender_form.d_id }}
@@ -847,7 +839,19 @@
 					{% if contract_form.customer_id.value %}
 						$(".select-customer").select2("trigger", "select", {
 							data: { id: "{{contract_form.customer_id.value}}", text: "{{contract_form.customer_name.value}}" }
-						});	
+						});
+					{% endif %}
+
+					{% if product_sender_form.product_sender_id.value %}
+						$(".select-product-sender").select2("trigger", "select", {
+							data: { id: "{{product_sender_form.product_sender_id.value}}", text: "{{product_sender_form.product_sender_name.value}}" }
+						});
+					{% endif %}
+
+					{% if document_sender_form.document_sender_id.value %}
+						$(".select-document-sender").select2("trigger", "select", {
+							data: { id: "{{document_sender_form.document_sender_id.value}}", text: "{{document_sender_form.document_sender_name.value}}" }
+						});
 					{% endif %}
 					
 					$.ajax({

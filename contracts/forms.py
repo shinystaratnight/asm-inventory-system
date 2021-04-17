@@ -384,7 +384,7 @@ class TraderPurchasesContractForm(forms.Form):
         initial=generate_contract_id('02'))
     created_at = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     updated_at = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
-    customer_id = forms.IntegerField()
+    customer_id = forms.IntegerField(required=False)
     customer_name = forms.CharField(required=False)
     manager = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
     frigana = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
@@ -392,21 +392,21 @@ class TraderPurchasesContractForm(forms.Form):
     address = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
     tel = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
     fax = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
-    person_in_charge = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control person_in_charge'}))
+    person_in_charge = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control person_in_charge'}), required=False)
     removal_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     shipping_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
-    frame_color = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    receipt = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    frame_color = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
+    receipt = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
     remarks = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-70'}), required=False)
     sub_total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
     tax = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
     fee = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), initial=0)
     total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
     transfer_deadline = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
-    bank_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    account_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    branch_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    account_holder = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    bank_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
+    account_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
+    branch_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
+    account_holder = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
     
     def __init__(self, *args, **kwargs):
         if kwargs.get('id'):
@@ -463,11 +463,16 @@ class TraderPurchasesContractForm(forms.Form):
 
 class TraderPurchasesProductSenderForm(forms.Form):
     p_id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
-    product_sender_id = forms.IntegerField()
+    product_sender_id = forms.IntegerField(required=False)
+    product_sender_name = forms.CharField(required=False)
     product_sender_address = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-70', 'readonly': 'readonly'}), required=False)
     product_sender_tel = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), required=False)
-    product_desired_arrival_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
-    product_shipping_company = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    product_desired_arrival_date = forms.DateField(
+        widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}),
+        input_formats=INPUT_FORMATS,
+        required=False
+    )
+    product_shipping_company = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
     product_sender_remarks = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
 
     def __init__(self, *args, **kwargs):
@@ -476,9 +481,12 @@ class TraderPurchasesProductSenderForm(forms.Form):
         super().__init__(*args, **kwargs)
     
     def save(self):
+        sender = None
+        if self.cleaned_data.get('product_sender_id'):
+            sender = Sender.objects.get(id=self.cleaned_data.get('product_sender_id'))
         if self.cleaned_data.get('p_id'):
             contract_sender = TraderPurchasesSender.objects.get(id=self.cleaned_data.get('p_id'))
-            contract_sender.sender = Sender.objects.get(id=self.cleaned_data.get('product_sender_id'))
+            contract_sender.sender = sender
             contract_sender.desired_arrival_date = self.cleaned_data.get('product_desired_arrival_date')
             contract_sender.shipping_company = self.cleaned_data.get('product_shipping_company')
             contract_sender.remarks = self.cleaned_data.get('product_sender_remarks')
@@ -488,7 +496,7 @@ class TraderPurchasesProductSenderForm(forms.Form):
             data = {
                 'contract': TraderPurchasesContract.objects.get(id=self.contract_id),
                 'type': 'P',
-                'sender': Sender.objects.get(id=self.cleaned_data.get('product_sender_id')),
+                'sender': sender,
                 'desired_arrival_date': self.cleaned_data.get('product_desired_arrival_date'),
                 'shipping_company': self.cleaned_data.get('product_shipping_company'),
                 'remarks': self.cleaned_data.get('product_sender_remarks'),
@@ -498,11 +506,16 @@ class TraderPurchasesProductSenderForm(forms.Form):
 
 class TraderPurchasesDocumentSenderForm(forms.Form):
     d_id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
-    document_sender_id = forms.IntegerField()
+    document_sender_id = forms.IntegerField(required=False)
+    document_sender_name = forms.CharField(required=False)
     document_sender_address = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-70', 'readonly': 'readonly'}), required=False)
     document_sender_tel = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), required=False)
-    document_desired_arrival_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
-    document_shipping_company = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    document_desired_arrival_date = forms.DateField(
+        widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}),
+        input_formats=INPUT_FORMATS,
+        required=False
+    )
+    document_shipping_company = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
     document_sender_remarks = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
 
     def __init__(self, *args, **kwargs):
@@ -511,9 +524,12 @@ class TraderPurchasesDocumentSenderForm(forms.Form):
         super().__init__(*args, **kwargs)
     
     def save(self):
+        sender = None
+        if self.cleaned_data.get('document_sender_id'):
+            sender = Sender.objects.get(id=self.cleaned_data.get('document_sender_id'))
         if self.cleaned_data.get('d_id'):
             contract_sender = TraderPurchasesSender.objects.get(id=self.cleaned_data.get('d_id'))
-            contract_sender.sender = Sender.objects.get(id=self.cleaned_data.get('document_sender_id'))
+            contract_sender.sender = sender
             contract_sender.desired_arrival_date = self.cleaned_data.get('document_desired_arrival_date')
             contract_sender.shipping_company = self.cleaned_data.get('document_shipping_company')
             contract_sender.remarks = self.cleaned_data.get('document_sender_remarks')
@@ -523,7 +539,7 @@ class TraderPurchasesDocumentSenderForm(forms.Form):
             data = {
                 'contract': TraderPurchasesContract.objects.get(id=self.contract_id),
                 'type': 'D',
-                'sender': Sender.objects.get(id=self.cleaned_data.get('document_sender_id')),
+                'sender': sender,
                 'desired_arrival_date': self.cleaned_data.get('document_desired_arrival_date'),
                 'shipping_company': self.cleaned_data.get('document_shipping_company'),
                 'remarks': self.cleaned_data.get('document_sender_remarks'),
@@ -607,9 +623,9 @@ class HallPurchasesContractForm(forms.Form):
         widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}),
         initial=generate_contract_id('04'))
     created_at = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
-    customer_id = forms.IntegerField()
+    customer_id = forms.IntegerField(required=False)
     customer_name = forms.CharField(required=False)
-    hall_id = forms.IntegerField()
+    hall_id = forms.IntegerField(required=False)
     hall_name = forms.CharField(required=False)
     address = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
     tel = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
