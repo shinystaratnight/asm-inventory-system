@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 from users.views import AdminLoginRequiredMixin
 from masterdata.models import NO_FEE_PURCHASES, NO_FEE_SALES, FEE_PURCHASES, FEE_SALES
 from contracts.models import TraderSalesContract, HallSalesContract, TraderPurchasesContract, HallPurchasesContract
-from contracts.utilities import generate_random_number
+from contracts.utilities import generate_random_number, update_csv_history
 from .forms import SearchForm
 
 paginate_by = 3
@@ -55,6 +55,9 @@ class SalesListView(AdminLoginRequiredMixin, TemplateView):
         return render(request, self.template_name, self.get_context_data(**kwargs))
     
     def post(self, request, *args, **kwargs):
+        user_id = self.request.user.id
+        update_csv_history(user_id, "{} - {}".format(_("Accounting software CSV"), _("Sale")))
+
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="accounting_sales_{}.csv"'.format(generate_random_number())
         writer = csv.writer(response, encoding='utf-8-sig')
@@ -64,10 +67,10 @@ class SalesListView(AdminLoginRequiredMixin, TemplateView):
         contract_list = self.get_contract_list()
         for contract in contract_list:
             writer.writerow([
-                contract.contract_id, contract.created_at, _('Income'), FEE_SALES, contract.taxed_total, contract.customer.name
+                contract.contract_id, contract.created_at, _('Income'), FEE_SALES, contract.taxed_total, contract.customer.name if contract.customer else None
             ])
             writer.writerow([
-                contract.contract_id, contract.created_at, None, NO_FEE_SALES, contract.insurance_fee, contract.customer.name
+                contract.contract_id, contract.created_at, None, NO_FEE_SALES, contract.fee, contract.customer.name if contract.customer else None
             ])
         return response
 
@@ -113,6 +116,9 @@ class PurchasesListView(AdminLoginRequiredMixin, TemplateView):
         return render(request, self.template_name, self.get_context_data(**kwargs))
     
     def post(self, request, *args, **kwargs):
+        user_id = self.request.user.id
+        update_csv_history(user_id, "{} - {}".format(_("Accounting software CSV"), _("Purchase")))
+
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="accounting_purchases_{}.csv"'.format(generate_random_number())
         writer = csv.writer(response, encoding='utf-8-sig')
@@ -122,9 +128,9 @@ class PurchasesListView(AdminLoginRequiredMixin, TemplateView):
         contract_list = self.get_contract_list()
         for contract in contract_list:
             writer.writerow([
-                contract.contract_id, contract.created_at, _('Expense'), FEE_PURCHASES, contract.taxed_total, contract.customer.name
+                contract.contract_id, contract.created_at, _('Expense'), FEE_PURCHASES, contract.taxed_total, contract.customer.name if contract.customer else None
             ])
             writer.writerow([
-                contract.contract_id, contract.created_at, None, NO_FEE_PURCHASES, contract.insurance_fee, contract.customer.name
+                contract.contract_id, contract.created_at, None, NO_FEE_PURCHASES, contract.fee, contract.customer.name if contract.customer else None
             ])
         return response

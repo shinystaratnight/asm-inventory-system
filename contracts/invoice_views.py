@@ -14,11 +14,13 @@ from .forms import (
     TraderPurchasesProductSenderForm, TraderPurchasesDocumentSenderForm,
     ProductFormSet, DocumentFormSet, DocumentFeeFormSet, MilestoneFormSet
 )
-from .utilities import get_shipping_date_label, ordinal
+from .utilities import get_shipping_date_label, ordinal, update_csv_history
 
 
 class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
+        user_id = self.request.user.id
+        update_csv_history(user_id, "{} - {}".format(_("Sales contract"), _("Trader sales")))
         contract_form = TraderSalesContractForm(self.request.POST)
         contract_id = contract_form.data.get('contract_id', '')
         created_at = contract_form.data.get('created_at', '')
@@ -154,6 +156,8 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
 
 class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
+        user_id = self.request.user.id
+        update_csv_history(user_id, "{} - {}".format(_("Sales contract"), _("Trader purchases")))
         contract_form = TraderPurchasesContractForm(self.request.POST)
         contract_id = contract_form.data.get('contract_id', '')
         created_at = contract_form.data.get('created_at', '')
@@ -302,6 +306,8 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
 
 class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
+        user_id = self.request.user.id
+        update_csv_history(user_id, "{} - {}".format(_("Sales contract"), _("Hall sales")))
         contract_form = HallSalesContractForm(self.request.POST)
         contract_id = contract_form.data.get('contract_id', '')
         customer_id = contract_form.data.get('customer_id', None)
@@ -464,6 +470,8 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
 
 class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
+        user_id = self.request.user.id
+        update_csv_history(user_id, "{} - {}".format(_("Sales contract"), _("Hall purchases")))
         contract_form = HallPurchasesContractForm(self.request.POST)
         contract_id = contract_form.data.get('contract_id', '')
         customer_id = contract_form.data.get('customer_id', None)

@@ -9,7 +9,8 @@ from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
 from masterdata.models import InventoryProduct, STOCK_CHOICES
 from contracts.models import ContractProduct
-from contracts.utilities import generate_random_number, date_dump
+from listing.models import CsvHistory
+from contracts.utilities import generate_random_number, date_dump, update_csv_history
 from .filters import ProductFilter
 from .forms import ListingSearchForm, ProductForm
 
@@ -55,6 +56,8 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
         return queryset.order_by('-pk')
     
     def post(self, request, *args, **kwargs):
+        user_id = self.request.user.id
+        update_csv_history(user_id, "{} - {}".format(_("List"), _("Sales")))
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="listing_sales_{}.csv"'.format(generate_random_number())
         writer = csv.writer(response, encoding='utf-8-sig')
@@ -136,6 +139,8 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
         return queryset.order_by('-pk')
     
     def post(self, request, *args, **kwargs):
+        user_id = self.request.user.id
+        update_csv_history(user_id, "{} - {}".format(_("List"), _("Purchases")))
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="listing_purchases_{}.csv"'.format(generate_random_number())
         writer = csv.writer(response, encoding='utf-8-sig')
@@ -176,6 +181,22 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
         return context
 
 
+class CsvHistoryListView(AdminLoginRequiredMixin, ListView):
+    template_name = 'listing/history.html'
+    queryset = CsvHistory.objects.all()
+    context_object_name = 'objects'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return CsvHistory.objects.all()
+        # return ProductFilter(self.request.GET, queryset=self.queryset).qs.order_by('pk')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['history_filter'] = HistoryFilter(self.request.GET)
+        return context
+
+
 class InventoryListView(AdminLoginRequiredMixin, ListView):
     template_name = 'listing/inventory.html'
     queryset = InventoryProduct.objects.all()
@@ -191,6 +212,8 @@ class InventoryListView(AdminLoginRequiredMixin, ListView):
         return context
     
     def post(self, request, *args, **kwargs):
+        user_id = self.request.user.id
+        update_csv_history(user_id, "{} - {}".format(_("List"), _("Inventory")))
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="inventory_listing_{}.csv"'.format(generate_random_number())
         writer = csv.writer(response, encoding='utf-8-sig')
