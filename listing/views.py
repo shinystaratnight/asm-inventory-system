@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
-from masterdata.models import InventoryProduct
+from masterdata.models import InventoryProduct, STOCK_CHOICES
 from contracts.models import ContractProduct
 from contracts.utilities import generate_random_number, date_dump
 from .filters import ProductFilter
@@ -67,10 +67,10 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
             contract = product.content_object
             contract_id = contract.contract_id
             contract_date = contract.created_at
-            customer = contract.customer.name
+            customer = contract.customer.name if contract.customer else None
             person_in_charge = contract.person_in_charge
             if product.content_type_id == ContentType.objects.get(model='HallSalesContract').id:
-                destination = contract.hall.name
+                destination = contract.hall.name if contract.hall else None
                 payment_date = contract.shipping_date
             else:
                 destination = None
@@ -148,10 +148,10 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
             contract = product.content_object
             contract_id = contract.contract_id
             contract_date = contract.created_at
-            customer = contract.customer.name
+            customer = contract.customer.name if contract.customer else None
             person_in_charge = contract.person_in_charge
             if product.content_type_id == ContentType.objects.get(model='HallPurchasesContract').id:
-                destination = contract.hall.name
+                destination = contract.hall.name if contract.hall else None
                 payment_date = contract.shipping_date
             else:
                 destination = None

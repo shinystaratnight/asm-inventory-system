@@ -39,7 +39,7 @@
 				<div class="col-lg-12">
 
 					<!-- Traffic sources -->
-					<form action="" method="POST" name="hall_purchases">
+					<form action="" method="POST" name="hall_purchases" data-invoice="false">
 
 						{% csrf_token %}
 
@@ -295,7 +295,8 @@
 																	name="{{ productformset.prefix }}-xx-quantity"
 																	id="id_{{ productformset.prefix }}-xx-quantity"
 																	class="form-control"
-																	value="0">
+																	value="0"
+																	required>
 															</div>
 														</div>
 													</td>
@@ -306,7 +307,8 @@
 																	name="{{ productformset.prefix }}-xx-price"
 																	class="form-control"
 																	id="id_{{ productformset.prefix }}-xx-price"
-																	value="0">
+																	value="0"
+																	required>
 															</div>
 														</div>
 													</td>
@@ -451,7 +453,8 @@
 																<input type="number" class="form-control"
 																	id="id_{{ documentformset.prefix }}-xx-quantity"
 																	name="{{ documentformset.prefix }}-xx-quantity"
-																	value="0">
+																	value="0"
+																	required>
 															</div>
 														</div>
 													</td>
@@ -461,7 +464,8 @@
 																<input type="number" class="form-control"
 																	id="id_{{ documentformset.prefix }}-xx-price"
 																	name="{{ documentformset.prefix }}-xx-price"
-																	value="0">
+																	value="0"
+																	required>
 															</div>
 														</div>
 													</td>
@@ -613,7 +617,8 @@
 																	class="form-control"
 																	id="id_{{ documentfeeformset.prefix }}-xx-model_count"
 																	name="{{ documentfeeformset.prefix }}-xx-model_count"
-																	value="0">
+																	value="0"
+																	required>
 															</div>
 														</div>
 													</td>
@@ -624,7 +629,8 @@
 																	class="form-control"
 																	id="id_{{ documentfeeformset.prefix }}-xx-unit_count"
 																	name="{{ documentfeeformset.prefix }}-xx-unit_count"
-																	value="0">
+																	value="0"
+																	required>
 															</div>
 														</div>
 													</td>
@@ -849,6 +855,10 @@
 						});	
 					{% endif %}
 
+					resetMangementForm('product');
+					resetMangementForm('document');
+					resetMangementForm('document_fee');
+
 					$.ajax({
 						type: 'POST',
 						url: "{% url 'contract:manager-list' %}",
@@ -872,11 +882,10 @@
 					});
 
 					$('button.create-invoice').click( function (e) {
-						$('form').attr('action', "{% url 'contract:hall-purchases-invoice' %}");
-						resetMangementForm('product');
-						resetMangementForm('document');
-						resetMangementForm('document_fee');
-						$('form').submit();
+						var $form = $(this).closest('form');
+						$form.attr('action', "{% url 'contract:hall-purchases-invoice' %}");
+						$form.data('invoice', true);
+						$form.submit();
 					});
 					
 				});

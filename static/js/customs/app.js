@@ -272,8 +272,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Only ASCII charactar in that range allowed
+    $('table').on('keypress', 'input[type="number"]', function (e) {
+        var ASCIICode = (e.which) ? e.which : e.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    });
+    
+
    // Adding change event lister to input field inside table-product
-    $('table.table-product').on('input', 'input', function (e) {
+    $('table.table-product').on('input', 'input[type="number"]', function (e) {
         // Calculate quantity * price and set it in id_product-xx-amount td element
         var $self = $(this);
         var $tr = $self.closest('tr');
@@ -294,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
         calculateFees();
     });
 
-    $('table.table-document').on('input', 'input', function (e) {
+    $('table.table-document').on('input', 'input[type="number"]', function (e) {
         var $self = $(this);
         var $tr = $self.closest('tr');
         var trClassName = $tr.attr('class');
@@ -309,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
         calculateFees();
     });
 
-    $('table.table-document_fee').on('input', 'input', function (e) {
+    $('table.table-document_fee').on('input', 'input[type="number"]', function (e) {
         var $self = $(this);
         var $tr = $self.closest('tr');
         var trClassName = $tr.attr('class');
@@ -336,46 +345,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (this.checked) $('#id_fee').prop('readonly', false); else $('#id_fee').prop('readonly', true);
     });
 
-    // Trader sales contract page
-    $('form[name="trader_sales"] button[type="submit"]').click( function (e) {
-        e.preventDefault();
-        resetMangementForm(product_prefix);
-        resetMangementForm(document_prefix);
-        var $form = $(this).closest('form');
-        $form.attr('action', $(location).attr('href'));
-        $form.submit();
-    });
-
-    // Trader purchases contract page
-    $('form[name="trader_purchases"] button[type="submit"]').click( function (e) {
-        e.preventDefault();
-        resetMangementForm(product_prefix);
-        resetMangementForm(document_prefix);
-        var $form = $(this).closest('form');
-        $form.attr('action', $(location).attr('href'));
-        $form.submit();
-    });
-
-    // Hall sales contract page
-    $('form[name="hall_sales"] button[type="submit"]').click( function (e) {
-        e.preventDefault();
-        resetMangementForm(product_prefix);
-        resetMangementForm(document_prefix);
-        resetMangementForm(document_fee_prefix);
-        var $form = $(this).closest('form');
-        $form.attr('action', $(location).attr('href'));
-        $form.submit();
-    });
-
-    // Hall purchases contract page
-    $('form[name="hall_purchases"] button[type="submit"]').click( function (e) {
-        e.preventDefault();
-        resetMangementForm(product_prefix);
-        resetMangementForm(document_prefix);
-        resetMangementForm(document_fee_prefix);
-        var $form = $(this).closest('form');
-        $form.attr('action', $(location).attr('href'));
-        $form.submit();
-    });
-
+    // Contract pages submit event
+    $('form[name="trader_sales"], form[name="trader_purchases"], form[name="hall_sales"], form[name="hall_purchases"]').on('submit', function (e) {
+        var invoiceData = $(this).data('invoice');
+        if (invoiceData == false)
+            $(this).attr('action', $(location).attr('href'));
+        else
+            $(this).data('invoice', false);
+    })
 });

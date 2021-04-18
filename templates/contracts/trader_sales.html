@@ -38,7 +38,7 @@
 				<div class="col-lg-12">
 
 					<!-- Traffic sources -->
-					<form action="" method="POST" name="trader_sales">
+					<form action="" method="POST" name="trader_sales" data-invoice="false">
 
 						{% csrf_token %}
 
@@ -315,7 +315,8 @@
 																	name="{{ productformset.prefix }}-xx-quantity"
 																	id="id_{{ productformset.prefix }}-xx-quantity"
 																	class="form-control"
-																	value="0">
+																	value="0"
+																	required>
 															</div>
 														</div>
 													</td>
@@ -326,7 +327,8 @@
 																	name="{{ productformset.prefix }}-xx-price"
 																	class="form-control"
 																	id="id_{{ productformset.prefix }}-xx-price"
-																	value="0">
+																	value="0"
+																	required>
 															</div>
 														</div>
 													</td>
@@ -471,7 +473,8 @@
 																<input type="number" class="form-control"
 																	id="id_{{ documentformset.prefix }}-xx-quantity"
 																	name="{{ documentformset.prefix }}-xx-quantity"
-																	value="0">
+																	value="0"
+																	required>
 															</div>
 														</div>
 													</td>
@@ -481,7 +484,8 @@
 																<input type="number" class="form-control"
 																	id="id_{{ documentformset.prefix }}-xx-price"
 																	name="{{ documentformset.prefix }}-xx-price"
-																	value="0">
+																	value="0"
+																	required>
 															</div>
 														</div>
 													</td>
@@ -774,6 +778,9 @@
 							data: { id: "{{document_sender_form.document_sender_id.value}}", text: "{{document_sender_form.document_sender_name.value}}" }
 						});
 					{% endif %}
+
+					resetMangementForm('product');
+					resetMangementForm('document');
 					
 					$('#id_shipping_method').change(function () {
 						var shipping_method = $(this).val();
@@ -815,10 +822,10 @@
 					});
 
 					$('button.create-invoice').click( function (e) {
-						$('form').attr('action', "{% url 'contract:trader-sales-invoice' %}");
-						resetMangementForm('product');
-						resetMangementForm('document');
-						$('form').submit();
+						var $form = $(this).closest('form');
+						$form.attr('action', "{% url 'contract:trader-sales-invoice' %}");
+						$form.data('invoice', true);
+						$form.submit();
 					});
 
 				});

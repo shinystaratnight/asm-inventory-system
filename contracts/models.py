@@ -79,8 +79,8 @@ class ContractDocumentFee(models.Model):
 
 
 class Milestone(models.Model):
-    date = models.DateField()
-    amount = models.PositiveIntegerField()
+    date = models.DateField(null=True)
+    amount = models.PositiveIntegerField(null=True)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
@@ -172,16 +172,16 @@ class TraderPurchasesSender(models.Model):
 class HallContract(models.Model):
     contract_id = models.CharField(max_length=200)
     created_at = models.DateField()
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    hall = models.ForeignKey(Hall, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    hall = models.ForeignKey(Hall, on_delete=models.SET_NULL, null=True)
     remarks = models.TextField(null=True, blank=True)
-    fee = models.IntegerField()
-    shipping_date = models.DateField()
-    opening_date = models.DateField()
+    fee = models.IntegerField(default=0)
+    shipping_date = models.DateField(null=True, blank=True)
+    opening_date = models.DateField(null=True, blank=True)
     payment_method = models.CharField(max_length=2, choices=PAYMENT_METHOD_CHOICES)
-    transfer_account = models.CharField(max_length=255)
-    person_in_charge = models.CharField(max_length=200)
-    confirmor = models.CharField(max_length=200)
+    transfer_account = models.CharField(max_length=255, null=True, blank=True)
+    person_in_charge = models.CharField(max_length=200, null=True, blank=True)
+    confirmor = models.CharField(max_length=200, null=True, blank=True)
 
     class Meta:
         abstract = True

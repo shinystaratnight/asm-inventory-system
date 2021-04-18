@@ -20,8 +20,8 @@ class ProductForm(forms.Form):
     product_id = forms.IntegerField(widget=forms.HiddenInput())
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
     type = forms.ChoiceField(widget=forms.Select(attrs={'class': 'product-type-selectbox'}), choices=PRODUCT_TYPE_CHOICES)
-    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    price = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'required': 'true'}))
+    price = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'required': 'true'}))
     tax = forms.IntegerField(widget=forms.HiddenInput(attrs={'disabled': 'disabled'}), required=False)
     fee = forms.IntegerField(widget=forms.HiddenInput(attrs={'disabled': 'disabled'}), required=False)
     amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
@@ -61,8 +61,8 @@ class DocumentForm(forms.Form):
     document_id = forms.IntegerField(widget=forms.HiddenInput())
     taxable = forms.IntegerField(widget=forms.HiddenInput())
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
-    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    price = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'required': 'true'}))
+    price = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'required': 'true'}))
     tax = forms.IntegerField(widget=forms.HiddenInput(attrs={'disabled': 'disabled'}), required=False)
     amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
 
@@ -101,8 +101,8 @@ class DocumentFeeForm(forms.Form):
     unit_price = forms.IntegerField(widget=forms.HiddenInput())
     application_fee = forms.IntegerField(widget=forms.HiddenInput())
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
-    model_count = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    unit_count = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    model_count = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'required': 'true'}))
+    unit_count = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'required': 'true'}))
     tax = forms.IntegerField(widget=forms.HiddenInput(attrs={'disabled': 'disabled'}), required=False)
     amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
 
@@ -142,7 +142,7 @@ class MilestoneForm(forms.Form):
         required=False
     )
     amount = forms.IntegerField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        widget=forms.NumberInput(attrs={'class': 'form-control'}),
         required=False
     )
 
@@ -221,16 +221,14 @@ class MilestoneValidationFormSet(BaseFormSet):
 ProductFormSet = formset_factory(ProductForm, formset=ItemValidationFormSet, extra=0)
 DocumentFormSet = formset_factory(DocumentForm, formset=ItemValidationFormSet, extra=0)
 DocumentFeeFormSet = formset_factory(DocumentFeeForm, formset=DocumentFeeValidationFormSet, extra=0)
-MilestoneFormSet = formset_factory(MilestoneForm, formset=MilestoneValidationFormSet, extra=5)
+MilestoneFormSet = formset_factory(MilestoneForm, formset=MilestoneValidationFormSet, min_num=5, validate_min=True, extra=0)
 # End of Common Forms
 
 
 #===================================#
 # Trader Sales Forms
 class TraderSalesContractForm(forms.Form):
-    contract_id = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}),
-        initial=generate_contract_id())
+    contract_id = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}))
     created_at = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     updated_at = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     customer_id = forms.IntegerField(required=False)
@@ -245,7 +243,7 @@ class TraderSalesContractForm(forms.Form):
     remarks = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-140-px'}), required=False)
     sub_total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
     tax = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
-    fee = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), initial=0)
+    fee = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), initial=0)
     total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
     billing_amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), initial=0, required=False)
     shipping_method = forms.ChoiceField(widget=forms.Select(attrs={'class': 'selectbox'}), choices=SHIPPING_METHOD_CHOICES, required=False)
@@ -260,6 +258,7 @@ class TraderSalesContractForm(forms.Form):
         else:
             self.id = None
         super().__init__(*args, **kwargs)
+        self.fields['contract_id'].initial = generate_contract_id('01')
 
     def save(self):
         if self.id:
@@ -379,9 +378,7 @@ class TraderSalesDocumentSenderForm(forms.Form):
 
 # Trader Purchases Forms
 class TraderPurchasesContractForm(forms.Form):
-    contract_id = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}),
-        initial=generate_contract_id('02'))
+    contract_id = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}))
     created_at = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     updated_at = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     customer_id = forms.IntegerField(required=False)
@@ -400,7 +397,7 @@ class TraderPurchasesContractForm(forms.Form):
     remarks = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-70'}), required=False)
     sub_total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
     tax = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
-    fee = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), initial=0)
+    fee = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), initial=0)
     total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
     transfer_deadline = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     bank_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
@@ -414,6 +411,7 @@ class TraderPurchasesContractForm(forms.Form):
         else:
             self.id = None
         super().__init__(*args, **kwargs)
+        self.fields['contract_id'].initial = generate_contract_id('02')
     
     def save(self):
         if self.id:
@@ -550,28 +548,28 @@ class TraderPurchasesDocumentSenderForm(forms.Form):
 
 # Hall Sales Forms
 class HallSalesContractForm(forms.Form):
-    contract_id = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}),
-        initial=generate_contract_id('03'))
+    contract_id = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}))
     created_at = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
-    customer_id = forms.IntegerField()
+    customer_id = forms.IntegerField(required=False)
     customer_name = forms.CharField(required=False)
-    hall_id = forms.IntegerField()
+    hall_id = forms.IntegerField(required=False)
     hall_name = forms.CharField(required=False)
     address = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
     tel = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
     remarks = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-197-px'}), required=False)
     sub_total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
     tax = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
-    fee = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), initial=0)
+    fee = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), initial=0)
     total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
     shipping_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     opening_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     payment_method = forms.ChoiceField(widget=forms.Select(attrs={'class': 'selectbox'}), choices=PAYMENT_METHOD_CHOICES)
     transfer_account = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "りそな銀行 船場支店（101）普通 0530713 バッジオカブシキガイシャ"}))
-    person_in_charge = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control person_in_charge'}))
-    confirmor = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "りそな銀行 船場支店（101）普通 0530713 バッジオカブシキガイシャ"}),
+        required=False
+    )
+    person_in_charge = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control person_in_charge'}), required=False)
+    confirmor = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
 
     def __init__(self, *args, **kwargs):
         if kwargs.get('id'):
@@ -579,6 +577,7 @@ class HallSalesContractForm(forms.Form):
         else:
             self.id = None
         super().__init__(*args, **kwargs)
+        self.fields['contract_id'].initial = generate_contract_id('03')
 
     def save(self):
         if self.id:
@@ -619,9 +618,7 @@ class HallSalesContractForm(forms.Form):
 
 # Hall Purchases Forms
 class HallPurchasesContractForm(forms.Form):
-    contract_id = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}),
-        initial=generate_contract_id('04'))
+    contract_id = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}))
     created_at = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     customer_id = forms.IntegerField(required=False)
     customer_name = forms.CharField(required=False)
@@ -632,15 +629,17 @@ class HallPurchasesContractForm(forms.Form):
     remarks = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-197-px'}), required=False)
     sub_total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
     tax = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
-    fee = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), initial=0)
+    fee = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'}), initial=0)
     total = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control border-none', 'readonly': 'readonly'}), initial=0, required=False)
     shipping_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     opening_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control daterange-single'}), input_formats=INPUT_FORMATS)
     payment_method = forms.ChoiceField(widget=forms.Select(attrs={'class': 'selectbox'}), choices=PAYMENT_METHOD_CHOICES)
     transfer_account = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "りそな銀行 船場支店（101）普通 0530713 バッジオカブシキガイシャ"}))
-    person_in_charge = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control person_in_charge'}))
-    confirmor = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "りそな銀行 船場支店（101）普通 0530713 バッジオカブシキガイシャ"}),
+        required=False
+    )
+    person_in_charge = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control person_in_charge'}), required=False)
+    confirmor = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
     memo = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control h-92-px'}), required=False)
 
     def __init__(self, *args, **kwargs):
@@ -649,6 +648,7 @@ class HallPurchasesContractForm(forms.Form):
         else:
             self.id = None
         super().__init__(*args, **kwargs)
+        self.fields['contract_id'].initial = generate_contract_id('04')
 
     def save(self):
         if self.id:

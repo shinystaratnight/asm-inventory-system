@@ -96,6 +96,8 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
         contract_form = TraderSalesContractForm(self.request.POST)
         if contract_form.is_valid():
             contract = contract_form.save()
+        else:
+            return render(request, self.template_name, self.get_context_data(**kwargs))
         
         shipping_method = contract_form.cleaned_data.get('shipping_method')
         if shipping_method == 'R':
@@ -123,7 +125,6 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
         for form in document_formset.forms:
             if form.is_valid():
                 form.save()
-        
         return redirect('listing:sales-list')
     
     def get_context_data(self, **kwargs):
@@ -175,6 +176,8 @@ class TraderPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
         contract_form = TraderPurchasesContractForm(self.request.POST)
         if contract_form.is_valid():
             contract = contract_form.save()
+        else:
+            return render(request, self.template_name, self.get_context_data(**kwargs))
         
         product_sender_form = TraderPurchasesProductSenderForm(self.request.POST, contract_id=contract.id)
         if product_sender_form.is_valid():
@@ -250,6 +253,8 @@ class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
         contract_form = HallSalesContractForm(self.request.POST)
         if contract_form.is_valid():
             contract = contract_form.save()
+        else:
+            return render(request, self.template_name, self.get_context_data(**kwargs))
             
         product_formset = ProductFormSet(
             self.request.POST,
@@ -285,9 +290,7 @@ class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
         )
         for form in milestone_formset.forms:
             if form.is_valid():
-                if form.cleaned_data.get('date') and form.cleaned_data.get('amount'):
-                    form.save()
-        
+                form.save()
         return redirect('listing:sales-list')
 
     def get_context_data(self, **kwargs):
@@ -339,6 +342,8 @@ class HallPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
         contract_form = HallPurchasesContractForm(self.request.POST)
         if contract_form.is_valid():
             contract = contract_form.save()
+        else:
+            return render(request, self.template_name, self.get_context_data(**kwargs))
             
         product_formset = ProductFormSet(
             self.request.POST,
@@ -374,8 +379,7 @@ class HallPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
         )
         for form in milestone_formset.forms:
             if form.is_valid():
-                if form.cleaned_data.get('date') and form.cleaned_data.get('amount'):
-                    form.save()
+                form.save()
         
         return redirect('listing:purchases-list')
 
