@@ -188,7 +188,7 @@ class CsvHistoryListView(AdminLoginRequiredMixin, ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return CsvHistory.objects.all()
+        return CsvHistory.objects.order_by('-exported_at')
         # return ProductFilter(self.request.GET, queryset=self.queryset).qs.order_by('pk')
     
     def get_context_data(self, **kwargs):
