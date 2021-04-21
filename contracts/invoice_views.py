@@ -1,4 +1,5 @@
 import unicodecsv as csv
+import xlwt
 from django.views.generic.base import View
 from django.http import HttpResponse
 from django.utils.translation import gettext as _
@@ -6,7 +7,7 @@ from users.views import AdminLoginRequiredMixin
 from masterdata.models import (
     Customer, Hall, Sender, Product, Document, DocumentFee,
     PRODUCT_TYPE_CHOICES, SHIPPING_METHOD_CHOICES, PAYMENT_METHOD_CHOICES, TYPE_CHOICES,
-    P_SENSOR_NUMBER, COMPANY_NAME, ADDRESS, TEL, FAX,
+    P_SENSOR_NUMBER, COMPANY_NAME, ADDRESS, TEL, FAX, POSTAL_CODE, CEO
 )
 from .forms import (
     TraderSalesContractForm, TraderPurchasesContractForm, HallSalesContractForm, HallPurchasesContractForm,
@@ -37,31 +38,83 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
             tel = customer.tel
             fax = customer.fax
 
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="trader_sales_contract_{}.csv"'.format(contract_id)
-        writer = csv.writer(response, encoding='utf-8-sig')
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="trader_sales_contract_{}.xls"'.format(contract_id)
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet("{} - {}".format(_('Sales contract'), _('Trader sales')), cell_overwrite_ok=True)
 
-        rows = [
-            ['','', _('Contract and invoice')],
-            ['No. {}'.format(contract_id), '', '', '', '', '', _('Created date'), created_at],
-            ['', '', '', '', '', '', _('Updated date'), updated_at],
-            [_('Company'), company, '', _('Frigana'), frigana],
-            [_('Postal code'), postal_code],
-            [_('Address'), address, '', '', '', '', 'P-SENSOR ' + _('Member ID'), P_SENSOR_NUMBER],
-            [_(_('TEL')), tel, '', _(_('FAX')), fax, '', _('Person in charge'), person_in_charge],
-            [],
-            [_('Product')],
-            [_('Model name'), _('Product type'), _('Quantity'), _('Price'), _('Amount')],
-        ]
-        writer.writerows(rows)
+        header_height = int(256 * 3)
+        cell_width = 256 * 12
+        cell_height = int(256 * 1.5)
+        font_size = 20 * 8 # pt
+        
+        common_style = xlwt.easyxf('font: height 160; align: vert center, horiz left, wrap on;')
+        center_style = xlwt.easyxf('font: height 160; align: vert center, horiz center, wrap on;')
+        table_center_style = xlwt.easyxf('font: height 160; align: vert center, horiz center, wrap on;\
+                                    borders: top_color black, bottom_color black, right_color black, left_color black,\
+                                    left thin, right thin, top thin, bottom thin;')
+        table_left_style = xlwt.easyxf('font: height 160; align: vert center, horiz left, wrap on;\
+                                    borders: top_color black, bottom_color black, right_color black, left_color black,\
+                                    left thin, right thin, top thin, bottom thin;')
+        title_style = xlwt.easyxf('font: bold on, height 280, color black;\
+                                    align: vert center, horiz center, wrap on;')
+        sub_title_style = xlwt.easyxf('font: bold on, height 200, color black;\
+                                    align: vert center, horiz center, wrap on;')
+        font_large_style = xlwt.easyfont('height 200, bold on')
 
+        for i in range(8):
+            ws.col(i).width = cell_width
+
+        for i in range(1, 45):
+            ws.row(i).height_mismatch = True
+            ws.row(i).height = cell_height
+
+        ws.row(0).height_mismatch = True
+        ws.row(0).height = header_height
+
+        ws.write_merge(0, 0, 0, 7, _('Contract and invoice'), title_style)
+        ws.write_merge(1, 1, 0, 1, 'No.  {}'.format(contract_id), common_style)
+        ws.write(1, 6, _('Created date'), common_style)
+        ws.write(1, 7, created_at, common_style)
+        ws.write(2, 6, _('Created date'), common_style)
+        ws.write(2, 7, updated_at, common_style)
+
+        ws.write(4, 0, _('Company'), common_style)
+        ws.write_merge(4, 4, 1, 3, company, common_style)
+        ws.write(4, 4, _('Frigana'), common_style)
+        ws.write_merge(4, 4, 5, 7, frigana, common_style)
+
+        ws.write(5, 0, _('Postal code'), common_style)
+        ws.write_merge(5, 5, 1, 2, postal_code, common_style)
+
+        ws.write(6, 0, _('Address'), common_style)
+        ws.write_merge(6, 6, 1, 3, address, common_style)
+
+        ws.write_merge(6, 6, 4, 5, 'P-SENSOR {}'.format(_('Member ID')), center_style)
+        ws.write_merge(6, 6, 6, 7, P_SENSOR_NUMBER, common_style)
+
+        ws.write(7, 0, _('TEL'), common_style)
+        ws.write(7, 1, tel, common_style)
+        ws.write(7, 3, _('FAX'), common_style)
+        ws.write(7, 4, fax, common_style)
+        ws.write(7, 6, _('Person in charge'), common_style)
+        ws.write(7, 7, person_in_charge, common_style)
+
+        # Product Table
+        ws.write_merge(9, 9, 0, 3, _('Model name'), table_center_style)
+        ws.write(9, 4, _('Product type'), table_center_style)
+        ws.write(9, 5, _('Quantity'), table_center_style)
+        ws.write(9, 6, _('Price'), table_center_style)
+        ws.write(9, 7, _('Amount'), table_center_style)
+
+        row_no = 10
         product_formset = ProductFormSet(
             self.request.POST,
             prefix='product'
         )
         num_of_products = product_formset.total_form_count()
+        lazy_dict = dict(PRODUCT_TYPE_CHOICES)
         if num_of_products:
-            product_rows = []
             for form in product_formset.forms:
                 form.is_valid()
                 id = form.cleaned_data.get('product_id')
@@ -70,15 +123,22 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
                 quantity = form.cleaned_data.get('quantity', 0)
                 price = form.cleaned_data.get('price', 0)
                 amount = quantity * price
-                product_rows.append([product_name, dict(PRODUCT_TYPE_CHOICES)[type], quantity, price, amount])
-            writer.writerows(product_rows)
-        
-        rows = [
-            [],
-            [_('Other')],
-            [_('Document'), _('Quantity'), _('Price'), _('Amount')]
-        ]
-        writer.writerows(rows)
+
+                ws.write_merge(row_no, row_no, 0, 3, product_name, table_center_style)
+                ws.write(row_no, 4, str(lazy_dict[type]), table_center_style)
+                ws.write(row_no, 5, quantity, table_center_style)
+                ws.write(row_no, 6, price, table_center_style)
+                ws.write(row_no, 7, amount, table_center_style)
+                ws.row(row_no).height = int(cell_height * 1.3)
+                row_no += 1
+
+        # Document Table
+        row_no += 1
+        ws.write_merge(row_no, row_no, 0, 1, _('Document'), table_center_style)
+        ws.write_merge(row_no, row_no, 2, 3, _('Quantity'), table_center_style)
+        ws.write_merge(row_no, row_no, 4, 5, _('Price'), table_center_style)
+        ws.write_merge(row_no, row_no, 6, 7, _('Amount'), table_center_style)
+        row_no += 1
 
         document_formset = DocumentFormSet(
             self.request.POST,
@@ -86,7 +146,6 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
         )
         num_of_documents = document_formset.total_form_count()
         if num_of_documents:
-            document_rows = []
             for form in document_formset.forms:
                 form.is_valid()
                 id = form.cleaned_data.get('document_id')
@@ -94,9 +153,13 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
                 quantity = form.cleaned_data.get('quantity', 0)
                 price = form.cleaned_data.get('price', 0)
                 amount = quantity * price
-                document_rows.append([document_name, quantity, price, amount])
-            writer.writerows(document_rows)
+                ws.write_merge(row_no, row_no, 0, 1, document_name, table_center_style)
+                ws.write_merge(row_no, row_no, 2, 3, quantity, table_center_style)
+                ws.write_merge(row_no, row_no, 4, 5, price, table_center_style)
+                ws.write_merge(row_no, row_no, 6, 7, amount, table_center_style)
+                row_no += 1
         
+        row_no += 1
         shipping_method = contract_form.data.get('shipping_method')
         shipping_date = contract_form.data.get('shipping_date')
         payment_method = contract_form.data.get('payment_method')
@@ -108,17 +171,47 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
         remarks = contract_form.data.get('remarks', None)
         shipping_date_label = get_shipping_date_label(shipping_method)
 
-        rows = [
-            [],
-            [shipping_date_label, shipping_date, '', _('Sum'), sub_total],
-            [_('Remarks'), remarks, '', _('Consumption tax') + '(10%)', tax],
-            ['', '', '', _('Insurance fee') + '(' + _('No tax') + ')', fee],
-            ['', '', '', _('Total amount'), total],
-            [_('Shipping method'), dict(SHIPPING_METHOD_CHOICES)[shipping_method], '', _('Billing amount'), total],
-            [_('Payment method'), dict(PAYMENT_METHOD_CHOICES)[payment_method], '', _('Payment due date'), payment_due_date],
-            []
-        ]
-        writer.writerows(rows)
+        ws.write(row_no, 0, shipping_date_label, common_style)
+        ws.write(row_no, 1, shipping_date, common_style)
+        ws.write_merge(row_no, row_no, 5, 6, _('Sum'), table_left_style)
+        ws.write(row_no, 7, sub_total, table_left_style)
+        row_no += 1
+
+        ws.write_merge(row_no, row_no + 2, 0, 0, _('Remarks'), common_style)
+        ws.write_merge(row_no, row_no + 2, 1, 3, remarks, common_style)
+        ws.write_merge(row_no, row_no, 5, 6, _('Consumption tax') + '(10%)', table_left_style)
+        ws.write(row_no, 7, tax, table_left_style)
+        row_no += 1
+        ws.write_merge(row_no, row_no, 5, 6, _('Insurance fee') + '(' + _('No tax') + ')', table_left_style)
+        ws.write(row_no, 7, fee, table_left_style)
+        row_no += 1
+        ws.write_merge(row_no, row_no, 5, 6, _('Total amount'), table_left_style)
+        ws.write(row_no, 7, total, table_left_style)
+        row_no += 1
+
+        row_no += 1
+        ws.write(row_no, 0, _('Shipping method'), common_style)
+        ws.write_merge(row_no, row_no, 1, 2, str(dict(SHIPPING_METHOD_CHOICES)[shipping_method]), common_style)
+        ws.write_merge(row_no, row_no, 4, 5, _('Billing amount'), common_style)
+        ws.write_merge(row_no, row_no, 6, 7, total, common_style)
+        row_no += 1
+        ws.write(row_no, 0, _('Payment method'), common_style)
+        ws.write_merge(row_no, row_no, 1, 2, str(dict(PAYMENT_METHOD_CHOICES)[payment_method]), common_style)
+        ws.write_merge(row_no, row_no, 4, 5, _('Payment due date'), common_style)
+        ws.write_merge(row_no, row_no, 6, 7, payment_due_date, common_style)
+        row_no += 1
+
+        row_no += 1
+        content = "※{}\n".format(_("The contract will be effective when both seller and buyer sign and seal."))
+        content += "※{}\n".format(_("As a general rule, the contract cannot be canceled once signed."))
+        content += "※{}\n".format(_("3 days warranty after delivery will be provided just in case of defects or malfunctions in the products."))
+        content += "※{}\n".format(_("The seller will keep the ownership of the products until the buyer makes the full payment."))
+        content += "※{}\n".format(_("The Ownership of the products shall be transferred to the buyer when product delivery is completed and full payment is made."))
+        content += "※{}\n".format(_("In the following cases, the seller may, without any procedure, request the immediate payment of the remaining balance, or cancel the contract and take back the products."))
+        content += '    1) {}\n'.format(_("When the buyer fail to make the payment even once."))
+        content += '    2) {}'.format(_("When the products were forfeited or disposed temporarily, or the request for arrangement, reconciliation, damage etc is received."))
+        ws.write_merge(row_no, row_no + 6, 0, 7, content, common_style)
+        row_no += 7
 
         product_sender_form = TraderSalesProductSenderForm(self.request.POST)
         document_sender_form = TraderSalesDocumentSenderForm(self.request.POST)
@@ -142,15 +235,63 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
         document_sender_tel = document_sender_form.data.get('document_sender_tel')
         document_sender_fax = document_sender_form.data.get('document_sender_fax')
         
-        rows = [
-            [_('Product sender'), '', '', _('Document sender')],
-            [_('Company'), product_sender_company, '', _('Company'), document_sender_company],
-            [_('Address'), product_sender_address, '', _('Address'), document_sender_address],
-            [_('TEL'), product_sender_tel, '', _('TEL'), document_sender_tel],
-            [_('FAX'), product_sender_fax, '', _('FAX'), document_sender_fax],
-            [_('Expected arrival date'), product_expected_arrival_date, '', _('Expected arrival date'), document_expected_arrival_date]
-        ]
-        writer.writerows(rows)
+        row_no += 1
+        ws.write_merge(row_no, row_no, 0, 3, _('Product sender'), sub_title_style)
+        ws.write_merge(row_no, row_no, 4, 7, _('Document sender'), sub_title_style)
+        row_no += 1
+        ws.write(row_no, 0, _('Company'), common_style)
+        ws.write_merge(row_no, row_no, 1, 3, product_sender_company, common_style)
+        ws.write(row_no, 4, _('Company'), common_style)
+        ws.write_merge(row_no, row_no, 5, 7, document_sender_company, common_style)
+        row_no += 1
+        ws.write(row_no, 0, _('Address'), common_style)
+        ws.write_merge(row_no, row_no, 1, 3, product_sender_address, common_style)
+        ws.write(row_no, 4, _('Address'), common_style)
+        ws.write_merge(row_no, row_no, 5, 7, document_sender_address, common_style)
+        ws.row(row_no).height = int(cell_height * 1.3)
+        row_no += 1
+        ws.write(row_no, 0, _('TEL'), common_style)
+        ws.write_merge(row_no, row_no, 1, 3, product_sender_tel, common_style)
+        ws.write(row_no, 4, _('TEL'), common_style)
+        ws.write_merge(row_no, row_no, 5, 7, document_sender_tel, common_style)
+        row_no += 1
+        ws.write(row_no, 0, _('FAX'), common_style)
+        ws.write_merge(row_no, row_no, 1, 3, product_sender_fax, common_style)
+        ws.write(row_no, 4, _('FAX'), common_style)
+        ws.write_merge(row_no, row_no, 5, 7, document_sender_fax, common_style)
+        row_no += 1
+        ws.write(row_no, 0, _('Expected arrival date'), common_style)
+        ws.write_merge(row_no, row_no, 1, 3, product_expected_arrival_date, common_style)
+        ws.write(row_no, 4, _('Expected arrival date'), common_style)
+        ws.write_merge(row_no, row_no, 5, 7, document_expected_arrival_date, common_style)
+        row_no += 1
+
+        row_no += 1
+        ws.write_merge(row_no, row_no, 0, 3, _('Buyer seal'), sub_title_style)
+        ws.write_merge(row_no, row_no, 4, 7, _('Seller seal'), sub_title_style)
+        row_no += 1
+        seller_seal_pre = "    〒"
+        seller_seal_pre += postal_code if postal_code else ""
+        seller_seal_pre += " {}\n".format(address) if address else "\n"
+        seller_seal_company = "   {}\n".format(customer.name) if customer_id else "    \n"
+        seller_seal_post = "    {}: \n".format(_('CEO'))
+        seller_seal_post += "    TEL: "
+        seller_seal_post += tel if tel else "               "
+        seller_seal_post += "  FAX: "
+        seller_seal_post += fax if fax else ""
+        seller_seal = (seller_seal_pre, (seller_seal_company, font_large_style), seller_seal_post)
+
+        buyer_seal_pre = "    〒{} {}\n".format(POSTAL_CODE, ADDRESS)
+        buyer_seal_company = "   {}\n".format(COMPANY_NAME)
+        buyer_seal_post = "    {}: {}\n".format(_('CEO'), CEO)
+        buyer_seal_post += "    TEL: {} FAX: {}".format(TEL, FAX)
+        buyer_seal = (buyer_seal_pre, (buyer_seal_company, font_large_style), buyer_seal_post)
+        ws.write_merge(row_no, row_no + 3, 0, 3, "", common_style)
+        ws.row(row_no).set_cell_rich_text(0, seller_seal, common_style)
+        ws.write_merge(row_no, row_no + 3, 4, 7, "", common_style)
+        ws.row(row_no).set_cell_rich_text(4, buyer_seal, common_style)
+        
+        wb.save(response)
         return response
 
 
