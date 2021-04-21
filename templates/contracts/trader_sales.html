@@ -1,6 +1,7 @@
 {% extends 'layout/base.html' %}
 {% load i18n %}
 {% load static %}
+{% load contract_tags %}
 {% block title %} {% trans "Trader sales" %} {% endblock title %}
 
 {% block stylesheets %}{% endblock stylesheets %}
@@ -54,20 +55,23 @@
 									<div class="col-6 d-flex align-items-center justify-content-center">
 										<h2 class="panel-title text-center">{% trans "Contract and invoice" %}</h2>
 									</div>
-									
 									<div class="col-3 col-sm-12">
 										<div class="d-flex align-items-center justify-content-end">
 											<span class="contract-date-label">{% trans "Created date" %}</span>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-												{{ contract_form.created_at }}
+												<input type="text" name="created_at" id="id_created_at"
+													value="{% date_conversion contract_form.created_at.value %}"
+													class="form-control daterange-single" required="">
 											</div>
 										</div>
 										<div class="d-flex align-items-center justify-content-end mt-3">
 											<span class="contract-date-label">{% trans "Updated date" %}</span>
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-												{{ contract_form.updated_at }}
+												<input type="text" name="updated_at" id="id_updated_at"
+													value="{% date_conversion contract_form.updated_at.value %}"
+													class="form-control daterange-single" required="" id="id_updated_at">
 											</div>
 										</div>
 									</div>
@@ -524,7 +528,10 @@
 												<div class="position-relative">
 													<div class="input-group">
 														<span class="input-group-addon shipping_date_label">{% trans "Delivery date" %}</span>
-														{{ contract_form.shipping_date }}
+														<input type="text" name="shipping_date"
+															value="{% date_conversion contract_form.shipping_date.value %}"
+															class="form-control daterange-single" id="id_shipping_date">
+														
 													</div>
 													<div class="form-control-feedback">
 														<i class="icon-calendar22"></i>
@@ -590,7 +597,9 @@
 										<div class="position-relative form-group">
 											<div class="input-group">
 												<span class="input-group-addon">{% trans "Payment due date" %}</span>
-												{{ contract_form.payment_due_date }}
+												<input type="text" name="payment_due_date"
+													value="{% date_conversion contract_form.payment_due_date.value %}"
+													class="form-control daterange-single" id="id_payment_due_date">
 											</div>
 											<div class="form-control-feedback">
 												<i class="icon-calendar22"></i>
@@ -645,7 +654,9 @@
 												<label class="control-label">{% trans "Expected arrival date" %}</label>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-													{{ product_sender_form.product_expected_arrival_date }}
+													<input type="text" name="product_expected_arrival_date" class="form-control daterange-single"
+														id="id_product_expected_arrival_date"
+														value="{% date_conversion product_sender_form.product_expected_arrival_date.value %}">
 												</div>
 											</div>
 										</fieldset>
@@ -682,7 +693,9 @@
 												<label class="control-label">{% trans "Expected arrival date" %}</label>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-													{{ document_sender_form.document_expected_arrival_date }}
+													<input type="text" name="product_expected_arrival_date" class="form-control daterange-single"
+														id="id_product_expected_arrival_date"
+														value="{% date_conversion document_sender_form.document_expected_arrival_date.value %}">
 												</div>
 											</div>
 										</fieldset>

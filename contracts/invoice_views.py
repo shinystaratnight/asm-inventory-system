@@ -31,6 +31,9 @@ table_center_style = xlwt.easyxf('font: height 160; align: vert center, horiz ce
 table_left_style = xlwt.easyxf('font: height 160; align: vert center, horiz left, wrap on;\
                             borders: top_color black, bottom_color black, right_color black, left_color black,\
                             left thin, right thin, top thin, bottom thin;')
+table_date_style = xlwt.easyxf('font: height 160; align: vert center, horiz left, wrap on;\
+                            borders: top_color black, bottom_color black, right_color black, left_color black,\
+                            left thin, right thin, top thin, bottom thin;')
 title_style = xlwt.easyxf('font: bold on, height 280, color black;\
                             align: vert center, horiz center, wrap on;')
 sub_title_style = xlwt.easyxf('font: bold on, height 200, color black;\
@@ -797,14 +800,17 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
             self.request.POST,
             prefix='milestone'
         )
+
+        table_date_style.num_format_str = 'yyyy/mm/dd' if self.request.LANGUAGE_CODE == 'ja' else 'mm/dd/yyyy'
+
         idx = 1
         for form in milestone_formset.forms:
             form.is_valid()
-            pay_date = form.cleaned_data.get('date')
+            date = form.cleaned_data.get('date')
             amount = form.cleaned_data.get('amount')
             
             ws.write(row_no + idx - 1, 5, _(ordinal(idx)), table_center_style)
-            ws.write(row_no + idx - 1, 6, pay_date, table_left_style)
+            ws.write(row_no + idx - 1, 6, date, table_date_style)
             ws.write(row_no + idx - 1, 7, amount, table_left_style)
             idx += 1
         row_no += 5
@@ -1036,16 +1042,17 @@ class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
             self.request.POST,
             prefix='milestone'
         )
-        rows = []
-        idx = 1
+        
+        table_date_style.num_format_str = 'yyyy/mm/dd' if self.request.LANGUAGE_CODE == 'ja' else 'mm/dd/yyyy'
+        idx = 0
         for form in milestone_formset.forms:
             form.is_valid()
             date = form.cleaned_data.get('date')
             amount = form.cleaned_data.get('amount')
             
-            ws.write(row_no + idx - 1, 5, _(ordinal(idx)), table_center_style)
-            ws.write(row_no + idx - 1, 6, date, table_left_style)
-            ws.write(row_no + idx - 1, 7, amount, table_left_style)
+            ws.write(row_no + idx, 5, _(ordinal(idx + 1)), table_center_style)
+            ws.write(row_no + idx, 6, date, table_date_style)
+            ws.write(row_no + idx, 7, amount, table_left_style)
             idx += 1
         row_no += 5
        

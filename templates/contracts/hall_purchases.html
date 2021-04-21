@@ -60,7 +60,9 @@
 										<div class="d-flex align-items-center justify-content-end">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-calendar22"></i></span>
-												{{ contract_form.created_at }}
+												<input type="text" name="created_at" id="id_created_at"
+													value="{% date_conversion contract_form.created_at.value %}"
+													class="form-control daterange-single" required="">
 											</div>
 										</div>
 									</div>
@@ -717,7 +719,9 @@
 										<div class="form-group position-relative">
 											<div class="input-group">
 												<span class="input-group-addon">{% trans "Shipping date" %}</span>
-												{{ contract_form.shipping_date }}
+												<input type="text" name="shipping_date" id="id_shipping_date"
+													value="{% date_conversion contract_form.shipping_date.value %}"
+													class="form-control daterange-single" required="">
 											</div>
 											<div class="form-control-feedback">
 												<i class="icon-calendar22"></i>
@@ -726,7 +730,9 @@
 										<div class="form-group position-relative">
 											<div class="input-group">
 												<span class="input-group-addon">{% trans "Opening date" %}</span>
-												{{ contract_form.opening_date }}
+												<input type="text" name="opening_date" id="id_opening_date"
+													value="{% date_conversion contract_form.opening_date.value %}"
+													class="form-control daterange-single" required="">
 											</div>
 											<div class="form-control-feedback">
 												<i class="icon-calendar22"></i>
