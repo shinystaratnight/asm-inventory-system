@@ -1,4 +1,3 @@
-import unicodecsv as csv
 import xlwt
 from django.views.generic.base import View
 from django.http import HttpResponse

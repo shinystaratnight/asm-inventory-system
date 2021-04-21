@@ -1,10 +1,10 @@
-import unicodecsv as csv
+import xlwt
 import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 from django.core.paginator import Paginator
 from users.views import AdminLoginRequiredMixin
 from masterdata.models import NO_FEE_PURCHASES, NO_FEE_SALES, FEE_PURCHASES, FEE_SALES
@@ -13,6 +13,23 @@ from contracts.utilities import generate_random_number, update_csv_history
 from .forms import SearchForm
 
 paginate_by = 3
+
+cell_width = 256 * 20
+wide_cell_width = 256 * 45
+cell_height = int(256 * 1.5)
+header_height = int(cell_height * 1.5)
+font_size = 20 * 10 # pt
+
+common_style = xlwt.easyxf('font: height 200; align: vert center, horiz left, wrap on;\
+                            borders: top_color black, bottom_color black, right_color black, left_color black,\
+                            left thin, right thin, top thin, bottom thin;')
+date_style = xlwt.easyxf('font: height 200; align: vert center, horiz left, wrap on;\
+                            borders: top_color black, bottom_color black, right_color black, left_color black,\
+                            left thin, right thin, top thin, bottom thin;')
+bold_style = xlwt.easyxf('font: bold on, height 200; align: vert center, horiz left, wrap on;\
+                            borders: top_color black, bottom_color black, right_color black, left_color black,\
+                            left thin, right thin, top thin, bottom thin;')
+
 
 class SalesListView(AdminLoginRequiredMixin, TemplateView):
     template_name = 'accounting/sales.html'
@@ -58,20 +75,48 @@ class SalesListView(AdminLoginRequiredMixin, TemplateView):
         user_id = self.request.user.id
         update_csv_history(user_id, "{} - {}".format(_("Accounting software CSV"), _("Sale")))
 
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="accounting_sales_{}.csv"'.format(generate_random_number())
-        writer = csv.writer(response, encoding='utf-8-sig')
-        writer.writerow([
-            _('Contract ID'), _('Contract date'), _('Type'), _('Taxation'), _('Amount'), _('Customer'),
-        ])
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="accounting_sales_{}.xls"'.format(generate_random_number())
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet("{} - {}".format(_('Accounting software CSV'), _('Sale')))
+
+        ws.row(0).height_mismatch = True
+        ws.row(0).height = header_height
+
+        ws.write(0, 0, _('No.'), bold_style)
+        ws.write(0, 1, _('Contract ID'), bold_style)
+        ws.write(0, 2, _('Contract date'), bold_style)
+        ws.write(0, 3, _('Type'), bold_style)
+        ws.write(0, 4, _('Taxation'), bold_style)
+        ws.write(0, 5, _('Amount'), bold_style)
+        ws.write(0, 6, _('Customer'), bold_style)
+
+        for i in range(10):
+            ws.col(i).width = cell_width
+        ws.col(6).width = wide_cell_width
+
+        row_no = 1
         contract_list = self.get_contract_list()
+        date_style.num_format_str = 'yyyy/mm/dd' if self.request.LANGUAGE_CODE == 'ja' else 'mm/dd/yyyy'
         for contract in contract_list:
-            writer.writerow([
-                contract.contract_id, contract.created_at, _('Income'), FEE_SALES, contract.taxed_total, contract.customer.name if contract.customer else None
-            ])
-            writer.writerow([
-                contract.contract_id, contract.created_at, None, NO_FEE_SALES, contract.fee, contract.customer.name if contract.customer else None
-            ])
+            ws.write(row_no * 2 - 1, 0, "{}".format(row_no * 2 - 1), common_style)
+            ws.write(row_no * 2 - 1, 1, contract.contract_id, common_style)
+            ws.write(row_no * 2 - 1, 2, contract.created_at, date_style)
+            ws.write(row_no * 2 - 1, 3, _('Income'), common_style)
+            ws.write(row_no * 2 - 1, 4, FEE_SALES, common_style)
+            ws.write(row_no * 2 - 1, 5, contract.taxed_total, common_style)
+            ws.write(row_no * 2 - 1, 6, contract.customer.name if contract.customer else None, common_style)
+
+            ws.write(row_no * 2, 0, "{}".format(row_no * 2), common_style)
+            ws.write(row_no * 2, 1, contract.contract_id, common_style)
+            ws.write(row_no * 2, 2, contract.created_at, date_style)
+            ws.write(row_no * 2, 3, None, common_style)
+            ws.write(row_no * 2, 4, NO_FEE_SALES, common_style)
+            ws.write(row_no * 2, 5, contract.fee, common_style)
+            ws.write(row_no * 2, 6, contract.customer.name if contract.customer else None, common_style)
+            row_no += 1
+        
+        wb.save(response)
         return response
 
 
@@ -119,18 +164,46 @@ class PurchasesListView(AdminLoginRequiredMixin, TemplateView):
         user_id = self.request.user.id
         update_csv_history(user_id, "{} - {}".format(_("Accounting software CSV"), _("Purchase")))
 
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="accounting_purchases_{}.csv"'.format(generate_random_number())
-        writer = csv.writer(response, encoding='utf-8-sig')
-        writer.writerow([
-            _('Contract ID'), _('Contract date'), _('Type'), _('Taxation'), _('Amount'), _('Customer'),
-        ])
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="accounting_purchases_{}.xls"'.format(generate_random_number())
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet("{} - {}".format(_('Accounting software CSV'), _('Purchase')))
+
+        ws.row(0).height_mismatch = True
+        ws.row(0).height = header_height
+
+        ws.write(0, 0, _('No.'), bold_style)
+        ws.write(0, 1, _('Contract ID'), bold_style)
+        ws.write(0, 2, _('Contract date'), bold_style)
+        ws.write(0, 3, _('Type'), bold_style)
+        ws.write(0, 4, _('Taxation'), bold_style)
+        ws.write(0, 5, _('Amount'), bold_style)
+        ws.write(0, 6, _('Customer'), bold_style)
+
+        for i in range(10):
+            ws.col(i).width = cell_width
+        ws.col(6).width = wide_cell_width
+
+        row_no = 1
+        date_style.num_format_str = 'yyyy/mm/dd' if self.request.LANGUAGE_CODE == 'ja' else 'mm/dd/yyyy'
         contract_list = self.get_contract_list()
         for contract in contract_list:
-            writer.writerow([
-                contract.contract_id, contract.created_at, _('Expense'), FEE_PURCHASES, contract.taxed_total, contract.customer.name if contract.customer else None
-            ])
-            writer.writerow([
-                contract.contract_id, contract.created_at, None, NO_FEE_PURCHASES, contract.fee, contract.customer.name if contract.customer else None
-            ])
+            ws.write(row_no * 2 - 1, 0, "{}".format(row_no * 2 - 1), common_style)
+            ws.write(row_no * 2 - 1, 1, contract.contract_id, common_style)
+            ws.write(row_no * 2 - 1, 2, contract.created_at, date_style)
+            ws.write(row_no * 2 - 1, 3, _('Expense'), common_style)
+            ws.write(row_no * 2 - 1, 4, FEE_PURCHASES, common_style)
+            ws.write(row_no * 2 - 1, 5, contract.taxed_total, common_style)
+            ws.write(row_no * 2 - 1, 6, contract.customer.name if contract.customer else None, common_style)
+
+            ws.write(row_no * 2, 0, "{}".format(row_no * 2), common_style)
+            ws.write(row_no * 2, 1, contract.contract_id, common_style)
+            ws.write(row_no * 2, 2, contract.created_at, date_style)
+            ws.write(row_no * 2, 3, None, common_style)
+            ws.write(row_no * 2, 4, NO_FEE_PURCHASES, common_style)
+            ws.write(row_no * 2, 5, contract.fee, common_style)
+            ws.write(row_no * 2, 6, contract.customer.name if contract.customer else None, common_style)
+            row_no += 1
+        
+        wb.save(response)
         return response

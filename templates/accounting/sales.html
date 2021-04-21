@@ -1,6 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load i18n %}
-
+{% load contract_tags %}
 {% block title %} {% trans "Sale" %} {% endblock title %}
 
 {% block stylesheets %}{% endblock stylesheets %}
@@ -82,6 +82,7 @@
 					<table class="table table-inventory table-bordered table-hover table-framed">
 						<thead>
 							<tr>
+								<th>No.</th>
 								<th>{% trans "Contract ID" %}</th>
 								<th>{% trans "Contract date" %}</th>
 								<th>{% trans "Type" %}</th>
@@ -93,6 +94,7 @@
 						<tbody>
 							{% for contract in page_obj %}
 							<tr>
+								<td>{% first_item forloop.counter0|add:page_obj.start_index %}</td>
 								<td>{{ contract.contract_id }}</td>
 								<td>{{ contract.created_at }}</td>
 								<td>{% trans "Income" %}</td>
@@ -101,6 +103,7 @@
 								<td>{{ contract.customer.name }}</td>
 							</tr>
 							<tr>
+								<td>{% second_item forloop.counter0|add:page_obj.start_index %}</td>
 								<td>{{ contract.contract_id }}</td>
 								<td>{{ contract.created_at }}</td>
 								<td></td>

@@ -1,9 +1,9 @@
-import unicodecsv as csv
+import xlwt
 from django.shortcuts import redirect
 from django.views.generic.base import View
 from django.views.generic.list import ListView
 from django.http import HttpResponse, JsonResponse
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
@@ -14,6 +14,21 @@ from contracts.utilities import generate_random_number, date_dump, update_csv_hi
 from .filters import ProductFilter
 from .forms import ListingSearchForm, ProductForm
 
+cell_width = 256 * 20
+wide_cell_width = 256 * 45
+cell_height = int(256 * 1.5)
+header_height = int(cell_height * 1.5)
+font_size = 20 * 10 # pt
+
+common_style = xlwt.easyxf('font: height 200; align: vert center, horiz left, wrap on;\
+                            borders: top_color black, bottom_color black, right_color black, left_color black,\
+                            left thin, right thin, top thin, bottom thin;')
+date_style = xlwt.easyxf('font: height 200; align: vert center, horiz left, wrap on;\
+                            borders: top_color black, bottom_color black, right_color black, left_color black,\
+                            left thin, right thin, top thin, bottom thin;')
+bold_style = xlwt.easyxf('font: bold on, height 200; align: vert center, horiz left, wrap on;\
+                            borders: top_color black, bottom_color black, right_color black, left_color black,\
+                            left thin, right thin, top thin, bottom thin;')
 
 class SalesListView(AdminLoginRequiredMixin, ListView):
     template_name = 'listing/sales.html'
@@ -58,13 +73,32 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
     def post(self, request, *args, **kwargs):
         user_id = self.request.user.id
         update_csv_history(user_id, "{} - {}".format(_("List"), _("Sales")))
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="listing_sales_{}.csv"'.format(generate_random_number())
-        writer = csv.writer(response, encoding='utf-8-sig')
-        writer.writerow([
-            _('Contract ID'), _('Contract date'), _('Customer'), _('Delivered place'), _('Person in charge'),
-            _('Payment date'), _('Product name'), _('Unit count'), _('Amount'), _('Inventory status')
-        ])
+        
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="listing_sales_{}.xls"'.format(generate_random_number())
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet("{} - {}".format(_('List'), _('Sales')))
+
+        ws.row(0).height_mismatch = True
+        ws.row(0).height = header_height
+
+        ws.write(0, 0, _('Contract ID'), bold_style)
+        ws.write(0, 1, _('Contract date'), bold_style)
+        ws.write(0, 2, _('Customer'), bold_style)
+        ws.write(0, 3, _('Delivered place'), bold_style)
+        ws.write(0, 4, _('Person in charge'), bold_style)
+        ws.write(0, 5, _('Payment date'), bold_style)
+        ws.write(0, 6, _('Product name'), bold_style)
+        ws.write(0, 7, _('Unit count'), bold_style)
+        ws.write(0, 8, _('Amount'), bold_style)
+        ws.write(0, 9, _('Inventory status'), bold_style)
+
+        for i in range(10):
+            ws.col(i).width = cell_width
+        ws.col(2).width = ws.col(3).width = ws.col(6).width = wide_cell_width
+
+        row_no = 1
+        date_style.num_format_str = 'yyyy/mm/dd' if self.request.LANGUAGE_CODE == 'ja' else 'mm/dd/yyyy'
         queryset = self.get_queryset()
         for product in queryset:
             contract = product.content_object
@@ -82,10 +116,20 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
             quantity = product.quantity
             amount = product.amount
             status = product.status
-            writer.writerow([
-                contract_id, contract_date, customer, destination, person_in_charge, payment_date, product_name,
-                quantity, amount, dict(STOCK_CHOICES)[status]
-            ])
+            
+            ws.write(row_no, 0, contract_id, common_style)
+            ws.write(row_no, 1, contract_date, date_style)
+            ws.write(row_no, 2, customer, common_style)
+            ws.write(row_no, 3, destination, common_style)
+            ws.write(row_no, 4, person_in_charge, common_style)
+            ws.write(row_no, 5, payment_date, date_style)
+            ws.write(row_no, 6, product_name, common_style)
+            ws.write(row_no, 7, quantity, common_style)
+            ws.write(row_no, 8, amount, common_style)
+            ws.write(row_no, 9, str(dict(STOCK_CHOICES)[status]), common_style)
+            row_no += 1
+        
+        wb.save(response)
         return response
     
     def get_context_data(self, **kwargs):
@@ -141,13 +185,33 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
     def post(self, request, *args, **kwargs):
         user_id = self.request.user.id
         update_csv_history(user_id, "{} - {}".format(_("List"), _("Purchases")))
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="listing_purchases_{}.csv"'.format(generate_random_number())
-        writer = csv.writer(response, encoding='utf-8-sig')
-        writer.writerow([
-            _('Contract ID'), _('Contract date'), _('Customer'), _('Delivered place'), _('Person in charge'),
-            _('Payment date'), _('Product name'), _('Unit count'), _('Amount'), _('Inventory status')
-        ])
+
+        
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="listing_purchases_{}.xls"'.format(generate_random_number())
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet("{} - {}".format(_('List'), _('Purchases')))
+
+        ws.row(0).height_mismatch = True
+        ws.row(0).height = header_height
+
+        ws.write(0, 0, _('Contract ID'), bold_style)
+        ws.write(0, 1, _('Contract date'), bold_style)
+        ws.write(0, 2, _('Customer'), bold_style)
+        ws.write(0, 3, _('Delivered place'), bold_style)
+        ws.write(0, 4, _('Person in charge'), bold_style)
+        ws.write(0, 5, _('Payment date'), bold_style)
+        ws.write(0, 6, _('Product name'), bold_style)
+        ws.write(0, 7, _('Unit count'), bold_style)
+        ws.write(0, 8, _('Amount'), bold_style)
+        ws.write(0, 9, _('Inventory status'), bold_style)
+
+        for i in range(10):
+            ws.col(i).width = cell_width
+        ws.col(2).width = ws.col(3).width = ws.col(6).width = wide_cell_width
+
+        row_no = 1
+        date_style.num_format_str = 'yyyy/mm/dd' if self.request.LANGUAGE_CODE == 'ja' else 'mm/dd/yyyy'
         queryset = self.get_queryset()
         for product in queryset:
             contract = product.content_object
@@ -165,10 +229,20 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
             quantity = product.quantity
             amount = product.amount
             status = product.status
-            writer.writerow([
-                contract_id, contract_date, customer, destination, person_in_charge, payment_date, product_name,
-                quantity, amount, dict(STOCK_CHOICES)[status]
-            ])
+
+            ws.write(row_no, 0, contract_id, common_style)
+            ws.write(row_no, 1, contract_date, date_style)
+            ws.write(row_no, 2, customer, common_style)
+            ws.write(row_no, 3, destination, common_style)
+            ws.write(row_no, 4, person_in_charge, common_style)
+            ws.write(row_no, 5, payment_date, date_style)
+            ws.write(row_no, 6, product_name, common_style)
+            ws.write(row_no, 7, quantity, common_style)
+            ws.write(row_no, 8, amount, common_style)
+            ws.write(row_no, 9, str(dict(STOCK_CHOICES)[status]), common_style)
+            row_no += 1
+        
+        wb.save(response)
         return response
     
     def get_context_data(self, **kwargs):
@@ -214,19 +288,47 @@ class InventoryListView(AdminLoginRequiredMixin, ListView):
     def post(self, request, *args, **kwargs):
         user_id = self.request.user.id
         update_csv_history(user_id, "{} - {}".format(_("List"), _("Inventory")))
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="inventory_listing_{}.csv"'.format(generate_random_number())
-        writer = csv.writer(response, encoding='utf-8-sig')
-        writer.writerow([
-            _('Product name'), _('Control number'), _('Purchase date'), _('Supplier'), _('Person in charge'),
-            _('Unit count'), _('Price'), _('Stock'), _('Total price')
-        ])
+        
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="inventory_listing_{}.xls"'.format(generate_random_number())
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet("{} - {}".format(_('List'), _('Inventory')))
+
+        ws.row(0).height_mismatch = True
+        ws.row(0).height = header_height
+
+        ws.write(0, 0, 'No.', bold_style)
+        ws.write(0, 1, _('Product name'), bold_style)
+        ws.write(0, 2, _('Control number'), bold_style)
+        ws.write(0, 3, _('Purchase date'), bold_style)
+        ws.write(0, 4, _('Supplier'), bold_style)
+        ws.write(0, 5, _('Person in charge'), bold_style)
+        ws.write(0, 6, _('Unit count'), bold_style)
+        ws.write(0, 7, _('Price'), bold_style)
+        ws.write(0, 8, _('Stock'), bold_style)
+        ws.write(0, 9, _('Total price'), bold_style)
+
+        for i in range(10):
+            ws.col(i).width = cell_width
+        ws.col(1).width = ws.col(4).width = wide_cell_width
+
+        row_no = 1
+        date_style.num_format_str = 'yyyy/mm/dd' if self.request.LANGUAGE_CODE == 'ja' else 'mm/dd/yyyy'
         queryset = self.get_queryset()
         for product in queryset:
-            writer.writerow([
-                product.name, product.identifier, product.purchase_date, product.supplier, product.person_in_charge,
-                product.quantity, product.price, product.stock, product.amount
-            ])
+            ws.write(row_no, 0, row_no, common_style)
+            ws.write(row_no, 1, product.name, common_style)
+            ws.write(row_no, 2, product.identifier, common_style)
+            ws.write(row_no, 3, product.purchase_date, date_style)
+            ws.write(row_no, 4, product.supplier, common_style)
+            ws.write(row_no, 5, product.person_in_charge, common_style)
+            ws.write(row_no, 6, product.quantity, common_style)
+            ws.write(row_no, 7, product.price, common_style)
+            ws.write(row_no, 8, product.stock, common_style)
+            ws.write(row_no, 9, product.amount, common_style)
+            row_no += 1
+        
+        wb.save(response)
         return response
 
 
