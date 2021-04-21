@@ -27,14 +27,14 @@ class ProductForm(forms.Form):
     amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
 
     def __init__(self, *args, **kwargs):
-        if kwargs.get('contract_id', None):
+        if kwargs.get('contract_id'):
             self.contract_id = kwargs.pop('contract_id')
-        if kwargs.get('contract_class', None):
+        if kwargs.get('contract_class'):
             self.contract_class = kwargs.pop('contract_class')
         super().__init__(*args, **kwargs)
     
     def save(self):
-        id = self.cleaned_data.get('id', None)
+        id = self.cleaned_data.get('id')
         if id:
             contract_product = ContractProduct.objects.get(id=id)
             contract_product.type = self.cleaned_data.get('type')
@@ -67,14 +67,14 @@ class DocumentForm(forms.Form):
     amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
 
     def __init__(self, *args, **kwargs):
-        if kwargs.get('contract_id', None):
+        if kwargs.get('contract_id'):
             self.contract_id = kwargs.pop('contract_id')
-        if kwargs.get('contract_class', None):
+        if kwargs.get('contract_class'):
             self.contract_class = kwargs.pop('contract_class')
         super().__init__(*args, **kwargs)
     
     def save(self):
-        id = self.cleaned_data.get('id', None)
+        id = self.cleaned_data.get('id')
         if id:
             contract_document = ContractDocument.objects.get(id=id)
             contract_document.quantity = self.cleaned_data.get('quantity')
@@ -107,14 +107,14 @@ class DocumentFeeForm(forms.Form):
     amount = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}), required=False)
 
     def __init__(self, *args, **kwargs):
-        if kwargs.get('contract_id', None):
+        if kwargs.get('contract_id'):
             self.contract_id = kwargs.pop('contract_id')
-        if kwargs.get('contract_class', None):
+        if kwargs.get('contract_class'):
             self.contract_class = kwargs.pop('contract_class')
         super().__init__(*args, **kwargs)
     
     def save(self):
-        id = self.cleaned_data.get('id', None)
+        id = self.cleaned_data.get('id')
         if id:
             contract_document_fee = ContractDocumentFee.objects.get(id=id)
             contract_document_fee.model_count = self.cleaned_data.get('model_count')
@@ -147,9 +147,9 @@ class MilestoneForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        if kwargs.get('contract_id', None):
+        if kwargs.get('contract_id'):
             self.contract_id = kwargs.pop('contract_id')
-        if kwargs.get('contract_class', None):
+        if kwargs.get('contract_class'):
             self.contract_class = kwargs.pop('contract_class')
         super().__init__(*args, **kwargs)
     
@@ -158,7 +158,7 @@ class MilestoneForm(forms.Form):
         return data
     
     def save(self):
-        id = self.cleaned_data.get('id', None)
+        id = self.cleaned_data.get('id')
         if id:
             milestone = Milestone.objects.get(id=id)
             milestone.date = self.cleaned_data.get('date')
@@ -179,8 +179,8 @@ class MilestoneForm(forms.Form):
 class ItemValidationFormSet(BaseFormSet):
     def get_form_kwargs(self, index):
         kwargs = super().get_form_kwargs(index)
-        contract_id = kwargs.get('contract_id', None)
-        contract_class = kwargs.get('contract_class', None)
+        contract_id = kwargs.get('contract_id')
+        contract_class = kwargs.get('contract_class')
         
         data = {}
         if contract_id:
@@ -193,8 +193,8 @@ class ItemValidationFormSet(BaseFormSet):
 class DocumentFeeValidationFormSet(BaseFormSet):
     def get_form_kwargs(self, index):
         kwargs = super().get_form_kwargs(index)
-        contract_id = kwargs.get('contract_id', None)
-        contract_class = kwargs.get('contract_class', None)
+        contract_id = kwargs.get('contract_id')
+        contract_class = kwargs.get('contract_class')
         
         data = {}
         if contract_id:
@@ -207,8 +207,8 @@ class DocumentFeeValidationFormSet(BaseFormSet):
 class MilestoneValidationFormSet(BaseFormSet):
     def get_form_kwargs(self, index):
         kwargs = super().get_form_kwargs(index)
-        contract_id = kwargs.get('contract_id', None)
-        contract_class = kwargs.get('contract_class', None)
+        contract_id = kwargs.get('contract_id')
+        contract_class = kwargs.get('contract_class')
         
         data = {}
         if contract_id:
@@ -312,7 +312,7 @@ class TraderSalesProductSenderForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        if kwargs.get('contract_id', None):
+        if kwargs.get('contract_id'):
             self.contract_id = kwargs.pop('contract_id')
         super().__init__(*args, **kwargs)
     
@@ -351,7 +351,7 @@ class TraderSalesDocumentSenderForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        if kwargs.get('contract_id', None):
+        if kwargs.get('contract_id'):
             self.contract_id = kwargs.pop('contract_id')
         super().__init__(*args, **kwargs)
     
@@ -474,7 +474,7 @@ class TraderPurchasesProductSenderForm(forms.Form):
     product_sender_remarks = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
 
     def __init__(self, *args, **kwargs):
-        if kwargs.get('contract_id', None):
+        if kwargs.get('contract_id'):
             self.contract_id = kwargs.pop('contract_id')
         super().__init__(*args, **kwargs)
     
@@ -517,7 +517,7 @@ class TraderPurchasesDocumentSenderForm(forms.Form):
     document_sender_remarks = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
 
     def __init__(self, *args, **kwargs):
-        if kwargs.get('contract_id', None):
+        if kwargs.get('contract_id'):
             self.contract_id = kwargs.pop('contract_id')
         super().__init__(*args, **kwargs)
     
