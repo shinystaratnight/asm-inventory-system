@@ -78,8 +78,12 @@ class SalesListView(AdminLoginRequiredMixin, TemplateView):
         response = HttpResponse(content_type='application/ms-excel')
         response['Content-Disposition'] = 'attachment; filename="accounting_sales_{}.xls"'.format(generate_random_number())
         wb = xlwt.Workbook(encoding='utf-8')
-        ws = wb.add_sheet("{} - {}".format(_('Accounting software CSV'), _('Sale')))
 
+        if self.request.LANGUAGE_CODE == 'en':
+            ws = wb.add_sheet('Accounting CSV - Sales')
+        else:
+            ws = wb.add_sheet("{} - {}".format(_('Accounting software CSV'), _('Sale')))
+        
         ws.row(0).height_mismatch = True
         ws.row(0).height = header_height
 
@@ -167,7 +171,10 @@ class PurchasesListView(AdminLoginRequiredMixin, TemplateView):
         response = HttpResponse(content_type='application/ms-excel')
         response['Content-Disposition'] = 'attachment; filename="accounting_purchases_{}.xls"'.format(generate_random_number())
         wb = xlwt.Workbook(encoding='utf-8')
-        ws = wb.add_sheet("{} - {}".format(_('Accounting software CSV'), _('Purchase')))
+        if self.request.LANGUAGE_CODE == 'en':
+            ws = wb.add_sheet('Accounting CSV - Purchases')
+        else:
+            ws = wb.add_sheet("{} - {}".format(_('Accounting software CSV'), _('Purchase')))
 
         ws.row(0).height_mismatch = True
         ws.row(0).height = header_height
