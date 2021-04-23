@@ -24,6 +24,9 @@ font_size = 20 * 8 # pt
 
 common_style = xlwt.easyxf('font: height 160; align: vert center, horiz left, wrap on;')
 center_style = xlwt.easyxf('font: height 160; align: vert center, horiz center, wrap on;')
+number_style = xlwt.easyxf('font: height 160; align: vert center, horiz left, wrap on;\
+                            borders: top_color black, bottom_color black, right_color black, left_color black,\
+                            left thin, right thin, top thin, bottom thin;', num_format_str='#,##0')
 table_center_style = xlwt.easyxf('font: height 160; align: vert center, horiz center, wrap on;\
                             borders: top_color black, bottom_color black, right_color black, left_color black,\
                             left thin, right thin, top thin, bottom thin;')
@@ -179,24 +182,35 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
         remarks = contract_form.data.get('remarks')
         shipping_date_label = get_shipping_date_label(shipping_method)
 
+        try:
+            sub_total = int(sub_total)
+            tax = int(tax)
+            fee = int(fee)
+            total = int(total)
+        except ValueError:
+            sub_total = 0
+            tax = 0
+            fee = 0
+            total = 0
+
         ws.write(row_no, 0, shipping_date_label, common_style)
         ws.write(row_no, 1, shipping_date, common_style)
         ws.write_merge(row_no, row_no, 5, 6, _('Sum'), table_left_style)
-        ws.write(row_no, 7, sub_total, table_left_style)
+        ws.write(row_no, 7, sub_total, number_style)
         row_no += 1
 
         ws.write_merge(row_no, row_no + 2, 0, 0, _('Remarks'), common_style)
         ws.write_merge(row_no, row_no + 2, 1, 3, remarks, common_style)
         ws.write_merge(row_no, row_no, 5, 6, _('Consumption tax') + '(10%)', table_left_style)
-        ws.write(row_no, 7, tax, table_left_style)
+        ws.write(row_no, 7, tax, number_style)
         row_no += 1
 
         ws.write_merge(row_no, row_no, 5, 6, _('Insurance fee') + '(' + _('No tax') + ')', table_left_style)
-        ws.write(row_no, 7, fee, table_left_style)
+        ws.write(row_no, 7, fee, number_style)
         row_no += 1
 
         ws.write_merge(row_no, row_no, 5, 6, _('Total amount'), table_left_style)
-        ws.write(row_no, 7, total, table_left_style)
+        ws.write(row_no, 7, total, number_style)
         row_no += 1
 
         row_no += 1
@@ -441,13 +455,24 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         fee = contract_form.data.get('fee')
         total = contract_form.data.get('total')
 
+        try:
+            sub_total = int(sub_total)
+            tax = int(tax)
+            fee = int(fee)
+            total = int(total)
+        except ValueError:
+            sub_total = 0
+            tax = 0
+            fee = 0
+            total = 0
+
         row_no += 1
         ws.write(row_no, 0, _('Removal date'), common_style)
         ws.write(row_no, 1, removal_date, common_style)
         ws.write(row_no, 3, _('Frame color'), common_style)
         ws.write(row_no, 4, frame_color, common_style)
         ws.write_merge(row_no, row_no, 5, 6, _('Sum'), table_left_style)
-        ws.write(row_no, 7, sub_total, table_left_style)
+        ws.write(row_no, 7, sub_total, number_style)
         row_no += 1
 
         ws.write(row_no, 0, _('Date of shipment'), common_style)
@@ -455,17 +480,17 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         ws.write(row_no, 3, _('Receipt'), common_style)
         ws.write(row_no, 4, receipt, common_style)
         ws.write_merge(row_no, row_no, 5, 6, _('Consumption tax') + '(10%)', table_left_style)
-        ws.write(row_no, 7, tax, table_left_style)
+        ws.write(row_no, 7, tax, number_style)
         row_no += 1
 
         ws.write_merge(row_no, row_no + 1, 0, 0, _('Remarks'), common_style)
         ws.write_merge(row_no, row_no + 1, 1, 4, remarks, common_style)
         ws.write_merge(row_no, row_no, 5, 6, _('Insurance fee') + '(' + _('No tax') + ')', table_left_style)
-        ws.write(row_no, 7, fee, table_left_style)
+        ws.write(row_no, 7, fee, number_style)
         row_no += 1
 
         ws.write_merge(row_no, row_no, 5, 6, _('Total amount'), table_left_style)
-        ws.write(row_no, 7, total, table_left_style)
+        ws.write(row_no, 7, total, number_style)
         row_no += 1
 
         row_no += 1
@@ -768,24 +793,35 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
         transfer_account = contract_form.data.get('transfer_account')
         person_in_charge = contract_form.data.get('person_in_charge', '')
         confirmor = contract_form.data.get('confirmor')
+
+        try:
+            sub_total = int(sub_total)
+            tax = int(tax)
+            fee = int(fee)
+            total = int(total)
+        except ValueError:
+            sub_total = 0
+            tax = 0
+            fee = 0
+            total = 0
         
         row_no += 1
         ws.write_merge(row_no, row_no + 3, 0, 0, _('Remarks'), common_style)
         ws.write_merge(row_no, row_no + 3, 1, 3, remarks, common_style)
         ws.write_merge(row_no, row_no, 5, 6, _('Sum'), table_left_style)
-        ws.write(row_no, 7, sub_total, table_left_style)
+        ws.write(row_no, 7, sub_total, number_style)
         row_no += 1
 
         ws.write_merge(row_no, row_no, 5, 6, _('Consumption tax') + '(10%)', table_left_style)
-        ws.write(row_no, 7, tax, table_left_style)
+        ws.write(row_no, 7, tax, number_style)
         row_no += 1
 
         ws.write_merge(row_no, row_no, 5, 6, _('Insurance fee') + '(' + _('No tax') + ')', table_left_style)
-        ws.write(row_no, 7, fee, table_left_style)
+        ws.write(row_no, 7, fee, number_style)
         row_no += 1
 
         ws.write_merge(row_no, row_no, 5, 6, _('Total amount'), table_left_style)
-        ws.write(row_no, 7, total, table_left_style)
+        ws.write(row_no, 7, total, number_style)
         row_no += 1
 
         row_no += 1
@@ -1011,23 +1047,34 @@ class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         confirmor = contract_form.data.get('confirmor')
         memo = contract_form.data.get('memo')
 
+        try:
+            sub_total = int(sub_total)
+            tax = int(tax)
+            fee = int(fee)
+            total = int(total)
+        except ValueError:
+            sub_total = 0
+            tax = 0
+            fee = 0
+            total = 0
+
         row_no += 1
         ws.write_merge(row_no, row_no + 3, 0, 0, _('Remarks'), common_style)
         ws.write_merge(row_no, row_no + 3, 1, 3, remarks, common_style)
         ws.write_merge(row_no, row_no, 5, 6, _('Sum'), table_left_style)
-        ws.write(row_no, 7, sub_total, table_left_style)
+        ws.write(row_no, 7, sub_total, number_style)
         row_no += 1
 
         ws.write_merge(row_no, row_no, 5, 6, _('Consumption tax') + '(10%)', table_left_style)
-        ws.write(row_no, 7, tax, table_left_style)
+        ws.write(row_no, 7, tax, number_style)
         row_no += 1
 
         ws.write_merge(row_no, row_no, 5, 6, _('Insurance fee') + '(' + _('No tax') + ')', table_left_style)
-        ws.write(row_no, 7, fee, table_left_style)
+        ws.write(row_no, 7, fee, number_style)
         row_no += 1
 
         ws.write_merge(row_no, row_no, 5, 6, _('Total amount'), table_left_style)
-        ws.write(row_no, 7, total, table_left_style)
+        ws.write(row_no, 7, total, number_style)
         row_no += 1
 
         row_no += 1
