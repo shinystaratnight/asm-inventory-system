@@ -19,7 +19,7 @@ class CustomerFilter(django_filters.FilterSet):
             Q(tel__icontains=value) |
             Q(fax__icontains=value) |
             Q(address__icontains=value) |
-            Q(csv__icontains=value)
+            Q(excel__icontains=value)
         )
         return queryset
 

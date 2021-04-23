@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 from users.views import AdminLoginRequiredMixin
 from masterdata.models import NO_FEE_PURCHASES, NO_FEE_SALES, FEE_PURCHASES, FEE_SALES
 from contracts.models import TraderSalesContract, HallSalesContract, TraderPurchasesContract, HallPurchasesContract
-from contracts.utilities import generate_random_number, update_csv_history
+from contracts.utilities import generate_random_number, log_export_operation
 from .forms import SearchForm
 
 paginate_by = 3
@@ -73,7 +73,7 @@ class SalesListView(AdminLoginRequiredMixin, TemplateView):
     
     def post(self, request, *args, **kwargs):
         user_id = self.request.user.id
-        update_csv_history(user_id, "{} - {}".format(_("Accounting software CSV"), _("Sale")))
+        log_export_operation(user_id, "{} - {}".format(_("Accounting software CSV"), _("Sale")))
 
         response = HttpResponse(content_type='application/ms-excel')
         response['Content-Disposition'] = 'attachment; filename="accounting_sales_{}.xls"'.format(generate_random_number())
@@ -87,7 +87,7 @@ class SalesListView(AdminLoginRequiredMixin, TemplateView):
         ws.row(0).height_mismatch = True
         ws.row(0).height = header_height
 
-        ws.write(0, 0, _('No.'), bold_style)
+        ws.write(0, 0, _('No'), bold_style)
         ws.write(0, 1, _('Contract ID'), bold_style)
         ws.write(0, 2, _('Contract date'), bold_style)
         ws.write(0, 3, _('Type'), bold_style)
@@ -166,7 +166,7 @@ class PurchasesListView(AdminLoginRequiredMixin, TemplateView):
     
     def post(self, request, *args, **kwargs):
         user_id = self.request.user.id
-        update_csv_history(user_id, "{} - {}".format(_("Accounting software CSV"), _("Purchase")))
+        log_export_operation(user_id, "{} - {}".format(_("Accounting software CSV"), _("Purchase")))
 
         response = HttpResponse(content_type='application/ms-excel')
         response['Content-Disposition'] = 'attachment; filename="accounting_purchases_{}.xls"'.format(generate_random_number())
@@ -179,7 +179,7 @@ class PurchasesListView(AdminLoginRequiredMixin, TemplateView):
         ws.row(0).height_mismatch = True
         ws.row(0).height = header_height
 
-        ws.write(0, 0, _('No.'), bold_style)
+        ws.write(0, 0, _('No'), bold_style)
         ws.write(0, 1, _('Contract ID'), bold_style)
         ws.write(0, 2, _('Contract date'), bold_style)
         ws.write(0, 3, _('Type'), bold_style)

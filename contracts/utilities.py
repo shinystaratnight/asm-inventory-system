@@ -3,7 +3,7 @@ from django.utils.translation import gettext as _
 from contracts.models import (
     TraderSalesContract, TraderPurchasesContract, HallSalesContract, HallPurchasesContract
 )
-from listing.models import CsvHistory
+from listing.models import ExportHistory
 
 def generate_contract_id(prefix='01'):
     year = time.strftime("%y", time.localtime())
@@ -35,9 +35,9 @@ def get_shipping_date_label(mode):
         return _('ID Change date')
     return _('Delivery date')
 
-def update_csv_history(user_id, csv):
+def log_export_operation(user_id, export):
     data = {
         'user_id': user_id,
-        'csv': csv
+        'export': export
     }
-    CsvHistory.objects.create(**data)
+    ExportHistory.objects.create(**data)

@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-    SalesListView, PurchasesListView, InventoryListView, CsvHistoryListView,
+    SalesListView, PurchasesListView, InventoryListView, ExportHistoryListView,
     SalesProductUpdateView, PurchasesProductUpdateView,
     SalesProductDetailAjaxView, PurchasesProductDetailAjaxView,
     InventoryProductDetailAjaxView, InventoryProductCreateView, InventoryProductUpdateView, InventoryProductDeleteView,
@@ -11,7 +11,7 @@ urlpatterns = [
     path('sales/', SalesListView.as_view(), name='sales-list'),
     path('purchases/', PurchasesListView.as_view(), name='purchases-list'),
     path('inventory/', InventoryListView.as_view(), name='inventory-list'),
-    path('history/', CsvHistoryListView.as_view(), name='history-list'),
+    path('history/', ExportHistoryListView.as_view(), name='history-list'),
 
     path('sales-product/update/', SalesProductUpdateView.as_view(), name='sales-product-update'),
     path('purchases-product/update/', PurchasesProductUpdateView.as_view(), name='purchases-product-update'),

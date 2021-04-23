@@ -69,7 +69,7 @@
 								<th class="w-18-5">{% trans "Address" %}</th>
 								<th>{% trans "TEL" %}</th>
 								<th>{% trans "FAX" %}</th>
-								<th class="w-10">{% trans "For CSV" %}</th>
+								<th class="w-10">{% trans "Excel" %}</th>
 								<th>{% trans "Action" %}</th>
 							</tr>
 						</thead>
@@ -83,7 +83,7 @@
 								<td>{{ customer.address }}</td>
 								<td>{{ customer.tel|default_if_none:"" }}</td>
 								<td>{{ customer.fax|default_if_none:"" }}</td>
-								<td>{{ customer.csv }}</td>
+								<td>{{ customer.excel }}</td>
 								<td>
 									<a href="#" data-id="{{customer.id}}" class="edit-action"><i class="icon-pencil5 color-primary"></i></a>
 									<a href="#" data-id="{{customer.id}}" class="remove-action"><i class="icon-minus-circle2 ml-3 color-danger"></i></a>
@@ -169,9 +169,9 @@
 									</div>
 
 									<div class="form-group">
-										<label class="control-label col-lg-3">{% trans "For CSV" %}:</label>
+										<label class="control-label col-lg-3">{% trans "Excel" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="csv" class="form-control" placeholder="{% trans 'Enter CSV name' %}..." required>
+											<input type="text" name="excel" class="form-control" placeholder="{% trans 'Enter excel' %}..." required>
 										</div>
 									</div>
 
@@ -249,9 +249,9 @@
 									</div>
 
 									<div class="form-group">
-										<label class="control-label col-lg-3">{% trans "For CSV" %}:</label>
+										<label class="control-label col-lg-3">{% trans "Excel" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="csv" class="form-control" placeholder="{% trans 'Enter CSV name' %}..." required>
+											<input type="text" name="excel" class="form-control" placeholder="{% trans 'Enter excel' %}..." required>
 										</div>
 									</div>
 
@@ -347,7 +347,7 @@
 							$('#modal_edit_data input[name="address"]').val(result.address);
 							$('#modal_edit_data input[name="tel"]').val(result.tel);
 							$('#modal_edit_data input[name="fax"]').val(result.fax);
-							$('#modal_edit_data input[name="csv"]').val(result.csv);
+							$('#modal_edit_data input[name="excel"]').val(result.excel);
 							$('#modal_edit_data').modal('toggle');
 						}
 					});

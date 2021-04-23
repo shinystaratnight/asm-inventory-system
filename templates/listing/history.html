@@ -15,7 +15,7 @@
 				<div class="page-title">
 					<h4>
 						<i class="icon-arrow-left52 position-left"></i>
-						<span class="text-semibold">{% trans "List" %}</span> - {% trans "CSV History" %}
+						<span class="text-semibold">{% trans "List" %}</span> - {% trans "Export history" %}
 					</h4>
 				</div>
 			</div>
@@ -23,7 +23,7 @@
 			<div class="breadcrumb-line breadcrumb-line-component">
 				<ul class="breadcrumb">
 					<li><a><i class="icon-cart2 position-left"></i>{% trans "List" %}</a></li>
-					<li class="active">{% trans "CSV History" %}</li>
+					<li class="active">{% trans "Export history" %}</li>
 				</ul>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 
 			<div class="panel panel-flat">
 				<div class="panel-heading border-bottom">
-					<h2 class="panel-title">{% trans "CSV History" %}</h2>
+					<h2 class="panel-title">{% trans "Export history" %}</h2>
 				</div>
 
 				<div class="table-responsive">
@@ -44,7 +44,7 @@
 							<tr>
 								<th>{% trans "No" %}</th>
 								<th>{% trans "Username" %}</th>
-								<th>{% trans "CSV" %}</th>
+								<th>{% trans "Export" %}</th>
 								<th>{% trans "Exported at" %}</th>
 							</tr>
 						</thead>
@@ -54,7 +54,7 @@
 							<tr>
 								<td>{{ forloop.counter0|add:page_obj.start_index }}</td>
 								<td>{{ object.user.username }}</td>
-								<td>{{ object.csv }}</td>
+								<td>{{ object.export }}</td>
 								<td>{{ object.exported_at }}</td>
 							</tr>
 							{% endfor %}

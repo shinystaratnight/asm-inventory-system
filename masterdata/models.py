@@ -72,7 +72,7 @@ class MasterData(models.Model):
 
 
 class Customer(MasterData):
-    csv = models.CharField(max_length=200)
+    excel = models.CharField(max_length=200)
 
 
 class Hall(MasterData):

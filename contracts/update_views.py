@@ -1,4 +1,3 @@
-import unicodecsv as csv
 from django.shortcuts import render, redirect
 from django.contrib.contenttypes.models import ContentType
 from django.views.generic.base import TemplateView, View

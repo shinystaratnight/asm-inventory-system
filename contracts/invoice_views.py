@@ -14,7 +14,7 @@ from .forms import (
     TraderPurchasesProductSenderForm, TraderPurchasesDocumentSenderForm,
     ProductFormSet, DocumentFormSet, DocumentFeeFormSet, MilestoneFormSet
 )
-from .utilities import get_shipping_date_label, ordinal, update_csv_history
+from .utilities import get_shipping_date_label, ordinal, log_export_operation
 
 header_height = int(256 * 3)
 cell_width = 256 * 12
@@ -45,13 +45,14 @@ font_large_style = xlwt.easyfont('height 200, bold on')
 class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         user_id = self.request.user.id
-        update_csv_history(user_id, "{} - {}".format(_("Sales contract"), _("Trader sales")))
+        log_export_operation(user_id, "{} - {}".format(_("Sales contract"), _("Trader sales")))
         contract_form = TraderSalesContractForm(self.request.POST)
         contract_id = contract_form.data.get('contract_id', '')
         created_at = contract_form.data.get('created_at', '')
         updated_at = contract_form.data.get('updated_at', '')
         person_in_charge = contract_form.data.get('person_in_charge', '')
         customer_id = contract_form.data.get('customer_id')
+        manager = contract_form.data.get('manager')
         company = frigana = postal_code = address = tel = fax = None
         if customer_id:
             customer = Customer.objects.get(id=customer_id)
@@ -81,7 +82,7 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
         ws.write_merge(1, 1, 0, 1, 'No.  {}'.format(contract_id), common_style)
         ws.write(1, 6, _('Created date'), common_style)
         ws.write(1, 7, created_at, common_style)
-        ws.write(2, 6, _('Created date'), common_style)
+        ws.write(2, 6, _('Updated date'), common_style)
         ws.write(2, 7, updated_at, common_style)
 
         ws.write(4, 0, _('Company'), common_style)
@@ -89,30 +90,32 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
         ws.write(4, 4, _('Frigana'), common_style)
         ws.write_merge(4, 4, 5, 7, frigana, common_style)
 
-        ws.write(5, 0, _('Postal code'), common_style)
-        ws.write_merge(5, 5, 1, 2, postal_code, common_style)
+        ws.write_merge(5, 5, 1, 3, manager, common_style)
 
-        ws.write(6, 0, _('Address'), common_style)
-        ws.write_merge(6, 6, 1, 3, address, common_style)
+        ws.write(6, 0, _('Postal code'), common_style)
+        ws.write_merge(6, 6, 1, 2, postal_code, common_style)
 
-        ws.write_merge(6, 6, 4, 5, 'P-SENSOR {}'.format(_('Member ID')), center_style)
-        ws.write_merge(6, 6, 6, 7, P_SENSOR_NUMBER, common_style)
+        ws.write(7, 0, _('Address'), common_style)
+        ws.write_merge(7, 7, 1, 3, address, common_style)
 
-        ws.write(7, 0, _('TEL'), common_style)
-        ws.write(7, 1, tel, common_style)
-        ws.write(7, 3, _('FAX'), common_style)
-        ws.write(7, 4, fax, common_style)
-        ws.write(7, 6, _('Person in charge'), common_style)
-        ws.write(7, 7, person_in_charge, common_style)
+        ws.write_merge(7, 7, 4, 5, 'P-SENSOR {}'.format(_('Member ID')), center_style)
+        ws.write_merge(7, 7, 6, 7, P_SENSOR_NUMBER, common_style)
+
+        ws.write(8, 0, _('TEL'), common_style)
+        ws.write(8, 1, tel, common_style)
+        ws.write(8, 3, _('FAX'), common_style)
+        ws.write(8, 4, fax, common_style)
+        ws.write(8, 6, _('Person in charge'), common_style)
+        ws.write(8, 7, person_in_charge, common_style)
 
         # Product Table
-        ws.write_merge(9, 9, 0, 3, _('Model name'), table_center_style)
-        ws.write(9, 4, _('Product type'), table_center_style)
-        ws.write(9, 5, _('Quantity'), table_center_style)
-        ws.write(9, 6, _('Price'), table_center_style)
-        ws.write(9, 7, _('Amount'), table_center_style)
+        ws.write_merge(10, 10, 0, 3, _('Model name'), table_center_style)
+        ws.write(10, 4, _('Product type'), table_center_style)
+        ws.write(10, 5, _('Quantity'), table_center_style)
+        ws.write(10, 6, _('Price'), table_center_style)
+        ws.write(10, 7, _('Amount'), table_center_style)
 
-        row_no = 10
+        row_no = 11
         product_formset = ProductFormSet(
             self.request.POST,
             prefix='product'
@@ -306,13 +309,14 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
 class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         user_id = self.request.user.id
-        update_csv_history(user_id, "{} - {}".format(_("Sales contract"), _("Trader purchases")))
+        log_export_operation(user_id, "{} - {}".format(_("Sales contract"), _("Trader purchases")))
         contract_form = TraderPurchasesContractForm(self.request.POST)
         contract_id = contract_form.data.get('contract_id', '')
         created_at = contract_form.data.get('created_at', '')
         updated_at = contract_form.data.get('updated_at', '')
         person_in_charge = contract_form.data.get('person_in_charge', '')
         customer_id = contract_form.data.get('customer_id')
+        manager = contract_form.data.get('manager')
         company = frigana = postal_code = address = tel = fax = None
         if customer_id:
             customer = Customer.objects.get(id=customer_id)
@@ -342,7 +346,7 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         ws.write_merge(1, 1, 0, 1, 'No.  {}'.format(contract_id), common_style)
         ws.write(1, 6, _('Created date'), common_style)
         ws.write(1, 7, created_at, common_style)
-        ws.write(2, 6, _('Created date'), common_style)
+        ws.write(2, 6, _('Updated date'), common_style)
         ws.write(2, 7, updated_at, common_style)
 
         ws.write(4, 0, _('Company'), common_style)
@@ -350,30 +354,32 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         ws.write(4, 4, _('Frigana'), common_style)
         ws.write_merge(4, 4, 5, 7, frigana, common_style)
 
-        ws.write(5, 0, _('Postal code'), common_style)
-        ws.write_merge(5, 5, 1, 2, postal_code, common_style)
+        ws.write_merge(5, 5, 1, 3, manager, common_style)
 
-        ws.write(6, 0, _('Address'), common_style)
-        ws.write_merge(6, 6, 1, 3, address, common_style)
+        ws.write(6, 0, _('Postal code'), common_style)
+        ws.write_merge(6, 6, 1, 2, postal_code, common_style)
 
-        ws.write_merge(6, 6, 4, 5, 'P-SENSOR {}'.format(_('Member ID')), center_style)
-        ws.write_merge(6, 6, 6, 7, P_SENSOR_NUMBER, common_style)
+        ws.write(7, 0, _('Address'), common_style)
+        ws.write_merge(7, 7, 1, 3, address, common_style)
 
-        ws.write(7, 0, _('TEL'), common_style)
-        ws.write(7, 1, tel, common_style)
-        ws.write(7, 3, _('FAX'), common_style)
-        ws.write(7, 4, fax, common_style)
-        ws.write(7, 6, _('Person in charge'), common_style)
-        ws.write(7, 7, person_in_charge, common_style)
+        ws.write_merge(7, 7, 4, 5, 'P-SENSOR {}'.format(_('Member ID')), center_style)
+        ws.write_merge(7, 7, 6, 7, P_SENSOR_NUMBER, common_style)
+
+        ws.write(8, 0, _('TEL'), common_style)
+        ws.write(8, 1, tel, common_style)
+        ws.write(8, 3, _('FAX'), common_style)
+        ws.write(8, 4, fax, common_style)
+        ws.write(8, 6, _('Person in charge'), common_style)
+        ws.write(8, 7, person_in_charge, common_style)
 
         # Product Table
-        ws.write_merge(9, 9, 0, 3, _('Model name'), table_center_style)
-        ws.write(9, 4, _('Product type'), table_center_style)
-        ws.write(9, 5, _('Quantity'), table_center_style)
-        ws.write(9, 6, _('Price'), table_center_style)
-        ws.write(9, 7, _('Amount'), table_center_style)
+        ws.write_merge(10, 10, 0, 3, _('Model name'), table_center_style)
+        ws.write(10, 4, _('Product type'), table_center_style)
+        ws.write(10, 5, _('Quantity'), table_center_style)
+        ws.write(10, 6, _('Price'), table_center_style)
+        ws.write(10, 7, _('Amount'), table_center_style)
 
-        row_no = 10
+        row_no = 11
         product_formset = ProductFormSet(
             self.request.POST,
             prefix='product'
@@ -593,7 +599,7 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
 class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         user_id = self.request.user.id
-        update_csv_history(user_id, "{} - {}".format(_("Sales contract"), _("Hall sales")))
+        log_export_operation(user_id, "{} - {}".format(_("Sales contract"), _("Hall sales")))
         contract_form = HallSalesContractForm(self.request.POST)
         contract_id = contract_form.data.get('contract_id', '')
         customer_id = contract_form.data.get('customer_id')
@@ -833,7 +839,7 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
 class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         user_id = self.request.user.id
-        update_csv_history(user_id, "{} - {}".format(_("Sales contract"), _("Hall purchases")))
+        log_export_operation(user_id, "{} - {}".format(_("Sales contract"), _("Hall purchases")))
         contract_form = HallPurchasesContractForm(self.request.POST)
         contract_id = contract_form.data.get('contract_id', '')
         customer_id = contract_form.data.get('customer_id')

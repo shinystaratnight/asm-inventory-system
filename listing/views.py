@@ -9,8 +9,8 @@ from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
 from masterdata.models import InventoryProduct, STOCK_CHOICES
 from contracts.models import ContractProduct
-from listing.models import CsvHistory
-from contracts.utilities import generate_random_number, date_dump, update_csv_history
+from listing.models import ExportHistory
+from contracts.utilities import generate_random_number, date_dump, log_export_operation
 from .filters import ProductFilter
 from .forms import ListingSearchForm, ProductForm
 
@@ -72,7 +72,7 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
     
     def post(self, request, *args, **kwargs):
         user_id = self.request.user.id
-        update_csv_history(user_id, "{} - {}".format(_("List"), _("Sales")))
+        log_export_operation(user_id, "{} - {}".format(_("List"), _("Sales")))
         
         response = HttpResponse(content_type='application/ms-excel')
         response['Content-Disposition'] = 'attachment; filename="listing_sales_{}.xls"'.format(generate_random_number())
@@ -184,7 +184,7 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
     
     def post(self, request, *args, **kwargs):
         user_id = self.request.user.id
-        update_csv_history(user_id, "{} - {}".format(_("List"), _("Purchases")))
+        log_export_operation(user_id, "{} - {}".format(_("List"), _("Purchases")))
 
         
         response = HttpResponse(content_type='application/ms-excel')
@@ -255,14 +255,13 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
         return context
 
 
-class CsvHistoryListView(AdminLoginRequiredMixin, ListView):
+class ExportHistoryListView(AdminLoginRequiredMixin, ListView):
     template_name = 'listing/history.html'
-    queryset = CsvHistory.objects.all()
     context_object_name = 'objects'
     paginate_by = 10
 
     def get_queryset(self):
-        return CsvHistory.objects.order_by('-exported_at')
+        return ExportHistory.objects.order_by('-exported_at')
         # return ProductFilter(self.request.GET, queryset=self.queryset).qs.order_by('pk')
     
     def get_context_data(self, **kwargs):
@@ -287,7 +286,7 @@ class InventoryListView(AdminLoginRequiredMixin, ListView):
     
     def post(self, request, *args, **kwargs):
         user_id = self.request.user.id
-        update_csv_history(user_id, "{} - {}".format(_("List"), _("Inventory")))
+        log_export_operation(user_id, "{} - {}".format(_("List"), _("Inventory")))
         
         response = HttpResponse(content_type='application/ms-excel')
         response['Content-Disposition'] = 'attachment; filename="inventory_listing_{}.xls"'.format(generate_random_number())

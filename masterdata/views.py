@@ -42,7 +42,7 @@ class CustomerUpdateView(AdminLoginRequiredMixin, View):
         customer.address = data['address']
         customer.tel = data['tel']
         customer.fax = data['fax']
-        customer.csv = data['csv']
+        customer.excel = data['excel']
         customer.save()
         return redirect('masterdata:customer-list')
 
@@ -68,7 +68,7 @@ class CustomerDetailAjaxView(AdminLoginRequiredMixin, View):
                 'address': customer.address,
                 'tel': customer.tel,
                 'fax': customer.fax,
-                'csv': customer.csv
+                'excel': customer.excel
             }, status=200)
         return JsonResponse({'success': False}, status=400)
 
