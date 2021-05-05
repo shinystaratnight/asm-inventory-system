@@ -217,7 +217,7 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
         ws.write(row_no, 0, _('Shipping method'), common_style)
         ws.write_merge(row_no, row_no, 1, 2, str(dict(SHIPPING_METHOD_CHOICES)[shipping_method]), common_style)
         ws.write_merge(row_no, row_no, 4, 5, _('Billing amount'), common_style)
-        ws.write_merge(row_no, row_no, 6, 7, total, common_style)
+        ws.write_merge(row_no, row_no, 6, 7, total, number_style)
         row_no += 1
 
         ws.write(row_no, 0, _('Payment method'), common_style)
