@@ -715,7 +715,6 @@
 											<p>〒<span class="buyer-postal-code ml-4">{{ contract_form.postal_code.value|default_if_none:"" }}</span>
 												<span class="buyer-address ml-4">{{ contract_form.address.value|default_if_none:"" }}</span></p>
 											<h4 class="buyer-company">{{ contract_form.customer_name.value|default_if_none:"" }}</h4>
-											<p><span>{% trans "CEO" %} : </span><span class="buyer ml-4"></span></p>
 											<p class="mb-0 d-flex">
 												<span class="w-min-150-px">TEL : <span class="buyer-tel">{{ contract_form.tel.value|default_if_none:"" }}</span></span>
 												<span class="ml-4 w-min-150-px">FAX : <span class="buyer-fax">{{ contract_form.fax.value|default_if_none:"" }}</span></span>
@@ -731,7 +730,6 @@
 											<p>〒<span class="seller-postal-code ml-4">{{ seller_postal_code }}</span>
 												<span class="seller-address ml-4">{{ seller_address }}</span></p>
 											<h4 class="seller-company">{{ seller_company }}</h4>
-											<p><span>{% trans "CEO" %} : </span><span class="seller ml-4">{{ seller_ceo }}</span></p>
 											<p class="mb-0 d-flex">
 												<span class="w-min-150-px">TEL : <span class="seller-tel">{{ seller_tel }}</span></span>
 												<span class="ml-4 w-min-150-px">FAX : <span class="seller-fax">{{ seller_fax }}</span></span>

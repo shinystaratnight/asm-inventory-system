@@ -99,14 +99,21 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
         else:
             return render(request, self.template_name, self.get_context_data(**kwargs))
         
-        shipping_method = contract_form.cleaned_data.get('shipping_method')
-        if shipping_method == 'R':
-            product_sender_form = TraderSalesProductSenderForm(self.request.POST, contract_id=contract.id)
-            if product_sender_form.is_valid():
-                product_sender_form.save()
-            document_sender_form = TraderSalesDocumentSenderForm(self.request.POST, contract_id=contract.id)
-            if document_sender_form.is_valid():
-                document_sender_form.save()
+        # shipping_method = contract_form.cleaned_data.get('shipping_method')
+        # if shipping_method == 'R':
+        #     product_sender_form = TraderSalesProductSenderForm(self.request.POST, contract_id=contract.id)
+        #     if product_sender_form.is_valid():
+        #         product_sender_form.save()
+        #     document_sender_form = TraderSalesDocumentSenderForm(self.request.POST, contract_id=contract.id)
+        #     if document_sender_form.is_valid():
+        #         document_sender_form.save()
+        
+        product_sender_form = TraderSalesProductSenderForm(self.request.POST, contract_id=contract.id)
+        if product_sender_form.is_valid():
+            product_sender_form.save()
+        document_sender_form = TraderSalesDocumentSenderForm(self.request.POST, contract_id=contract.id)
+        if document_sender_form.is_valid():
+            document_sender_form.save()
         
         product_formset = ProductFormSet(
             self.request.POST,

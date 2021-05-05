@@ -299,8 +299,7 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
         seller_seal_pre += postal_code if postal_code else ""
         seller_seal_pre += " {}\n".format(address) if address else "\n"
         seller_seal_company = "   {}\n".format(customer.name) if customer_id else "    \n"
-        seller_seal_post = "    {}: \n".format(_('CEO'))
-        seller_seal_post += "    TEL: "
+        seller_seal_post = "    TEL: "
         seller_seal_post += tel if tel else "               "
         seller_seal_post += "  FAX: "
         seller_seal_post += fax if fax else ""
@@ -308,8 +307,7 @@ class TraderSalesInvoiceView(AdminLoginRequiredMixin, View):
 
         buyer_seal_pre = "    〒{} {}\n".format(POSTAL_CODE, ADDRESS)
         buyer_seal_company = "   {}\n".format(COMPANY_NAME)
-        buyer_seal_post = "    {}: {}\n".format(_('CEO'), CEO)
-        buyer_seal_post += "    TEL: {} FAX: {}".format(TEL, FAX)
+        buyer_seal_post = "    TEL: {} FAX: {}".format(TEL, FAX)
         buyer_seal = (buyer_seal_pre, (buyer_seal_company, font_large_style), buyer_seal_post)
         ws.write_merge(row_no, row_no + 3, 0, 3, "", common_style)
         ws.row(row_no).set_cell_rich_text(0, seller_seal, common_style)
@@ -576,8 +574,7 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
         seller_seal_pre += postal_code if postal_code else ""
         seller_seal_pre += " {}\n".format(address) if address else "\n"
         seller_seal_company = "   {}\n".format(customer.name) if customer_id else "    \n"
-        seller_seal_post = "    {}: \n".format(_('CEO'))
-        seller_seal_post += "    TEL: "
+        seller_seal_post = "    TEL: "
         seller_seal_post += tel if tel else "               "
         seller_seal_post += "  FAX: "
         seller_seal_post += fax if fax else ""
@@ -585,8 +582,7 @@ class TraderPurchasesInvoiceView(AdminLoginRequiredMixin, View):
 
         buyer_seal_pre = "    〒{} {}\n".format(POSTAL_CODE, ADDRESS)
         buyer_seal_company = "   {}\n".format(COMPANY_NAME)
-        buyer_seal_post = "    {}: {}\n".format(_('CEO'), CEO)
-        buyer_seal_post += "    TEL: {} FAX: {}".format(TEL, FAX)
+        buyer_seal_post = "    TEL: {} FAX: {}".format(TEL, FAX)
         buyer_seal = (buyer_seal_pre, (buyer_seal_company, font_large_style), buyer_seal_post)
         ws.write_merge(row_no, row_no + 3, 0, 3, "", common_style)
         ws.row(row_no).set_cell_rich_text(0, seller_seal, common_style)
