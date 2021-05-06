@@ -1,0 +1,10 @@
+{
+    "python.pythonPath": "venv\\Scripts\\python.exe",
+    
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#c4470e",
+        "activityBar.activeBackground": "#063525",
+        "titleBar.activeBackground": "#be8813",
+        "titleBar.activeForeground": "#000705"
+    }
+}
