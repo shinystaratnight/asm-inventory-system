@@ -1,3 +1,4 @@
+SET NAMES 'utf8' COLLATE 'utf8_general_ci';
 INSERT INTO `masterdata_customer` (`id`, `name`, `frigana`, `postal_code`, `address`, `tel`, `fax`, `excel`) VALUES
 (1, 'Оｚ', 'オズ', '596-0825', '大阪府岸和田市土生町４０８６', '072-437-9335', '072-457-5486', 'Оｚ'),
 (2, 'さくら企画', 'サクラキカク', '542-0062', '大阪市中央区上本町西１－４－２３', '090-2359-4826', '06-6561-6556', 'さくら企画'),

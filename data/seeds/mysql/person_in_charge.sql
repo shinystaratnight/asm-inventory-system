@@ -1,3 +1,4 @@
+SET NAMES 'utf8' COLLATE 'utf8_general_ci';
 INSERT INTO `masterdata_personincharge` (`id`, `name`) VALUES
 (1, '河崎'),
 (2, '金'),

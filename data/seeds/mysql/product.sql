@@ -1,3 +1,4 @@
+SET NAMES 'utf8' COLLATE 'utf8_general_ci';
 INSERT INTO `masterdata_product` (`id`, `name`, `maker`, `type`) VALUES
 (1, 'ＣＲえとたまＳＣ', '株式会社メーシー', 'P'),
 (2, 'ＣＲアナザーゴッドハーデスＲＤ', '株式会社メーシー', 'P'),
