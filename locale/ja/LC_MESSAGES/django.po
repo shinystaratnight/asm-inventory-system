@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-05 13:58+0000\n"
+"POT-Creation-Date: 2021-05-06 16:53+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,431 +18,459 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: accounting/views.py:76 accounting/views.py:85 accounting/views.py:169
-#: accounting/views.py:177 templates/accounting/purchases.html:18
-#: templates/accounting/purchases.html:25 templates/accounting/sales.html:18
-#: templates/accounting/sales.html:25 templates/layout/sidebar.html:62
+#: .\accounting\views.py:76 .\accounting\views.py:85 .\accounting\views.py:169
+#: .\accounting\views.py:177 .\templates\accounting\purchases.html:18
+#: .\templates\accounting\purchases.html:25
+#: .\templates\accounting\sales.html:18 .\templates\accounting\sales.html:25
+#: .\templates\layout\sidebar.html:63
 msgid "Accounting software CSV"
 msgstr "会計ソフトCSV"
 
-#: accounting/views.py:76 accounting/views.py:85
-#: templates/accounting/sales.html:4 templates/accounting/sales.html:18
-#: templates/accounting/sales.html:26 templates/accounting/sales.html:37
-#: templates/layout/sidebar.html:64
+#: .\accounting\views.py:76 .\accounting\views.py:85
+#: .\templates\accounting\sales.html:4 .\templates\accounting\sales.html:18
+#: .\templates\accounting\sales.html:26 .\templates\accounting\sales.html:37
+#: .\templates\layout\sidebar.html:65
 msgid "Sale"
 msgstr "売却"
 
-#: accounting/views.py:90 accounting/views.py:182
-#: templates/listing/history.html:45 templates/listing/inventory.html:104
-#: templates/masterdata/customers.html:65
-#: templates/masterdata/documents.html:44 templates/masterdata/halls.html:66
-#: templates/masterdata/products.html:66 templates/masterdata/senders.html:66
+#: .\accounting\views.py:90 .\accounting\views.py:182
+#: .\templates\listing\history.html:45 .\templates\listing\inventory.html:104
+#: .\templates\masterdata\customers.html:65
+#: .\templates\masterdata\documents.html:44
+#: .\templates\masterdata\halls.html:66
+#: .\templates\masterdata\people_in_charge.html:44
+#: .\templates\masterdata\products.html:66
+#: .\templates\masterdata\senders.html:66
 msgid "No"
 msgstr "No"
 
-#: accounting/views.py:91 accounting/views.py:183 listing/views.py:85
-#: listing/views.py:198 templates/accounting/purchases.html:45
-#: templates/accounting/purchases.html:46
-#: templates/accounting/purchases.html:86 templates/accounting/sales.html:45
-#: templates/accounting/sales.html:46 templates/accounting/sales.html:86
-#: templates/listing/purchases.html:45 templates/listing/purchases.html:46
-#: templates/listing/purchases.html:105 templates/listing/purchases.html:186
-#: templates/listing/purchases.html:188 templates/listing/sales.html:45
-#: templates/listing/sales.html:46 templates/listing/sales.html:105
-#: templates/listing/sales.html:186 templates/listing/sales.html:188
+#: .\accounting\views.py:91 .\accounting\views.py:183 .\listing\views.py:85
+#: .\listing\views.py:198 .\templates\accounting\purchases.html:45
+#: .\templates\accounting\purchases.html:46
+#: .\templates\accounting\purchases.html:86
+#: .\templates\accounting\sales.html:45 .\templates\accounting\sales.html:46
+#: .\templates\accounting\sales.html:86 .\templates\listing\purchases.html:45
+#: .\templates\listing\purchases.html:46 .\templates\listing\purchases.html:105
+#: .\templates\listing\purchases.html:186
+#: .\templates\listing\purchases.html:188 .\templates\listing\sales.html:45
+#: .\templates\listing\sales.html:46 .\templates\listing\sales.html:105
+#: .\templates\listing\sales.html:186 .\templates\listing\sales.html:188
 msgid "Contract ID"
 msgstr "取引ID"
 
-#: accounting/views.py:92 accounting/views.py:184 listing/views.py:86
-#: listing/views.py:199 templates/accounting/purchases.html:87
-#: templates/accounting/sales.html:87 templates/listing/purchases.html:106
-#: templates/listing/sales.html:106
+#: .\accounting\views.py:92 .\accounting\views.py:184 .\listing\views.py:86
+#: .\listing\views.py:199 .\templates\accounting\purchases.html:87
+#: .\templates\accounting\sales.html:87 .\templates\listing\purchases.html:106
+#: .\templates\listing\sales.html:106
 msgid "Contract date"
 msgstr "契約日"
 
-#: accounting/views.py:93 accounting/views.py:185
-#: templates/accounting/purchases.html:88 templates/accounting/sales.html:88
-#: templates/masterdata/products.html:68 templates/masterdata/products.html:130
-#: templates/masterdata/products.html:182
+#: .\accounting\views.py:93 .\accounting\views.py:185
+#: .\templates\accounting\purchases.html:88
+#: .\templates\accounting\sales.html:88 .\templates\masterdata\products.html:68
+#: .\templates\masterdata\products.html:130
+#: .\templates\masterdata\products.html:182
 msgid "Type"
 msgstr "分類"
 
-#: accounting/views.py:94 accounting/views.py:186
-#: templates/accounting/purchases.html:89 templates/accounting/sales.html:89
-#: templates/masterdata/documents.html:47
-#: templates/masterdata/documents.html:110
-#: templates/masterdata/documents.html:160
+#: .\accounting\views.py:94 .\accounting\views.py:186
+#: .\templates\accounting\purchases.html:89
+#: .\templates\accounting\sales.html:89
+#: .\templates\masterdata\documents.html:47
+#: .\templates\masterdata\documents.html:110
+#: .\templates\masterdata\documents.html:160
 msgid "Taxation"
 msgstr "税区分"
 
-#: accounting/views.py:95 accounting/views.py:187
-#: contracts/invoice_views.py:119 contracts/invoice_views.py:150
-#: contracts/invoice_views.py:392 contracts/invoice_views.py:423
-#: contracts/invoice_views.py:696 contracts/invoice_views.py:727
-#: contracts/invoice_views.py:755 contracts/invoice_views.py:948
-#: contracts/invoice_views.py:979 contracts/invoice_views.py:1007
-#: listing/views.py:93 listing/views.py:206
-#: templates/accounting/purchases.html:90 templates/accounting/sales.html:90
-#: templates/contracts/hall_purchases.html:184
-#: templates/contracts/hall_purchases.html:370
-#: templates/contracts/hall_purchases.html:527
-#: templates/contracts/hall_sales.html:185
-#: templates/contracts/hall_sales.html:371
-#: templates/contracts/hall_sales.html:528
-#: templates/contracts/trader_purchases.html:207
-#: templates/contracts/trader_purchases.html:393
-#: templates/contracts/trader_sales.html:206
-#: templates/contracts/trader_sales.html:392
-#: templates/listing/purchases.html:113 templates/listing/sales.html:113
+#: .\accounting\views.py:95 .\accounting\views.py:187
+#: .\contracts\invoice_views.py:119 .\contracts\invoice_views.py:150
+#: .\contracts\invoice_views.py:392 .\contracts\invoice_views.py:423
+#: .\contracts\invoice_views.py:696 .\contracts\invoice_views.py:727
+#: .\contracts\invoice_views.py:755 .\contracts\invoice_views.py:948
+#: .\contracts\invoice_views.py:979 .\contracts\invoice_views.py:1007
+#: .\listing\views.py:93 .\listing\views.py:206
+#: .\templates\accounting\purchases.html:90
+#: .\templates\accounting\sales.html:90
+#: .\templates\contracts\hall_purchases.html:184
+#: .\templates\contracts\hall_purchases.html:370
+#: .\templates\contracts\hall_purchases.html:527
+#: .\templates\contracts\hall_sales.html:185
+#: .\templates\contracts\hall_sales.html:371
+#: .\templates\contracts\hall_sales.html:528
+#: .\templates\contracts\trader_purchases.html:207
+#: .\templates\contracts\trader_purchases.html:393
+#: .\templates\contracts\trader_sales.html:206
+#: .\templates\contracts\trader_sales.html:392
+#: .\templates\listing\purchases.html:113 .\templates\listing\sales.html:113
 msgid "Amount"
 msgstr "金額"
 
-#: accounting/views.py:96 accounting/views.py:188 listing/views.py:87
-#: listing/views.py:200 templates/accounting/purchases.html:62
-#: templates/accounting/purchases.html:63
-#: templates/accounting/purchases.html:91 templates/accounting/sales.html:62
-#: templates/accounting/sales.html:63 templates/accounting/sales.html:91
-#: templates/listing/purchases.html:62 templates/listing/purchases.html:63
-#: templates/listing/purchases.html:107 templates/listing/sales.html:62
-#: templates/listing/sales.html:63 templates/listing/sales.html:107
+#: .\accounting\views.py:96 .\accounting\views.py:188 .\listing\views.py:87
+#: .\listing\views.py:200 .\templates\accounting\purchases.html:62
+#: .\templates\accounting\purchases.html:63
+#: .\templates\accounting\purchases.html:91
+#: .\templates\accounting\sales.html:62 .\templates\accounting\sales.html:63
+#: .\templates\accounting\sales.html:91 .\templates\listing\purchases.html:62
+#: .\templates\listing\purchases.html:63 .\templates\listing\purchases.html:107
+#: .\templates\listing\sales.html:62 .\templates\listing\sales.html:63
+#: .\templates\listing\sales.html:107
 msgid "Customer"
 msgstr "取引先"
 
-#: accounting/views.py:109 templates/accounting/sales.html:100
+#: .\accounting\views.py:109 .\templates\accounting\sales.html:100
 msgid "Income"
 msgstr "収入"
 
-#: accounting/views.py:169 accounting/views.py:177
-#: templates/accounting/purchases.html:4 templates/accounting/purchases.html:18
-#: templates/accounting/purchases.html:26
-#: templates/accounting/purchases.html:37 templates/layout/sidebar.html:65
+#: .\accounting\views.py:169 .\accounting\views.py:177
+#: .\templates\accounting\purchases.html:4
+#: .\templates\accounting\purchases.html:18
+#: .\templates\accounting\purchases.html:26
+#: .\templates\accounting\purchases.html:37 .\templates\layout\sidebar.html:66
 msgid "Purchase"
 msgstr "購入"
 
-#: accounting/views.py:201 templates/accounting/purchases.html:100
+#: .\accounting\views.py:201 .\templates\accounting\purchases.html:100
 msgid "Expense"
 msgstr "支出"
 
-#: contracts/invoice_views.py:51 contracts/invoice_views.py:72
-#: contracts/invoice_views.py:324 contracts/invoice_views.py:345
-#: contracts/invoice_views.py:623 contracts/invoice_views.py:646
-#: contracts/invoice_views.py:658 contracts/invoice_views.py:874
-#: contracts/invoice_views.py:898 contracts/invoice_views.py:910
-#: templates/contracts/hall_purchases.html:56
-#: templates/contracts/hall_sales.html:56
+#: .\contracts\invoice_views.py:51 .\contracts\invoice_views.py:72
+#: .\contracts\invoice_views.py:324 .\contracts\invoice_views.py:345
+#: .\contracts\invoice_views.py:623 .\contracts\invoice_views.py:646
+#: .\contracts\invoice_views.py:658 .\contracts\invoice_views.py:874
+#: .\contracts\invoice_views.py:898 .\contracts\invoice_views.py:910
+#: .\templates\contracts\hall_purchases.html:56
+#: .\templates\contracts\hall_sales.html:56
 msgid "Sales contract"
 msgstr "売買契求書"
 
-#: contracts/invoice_views.py:51 contracts/invoice_views.py:72
-#: templates/contracts/trader_sales.html:5
-#: templates/contracts/trader_sales.html:20
-#: templates/contracts/trader_sales.html:28 templates/layout/sidebar.html:44
+#: .\contracts\invoice_views.py:51 .\contracts\invoice_views.py:72
+#: .\templates\contracts\trader_sales.html:5
+#: .\templates\contracts\trader_sales.html:20
+#: .\templates\contracts\trader_sales.html:28
+#: .\templates\layout\sidebar.html:45
 msgid "Trader sales"
 msgstr "業者売"
 
-#: contracts/invoice_views.py:84 contracts/invoice_views.py:357
-#: templates/contracts/trader_purchases.html:56
-#: templates/contracts/trader_sales.html:56
+#: .\contracts\invoice_views.py:84 .\contracts\invoice_views.py:357
+#: .\templates\contracts\trader_purchases.html:56
+#: .\templates\contracts\trader_sales.html:56
 msgid "Contract and invoice"
 msgstr "売買契約 兼 請求書"
 
-#: contracts/invoice_views.py:86 contracts/invoice_views.py:359
-#: templates/accounting/purchases.html:52 templates/accounting/sales.html:52
-#: templates/contracts/trader_purchases.html:61
-#: templates/contracts/trader_sales.html:60 templates/listing/purchases.html:52
-#: templates/listing/sales.html:52
+#: .\contracts\invoice_views.py:86 .\contracts\invoice_views.py:359
+#: .\templates\accounting\purchases.html:52
+#: .\templates\accounting\sales.html:52
+#: .\templates\contracts\trader_purchases.html:61
+#: .\templates\contracts\trader_sales.html:60
+#: .\templates\listing\purchases.html:52 .\templates\listing\sales.html:52
 msgid "Created date"
 msgstr "契約日"
 
-#: contracts/invoice_views.py:88 contracts/invoice_views.py:361
-#: templates/contracts/trader_purchases.html:70
-#: templates/contracts/trader_sales.html:69
+#: .\contracts\invoice_views.py:88 .\contracts\invoice_views.py:361
+#: .\templates\contracts\trader_purchases.html:70
+#: .\templates\contracts\trader_sales.html:69
 msgid "Updated date"
 msgstr "更新日"
 
-#: contracts/invoice_views.py:91 contracts/invoice_views.py:267
-#: contracts/invoice_views.py:269 contracts/invoice_views.py:364
-#: contracts/invoice_views.py:529 contracts/invoice_views.py:531
-#: contracts/invoice_views.py:665 contracts/invoice_views.py:667
-#: contracts/invoice_views.py:917 contracts/invoice_views.py:919
-#: templates/contracts/hall_purchases.html:94
-#: templates/contracts/hall_sales.html:95
-#: templates/contracts/trader_purchases.html:88
-#: templates/contracts/trader_purchases.html:617
-#: templates/contracts/trader_purchases.html:664
-#: templates/contracts/trader_sales.html:87
-#: templates/contracts/trader_sales.html:629
-#: templates/contracts/trader_sales.html:668
+#: .\contracts\invoice_views.py:91 .\contracts\invoice_views.py:267
+#: .\contracts\invoice_views.py:269 .\contracts\invoice_views.py:364
+#: .\contracts\invoice_views.py:529 .\contracts\invoice_views.py:531
+#: .\contracts\invoice_views.py:665 .\contracts\invoice_views.py:667
+#: .\contracts\invoice_views.py:917 .\contracts\invoice_views.py:919
+#: .\templates\contracts\hall_purchases.html:94
+#: .\templates\contracts\hall_sales.html:95
+#: .\templates\contracts\trader_purchases.html:88
+#: .\templates\contracts\trader_purchases.html:617
+#: .\templates\contracts\trader_purchases.html:664
+#: .\templates\contracts\trader_sales.html:87
+#: .\templates\contracts\trader_sales.html:629
+#: .\templates\contracts\trader_sales.html:668
 msgid "Company"
 msgstr "会社名"
 
-#: contracts/invoice_views.py:93 contracts/invoice_views.py:366
-#: templates/contracts/trader_purchases.html:113
-#: templates/contracts/trader_sales.html:112
-#: templates/masterdata/customers.html:67
-#: templates/masterdata/customers.html:137
-#: templates/masterdata/customers.html:217 templates/masterdata/halls.html:68
-#: templates/masterdata/halls.html:137 templates/masterdata/halls.html:216
-#: templates/masterdata/senders.html:68 templates/masterdata/senders.html:136
-#: templates/masterdata/senders.html:207
+#: .\contracts\invoice_views.py:93 .\contracts\invoice_views.py:366
+#: .\templates\contracts\trader_purchases.html:113
+#: .\templates\contracts\trader_sales.html:112
+#: .\templates\masterdata\customers.html:67
+#: .\templates\masterdata\customers.html:137
+#: .\templates\masterdata\customers.html:217
+#: .\templates\masterdata\halls.html:68 .\templates\masterdata\halls.html:137
+#: .\templates\masterdata\halls.html:216 .\templates\masterdata\senders.html:68
+#: .\templates\masterdata\senders.html:136
+#: .\templates\masterdata\senders.html:207
 msgid "Frigana"
 msgstr "フリガナ"
 
-#: contracts/invoice_views.py:98 contracts/invoice_views.py:371
-#: templates/contracts/trader_purchases.html:124
-#: templates/contracts/trader_sales.html:123
-#: templates/masterdata/customers.html:68
-#: templates/masterdata/customers.html:144
-#: templates/masterdata/customers.html:224 templates/masterdata/halls.html:69
-#: templates/masterdata/halls.html:144 templates/masterdata/halls.html:223
-#: templates/masterdata/senders.html:69 templates/masterdata/senders.html:143
-#: templates/masterdata/senders.html:214
+#: .\contracts\invoice_views.py:98 .\contracts\invoice_views.py:371
+#: .\templates\contracts\trader_purchases.html:124
+#: .\templates\contracts\trader_sales.html:123
+#: .\templates\masterdata\customers.html:68
+#: .\templates\masterdata\customers.html:144
+#: .\templates\masterdata\customers.html:224
+#: .\templates\masterdata\halls.html:69 .\templates\masterdata\halls.html:144
+#: .\templates\masterdata\halls.html:223 .\templates\masterdata\senders.html:69
+#: .\templates\masterdata\senders.html:143
+#: .\templates\masterdata\senders.html:214
 msgid "Postal code"
 msgstr "郵便番号"
 
-#: contracts/invoice_views.py:101 contracts/invoice_views.py:272
-#: contracts/invoice_views.py:274 contracts/invoice_views.py:374
-#: contracts/invoice_views.py:534 contracts/invoice_views.py:536
-#: contracts/invoice_views.py:671 contracts/invoice_views.py:682
-#: contracts/invoice_views.py:923 contracts/invoice_views.py:934
-#: templates/contracts/hall_purchases.html:100
-#: templates/contracts/hall_purchases.html:138
-#: templates/contracts/hall_sales.html:101
-#: templates/contracts/hall_sales.html:139
-#: templates/contracts/trader_purchases.html:135
-#: templates/contracts/trader_purchases.html:624
-#: templates/contracts/trader_purchases.html:671
-#: templates/contracts/trader_sales.html:134
-#: templates/contracts/trader_sales.html:636
-#: templates/contracts/trader_sales.html:675
-#: templates/masterdata/customers.html:69
-#: templates/masterdata/customers.html:151
-#: templates/masterdata/customers.html:231 templates/masterdata/halls.html:70
-#: templates/masterdata/halls.html:151 templates/masterdata/halls.html:230
-#: templates/masterdata/senders.html:70 templates/masterdata/senders.html:150
-#: templates/masterdata/senders.html:221
+#: .\contracts\invoice_views.py:101 .\contracts\invoice_views.py:272
+#: .\contracts\invoice_views.py:274 .\contracts\invoice_views.py:374
+#: .\contracts\invoice_views.py:534 .\contracts\invoice_views.py:536
+#: .\contracts\invoice_views.py:671 .\contracts\invoice_views.py:682
+#: .\contracts\invoice_views.py:923 .\contracts\invoice_views.py:934
+#: .\templates\contracts\hall_purchases.html:100
+#: .\templates\contracts\hall_purchases.html:138
+#: .\templates\contracts\hall_sales.html:101
+#: .\templates\contracts\hall_sales.html:139
+#: .\templates\contracts\trader_purchases.html:135
+#: .\templates\contracts\trader_purchases.html:624
+#: .\templates\contracts\trader_purchases.html:671
+#: .\templates\contracts\trader_sales.html:134
+#: .\templates\contracts\trader_sales.html:636
+#: .\templates\contracts\trader_sales.html:675
+#: .\templates\masterdata\customers.html:69
+#: .\templates\masterdata\customers.html:151
+#: .\templates\masterdata\customers.html:231
+#: .\templates\masterdata\halls.html:70 .\templates\masterdata\halls.html:151
+#: .\templates\masterdata\halls.html:230 .\templates\masterdata\senders.html:70
+#: .\templates\masterdata\senders.html:150
+#: .\templates\masterdata\senders.html:221
 msgid "Address"
 msgstr "住所"
 
-#: contracts/invoice_views.py:104 contracts/invoice_views.py:377
-#: templates/contracts/trader_purchases.html:166
-#: templates/contracts/trader_sales.html:165
+#: .\contracts\invoice_views.py:104 .\contracts\invoice_views.py:377
+#: .\templates\contracts\trader_purchases.html:166
+#: .\templates\contracts\trader_sales.html:165
 msgid "Member ID"
 msgstr "会員番号"
 
-#: contracts/invoice_views.py:107 contracts/invoice_views.py:278
-#: contracts/invoice_views.py:280 contracts/invoice_views.py:380
-#: contracts/invoice_views.py:540 contracts/invoice_views.py:542
-#: contracts/invoice_views.py:674 contracts/invoice_views.py:686
-#: contracts/invoice_views.py:926 contracts/invoice_views.py:938
-#: templates/contracts/hall_purchases.html:107
-#: templates/contracts/hall_purchases.html:146
-#: templates/contracts/hall_sales.html:108
-#: templates/contracts/hall_sales.html:147
-#: templates/contracts/trader_purchases.html:146
-#: templates/contracts/trader_purchases.html:630
-#: templates/contracts/trader_purchases.html:677
-#: templates/contracts/trader_sales.html:145
-#: templates/contracts/trader_sales.html:642
-#: templates/contracts/trader_sales.html:681
-#: templates/masterdata/customers.html:70
-#: templates/masterdata/customers.html:158
-#: templates/masterdata/customers.html:238 templates/masterdata/halls.html:71
-#: templates/masterdata/halls.html:158 templates/masterdata/halls.html:237
-#: templates/masterdata/senders.html:71 templates/masterdata/senders.html:157
-#: templates/masterdata/senders.html:228
+#: .\contracts\invoice_views.py:107 .\contracts\invoice_views.py:278
+#: .\contracts\invoice_views.py:280 .\contracts\invoice_views.py:380
+#: .\contracts\invoice_views.py:540 .\contracts\invoice_views.py:542
+#: .\contracts\invoice_views.py:674 .\contracts\invoice_views.py:686
+#: .\contracts\invoice_views.py:926 .\contracts\invoice_views.py:938
+#: .\templates\contracts\hall_purchases.html:107
+#: .\templates\contracts\hall_purchases.html:146
+#: .\templates\contracts\hall_sales.html:108
+#: .\templates\contracts\hall_sales.html:147
+#: .\templates\contracts\trader_purchases.html:146
+#: .\templates\contracts\trader_purchases.html:630
+#: .\templates\contracts\trader_purchases.html:677
+#: .\templates\contracts\trader_sales.html:145
+#: .\templates\contracts\trader_sales.html:642
+#: .\templates\contracts\trader_sales.html:681
+#: .\templates\masterdata\customers.html:70
+#: .\templates\masterdata\customers.html:158
+#: .\templates\masterdata\customers.html:238
+#: .\templates\masterdata\halls.html:71 .\templates\masterdata\halls.html:158
+#: .\templates\masterdata\halls.html:237 .\templates\masterdata\senders.html:71
+#: .\templates\masterdata\senders.html:157
+#: .\templates\masterdata\senders.html:228
 msgid "TEL"
 msgstr "TEL"
 
-#: contracts/invoice_views.py:109 contracts/invoice_views.py:283
-#: contracts/invoice_views.py:285 contracts/invoice_views.py:382
-#: contracts/invoice_views.py:676 contracts/invoice_views.py:928
-#: templates/contracts/hall_purchases.html:113
-#: templates/contracts/hall_sales.html:114
-#: templates/contracts/trader_purchases.html:154
-#: templates/contracts/trader_sales.html:153
-#: templates/contracts/trader_sales.html:648
-#: templates/contracts/trader_sales.html:687
-#: templates/contracts/trader_sales.html:745
-#: templates/masterdata/customers.html:71
-#: templates/masterdata/customers.html:165
-#: templates/masterdata/customers.html:245 templates/masterdata/halls.html:72
-#: templates/masterdata/halls.html:165 templates/masterdata/halls.html:244
-#: templates/masterdata/senders.html:72 templates/masterdata/senders.html:164
-#: templates/masterdata/senders.html:235
+#: .\contracts\invoice_views.py:109 .\contracts\invoice_views.py:283
+#: .\contracts\invoice_views.py:285 .\contracts\invoice_views.py:382
+#: .\contracts\invoice_views.py:676 .\contracts\invoice_views.py:928
+#: .\templates\contracts\hall_purchases.html:113
+#: .\templates\contracts\hall_sales.html:114
+#: .\templates\contracts\trader_purchases.html:154
+#: .\templates\contracts\trader_sales.html:153
+#: .\templates\contracts\trader_sales.html:648
+#: .\templates\contracts\trader_sales.html:687
+#: .\templates\contracts\trader_sales.html:745
+#: .\templates\masterdata\customers.html:71
+#: .\templates\masterdata\customers.html:165
+#: .\templates\masterdata\customers.html:245
+#: .\templates\masterdata\halls.html:72 .\templates\masterdata\halls.html:165
+#: .\templates\masterdata\halls.html:244 .\templates\masterdata\senders.html:72
+#: .\templates\masterdata\senders.html:164
+#: .\templates\masterdata\senders.html:235
 msgid "FAX"
 msgstr "FAX"
 
-#: contracts/invoice_views.py:111 contracts/invoice_views.py:384
-#: contracts/invoice_views.py:861 contracts/invoice_views.py:1111
-#: listing/views.py:89 listing/views.py:202 listing/views.py:304
-#: templates/contracts/hall_purchases.html:810
-#: templates/contracts/hall_sales.html:816
-#: templates/contracts/trader_purchases.html:174
-#: templates/contracts/trader_sales.html:173
-#: templates/listing/inventory.html:73 templates/listing/inventory.html:109
-#: templates/listing/inventory.html:212 templates/listing/inventory.html:214
-#: templates/listing/inventory.html:309 templates/listing/inventory.html:311
-#: templates/listing/purchases.html:109 templates/listing/sales.html:109
+#: .\contracts\invoice_views.py:111 .\contracts\invoice_views.py:384
+#: .\contracts\invoice_views.py:861 .\contracts\invoice_views.py:1111
+#: .\listing\views.py:89 .\listing\views.py:202 .\listing\views.py:304
+#: .\templates\contracts\hall_purchases.html:810
+#: .\templates\contracts\hall_sales.html:816
+#: .\templates\contracts\trader_purchases.html:174
+#: .\templates\contracts\trader_sales.html:173
+#: .\templates\layout\sidebar.html:38 .\templates\listing\inventory.html:73
+#: .\templates\listing\inventory.html:109
+#: .\templates\listing\inventory.html:212
+#: .\templates\listing\inventory.html:214
+#: .\templates\listing\inventory.html:309
+#: .\templates\listing\inventory.html:311
+#: .\templates\listing\purchases.html:109 .\templates\listing\sales.html:109
+#: .\templates\masterdata\people_in_charge.html:4
+#: .\templates\masterdata\people_in_charge.html:17
+#: .\templates\masterdata\people_in_charge.html:25
+#: .\templates\masterdata\people_in_charge.html:36
 msgid "Person in charge"
 msgstr "担当名"
 
-#: contracts/invoice_views.py:115 contracts/invoice_views.py:388
-#: contracts/invoice_views.py:692 contracts/invoice_views.py:944
-#: templates/contracts/hall_purchases.html:180
-#: templates/contracts/hall_sales.html:181
-#: templates/contracts/trader_purchases.html:203
-#: templates/contracts/trader_sales.html:202
-#: templates/masterdata/products.html:67 templates/masterdata/products.html:123
-#: templates/masterdata/products.html:175
+#: .\contracts\invoice_views.py:115 .\contracts\invoice_views.py:388
+#: .\contracts\invoice_views.py:692 .\contracts\invoice_views.py:944
+#: .\templates\contracts\hall_purchases.html:180
+#: .\templates\contracts\hall_sales.html:181
+#: .\templates\contracts\trader_purchases.html:203
+#: .\templates\contracts\trader_sales.html:202
+#: .\templates\masterdata\products.html:67
+#: .\templates\masterdata\products.html:123
+#: .\templates\masterdata\products.html:175
 msgid "Model name"
 msgstr "機種名"
 
-#: contracts/invoice_views.py:116 contracts/invoice_views.py:389
-#: contracts/invoice_views.py:693 contracts/invoice_views.py:752
-#: contracts/invoice_views.py:945 contracts/invoice_views.py:1004
-#: templates/contracts/hall_purchases.html:181
-#: templates/contracts/hall_purchases.html:524
-#: templates/contracts/hall_sales.html:182
-#: templates/contracts/hall_sales.html:525
-#: templates/contracts/trader_purchases.html:204
-#: templates/contracts/trader_sales.html:203
+#: .\contracts\invoice_views.py:116 .\contracts\invoice_views.py:389
+#: .\contracts\invoice_views.py:693 .\contracts\invoice_views.py:752
+#: .\contracts\invoice_views.py:945 .\contracts\invoice_views.py:1004
+#: .\templates\contracts\hall_purchases.html:181
+#: .\templates\contracts\hall_purchases.html:524
+#: .\templates\contracts\hall_sales.html:182
+#: .\templates\contracts\hall_sales.html:525
+#: .\templates\contracts\trader_purchases.html:204
+#: .\templates\contracts\trader_sales.html:203
 msgid "Product type"
 msgstr "中分類"
 
-#: contracts/invoice_views.py:117 contracts/invoice_views.py:148
-#: contracts/invoice_views.py:390 contracts/invoice_views.py:421
-#: contracts/invoice_views.py:694 contracts/invoice_views.py:725
-#: contracts/invoice_views.py:946 contracts/invoice_views.py:977
-#: templates/contracts/hall_purchases.html:182
-#: templates/contracts/hall_purchases.html:368
-#: templates/contracts/hall_sales.html:183
-#: templates/contracts/hall_sales.html:369
-#: templates/contracts/trader_purchases.html:205
-#: templates/contracts/trader_purchases.html:391
-#: templates/contracts/trader_sales.html:204
-#: templates/contracts/trader_sales.html:390
+#: .\contracts\invoice_views.py:117 .\contracts\invoice_views.py:148
+#: .\contracts\invoice_views.py:390 .\contracts\invoice_views.py:421
+#: .\contracts\invoice_views.py:694 .\contracts\invoice_views.py:725
+#: .\contracts\invoice_views.py:946 .\contracts\invoice_views.py:977
+#: .\templates\contracts\hall_purchases.html:182
+#: .\templates\contracts\hall_purchases.html:368
+#: .\templates\contracts\hall_sales.html:183
+#: .\templates\contracts\hall_sales.html:369
+#: .\templates\contracts\trader_purchases.html:205
+#: .\templates\contracts\trader_purchases.html:391
+#: .\templates\contracts\trader_sales.html:204
+#: .\templates\contracts\trader_sales.html:390
 msgid "Quantity"
 msgstr "数量"
 
-#: contracts/invoice_views.py:118 contracts/invoice_views.py:149
-#: contracts/invoice_views.py:391 contracts/invoice_views.py:422
-#: contracts/invoice_views.py:695 contracts/invoice_views.py:726
-#: contracts/invoice_views.py:947 contracts/invoice_views.py:978
-#: listing/views.py:306 templates/contracts/hall_purchases.html:183
-#: templates/contracts/hall_purchases.html:369
-#: templates/contracts/hall_sales.html:184
-#: templates/contracts/hall_sales.html:370
-#: templates/contracts/trader_purchases.html:206
-#: templates/contracts/trader_purchases.html:392
-#: templates/contracts/trader_sales.html:205
-#: templates/contracts/trader_sales.html:391
-#: templates/listing/inventory.html:111 templates/listing/inventory.html:226
-#: templates/listing/inventory.html:228 templates/listing/inventory.html:323
-#: templates/listing/inventory.html:325
+#: .\contracts\invoice_views.py:118 .\contracts\invoice_views.py:149
+#: .\contracts\invoice_views.py:391 .\contracts\invoice_views.py:422
+#: .\contracts\invoice_views.py:695 .\contracts\invoice_views.py:726
+#: .\contracts\invoice_views.py:947 .\contracts\invoice_views.py:978
+#: .\listing\views.py:306 .\templates\contracts\hall_purchases.html:183
+#: .\templates\contracts\hall_purchases.html:369
+#: .\templates\contracts\hall_sales.html:184
+#: .\templates\contracts\hall_sales.html:370
+#: .\templates\contracts\trader_purchases.html:206
+#: .\templates\contracts\trader_purchases.html:392
+#: .\templates\contracts\trader_sales.html:205
+#: .\templates\contracts\trader_sales.html:391
+#: .\templates\listing\inventory.html:111
+#: .\templates\listing\inventory.html:226
+#: .\templates\listing\inventory.html:228
+#: .\templates\listing\inventory.html:323
+#: .\templates\listing\inventory.html:325
 msgid "Price"
 msgstr "単価"
 
-#: contracts/invoice_views.py:147 contracts/invoice_views.py:420
-#: contracts/invoice_views.py:724 contracts/invoice_views.py:976
-#: masterdata/models.py:45 templates/contracts/hall_purchases.html:367
-#: templates/contracts/hall_sales.html:368
-#: templates/contracts/trader_purchases.html:390
-#: templates/contracts/trader_sales.html:389
+#: .\contracts\invoice_views.py:147 .\contracts\invoice_views.py:420
+#: .\contracts\invoice_views.py:724 .\contracts\invoice_views.py:976
+#: .\masterdata\models.py:45 .\templates\contracts\hall_purchases.html:367
+#: .\templates\contracts\hall_sales.html:368
+#: .\templates\contracts\trader_purchases.html:390
+#: .\templates\contracts\trader_sales.html:389
 msgid "Document"
 msgstr "書類"
 
-#: contracts/invoice_views.py:198 contracts/invoice_views.py:472
-#: contracts/invoice_views.py:807 contracts/invoice_views.py:1060
-#: templates/contracts/hall_purchases.html:680
-#: templates/contracts/hall_sales.html:681
-#: templates/contracts/trader_purchases.html:583
-#: templates/contracts/trader_sales.html:555
+#: .\contracts\invoice_views.py:198 .\contracts\invoice_views.py:472
+#: .\contracts\invoice_views.py:807 .\contracts\invoice_views.py:1060
+#: .\templates\contracts\hall_purchases.html:680
+#: .\templates\contracts\hall_sales.html:681
+#: .\templates\contracts\trader_purchases.html:583
+#: .\templates\contracts\trader_sales.html:555
 msgid "Sum"
 msgstr "小計"
 
-#: contracts/invoice_views.py:202 contracts/invoice_views.py:484
-#: contracts/invoice_views.py:555 contracts/invoice_views.py:557
-#: contracts/invoice_views.py:805 contracts/invoice_views.py:1058
-#: templates/contracts/hall_purchases.html:672
-#: templates/contracts/hall_purchases.html:828
-#: templates/contracts/hall_sales.html:673
-#: templates/contracts/trader_purchases.html:571
-#: templates/contracts/trader_purchases.html:652
-#: templates/contracts/trader_purchases.html:699
-#: templates/contracts/trader_sales.html:544
+#: .\contracts\invoice_views.py:202 .\contracts\invoice_views.py:484
+#: .\contracts\invoice_views.py:555 .\contracts\invoice_views.py:557
+#: .\contracts\invoice_views.py:805 .\contracts\invoice_views.py:1058
+#: .\templates\contracts\hall_purchases.html:672
+#: .\templates\contracts\hall_purchases.html:828
+#: .\templates\contracts\hall_sales.html:673
+#: .\templates\contracts\trader_purchases.html:571
+#: .\templates\contracts\trader_purchases.html:652
+#: .\templates\contracts\trader_purchases.html:699
+#: .\templates\contracts\trader_sales.html:544
 msgid "Remarks"
 msgstr "備考"
 
-#: contracts/invoice_views.py:204 contracts/invoice_views.py:480
-#: contracts/invoice_views.py:811 contracts/invoice_views.py:1064
-#: templates/contracts/hall_purchases.html:684
-#: templates/contracts/hall_sales.html:685
-#: templates/contracts/trader_purchases.html:587
-#: templates/contracts/trader_sales.html:559
+#: .\contracts\invoice_views.py:204 .\contracts\invoice_views.py:480
+#: .\contracts\invoice_views.py:811 .\contracts\invoice_views.py:1064
+#: .\templates\contracts\hall_purchases.html:684
+#: .\templates\contracts\hall_sales.html:685
+#: .\templates\contracts\trader_purchases.html:587
+#: .\templates\contracts\trader_sales.html:559
 msgid "Consumption tax"
 msgstr "消費税"
 
-#: contracts/invoice_views.py:208 contracts/invoice_views.py:486
-#: contracts/invoice_views.py:815 contracts/invoice_views.py:1068
-#: templates/contracts/hall_purchases.html:692
-#: templates/contracts/hall_sales.html:693
-#: templates/contracts/trader_purchases.html:591
-#: templates/contracts/trader_sales.html:563
+#: .\contracts\invoice_views.py:208 .\contracts\invoice_views.py:486
+#: .\contracts\invoice_views.py:815 .\contracts\invoice_views.py:1068
+#: .\templates\contracts\hall_purchases.html:692
+#: .\templates\contracts\hall_sales.html:693
+#: .\templates\contracts\trader_purchases.html:591
+#: .\templates\contracts\trader_sales.html:563
 msgid "Insurance fee"
 msgstr "保険代"
 
-#: contracts/invoice_views.py:208 contracts/invoice_views.py:486
-#: contracts/invoice_views.py:815 contracts/invoice_views.py:1068
-#: templates/contracts/hall_purchases.html:692
-#: templates/contracts/hall_sales.html:693
-#: templates/contracts/trader_purchases.html:591
-#: templates/contracts/trader_sales.html:563
+#: .\contracts\invoice_views.py:208 .\contracts\invoice_views.py:486
+#: .\contracts\invoice_views.py:815 .\contracts\invoice_views.py:1068
+#: .\templates\contracts\hall_purchases.html:692
+#: .\templates\contracts\hall_sales.html:693
+#: .\templates\contracts\trader_purchases.html:591
+#: .\templates\contracts\trader_sales.html:563
 msgid "No tax"
 msgstr "非課税"
 
-#: contracts/invoice_views.py:212 contracts/invoice_views.py:490
-#: contracts/invoice_views.py:819 contracts/invoice_views.py:1072
-#: templates/contracts/hall_purchases.html:701
-#: templates/contracts/hall_sales.html:702
+#: .\contracts\invoice_views.py:212 .\contracts\invoice_views.py:490
+#: .\contracts\invoice_views.py:819 .\contracts\invoice_views.py:1072
+#: .\templates\contracts\hall_purchases.html:701
+#: .\templates\contracts\hall_sales.html:702
 msgid "Total amount"
 msgstr "合計"
 
-#: contracts/invoice_views.py:217 templates/contracts/trader_sales.html:579
+#: .\contracts\invoice_views.py:217 .\templates\contracts\trader_sales.html:579
 msgid "Shipping method"
 msgstr "運送方法"
 
-#: contracts/invoice_views.py:219 templates/contracts/trader_sales.html:593
+#: .\contracts\invoice_views.py:219 .\templates\contracts\trader_sales.html:593
 msgid "Billing amount"
 msgstr "御請求金額"
 
-#: contracts/invoice_views.py:223 contracts/invoice_views.py:831
-#: contracts/invoice_views.py:1084 templates/contracts/hall_purchases.html:744
-#: templates/contracts/hall_sales.html:745
-#: templates/contracts/trader_sales.html:585
+#: .\contracts\invoice_views.py:223 .\contracts\invoice_views.py:831
+#: .\contracts\invoice_views.py:1084
+#: .\templates\contracts\hall_purchases.html:744
+#: .\templates\contracts\hall_sales.html:745
+#: .\templates\contracts\trader_sales.html:585
 msgid "Payment method"
 msgstr "お支払方法"
 
-#: contracts/invoice_views.py:225 templates/contracts/trader_sales.html:599
+#: .\contracts\invoice_views.py:225 .\templates\contracts\trader_sales.html:599
 msgid "Payment due date"
 msgstr "お支払期限"
 
-#: contracts/invoice_views.py:230 templates/contracts/trader_sales.html:613
+#: .\contracts\invoice_views.py:230 .\templates\contracts\trader_sales.html:613
 msgid ""
 "The contract will be effective when both seller and buyer sign and seal."
 msgstr "売主、買主、双方の署名・捺印が揃った時点で契約が成立したものとします。"
 
-#: contracts/invoice_views.py:231 templates/contracts/trader_sales.html:614
+#: .\contracts\invoice_views.py:231 .\templates\contracts\trader_sales.html:614
 msgid "As a general rule, the contract cannot be canceled once signed."
 msgstr "契約が成立後、原則として売買契約を解除できないものとします。"
 
-#: contracts/invoice_views.py:232 templates/contracts/trader_sales.html:615
+#: .\contracts\invoice_views.py:232 .\templates\contracts\trader_sales.html:615
 msgid ""
 "3 days warranty after delivery will be provided just in case of defects or "
 "malfunctions in the products."
 msgstr "当該商品に不備及び故障がある場合の保障は、納品後3日以内とします。"
 
-#: contracts/invoice_views.py:233 templates/contracts/trader_sales.html:616
+#: .\contracts\invoice_views.py:233 .\templates\contracts\trader_sales.html:616
 msgid ""
 "The seller will keep the ownership of the products until the buyer makes the "
 "full payment."
@@ -450,7 +478,7 @@ msgstr ""
 "買主が代金全額支払いを完了するまでは、売買物件の所有権は売主において留保す"
 "る。"
 
-#: contracts/invoice_views.py:234 templates/contracts/trader_sales.html:617
+#: .\contracts\invoice_views.py:234 .\templates\contracts\trader_sales.html:617
 msgid ""
 "The Ownership of the products shall be transferred to the buyer when product "
 "delivery is completed and full payment is made."
@@ -458,7 +486,7 @@ msgstr ""
 "売買物件の所有権は、引渡しが終了し、支払いが完了した時点で買主」に移行するも"
 "のとする。"
 
-#: contracts/invoice_views.py:235 templates/contracts/trader_sales.html:618
+#: .\contracts\invoice_views.py:235 .\templates\contracts\trader_sales.html:618
 msgid ""
 "In the following cases, the seller may, without any procedure, request the "
 "immediate payment of the remaining balance, or cancel the contract and take "
@@ -468,75 +496,80 @@ msgstr ""
 "しめて残代金の即時支払いを求めるか、又は本契約を解除して売買物件を引き上げる"
 "事が出来る。"
 
-#: contracts/invoice_views.py:236 templates/contracts/trader_sales.html:619
+#: .\contracts\invoice_views.py:236 .\templates\contracts\trader_sales.html:619
 msgid "When the buyer fail to make the payment even once."
 msgstr "代金の支払いを1回でも怠った場合。"
 
-#: contracts/invoice_views.py:237 templates/contracts/trader_sales.html:620
+#: .\contracts\invoice_views.py:237 .\templates\contracts\trader_sales.html:620
 msgid ""
 "When the products were forfeited or disposed temporarily, or the request for "
 "arrangement, reconciliation, damage etc is received."
 msgstr ""
 "仮差押え、仮処分等の執行を受け、整理・和議・破損等の申立てを受けた場合。"
 
-#: contracts/invoice_views.py:264 contracts/invoice_views.py:526
-#: templates/contracts/trader_purchases.html:615
-#: templates/contracts/trader_sales.html:627
+#: .\contracts\invoice_views.py:264 .\contracts\invoice_views.py:526
+#: .\templates\contracts\trader_purchases.html:615
+#: .\templates\contracts\trader_sales.html:627
 msgid "Product sender"
 msgstr "商品発送先"
 
-#: contracts/invoice_views.py:265 contracts/invoice_views.py:527
-#: templates/contracts/trader_purchases.html:662
-#: templates/contracts/trader_sales.html:666
+#: .\contracts\invoice_views.py:265 .\contracts\invoice_views.py:527
+#: .\templates\contracts\trader_purchases.html:662
+#: .\templates\contracts\trader_sales.html:666
 msgid "Document sender"
 msgstr "書類発送先"
 
-#: contracts/invoice_views.py:288 contracts/invoice_views.py:290
-#: templates/contracts/trader_sales.html:654
-#: templates/contracts/trader_sales.html:693
+#: .\contracts\invoice_views.py:288 .\contracts\invoice_views.py:290
+#: .\templates\contracts\trader_sales.html:654
+#: .\templates\contracts\trader_sales.html:693
 msgid "Expected arrival date"
 msgstr "到着予定日"
 
-#: contracts/invoice_views.py:295 templates/contracts/trader_sales.html:706
+#: .\contracts\invoice_views.py:295 .\templates\contracts\trader_sales.html:706
 msgid "Buyer seal"
 msgstr "買主捺印欄"
 
-#: contracts/invoice_views.py:296 templates/contracts/trader_sales.html:721
+#: .\contracts\invoice_views.py:296 .\templates\contracts\trader_sales.html:721
 msgid "Seller seal"
 msgstr "売主捺印欄"
 
-#: contracts/invoice_views.py:324 contracts/invoice_views.py:345
-#: templates/contracts/trader_purchases.html:5
-#: templates/contracts/trader_purchases.html:20
-#: templates/contracts/trader_purchases.html:28
-#: templates/layout/sidebar.html:45
+#: .\contracts\invoice_views.py:324 .\contracts\invoice_views.py:345
+#: .\templates\contracts\trader_purchases.html:5
+#: .\templates\contracts\trader_purchases.html:20
+#: .\templates\contracts\trader_purchases.html:28
+#: .\templates\layout\sidebar.html:46
 msgid "Trader purchases"
 msgstr "業者買"
 
-#: contracts/invoice_views.py:468 templates/contracts/trader_purchases.html:531
+#: .\contracts\invoice_views.py:468
+#: .\templates\contracts\trader_purchases.html:531
 msgid "Removal date"
 msgstr "撤去日"
 
-#: contracts/invoice_views.py:470 templates/contracts/trader_purchases.html:543
+#: .\contracts\invoice_views.py:470
+#: .\templates\contracts\trader_purchases.html:543
 msgid "Frame color"
 msgstr "枠色"
 
-#: contracts/invoice_views.py:476 templates/contracts/trader_purchases.html:550
+#: .\contracts\invoice_views.py:476
+#: .\templates\contracts\trader_purchases.html:550
 msgid "Date of shipment"
 msgstr "発送日"
 
-#: contracts/invoice_views.py:478 masterdata/models.py:24
-#: templates/contracts/trader_purchases.html:563
+#: .\contracts\invoice_views.py:478 .\masterdata\models.py:24
+#: .\templates\contracts\trader_purchases.html:563
 msgid "Receipt"
 msgstr "引取"
 
-#: contracts/invoice_views.py:495 templates/contracts/trader_purchases.html:606
+#: .\contracts\invoice_views.py:495
+#: .\templates\contracts\trader_purchases.html:606
 msgid ""
 "It is assumed that the contract has been concluded with the arrival of our "
 "certificate of sale."
 msgstr "売却証明書の弊社到着をもちまして契約が成立したものとします。"
 
-#: contracts/invoice_views.py:496 templates/contracts/trader_purchases.html:607
+#: .\contracts\invoice_views.py:496
+#: .\templates\contracts\trader_purchases.html:607
 #, python-format
 msgid ""
 "If you cancel after sending the proof of purchase, you will be compensated "
@@ -545,7 +578,8 @@ msgstr ""
 "購入証明書送付後、キャンセルした場合には売買成立代金の100%%を賠償するものとし"
 "ます。"
 
-#: contracts/invoice_views.py:497 templates/contracts/trader_purchases.html:608
+#: .\contracts\invoice_views.py:497
+#: .\templates\contracts\trader_purchases.html:608
 msgid ""
 "We will notify you of any missing items or damage within 3 days after the "
 "item arrives. No further returns or exchanges will be accepted."
@@ -553,116 +587,131 @@ msgstr ""
 "欠品、破損などのご連絡は商品到着後3日以内とします。以降の返品、交換は一切出来"
 "かねます。"
 
-#: contracts/invoice_views.py:545 contracts/invoice_views.py:547
-#: templates/contracts/trader_purchases.html:636
-#: templates/contracts/trader_purchases.html:683
+#: .\contracts\invoice_views.py:545 .\contracts\invoice_views.py:547
+#: .\templates\contracts\trader_purchases.html:636
+#: .\templates\contracts\trader_purchases.html:683
 msgid "Desired arrival date"
 msgstr "到着希望日"
 
-#: contracts/invoice_views.py:550 contracts/invoice_views.py:552
-#: templates/contracts/trader_purchases.html:646
-#: templates/contracts/trader_purchases.html:693
+#: .\contracts\invoice_views.py:550 .\contracts\invoice_views.py:552
+#: .\templates\contracts\trader_purchases.html:646
+#: .\templates\contracts\trader_purchases.html:693
 msgid "Shipping company"
 msgstr "運送会社"
 
-#: contracts/invoice_views.py:562 templates/contracts/trader_purchases.html:708
+#: .\contracts\invoice_views.py:562
+#: .\templates\contracts\trader_purchases.html:708
 msgid "Please check the contents, seal it, and fax it to us."
 msgstr "内容をご確認の上、ご捺印後弊社までリファックス願います。"
 
-#: contracts/invoice_views.py:563 templates/contracts/trader_purchases.html:709
+#: .\contracts\invoice_views.py:563
+#: .\templates\contracts\trader_purchases.html:709
 msgid "Return address"
 msgstr "返送先"
 
-#: contracts/invoice_views.py:570 contracts/invoice_views.py:662
-#: contracts/invoice_views.py:914 templates/contracts/hall_purchases.html:75
-#: templates/contracts/hall_sales.html:75
-#: templates/contracts/trader_purchases.html:713
+#: .\contracts\invoice_views.py:570 .\contracts\invoice_views.py:662
+#: .\contracts\invoice_views.py:914
+#: .\templates\contracts\hall_purchases.html:75
+#: .\templates\contracts\hall_sales.html:75
+#: .\templates\contracts\trader_purchases.html:713
 msgid "Buyer"
 msgstr "買主"
 
-#: contracts/invoice_views.py:571 contracts/invoice_views.py:663
-#: contracts/invoice_views.py:915 templates/contracts/hall_purchases.html:90
-#: templates/contracts/hall_sales.html:90
-#: templates/contracts/trader_purchases.html:728
+#: .\contracts\invoice_views.py:571 .\contracts\invoice_views.py:663
+#: .\contracts\invoice_views.py:915
+#: .\templates\contracts\hall_purchases.html:90
+#: .\templates\contracts\hall_sales.html:90
+#: .\templates\contracts\trader_purchases.html:728
 msgid "Seller"
 msgstr "売主"
 
-#: contracts/invoice_views.py:600 templates/contracts/trader_purchases.html:760
+#: .\contracts\invoice_views.py:600
+#: .\templates\contracts\trader_purchases.html:760
 msgid "Transfer deadline"
 msgstr "振込期限日"
 
-#: contracts/invoice_views.py:602 templates/contracts/trader_purchases.html:806
+#: .\contracts\invoice_views.py:602
+#: .\templates\contracts\trader_purchases.html:806
 msgid "Original invoice"
 msgstr "請求書原本"
 
-#: contracts/invoice_views.py:603 templates/contracts/trader_purchases.html:809
-#: templates/contracts/trader_sales.html:747
+#: .\contracts\invoice_views.py:603
+#: .\templates\contracts\trader_purchases.html:809
+#: .\templates\contracts\trader_sales.html:747
 msgid "Required"
 msgstr "必要"
 
-#: contracts/invoice_views.py:603 templates/contracts/trader_purchases.html:811
-#: templates/contracts/trader_sales.html:747
+#: .\contracts\invoice_views.py:603
+#: .\templates\contracts\trader_purchases.html:811
+#: .\templates\contracts\trader_sales.html:747
 msgid "Not required"
 msgstr "不要"
 
-#: contracts/invoice_views.py:605 contracts/invoice_views.py:859
-#: contracts/invoice_views.py:1108 templates/contracts/hall_purchases.html:804
-#: templates/contracts/hall_sales.html:809
-#: templates/contracts/trader_purchases.html:778
-#: templates/contracts/trader_sales.html:740
+#: .\contracts\invoice_views.py:605 .\contracts\invoice_views.py:859
+#: .\contracts\invoice_views.py:1108
+#: .\templates\contracts\hall_purchases.html:804
+#: .\templates\contracts\hall_sales.html:809
+#: .\templates\contracts\trader_purchases.html:778
+#: .\templates\contracts\trader_sales.html:740
 msgid "Transfer account"
 msgstr "振込先口座"
 
-#: contracts/invoice_views.py:606 templates/contracts/trader_purchases.html:783
+#: .\contracts\invoice_views.py:606
+#: .\templates\contracts\trader_purchases.html:783
 msgid "Bank name"
 msgstr "銀行名"
 
-#: contracts/invoice_views.py:608 templates/contracts/trader_purchases.html:816
+#: .\contracts\invoice_views.py:608
+#: .\templates\contracts\trader_purchases.html:816
 msgid "Branch name"
 msgstr "支店名"
 
-#: contracts/invoice_views.py:611 templates/contracts/trader_purchases.html:791
+#: .\contracts\invoice_views.py:611
+#: .\templates\contracts\trader_purchases.html:791
 msgid "Account number"
 msgstr "口座番号"
 
-#: contracts/invoice_views.py:613 templates/contracts/trader_purchases.html:826
+#: .\contracts\invoice_views.py:613
+#: .\templates\contracts\trader_purchases.html:826
 msgid "Account holder"
 msgstr "口座名義"
 
-#: contracts/invoice_views.py:623 contracts/invoice_views.py:646
-#: templates/contracts/hall_sales.html:5 templates/contracts/hall_sales.html:20
-#: templates/contracts/hall_sales.html:28 templates/layout/sidebar.html:46
+#: .\contracts\invoice_views.py:623 .\contracts\invoice_views.py:646
+#: .\templates\contracts\hall_sales.html:5
+#: .\templates\contracts\hall_sales.html:20
+#: .\templates\contracts\hall_sales.html:28 .\templates\layout\sidebar.html:47
 msgid "Hall sales"
 msgstr "ホール売"
 
-#: contracts/invoice_views.py:662 contracts/invoice_views.py:914
-#: templates/contracts/hall_purchases.html:75
-#: templates/contracts/hall_sales.html:75
+#: .\contracts\invoice_views.py:662 .\contracts\invoice_views.py:914
+#: .\templates\contracts\hall_purchases.html:75
+#: .\templates\contracts\hall_sales.html:75
 msgid "A"
 msgstr "甲"
 
-#: contracts/invoice_views.py:663 contracts/invoice_views.py:915
-#: templates/contracts/hall_purchases.html:90
-#: templates/contracts/hall_sales.html:90
+#: .\contracts\invoice_views.py:663 .\contracts\invoice_views.py:915
+#: .\templates\contracts\hall_purchases.html:90
+#: .\templates\contracts\hall_sales.html:90
 msgid "B"
 msgstr "乙"
 
-#: contracts/invoice_views.py:679 contracts/invoice_views.py:931
-#: templates/contracts/hall_purchases.html:124
-#: templates/contracts/hall_sales.html:125
+#: .\contracts\invoice_views.py:679 .\contracts\invoice_views.py:931
+#: .\templates\contracts\hall_purchases.html:124
+#: .\templates\contracts\hall_sales.html:125
 msgid "Installation location"
 msgstr "設置場所"
 
-#: contracts/invoice_views.py:680 contracts/invoice_views.py:932
-#: templates/contracts/hall_purchases.html:130
-#: templates/contracts/hall_sales.html:131 templates/masterdata/halls.html:67
-#: templates/masterdata/halls.html:130 templates/masterdata/halls.html:209
+#: .\contracts\invoice_views.py:680 .\contracts\invoice_views.py:932
+#: .\templates\contracts\hall_purchases.html:130
+#: .\templates\contracts\hall_sales.html:131
+#: .\templates\masterdata\halls.html:67 .\templates\masterdata\halls.html:130
+#: .\templates\masterdata\halls.html:209
 msgid "Hall name"
 msgstr "ホール名"
 
-#: contracts/invoice_views.py:689 contracts/invoice_views.py:941
-#: templates/contracts/hall_purchases.html:154
-#: templates/contracts/hall_sales.html:155
+#: .\contracts\invoice_views.py:689 .\contracts\invoice_views.py:941
+#: .\templates\contracts\hall_purchases.html:154
+#: .\templates\contracts\hall_sales.html:155
 msgid ""
 "The buyer (hereinafter referred to as A) and the seller (hereinafter "
 "referred to as B) have entered into a sales contract including the "
@@ -672,921 +721,1028 @@ msgstr ""
 "買主（以下甲という）と売主（以下乙という）は以下の商品（以下物件という）裏面"
 "記載取引約定を含み売買契約を締結いたしました。"
 
-#: contracts/invoice_views.py:753 contracts/invoice_views.py:1005
-#: templates/contracts/hall_purchases.html:525
-#: templates/contracts/hall_sales.html:526
+#: .\contracts\invoice_views.py:753 .\contracts\invoice_views.py:1005
+#: .\templates\contracts\hall_purchases.html:525
+#: .\templates\contracts\hall_sales.html:526
 msgid "Model count"
 msgstr "機種数"
 
-#: contracts/invoice_views.py:754 contracts/invoice_views.py:1006
-#: listing/views.py:92 listing/views.py:205 listing/views.py:305
-#: templates/contracts/hall_purchases.html:526
-#: templates/contracts/hall_sales.html:527 templates/listing/inventory.html:110
-#: templates/listing/inventory.html:219 templates/listing/inventory.html:221
-#: templates/listing/inventory.html:316 templates/listing/inventory.html:318
-#: templates/listing/purchases.html:112 templates/listing/sales.html:112
+#: .\contracts\invoice_views.py:754 .\contracts\invoice_views.py:1006
+#: .\listing\views.py:92 .\listing\views.py:205 .\listing\views.py:305
+#: .\templates\contracts\hall_purchases.html:526
+#: .\templates\contracts\hall_sales.html:527
+#: .\templates\listing\inventory.html:110
+#: .\templates\listing\inventory.html:219
+#: .\templates\listing\inventory.html:221
+#: .\templates\listing\inventory.html:316
+#: .\templates\listing\inventory.html:318
+#: .\templates\listing\purchases.html:112 .\templates\listing\sales.html:112
 msgid "Unit count"
 msgstr "台数"
 
-#: contracts/invoice_views.py:824 contracts/invoice_views.py:1077
-#: templates/contracts/hall_purchases.html:712
-#: templates/contracts/hall_sales.html:713
+#: .\contracts\invoice_views.py:824 .\contracts\invoice_views.py:1077
+#: .\templates\contracts\hall_purchases.html:712
+#: .\templates\contracts\hall_sales.html:713
 msgid "We will charge you as follows."
 msgstr "下記の通りご請求申し上げます。"
 
-#: contracts/invoice_views.py:827 contracts/invoice_views.py:1080
-#: templates/contracts/hall_purchases.html:721
-#: templates/contracts/hall_sales.html:722
+#: .\contracts\invoice_views.py:827 .\contracts\invoice_views.py:1080
+#: .\templates\contracts\hall_purchases.html:721
+#: .\templates\contracts\hall_sales.html:722
 msgid "Shipping date"
 msgstr "納品日"
 
-#: contracts/invoice_views.py:829 contracts/invoice_views.py:1082
-#: templates/contracts/hall_purchases.html:732
-#: templates/contracts/hall_sales.html:733
+#: .\contracts\invoice_views.py:829 .\contracts\invoice_views.py:1082
+#: .\templates\contracts\hall_purchases.html:732
+#: .\templates\contracts\hall_sales.html:733
 msgid "Opening date"
 msgstr "開店日"
 
-#: contracts/invoice_views.py:834 contracts/invoice_views.py:1087
-#: templates/contracts/hall_purchases.html:755
-#: templates/contracts/hall_sales.html:756
+#: .\contracts\invoice_views.py:834 .\contracts\invoice_views.py:1087
+#: .\templates\contracts\hall_purchases.html:755
+#: .\templates\contracts\hall_sales.html:756
 msgid "Payment breakdown"
 msgstr "お支払内訳"
 
-#: contracts/invoice_views.py:856 templates/contracts/hall_sales.html:803
+#: .\contracts\invoice_views.py:856 .\templates\contracts\hall_sales.html:803
 msgid "Please bear the transfer fee at your expense."
 msgstr "お振込み手数料は貴社ご負担でお願いします。"
 
-#: contracts/invoice_views.py:863 contracts/invoice_views.py:1113
-#: templates/contracts/hall_purchases.html:818
-#: templates/contracts/hall_sales.html:824
+#: .\contracts\invoice_views.py:863 .\contracts\invoice_views.py:1113
+#: .\templates\contracts\hall_purchases.html:818
+#: .\templates\contracts\hall_sales.html:824
 msgid "Confirmor"
 msgstr "確認印"
 
-#: contracts/invoice_views.py:874 contracts/invoice_views.py:898
-#: templates/contracts/hall_purchases.html:5
-#: templates/contracts/hall_purchases.html:20
-#: templates/contracts/hall_purchases.html:28 templates/layout/sidebar.html:47
+#: .\contracts\invoice_views.py:874 .\contracts\invoice_views.py:898
+#: .\templates\contracts\hall_purchases.html:5
+#: .\templates\contracts\hall_purchases.html:20
+#: .\templates\contracts\hall_purchases.html:28
+#: .\templates\layout\sidebar.html:48
 msgid "Hall purchases"
 msgstr "ホール買"
 
-#: contracts/utilities.py:33
+#: .\contracts\utilities.py:33
 msgid "Receipt date"
 msgstr "機械引取日"
 
-#: contracts/utilities.py:35
+#: .\contracts\utilities.py:35
 msgid "ID Change date"
 msgstr "機械ID変更日"
 
-#: contracts/utilities.py:36 templates/contracts/trader_sales.html:530
+#: .\contracts\utilities.py:36 .\templates\contracts\trader_sales.html:530
 msgid "Delivery date"
 msgstr "機械発送日"
 
-#: listing/views.py:75 listing/views.py:80 listing/views.py:187
-#: listing/views.py:193 listing/views.py:289 listing/views.py:294
-#: templates/layout/sidebar.html:52 templates/listing/history.html:18
-#: templates/listing/history.html:25 templates/listing/inventory.html:18
-#: templates/listing/inventory.html:25 templates/listing/purchases.html:18
-#: templates/listing/purchases.html:25 templates/listing/sales.html:18
-#: templates/listing/sales.html:25
+#: .\listing\views.py:75 .\listing\views.py:80 .\listing\views.py:187
+#: .\listing\views.py:193 .\listing\views.py:289 .\listing\views.py:294
+#: .\templates\layout\sidebar.html:53 .\templates\listing\history.html:18
+#: .\templates\listing\history.html:25 .\templates\listing\inventory.html:18
+#: .\templates\listing\inventory.html:25 .\templates\listing\purchases.html:18
+#: .\templates\listing\purchases.html:25 .\templates\listing\sales.html:18
+#: .\templates\listing\sales.html:25
 msgid "List"
 msgstr "一覧表"
 
-#: listing/views.py:75 listing/views.py:80 templates/layout/sidebar.html:54
-#: templates/listing/sales.html:4
+#: .\listing\views.py:75 .\listing\views.py:80
+#: .\templates\layout\sidebar.html:55 .\templates\listing\sales.html:4
 msgid "Sales"
 msgstr "売上"
 
-#: listing/views.py:88 listing/views.py:201
-#: templates/listing/purchases.html:108 templates/listing/sales.html:108
+#: .\listing\views.py:88 .\listing\views.py:201
+#: .\templates\listing\purchases.html:108 .\templates\listing\sales.html:108
 msgid "Delivered place"
 msgstr "納品先"
 
-#: listing/views.py:90 listing/views.py:203
-#: templates/listing/purchases.html:110 templates/listing/sales.html:110
+#: .\listing\views.py:90 .\listing\views.py:203
+#: .\templates\listing\purchases.html:110 .\templates\listing\sales.html:110
 msgid "Payment date"
 msgstr "入金日"
 
-#: listing/views.py:91 listing/views.py:204 listing/views.py:300
-#: templates/listing/inventory.html:45 templates/listing/inventory.html:46
-#: templates/listing/inventory.html:105 templates/listing/inventory.html:181
-#: templates/listing/inventory.html:183 templates/listing/inventory.html:278
-#: templates/listing/inventory.html:280 templates/listing/purchases.html:71
-#: templates/listing/purchases.html:72 templates/listing/purchases.html:111
-#: templates/listing/purchases.html:193 templates/listing/purchases.html:195
-#: templates/listing/sales.html:71 templates/listing/sales.html:72
-#: templates/listing/sales.html:111 templates/listing/sales.html:193
-#: templates/listing/sales.html:195
+#: .\listing\views.py:91 .\listing\views.py:204 .\listing\views.py:300
+#: .\templates\listing\inventory.html:45 .\templates\listing\inventory.html:46
+#: .\templates\listing\inventory.html:105
+#: .\templates\listing\inventory.html:181
+#: .\templates\listing\inventory.html:183
+#: .\templates\listing\inventory.html:278
+#: .\templates\listing\inventory.html:280 .\templates\listing\purchases.html:71
+#: .\templates\listing\purchases.html:72 .\templates\listing\purchases.html:111
+#: .\templates\listing\purchases.html:193
+#: .\templates\listing\purchases.html:195 .\templates\listing\sales.html:71
+#: .\templates\listing\sales.html:72 .\templates\listing\sales.html:111
+#: .\templates\listing\sales.html:193 .\templates\listing\sales.html:195
 msgid "Product name"
 msgstr "商品名"
 
-#: listing/views.py:94 listing/views.py:207 templates/listing/purchases.html:78
-#: templates/listing/purchases.html:114 templates/listing/purchases.html:200
-#: templates/listing/sales.html:78 templates/listing/sales.html:114
-#: templates/listing/sales.html:200
+#: .\listing\views.py:94 .\listing\views.py:207
+#: .\templates\listing\purchases.html:78 .\templates\listing\purchases.html:114
+#: .\templates\listing\purchases.html:200 .\templates\listing\sales.html:78
+#: .\templates\listing\sales.html:114 .\templates\listing\sales.html:200
 msgid "Inventory status"
 msgstr "在庫消込"
 
-#: listing/views.py:187 listing/views.py:193 templates/layout/sidebar.html:55
-#: templates/listing/purchases.html:4
+#: .\listing\views.py:187 .\listing\views.py:193
+#: .\templates\layout\sidebar.html:56 .\templates\listing\purchases.html:4
 msgid "Purchases"
 msgstr "仕入"
 
-#: listing/views.py:289 listing/views.py:294 templates/layout/sidebar.html:56
-#: templates/listing/history.html:4 templates/listing/inventory.html:4
-#: templates/listing/inventory.html:18 templates/listing/inventory.html:26
-#: templates/listing/inventory.html:37
+#: .\listing\views.py:289 .\listing\views.py:294
+#: .\templates\layout\sidebar.html:57 .\templates\listing\history.html:4
+#: .\templates\listing\inventory.html:4 .\templates\listing\inventory.html:18
+#: .\templates\listing\inventory.html:26 .\templates\listing\inventory.html:37
 msgid "Inventory"
 msgstr "在庫"
 
-#: listing/views.py:301 templates/listing/inventory.html:106
-#: templates/listing/inventory.html:188 templates/listing/inventory.html:190
-#: templates/listing/inventory.html:285 templates/listing/inventory.html:287
+#: .\listing\views.py:301 .\templates\listing\inventory.html:106
+#: .\templates\listing\inventory.html:188
+#: .\templates\listing\inventory.html:190
+#: .\templates\listing\inventory.html:285
+#: .\templates\listing\inventory.html:287
 msgid "Control number"
 msgstr "管理番号"
 
-#: listing/views.py:302 templates/listing/inventory.html:53
-#: templates/listing/inventory.html:107 templates/listing/inventory.html:195
-#: templates/listing/inventory.html:292
+#: .\listing\views.py:302 .\templates\listing\inventory.html:53
+#: .\templates\listing\inventory.html:107
+#: .\templates\listing\inventory.html:195
+#: .\templates\listing\inventory.html:292
 msgid "Purchase date"
 msgstr "仕入日"
 
-#: listing/views.py:303 templates/listing/inventory.html:64
-#: templates/listing/inventory.html:108 templates/listing/inventory.html:205
-#: templates/listing/inventory.html:207 templates/listing/inventory.html:302
-#: templates/listing/inventory.html:304
+#: .\listing\views.py:303 .\templates\listing\inventory.html:64
+#: .\templates\listing\inventory.html:108
+#: .\templates\listing\inventory.html:205
+#: .\templates\listing\inventory.html:207
+#: .\templates\listing\inventory.html:302
+#: .\templates\listing\inventory.html:304
 msgid "Supplier"
 msgstr "仕入先"
 
-#: listing/views.py:307 templates/listing/inventory.html:80
-#: templates/listing/inventory.html:112 templates/listing/inventory.html:233
-#: templates/listing/inventory.html:235 templates/listing/inventory.html:330
-#: templates/listing/inventory.html:332
+#: .\listing\views.py:307 .\templates\listing\inventory.html:80
+#: .\templates\listing\inventory.html:112
+#: .\templates\listing\inventory.html:233
+#: .\templates\listing\inventory.html:235
+#: .\templates\listing\inventory.html:330
+#: .\templates\listing\inventory.html:332
 msgid "Stock"
 msgstr "在庫"
 
-#: listing/views.py:308 templates/listing/inventory.html:113
-#: templates/listing/inventory.html:240 templates/listing/inventory.html:242
-#: templates/listing/inventory.html:337 templates/listing/inventory.html:339
+#: .\listing\views.py:308 .\templates\listing\inventory.html:113
+#: .\templates\listing\inventory.html:240
+#: .\templates\listing\inventory.html:242
+#: .\templates\listing\inventory.html:337
+#: .\templates\listing\inventory.html:339
 msgid "Total price"
 msgstr "合計金額"
 
-#: masterdata/models.py:23
+#: .\masterdata\models.py:23
 msgid "Delivery"
 msgstr "発送"
 
-#: masterdata/models.py:25
+#: .\masterdata\models.py:25
 msgid "ID Change"
 msgstr "ID変更"
 
-#: masterdata/models.py:26
+#: .\masterdata\models.py:26
 msgid "* Blank"
 msgstr "* 空白"
 
-#: masterdata/models.py:30
+#: .\masterdata\models.py:30
 msgid "Transfer"
 msgstr "振込"
 
-#: masterdata/models.py:31
+#: .\masterdata\models.py:31
 msgid "Check"
 msgstr "小切手"
 
-#: masterdata/models.py:32
+#: .\masterdata\models.py:32
 msgid "Bill"
 msgstr "手形"
 
-#: masterdata/models.py:33
+#: .\masterdata\models.py:33
 msgid "Cash"
 msgstr "現金"
 
-#: masterdata/models.py:37 templates/contracts/hall_purchases.html:287
-#: templates/contracts/hall_sales.html:288
-#: templates/contracts/trader_purchases.html:310
-#: templates/contracts/trader_sales.html:309
+#: .\masterdata\models.py:37 .\templates\contracts\hall_purchases.html:287
+#: .\templates\contracts\hall_sales.html:288
+#: .\templates\contracts\trader_purchases.html:310
+#: .\templates\contracts\trader_sales.html:309
 msgid "Main body"
 msgstr "本体"
 
-#: masterdata/models.py:38 templates/contracts/hall_purchases.html:288
-#: templates/contracts/hall_sales.html:289
-#: templates/contracts/trader_purchases.html:311
-#: templates/contracts/trader_sales.html:310
+#: .\masterdata\models.py:38 .\templates\contracts\hall_purchases.html:288
+#: .\templates\contracts\hall_sales.html:289
+#: .\templates\contracts\trader_purchases.html:311
+#: .\templates\contracts\trader_sales.html:310
 msgid "Frame"
 msgstr "枠"
 
-#: masterdata/models.py:39 templates/contracts/hall_purchases.html:289
-#: templates/contracts/hall_sales.html:290
-#: templates/contracts/trader_purchases.html:312
-#: templates/contracts/trader_sales.html:311
+#: .\masterdata\models.py:39 .\templates\contracts\hall_purchases.html:289
+#: .\templates\contracts\hall_sales.html:290
+#: .\templates\contracts\trader_purchases.html:312
+#: .\templates\contracts\trader_sales.html:311
 msgid "Cell"
 msgstr "セル"
 
-#: masterdata/models.py:40 templates/contracts/hall_purchases.html:290
-#: templates/contracts/hall_sales.html:291
-#: templates/contracts/trader_purchases.html:313
-#: templates/contracts/trader_sales.html:312
+#: .\masterdata\models.py:40 .\templates\contracts\hall_purchases.html:290
+#: .\templates\contracts\hall_sales.html:291
+#: .\templates\contracts\trader_purchases.html:313
+#: .\templates\contracts\trader_sales.html:312
 msgid "Nail sheet"
 msgstr "釘シート"
 
-#: masterdata/models.py:44 templates/contracts/hall_purchases.html:165
-#: templates/contracts/hall_sales.html:166
-#: templates/contracts/trader_purchases.html:188
-#: templates/contracts/trader_sales.html:187 templates/layout/sidebar.html:36
-#: templates/masterdata/products.html:4 templates/masterdata/products.html:17
-#: templates/masterdata/products.html:25 templates/masterdata/products.html:36
+#: .\masterdata\models.py:44 .\templates\contracts\hall_purchases.html:165
+#: .\templates\contracts\hall_sales.html:166
+#: .\templates\contracts\trader_purchases.html:188
+#: .\templates\contracts\trader_sales.html:187
+#: .\templates\layout\sidebar.html:36 .\templates\masterdata\products.html:4
+#: .\templates\masterdata\products.html:17
+#: .\templates\masterdata\products.html:25
+#: .\templates\masterdata\products.html:36
 msgid "Product"
 msgstr "商品名"
 
-#: masterdata/models.py:49 templates/listing/purchases.html:81
-#: templates/listing/purchases.html:203 templates/listing/sales.html:81
-#: templates/listing/sales.html:203
+#: .\masterdata\models.py:49 .\templates\listing\purchases.html:81
+#: .\templates\listing\purchases.html:203 .\templates\listing\sales.html:81
+#: .\templates\listing\sales.html:203
 msgid "Done"
 msgstr "済"
 
-#: masterdata/models.py:50 templates/listing/purchases.html:82
-#: templates/listing/purchases.html:204 templates/listing/sales.html:82
-#: templates/listing/sales.html:204
+#: .\masterdata\models.py:50 .\templates\listing\purchases.html:82
+#: .\templates\listing\purchases.html:204 .\templates\listing\sales.html:82
+#: .\templates\listing\sales.html:204
 msgid "Pending"
 msgstr "未"
 
-#: masterdata/models.py:54 templates/masterdata/products.html:133
-#: templates/masterdata/products.html:185
+#: .\masterdata\models.py:54 .\templates\masterdata\products.html:133
+#: .\templates\masterdata\products.html:185
 msgid "Pachinko"
 msgstr "パチンコ"
 
-#: masterdata/models.py:55 templates/masterdata/products.html:134
-#: templates/masterdata/products.html:186
+#: .\masterdata\models.py:55 .\templates\masterdata\products.html:134
+#: .\templates\masterdata\products.html:186
 msgid "Slot"
 msgstr "スロット"
 
-#: templates/accounting/purchases.html:71 templates/accounting/sales.html:71
-#: templates/listing/inventory.html:89 templates/listing/purchases.html:91
-#: templates/listing/sales.html:91 templates/masterdata/customers.html:51
-#: templates/masterdata/halls.html:52 templates/masterdata/products.html:52
-#: templates/masterdata/senders.html:52
+#: .\templates\accounting\purchases.html:71
+#: .\templates\accounting\sales.html:71 .\templates\listing\inventory.html:89
+#: .\templates\listing\purchases.html:91 .\templates\listing\sales.html:91
+#: .\templates\masterdata\customers.html:51
+#: .\templates\masterdata\halls.html:52 .\templates\masterdata\products.html:52
+#: .\templates\masterdata\senders.html:52
 msgid "Search"
 msgstr "検索"
 
-#: templates/accounting/purchases.html:73 templates/accounting/sales.html:73
-#: templates/listing/inventory.html:91 templates/listing/purchases.html:93
-#: templates/listing/sales.html:93 templates/masterdata/customers.html:53
-#: templates/masterdata/halls.html:54 templates/masterdata/products.html:54
-#: templates/masterdata/senders.html:54
+#: .\templates\accounting\purchases.html:73
+#: .\templates\accounting\sales.html:73 .\templates\listing\inventory.html:91
+#: .\templates\listing\purchases.html:93 .\templates\listing\sales.html:93
+#: .\templates\masterdata\customers.html:53
+#: .\templates\masterdata\halls.html:54 .\templates\masterdata\products.html:54
+#: .\templates\masterdata\senders.html:54
 msgid "Clear"
 msgstr "取除"
 
-#: templates/accounting/purchases.html:81 templates/accounting/sales.html:81
-#: templates/listing/inventory.html:100
+#: .\templates\accounting\purchases.html:81
+#: .\templates\accounting\sales.html:81 .\templates\listing\inventory.html:100
 msgid "Search results"
 msgstr "検索結果"
 
-#: templates/accounting/purchases.html:130 templates/accounting/sales.html:129
-#: templates/contracts/hall_purchases.html:839
-#: templates/contracts/hall_sales.html:836
-#: templates/contracts/trader_purchases.html:845
-#: templates/contracts/trader_sales.html:760
-#: templates/listing/inventory.html:155 templates/listing/purchases.html:160
-#: templates/listing/sales.html:160
+#: .\templates\accounting\purchases.html:130
+#: .\templates\accounting\sales.html:129
+#: .\templates\contracts\hall_purchases.html:839
+#: .\templates\contracts\hall_sales.html:836
+#: .\templates\contracts\trader_purchases.html:845
+#: .\templates\contracts\trader_sales.html:760
+#: .\templates\listing\inventory.html:155
+#: .\templates\listing\purchases.html:160 .\templates\listing\sales.html:160
 msgid "Export to excel"
 msgstr "エクセル出力"
 
-#: templates/contracts/hall_purchases.html:20
-#: templates/contracts/hall_purchases.html:27
-#: templates/contracts/hall_sales.html:20
-#: templates/contracts/hall_sales.html:27
-#: templates/contracts/trader_purchases.html:20
-#: templates/contracts/trader_purchases.html:27
-#: templates/contracts/trader_sales.html:20
-#: templates/contracts/trader_sales.html:27 templates/layout/sidebar.html:42
+#: .\templates\contracts\hall_purchases.html:20
+#: .\templates\contracts\hall_purchases.html:27
+#: .\templates\contracts\hall_sales.html:20
+#: .\templates\contracts\hall_sales.html:27
+#: .\templates\contracts\trader_purchases.html:20
+#: .\templates\contracts\trader_purchases.html:27
+#: .\templates\contracts\trader_sales.html:20
+#: .\templates\contracts\trader_sales.html:27
+#: .\templates\layout\sidebar.html:43
 msgid "Contract"
 msgstr "売買契約の作成"
 
-#: templates/contracts/hall_purchases.html:79
-#: templates/contracts/hall_sales.html:79
-#: templates/masterdata/customers.html:46 templates/masterdata/halls.html:47
-#: templates/masterdata/products.html:47 templates/masterdata/senders.html:47
+#: .\templates\contracts\hall_purchases.html:79
+#: .\templates\contracts\hall_sales.html:79
+#: .\templates\masterdata\customers.html:46
+#: .\templates\masterdata\halls.html:47 .\templates\masterdata\products.html:47
+#: .\templates\masterdata\senders.html:47
 msgid "Keyword search"
 msgstr "キーワード検索"
 
-#: templates/contracts/hall_purchases.html:82
-#: templates/contracts/hall_sales.html:82
-#: templates/contracts/trader_purchases.html:91
-#: templates/contracts/trader_sales.html:90
+#: .\templates\contracts\hall_purchases.html:82
+#: .\templates\contracts\hall_sales.html:82
+#: .\templates\contracts\trader_purchases.html:91
+#: .\templates\contracts\trader_sales.html:90
 msgid "Search by customer, frigana, tel or fax"
 msgstr "取引先名、フリガナ、TEL、FAXで検索してください"
 
-#: templates/contracts/hall_purchases.html:133
-#: templates/contracts/hall_sales.html:134
+#: .\templates\contracts\hall_purchases.html:133
+#: .\templates\contracts\hall_sales.html:134
 msgid "Search by name, frigana, tel or fax"
 msgstr "ホール名、フリガナ、TEL、FAXで検索してください"
 
-#: templates/contracts/hall_purchases.html:168
-#: templates/contracts/hall_sales.html:169
-#: templates/contracts/trader_purchases.html:191
-#: templates/contracts/trader_sales.html:190
+#: .\templates\contracts\hall_purchases.html:168
+#: .\templates\contracts\hall_sales.html:169
+#: .\templates\contracts\trader_purchases.html:191
+#: .\templates\contracts\trader_sales.html:190
 msgid "Search by model name"
 msgstr "機種名で検索してください"
 
-#: templates/contracts/hall_purchases.html:171
-#: templates/contracts/hall_purchases.html:358
-#: templates/contracts/hall_purchases.html:515
-#: templates/contracts/hall_sales.html:172
-#: templates/contracts/hall_sales.html:359
-#: templates/contracts/hall_sales.html:516
-#: templates/contracts/trader_purchases.html:194
-#: templates/contracts/trader_purchases.html:381
-#: templates/contracts/trader_sales.html:193
-#: templates/contracts/trader_sales.html:380
-#: templates/listing/inventory.html:249 templates/masterdata/customers.html:181
-#: templates/masterdata/documents.html:118 templates/masterdata/halls.html:181
-#: templates/masterdata/products.html:148 templates/masterdata/senders.html:172
+#: .\templates\contracts\hall_purchases.html:171
+#: .\templates\contracts\hall_purchases.html:358
+#: .\templates\contracts\hall_purchases.html:515
+#: .\templates\contracts\hall_sales.html:172
+#: .\templates\contracts\hall_sales.html:359
+#: .\templates\contracts\hall_sales.html:516
+#: .\templates\contracts\trader_purchases.html:194
+#: .\templates\contracts\trader_purchases.html:381
+#: .\templates\contracts\trader_sales.html:193
+#: .\templates\contracts\trader_sales.html:380
+#: .\templates\listing\inventory.html:249
+#: .\templates\masterdata\customers.html:181
+#: .\templates\masterdata\documents.html:118
+#: .\templates\masterdata\halls.html:181
+#: .\templates\masterdata\people_in_charge.html:101
+#: .\templates\masterdata\products.html:148
+#: .\templates\masterdata\senders.html:172
 msgid "Add"
 msgstr "追加"
 
-#: templates/contracts/hall_purchases.html:185
-#: templates/contracts/hall_purchases.html:371
-#: templates/contracts/hall_purchases.html:528
-#: templates/contracts/hall_sales.html:186
-#: templates/contracts/hall_sales.html:372
-#: templates/contracts/hall_sales.html:529
-#: templates/contracts/trader_purchases.html:208
-#: templates/contracts/trader_purchases.html:394
-#: templates/contracts/trader_sales.html:207
-#: templates/contracts/trader_sales.html:393
-#: templates/listing/inventory.html:114 templates/listing/purchases.html:115
-#: templates/listing/sales.html:115 templates/masterdata/customers.html:73
-#: templates/masterdata/documents.html:48 templates/masterdata/halls.html:74
-#: templates/masterdata/products.html:70 templates/masterdata/senders.html:73
+#: .\templates\contracts\hall_purchases.html:185
+#: .\templates\contracts\hall_purchases.html:371
+#: .\templates\contracts\hall_purchases.html:528
+#: .\templates\contracts\hall_sales.html:186
+#: .\templates\contracts\hall_sales.html:372
+#: .\templates\contracts\hall_sales.html:529
+#: .\templates\contracts\trader_purchases.html:208
+#: .\templates\contracts\trader_purchases.html:394
+#: .\templates\contracts\trader_sales.html:207
+#: .\templates\contracts\trader_sales.html:393
+#: .\templates\listing\inventory.html:114
+#: .\templates\listing\purchases.html:115 .\templates\listing\sales.html:115
+#: .\templates\masterdata\customers.html:73
+#: .\templates\masterdata\documents.html:48
+#: .\templates\masterdata\halls.html:74
+#: .\templates\masterdata\people_in_charge.html:46
+#: .\templates\masterdata\products.html:70
+#: .\templates\masterdata\senders.html:73
 msgid "Action"
 msgstr "操作"
 
-#: templates/contracts/hall_purchases.html:248
-#: templates/contracts/hall_sales.html:249
-#: templates/contracts/trader_purchases.html:271
-#: templates/contracts/trader_sales.html:270
+#: .\templates\contracts\hall_purchases.html:248
+#: .\templates\contracts\hall_sales.html:249
+#: .\templates\contracts\trader_purchases.html:271
+#: .\templates\contracts\trader_sales.html:270
 msgid "No product has been added."
 msgstr "商品が追加されていません。"
 
-#: templates/contracts/hall_purchases.html:349
-#: templates/contracts/hall_sales.html:350
-#: templates/contracts/trader_purchases.html:372
-#: templates/contracts/trader_sales.html:371 templates/layout/sidebar.html:37
-#: templates/masterdata/documents.html:4 templates/masterdata/documents.html:17
-#: templates/masterdata/documents.html:25
-#: templates/masterdata/documents.html:36
+#: .\templates\contracts\hall_purchases.html:349
+#: .\templates\contracts\hall_sales.html:350
+#: .\templates\contracts\trader_purchases.html:372
+#: .\templates\contracts\trader_sales.html:371
+#: .\templates\layout\sidebar.html:37 .\templates\masterdata\documents.html:4
+#: .\templates\masterdata\documents.html:17
+#: .\templates\masterdata\documents.html:25
+#: .\templates\masterdata\documents.html:36
 msgid "Other"
 msgstr "商品名そのほか"
 
-#: templates/contracts/hall_purchases.html:352
-#: templates/contracts/hall_sales.html:353
-#: templates/contracts/trader_purchases.html:375
-#: templates/contracts/trader_sales.html:374
+#: .\templates\contracts\hall_purchases.html:352
+#: .\templates\contracts\hall_sales.html:353
+#: .\templates\contracts\trader_purchases.html:375
+#: .\templates\contracts\trader_sales.html:374
 msgid "Select document"
 msgstr "その他売上を選択してください"
 
-#: templates/contracts/hall_purchases.html:426
-#: templates/contracts/hall_sales.html:427
-#: templates/contracts/trader_purchases.html:449
-#: templates/contracts/trader_sales.html:448
+#: .\templates\contracts\hall_purchases.html:426
+#: .\templates\contracts\hall_sales.html:427
+#: .\templates\contracts\trader_purchases.html:449
+#: .\templates\contracts\trader_sales.html:448
 msgid "No document has been added."
 msgstr "書類が追加されていません。"
 
-#: templates/contracts/hall_purchases.html:506
-#: templates/contracts/hall_sales.html:507
+#: .\templates\contracts\hall_purchases.html:506
+#: .\templates\contracts\hall_sales.html:507
 msgid "Document fee"
 msgstr "書類代"
 
-#: templates/contracts/hall_purchases.html:509
-#: templates/contracts/hall_sales.html:510
+#: .\templates\contracts\hall_purchases.html:509
+#: .\templates\contracts\hall_sales.html:510
 msgid "Select document fee"
 msgstr "書類代を選択してください"
 
-#: templates/contracts/hall_purchases.html:583
-#: templates/contracts/hall_sales.html:584
+#: .\templates\contracts\hall_purchases.html:583
+#: .\templates\contracts\hall_sales.html:584
 msgid "No document fee has been added."
 msgstr "書類代が追加されていません。"
 
-#: templates/contracts/hall_purchases.html:838
-#: templates/contracts/hall_sales.html:835
-#: templates/contracts/trader_purchases.html:844
-#: templates/contracts/trader_sales.html:759
-#: templates/listing/inventory.html:346 templates/listing/purchases.html:212
-#: templates/listing/sales.html:212 templates/masterdata/customers.html:261
-#: templates/masterdata/documents.html:168 templates/masterdata/halls.html:260
-#: templates/masterdata/products.html:200 templates/masterdata/senders.html:243
+#: .\templates\contracts\hall_purchases.html:838
+#: .\templates\contracts\hall_sales.html:835
+#: .\templates\contracts\trader_purchases.html:844
+#: .\templates\contracts\trader_sales.html:759
+#: .\templates\listing\inventory.html:346
+#: .\templates\listing\purchases.html:212 .\templates\listing\sales.html:212
+#: .\templates\masterdata\customers.html:261
+#: .\templates\masterdata\documents.html:168
+#: .\templates\masterdata\halls.html:260
+#: .\templates\masterdata\people_in_charge.html:138
+#: .\templates\masterdata\products.html:200
+#: .\templates\masterdata\senders.html:243
 msgid "Save"
 msgstr "保存"
 
-#: templates/contracts/trader_purchases.html:95
-#: templates/contracts/trader_sales.html:94
+#: .\templates\contracts\trader_purchases.html:95
+#: .\templates\contracts\trader_sales.html:94
 msgid "CO."
 msgstr "御中"
 
-#: templates/contracts/trader_purchases.html:105
-#: templates/contracts/trader_sales.html:104
+#: .\templates\contracts\trader_purchases.html:105
+#: .\templates\contracts\trader_sales.html:104
 msgid "Mr."
 msgstr "様"
 
-#: templates/contracts/trader_purchases.html:595
-#: templates/contracts/trader_sales.html:567
+#: .\templates\contracts\trader_purchases.html:595
+#: .\templates\contracts\trader_sales.html:567
 msgid "Total"
 msgstr "合計"
 
-#: templates/contracts/trader_purchases.html:619
-#: templates/contracts/trader_sales.html:631
+#: .\templates\contracts\trader_purchases.html:619
+#: .\templates\contracts\trader_sales.html:631
 msgid "Select product sender"
 msgstr "商品発送先を選択してください"
 
-#: templates/contracts/trader_purchases.html:666
-#: templates/contracts/trader_sales.html:670
+#: .\templates\contracts\trader_purchases.html:666
+#: .\templates\contracts\trader_sales.html:670
 msgid "Select document sender"
 msgstr "書類発送先を選択してください"
 
-#: templates/contracts/trader_purchases.html:838
+#: .\templates\contracts\trader_purchases.html:838
 msgid "Please describe the transfer destination."
 msgstr "お振込み先の記載をお願いします。"
 
-#: templates/contracts/trader_sales.html:738
+#: .\templates\contracts\trader_sales.html:738
 msgid "Please be noted that the transfer fee will be at your company expense."
 msgstr "お振込み手数料は貴社ご負担でお願いします。"
 
-#: templates/contracts/trader_sales.html:744
+#: .\templates\contracts\trader_sales.html:744
 msgid "Please check the contents. After seal, kindly revert back to us."
 msgstr "内容をご確認の上、捺印後弊社まで返信お願いします。"
 
-#: templates/contracts/trader_sales.html:747
+#: .\templates\contracts\trader_sales.html:747
 msgid ""
 "If you need the original invoice, please make sure to tick the checkbox."
 msgstr "請求書原本が必要な場合は必ずチェックしてください。"
 
-#: templates/contracts/trader_sales.html:751
+#: .\templates\contracts\trader_sales.html:751
 msgid "Memo"
 msgstr "メモ"
 
-#: templates/error/404.html:13 templates/error/500.html:13
-#: templates/layout/error_modal.html:8 templates/layout/error_modal.html:35
-#: templates/layout/error_modal.html:68 templates/layout/error_modal.html:100
-#: templates/layout/error_modal.html:132 templates/layout/error_modal.html:147
-#: templates/layout/error_modal.html:162
+#: .\templates\error\404.html:13 .\templates\error\500.html:13
+#: .\templates\layout\error_modal.html:8 .\templates\layout\error_modal.html:35
+#: .\templates\layout\error_modal.html:68
+#: .\templates\layout\error_modal.html:100
+#: .\templates\layout\error_modal.html:132
+#: .\templates\layout\error_modal.html:147
+#: .\templates\layout\error_modal.html:162
 msgid "Error"
 msgstr "エラー"
 
-#: templates/error/404.html:17
+#: .\templates\error\404.html:17
 msgid "Page not found"
 msgstr "ページが見つかりません"
 
-#: templates/error/404.html:17 templates/error/500.html:17
+#: .\templates\error\404.html:17 .\templates\error\500.html:17
 msgid "Home"
 msgstr "ホーム"
 
-#: templates/error/500.html:13
+#: .\templates\error\500.html:13
 msgid "Oups!"
 msgstr "おっと!"
 
-#: templates/error/500.html:17
+#: .\templates\error\500.html:17
 msgid "Server error, please contact support"
 msgstr "サーバーエラー、サポートに連絡してください"
 
-#: templates/layout/base.html:11 templates/layout/base_not_logged.html:10
-#: templates/layout/base_not_logged.html:42 templates/layout/navbar.html:6
+#: .\templates\layout\base.html:11 .\templates\layout\base_not_logged.html:10
+#: .\templates\layout\base_not_logged.html:42 .\templates\layout\navbar.html:6
 msgid "Inventory System"
 msgstr "在庫システム"
 
-#: templates/layout/error_modal.html:13
+#: .\templates\layout\error_modal.html:13
 msgid "Customer must be selected."
 msgstr "取引先のフィールドは必須です。"
 
-#: templates/layout/error_modal.html:14 templates/layout/error_modal.html:41
-#: templates/layout/error_modal.html:83 templates/layout/error_modal.html:115
+#: .\templates\layout\error_modal.html:14
+#: .\templates\layout\error_modal.html:41
+#: .\templates\layout\error_modal.html:83
+#: .\templates\layout\error_modal.html:115
 msgid "Person in charge field must be provided."
 msgstr "担当名のフィールドは必須です。"
 
-#: templates/layout/error_modal.html:15 templates/layout/error_modal.html:42
-#: templates/layout/error_modal.html:75 templates/layout/error_modal.html:107
+#: .\templates\layout\error_modal.html:15
+#: .\templates\layout\error_modal.html:42
+#: .\templates\layout\error_modal.html:75
+#: .\templates\layout\error_modal.html:107
 msgid "At least one product must be added."
 msgstr "少なくとも1つの商品名を追加する必要があります。"
 
-#: templates/layout/error_modal.html:16 templates/layout/error_modal.html:43
-#: templates/layout/error_modal.html:76 templates/layout/error_modal.html:108
+#: .\templates\layout\error_modal.html:16
+#: .\templates\layout\error_modal.html:43
+#: .\templates\layout\error_modal.html:76
+#: .\templates\layout\error_modal.html:108
 msgid "Price and quantity for each product must be positive integer."
 msgstr "商品の単価と数量は正の整数でなければなりません。"
 
-#: templates/layout/error_modal.html:17 templates/layout/error_modal.html:44
-#: templates/layout/error_modal.html:77 templates/layout/error_modal.html:109
+#: .\templates\layout\error_modal.html:17
+#: .\templates\layout\error_modal.html:44
+#: .\templates\layout\error_modal.html:77
+#: .\templates\layout\error_modal.html:109
 msgid "At least one document must be added."
 msgstr "少なくとも1つの書類を追加する必要があります。"
 
-#: templates/layout/error_modal.html:18 templates/layout/error_modal.html:45
-#: templates/layout/error_modal.html:78 templates/layout/error_modal.html:110
+#: .\templates\layout\error_modal.html:18
+#: .\templates\layout\error_modal.html:45
+#: .\templates\layout\error_modal.html:78
+#: .\templates\layout\error_modal.html:110
 msgid "Price and quantity for each document must be positive integer."
 msgstr "書類の単価と数量は正の整数でなければなりません。"
 
-#: templates/layout/error_modal.html:19
+#: .\templates\layout\error_modal.html:19
 msgid ""
 "When the shipping method is delivery, product sender and document sender "
 "must be selected."
 msgstr ""
 "運送方法が引取の場合は、商品発送先と書類発送先を選択する必要があります。"
 
-#: templates/layout/error_modal.html:24 templates/layout/error_modal.html:57
-#: templates/layout/error_modal.html:89 templates/layout/error_modal.html:121
-#: templates/listing/inventory.html:250 templates/listing/inventory.html:347
-#: templates/listing/inventory.html:373 templates/listing/purchases.html:213
-#: templates/listing/sales.html:213 templates/masterdata/customers.html:182
-#: templates/masterdata/customers.html:262
-#: templates/masterdata/customers.html:288
-#: templates/masterdata/documents.html:119
-#: templates/masterdata/documents.html:169
-#: templates/masterdata/documents.html:195 templates/masterdata/halls.html:182
-#: templates/masterdata/halls.html:261 templates/masterdata/halls.html:287
-#: templates/masterdata/products.html:149
-#: templates/masterdata/products.html:201
-#: templates/masterdata/products.html:227 templates/masterdata/senders.html:173
-#: templates/masterdata/senders.html:244 templates/masterdata/senders.html:270
+#: .\templates\layout\error_modal.html:24
+#: .\templates\layout\error_modal.html:57
+#: .\templates\layout\error_modal.html:89
+#: .\templates\layout\error_modal.html:121
+#: .\templates\listing\inventory.html:250
+#: .\templates\listing\inventory.html:347
+#: .\templates\listing\inventory.html:373
+#: .\templates\listing\purchases.html:213 .\templates\listing\sales.html:213
+#: .\templates\masterdata\customers.html:182
+#: .\templates\masterdata\customers.html:262
+#: .\templates\masterdata\customers.html:288
+#: .\templates\masterdata\documents.html:119
+#: .\templates\masterdata\documents.html:169
+#: .\templates\masterdata\documents.html:195
+#: .\templates\masterdata\halls.html:182 .\templates\masterdata\halls.html:261
+#: .\templates\masterdata\halls.html:287
+#: .\templates\masterdata\people_in_charge.html:102
+#: .\templates\masterdata\people_in_charge.html:139
+#: .\templates\masterdata\people_in_charge.html:165
+#: .\templates\masterdata\products.html:149
+#: .\templates\masterdata\products.html:201
+#: .\templates\masterdata\products.html:227
+#: .\templates\masterdata\senders.html:173
+#: .\templates\masterdata\senders.html:244
+#: .\templates\masterdata\senders.html:270
 msgid "Close"
 msgstr "閉じる"
 
-#: templates/layout/error_modal.html:40 templates/layout/error_modal.html:73
-#: templates/layout/error_modal.html:105
+#: .\templates\layout\error_modal.html:40
+#: .\templates\layout\error_modal.html:73
+#: .\templates\layout\error_modal.html:105
 msgid "Customer field must be selected."
 msgstr "取引先のフィールドは必須です。"
 
-#: templates/layout/error_modal.html:46
+#: .\templates\layout\error_modal.html:46
 msgid ""
 "Sender and shipping company for product sender and document sender forms "
 "must be given."
 msgstr "商品発送先と書類発送先で会社名と運送会社を指定する必要があります。"
 
-#: templates/layout/error_modal.html:47
+#: .\templates\layout\error_modal.html:47
 msgid "Frame color field must be selected."
 msgstr "枠色のフィールドは必須です。"
 
-#: templates/layout/error_modal.html:48
+#: .\templates\layout\error_modal.html:48
 msgid "Receipt field must be selected."
 msgstr "引取のフィールドは必須です。"
 
-#: templates/layout/error_modal.html:49
+#: .\templates\layout\error_modal.html:49
 msgid "Bank name field must be selected."
 msgstr "銀行名のフィールドは必須です。"
 
-#: templates/layout/error_modal.html:50
+#: .\templates\layout\error_modal.html:50
 msgid "Account number field must be selected."
 msgstr "口座番号のフィールドは必須です。"
 
-#: templates/layout/error_modal.html:51
+#: .\templates\layout\error_modal.html:51
 msgid "Branch name field must be selected."
 msgstr "支店名のフィールドは必須です。"
 
-#: templates/layout/error_modal.html:52
+#: .\templates\layout\error_modal.html:52
 msgid "Account holder field must be selected."
 msgstr "口座名義のフィールドは必須です。"
 
-#: templates/layout/error_modal.html:74 templates/layout/error_modal.html:106
+#: .\templates\layout\error_modal.html:74
+#: .\templates\layout\error_modal.html:106
 msgid "Hall field must be selected."
 msgstr "ホール名のフィールドは必須です。"
 
-#: templates/layout/error_modal.html:79 templates/layout/error_modal.html:111
+#: .\templates\layout\error_modal.html:79
+#: .\templates\layout\error_modal.html:111
 msgid "At least one document fee must be added."
 msgstr "少なくとも1つの書類代を追加する必要があります。"
 
-#: templates/layout/error_modal.html:80 templates/layout/error_modal.html:112
+#: .\templates\layout\error_modal.html:80
+#: .\templates\layout\error_modal.html:112
 msgid ""
 "Model count and quantity for each document fee must be positive integer."
 msgstr "書類代の機種数と台数は正の整数でなければなりません。"
 
-#: templates/layout/error_modal.html:81 templates/layout/error_modal.html:113
+#: .\templates\layout\error_modal.html:81
+#: .\templates\layout\error_modal.html:113
 msgid "At least one milestone must be added."
 msgstr "少なくとも1つのお支払内訳を追加する必要があります。"
 
-#: templates/layout/error_modal.html:82 templates/layout/error_modal.html:114
+#: .\templates\layout\error_modal.html:82
+#: .\templates\layout\error_modal.html:114
 msgid "Transfer account field must be provided."
 msgstr "振込先口座のフィールドは必須です。"
 
-#: templates/layout/error_modal.html:84 templates/layout/error_modal.html:116
+#: .\templates\layout\error_modal.html:84
+#: .\templates\layout\error_modal.html:116
 msgid "Confirmor field must be provided."
 msgstr "確認印のフィールドは必須です。"
 
-#: templates/layout/error_modal.html:136
+#: .\templates\layout\error_modal.html:136
 msgid "Select the product before adding to the table."
 msgstr "追加する前に商品名を選択してください。"
 
-#: templates/layout/error_modal.html:151
+#: .\templates\layout\error_modal.html:151
 msgid "Select the document before adding to the table."
 msgstr "追加する前に書類を選択してください。"
 
-#: templates/layout/error_modal.html:166
+#: .\templates\layout\error_modal.html:166
 msgid "Select the document fee before adding to the table."
 msgstr "追加する前に書類代を選択してください。"
 
-#: templates/layout/navbar.html:48
+#: .\templates\layout\navbar.html:48
 msgid "My profile"
 msgstr "私のプロフィール"
 
-#: templates/layout/navbar.html:49
+#: .\templates\layout\navbar.html:49
 msgid "Logout"
 msgstr "ログアウト"
 
-#: templates/layout/sidebar.html:31 templates/masterdata/customers.html:17
-#: templates/masterdata/customers.html:24
-#: templates/masterdata/documents.html:17
-#: templates/masterdata/documents.html:24 templates/masterdata/halls.html:17
-#: templates/masterdata/halls.html:24 templates/masterdata/products.html:17
-#: templates/masterdata/products.html:24 templates/masterdata/senders.html:17
-#: templates/masterdata/senders.html:24
+#: .\templates\layout\sidebar.html:31 .\templates\masterdata\customers.html:17
+#: .\templates\masterdata\customers.html:24
+#: .\templates\masterdata\documents.html:17
+#: .\templates\masterdata\documents.html:24
+#: .\templates\masterdata\halls.html:17 .\templates\masterdata\halls.html:24
+#: .\templates\masterdata\people_in_charge.html:17
+#: .\templates\masterdata\people_in_charge.html:24
+#: .\templates\masterdata\products.html:17
+#: .\templates\masterdata\products.html:24
+#: .\templates\masterdata\senders.html:17
+#: .\templates\masterdata\senders.html:24
 msgid "Master data"
 msgstr "マスタデータ"
 
-#: templates/layout/sidebar.html:33 templates/masterdata/customers.html:4
-#: templates/masterdata/customers.html:17
-#: templates/masterdata/customers.html:25
-#: templates/masterdata/customers.html:36
+#: .\templates\layout\sidebar.html:33 .\templates\masterdata\customers.html:4
+#: .\templates\masterdata\customers.html:17
+#: .\templates\masterdata\customers.html:25
+#: .\templates\masterdata\customers.html:36
 msgid "Customer master"
 msgstr "顧客マスタ"
 
-#: templates/layout/sidebar.html:34 templates/masterdata/halls.html:4
-#: templates/masterdata/halls.html:17 templates/masterdata/halls.html:25
-#: templates/masterdata/halls.html:36
+#: .\templates\layout\sidebar.html:34 .\templates\masterdata\halls.html:4
+#: .\templates\masterdata\halls.html:17 .\templates\masterdata\halls.html:25
+#: .\templates\masterdata\halls.html:36
 msgid "Hall"
 msgstr "ホール"
 
-#: templates/layout/sidebar.html:35 templates/masterdata/senders.html:4
-#: templates/masterdata/senders.html:17 templates/masterdata/senders.html:25
-#: templates/masterdata/senders.html:36
+#: .\templates\layout\sidebar.html:35 .\templates\masterdata\senders.html:4
+#: .\templates\masterdata\senders.html:17
+#: .\templates\masterdata\senders.html:25
+#: .\templates\masterdata\senders.html:36
 msgid "Sender"
 msgstr "配送先"
 
-#: templates/layout/sidebar.html:57 templates/listing/history.html:18
-#: templates/listing/history.html:26 templates/listing/history.html:37
+#: .\templates\layout\sidebar.html:58 .\templates\listing\history.html:18
+#: .\templates\listing\history.html:26 .\templates\listing\history.html:37
 msgid "Export history"
 msgstr "エクセル履歴"
 
-#: templates/listing/history.html:46 templates/registration/login.html:17
+#: .\templates\listing\history.html:46 .\templates\registration\login.html:17
 msgid "Username"
 msgstr "ユーザー名"
 
-#: templates/listing/history.html:47
+#: .\templates\listing\history.html:47
 msgid "Export"
 msgstr "保存内容"
 
-#: templates/listing/history.html:48
+#: .\templates\listing\history.html:48
 msgid "Exported at"
 msgstr "保存時間"
 
-#: templates/listing/inventory.html:152
+#: .\templates\listing\inventory.html:152
 msgid "New product"
 msgstr "在庫に追加"
 
-#: templates/listing/inventory.html:169 templates/masterdata/products.html:100
-#: templates/masterdata/products.html:112
+#: .\templates\listing\inventory.html:169
+#: .\templates\masterdata\products.html:100
+#: .\templates\masterdata\products.html:112
 msgid "Add product"
 msgstr "新規商品名"
 
-#: templates/listing/inventory.html:265 templates/masterdata/products.html:164
+#: .\templates\listing\inventory.html:265
+#: .\templates\masterdata\products.html:164
 msgid "Edit product"
 msgstr "商品名の更新"
 
-#: templates/listing/inventory.html:362 templates/masterdata/products.html:216
+#: .\templates\listing\inventory.html:362
+#: .\templates\masterdata\products.html:216
 msgid "Delete product"
 msgstr "商品名の削除"
 
-#: templates/listing/inventory.html:366 templates/masterdata/customers.html:281
-#: templates/masterdata/documents.html:188 templates/masterdata/halls.html:280
-#: templates/masterdata/products.html:220 templates/masterdata/senders.html:263
+#: .\templates\listing\inventory.html:366
+#: .\templates\masterdata\customers.html:281
+#: .\templates\masterdata\documents.html:188
+#: .\templates\masterdata\halls.html:280
+#: .\templates\masterdata\people_in_charge.html:158
+#: .\templates\masterdata\products.html:220
+#: .\templates\masterdata\senders.html:263
 msgid "Are you sure you want to remove this data?"
 msgstr "このデータを削除してもよろしいですか？"
 
-#: templates/listing/inventory.html:372 templates/masterdata/customers.html:287
-#: templates/masterdata/documents.html:194 templates/masterdata/halls.html:286
-#: templates/masterdata/products.html:226 templates/masterdata/senders.html:269
+#: .\templates\listing\inventory.html:372
+#: .\templates\masterdata\customers.html:287
+#: .\templates\masterdata\documents.html:194
+#: .\templates\masterdata\halls.html:286
+#: .\templates\masterdata\people_in_charge.html:164
+#: .\templates\masterdata\products.html:226
+#: .\templates\masterdata\senders.html:269
 msgid "Delete"
 msgstr "削除"
 
-#: templates/listing/purchases.html:18 templates/listing/purchases.html:26
-#: templates/listing/purchases.html:37
+#: .\templates\listing\purchases.html:18 .\templates\listing\purchases.html:26
+#: .\templates\listing\purchases.html:37
 msgid "Purchases (contract)"
 msgstr "仕入（売買契求書）"
 
-#: templates/listing/purchases.html:80 templates/listing/sales.html:80
+#: .\templates\listing\purchases.html:80 .\templates\listing\sales.html:80
 msgid "All"
 msgstr "全て"
 
-#: templates/listing/purchases.html:173 templates/listing/sales.html:173
+#: .\templates\listing\purchases.html:173 .\templates\listing\sales.html:173
 msgid "Edit"
 msgstr "編集"
 
-#: templates/listing/sales.html:18 templates/listing/sales.html:26
-#: templates/listing/sales.html:37
+#: .\templates\listing\sales.html:18 .\templates\listing\sales.html:26
+#: .\templates\listing\sales.html:37
 msgid "Sales (contract)"
 msgstr "売上（売買契求書）"
 
-#: templates/masterdata/customers.html:66
-#: templates/masterdata/customers.html:130
-#: templates/masterdata/customers.html:210
+#: .\templates\masterdata\customers.html:66
+#: .\templates\masterdata\customers.html:130
+#: .\templates\masterdata\customers.html:210
 msgid "Customer name"
 msgstr "顧客名"
 
-#: templates/masterdata/customers.html:72
-#: templates/masterdata/customers.html:172
-#: templates/masterdata/customers.html:252
+#: .\templates\masterdata\customers.html:72
+#: .\templates\masterdata\customers.html:172
+#: .\templates\masterdata\customers.html:252
 msgid "Excel"
 msgstr "エクセル"
 
-#: templates/masterdata/customers.html:106
-#: templates/masterdata/customers.html:118
+#: .\templates\masterdata\customers.html:106
+#: .\templates\masterdata\customers.html:118
 msgid "Add customer"
 msgstr "新規顧客マスタ"
 
-#: templates/masterdata/customers.html:132
-#: templates/masterdata/customers.html:212
+#: .\templates\masterdata\customers.html:132
+#: .\templates\masterdata\customers.html:212
 msgid "Enter customer name"
 msgstr "顧客名を入力してください"
 
-#: templates/masterdata/customers.html:139
-#: templates/masterdata/customers.html:219 templates/masterdata/halls.html:139
-#: templates/masterdata/halls.html:218 templates/masterdata/senders.html:138
-#: templates/masterdata/senders.html:209
+#: .\templates\masterdata\customers.html:139
+#: .\templates\masterdata\customers.html:219
+#: .\templates\masterdata\halls.html:139 .\templates\masterdata\halls.html:218
+#: .\templates\masterdata\senders.html:138
+#: .\templates\masterdata\senders.html:209
 msgid "Enter frigana"
 msgstr "フリガナを入力してください"
 
-#: templates/masterdata/customers.html:146
-#: templates/masterdata/customers.html:226 templates/masterdata/halls.html:146
-#: templates/masterdata/halls.html:225 templates/masterdata/senders.html:145
-#: templates/masterdata/senders.html:216
+#: .\templates\masterdata\customers.html:146
+#: .\templates\masterdata\customers.html:226
+#: .\templates\masterdata\halls.html:146 .\templates\masterdata\halls.html:225
+#: .\templates\masterdata\senders.html:145
+#: .\templates\masterdata\senders.html:216
 msgid "Enter postal code"
 msgstr "郵便番号を入力してください"
 
-#: templates/masterdata/customers.html:153
-#: templates/masterdata/customers.html:233 templates/masterdata/halls.html:153
-#: templates/masterdata/halls.html:232 templates/masterdata/senders.html:152
-#: templates/masterdata/senders.html:223
+#: .\templates\masterdata\customers.html:153
+#: .\templates\masterdata\customers.html:233
+#: .\templates\masterdata\halls.html:153 .\templates\masterdata\halls.html:232
+#: .\templates\masterdata\senders.html:152
+#: .\templates\masterdata\senders.html:223
 msgid "Enter address"
 msgstr "住所を入力してください"
 
-#: templates/masterdata/customers.html:160
-#: templates/masterdata/customers.html:240 templates/masterdata/halls.html:160
-#: templates/masterdata/halls.html:239 templates/masterdata/senders.html:159
-#: templates/masterdata/senders.html:230
+#: .\templates\masterdata\customers.html:160
+#: .\templates\masterdata\customers.html:240
+#: .\templates\masterdata\halls.html:160 .\templates\masterdata\halls.html:239
+#: .\templates\masterdata\senders.html:159
+#: .\templates\masterdata\senders.html:230
 msgid "Enter TEL"
 msgstr "TELを入力してください"
 
-#: templates/masterdata/customers.html:167
-#: templates/masterdata/customers.html:247 templates/masterdata/halls.html:167
-#: templates/masterdata/halls.html:246 templates/masterdata/senders.html:166
-#: templates/masterdata/senders.html:237
+#: .\templates\masterdata\customers.html:167
+#: .\templates\masterdata\customers.html:247
+#: .\templates\masterdata\halls.html:167 .\templates\masterdata\halls.html:246
+#: .\templates\masterdata\senders.html:166
+#: .\templates\masterdata\senders.html:237
 msgid "Enter FAX"
 msgstr "FAXを入力してください"
 
-#: templates/masterdata/customers.html:174
-#: templates/masterdata/customers.html:254
+#: .\templates\masterdata\customers.html:174
+#: .\templates\masterdata\customers.html:254
 msgid "Enter excel"
 msgstr "エクセル名を入力してください"
 
-#: templates/masterdata/customers.html:197
+#: .\templates\masterdata\customers.html:197
 msgid "Edit customer"
 msgstr "顧客マスタの更新"
 
-#: templates/masterdata/customers.html:277
+#: .\templates\masterdata\customers.html:277
 msgid "Delete customer"
 msgstr "顧客マスタの削除"
 
-#: templates/masterdata/documents.html:45
-#: templates/masterdata/documents.html:96
-#: templates/masterdata/documents.html:146
+#: .\templates\masterdata\documents.html:45
+#: .\templates\masterdata\documents.html:96
+#: .\templates\masterdata\documents.html:146
+#: .\templates\masterdata\people_in_charge.html:45
+#: .\templates\masterdata\people_in_charge.html:92
+#: .\templates\masterdata\people_in_charge.html:129
 msgid "Name"
 msgstr "名称"
 
-#: templates/masterdata/documents.html:46
-#: templates/masterdata/documents.html:103
-#: templates/masterdata/documents.html:153
+#: .\templates\masterdata\documents.html:46
+#: .\templates\masterdata\documents.html:103
+#: .\templates\masterdata\documents.html:153
 msgid "Term"
 msgstr "勘定科目"
 
-#: templates/masterdata/documents.html:73
-#: templates/masterdata/documents.html:85
+#: .\templates\masterdata\documents.html:73
+#: .\templates\masterdata\documents.html:85
 msgid "Add other"
 msgstr "新規商品名そのほか"
 
-#: templates/masterdata/documents.html:98
-#: templates/masterdata/documents.html:148
+#: .\templates\masterdata\documents.html:98
+#: .\templates\masterdata\documents.html:148
+#: .\templates\masterdata\people_in_charge.html:94
+#: .\templates\masterdata\people_in_charge.html:131
 msgid "Enter name"
 msgstr "名称を入力してください"
 
-#: templates/masterdata/documents.html:105
-#: templates/masterdata/documents.html:155
+#: .\templates\masterdata\documents.html:105
+#: .\templates\masterdata\documents.html:155
 msgid "Enter term"
 msgstr "勘定科目を入力してください"
 
-#: templates/masterdata/documents.html:112
-#: templates/masterdata/documents.html:162
+#: .\templates\masterdata\documents.html:112
+#: .\templates\masterdata\documents.html:162
 msgid "Enter taxation"
 msgstr "税区分を入力してください"
 
-#: templates/masterdata/documents.html:134
+#: .\templates\masterdata\documents.html:134
 msgid "Edit other"
 msgstr "商品名そのほかの更新"
 
-#: templates/masterdata/documents.html:184
+#: .\templates\masterdata\documents.html:184
 msgid "Delete other"
 msgstr "商品名そのほかの削除"
 
-#: templates/masterdata/halls.html:73 templates/masterdata/halls.html:172
-#: templates/masterdata/halls.html:251
+#: .\templates\masterdata\halls.html:73 .\templates\masterdata\halls.html:172
+#: .\templates\masterdata\halls.html:251
 msgid "Payee"
 msgstr "振込先"
 
-#: templates/masterdata/halls.html:107 templates/masterdata/halls.html:119
+#: .\templates\masterdata\halls.html:107 .\templates\masterdata\halls.html:119
 msgid "Add hall"
 msgstr "新規ホール"
 
-#: templates/masterdata/halls.html:132 templates/masterdata/halls.html:211
+#: .\templates\masterdata\halls.html:132 .\templates\masterdata\halls.html:211
 msgid "Enter hall name"
 msgstr "ホール名を入力してください"
 
-#: templates/masterdata/halls.html:174 templates/masterdata/halls.html:253
+#: .\templates\masterdata\halls.html:174 .\templates\masterdata\halls.html:253
 msgid "Enter payee"
 msgstr "振込先を入力してください"
 
-#: templates/masterdata/halls.html:197
+#: .\templates\masterdata\halls.html:197
 msgid "Edit hall"
 msgstr "ホールの更新"
 
-#: templates/masterdata/halls.html:276
+#: .\templates\masterdata\halls.html:276
 msgid "Delete hall"
 msgstr "ホールの削除"
 
-#: templates/masterdata/products.html:69 templates/masterdata/products.html:140
-#: templates/masterdata/products.html:192
+#: .\templates\masterdata\people_in_charge.html:69
+#: .\templates\masterdata\people_in_charge.html:81
+msgid "Add person"
+msgstr "新規担当名"
+
+#: .\templates\masterdata\people_in_charge.html:117
+msgid "Edit person"
+msgstr "担当名の更新"
+
+#: .\templates\masterdata\people_in_charge.html:154
+msgid "Delete person"
+msgstr "担当名の削除"
+
+#: .\templates\masterdata\products.html:69
+#: .\templates\masterdata\products.html:140
+#: .\templates\masterdata\products.html:192
 msgid "Maker"
 msgstr "メーカー"
 
-#: templates/masterdata/products.html:125
-#: templates/masterdata/products.html:177
+#: .\templates\masterdata\products.html:125
+#: .\templates\masterdata\products.html:177
 msgid "Enter model name"
 msgstr "機種名を入力してください"
 
-#: templates/masterdata/products.html:142
-#: templates/masterdata/products.html:194
+#: .\templates\masterdata\products.html:142
+#: .\templates\masterdata\products.html:194
 msgid "Enter maker"
 msgstr "メーカーを入力してください"
 
-#: templates/masterdata/senders.html:67 templates/masterdata/senders.html:129
-#: templates/masterdata/senders.html:200
+#: .\templates\masterdata\senders.html:67
+#: .\templates\masterdata\senders.html:129
+#: .\templates\masterdata\senders.html:200
 msgid "Sender name"
 msgstr "配送先名"
 
-#: templates/masterdata/senders.html:106 templates/masterdata/senders.html:118
+#: .\templates\masterdata\senders.html:106
+#: .\templates\masterdata\senders.html:118
 msgid "Add sender"
 msgstr "新規配送先"
 
-#: templates/masterdata/senders.html:131 templates/masterdata/senders.html:202
+#: .\templates\masterdata\senders.html:131
+#: .\templates\masterdata\senders.html:202
 msgid "Enter sender name"
 msgstr "配送先名を入力してください"
 
-#: templates/masterdata/senders.html:188
+#: .\templates\masterdata\senders.html:188
 msgid "Edit sender"
 msgstr "配送先の更新"
 
-#: templates/masterdata/senders.html:259
+#: .\templates\masterdata\senders.html:259
 msgid "Delete sender"
 msgstr "配送先の削除"
 
-#: templates/registration/login.html:13
+#: .\templates\registration\login.html:13
 msgid "Login to your account"
 msgstr "アカウントにログイン"
 
-#: templates/registration/login.html:13
+#: .\templates\registration\login.html:13
 msgid "Enter your username and password below"
 msgstr "以下にユーザー名とパスワードを入力してください。"
 
-#: templates/registration/login.html:24
+#: .\templates\registration\login.html:24
 msgid "Password"
 msgstr "パスワード"
 
-#: templates/registration/login.html:37
-#: templates/registration/password_reset_complete.html:11
+#: .\templates\registration\login.html:37
+#: .\templates\registration\password_reset_complete.html:11
 msgid "Sign in"
 msgstr "ログイン"
 
-#: templates/registration/login.html:41
+#: .\templates\registration\login.html:41
 msgid "Forgot password"
 msgstr "パスワードをお忘れですか"
 
-#: templates/registration/password_reset_complete.html:8
+#: .\templates\registration\password_reset_complete.html:8
 msgid "Your password has been set. You may go ahead and sign in now."
 msgstr "パスワードが設定されました。 今すぐサインインしてください。"
 
-#: templates/registration/password_reset_confirm.html:13
-#: templates/registration/password_reset_confirm.html:37
+#: .\templates\registration\password_reset_confirm.html:13
+#: .\templates\registration\password_reset_confirm.html:37
 msgid "Change password"
 msgstr "パスワードの変更"
 
-#: templates/registration/password_reset_confirm.html:17
+#: .\templates\registration\password_reset_confirm.html:17
 msgid "New password"
 msgstr "新しいパスワード"
 
-#: templates/registration/password_reset_confirm.html:24
+#: .\templates\registration\password_reset_confirm.html:24
 msgid "New password confirmation"
 msgstr "新しいパスワード(確認用)"
 
-#: templates/registration/password_reset_confirm.html:44
+#: .\templates\registration\password_reset_confirm.html:44
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used."
@@ -1594,11 +1750,11 @@ msgstr ""
 "パスワードリセットリンクが無効でした。おそらく、すでに使用されているためで"
 "す。"
 
-#: templates/registration/password_reset_confirm.html:45
+#: .\templates\registration\password_reset_confirm.html:45
 msgid "Please request a new password reset."
 msgstr "新しいパスワードのリセットをリクエストしてください。"
 
-#: templates/registration/password_reset_done.html:8
+#: .\templates\registration\password_reset_done.html:8
 msgid ""
 "We've emailed you instructions for setting your password, if an account "
 "exists with the email you entered."
@@ -1606,11 +1762,11 @@ msgstr ""
 "入力したメールアドレスにアカウントが存在する場合は、パスワードの設定手順を"
 "メールで送信しました。"
 
-#: templates/registration/password_reset_done.html:9
+#: .\templates\registration\password_reset_done.html:9
 msgid "You should receive them shortly."
 msgstr "あなたはすぐにそれらを受け取るはずです。"
 
-#: templates/registration/password_reset_done.html:12
+#: .\templates\registration\password_reset_done.html:12
 msgid ""
 "If you don't receive an email, please make sure you've entered the address "
 "you registered with, and check your spam folder."
@@ -1618,33 +1774,33 @@ msgstr ""
 "メールが届かない場合は、登録したアドレスを入力していることを確認し、迷惑メー"
 "ルフォルダを確認してください。"
 
-#: templates/registration/password_reset_form.html:13
+#: .\templates\registration\password_reset_form.html:13
 msgid "Password recovery"
 msgstr "パスワードの復元"
 
-#: templates/registration/password_reset_form.html:13
+#: .\templates\registration\password_reset_form.html:13
 msgid "We'll send you instructions in email"
 msgstr "指示をメールでお送りします"
 
-#: templates/registration/password_reset_form.html:17
+#: .\templates\registration\password_reset_form.html:17
 msgid "Your email"
 msgstr "あなたのメール"
 
-#: templates/registration/password_reset_form.html:23
+#: .\templates\registration\password_reset_form.html:23
 msgid "Reset password"
 msgstr "パスワードを再設定する"
 
-msgid "1st"
-msgstr "初回"
+#~ msgid "1st"
+#~ msgstr "初回"
 
-msgid "2nd"
-msgstr "2回"
+#~ msgid "2nd"
+#~ msgstr "2回"
 
-msgid "3rd"
-msgstr "3回"
+#~ msgid "3rd"
+#~ msgstr "3回"
 
-msgid "4th"
-msgstr "4回"
+#~ msgid "4th"
+#~ msgstr "4回"
 
-msgid "5th"
-msgstr "5回"
+#~ msgid "5th"
+#~ msgstr "5回"

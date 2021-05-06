@@ -5,8 +5,8 @@ from django.views.generic.edit import FormMixin, FormView, CreateView
 from django.http import JsonResponse
 from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
-from .models import Customer, Hall, Sender, Product, Document, DocumentFee
-from .forms import CustomerForm, HallForm, SenderForm, ProductForm, DocumentForm
+from .models import Customer, Hall, Sender, Product, Document, DocumentFee, PersonInCharge
+from .forms import CustomerForm, HallForm, SenderForm, ProductForm, DocumentForm, PersonInChargeForm
 from .filters import CustomerFilter, HallFilter, SenderFilter, ProductFilter
 
 
@@ -286,6 +286,52 @@ class DocumentDeleteView(AdminLoginRequiredMixin, View):
 
 
 class DocumentDetailAjaxView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        if self.request.method == 'POST' and self.request.is_ajax():
+            id = self.request.POST.get('id')
+            document = Document.objects.get(id=id)
+            return JsonResponse({
+                'name': document.name,
+                'term': document.term,
+                'taxation': document.taxation,
+            }, status=200)
+        return JsonResponse({'success': False}, status=400)
+
+
+class PersonInChargeListView(AdminLoginRequiredMixin, ListView):
+    template_name = 'masterdata/people_in_charge.html'
+    queryset = PersonInCharge.objects.all()
+    context_object_name = 'people'
+    
+    def post(self, request, *args, **kwargs):
+        form = PersonInChargeForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('masterdata:people-list')
+
+
+class PersonInChargeUpdateView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        data = self.request.POST
+        id = data['id']
+        document = Document.objects.get(id=id)
+        document.name = data['name']
+        document.term = data['term']
+        document.taxation = data['taxation']
+        document.save()
+        return redirect('masterdata:document-list')
+
+
+class PersonInChargeDeleteView(AdminLoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        data = self.request.POST
+        id = data['id']
+        document = Document.objects.get(id=id)
+        document.delete()
+        return redirect('masterdata:document-list')
+
+
+class PersonInChargeDetailAjaxView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         if self.request.method == 'POST' and self.request.is_ajax():
             id = self.request.POST.get('id')

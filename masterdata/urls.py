@@ -5,6 +5,7 @@ from .views import (
     SenderListView, SenderDetailAjaxView, SenderUpdateView, SenderDeleteView,
     ProductListView, ProductDetailAjaxView, ProductUpdateView, ProductDeleteView,
     DocumentListView, DocumentDetailAjaxView, DocumentUpdateView, DocumentDeleteView,
+    PersonInChargeListView, PersonInChargeDetailAjaxView, PersonInChargeUpdateView, PersonInChargeDeleteView,
     CustomerSearchAjaxView, HallSearchAjaxView, SenderSearchAjaxView, ProductSearchAjaxView,
     DocumentFeePriceAjaxView,
 )
@@ -35,11 +36,18 @@ urlpatterns = [
     path('document/', DocumentDetailAjaxView.as_view(), name='document-detail'),
     path('document-update/', DocumentUpdateView.as_view(), name='document-update'),
     path('document-delete/', DocumentDeleteView.as_view(), name='document-delete'),
+    
+    path('people-in-charge/', PersonInChargeListView.as_view(), name='people-list'),
+    path('person-in-charge/', PersonInChargeDetailAjaxView.as_view(), name='person-detail'),
+    path('person-in-charge/update/', PersonInChargeUpdateView.as_view(), name='person-update'),
+    path('person-in-charge/delete/', PersonInChargeDeleteView.as_view(), name='person-delete'),
+
 
     path('search-customer/', CustomerSearchAjaxView.as_view(), name='customer-search'),
     path('search-hall/', HallSearchAjaxView.as_view(), name='hall-search'),
     path('search-sender/', SenderSearchAjaxView.as_view(), name='sender-search'),
     path('search-product/', ProductSearchAjaxView.as_view(), name='product-search'),
 
-    path('document-fee/', DocumentFeePriceAjaxView.as_view(), name='document-fee-price',)
+    path('document-fee/', DocumentFeePriceAjaxView.as_view(), name='document-fee-price'),
+
 ]

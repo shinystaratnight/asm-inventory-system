@@ -122,3 +122,7 @@ class InventoryProduct(models.Model):
     price = models.IntegerField()
     stock = models.IntegerField()
     amount = models.IntegerField()
+
+
+class PersonInCharge(models.Model):
+    name = models.CharField(max_length=200)
