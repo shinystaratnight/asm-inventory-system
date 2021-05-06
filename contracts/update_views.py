@@ -4,7 +4,7 @@ from django.views.generic.base import TemplateView, View
 from django.http import HttpResponse, JsonResponse
 from django.utils.translation import gettext as _
 from users.views import AdminLoginRequiredMixin
-from masterdata.models import Sender, Document, DocumentFee
+from masterdata.models import Sender, Document, DocumentFee, PersonInCharge
 from .models import (
     ContractProduct, ContractDocument, ContractDocumentFee, Milestone,
     TraderSalesContract, TraderPurchasesContract, HallSalesContract, HallPurchasesContract,
@@ -151,6 +151,7 @@ class TraderSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
             context['document_sender_form'] = TraderSalesDocumentSenderForm()
         
         context['documents'] = Document.objects.all().values('id', 'name')
+        context['people'] = PersonInCharge.objects.all().values('name')
 
         product_set = []
         products = contract.products.all()
@@ -317,6 +318,7 @@ class TraderPurchasesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
         context['document_sender_form'] = document_sender_form
 
         context['documents'] = Document.objects.all().values('id', 'name')
+        context['people'] = PersonInCharge.objects.all().values('name')
 
         product_set = []
         products = contract.products.all()
@@ -543,6 +545,9 @@ class HallSalesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
             if milestone_form.is_valid():
                 milestone_set.append(data)
         context['milestoneformset'] = MilestoneFormSet(initial=milestone_set, prefix='milestone')
+        
+        context['people'] = PersonInCharge.objects.all().values('name')
+
         return context
 
 
@@ -730,4 +735,7 @@ class HallPurchasesContractUpdateView(AdminLoginRequiredMixin, TemplateView):
             if milestone_form.is_valid():
                 milestone_set.append(data)
         context['milestoneformset'] = MilestoneFormSet(initial=milestone_set, prefix='milestone')
+
+        context['people'] = PersonInCharge.objects.all().values('name')
+
         return context

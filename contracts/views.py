@@ -223,6 +223,7 @@ class TraderPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
         context['documentformset'] = DocumentFormSet(prefix='document')
         context['product_sender_form'] = TraderPurchasesProductSenderForm()
         context['document_sender_form'] = TraderPurchasesDocumentSenderForm()
+        context['people'] = PersonInCharge.objects.all().values('name')
         return context
 # End of trader purchases form
 
@@ -312,6 +313,7 @@ class HallSalesContractView(AdminLoginRequiredMixin, TemplateView):
         context['documentformset'] = DocumentFormSet(prefix='document')
         context['documentfeeformset'] = DocumentFeeFormSet(prefix='document_fee')
         context['milestoneformset'] = MilestoneFormSet(prefix='milestone')
+        context['people'] = PersonInCharge.objects.all().values('name')
         return context
 # End of hall sales contract
 
@@ -402,5 +404,6 @@ class HallPurchasesContractView(AdminLoginRequiredMixin, TemplateView):
         context['documentformset'] = DocumentFormSet(prefix='document')
         context['documentfeeformset'] = DocumentFeeFormSet(prefix='document_fee')
         context['milestoneformset'] = MilestoneFormSet(prefix='milestone')
+        context['people'] = PersonInCharge.objects.all().values('name')
         return context
 # End of hall purchases contract

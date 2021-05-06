@@ -809,7 +809,15 @@
 												<div class="row d-flex align-items-center">
 													<label class="control-label col-5 mt-auto">{% trans "Person in charge" %}</label>
 													<div class="col-7">
-														{{ contract_form.person_in_charge }}
+														<select name="person_in_charge" class="selectbox select-person">
+															<option value="">{% trans 'Select person in charge' %}...</option>
+															{% for person in people %}
+															<option value="{{ person.name }}"
+															{% ifequal contract_form.person_in_charge.value person.name %} selected {% endifequal %}>
+																{{ person.name }}
+															</option>
+															{% endfor %}
+														</select>
 													</div>
 												</div>
 											</div>
