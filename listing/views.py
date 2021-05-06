@@ -36,8 +36,8 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        trader_class_id = ContentType.objects.get(model='TraderSalesContract').id
-        hall_class_id = ContentType.objects.get(model='HallSalesContract').id
+        trader_class_id = ContentType.objects.get(model='tradersalescontract').id
+        hall_class_id = ContentType.objects.get(model='hallsalescontract').id
         queryset = ContractProduct.objects.filter(
             Q(content_type_id=trader_class_id) |
             Q(content_type_id=hall_class_id)
@@ -106,7 +106,7 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
             contract_date = contract.created_at
             customer = contract.customer.name if contract.customer else None
             person_in_charge = contract.person_in_charge
-            if product.content_type_id == ContentType.objects.get(model='HallSalesContract').id:
+            if product.content_type_id == ContentType.objects.get(model='hallsalescontract').id:
                 destination = contract.hall.name if contract.hall else None
                 payment_date = contract.shipping_date
             else:
@@ -134,7 +134,7 @@ class SalesListView(AdminLoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['hall_contract_id'] = ContentType.objects.get(model='HallSalesContract').id
+        context['hall_contract_id'] = ContentType.objects.get(model='hallsalescontract').id
         params = self.request.GET.copy()
         for k, v in params.items():
             if v:
@@ -148,8 +148,8 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        trader_class_id = ContentType.objects.get(model='TraderPurchasesContract').id
-        hall_class_id = ContentType.objects.get(model='HallPurchasesContract').id
+        trader_class_id = ContentType.objects.get(model='traderpurchasescontract').id
+        hall_class_id = ContentType.objects.get(model='hallpurchasescontract').id
         queryset = ContractProduct.objects.filter(
             Q(content_type_id=trader_class_id) |
             Q(content_type_id=hall_class_id)
@@ -219,7 +219,7 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
             contract_date = contract.created_at
             customer = contract.customer.name if contract.customer else None
             person_in_charge = contract.person_in_charge
-            if product.content_type_id == ContentType.objects.get(model='HallPurchasesContract').id:
+            if product.content_type_id == ContentType.objects.get(model='hallpurchasescontract').id:
                 destination = contract.hall.name if contract.hall else None
                 payment_date = contract.shipping_date
             else:
@@ -247,7 +247,7 @@ class PurchasesListView(AdminLoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['hall_contract_id'] = ContentType.objects.get(model='HallPurchasesContract').id
+        context['hall_contract_id'] = ContentType.objects.get(model='hallpurchasescontract').id
         params = self.request.GET.copy()
         for k, v in params.items():
             if v:
