@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.urls import reverse
 from users.views import AdminLoginRequiredMixin
 from masterdata.models import (
-    Customer, Product, Document, Sender, DocumentFee
+    Customer, Product, Document, Sender, DocumentFee, PersonInCharge
 )
 from .forms import (
     TraderSalesContractForm, TraderPurchasesContractForm, HallSalesContractForm, HallPurchasesContractForm,
@@ -142,6 +142,7 @@ class TraderSalesContractView(AdminLoginRequiredMixin, TemplateView):
         context['documentformset'] = DocumentFormSet(prefix='document')
         context['product_sender_form'] = TraderSalesProductSenderForm()
         context['document_sender_form'] = TraderSalesDocumentSenderForm()
+        context['people'] = PersonInCharge.objects.all().values('name')
         return context
 ## End of trader sales contract ##
 

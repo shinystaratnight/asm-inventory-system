@@ -865,25 +865,6 @@
 					resetMangementForm('document');
 					resetMangementForm('document_fee');
 
-					$.ajax({
-						type: 'POST',
-						url: "{% url 'contract:manager-list' %}",
-						data: {
-							'contract': 'HallSalesContract'
-						},
-						beforeSend: function(request) {
-							request.setRequestHeader('X-CSRFToken', csrftoken);
-						},
-						success: function (result) {
-							var people = [];
-							var data = result.people;
-							var i = 0;
-							for (var i=0; i<data.length; i++)
-								people.push(data[i].person_in_charge);
-							$('input[name="person_in_charge"]').autocomplete({ source: people });
-						}
-					});
-
 					$('button.create-invoice').click( function (e) {
 						var $form = $(this).closest('form');
 						$form.attr('action', "{% url 'contract:hall-sales-invoice' %}");
