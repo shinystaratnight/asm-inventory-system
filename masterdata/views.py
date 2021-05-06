@@ -314,32 +314,28 @@ class PersonInChargeUpdateView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         data = self.request.POST
         id = data['id']
-        document = Document.objects.get(id=id)
-        document.name = data['name']
-        document.term = data['term']
-        document.taxation = data['taxation']
-        document.save()
-        return redirect('masterdata:document-list')
+        person = PersonInCharge.objects.get(id=id)
+        person.name = data['name']
+        person.save()
+        return redirect('masterdata:people-list')
 
 
 class PersonInChargeDeleteView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         data = self.request.POST
         id = data['id']
-        document = Document.objects.get(id=id)
-        document.delete()
-        return redirect('masterdata:document-list')
+        person = PersonInCharge.objects.get(id=id)
+        person.delete()
+        return redirect('masterdata:people-list')
 
 
 class PersonInChargeDetailAjaxView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         if self.request.method == 'POST' and self.request.is_ajax():
             id = self.request.POST.get('id')
-            document = Document.objects.get(id=id)
+            person = PersonInCharge.objects.get(id=id)
             return JsonResponse({
-                'name': document.name,
-                'term': document.term,
-                'taxation': document.taxation,
+                'name': person.name,
             }, status=200)
         return JsonResponse({'success': False}, status=400)
 
