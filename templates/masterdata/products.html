@@ -64,9 +64,16 @@
 						<thead>
 							<tr>
 								<th>{% trans "No" %}</th>
-								<th>{% trans "Model name" %}</th>
+								<th>{% trans "Product name" %}</th>
 								<th>{% trans "Type" %}</th>
 								<th>{% trans "Maker" %}</th>
+								<th>{% trans "Purchase date" %}</th>
+								<th>{% trans "Supplier" %}</th>
+								<th>{% trans "Person in charge" %}</th>
+								<th>{% trans "Unit count" %}</th>
+								<th>{% trans "Price" %}</th>
+								<th>{% trans "Stock" %}</th>
+								<th>{% trans "Total price" %}</th>
 								<th>{% trans "Action" %}</th>
 							</tr>
 						</thead>
@@ -78,6 +85,13 @@
 									<td>{{ product.name }}</td>
 									<td>{{ product.get_type_display }}</td>
 									<td>{{ product.maker }}</td>
+									<td>{{ product.purchase_date|default_if_none:"" }}</td>
+									<td>{{ product.supplier|default_if_none:"" }}</td>
+									<td>{{ product.person_in_charge|default_if_none:"" }}</td>
+									<td>{{ product.quantity|default_if_none:"" }}</td>
+									<td>{{ product.price|default_if_none:"" }}</td>
+									<td>{{ product.stock|default_if_none:"" }}</td>
+									<td>{{ product.amount|default_if_none:"" }}</td>
 									<td>
 										<a href="#" data-id="{{product.id}}" class="edit-action"><i class="icon-pencil5 color-primary"></i></a>
 										<a href="#" data-id="{{product.id}}" class="remove-action"><i class="icon-minus-circle2 ml-3 color-danger"></i></a>
@@ -143,6 +157,58 @@
 										</div>
 									</div>
 
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Purchase date" %}:</label>
+										<div class="col-lg-9">
+											<div class="input-group">
+												<input type="text" name="purchase_date" value="" class="form-control datepicker-nullable">
+												<span class="input-group-addon">
+													<i class="icon-calendar22"></i>
+												</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Supplier" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="supplier" class="form-control" placeholder="{% trans 'Supplier' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Person in charge" %}:</label>
+										<div class="col-lg-9">
+											<select name="person_in_charge" class="selectbox" required>
+												<option value="">{% trans 'Select person in charge' %}...</option>
+												{% for person in people %}
+												<option value="{{ person.name }}">{{  person.name }}</option>
+												{% endfor %}
+											</select>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Unit count" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="quantity" class="form-control" placeholder="{% trans 'Unit count' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Price" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="price" class="form-control" placeholder="{% trans 'Price' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Stock" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="stock" class="form-control" placeholder="{% trans 'Stock' %}..." required>
+										</div>
+									</div>
+
 								</fieldset>
 								<div class="modal-footer">
 									<button type="submit" class="btn btn-primary">{% trans "Add" %}</button>
@@ -192,6 +258,53 @@
 										<label class="control-label col-lg-3">{% trans "Maker" %}:</label>
 										<div class="col-lg-9">
 											<input type="text" name="maker" class="form-control" placeholder="{% trans 'Enter maker' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Purchase date" %}:</label>
+										<div class="col-lg-9">
+											<div class="input-group">
+												<input type="text" name="purchase_date" value="" class="form-control datepicker-nullable">
+												<span class="input-group-addon">
+													<i class="icon-calendar22"></i>
+												</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Supplier" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="supplier" class="form-control" placeholder="{% trans 'Supplier' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Person in charge" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="person_in_charge" class="form-control" placeholder="{% trans 'Person in charge' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Unit count" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="quantity" class="form-control" placeholder="{% trans 'Unit count' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Price" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="price" class="form-control" placeholder="{% trans 'Price' %}..." required>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Stock" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="stock" class="form-control" placeholder="{% trans 'Stock' %}..." required>
 										</div>
 									</div>
 
@@ -284,6 +397,11 @@
 							var selectBox = $('#modal_edit_data select[name="type"]');
 							$('#modal_edit_data select[name="type"]').selectBoxIt('selectOption', result.type);
 							$('#modal_edit_data input[name="maker"]').val(result.maker);
+							$('#modal_edit_data input[name="purchase_date"]').val(result.purchase_date);
+							$('#modal_edit_data input[name="supplier"]').val(result.supplier);
+							$('#modal_edit_data select[name="person_in_charge"]').selectBoxIt('selectOption', result.person_in_charge);
+							$('#modal_edit_data input[name="quantity"]').val(result.quantity);
+							$('#modal_edit_data input[name="price"]').val(result.price);
 							$('#modal_edit_data').modal('toggle');
 						}
 					});

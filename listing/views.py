@@ -7,7 +7,7 @@ from django.utils.translation import gettext as _
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from users.views import AdminLoginRequiredMixin
-from masterdata.models import InventoryProduct, STOCK_CHOICES
+from masterdata.models import Product, STOCK_CHOICES
 from contracts.models import ContractProduct
 from listing.models import ExportHistory
 from contracts.utilities import generate_random_number, date_dump, log_export_operation
@@ -272,7 +272,7 @@ class ExportHistoryListView(AdminLoginRequiredMixin, ListView):
 
 class InventoryListView(AdminLoginRequiredMixin, ListView):
     template_name = 'listing/inventory.html'
-    queryset = InventoryProduct.objects.all()
+    queryset = Product.objects.all()
     context_object_name = 'products'
     paginate_by = 5
 
@@ -342,7 +342,7 @@ class InventoryProductCreateView(AdminLoginRequiredMixin, View):
 class InventoryProductUpdateView(AdminLoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         id = request.POST.get('id')
-        product = InventoryProduct.objects.get(id=id)
+        product = Product.objects.get(id=id)
         product_form = ProductForm(request.POST)
         if product_form.is_valid():
             data = product_form.cleaned_data
@@ -362,7 +362,7 @@ class InventoryProductUpdateView(AdminLoginRequiredMixin, View):
 class InventoryProductDeleteView(AdminLoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         id = request.POST.get('id')
-        product = InventoryProduct.objects.get(id=id)
+        product = Product.objects.get(id=id)
         product.delete()
         return redirect('listing:inventory-list')
 
@@ -371,7 +371,7 @@ class InventoryProductDetailAjaxView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         if self.request.method == 'POST' and self.request.is_ajax():
             id = self.request.POST.get('id')
-            product = InventoryProduct.objects.get(id=id)
+            product = Product.objects.get(id=id)
             return JsonResponse({
                 'name': product.name,
                 'identifier': product.identifier,

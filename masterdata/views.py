@@ -209,6 +209,7 @@ class ProductListView(AdminLoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['product_filter'] = ProductFilter(self.request.GET)
+        context['people'] = PersonInCharge.objects.all()
         return context
     
     def post(self, request, *args, **kwargs):
@@ -226,6 +227,11 @@ class ProductUpdateView(AdminLoginRequiredMixin, View):
         product.name = data['name']
         product.type = data['type']
         product.maker = data['maker']
+        product.purchase_date = data['purchase_date']
+        product.supplier = data['supplier']
+        product.person_in_charge = data['person_in_charge']
+        product.quantity = data['quantity']
+        product.price = data['price']
         product.save()
         return redirect('masterdata:product-list')
 
@@ -248,6 +254,12 @@ class ProductDetailAjaxView(AdminLoginRequiredMixin, View):
                 'name': product.name,
                 'type': product.type,
                 'maker': product.maker,
+                'purchase_date': product.purchase_date,
+                'supplier': product.supplier,
+                'person_in_charge': product.person_in_charge,
+                'quantity': product.quantity,
+                'price': product.price,
+                # 'stock': product.stock,
             }, status=200)
         return JsonResponse({'success': False}, status=400)
 

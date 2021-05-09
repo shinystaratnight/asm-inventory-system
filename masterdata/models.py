@@ -87,6 +87,19 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     maker = models.CharField(max_length=200)
     type = models.CharField(max_length=1, choices=TYPE_CHOICES)
+    purchase_date = models.DateField(null=True, blank=True)
+    supplier = models.CharField(max_length=200, null=True, blank=True)
+    person_in_charge = models.CharField(max_length=200, null=True, blank=True)
+    quantity = models.IntegerField(null=True, blank=True)
+    price = models.IntegerField(null=True, blank=True)
+    stock = models.IntegerField(null=True, blank=True)
+    # amount = models.IntegerField(null=True, blank=True)
+
+    @property
+    def amount(self):
+        if self.price and self.quantity:
+            return self.price * self.quantity
+        return None
 
     def __str__(self):
         return self.name
@@ -112,17 +125,22 @@ class DocumentFee(models.Model):
     application_fee = models.IntegerField(default=30000)
 
 
-class InventoryProduct(models.Model):
-    name = models.CharField(max_length=200)
-    identifier = models.CharField(max_length=20)
-    purchase_date = models.DateField()
-    supplier = models.CharField(max_length=200)
-    person_in_charge = models.CharField(max_length=200)
-    quantity = models.IntegerField()
-    price = models.IntegerField()
-    stock = models.IntegerField()
-    amount = models.IntegerField()
+# class InventoryProduct(models.Model):
+#     name = models.CharField(max_length=200)
+#     identifier = models.CharField(max_length=20)
+#     purchase_date = models.DateField()
+#     supplier = models.CharField(max_length=200)
+#     person_in_charge = models.CharField(max_length=200)
+#     quantity = models.IntegerField()
+#     price = models.IntegerField()
+#     stock = models.IntegerField()
+
+#     @property
+#     def amount(self):
+#         if self.price and self.quantity:
+#             return self.price * self.quantity
+#         return None
 
 
 class PersonInCharge(models.Model):
-    name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=200)

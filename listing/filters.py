@@ -2,7 +2,7 @@ import django_filters
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
-from masterdata.models import InventoryProduct, INPUT_FORMATS
+from masterdata.models import Product, INPUT_FORMATS
 
 
 class ProductFilter(django_filters.FilterSet):
@@ -15,5 +15,5 @@ class ProductFilter(django_filters.FilterSet):
     stock = django_filters.NumberFilter(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
-        model = InventoryProduct
+        model = Product
         fields = ('name', 'purchase_date', 'supplier', 'person_in_charge', 'stock')
