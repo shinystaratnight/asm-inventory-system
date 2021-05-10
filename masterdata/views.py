@@ -221,18 +221,20 @@ class ProductListView(AdminLoginRequiredMixin, ListView):
 
 class ProductUpdateView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
-        data = self.request.POST
-        id = data['id']
+        id = self.request.POST.get('id')
         product = Product.objects.get(id=id)
-        product.name = data['name']
-        product.type = data['type']
-        product.maker = data['maker']
-        product.purchase_date = data['purchase_date']
-        product.supplier = data['supplier']
-        product.person_in_charge = data['person_in_charge']
-        product.quantity = data['quantity']
-        product.price = data['price']
-        product.save()
+        product_form = ProductForm(self.request.POST)
+        if product_form.is_valid():
+            data = product_form.cleaned_data
+            product.name = data.get('name')
+            product.type = data.get('type')
+            product.maker = data.get('maker')
+            product.purchase_date = data.get('purchase_date')
+            product.supplier = data.get('supplier')
+            product.person_in_charge = data.get('person_in_charge')
+            product.quantity = data.get('quantity')
+            product.price = data.get('price')
+            product.save()
         return redirect('masterdata:product-list')
 
 

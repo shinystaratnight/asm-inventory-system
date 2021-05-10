@@ -70,7 +70,7 @@
 								<th>{% trans "Purchase date" %}</th>
 								<th>{% trans "Supplier" %}</th>
 								<th>{% trans "Person in charge" %}</th>
-								<th>{% trans "Unit count" %}</th>
+								<!-- <th>{% trans "Unit count" %}</th> -->
 								<th>{% trans "Price" %}</th>
 								<th>{% trans "Stock" %}</th>
 								<th>{% trans "Total price" %}</th>
@@ -88,9 +88,9 @@
 									<td>{{ product.purchase_date|default_if_none:"" }}</td>
 									<td>{{ product.supplier|default_if_none:"" }}</td>
 									<td>{{ product.person_in_charge|default_if_none:"" }}</td>
-									<td>{{ product.quantity|default_if_none:"" }}</td>
 									<td>{{ product.price|default_if_none:"" }}</td>
-									<td>{{ product.stock|default_if_none:"" }}</td>
+									<!-- <td>{{ product.stock|default_if_none:"" }}</td> -->
+									<td>{{ product.quantity|default_if_none:"" }}</td>
 									<td>{{ product.amount|default_if_none:"" }}</td>
 									<td>
 										<a href="#" data-id="{{product.id}}" class="edit-action"><i class="icon-pencil5 color-primary"></i></a>
@@ -186,12 +186,12 @@
 										</div>
 									</div>
 
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Unit count" %}:</label>
 										<div class="col-lg-9">
 											<input type="text" name="quantity" class="form-control" placeholder="{% trans 'Unit count' %}...">
 										</div>
-									</div>
+									</div> -->
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Price" %}:</label>
@@ -203,9 +203,16 @@
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Stock" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="stock" class="form-control" placeholder="{% trans 'Stock' %}...">
+											<input type="text" name="quantity" class="form-control" placeholder="{% trans 'Stock' %}...">
 										</div>
 									</div>
+
+									<!-- <div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Stock" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="stock" class="form-control" placeholder="{% trans 'Stock' %}...">
+										</div>
+									</div> -->
 
 								</fieldset>
 								<div class="modal-footer">
@@ -272,37 +279,49 @@
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Supplier" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="supplier" class="form-control" placeholder="{% trans 'Supplier' %}..." required>
+											<input type="text" name="supplier" class="form-control" placeholder="{% trans 'Supplier' %}...">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Person in charge" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="person_in_charge" class="form-control" placeholder="{% trans 'Person in charge' %}..." required>
+											<select name="person_in_charge" class="selectbox">
+												<option value="">{% trans 'Select person in charge' %}...</option>
+												{% for person in people %}
+												<option value="{{ person.name }}">{{ person.name }}</option>
+												{% endfor %}
+											</select>
 										</div>
 									</div>
 
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Unit count" %}:</label>
 										<div class="col-lg-9">
 											<input type="text" name="quantity" class="form-control" placeholder="{% trans 'Unit count' %}..." required>
 										</div>
-									</div>
+									</div> -->
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Price" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="price" class="form-control" placeholder="{% trans 'Price' %}..." required>
+											<input type="text" name="price" class="form-control" placeholder="{% trans 'Price' %}...">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Stock" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="stock" class="form-control" placeholder="{% trans 'Stock' %}..." required>
+											<input type="text" name="quantity" class="form-control" placeholder="{% trans 'Stock' %}...">
 										</div>
 									</div>
+
+									<!-- <div class="form-group">
+										<label class="control-label col-lg-3">{% trans "Stock" %}:</label>
+										<div class="col-lg-9">
+											<input type="text" name="stock" class="form-control" placeholder="{% trans 'Stock' %}..." required>
+										</div>
+									</div> -->
 
 								</fieldset>
 								<div class="modal-footer">
@@ -390,7 +409,6 @@
 						},
 						success: function (result) {
 							$('#modal_edit_data input[name="name"]').val(result.name);
-							var selectBox = $('#modal_edit_data select[name="type"]');
 							$('#modal_edit_data select[name="type"]').selectBoxIt('selectOption', result.type);
 							$('#modal_edit_data input[name="maker"]').val(result.maker);
 							$('#modal_edit_data input[name="purchase_date"]').val(result.purchase_date);

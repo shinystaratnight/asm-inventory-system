@@ -92,7 +92,7 @@ class Product(models.Model):
     person_in_charge = models.CharField(max_length=200, null=True, blank=True)
     quantity = models.IntegerField(null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)
-    stock = models.IntegerField(null=True, blank=True)
+    # stock = models.IntegerField(null=True, blank=True)
     # amount = models.IntegerField(null=True, blank=True)
 
     @property
