@@ -343,19 +343,22 @@ class InventoryProductUpdateView(AdminLoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         id = request.POST.get('id')
         product = Product.objects.get(id=id)
-        product_form = ProductForm(request.POST)
-        if product_form.is_valid():
-            data = product_form.cleaned_data
-            product.name = data.get('name')
-            product.identifier = data.get('identifier')
-            product.purchase_date = data.get('purchase_date')
-            product.supplier = data.get('supplier')
-            product.person_in_charge = data.get('person_in_charge')
-            product.quantity = data.get('quantity')
-            product.price = data.get('price')
-            product.stock = data.get('stock')
-            product.amount = data.get('amount')
-            product.save()
+        # product_form = ProductForm(request.POST)
+        # if product_form.is_valid():
+            # data = product_form.cleaned_data
+            # product.name = data.get('name')
+            # product.identifier = data.get('identifier')
+            # product.purchase_date = data.get('purchase_date')
+            # product.supplier = data.get('supplier')
+            # product.person_in_charge = data.get('person_in_charge')
+            # product.quantity = data.get('quantity')
+            # product.price = data.get('price')
+            # product.stock = data.get('stock')
+            # product.amount = data.get('amount')
+            # product.save()
+        
+        product.quantity = request.POST.get('quantity')
+        product.save()
         return redirect('listing:inventory-list')
 
 
@@ -373,15 +376,15 @@ class InventoryProductDetailAjaxView(AdminLoginRequiredMixin, View):
             id = self.request.POST.get('id')
             product = Product.objects.get(id=id)
             return JsonResponse({
-                'name': product.name,
-                'identifier': product.identifier,
-                'purchase_date': date_dump(product.purchase_date, self.request.LANGUAGE_CODE),
-                'supplier': product.supplier,
-                'person_in_charge': product.person_in_charge,
+                # 'name': product.name,
+                # 'identifier': product.identifier,
+                # 'purchase_date': date_dump(product.purchase_date, self.request.LANGUAGE_CODE),
+                # 'supplier': product.supplier,
+                # 'person_in_charge': product.person_in_charge,
                 'quantity': product.quantity,
-                'price': product.price,
-                'stock': product.stock,
-                'amount': product.amount,
+                # 'price': product.price,
+                # 'stock': product.stock,
+                # 'amount': product.amount,
             }, status=200)
         return JsonResponse({'success': False}, status=400)
 

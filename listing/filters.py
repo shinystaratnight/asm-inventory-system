@@ -12,8 +12,8 @@ class ProductFilter(django_filters.FilterSet):
         widget=forms.TextInput(attrs={'class': 'form-control datepicker-nullable'}))
     supplier = django_filters.CharFilter(lookup_expr='icontains', widget=forms.TextInput(attrs={'class': 'form-control'}))
     person_in_charge = django_filters.CharFilter(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    stock = django_filters.NumberFilter(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    quantity = django_filters.NumberFilter(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Product
-        fields = ('name', 'purchase_date', 'supplier', 'person_in_charge', 'stock')
+        fields = ('name', 'purchase_date', 'supplier', 'person_in_charge', 'quantity')

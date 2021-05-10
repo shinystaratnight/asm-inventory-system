@@ -78,7 +78,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>{% trans "Stock" %}:</label>
-									{{ product_filter.form.stock }}
+									{{ product_filter.form.quantity }}
 								</div>
 							</div>
 						</div>
@@ -107,7 +107,7 @@
 								<th>{% trans "Purchase date" %}</th>
 								<th>{% trans "Supplier" %}</th>
 								<th>{% trans "Person in charge" %}</th>
-								<th>{% trans "Unit count" %}</th>
+								<!-- <th>{% trans "Unit count" %}</th> -->
 								<th>{% trans "Price" %}</th>
 								<th>{% trans "Stock" %}</th>
 								<th>{% trans "Total price" %}</th>
@@ -120,17 +120,17 @@
 							<tr>
 								<td>{{ forloop.counter0|add:page_obj.start_index }}</td>
 								<td class="w-18-5">{{ product.name }}</td>
-								<td>{{ product.identifier }}</td>
-								<td>{{ product.purchase_date }}</td>
-								<td class="w-18-5">{{ product.supplier }}</td>
-								<td>{{ product.person_in_charge }}</td>
-								<td>{{ product.quantity }}</td>
-								<td>{{ product.price }}</td>
-								<td>{{ product.stock }}</td>
-								<td>{{ product.amount }}</td>
+								<td>{{ product.id }}</td>
+								<td>{{ product.purchase_date|default_if_none:"" }}</td>
+								<td class="w-18-5">{{ product.supplier|default_if_none:"" }}</td>
+								<td>{{ product.person_in_charge|default_if_none:"" }}</td>
+								<!-- <td>{{ product.quantity }}</td> -->
+								<td>{{ product.price|default_if_none:"" }}</td>
+								<td>{{ product.quantity|default_if_none:"" }}</td>
+								<td>{{ product.amount|default_if_none:"" }}</td>
 								<td>
 									<a href="#" data-id="{{product.id}}" class="edit-action"><i class="icon-pencil5 color-primary"></i></a>
-									<a href="#" data-id="{{product.id}}" class="remove-action"><i class="icon-minus-circle2 ml-3 color-danger"></i></a>
+									<!-- <a href="#" data-id="{{product.id}}" class="remove-action"><i class="icon-minus-circle2 ml-3 color-danger"></i></a> -->
 								</td>
 							</tr>
 							{% endfor %}
@@ -148,9 +148,9 @@
 						<div class="my-5-s text-center">
 							<form action="" method="post">
 								{% csrf_token %}
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add_new_data">
+								<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add_new_data">
 									<i class="icon-plus2 position-left"></i>{% trans "New product" %}
-								</button>
+								</button> -->
 								<button type="submit" class="btn btn-primary ml-3">
 									<i class="icon-exit3 position-left"></i>{% trans "Export to excel" %}
 								</button>
@@ -274,7 +274,7 @@
 								<fieldset class="content-group">
 									<input type="hidden" name="id">
 
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Product name" %}:</label>
 										<div class="col-lg-9">
 											<input type="text" name="name" class="form-control" placeholder="{% trans 'Product name' %}..." required>
@@ -310,9 +310,9 @@
 										<div class="col-lg-9">
 											<input type="text" name="person_in_charge" class="form-control" placeholder="{% trans 'Person in charge' %}..." required>
 										</div>
-									</div>
+									</div> -->
 
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Unit count" %}:</label>
 										<div class="col-lg-9">
 											<input type="text" name="quantity" class="form-control" placeholder="{% trans 'Unit count' %}..." required>
@@ -324,21 +324,21 @@
 										<div class="col-lg-9">
 											<input type="text" name="price" class="form-control" placeholder="{% trans 'Price' %}..." required>
 										</div>
-									</div>
+									</div> -->
 
 									<div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Stock" %}:</label>
 										<div class="col-lg-9">
-											<input type="text" name="stock" class="form-control" placeholder="{% trans 'Stock' %}..." required>
+											<input type="text" name="quantity" class="form-control" placeholder="{% trans 'Stock' %}..." required>
 										</div>
 									</div>
 
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label class="control-label col-lg-3">{% trans "Total price" %}:</label>
 										<div class="col-lg-9">
 											<input type="text" name="amount" class="form-control" placeholder="{% trans 'Total price' %}..." required>
 										</div>
-									</div>
+									</div> -->
 
 								</fieldset>
 
@@ -426,18 +426,18 @@
 							request.setRequestHeader('X-CSRFToken', csrftoken);
 						},
 						success: function (result) {
-							$('#modal_edit_data input[name="name"]').val(result.name);
-							$('#modal_edit_data input[name="identifier"]').val(result.identifier);
-							$('#modal_edit_data input[name="purchase_date"]').val(result.purchase_date);
-							$('#modal_edit_data input[name="supplier"]').val(result.supplier);
-							$('#modal_edit_data input[name="person_in_charge"]').val(result.person_in_charge);
+							// $('#modal_edit_data input[name="name"]').val(result.name);
+							// $('#modal_edit_data input[name="identifier"]').val(result.identifier);
+							// $('#modal_edit_data input[name="purchase_date"]').val(result.purchase_date);
+							// $('#modal_edit_data input[name="supplier"]').val(result.supplier);
+							// $('#modal_edit_data input[name="person_in_charge"]').val(result.person_in_charge);
 							$('#modal_edit_data input[name="quantity"]').val(result.quantity);
-							$('#modal_edit_data input[name="price"]').val(result.price);
-							$('#modal_edit_data input[name="stock"]').val(result.stock);
-							$('#modal_edit_data input[name="amount"]').val(result.amount);
-							$('#modal_edit_data input[name="purchase_date"]').daterangepicker({
-								singleDatePicker: true
-							});
+							// $('#modal_edit_data input[name="price"]').val(result.price);
+							// $('#modal_edit_data input[name="stock"]').val(result.stock);
+							// $('#modal_edit_data input[name="amount"]').val(result.amount);
+							// $('#modal_edit_data input[name="purchase_date"]').daterangepicker({
+								// singleDatePicker: true
+							// });
 							$('#modal_edit_data').modal('toggle');
 						}
 					});
