@@ -849,11 +849,11 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
         font_12_left = xlwt.easyxf('font: height 240, name ＭＳ Ｐゴシック; align: vert center, horiz left')
         font_16_left = xlwt.easyxf('font: height 320, name ＭＳ Ｐゴシック; align: vert center, horiz left')
 
-        title_style = xlwt.easyxf('font: bold on, height 440, name ＭＳ Ｐゴシック, color black;\
+        title_style = xlwt.easyxf('font: height 440, name ＭＳ Ｐゴシック, color black;\
                                     align: vert center, horiz center, wrap on;')
         contract_date_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert bottom, horiz center, wrap on;')
         contract_date_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert bottom, horiz center, wrap on;')
-        company_title_style = xlwt.easyxf('font: bold on, height 160, name ＭＳ Ｐゴシック; align: vert center, horiz center, wrap off;\
+        company_title_style = xlwt.easyxf('font: bold on, height 320, name ＭＳ Ｐゴシック; align: vert center, horiz center, wrap off, shrink on;\
                                             borders: bottom_color black, bottom thin;')
         company_label_style = xlwt.easyxf('font: height 280, name ＭＳ Ｐゴシック; align: vert center, horiz left;\
                                             borders: bottom_color black, bottom thin;')
@@ -869,8 +869,9 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
                                             borders: top_color black, right_color black, top medium, right medium;')
         product_first_content_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert center, horiz left, wrap on;\
                                             borders: top_color black, left_color black, bottom_color black, right_color black, top thin, bottom thin, left medium, right thin;')
-        product_content_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert center, horiz right, wrap on;\
-                                            borders: top_color black, bottom_color black, right_color black, top thin, bottom thin, right thin;')
+        product_content_style = xlwt.easyxf('font: height 220, name ＭＳ ゴシック; align: vert center, horiz right, wrap on;\
+                                            borders: top_color black, bottom_color black, right_color black, top thin, bottom thin, right thin;',
+                                            num_format_str='#,##0')
         product_last_content_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert center, horiz right, wrap on;\
                                             borders: top_color black, right_color black, bottom_color black, bottom thin, top thin, right medium;')                                    
         shipping_date_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert center, horiz left, wrap on;\
@@ -883,18 +884,21 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
                                         borders: left_color black, bottom_color black, bottom thin, left thin;')
         subtotal_label_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert center, horiz center, wrap on;\
                                             borders: top_color black, left_color black, top medium, left medium;')
-        subtotal_value_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert center, horiz right, wrap on;\
-                                            borders: top_color black, left_color black, right_color black, top medium, left thin, right medium;')
+        subtotal_value_style = xlwt.easyxf('font: height 220, name ＭＳ ゴシック; align: vert center, horiz right, wrap on;\
+                                            borders: top_color black, left_color black, right_color black, top medium, left thin, right medium;',
+                                            num_format_str='#,##0')
         fee_label_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert center, horiz center, wrap on;\
                                             borders: top_color black, left_color black, top thin, left medium;')
-        fee_value_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert center, horiz right, wrap on;\
-                                            borders: top_color black, left_color black, right_color black, top thin, left thin, right medium;')
+        fee_value_style = xlwt.easyxf('font: height 220, name ＭＳ ゴシック; align: vert center, horiz right, wrap on;\
+                                            borders: top_color black, left_color black, right_color black, top thin, left medium, right medium;',
+                                            num_format_str='#,##0')
         total_label_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert center, horiz center, wrap on;\
                                             borders: top_color black, left_color black, bottom_color black,\
                                             bottom medium, top thin, left medium;')
-        total_value_style = xlwt.easyxf('font: height 220, bold on, name ＭＳ Ｐゴシック; align: vert center, horiz right, wrap on;\
+        total_value_style = xlwt.easyxf('font: height 220, bold on, name ＭＳ ゴシック; align: vert center, horiz right, wrap on;\
                                             borders: top_color black, left_color black, right_color black, bottom_color black,\
-                                            bottom medium, top thin, left thin, right medium;')
+                                            bottom medium, top thin, left thin, right medium;',
+                                            num_format_str='"¥"#,###')
         remark_text_style = xlwt.easyxf('font: height 200, name ＭＳ Ｐゴシック; align: vert center, horiz left;')
         payment_breakdown_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert top, horiz center;\
                                                 borders: top_color black, left_color black, bottom_color black,\
@@ -904,28 +908,34 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
                                                     top medium, left thin, right thin, bottom thin;')
         payment_first_cell_date_style = xlwt.easyxf('font: height 220, bold on, name ＭＳ Ｐゴシック; align: vert center, horiz center;\
                                                     borders: top_color black, left_color black, right_color black, bottom_color black,\
-                                                    top medium, left thin, right thin, bottom thin;')
+                                                    top medium, left thin, right thin, bottom thin;',
+                                                    num_format_str='yyyy/mm/dd')
         payment_first_cell_value_style = xlwt.easyxf('font: height 220, bold on, name ＭＳ Ｐゴシック; align: vert center, horiz right;\
                                                     borders: top_color black, left_color black, right_color black, bottom_color black,\
-                                                    top medium, left thin, right medium, bottom thin;')
+                                                    top medium, left thin, right medium, bottom thin;',
+                                                    num_format_str='"¥"#,###')
         payment_center_cell_label_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert center, horiz center;\
                                                     borders: top_color black, left_color black, right_color black, bottom_color black,\
                                                     top thin, left thin, right thin, bottom thin;')
         payment_center_cell_date_style = xlwt.easyxf('font: height 220, bold on, name ＭＳ Ｐゴシック; align: vert center, horiz center;\
                                                     borders: top_color black, left_color black, right_color black, bottom_color black,\
-                                                    top thin, left thin, right thin, bottom thin;')
+                                                    top thin, left thin, right thin, bottom thin;',
+                                                    num_format_str='yyyy/mm/dd')
         payment_center_cell_value_style = xlwt.easyxf('font: height 220, bold on, name ＭＳ Ｐゴシック; align: vert center, horiz right;\
                                                     borders: top_color black, left_color black, right_color black, bottom_color black,\
-                                                    top thin, left thin, right medium, bottom thin;')
+                                                    top thin, left thin, right medium, bottom thin;',
+                                                    num_format_str='"¥"#,###')
         payment_last_cell_label_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert center, horiz center;\
                                                     borders: top_color black, left_color black, right_color black, bottom_color black,\
                                                     top thin, left thin, right thin, bottom medium;')
         payment_last_cell_date_style = xlwt.easyxf('font: height 220, bold on, name ＭＳ Ｐゴシック; align: vert center, horiz center;\
                                                     borders: top_color black, left_color black, right_color black, bottom_color black,\
-                                                    top thin, left thin, right thin, bottom medium;')
+                                                    top thin, left thin, right thin, bottom medium;',
+                                                    num_format_str='yyyy/mm/dd')
         payment_last_cell_value_style = xlwt.easyxf('font: height 220, bold on, name ＭＳ Ｐゴシック; align: vert center, horiz right;\
                                                     borders: top_color black, left_color black, right_color black, bottom_color black,\
-                                                    top thin, left thin, right medium, bottom medium;')
+                                                    top thin, left thin, right medium, bottom medium;',
+                                                    num_format_str='"¥"#,###')
         transfer_account_style = xlwt.easyxf('font: height 220, name ＭＳ Ｐゴシック; align: vert center, horiz center;\
                                                 borders: left_color black, top_color black, top thin, left thin;')
 
@@ -935,15 +945,16 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
         contract_id = contract_form.data.get('contract_id', '')
         customer_id = contract_form.data.get('customer_id')
         created_at = contract_form.data.get('created_at', '')
+        manager = contract_form.data.get('manager')
         hall_id = contract_form.data.get('hall_id')
-        company = address = tel = fax = None
+        company = address = tel = fax = ''
         if customer_id:
             customer = Customer.objects.get(id=customer_id)
             company = customer.name
             address = customer.address
             tel = customer.tel
             fax = customer.fax
-        hall_name = hall_address = hall_tel = None
+        hall_name = hall_address = hall_tel = ''
         if hall_id:
             hall = Hall.objects.get(id=hall_id)
             hall_name = hall.name
@@ -953,270 +964,79 @@ class HallSalesInvoiceView(AdminLoginRequiredMixin, View):
         response = HttpResponse(content_type='application/ms-excel')
         response['Content-Disposition'] = 'attachment; filename="hall_sales_contract_{}.xls"'.format(contract_id)
         wb = xlwt.Workbook(encoding='utf-8')
-        ws = wb.add_sheet("{} - {}".format(_('Sales contract'), _('Hall sales')))
-
-        wb = xlwt.Workbook(encoding='utf-8')
-
-ws = wb.add_sheet("請求書", cell_overwrite_ok=True)
-for i in range(11):
-            ws.col(i).width = cell_width_list[i]
-
-for i in range(1, 80):
-    ws.row(i).height_mismatch = True
-    ws.row(i).height = cell_height
-
-row_no = 0
-
-ws.row(row_no).height_mismatch = True
-ws.row(row_no).height = top_padding_height
-
-row_no += 1
-
-ws.row(row_no).height = header_height
-
-ws.write_merge(row_no, row_no, 0, 10, '請　　求　　書', title_style)
-row_no += 1
-ws.write_merge(row_no, row_no, 8, 10, '令和3年4月26日', font_11_right)
-row_no += 1
-
-ws.row(row_no).height = company_height
-ws.write_merge(row_no, row_no, 0, 2, 'ダイナー観光開発（株）ダイナー商会広島支店', company_title_style)
-ws.write(row_no, 3, '', border_bottom)
-ws.write(row_no, 4, '御中', company_label_style)
-
-row_no += 1
-
-ws.row(row_no).height = space_height
-row_no += 1
-
-ws.row(row_no).height = height_18
-ws.write_merge(row_no, row_no, 1, 2, 'ご担当者', company_supplier)
-ws.write(row_no, 3, '', border_bottom)
-ws.write(row_no, 4, '様', company_supplier_label)
-
-row_no += 1
-
-ws.row(row_no).height = height_16_5
-ws.write_merge(row_no, row_no, 1, 5, '広島県安芸郡府中町大須１丁目１７－１７', font_11_left)
-
-row_no += 1
-
-ws.row(row_no).height = height_16_5
-ws.write_merge(row_no, row_no, 1, 2, 'TEL 082-283-3100', font_11_left)
-ws.write_merge(row_no, row_no, 4, 6, 'FAX 082-283-3522', font_11_left)
-
-row_no += 1
-
-ws.row(row_no).height = height_13_5
-ws.row(row_no + 1).height = height_13_5
-ws.write_merge(row_no, row_no + 1, 6, 10, 'バッジオ株式会社', font_16_left)
-
-row_no += 2
-ws.write_merge(row_no, row_no, 6, 10, '〒537-0021　大阪府大阪市東成区東中本2丁目4-15', font_10_5_left)
-row_no += 1
-ws.write_merge(row_no, row_no, 6, 10, 'TEL 06-6753-8078 FAX 06-6753-8079', font_12_left)
-
-row_no += 1
-ws.write(row_no, 6, '担当：', font_11_left)
-ws.write_merge(row_no, row_no, 7, 10, '河崎', font_11_left)
-
-row_no += 1
-ws.row(row_no).height = space_height
-
-row_no += 1
-ws.write_merge(row_no, row_no, 0, 6, '商　品　名', product_table_first_th_style)
-ws.write(row_no, 7, '数量', product_table_th_style)
-ws.write(row_no, 8, '単　価', product_table_th_style)
-ws.write_merge(row_no, row_no, 9, 10, '金　額', product_table_last_th_style)
-row_no += 1
-
-product_list = [
-    {
-        'product_name': "S政宗3CA5",
-        "quantity": "1",
-        "price": "240,000",
-        "total": "240,000"
-    },
-    {
-        'product_name': "出庫手数料",
-        "quantity": "1",
-        "price": "2,000",
-        "total": "2,000"
-    },
-    {
-        'product_name': "S政宗3CA5",
-        "quantity": "1",
-        "price": "5,500",
-        "total": "5,500"
-    },
-    {
-        'product_name': "",
-        "quantity": "",
-        "price": "",
-        "total": ""
-    },
-    {
-        'product_name': "",
-        "quantity": "",
-        "price": "",
-        "total": ""
-    },
-    {
-        'product_name': "",
-        "quantity": "",
-        "price": "",
-        "total": ""
-    }
-]
-
-for i in range(0, len(product_list)):
-    ws.row(row_no).height = height_18
-    ws.write_merge(row_no, row_no, 0, 6, product_list[i]['product_name'], product_first_content_style)
-    ws.write(row_no, 7, product_list[i]['quantity'], product_content_style)
-    ws.write(row_no, 8, product_list[i]['price'], product_content_style)
-    ws.write_merge(row_no, row_no, 9, 10, product_list[i]['total'], product_last_content_style)
-    row_no += 1
-
-for i in range(0, 7):
-    ws.write(row_no, i, '', bold_medium_top)
-
-ws.write_merge(row_no, row_no, 7, 8, '小　計', subtotal_label_style)
-ws.write_merge(row_no, row_no, 9, 10, '247,500', subtotal_value_style)
-row_no += 1
-
-ws.write_merge(row_no, row_no, 7, 8, '消費税（10%）', fee_label_style)
-ws.write_merge(row_no, row_no, 9, 10, '24750', fee_value_style)
-row_no += 1
-
-ws.write_merge(row_no, row_no, 7, 8, '保険代（非課税）', fee_label_style)
-ws.write_merge(row_no, row_no, 9, 10, '480', fee_value_style)
-row_no += 1
-
-ws.write_merge(row_no, row_no, 7, 8, '合　計', total_label_style)
-ws.write_merge(row_no, row_no, 9, 10, '¥272,730', total_value_style)
-
-row_no += 1
-ws.row(row_no).height = space_height
-
-row_no += 1
-ws.write(row_no, 4, '下記の通り御請求申し上げます。', font_11_left)
-
-row_no += 1
-ws.write_merge(row_no, row_no, 0, 2, '発送日', font_11_center_with_border)
-row_no += 1
-ws.write_merge(row_no, row_no, 0, 2, '4/27/2021', font_11_center_with_border)
-row_no += 2
-
-ws.write_merge(row_no, row_no, 0, 2, 'お支払方法', font_11_center_with_border)
-row_no += 1
-ws.write_merge(row_no, row_no, 0, 2, '振込', font_11_center_with_border)
-
-ws.write_merge(row_no - 4, row_no, 4, 5, 'お支払内訳', payment_breakdown_style)
-ws.write(row_no - 4, 6, '初回', payment_first_cell_label_style)
-ws.write_merge(row_no - 4, row_no - 4, 7, 8, '4/27/2021', payment_first_cell_date_style)
-ws.write_merge(row_no - 4, row_no - 4, 9, 10, '¥272,730', payment_first_cell_value_style)
-
-ws.write(row_no - 3, 6, '2回', payment_center_cell_label_style)
-ws.write_merge(row_no - 3, row_no - 3, 7, 8, '', payment_center_cell_date_style)
-ws.write_merge(row_no - 3, row_no - 3, 9, 10, '', payment_center_cell_value_style)
-
-ws.write(row_no - 2, 6, '3回', payment_center_cell_label_style)
-ws.write_merge(row_no - 2, row_no - 2, 7, 8, '', payment_center_cell_date_style)
-ws.write_merge(row_no - 2, row_no - 2, 9, 10, '', payment_center_cell_value_style)
-
-ws.write(row_no - 1, 6, '4回', payment_center_cell_label_style)
-ws.write_merge(row_no - 1, row_no - 1, 7, 8, '', payment_center_cell_date_style)
-ws.write_merge(row_no - 1, row_no - 1, 9, 10, '', payment_center_cell_value_style)
-
-ws.write(row_no, 6, '5回', payment_last_cell_label_style)
-ws.write_merge(row_no, row_no, 7, 8, '', payment_last_cell_date_style)
-ws.write_merge(row_no, row_no, 9, 10, '', payment_last_cell_value_style)
-
-row_no += 1
-
-ws.row(row_no).height = space_height
-row_no += 1
-ws.write(row_no, 0, '※お振込み手数料は貴社ご負担でお願い致します。', font_11_left)
-
-row_no += 1
-
-ws.write_merge(row_no, row_no, 0, 1, '振込先口座', transfer_account_style)
-ws.write_merge(row_no, row_no, 2, 10, 'りそな銀行　船場支店（101）　普通　0530713　バッジオカブシキガイシャ', font_11_left_with_border)
-row_no += 1
-
-ws.write(row_no, 0, '', border_left)
-ws.write_merge(row_no, row_no, 2, 10, '', font_11_left_with_border)
-row_no += 1
-
-ws.write(row_no, 0, '', border_left)
-ws.write_merge(row_no, row_no, 2, 10, '', font_11_left_with_border)
-row_no += 1
-
-ws.row(row_no).height = space_height
-ws.write(row_no, 0, '', border_top)
-ws.write(row_no, 1, '', border_top)
-row_no += 1
-
-ws.write_merge(row_no, row_no, 0, 4, 'P-SENSOR会員番号　8240-2413-3628', font_11_left)
-row_no += 1
-
-ws.row(row_no).height = space_height
-row_no += 3
-
-ws.row(row_no).height = height_13_5
-ws.write(row_no, 0, 'No.10006591', font_11_left)
-
-        for i in range(8):
-            ws.col(i).width = cell_width
+        ws = wb.add_sheet("請求書", cell_overwrite_ok=True)
+        for i in range(11):
+                    ws.col(i).width = cell_width_list[i]
 
         for i in range(1, 80):
             ws.row(i).height_mismatch = True
             ws.row(i).height = cell_height
 
-        ws.row(0).height_mismatch = True
-        ws.row(0).height = header_height
+        row_no = 0
 
-        ws.write_merge(0, 0, 0, 7, _('Sales contract'), title_style)
-        ws.write_merge(1, 1, 0, 1, 'No.  {}'.format(contract_id), common_style)
-        ws.write(1, 7, created_at, common_style)
+        ws.row(row_no).height_mismatch = True
+        ws.row(row_no).height = top_padding_height
 
-        ws.write_merge(3, 3, 0, 3, "{}({})".format(_('Buyer'), _('A')), sub_title_left_style)
-        ws.write_merge(3, 3, 4, 7, "{}({})".format(_('Seller'), _('B')), sub_title_left_style)
+        row_no += 1
 
-        ws.write(4, 0, _('Company'), common_style)
-        ws.write_merge(4, 4, 1, 3, company, common_style)
-        ws.write(4, 4, _('Company'), common_style)
-        ws.write_merge(4, 4, 5, 7, COMPANY_NAME, common_style)
-        ws.row(4).height = address_cell_height
+        ws.row(row_no).height = header_height
 
-        ws.write(5, 4, _('Address'), common_style)
-        ws.write_merge(5, 5, 5, 7, ADDRESS, common_style)
-        
-        ws.write(6, 4, _('TEL'), common_style)
-        ws.write(6, 5, TEL, common_style)
-        ws.write(6, 6, _('FAX'), common_style)
-        ws.write(6, 7, FAX, common_style)
+        ws.write_merge(row_no, row_no, 0, 10, '請　　求　　書', title_style)
+        row_no += 1
+        ws.write_merge(row_no, row_no, 8, 10, created_at, font_11_right)
+        row_no += 1
 
-        ws.write_merge(8, 8, 0, 7, _('Installation location'), sub_title_left_style)
-        ws.write(9, 0, _('Hall name'), common_style)
-        ws.write_merge(9, 9, 1, 3, hall_name, common_style)
-        ws.write(9, 4, _('Address'), common_style)
-        ws.write_merge(9, 9, 5, 7, hall_address, common_style)
-        ws.row(9).height = address_cell_height
-        
-        ws.write(10, 0, _('TEL'), common_style)
-        ws.write_merge(10, 10, 1, 3, hall_tel, common_style)
+        ws.row(row_no).height = company_height
+        ws.write_merge(row_no, row_no, 0, 2, company, company_title_style)
+        ws.write(row_no, 3, '', border_bottom)
+        ws.write(row_no, 4, '御中', company_label_style)
 
-        ws.write_merge(11, 12, 0, 7, _('The buyer (hereinafter referred to as A) and the seller (hereinafter referred to as B) have entered into a sales contract including the transaction contract stated on the back of the following products (hereinafter referred to as properties).'), common_style)
+        row_no += 1
 
-        # Product Table
-        ws.write_merge(14, 14, 0, 3, _('Model name'), table_center_style)
-        ws.write(14, 4, _('Product type'), table_center_style)
-        ws.write(14, 5, _('Quantity'), table_center_style)
-        ws.write(14, 6, _('Price'), table_center_style)
-        ws.write(14, 7, _('Amount'), table_center_style)
+        ws.row(row_no).height = space_height
+        row_no += 1
 
-        row_no = 15
+        ws.row(row_no).height = height_18
+        ws.write_merge(row_no, row_no, 1, 2, manager, company_supplier)
+        ws.write(row_no, 3, '', border_bottom)
+        ws.write(row_no, 4, '様', company_supplier_label)
+
+        row_no += 1
+
+        ws.row(row_no).height = height_16_5
+        ws.write_merge(row_no, row_no, 1, 5, address, font_11_left)
+
+        row_no += 1
+
+        ws.row(row_no).height = height_16_5
+        ws.write_merge(row_no, row_no, 1, 2, 'TEL {}'.format(tel), font_11_left)
+        ws.write_merge(row_no, row_no, 4, 6, 'FAX {}'.format(fax), font_11_left)
+
+        row_no += 1
+
+        ws.row(row_no).height = height_13_5
+        ws.row(row_no + 1).height = height_13_5
+        ws.write_merge(row_no, row_no + 1, 6, 10, 'バッジオ株式会社', font_16_left)
+
+        row_no += 2
+        ws.write_merge(row_no, row_no, 6, 10, '〒537-0021　大阪府大阪市東成区東中本2丁目4-15', font_10_5_left)
+        row_no += 1
+        ws.write_merge(row_no, row_no, 6, 10, 'TEL 06-6753-8078 FAX 06-6753-8079', font_12_left)
+
+        row_no += 1
+        ws.write(row_no, 6, '担当：', font_11_left)
+        ws.write_merge(row_no, row_no, 7, 10, '河崎', font_11_left)
+
+        row_no += 1
+        ws.row(row_no).height = space_height
+
+        row_no += 1
+        ws.write_merge(row_no, row_no, 0, 6, '商　品　名', product_table_first_th_style)
+        ws.write(row_no, 7, '数量', product_table_th_style)
+        ws.write(row_no, 8, '単　価', product_table_th_style)
+        ws.write_merge(row_no, row_no, 9, 10, '金　額', product_table_last_th_style)
+        row_no += 1
+
         product_formset = ProductFormSet(
             self.request.POST,
             prefix='product'
@@ -1227,27 +1047,18 @@ ws.write(row_no, 0, 'No.10006591', font_11_left)
                 form.is_valid()
                 id = form.cleaned_data.get('product_id')
                 product_name = Product.objects.get(id=id).name
-                type = form.cleaned_data.get('type')
                 quantity = form.cleaned_data.get('quantity', 0)
                 price = form.cleaned_data.get('price', 0)
                 amount = quantity * price
 
-                ws.write_merge(row_no, row_no, 0, 3, product_name, table_center_style)
-                ws.write(row_no, 4, str(dict(PRODUCT_TYPE_CHOICES)[type]), table_center_style)
-                ws.write(row_no, 5, quantity, table_center_style)
-                ws.write(row_no, 6, price, table_center_style)
-                ws.write(row_no, 7, amount, table_center_style)
-                ws.row(row_no).height = address_cell_height
+                ws.row(row_no).height = height_18
+                ws.write_merge(row_no, row_no, 0, 6, product_name, product_first_content_style)
+                ws.write(row_no, 7, quantity, product_content_style)
+                ws.write(row_no, 8, price, product_content_style)
+                ws.write_merge(row_no, row_no, 9, 10, amount, product_content_style)
                 row_no += 1
-        
-        # Document Table
-        row_no += 1
-        ws.write_merge(row_no, row_no, 0, 1, _('Document'), table_center_style)
-        ws.write_merge(row_no, row_no, 2, 3, _('Quantity'), table_center_style)
-        ws.write_merge(row_no, row_no, 4, 5, _('Price'), table_center_style)
-        ws.write_merge(row_no, row_no, 6, 7, _('Amount'), table_center_style)
-        row_no += 1
 
+        # Document Table
         document_formset = DocumentFormSet(
             self.request.POST,
             prefix='document'
@@ -1261,21 +1072,14 @@ ws.write(row_no, 0, 'No.10006591', font_11_left)
                 quantity = form.cleaned_data.get('quantity', 0)
                 price = form.cleaned_data.get('price', 0)
                 amount = quantity * price
-                
-                ws.write_merge(row_no, row_no, 0, 1, document_name, table_center_style)
-                ws.write_merge(row_no, row_no, 2, 3, quantity, table_center_style)
-                ws.write_merge(row_no, row_no, 4, 5, price, table_center_style)
-                ws.write_merge(row_no, row_no, 6, 7, amount, table_center_style)
+
+                ws.row(row_no).height = height_18
+                ws.write_merge(row_no, row_no, 0, 6, document_name, product_first_content_style)
+                ws.write(row_no, 7, quantity, product_content_style)
+                ws.write(row_no, 8, price, product_content_style)
+                ws.write_merge(row_no, row_no, 9, 10, amount, product_content_style)
                 row_no += 1
         
-        # Document Fee Table
-        row_no += 1
-        ws.write_merge(row_no, row_no, 0, 1, _('Product type'), table_center_style)
-        ws.write_merge(row_no, row_no, 2, 3, _('Model count'), table_center_style)
-        ws.write_merge(row_no, row_no, 4, 5, _('Unit count'), table_center_style)
-        ws.write_merge(row_no, row_no, 6, 7, _('Amount'), table_center_style)
-        row_no += 1
-
         document_fee_formset = DocumentFeeFormSet(
             self.request.POST,
             prefix='document_fee'
@@ -1292,11 +1096,22 @@ ws.write(row_no, 0, 'No.10006591', font_11_left)
                 model_price = document_fee.model_price
                 unit_price = document_fee.unit_price
                 amount = model_price * model_count + unit_price * unit_count + document_fee.application_fee
-
-                ws.write_merge(row_no, row_no, 0, 1, str(dict(TYPE_CHOICES)[type]), table_center_style)
-                ws.write_merge(row_no, row_no, 2, 3, model_count, table_center_style)
-                ws.write_merge(row_no, row_no, 4, 5, unit_count, table_center_style)
-                ws.write_merge(row_no, row_no, 6, 7, amount, table_center_style)
+                
+                ws.row(row_no).height = height_18
+                ws.write_merge(row_no, row_no, 0, 6, str(dict(TYPE_CHOICES)[type]), product_first_content_style)
+                ws.write(row_no, 7, model_count, product_content_style)
+                ws.write(row_no, 8, unit_count, product_content_style)
+                ws.write_merge(row_no, row_no, 9, 10, amount, product_content_style)
+                row_no += 1
+        
+        total_number = num_of_products + num_of_documents + num_of_document_fees
+        if total_number < 16:
+            for i in range(0, 16 - total_number):
+                ws.row(row_no).height = height_18
+                ws.write_merge(row_no, row_no, 0, 6, None, product_first_content_style)
+                ws.write(row_no, 7, None, product_content_style)
+                ws.write(row_no, 8, None, product_content_style)
+                ws.write_merge(row_no, row_no, 9, 10, None, product_content_style)
                 row_no += 1
 
         remarks = contract_form.data.get('remarks')
@@ -1321,45 +1136,42 @@ ws.write(row_no, 0, 'No.10006591', font_11_left)
             tax = 0
             fee = 0
             total = 0
-        
-        row_no += 1
-        ws.write_merge(row_no, row_no + 3, 0, 0, _('Remarks'), common_style)
-        ws.write_merge(row_no, row_no + 3, 1, 3, remarks, common_style)
-        ws.write_merge(row_no, row_no, 5, 6, _('Sum'), table_left_style)
-        ws.write(row_no, 7, sub_total, number_style)
+
+        for i in range(0, 7):
+            ws.write(row_no, i, '', bold_medium_top)
+
+        ws.write_merge(row_no, row_no, 7, 8, '小　計', subtotal_label_style)
+        ws.write_merge(row_no, row_no, 9, 10, sub_total, subtotal_value_style)
         row_no += 1
 
-        ws.write_merge(row_no, row_no, 5, 6, _('Consumption tax') + '(10%)', table_left_style)
-        ws.write(row_no, 7, tax, number_style)
+        ws.write_merge(row_no, row_no, 7, 8, '消費税（10%）', fee_label_style)
+        ws.write_merge(row_no, row_no, 9, 10, tax, fee_value_style)
         row_no += 1
 
-        ws.write_merge(row_no, row_no, 5, 6, _('Insurance fee') + '(' + _('No tax') + ')', table_left_style)
-        ws.write(row_no, 7, fee, number_style)
+        ws.write_merge(row_no, row_no, 7, 8, '保険代（非課税）', fee_label_style)
+        ws.write_merge(row_no, row_no, 9, 10, fee, fee_value_style)
         row_no += 1
 
-        ws.write_merge(row_no, row_no, 5, 6, _('Total amount'), table_left_style)
-        ws.write(row_no, 7, total, number_style)
-        row_no += 1
+        ws.write_merge(row_no, row_no, 7, 8, '合　計', total_label_style)
+        ws.write_merge(row_no, row_no, 9, 10, total, total_value_style)
 
         row_no += 1
-        ws.write_merge(row_no, row_no, 4, 7, _('We will charge you as follows.'), common_style)
+        ws.row(row_no).height = space_height
 
         row_no += 1
-        ws.write(row_no, 0, _('Shipping date'), common_style)
-        ws.write(row_no, 1, shipping_date, common_style)
-        ws.write(row_no + 1, 0, _('Opening date'), common_style)
-        ws.write(row_no + 1, 1, opening_date, common_style)
-        ws.write(row_no + 2, 0, _('Payment method'), common_style)
-        ws.write(row_no + 2, 1, str(dict(PAYMENT_METHOD_CHOICES)[payment_method]), common_style)
-        
-        ws.write_merge(row_no, row_no + 4, 4, 4, _('Payment breakdown'), table_center_style)
+        ws.write(row_no, 4, '下記の通り御請求申し上げます。', font_11_left)
+
+        row_no += 1
+        ws.write_merge(row_no, row_no, 0, 2, '発送日', font_11_center_with_border)
+        ws.write_merge(row_no, row_no + 4, 4, 5, 'お支払内訳', payment_breakdown_style)
+        ws.write_merge(row_no + 1, row_no + 1, 0, 2, shipping_date, font_11_center_with_border)
+        ws.write_merge(row_no + 3, row_no + 3, 0, 2, 'お支払方法', font_11_center_with_border)
+        ws.write_merge(row_no + 4, row_no + 4, 0, 2, str(dict(PAYMENT_METHOD_CHOICES)[payment_method]), font_11_center_with_border)
 
         milestone_formset = MilestoneFormSet(
             self.request.POST,
             prefix='milestone'
         )
-
-        table_date_style.num_format_str = 'yyyy/mm/dd' if self.request.LANGUAGE_CODE == 'ja' else 'mm/dd/yyyy'
 
         idx = 1
         for form in milestone_formset.forms:
@@ -1367,23 +1179,52 @@ ws.write(row_no, 0, 'No.10006591', font_11_left)
             date = form.cleaned_data.get('date')
             amount = form.cleaned_data.get('amount')
             
-            ws.write(row_no + idx - 1, 5, _(ordinal(idx)), table_center_style)
-            ws.write(row_no + idx - 1, 6, date, table_date_style)
-            ws.write(row_no + idx - 1, 7, amount, table_left_style)
+            if idx == 1:
+                ws.write(row_no, 6, _(ordinal(idx)), payment_first_cell_label_style)
+                ws.write_merge(row_no, row_no, 7, 8, date, payment_first_cell_date_style)
+                ws.write_merge(row_no, row_no, 9, 10, amount, payment_first_cell_value_style)
+            elif idx == 5:
+                ws.write(row_no, 6, _(ordinal(idx)), payment_last_cell_label_style)
+                ws.write_merge(row_no, row_no, 7, 8, date, payment_last_cell_date_style)
+                ws.write_merge(row_no, row_no, 9, 10, amount, payment_last_cell_value_style)
+            else:
+                ws.write(row_no, 6, _(ordinal(idx)), payment_center_cell_label_style)
+                ws.write_merge(row_no, row_no, 7, 8, date, payment_center_cell_date_style)
+                ws.write_merge(row_no, row_no, 9, 10, amount, payment_center_cell_value_style)
             idx += 1
-        row_no += 5
-        
+            row_no += 1
+
+        ws.row(row_no).height = space_height
         row_no += 1
-        ws.write_merge(row_no, row_no, 0, 7, _('Please bear the transfer fee at your expense.'), common_style)
+        ws.write(row_no, 0, '※お振込み手数料は貴社ご負担でお願い致します。', font_11_left)
 
         row_no += 1
-        ws.write(row_no, 0, _('Transfer account'), common_style)
-        ws.write_merge(row_no, row_no, 1, 3, transfer_account, common_style)
-        ws.write(row_no, 4, _('Person in charge'), common_style)
-        ws.write(row_no, 5, person_in_charge, common_style)
-        ws.write(row_no, 6, _('Confirmor'), common_style)
-        ws.write(row_no, 7, confirmor, common_style)
-        ws.row(row_no).height = address_cell_height
+
+        ws.write_merge(row_no, row_no, 0, 1, '振込先口座', transfer_account_style)
+        ws.write_merge(row_no, row_no, 2, 10, transfer_account, font_11_left_with_border)
+        row_no += 1
+
+        ws.write(row_no, 0, '', border_left)
+        ws.write_merge(row_no, row_no, 2, 10, '', font_11_left_with_border)
+        row_no += 1
+
+        ws.write(row_no, 0, '', border_left)
+        ws.write_merge(row_no, row_no, 2, 10, '', font_11_left_with_border)
+        row_no += 1
+
+        ws.row(row_no).height = space_height
+        ws.write(row_no, 0, '', border_top)
+        ws.write(row_no, 1, '', border_top)
+        row_no += 1
+
+        ws.write_merge(row_no, row_no, 0, 4, 'P-SENSOR会員番号　8240-2413-3628', font_11_left)
+        row_no += 1
+
+        ws.row(row_no).height = space_height
+        row_no += 3
+
+        ws.row(row_no).height = height_13_5
+        ws.write(row_no, 0, 'No.{}'.format(contract_id), font_11_left)
 
         wb.save(response)
         return response
@@ -1391,248 +1232,249 @@ ws.write(row_no, 0, 'No.10006591', font_11_left)
 
 class HallPurchasesInvoiceView(AdminLoginRequiredMixin, View):
     def post(self, *args, **kwargs):
-        user_id = self.request.user.id
-        log_export_operation(user_id, "{} - {}".format(_("Sales contract"), _("Hall purchases")))
-        contract_form = HallPurchasesContractForm(self.request.POST)
-        contract_id = contract_form.data.get('contract_id', '')
-        customer_id = contract_form.data.get('customer_id')
-        created_at = contract_form.data.get('created_at', '')
-        hall_id = contract_form.data.get('hall_id')
-        company = address = tel = fax = None
-        if customer_id:
-            customer = Customer.objects.get(id=customer_id)
-            company = customer.name
-            address = customer.address
-            tel = customer.tel
-            fax = customer.fax
-        hall_name = hall_address = hall_tel = None
-        if hall_id:
-            hall = Hall.objects.get(id=hall_id)
-            hall_name = hall.name
-            hall_address = hall.address
-            hall_tel = hall.tel
+        # user_id = self.request.user.id
+        # log_export_operation(user_id, "{} - {}".format(_("Sales contract"), _("Hall purchases")))
+        # contract_form = HallPurchasesContractForm(self.request.POST)
+        # contract_id = contract_form.data.get('contract_id', '')
+        # customer_id = contract_form.data.get('customer_id')
+        # created_at = contract_form.data.get('created_at', '')
+        # hall_id = contract_form.data.get('hall_id')
+        # company = address = tel = fax = None
+        # if customer_id:
+        #     customer = Customer.objects.get(id=customer_id)
+        #     company = customer.name
+        #     address = customer.address
+        #     tel = customer.tel
+        #     fax = customer.fax
+        # hall_name = hall_address = hall_tel = None
+        # if hall_id:
+        #     hall = Hall.objects.get(id=hall_id)
+        #     hall_name = hall.name
+        #     hall_address = hall.address
+        #     hall_tel = hall.tel
 
         
-        response = HttpResponse(content_type='application/ms-excel')
-        response['Content-Disposition'] = 'attachment; filename="hall_purchases_contract_{}.xls"'.format(contract_id)
-        wb = xlwt.Workbook(encoding='utf-8')
-        ws = wb.add_sheet("{} - {}".format(_('Sales contract'), _('Hall purchases')))
+        # response = HttpResponse(content_type='application/ms-excel')
+        # response['Content-Disposition'] = 'attachment; filename="hall_purchases_contract_{}.xls"'.format(contract_id)
+        # wb = xlwt.Workbook(encoding='utf-8')
+        # ws = wb.add_sheet("{} - {}".format(_('Sales contract'), _('Hall purchases')))
 
-        for i in range(8):
-            ws.col(i).width = cell_width
+        # for i in range(8):
+        #     ws.col(i).width = cell_width
 
-        for i in range(1, 80):
-            ws.row(i).height_mismatch = True
-            ws.row(i).height = cell_height
+        # for i in range(1, 80):
+        #     ws.row(i).height_mismatch = True
+        #     ws.row(i).height = cell_height
 
-        ws.row(0).height_mismatch = True
-        ws.row(0).height = header_height
+        # ws.row(0).height_mismatch = True
+        # ws.row(0).height = header_height
 
-        ws.write_merge(0, 0, 0, 7, _('Sales contract'), title_style)
-        ws.write_merge(1, 1, 0, 1, 'No.  {}'.format(contract_id), common_style)
-        ws.write(1, 7, created_at, common_style)
+        # ws.write_merge(0, 0, 0, 7, _('Sales contract'), title_style)
+        # ws.write_merge(1, 1, 0, 1, 'No.  {}'.format(contract_id), common_style)
+        # ws.write(1, 7, created_at, common_style)
 
-        ws.write_merge(3, 3, 0, 3, "{}({})".format(_('Buyer'), _('A')), sub_title_left_style)
-        ws.write_merge(3, 3, 4, 7, "{}({})".format(_('Seller'), _('B')), sub_title_left_style)
+        # ws.write_merge(3, 3, 0, 3, "{}({})".format(_('Buyer'), _('A')), sub_title_left_style)
+        # ws.write_merge(3, 3, 4, 7, "{}({})".format(_('Seller'), _('B')), sub_title_left_style)
 
-        ws.write(4, 0, _('Company'), common_style)
-        ws.write_merge(4, 4, 1, 3, company, common_style)
-        ws.write(4, 4, _('Company'), common_style)
-        ws.write_merge(4, 4, 5, 7, COMPANY_NAME, common_style)
-        ws.row(4).height = address_cell_height
+        # ws.write(4, 0, _('Company'), common_style)
+        # ws.write_merge(4, 4, 1, 3, company, common_style)
+        # ws.write(4, 4, _('Company'), common_style)
+        # ws.write_merge(4, 4, 5, 7, COMPANY_NAME, common_style)
+        # ws.row(4).height = address_cell_height
 
-        ws.write(5, 4, _('Address'), common_style)
-        ws.write_merge(5, 5, 5, 7, ADDRESS, common_style)
+        # ws.write(5, 4, _('Address'), common_style)
+        # ws.write_merge(5, 5, 5, 7, ADDRESS, common_style)
         
-        ws.write(6, 4, _('TEL'), common_style)
-        ws.write(6, 5, TEL, common_style)
-        ws.write(6, 6, _('FAX'), common_style)
-        ws.write(6, 7, FAX, common_style)
+        # ws.write(6, 4, _('TEL'), common_style)
+        # ws.write(6, 5, TEL, common_style)
+        # ws.write(6, 6, _('FAX'), common_style)
+        # ws.write(6, 7, FAX, common_style)
 
-        ws.write_merge(8, 8, 0, 7, _('Installation location'), sub_title_left_style)
-        ws.write(9, 0, _('Hall name'), common_style)
-        ws.write_merge(9, 9, 1, 3, hall_name, common_style)
-        ws.write(9, 4, _('Address'), common_style)
-        ws.write_merge(9, 9, 5, 7, hall_address, common_style)
-        ws.row(9).height = address_cell_height
+        # ws.write_merge(8, 8, 0, 7, _('Installation location'), sub_title_left_style)
+        # ws.write(9, 0, _('Hall name'), common_style)
+        # ws.write_merge(9, 9, 1, 3, hall_name, common_style)
+        # ws.write(9, 4, _('Address'), common_style)
+        # ws.write_merge(9, 9, 5, 7, hall_address, common_style)
+        # ws.row(9).height = address_cell_height
         
-        ws.write(10, 0, _('TEL'), common_style)
-        ws.write_merge(10, 10, 1, 3, hall_tel, common_style)
+        # ws.write(10, 0, _('TEL'), common_style)
+        # ws.write_merge(10, 10, 1, 3, hall_tel, common_style)
 
-        ws.write_merge(11, 12, 0, 7, _('The buyer (hereinafter referred to as A) and the seller (hereinafter referred to as B) have entered into a sales contract including the transaction contract stated on the back of the following products (hereinafter referred to as properties).'), common_style)
+        # ws.write_merge(11, 12, 0, 7, _('The buyer (hereinafter referred to as A) and the seller (hereinafter referred to as B) have entered into a sales contract including the transaction contract stated on the back of the following products (hereinafter referred to as properties).'), common_style)
 
-        # Product Table
-        ws.write_merge(14, 14, 0, 3, _('Model name'), table_center_style)
-        ws.write(14, 4, _('Product type'), table_center_style)
-        ws.write(14, 5, _('Quantity'), table_center_style)
-        ws.write(14, 6, _('Price'), table_center_style)
-        ws.write(14, 7, _('Amount'), table_center_style)
+        # # Product Table
+        # ws.write_merge(14, 14, 0, 3, _('Model name'), table_center_style)
+        # ws.write(14, 4, _('Product type'), table_center_style)
+        # ws.write(14, 5, _('Quantity'), table_center_style)
+        # ws.write(14, 6, _('Price'), table_center_style)
+        # ws.write(14, 7, _('Amount'), table_center_style)
 
-        row_no = 15
-        product_formset = ProductFormSet(
-            self.request.POST,
-            prefix='product'
-        )
-        num_of_products = product_formset.total_form_count()
-        if num_of_products:
-            for form in product_formset.forms:
-                form.is_valid()
-                id = form.cleaned_data.get('product_id')
-                product_name = Product.objects.get(id=id).name
-                type = form.cleaned_data.get('type')
-                quantity = form.cleaned_data.get('quantity', 0)
-                price = form.cleaned_data.get('price', 0)
-                amount = quantity * price
+        # row_no = 15
+        # product_formset = ProductFormSet(
+        #     self.request.POST,
+        #     prefix='product'
+        # )
+        # num_of_products = product_formset.total_form_count()
+        # if num_of_products:
+        #     for form in product_formset.forms:
+        #         form.is_valid()
+        #         id = form.cleaned_data.get('product_id')
+        #         product_name = Product.objects.get(id=id).name
+        #         type = form.cleaned_data.get('type')
+        #         quantity = form.cleaned_data.get('quantity', 0)
+        #         price = form.cleaned_data.get('price', 0)
+        #         amount = quantity * price
                 
-                ws.write_merge(row_no, row_no, 0, 3, product_name, table_center_style)
-                ws.write(row_no, 4, str(dict(PRODUCT_TYPE_CHOICES)[type]), table_center_style)
-                ws.write(row_no, 5, quantity, table_center_style)
-                ws.write(row_no, 6, price, table_center_style)
-                ws.write(row_no, 7, amount, table_center_style)
-                ws.row(row_no).height = address_cell_height
-                row_no += 1
+        #         ws.write_merge(row_no, row_no, 0, 3, product_name, table_center_style)
+        #         ws.write(row_no, 4, str(dict(PRODUCT_TYPE_CHOICES)[type]), table_center_style)
+        #         ws.write(row_no, 5, quantity, table_center_style)
+        #         ws.write(row_no, 6, price, table_center_style)
+        #         ws.write(row_no, 7, amount, table_center_style)
+        #         ws.row(row_no).height = address_cell_height
+        #         row_no += 1
         
-        # Document Table
-        row_no += 1
-        ws.write_merge(row_no, row_no, 0, 1, _('Document'), table_center_style)
-        ws.write_merge(row_no, row_no, 2, 3, _('Quantity'), table_center_style)
-        ws.write_merge(row_no, row_no, 4, 5, _('Price'), table_center_style)
-        ws.write_merge(row_no, row_no, 6, 7, _('Amount'), table_center_style)
-        row_no += 1
+        # # Document Table
+        # row_no += 1
+        # ws.write_merge(row_no, row_no, 0, 1, _('Document'), table_center_style)
+        # ws.write_merge(row_no, row_no, 2, 3, _('Quantity'), table_center_style)
+        # ws.write_merge(row_no, row_no, 4, 5, _('Price'), table_center_style)
+        # ws.write_merge(row_no, row_no, 6, 7, _('Amount'), table_center_style)
+        # row_no += 1
 
-        document_formset = DocumentFormSet(
-            self.request.POST,
-            prefix='document'
-        )
-        num_of_documents = document_formset.total_form_count()
-        if num_of_documents:
-            for form in document_formset.forms:
-                form.is_valid()
-                id = form.cleaned_data.get('document_id')
-                document_name = Document.objects.get(id=id).name
-                quantity = form.cleaned_data.get('quantity', 0)
-                price = form.cleaned_data.get('price', 0)
-                amount = quantity * price
+        # document_formset = DocumentFormSet(
+        #     self.request.POST,
+        #     prefix='document'
+        # )
+        # num_of_documents = document_formset.total_form_count()
+        # if num_of_documents:
+        #     for form in document_formset.forms:
+        #         form.is_valid()
+        #         id = form.cleaned_data.get('document_id')
+        #         document_name = Document.objects.get(id=id).name
+        #         quantity = form.cleaned_data.get('quantity', 0)
+        #         price = form.cleaned_data.get('price', 0)
+        #         amount = quantity * price
                 
-                ws.write_merge(row_no, row_no, 0, 1, document_name, table_center_style)
-                ws.write_merge(row_no, row_no, 2, 3, quantity, table_center_style)
-                ws.write_merge(row_no, row_no, 4, 5, price, table_center_style)
-                ws.write_merge(row_no, row_no, 6, 7, amount, table_center_style)
-                row_no += 1
+        #         ws.write_merge(row_no, row_no, 0, 1, document_name, table_center_style)
+        #         ws.write_merge(row_no, row_no, 2, 3, quantity, table_center_style)
+        #         ws.write_merge(row_no, row_no, 4, 5, price, table_center_style)
+        #         ws.write_merge(row_no, row_no, 6, 7, amount, table_center_style)
+        #         row_no += 1
         
-        # Document Fee Table
-        row_no += 1
-        ws.write_merge(row_no, row_no, 0, 1, _('Product type'), table_center_style)
-        ws.write_merge(row_no, row_no, 2, 3, _('Model count'), table_center_style)
-        ws.write_merge(row_no, row_no, 4, 5, _('Unit count'), table_center_style)
-        ws.write_merge(row_no, row_no, 6, 7, _('Amount'), table_center_style)
-        row_no += 1
+        # # Document Fee Table
+        # row_no += 1
+        # ws.write_merge(row_no, row_no, 0, 1, _('Product type'), table_center_style)
+        # ws.write_merge(row_no, row_no, 2, 3, _('Model count'), table_center_style)
+        # ws.write_merge(row_no, row_no, 4, 5, _('Unit count'), table_center_style)
+        # ws.write_merge(row_no, row_no, 6, 7, _('Amount'), table_center_style)
+        # row_no += 1
 
-        document_fee_formset = DocumentFeeFormSet(
-            self.request.POST,
-            prefix='document_fee'
-        )
-        num_of_document_fees = document_fee_formset.total_form_count()
-        if num_of_document_fees:
-            for form in document_fee_formset.forms:
-                form.is_valid()
-                id = form.cleaned_data.get('document_fee_id')
-                document_fee = DocumentFee.objects.get(id=id)
-                type = document_fee.type
-                model_count = form.cleaned_data.get('model_count', 0)
-                unit_count = form.cleaned_data.get('unit_count', 0)
-                model_price = document_fee.model_price
-                unit_price = document_fee.unit_price
-                amount = model_price * model_count + unit_price * unit_count + document_fee.application_fee
+        # document_fee_formset = DocumentFeeFormSet(
+        #     self.request.POST,
+        #     prefix='document_fee'
+        # )
+        # num_of_document_fees = document_fee_formset.total_form_count()
+        # if num_of_document_fees:
+        #     for form in document_fee_formset.forms:
+        #         form.is_valid()
+        #         id = form.cleaned_data.get('document_fee_id')
+        #         document_fee = DocumentFee.objects.get(id=id)
+        #         type = document_fee.type
+        #         model_count = form.cleaned_data.get('model_count', 0)
+        #         unit_count = form.cleaned_data.get('unit_count', 0)
+        #         model_price = document_fee.model_price
+        #         unit_price = document_fee.unit_price
+        #         amount = model_price * model_count + unit_price * unit_count + document_fee.application_fee
                 
-                ws.write_merge(row_no, row_no, 0, 1, str(dict(TYPE_CHOICES)[type]), table_center_style)
-                ws.write_merge(row_no, row_no, 2, 3, model_count, table_center_style)
-                ws.write_merge(row_no, row_no, 4, 5, unit_count, table_center_style)
-                ws.write_merge(row_no, row_no, 6, 7, amount, table_center_style)
-                row_no += 1
+        #         ws.write_merge(row_no, row_no, 0, 1, str(dict(TYPE_CHOICES)[type]), table_center_style)
+        #         ws.write_merge(row_no, row_no, 2, 3, model_count, table_center_style)
+        #         ws.write_merge(row_no, row_no, 4, 5, unit_count, table_center_style)
+        #         ws.write_merge(row_no, row_no, 6, 7, amount, table_center_style)
+        #         row_no += 1
 
-        remarks = contract_form.data.get('remarks')
-        sub_total = contract_form.data.get('sub_total')
-        tax = contract_form.data.get('tax')
-        fee = contract_form.data.get('fee')
-        total = contract_form.data.get('total')
-        shipping_date = contract_form.data.get('shipping_date')
-        opening_date = contract_form.data.get('opening_date')
-        payment_method = contract_form.data.get('payment_method')
-        transfer_account = contract_form.data.get('transfer_account')
-        person_in_charge = contract_form.data.get('person_in_charge', '')
-        confirmor = contract_form.data.get('confirmor')
-        memo = contract_form.data.get('memo')
+        # remarks = contract_form.data.get('remarks')
+        # sub_total = contract_form.data.get('sub_total')
+        # tax = contract_form.data.get('tax')
+        # fee = contract_form.data.get('fee')
+        # total = contract_form.data.get('total')
+        # shipping_date = contract_form.data.get('shipping_date')
+        # opening_date = contract_form.data.get('opening_date')
+        # payment_method = contract_form.data.get('payment_method')
+        # transfer_account = contract_form.data.get('transfer_account')
+        # person_in_charge = contract_form.data.get('person_in_charge', '')
+        # confirmor = contract_form.data.get('confirmor')
+        # memo = contract_form.data.get('memo')
 
-        try:
-            sub_total = int(sub_total)
-            tax = int(tax)
-            fee = int(fee)
-            total = int(total)
-        except ValueError:
-            sub_total = 0
-            tax = 0
-            fee = 0
-            total = 0
+        # try:
+        #     sub_total = int(sub_total)
+        #     tax = int(tax)
+        #     fee = int(fee)
+        #     total = int(total)
+        # except ValueError:
+        #     sub_total = 0
+        #     tax = 0
+        #     fee = 0
+        #     total = 0
 
-        row_no += 1
-        ws.write_merge(row_no, row_no + 3, 0, 0, _('Remarks'), common_style)
-        ws.write_merge(row_no, row_no + 3, 1, 3, remarks, common_style)
-        ws.write_merge(row_no, row_no, 5, 6, _('Sum'), table_left_style)
-        ws.write(row_no, 7, sub_total, number_style)
-        row_no += 1
+        # row_no += 1
+        # ws.write_merge(row_no, row_no + 3, 0, 0, _('Remarks'), common_style)
+        # ws.write_merge(row_no, row_no + 3, 1, 3, remarks, common_style)
+        # ws.write_merge(row_no, row_no, 5, 6, _('Sum'), table_left_style)
+        # ws.write(row_no, 7, sub_total, number_style)
+        # row_no += 1
 
-        ws.write_merge(row_no, row_no, 5, 6, _('Consumption tax') + '(10%)', table_left_style)
-        ws.write(row_no, 7, tax, number_style)
-        row_no += 1
+        # ws.write_merge(row_no, row_no, 5, 6, _('Consumption tax') + '(10%)', table_left_style)
+        # ws.write(row_no, 7, tax, number_style)
+        # row_no += 1
 
-        ws.write_merge(row_no, row_no, 5, 6, _('Insurance fee') + '(' + _('No tax') + ')', table_left_style)
-        ws.write(row_no, 7, fee, number_style)
-        row_no += 1
+        # ws.write_merge(row_no, row_no, 5, 6, _('Insurance fee') + '(' + _('No tax') + ')', table_left_style)
+        # ws.write(row_no, 7, fee, number_style)
+        # row_no += 1
 
-        ws.write_merge(row_no, row_no, 5, 6, _('Total amount'), table_left_style)
-        ws.write(row_no, 7, total, number_style)
-        row_no += 1
+        # ws.write_merge(row_no, row_no, 5, 6, _('Total amount'), table_left_style)
+        # ws.write(row_no, 7, total, number_style)
+        # row_no += 1
 
-        row_no += 1
-        ws.write_merge(row_no, row_no, 4, 7, _('We will charge you as follows.'), common_style)
+        # row_no += 1
+        # ws.write_merge(row_no, row_no, 4, 7, _('We will charge you as follows.'), common_style)
 
-        row_no += 1
-        ws.write(row_no, 0, _('Shipping date'), common_style)
-        ws.write(row_no, 1, shipping_date, common_style)
-        ws.write(row_no + 1, 0, _('Opening date'), common_style)
-        ws.write(row_no + 1, 1, opening_date, common_style)
-        ws.write(row_no + 2, 0, _('Payment method'), common_style)
-        ws.write(row_no + 2, 1, str(dict(PAYMENT_METHOD_CHOICES)[payment_method]), common_style)
+        # row_no += 1
+        # ws.write(row_no, 0, _('Shipping date'), common_style)
+        # ws.write(row_no, 1, shipping_date, common_style)
+        # ws.write(row_no + 1, 0, _('Opening date'), common_style)
+        # ws.write(row_no + 1, 1, opening_date, common_style)
+        # ws.write(row_no + 2, 0, _('Payment method'), common_style)
+        # ws.write(row_no + 2, 1, str(dict(PAYMENT_METHOD_CHOICES)[payment_method]), common_style)
         
-        ws.write_merge(row_no, row_no + 4, 4, 4, _('Payment breakdown'), table_center_style)
+        # ws.write_merge(row_no, row_no + 4, 4, 4, _('Payment breakdown'), table_center_style)
 
-        milestone_formset = MilestoneFormSet(
-            self.request.POST,
-            prefix='milestone'
-        )
+        # milestone_formset = MilestoneFormSet(
+        #     self.request.POST,
+        #     prefix='milestone'
+        # )
         
-        table_date_style.num_format_str = 'yyyy/mm/dd' if self.request.LANGUAGE_CODE == 'ja' else 'mm/dd/yyyy'
-        idx = 0
-        for form in milestone_formset.forms:
-            form.is_valid()
-            date = form.cleaned_data.get('date')
-            amount = form.cleaned_data.get('amount')
+        # table_date_style.num_format_str = 'yyyy/mm/dd' if self.request.LANGUAGE_CODE == 'ja' else 'mm/dd/yyyy'
+        # idx = 0
+        # for form in milestone_formset.forms:
+        #     form.is_valid()
+        #     date = form.cleaned_data.get('date')
+        #     amount = form.cleaned_data.get('amount')
             
-            ws.write(row_no + idx, 5, _(ordinal(idx + 1)), table_center_style)
-            ws.write(row_no + idx, 6, date, table_date_style)
-            ws.write(row_no + idx, 7, amount, table_left_style)
-            idx += 1
-        row_no += 5
+        #     ws.write(row_no + idx, 5, _(ordinal(idx + 1)), table_center_style)
+        #     ws.write(row_no + idx, 6, date, table_date_style)
+        #     ws.write(row_no + idx, 7, amount, table_left_style)
+        #     idx += 1
+        # row_no += 5
        
-        row_no += 1
-        ws.write(row_no, 0, _('Transfer account'), common_style)
-        ws.write_merge(row_no, row_no, 1, 7, transfer_account, common_style)
-        row_no += 1
-        ws.write(row_no, 0, _('Person in charge'), common_style)
-        ws.write_merge(row_no, row_no, 1, 3, person_in_charge, common_style)
-        ws.write(row_no, 4, _('Confirmor'), common_style)
-        ws.write_merge(row_no, row_no, 5, 7, confirmor, common_style)
+        # row_no += 1
+        # ws.write(row_no, 0, _('Transfer account'), common_style)
+        # ws.write_merge(row_no, row_no, 1, 7, transfer_account, common_style)
+        # row_no += 1
+        # ws.write(row_no, 0, _('Person in charge'), common_style)
+        # ws.write_merge(row_no, row_no, 1, 3, person_in_charge, common_style)
+        # ws.write(row_no, 4, _('Confirmor'), common_style)
+        # ws.write_merge(row_no, row_no, 5, 7, confirmor, common_style)
 
-        wb.save(response)
-        return response
+        # wb.save(response)
+        # return response
+        return "Hello"
