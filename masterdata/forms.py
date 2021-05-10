@@ -1,5 +1,9 @@
+from django import forms
 from django.forms import ModelForm
-from .models import Customer, Hall, Sender, Product, Document, PersonInCharge
+from .models import (
+    Customer, Hall, Sender, Product, Document,
+    PersonInCharge, INPUT_FORMATS,
+)
 
 
 class CustomerForm(ModelForm):
@@ -21,6 +25,7 @@ class SenderForm(ModelForm):
 
 
 class ProductForm(ModelForm):
+    purchase_date = forms.DateField(input_formats=INPUT_FORMATS, required=False)
     class Meta:
         model = Product
         fields = '__all__'
